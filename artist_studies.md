@@ -882,6 +882,62 @@ One facet isolated: fragility and the live-take feel — small-room, never proje
 projected arena vocals, pristine comped take, pitch-corrected vocal, autotuned vocals, trap hi-hats, glossy modern-pop sheen, drum-machine beat, arena reverb, live-crowd ambience, belted stadium power
 ```
 
+## Study 15 — Cathedral-scale atmospheric breaks (blend + 4 roots)
+
+*Generated from library entries #226–230 · 2026-08-01 — edit the `inspiration` entries in `data.js`, then run `node tools/build.mjs`.*
+
+Anchored on one late-90s album rather than a whole career — five prompts circling a single record. Temperament: engineered rapture — conservatory-trained voice-leading and obsessive edit-craft spent entirely on unembarrassed spiritual uplift, at cathedral scale and cathedral patience. Sincerity is the whole game; render it cool, ironic, or drop-driven and it collapses into generic 90s chillout. Structure is one long ascent, never verse-chorus. The four roots isolate the DNA — the long trance build, the chopped funk break used as raw material, phasing ambient minimalism, and wordless sacred choir in a stone room. Roots 1 and 2 triangulate the propulsive tracks; roots 3 and 4 triangulate the vast beatless ones. Every vocal is wordless and ungendered by design: the voice is an instrument and a percussion source here, never a lyricist.
+
+### Blend (999)
+
+```
+Long-form atmospheric electronica near 134 BPM, built as one unbroken ascent rather than verse and chorus: eight minutes of patient layering, a single key lift late, no drop for its own sake. A chopped funk breakbeat rolls under deep round sub-bass, tabla and hand percussion threaded through the kit, wide detuned saw stacks and warm analog pads opening into cathedral-sized reverb. The vocal is wordless and ungendered: a weightless high vowel line, pure-toned and vibrato-less, doubled an octave up and played as an instrument — open vowels floating far back in the space, then pulled forward and sliced into stuttering granular fragments that become percussion at the peaks. Beneath the melody the same voice stacks into a hushed choral pad. Classical voice-leading under dance machinery, edit-obsessive programming spent entirely on uplift. Immense stereo width, long tails, everything reverberant and skyward. Delivery rapturous and devotional — engineered euphoria, sincere and unembarrassed.
+```
+
+```
+rap verses, gritty shouted vocal, distorted screams, big-room festival drop, aggressive wobble bass, verse-chorus pop structure, dry close-mic country vocal, autotune snap, lo-fi bedroom hiss, short radio edit
+```
+
+### Root 1 · Long-build trance ascent (873)
+
+```
+One ancestor isolated: the long melodic build. Near 136 BPM, shaped as a single arc — sixteen-bar phrases, a filter opening a fraction at a time across minutes, an arpeggiated sequence climbing through modal changes, and a mid-track breakdown that strips the drums away entirely and rebuilds from one pad. Rolling sub-bass, gated string-pads, hi-hat pressure rising instead of any sudden switch. The vocal is wordless and ungendered: one warm mid-register vowel motif, smooth and unforced, no lyric and no vibrato, repeated as the melodic signature and side-chained to the kick so it breathes in and out with the track; a second copy floats an octave above it in long reverb, arriving only for the final lift. Wide stereo, immense tails, everything reaching upward. Delivery earnest and yearning — patience is the emotion here, the payoff withheld until it has been earned.
+```
+
+```
+sudden festival drop, rap verses, sung lyrics, gritty shouting, distorted screams, verse-chorus pop structure, dry close-mic vocal, autotune snap, aggressive wobble bass, lo-fi hiss, abrupt ending
+```
+
+### Root 2 · Chopped-break vocal science (881)
+
+```
+One ancestor isolated: the drum break as raw material. Near 138 BPM, a dusty funk break sliced at every transient and rebuilt — flams, reversed hits, stuttered rolls, time-stretched tails, filtered dropouts — swung hard and never looped straight for more than a bar. Deep round sub-bass beneath it, dub delay throws, vinyl grain and tape hiss in the seams. The vocal is used as percussion: one ungendered mid-register phrase chopped into clipped rhythmic stabs, pitched up and down across the bar, reversed, stuttered into machine-gun repeats until the words dissolve into rhythm and texture rather than meaning. Under that sits a low half-spoken murmur, band-passed like a distant transmission, more air and consonant than tone. Big room around the drums, dry and forward through the middle. Delivery playful and sly — the voice treated as a machine part, cut with obvious relish.
+```
+
+```
+sustained sung melody, belted vocal, operatic tone, four-on-the-floor house kick, orchestral strings, gritty screaming, verse-chorus pop structure, autotune snap, straight unedited loop, slow ballad tempo
+```
+
+### Root 3 · Phasing ambient vista (896)
+
+```
+One ancestor isolated: stillness and system. Slow and unmeasured near 70 BPM with no drums at all — long analog pads opening and closing over ten-minute patience, a wide synth vista of slow-moving thirds, and one short melodic cell repeating and phasing gradually out of alignment with itself until new patterns surface between the copies. Sub-bass felt as weight rather than heard as a note; tape hiss, faint outdoor field-recording air, a struck bell left to decay for bars. The vocal is barely there and ungendered: a sustained breath-toned wordless note held at the very edge of the pad, so soft and unvibratoed it reads as nearly synthetic, doubled by a copy of itself drifting milliseconds behind so the two shimmer and beat against each other. Vast reverb, no close detail, nothing sung to anyone. Delivery cool and detached — weather rather than feeling, the emotion left to the listener.
+```
+
+```
+drum kit, breakbeat, four-on-the-floor kick, belted vocal, sung lyrics, rap verses, gritty rasp, bright pop sheen, fast tempo, dense arrangement, autotune snap, dry close-mic intimacy
+```
+
+### Root 4 · Stone-room wordless choir (862)
+
+```
+One ancestor isolated: voices in a stone room. Slow and processional near 84 BPM, more rite than song — a sustained organ-like pad, a low drone, a soft mallet pulse and a single struck bell marking each phrase, everything else left as space. The vocal is a full wordless ungendered choir: clear vibrato-less voices stacked in close sacred harmony, treble-register lines ringing bright above a deep sustained bass foundation, singing open vowels and plain syllables rather than words, every phrase shaped by breath and swelling together as one body. Recorded far back in an enormous stone reverberance, six seconds of decay, the room audible as an instrument in itself. One voice steps forward for a single exposed unaccompanied phrase before the stack folds back over it. Delivery ecstatic and devotional — transcendence sung plainly, reverent and unembarrassed.
+```
+
+```
+solo pop vocal, autotune snap, gritty rasp, growl, rap verses, drum kit, breakbeat, electric guitar, bright modern pop sheen, dry close-mic capture, fast tempo, gospel belting
+```
+
 <!-- END GENERATED -->
 
 ---
