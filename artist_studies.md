@@ -954,40 +954,40 @@ Instrumental-minded hip-hop assembled entirely out of other people's records, ne
 clean digital production, bright modern pop sheen, autotune snap, live band recording, four-on-the-floor kick, edm drop, orchestral swell, arena reverb, belted power vocal, festival energy
 ```
 
-### Root 1 · Battle-turntablist cut-craft (881)
+### Root 1 · Battle-turntablist cut-craft (912)
 
 ```
-One ancestor isolated: the battle DJ's hands. Near 96 BPM, built around cut craft — one break juggled between two copies of the same record, needle drops, transformer and crab scratches answering every phrase, a hook made from a single stabbed word thrown across the bar. Drums dry, hard and forward; bass round and simple beneath; almost nothing else in the arrangement, so the cuts carry the track. A unique and specific vocalist: an agile technical rap lead, syllable-dense and rhythmically acrobatic, mid-register and bright, riding just ahead of the beat with crisply punched consonants and a showman's timing, trading four-bar phrases with the scratched refrain. Quick and confident rather than heavy. Close dry mic, minimal processing, faint room bleed off the turntables. Delivery playful and competitive — a performer showing their hands, delighted by their own dexterity.
+Battle-turntablist hip-hop isolated: the DJ's hands as the whole instrument. Near 96 BPM, built around cut craft — one break juggled between two copies of the same record, needle drops, transformer and crab scratches answering every phrase, a hook made from a single stabbed word thrown across the bar. Drums dry, hard and forward; bass round and simple beneath; almost nothing else in the arrangement, so the cuts carry the track. A unique and specific vocalist: an agile technical rap lead, syllable-dense and rhythmically acrobatic, mid-register and bright, riding just ahead of the beat with crisply punched consonants and a showman's timing, trading four-bar phrases with the scratched refrain. Quick and confident rather than heavy. Close dry mic, minimal processing, faint room bleed off the turntables. Delivery playful and competitive — a performer showing their hands, delighted by their own dexterity.
 ```
 
 ```
 sung melodic hook, belted vocal, autotune snap, slow drawled delivery, lush reverb, orchestral strings, four-on-the-floor kick, edm drop, distorted screaming, glossy modern pop sheen
 ```
 
-### Root 2 · Private-press psych (805)
+### Root 2 · Private-press psych (797)
 
 ```
-One ancestor isolated: the strange record at the bottom of the crate. Near 78 BPM, a lost private-press psych album rebuilt — mellotron and combo organ, tremolo guitar, flute and vibraphone, a live drummer rushing slightly, a string arrangement more ambitious than the budget allowed, everything committed to tape a touch too hot. A unique and specific vocalist: a fragile hazy tenor, thin and barely supported, sitting a little under the pitch and drifting flat on the held notes, tape wow bending whole lines, no vibrato and no projection — one take by someone with more vision than technique. Warm, wobbling, half-buried behind the instruments. Small-studio room mic, tape saturation, audible hiss and print-through. Delivery melancholic and hazy — earnest and amateur, quietly beautiful because of it.
+Private-press psych rock isolated: the strange record at the bottom of the crate. Near 78 BPM, a lost album rebuilt — mellotron and combo organ, tremolo guitar, flute and vibraphone, a live drummer rushing slightly, a string arrangement more ambitious than the budget allowed, everything committed to tape a touch too hot. A unique and specific vocalist: a fragile hazy tenor, thin and barely supported, sitting a little under the pitch and drifting flat on the held notes, tape wow bending whole lines, no vibrato and no projection — one take by someone with more vision than technique. Warm, wobbling, half-buried behind the instruments. Small-studio room mic, tape saturation, audible hiss and print-through. Delivery melancholic and hazy — earnest and amateur, quietly beautiful because of it.
 ```
 
 ```
 polished modern vocal, autotune snap, pitch correction, belted power vocal, tight quantized drums, digital clarity, bright pop sheen, rap verses, arena reverb, heavy distortion
 ```
 
-### Root 3 · Deep-soul 45 (796)
+### Root 3 · Deep-soul 45 (795)
 
 ```
-One ancestor isolated: the soul 45 the loop was cut from. Near 84 BPM, a mid-60s deep-soul side — churchy triplet piano, plaintive horn lines, a lazy dragging backbeat, tambourine, guitar chank, bass walking simply underneath, the whole band cut live in a small room in a couple of takes. A unique and specific vocalist: a worn pleading lead that starts low and conversational in the chest, then pushes upward until it cracks and frays, grain thickening on every held note, testifying and begging by the last chorus, breath and strain left fully audible. All feeling and no polish, pitch bent by emotion rather than design. Vintage dynamic mic into an overdriven console, mono, tape-compressed and hot. Delivery anguished and torn — a voice giving everything it has and audibly running out of it.
+Mid-60s deep soul isolated: the 45 the loop was cut from. Near 84 BPM, a small-label soul side — churchy triplet piano, plaintive horn lines, a lazy dragging backbeat, tambourine, guitar chank, bass walking simply underneath, the whole band cut live in a small room in a couple of takes. A unique and specific vocalist: a worn pleading lead that starts low and conversational in the chest, then pushes upward until it cracks and frays, grain thickening on every held note, testifying and begging by the last chorus, breath and strain left fully audible. All feeling and no polish, pitch bent by emotion rather than design. Vintage dynamic mic into an overdriven console, mono, tape-compressed and hot. Delivery anguished and torn — a voice giving everything it has and audibly running out of it.
 ```
 
 ```
 smooth modern R&B croon, autotune snap, pitch correction, programmed drums, digital clarity, bright pop sheen, rap verses, falsetto-only delivery, arena reverb, stereo widening
 ```
 
-### Root 4 · Score-and-splice dread (828)
+### Root 4 · Score-and-splice dread (848)
 
 ```
-One ancestor isolated: the horror-thriller score and the tape-splice experiment. Slow and unsettled near 66 BPM — sustained dissonant strings, a detuned music-box figure, prepared piano, reversed cymbals, sub-bass swells arriving where nothing is happening, found sound and radio static spliced in at hard cuts. Little melody, heavy dread, long silences that refuse to resolve. A unique and specific vocalist: a low murmured lead barely above a whisper, close enough that mouth and breath are audible, half-narrating and half-singing in a flat cold monotone, then tightening into clipped precisely pitched phrases as the strings rise. Calm and wrong. Captured intimate and dry inside an enormous dead space, no warmth and no tail on the voice. Delivery menacing and detached — quiet control, the threat implied and never raised.
+Horror-thriller film score isolated: orchestral dread spliced with tape-experiment musique concrète. Slow and unsettled near 66 BPM — sustained dissonant strings, a detuned music-box figure, prepared piano, reversed cymbals, sub-bass swells arriving where nothing is happening, found sound and radio static spliced in at hard cuts. Little melody, heavy dread, long silences that refuse to resolve. A unique and specific vocalist: a low murmured lead barely above a whisper, close enough that mouth and breath are audible, half-narrating and half-singing in a flat cold monotone, then tightening into clipped precisely pitched phrases as the strings rise. Calm and wrong. Captured intimate and dry inside an enormous dead space, no warmth and no tail on the voice. Delivery menacing and detached — quiet control, the threat implied and never raised.
 ```
 
 ```
