@@ -24,7 +24,8 @@ const len = s => [...s].length;
 
 export function loadData(dataPath = DATA) {
   const src = readFileSync(dataPath, 'utf8');
-  return new Function(src + '\n; return {LIB, RECENT, STUDY_META, VERSION, UPDATED};')();
+  return new Function(src + `\n; return {LIB, RECENT, STUDY_META, VERSION, UPDATED,
+    SONG_TITLES: typeof SONG_TITLES === 'undefined' ? {} : SONG_TITLES};`)();
 }
 
 const roleRank = r => (/blend/i.test(r) ? -1 : parseInt((r.match(/\d+/) || [99])[0], 10));

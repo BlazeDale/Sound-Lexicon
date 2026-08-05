@@ -11,6 +11,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { loadData, checkInSync } from './build.mjs';
 import { loadHashes, findDenied } from './denylist.mjs';
+import { songIds } from './song_titles.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const HTML = join(ROOT, 'vocal_timbre_library.html');
@@ -26,9 +27,9 @@ const fail = m => fails.push(m);
 const pass = m => passes.push(m);
 
 /* ---------- load data ---------- */
-let LIB, RECENT, VERSION, UPDATED;
+let LIB, RECENT, VERSION, UPDATED, SONG_TITLES;
 try {
-  ({ LIB, RECENT, VERSION, UPDATED } = loadData(process.argv[2]));
+  ({ LIB, RECENT, VERSION, UPDATED, SONG_TITLES } = loadData(process.argv[2]));
   pass(`loaded data.js (${LIB.length} entries)`);
 } catch (e) {
   fail(`could not load data.js: ${e.message}`);
@@ -127,7 +128,26 @@ const suites = LIB.filter(v => v.cat === 'suite');
   }
 }
 
-/* ---------- 8. artist_studies.md: labels match + generated region in sync ---------- */
+/* ---------- 8. demo song titles: present, name-free, and wired into search ---------- */
+{
+  const ids = songIds(LIB);
+  const titles = SONG_TITLES || {};
+  const missing = ids.filter(id => !titles[id]);
+  if (!ids.length) pass(`no demo songs to title`);
+  else missing.length
+    ? fail(`${missing.length}/${ids.length} demo song(s) missing a title (song name won't be searchable) — run: node tools/song_titles.mjs${missing.length <= 5 ? ` [${missing.join(', ')}]` : ''}`)
+    : pass(`all ${ids.length} demo songs have a searchable title`);
+  const orphans = Object.keys(titles).filter(id => !ids.includes(id));
+  if (orphans.length) fail(`SONG_TITLES has ${orphans.length} title(s) for songs no longer in LIB — run: node tools/song_titles.mjs`);
+  const hashes = loadHashes();
+  const named = Object.entries(titles).filter(([, t]) => findDenied(t, hashes).length).map(([id]) => id);
+  if (named.length) fail(`artist name in a Suno song title (ships to browsers): ${named.join(', ')}`);
+  html.includes('songTitles(v)') && html.includes('SONG_TITLES')
+    ? pass(`song titles feed the card search blob`)
+    : fail(`song titles not wired into the search blob in the HTML`);
+}
+
+/* ---------- 9. artist_studies.md: labels match + generated region in sync ---------- */
 {
   const md = readFileSync(STUDIES_MD, 'utf8');
   const re = /###[^\n]*\((\d+)\)\s*\n\s*```\n([\s\S]*?)\n```/g;

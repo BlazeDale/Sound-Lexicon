@@ -243,7 +243,7 @@
   <section>
     <h2 class="shead">Prompt library</h2>
     <div class="controls">
-      <input id="q" placeholder="search name, genre, or prompt text…" autocomplete="off">
+      <input id="q" placeholder="search name, genre, song title, or prompt text…" autocomplete="off">
       <button class="tab on" data-cat="all" title="Clear all filters and the search box">✕ Clear</button>
       <button class="tab" data-cat="liked">♥ Liked</button>
       <button class="tab" data-cat="popular">★ Popular</button>
@@ -355,15 +355,20 @@ function sunoIds(suno){
   if(Array.isArray(suno)) return suno.filter(Boolean);
   return [suno.f, suno.m].filter(Boolean);   // legacy {f,m}
 }
+// Song titles live on Suno, not in the entry data; SONG_TITLES (data.js, keyed by
+// uuid) is scraped by tools/song_titles.mjs. They feed the search blob + tooltips.
+const songTitle=raw=>{ const u=sunoParse(raw).uuid; return (typeof SONG_TITLES!=='undefined'&&SONG_TITLES[u])||''; };
+const songTitles=v=>sunoIds(v.suno).map(songTitle).filter(Boolean);
 function sunoTile(raw){
   const {uuid,link,art}=sunoParse(raw);
+  const t=songTitle(raw);
   return `<span class="song-tile">`+
-    `<button type="button" class="song-art" data-uuid="${esc(uuid)}" title="Play in the side player">`+
+    `<button type="button" class="song-art" data-uuid="${esc(uuid)}" data-title="${esc(t)}" title="${esc(t?t+' — play in the side player':'Play in the side player')}">`+
       (art?`<img src="${esc(art)}" alt="" onerror="this.style.display='none'">`:'')+
       `<span class="song-play">▶</span>`+
       `<span class="song-g" data-gid="${esc(uuid)}"></span>`+
     `</button>`+
-    `<a class="song-ext" href="${esc(link)}" target="_blank" rel="noopener" title="Open on Suno">↗</a>`+
+    `<a class="song-ext" href="${esc(link)}" target="_blank" rel="noopener" title="${esc(t?`Open “${t}” on Suno`:'Open on Suno')}">↗</a>`+
     `<span class="song-gedit">`+
       `<button type="button" class="gbtn" data-set="f" data-gid="${esc(uuid)}" title="Mark feminine">♀</button>`+
       `<button type="button" class="gbtn" data-set="m" data-gid="${esc(uuid)}" title="Mark masculine">♂</button>`+
@@ -397,7 +402,7 @@ function cardHTML(v){
   // data-blob feeds substring search only (never displayed); v.artist is a hashed
   // exact-match key (SHA-256 of the name) — the plaintext name never ships. See data.js.
   const sids=sunoIds(v.suno);   // song ids on this entry (empty => no demo)
-  let h=`<div class="card" data-n="${v.n}" data-cat="${v.cat}" data-aff="${esc(v.aff||'')}" data-reg="${v.reg??''}" data-grit="${v.grit??''}" data-bpm="${(String(v.style||'').match(/(?:near|at) (\d+) ?BPM/i)||[])[1]||''}" data-suno="${sids.join(',')}" data-artist="${esc(v.artist||'')}" data-blob="${esc((v.name+' '+v.fam+' '+v.style+' '+(v.lyric||'')+' '+(v.seed||'')).toLowerCase())}" style="border-left-color:${border}">`;
+  let h=`<div class="card" data-n="${v.n}" data-cat="${v.cat}" data-aff="${esc(v.aff||'')}" data-reg="${v.reg??''}" data-grit="${v.grit??''}" data-bpm="${(String(v.style||'').match(/(?:near|at) (\d+) ?BPM/i)||[])[1]||''}" data-suno="${sids.join(',')}" data-artist="${esc(v.artist||'')}" data-blob="${esc((v.name+' '+v.fam+' '+v.style+' '+(v.lyric||'')+' '+(v.seed||'')+' '+songTitles(v).join(' ')).toLowerCase())}" style="border-left-color:${border}">`;
   h+=`<span class="likewrap"><button class="like" data-like="${esc(String(v.n))}" title="Like this style" aria-label="Like this style">♡</button><span class="lcount" data-count="${esc(String(v.n))}"></span></span>`;
   h+=`<div class="top"><span class="num">#${v.n}</span><span class="name">${esc(v.name)}</span><span class="fam">${esc(v.fam)}</span></div>`;
   h+=`<div class="chips">${chips(v)}</div>`;
@@ -562,7 +567,7 @@ document.querySelectorAll('.legend span[data-aff]').forEach(sp=>sp.addEventListe
 (function(){
   const player=document.getElementById('player'), frame=document.getElementById('pframe'),
         pnow=document.getElementById('pnow'), pempty=document.getElementById('pempty');
-  const labelOf=card=>card?('#'+card.dataset.n+' '+(card.querySelector('.name')?.textContent||'').trim()):'';
+  const labelOf=(card,art)=>(card?('#'+card.dataset.n+' '+(card.querySelector('.name')?.textContent||'').trim()):'')+(art&&art.dataset.title?' · '+art.dataset.title:'');
   function play(uuid,lab){
     if(!uuid) return;
     pempty.style.display='none'; frame.style.display='block';
@@ -573,7 +578,7 @@ document.querySelectorAll('.legend span[data-aff]').forEach(sp=>sp.addEventListe
   // ▶ on any demo icon -> play in the side panel (delegated: works for main + recent cards)
   document.addEventListener('click',e=>{
     const art=e.target.closest('.song-art'); if(!art) return;
-    play(art.dataset.uuid, labelOf(art.closest('.card')));
+    play(art.dataset.uuid, labelOf(art.closest('.card'),art));
   });
   document.getElementById('ptab').addEventListener('click',()=>player.classList.toggle('collapsed'));
   document.getElementById('prand').addEventListener('click',()=>{
@@ -581,7 +586,7 @@ document.querySelectorAll('.legend span[data-aff]').forEach(sp=>sp.addEventListe
     if(!cards.length){ pempty.textContent='No demos in the current filter'; pempty.style.display='block'; frame.style.display='none'; pnow.textContent='Nothing playing'; player.classList.remove('collapsed'); return; }
     const card=cards[Math.floor(Math.random()*cards.length)];
     const art=card.querySelector('.song-art');
-    play(art&&art.dataset.uuid, labelOf(card));
+    play(art&&art.dataset.uuid, labelOf(card,art));
     card.scrollIntoView({behavior:'smooth',block:'center'});
     card.classList.remove('flash'); void card.offsetWidth; card.classList.add('flash');
   });

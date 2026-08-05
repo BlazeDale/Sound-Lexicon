@@ -19,6 +19,25 @@ markers is touched. Studies 1–3 above the marker are hand-authored and left al
 Study-level prose (temperament note, date) lives in `STUDY_META` in `data.js`, keyed
 by the study slug (`fam` minus `"inspirations · "`).
 
+## song_titles.mjs — make demo song names searchable
+
+`data.js` stores only Suno song **UUIDs**; the song's *name* lives on Suno. This
+scrapes the `og:title` off each song page into the generated `SONG_TITLES` block in
+`data.js`, and the page folds those titles into each card's search blob — so typing
+a song name in the search box finds the entry that demos it (they also show as the
+tile tooltip and in the side-player header).
+
+```
+node tools/song_titles.mjs          # fetch titles for demos that lack one
+node tools/song_titles.mjs --all    # re-fetch everything (a song was renamed)
+node tools/song_titles.mjs --check  # exit 1 if any demo is missing a title
+```
+
+Run it after attaching demos, before committing. Suno's pages aren't CORS-readable,
+so this can't happen in the browser — the titles have to be baked in here. If a song
+is private/deleted the fetch yields nothing; add that one line by hand and the tool
+will preserve it.
+
 ## validate.mjs — pre-commit check
 
 Run before every commit:
@@ -36,6 +55,7 @@ Loads `data.js` and checks:
 - **mandated negatives** — the 5 mandated terms must *not* be pre-baked into `neg` (appended at copy time)
 - **version stamp + masthead** — `VERSION`/`UPDATED` set; title/counts derive at runtime; static `<title>` stays count-free
 - **HTML wiring** — references `data.js`; inline script parses; `<div>`/`<section>` balanced
+- **song titles** — every attached demo has a `SONG_TITLES` entry (else its song name isn't searchable), no stale entries, no artist name in a title, and the HTML still feeds titles into the search blob
 - **artist_studies.md** — `(NNN)` labels match their prompts, and the generated region is in sync (`build --check`)
 
 Exit `1` on any failure. Pass a path as arg 1 to validate a different `data.js` (self-testing).
@@ -76,5 +96,6 @@ runtime, so entry counts never need hand-editing and can't go stale.
 
 1. Edit `data.js` (and `STUDY_META` if it's a promoted study; bump `VERSION`/`UPDATED` if releasing).
 2. `node tools/build.mjs` — regenerate `artist_studies.md`.
-3. `node tools/validate.mjs` — must pass (the hook runs this too).
-4. Commit.
+3. `node tools/song_titles.mjs` — if you attached demos, pull their song titles.
+4. `node tools/validate.mjs` — must pass (the hook runs this too).
+5. Commit.
