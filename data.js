@@ -16,7 +16,7 @@
 
 /* Version stamp — the ONLY place to bump these. Title, <meta>, masthead, and
  * footer all derive from here + LIB counts at runtime, so counts never drift. */
-const VERSION = 'v18';
+const VERSION = 'v19';
 const UPDATED = '2026-08-08';
 
 /* ---------- MOST RECENT BATCH ----------
@@ -24,9 +24,9 @@ const UPDATED = '2026-08-08';
    (numbers for library entries, e.g. 133; suite ids like 'Q5' also work).
    These render as full cards in the "Most recent batch" strip up top. */
 const RECENT = {
-  label: 'Valspeak talk-lead pop',
+  label: 'Valspeak intonation probes',
   date:  '2026-08-08',
-  entries: [261, 262, 263, 264, 265]
+  entries: [266, 267, 268, 269, 270]
 };
 
 const LIB=[
@@ -507,6 +507,50 @@ So? (So!) So what? (So what!)
 
 [Last line] (finally sung, held)
 I said I'm fine and I meant it—`},
+{n:266,name:`Eye-dialect mall drawl`,fam:`Valspeak intonation probes`,cat:`lyrical`,bpm:`118`,role:`sung strictly to phonetic spelling`,proc:`clean synth-pop bed · voice well forward`,aff:`D`,style:`Bright synth-pop near 118 BPM sung in a heavy Southern Californian mall drawl — the lyric is deliberately spelled phonetically and must be sung exactly as written, letter for letter, every elongation included. Vowels fronted and stretched to match the spelling, consonants soft, diction lazy and unhurried. The lead is a unique and specific vocalist: ungendered, light and nasal, placed high in the face, phrases trailing upward at the ends. Behind it: warm analog pads, a bouncing synth bass, crisp programmed drums, handclaps, one glassy arpeggio. Chorus doubled an octave up. Production clean, bright and close, the voice mixed well forward so every stretched vowel is audible.`,neg:`crisp enunciation, formal diction, operatic tone, gravel rasp, orchestral strings, distorted guitar wall, slow ballad tempo, dense reverb wash`,lyric:`[Verse 1] (sing exactly as spelled, do not correct it)
+Sooo I'm liiike, tow-tuh-lee ohvurr it?
+And he's liiike, naw yer nawt?
+
+[Chorus] (stretched, rising at every line end)
+Ohmuhgawd, ohmuhgawd,
+thaaat is sooo not whut I sed?
+Liiike, hel-loooo?`},
+{n:267,name:`Surf-stoner coast drawl`,fam:`Valspeak intonation probes`,cat:`lyrical`,bpm:`96`,role:`broad coastal drawl, trailing upward`,proc:`reverb-drenched guitar · brushed shuffle · dry vocal`,aff:`A`,style:`Sun-bleached Southern Californian beach pop near 96 BPM, sung in a broad coastal surfer drawl: slow and unhurried, vowels melted and drawn long, consonants dropped, every sentence trailing upward as though it were never finished. The lead is a unique and specific vocalist: ungendered, warm and hazy, placed forward and faintly nasal, phrases ending higher than they began. Behind it: reverb-soaked clean guitar, a lazy shuffle on brushes, warm round bass, faint organ holding chords. Everything half-speed and salt-worn. Production wide and washed, the guitars drenched, the vocal dry and close against them.`,neg:`urgent tempo, clipped diction, aggressive delivery, distorted guitar, orchestral strings, gospel melisma, dense club production, belted chorus`,lyric:`[Verse] (drawled, unhurried, trailing up)
+We're just gonna sit here til the tide comes in?
+Nobody's callin? Nobody's got anywhere to be?
+
+[Chorus] (melted, long vowels, ends lifting)
+Sooo whatever, man?
+Sooo totally whatever?`},
+{n:268,name:`Rising-phrase bubblegum pop`,fam:`Valspeak intonation probes`,cat:`lyrical`,bpm:`128`,role:`every phrase ends higher than it starts`,proc:`chiming bells · four-on-the-floor · stacked answers`,aff:`C`,style:`Bubblegum pop near 128 BPM built entirely on rising melodic phrases: every vocal line ends higher than it begins, each phrase resolving upward onto an unresolved scale degree so that plain statements land as questions. Call-and-answer structure throughout — a short sung line, then a higher answering line. The lead is a unique and specific vocalist: ungendered, bright and light, placed high and forward with a thin sweet tone. Behind it: chiming synth bells, a bouncing bassline, four-on-the-floor kick, handclaps, sugary stacked backing on every answer. The melody never cadences downward anywhere in the song. Production bright, glossy and forward.`,neg:`descending melody, resolved cadence, deep chest belt, gravel rasp, slow ballad tempo, orchestral swell, minor-key gloom, mumbled delivery`,lyric:`[Verse] (each line ends higher than it starts)
+I was gonna call you? (call you?)
+I was gonna say the thing? (say the thing?)
+
+[Chorus] (answer line always higher than the call)
+Is it fine? (It's fine!)
+Is it fine? (It's fine!)
+Everything is totally—
+
+[Answer] (highest note in the song, unresolved)
+Fine?`},
+{n:269,name:`Spoken-word beat piece`,fam:`Valspeak intonation probes`,cat:`lyrical`,bpm:`84`,role:`talked throughout, never lands on a pitch`,proc:`dusty drums · electric-piano loop · vinyl crackle`,aff:`B`,style:`Spoken-word piece over a downtempo beat near 84 BPM: there is no singing anywhere in this track — the entire vocal is talked, read aloud at conversational pace like a diary entry into a microphone, never landing on a pitch. Southern Californian register, unhurried, sentences drifting upward at the ends, phrase tails softening into creak. The lead is a unique and specific vocalist: ungendered, close-mic-ed, dry and intimate. Behind the voice: dusty drums, a warm sub, one looping electric-piano figure, vinyl crackle. The music stays under the talking at all times and never competes. Production close and quiet, every consonant legible.`,neg:`sung melody, singing, belted chorus, vocal harmony stacks, autotune, rapping on the beat, orchestral swell, loud dance production`,lyric:`[Spoken] (read aloud, no singing anywhere, conversational)
+Okay so. I'm just gonna talk? For a minute?
+I'm not gonna sing any of this? That's not what this is?
+
+[Spoken] (softer, tails creaking)
+He said it was fine. And I said, cool.
+And then I sat in the car for like, forty minutes?`},
+{n:270,name:`Aside-and-interjection pop`,fam:`Valspeak intonation probes`,cat:`lyrical`,bpm:`122`,role:`sung lines ordinary, dialect only in the asides`,proc:`polished for the song · raw for the talking`,aff:`D`,style:`Glossy electro-pop near 122 BPM in which the sung lines are ordinary but every gap between them is filled with spoken interjections in a Southern Californian mall register — short talked asides, half-laughed reactions, muttered commentary, delivered casually and left deliberately unpolished against the clean singing. The sung lead is a unique and specific vocalist: ungendered, smooth and bright. The spoken asides are that same voice dropped into plain speech, unhurried, vowels stretched, ends lifting. Behind it: punchy synth bass, gated pads, crisp claps. The asides sit forward in the mix, closer and drier than the singing. Production polished for the song, raw for the talking.`,neg:`continuous singing with no speech, orchestral strings, gravel rasp, slow ballad tempo, dense reverb on the spoken parts, aggressive delivery, jazz phrasing`,lyric:`[Verse] (sung, smooth, ordinary)
+I keep the porch light on for nobody—
+
+[Aside] (spoken, casual, close, rising)
+(I mean, obviously for you? But like, whatever?)
+
+[Chorus] (sung, clean)
+Every light in this house is a question—
+
+[Aside] (muttered, half-laughed, creak on the tail)
+(That was deep? Was that deep?)`},
 ];
 
 /* BEGIN GENERATED — Suno song titles · run: node tools/song_titles.mjs */
