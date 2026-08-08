@@ -16,7 +16,7 @@
 
 /* Version stamp — the ONLY place to bump these. Title, <meta>, masthead, and
  * footer all derive from here + LIB counts at runtime, so counts never drift. */
-const VERSION = 'v21';
+const VERSION = 'v22';
 const UPDATED = '2026-08-08';
 
 /* ---------- MOST RECENT BATCH ----------
@@ -24,9 +24,9 @@ const UPDATED = '2026-08-08';
    (numbers for library entries, e.g. 133; suite ids like 'Q5' also work).
    These render as full cards in the "Most recent batch" strip up top. */
 const RECENT = {
-  label: 'Dancefloor narration cycle',
+  label: 'Breakdown-peak narration',
   date:  '2026-08-08',
-  entries: [276, 277, 278, 279, 280]
+  entries: [281, 282, 283, 284, 285]
 };
 
 const LIB=[
@@ -636,6 +636,51 @@ Just us and whoever that is? By the door?
 [Spoken] (quieter, dissolving)
 That was so fun. That was actually so fun?
 I'm gonna feel this for like, three days?`},
+{n:281,name:`Psytrance stranded narration`,fam:`breakdown-peak narration`,cat:`lyrical`,bpm:`145`,role:`narration stranded by the bass dropping out`,proc:`rolling triplet bass · acid squelch · reversed vocal fragments`,aff:`A`,style:`Full-on psytrance near 145 BPM under continuous spoken narration: a rolling triplet bassline and acid squelch churning beneath a voice that keeps talking through the whole track — offhand at first, then stranded and wide-eyed when the bass drops away for a long psychedelic breakdown, then laughing as it rolls back in. Never sung. The lead is a unique and specific vocalist: dry, close and conversational, sentences lifting at the ends. Behind it: sixteenth-note bass, screeching resonant leads, tribal toms, risers stacked inside risers, and the genre habit of burying half-heard spoken fragments in the mix — here those fragments are the same voice, delayed and reversed. Production psychedelic and wide behind a bone-dry lead.`,neg:`sung topline, diva vocal, four-on-the-floor house groove, orchestral strings, acoustic guitar, ballad tempo, belted chorus, warm analog softness`,lyric:`[Spoken] (offhand, rolling with the bass)
+I have no idea what time it is? And I've stopped caring?
+
+[Spoken] (bass drops out — stranded, wide-eyed)
+Oh. Oh, everything just—
+Where did the floor go? Like, where did it actually go?
+
+[Spoken] (laughing as it rolls back in)
+Okay? Okay okay okay. There it is?`},
+{n:282,name:`Orchestral-trance narration`,fam:`breakdown-peak narration`,cat:`lyrical`,bpm:`138`,role:`spoken peak carried by strings, not synths`,proc:`real string section · timpani rolls · pizzicato answers`,aff:`C`,style:`Orchestral trance near 138 BPM under continuous spoken narration: supersaws share the track with a real string section, and when the drums fall away for the breakdown it is violins and cellos that carry it rather than synths. The talking is offhand through the build, bare and unguarded across the strings, then swept up as the kick returns. Never sung. The lead is a unique and specific vocalist: close and conversational, sentences rising at the ends. Behind it: rolling sixteenth bass, a wide supersaw wall, timpani rolls beneath the sweep, pizzicato answering the speech in the gaps. The emotional peak is a spoken sentence over an orchestra. Production cinematic and enormous behind a dry, small voice.`,neg:`sung topline, vocal runs, rapping, distorted guitar, lo-fi production, sparse minimal arrangement, gravel rasp, downtempo drag`,lyric:`[Spoken] (offhand, through the build)
+They've got a whole string section? For this? At 2am?
+
+[Spoken] (drums gone — bare, across the strings)
+I wasn't going to say anything. But it's beautiful?
+Like, actually, embarrassingly beautiful?
+
+[Spoken] (swept up as the kick returns)
+Oh my god. Oh my GOD, okay—`},
+{n:283,name:`Post-rock crescendo narration`,fam:`breakdown-peak narration`,cat:`lyrical`,bpm:`84`,role:`trance architecture played by a band`,proc:`tremolo guitar layering · live drums entering late`,aff:`B`,style:`Post-rock crescendo near 84 BPM under continuous spoken narration, built on the same architecture as a trance breakdown but played by a band: tremolo-picked guitars layering in one at a time, live drums arriving late and building to a wall, everything climbing for minutes toward a single release. The talking runs the whole length — offhand at the start, quiet and unguarded through the hushed middle, half-shouted when the guitars finally break. Never sung. The lead is a unique and specific vocalist: close-mic-ed, dry and conversational against a vast room. Behind it: reverb-drenched guitar, bowed bass, brushed drums turning battered, one glockenspiel figure. Production huge and live, the voice always in front.`,neg:`sung vocal, four-on-the-floor kick, synth supersaws, dance production, rapping, tight pop structure, bright major-key pop chords, loud mastering`,lyric:`[Spoken] (offhand, one guitar)
+It always starts so quiet you think nothing's happening?
+
+[Spoken] (hushed middle, unguarded)
+And then you realise it's been building the whole time.
+That it was always going somewhere? And you just—
+
+[Spoken] (half-shouted as the guitars break)
+There. THERE. Oh my god, there it is?`},
+{n:284,name:`Sacred-choir trance narration`,fam:`breakdown-peak narration`,cat:`lyrical`,bpm:`132`,role:`plain speech inside liturgy`,proc:`wordless choir in a stone room · organ pedal · plate reverb`,aff:`E`,style:`Sacred trance near 132 BPM under continuous spoken narration: a wordless choir recorded in a stone room swells beneath the speech, and the breakdown is a cathedral rather than a drop — voices sustaining in open fifths while the drums vanish entirely. The talking stays ordinary and unbothered against it, which is the whole point: plain speech inside liturgy. Then the kick returns and the choir climbs an octave. The lead is a unique and specific vocalist: close, dry and conversational, sentences lifting at the ends. Behind it: a rolling bass, an organ pedal tone, plate reverb on everything except the lead, distant bells. Production vast and reverberant around a completely dry voice.`,neg:`sung lead, solo diva vocal, gospel melisma, distorted guitar, lo-fi production, dry small room, aggressive delivery, cluttered percussion`,lyric:`[Spoken] (ordinary, against the choir)
+So there's like, a whole choir happening? Which is a lot?
+
+[Spoken] (drums vanish — voices in open fifths)
+I don't know what to do with my face right now?
+Everyone's just standing here? Being reverent?
+
+[Spoken] (kick returns, choir up an octave)
+Okay, no, I get it. I totally get it?`},
+{n:285,name:`Hardstyle euphoric narration`,fam:`breakdown-peak narration`,cat:`lyrical`,bpm:`150`,role:`half-shouting into the drop, audibly grinning`,proc:`reverse-bass kick · piano breakdown · silence before return`,aff:`G`,style:`Euphoric hardstyle near 150 BPM under continuous spoken narration: a distorted reverse-bass kick driving hard, then cut away entirely for a wide melodic breakdown where the talking is left almost alone with a piano, then the kick returning heavier than before. Never sung. The lead is a unique and specific vocalist: dry, close and urgent, half-shouting as the drop lands and audibly grinning. Behind it: pitched distorted kicks, screeches, a euphoric supersaw melody through the breakdown, and a long total silence immediately before the return. Everything oversized and unembarrassed. Production loud and clipped, the voice cutting through the top of it.`,neg:`sung topline, subtle restrained dynamics, jazz harmony, acoustic arrangement, downtempo, whispered delivery, lo-fi mix, orchestral realism`,lyric:`[Spoken] (shouting over the kick)
+It's so stupid! It's so unbelievably stupid and I love it?
+
+[Spoken] (kick cuts — alone with the piano)
+Oh. That's pretty. That's actually really pretty?
+
+[Spoken] (silence, then the drop — grinning)
+Here it comes. Here it comes here it comes—
+OH MY GOD?`},
 ];
 
 /* BEGIN GENERATED — Suno song titles · run: node tools/song_titles.mjs */
