@@ -16,7 +16,7 @@
 
 /* Version stamp — the ONLY place to bump these. Title, <meta>, masthead, and
  * footer all derive from here + LIB counts at runtime, so counts never drift. */
-const VERSION = 'v17';
+const VERSION = 'v18';
 const UPDATED = '2026-08-08';
 
 /* ---------- MOST RECENT BATCH ----------
@@ -24,9 +24,9 @@ const UPDATED = '2026-08-08';
    (numbers for library entries, e.g. 133; suite ids like 'Q5' also work).
    These render as full cards in the "Most recent batch" strip up top. */
 const RECENT = {
-  label: 'Uptalk-and-creak Californian pop',
+  label: 'Valspeak talk-lead pop',
   date:  '2026-08-08',
-  entries: [256, 257, 258, 259, 260]
+  entries: [261, 262, 263, 264, 265]
 };
 
 const LIB=[
@@ -462,6 +462,51 @@ and the reason that I try.`},
 {n:258,suno:[`a6bde25c-ecff-4b25-8107-6309d03280ed`,`4ec419d8-f4b4-4bb5-a3eb-d973fb42decf`],name:`Synth-forward mall-punk brat`,fam:`uptalk-and-creak Californian pop`,cat:`lyrical`,bpm:`172`,role:`clipped nasal lead, hyper and forward`,proc:`keyboard-driven pop-punk · doubled guitars · one saturated bus`,aff:`E`,style:`Early-2000s mall-punk crossed with new-wave keys near 172 BPM: doubled downstroke guitars, a hammering eighth-note bass, snare on every backbeat, and a cheap bright synth line carrying the hook over the top. The lead is a unique and specific vocalist: ungendered, thin and nasal and pushed hard to the front of the face, consonants clipped, syllables crammed in ahead of the beat and then stretched at the phrase end into a rising question. Tails fray into a quick creak rather than resolving. Delivery hyper, sarcastic and delighted with itself — a running commentary set to a chorus. Group backing shouts answer each line in flat unison. Production saturated and loud, drums compressed onto a single bus, guitars wide, mids deliberately crowded. Bright, breathless and impatient throughout: the sound of talking too fast because all of it is urgent.`,neg:`slow ballad tempo, smooth crooning, jazz chords, orchestral strings, growled vocals, ambient wash, sparse fingerpicking, polished adult-contemporary sheen`},
 {n:259,suno:[`053ca8ce-f0ce-457e-8cd7-c8f56d264831`,`94cd7f5b-3868-4cc9-8c32-0dea21efe975`],name:`Electroclash deadpan drawl`,fam:`uptalk-and-creak Californian pop`,cat:`lyrical`,bpm:`124`,role:`flat spoken-sung lead, affect withheld`,proc:`mono analog bass · 808 claps · dry close vocal`,aff:`A`,style:`Electroclash near 124 BPM, sleazy and mechanical: a monophonic analog bassline, 808 handclaps, one detuned saw riff repeating without development, the whole mix dry and close. The lead is a unique and specific vocalist: ungendered, spoken-sung across a flat narrow pitch band, affect deliberately withheld, placed forward and nasal with vowels drawn long and fronted. Statements still lift at the ends — the rise is present but delivered without interest, which is the point — and phrase tails drop into an audible creak that holds a beat too long. No belting, no melisma, barely any melody: the line is talked over the track and only occasionally lands on a note. A single bored word repeats as the hook. Production cold and unglamorous, the vocal untreated but for a short slap delay. Delivery detached, amused and entirely unimpressed by the room.`,neg:`emotive belting, gospel runs, warm acoustic guitar, orchestral swell, earnest ballad phrasing, dense reverb wash, virtuoso solo, folk storytelling`},
 {n:260,suno:[`efbd9a7a-ea1c-4318-ae43-1f7b88a9e08f`,`1c8c7e68-4ace-48db-8186-782382135be4`],name:`Hyperpop sugar-crush lift`,fam:`uptalk-and-creak Californian pop`,cat:`lyrical`,bpm:`160`,role:`pitched-up lead, sweetness over ache`,proc:`formant-shifted stacks · clipped 808 · hard sidechain`,aff:`B`,style:`Hyperpop near 160 BPM, saccharine and overdriven: distorted 808 bass clipping into the master, supersaw chords sidechained hard, glassy bell arpeggios, drums that stutter and drop out mid-bar. The lead is a unique and specific vocalist: ungendered, formant-shifted upward into a bright synthetic sweetness, placed high and nasal, phrase ends rising into a question and then breaking into a digital creak that the pitch-correction smears. Vowels long, fronted and candied; diction loose and conversational underneath the processing. Stacked doubles fan out into wide sugary harmony on the hook, one octave-up layer left slightly untuned. Beneath the gloss the melody is plainly sad — the sweetness is the costume, not the feeling. Ad-libs pitched higher still, answering each line. Delivery bright, exhausted and sincere in spite of every effect piled on it.`,neg:`organic acoustic kit, warm analog tape, restrained dynamics, jazz phrasing, orchestral realism, gravel rasp, slow blues shuffle, dry unprocessed mix`},
+{n:261,name:`Spoken-monologue mall groove`,fam:`Valspeak talk-lead pop`,cat:`lyrical`,bpm:`112`,role:`talked lead, sung group answer`,proc:`clipped funk guitar · synth bass · dry close vocal`,aff:`D`,style:`Valspeak spoken-word lead over early-80s mall-funk: the vocal is talked, never sung — a Southern Californian mall register delivered as continuous conversational monologue, every sentence ending on a rise as though asking permission, phrase tails dropping into a short creak. Vowels long and fronted, diction lazy, filler words left in. Behind it: clipped funk guitar on the upstroke, a fat synth-bass line, boxy drum-machine backbeat near 112 BPM, cheap organ stabs answering the talk. A sung chorus arrives in flat group unison and gets out of the way again. The talking is the lead — melody exists only in the answering hook. Production dry, close and bright, mixed so every word stays legible.`,neg:`operatic vibrato, melismatic runs, belted power chorus, orchestral strings, distorted guitar wall, gravel rasp, ambient wash, slow ballad tempo`,lyric:`[Spoken monologue] (talked, every sentence rising)
+So we're at the mall? And he goes, do you even like me?
+And I'm like, that is such a specific question?
+
+[Chorus] (flat group unison, sung)
+Whatever, whatever,
+call me when you're over it.
+
+[Aside] (half-swallowed, creak on the tail)
+(He did not call me.)`},
+{n:262,name:`Conversational mall-rap`,fam:`Valspeak talk-lead pop`,cat:`lyrical`,bpm:`88`,role:`rapped lead, spoken hook`,proc:`dusty boom-bap · warm sub · slap delay only`,aff:`A`,style:`Valspeak rapped lead over lo-fi mall-rap: conversational bars in a Southern Californian register, spoken cadence rather than sung melody so the accent stays fully intact — rising terminals at the end of nearly every bar, creak on the tails, vowels fronted and stretched, filler words kept inside the flow. Beat near 88 BPM: dusty boom-bap drums, a warm sub, one bright chopped sample looping, handclaps on two and four. No melodic hook — the chorus is the same voice talking with more room around it. Production close and dry, vocal untreated but for a short slap delay, words placed forward and legible.`,neg:`sung chorus, autotune melody, trap hi-hat rolls, aggressive delivery, orchestral swell, distorted guitar, belted vocal, dense reverb wash`,lyric:`[Verse] (rapped conversational, bars ending on a rise)
+I said meet me by the food court at like, quarter after four?
+You showed up at like, six? With a smoothie? For yourself?
+
+[Hook] (same voice, more room, still spoken)
+That's crazy? That's actually crazy?
+Like, genuinely? Insane?`},
+{n:263,name:`Cheer-chant electro`,fam:`Valspeak talk-lead pop`,cat:`lyrical`,bpm:`150`,role:`shouted-spoken call, group answer`,proc:`synth brass stabs · stomp-clap · crowd noise`,aff:`E`,style:`Valspeak group chant over bright electro-pop near 150 BPM: the lead is shouted-spoken rather than sung, a Southern Californian mall register in cheer cadence — short clipped phrases, every line ending on a rise, tails creaking. A full group answers each call in flat unison, stomps and claps carrying the rhythm. Behind them: punchy synth brass stabs, a driving electro bassline, gated snare, whistles and crowd noise at the edges. Melody minimal by design; pitch lives in the answering group, never in the lead. Production loud, bright and forward, everything close-mic-ed and legible.`,neg:`sung lead melody, ballad tempo, orchestral strings, gravel rasp, ambient pads, jazz harmony, sparse acoustic arrangement, mumbled delivery`,lyric:`[Call] (shouted-spoken, clipped, rising)
+Who's got the keys? (We got the keys!)
+Who's got the car? (Not you!)
+
+[Chant] (group, flat unison, stomp-clap)
+L-I-K-E, like!
+Totally, totally, T-O-T!
+
+[Break] (single voice, bored, creak tail)
+Do it again? From the top?`},
+{n:264,name:`Voice-memo bedroom drawl`,fam:`Valspeak talk-lead pop`,cat:`lyrical`,bpm:`92`,role:`half-spoken lead at conversation volume`,proc:`nylon-string loop · tape hiss · no reverb`,aff:`B`,style:`Valspeak half-spoken lead over intimate bedroom pop near 92 BPM: the vocal is talked close to the mic at conversation volume, barely singing, a Southern Californian register with rising terminals on every statement and creak collapsing the phrase ends. Vowels long and fronted, diction unguarded, filler words and false starts left in. Behind it: a soft nylon-string loop, muted electric piano, brushed lo-fi drums low in the mix, tape hiss and room tone kept. One short sung refrain floats up and dissolves back into talking. Production small and close, almost no reverb, breath and mouth noise audible throughout.`,neg:`belted chorus, stadium drums, orchestral swell, heavy distortion, dance beat, operatic tone, dense layered production, aggressive delivery`,lyric:`[Verse] (talked close to the mic, unguarded, rising)
+Okay so, this is dumb? But I recorded this at like, 3am?
+And I'm just gonna say it and then delete it? Probably?
+
+[Refrain] (sung, floats up, dissolves)
+I miss you in a way I can't make cute—
+
+[Verse 2] (straight back to talking)
+Anyway? That's it? That's the whole thing?`},
+{n:265,name:`Sprechgesang synth-punk`,fam:`Valspeak talk-lead pop`,cat:`lyrical`,bpm:`164`,role:`rhythmic speech on the edge of melody`,proc:`distorted mono synth riff · crowded mids · vocal up front`,aff:`C`,style:`Valspeak talked lead over synth-punk near 164 BPM: the vocal is delivered as sprechgesang — rhythmic speech at the edge of melody, never a sustained note — in a Southern Californian mall register, statements rising at the ends, tails snapping into creak, consonants clipped and vowels fronted. Behind it: a distorted mono synth riff doubling the bass, hammering eighth-note drums, one cheap organ line cutting across the top. Group backing shouts answer each phrase. The lead sings only on the final line of the chorus and returns immediately to talking. Production loud and saturated, mids crowded, vocal pushed to the very front.`,neg:`smooth crooning, jazz chords, orchestral strings, slow ballad tempo, gospel melisma, ambient wash, polished pop sheen, growled vocals`,lyric:`[Verse] (sprechgesang, rhythmic speech, clipped)
+You want an explanation? For which part? Be specific?
+I have like, four? And none of them are flattering?
+
+[Chorus] (group shouts answer each line)
+So? (So!) So what? (So what!)
+
+[Last line] (finally sung, held)
+I said I'm fine and I meant it—`},
 ];
 
 /* BEGIN GENERATED — Suno song titles · run: node tools/song_titles.mjs */
