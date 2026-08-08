@@ -16,7 +16,7 @@
 
 /* Version stamp — the ONLY place to bump these. Title, <meta>, masthead, and
  * footer all derive from here + LIB counts at runtime, so counts never drift. */
-const VERSION = 'v20';
+const VERSION = 'v21';
 const UPDATED = '2026-08-08';
 
 /* ---------- MOST RECENT BATCH ----------
@@ -24,9 +24,9 @@ const UPDATED = '2026-08-08';
    (numbers for library entries, e.g. 133; suite ids like 'Q5' also work).
    These render as full cards in the "Most recent batch" strip up top. */
 const RECENT = {
-  label: 'Valspeak spoken-marker pop',
+  label: 'Dancefloor narration cycle',
   date:  '2026-08-08',
-  entries: [271, 272, 273, 274, 275]
+  entries: [276, 277, 278, 279, 280]
 };
 
 const LIB=[
@@ -599,6 +599,43 @@ I am literally going to die? Like, right here?
 
 [Spoken] (spent, laughing)
 Totally worth it? Totally, totally worth it?`},
+{n:276,name:`Getting-ready nu-disco narration`,fam:`dancefloor narration cycle`,cat:`lyrical`,bpm:`118`,role:`anticipatory narration, chorus never arrives`,proc:`filtered disco loop · chopped vocal answers`,aff:`D`,style:`Filtered nu-disco near 118 BPM under continuous spoken narration: the vocal never sings, it talks the whole way through — running late, getting ready, narrating the night before the night starts, sentences lifting at the ends. The lead is a unique and specific vocalist: close-mic-ed, warm and conversational, mixed dry and right up front. Behind it: a filtered disco loop opening slowly across the track, plucked bass, shaker and tambourine, string stabs, and chopped vocal fragments answering the talking without ever forming a melody of their own. Everything anticipatory — the track keeps promising a chorus that never arrives. Production warm, analog and wide.`,neg:`sung vocal, diva house hook, belted chorus, rapping, orchestral strings, distorted guitar, downtempo drag, mumbled delivery`,lyric:`[Spoken] (getting ready, distracted, rising)
+Okay so I'm like, forty minutes late? Which is fine?
+Oh my god, do not let me forget my keys again?
+
+[Spoken] (to the mirror, appraising)
+This is fine. This is totally a look?`},
+{n:277,name:`Warehouse-techno narration`,fam:`dancefloor narration cycle`,cat:`lyrical`,bpm:`134`,role:`hot chatty speech over cold hardware`,proc:`acid line · dub delay throws on single words`,aff:`A`,style:`Warehouse techno near 134 BPM under continuous spoken narration: a relentless machine pulse against a voice that will not stop talking, the contrast deliberate — hot chatty speech over cold repetitive hardware. Nothing is sung at any point. The lead is a unique and specific vocalist: dry, close and conversational, mixed loud against the room. Behind it: a hammering kick, one acid line mutating slowly across the whole track, metallic percussion, hiss and room noise. Occasional dub delay throws catch a single word and repeat it into the distance while the talking continues underneath. Production cavernous behind, bone-dry in front.`,neg:`sung vocal, melodic hook, warm chords, orchestral swell, acoustic instruments, ballad tempo, belted chorus, dense vocal harmony`,lyric:`[Spoken] (flat against the machine, still rising)
+It's so loud in here I can feel it in my teeth?
+Like, in my actual teeth?
+
+[Spoken] (caught by the delay)
+Whatever— whatever— whatever—
+
+[Spoken] (matter-of-fact)
+I'm not even tired? I'm literally never tired again?`},
+{n:278,name:`Trance-breakdown narration`,fam:`dancefloor narration cycle`,cat:`lyrical`,bpm:`140`,role:`the emotional peak is a spoken sentence`,proc:`supersaw wall · long sweep · hard sidechain`,aff:`C`,style:`Uplifting trance near 140 BPM under continuous spoken narration, structured entirely around one long breakdown: the talking is offhand and chatty through the build, turns quiet and unguarded when the drums fall away, then goes euphoric and half-shouted as the supersaws return. Never sung. The lead is a unique and specific vocalist: close, conversational, sentences rising at the ends. Behind it: rolling sixteenth bass, a supersaw chord wall, a long white-noise sweep, sidechain breathing hard against the kick. The emotional peak of the track is a spoken sentence rather than a melody. Production huge and wide behind a dry voice.`,neg:`sung topline, diva vocal, vocal runs, rapping, acoustic arrangement, downtempo, gravel rasp, cluttered mix`,lyric:`[Spoken] (offhand, through the build)
+They're gonna play it. I know they're gonna play it?
+
+[Spoken] (drums drop away — quiet, unguarded)
+I didn't think I'd feel anything tonight.
+Like, at all? And then—
+
+[Spoken] (half-shouted as it returns)
+Oh my GOD. Oh my god, here it comes?`},
+{n:279,name:`Jungle rapid-fire narration`,fam:`dancefloor narration cycle`,cat:`lyrical`,bpm:`174`,role:`talking faster than it can manage`,proc:`chopped amen breaks · one Reese transient per break`,aff:`E`,style:`Jungle near 174 BPM under rapid-fire spoken narration: chopped amen breaks beneath a voice talking faster than it can quite manage, tumbling and breathless, running out of air and catching up in the gaps between phrases. Nothing is sung. The lead is a unique and specific vocalist: dry, close and urgent, mixed above the breaks. Behind it: shredded breakbeats, a deep sub-bass, ragga sirens and air-horn stabs at the edges, one Reese transient marking each structural break and never repeating. Everything adrenal and slightly too fast. Production tight and forward, drums crisp, the voice never buried.`,neg:`sung vocal, slow tempo, smooth crooning, orchestral strings, ballad phrasing, sparse ambient wash, belted chorus, lazy delivery`,lyric:`[Spoken] (rapid-fire, tumbling, out of breath)
+Okay okay okay so we lost everyone? Totally lost them?
+And I'm like, do we look? Or do we just—
+
+[Spoken] (faster, decided)
+No. No no no. We dance? We literally just dance?`},
+{n:280,name:`Comedown dub-techno narration`,fam:`dancefloor narration cycle`,cat:`lyrical`,bpm:`108`,role:`tired narration with long gaps`,proc:`tape-delayed chord stabs · street noise · vinyl crackle`,aff:`B`,style:`Dub techno near 108 BPM under slow spoken narration at the end of the night: the voice is tired, quiet and unhurried, still talking but with long gaps now, sentences trailing upward and dissolving into creak. Never sung. The lead is a unique and specific vocalist: very close, almost murmured, breath audible between phrases. Behind it: chord stabs soaked in tape delay repeating away into the distance, a soft dubby sub, brushed hats, vinyl crackle and faint street noise underneath. Everything decaying — nothing arrives, the track simply thins out and ends. Production spacious and washed behind an intimate dry voice.`,neg:`sung vocal, bright uplifting chords, four-on-the-floor peak energy, belted chorus, orchestral swell, distorted guitar, busy percussion, loud mastering`,lyric:`[Spoken] (tired, long gaps, still trailing up)
+There's like, nobody left?
+Just us and whoever that is? By the door?
+
+[Spoken] (quieter, dissolving)
+That was so fun. That was actually so fun?
+I'm gonna feel this for like, three days?`},
 ];
 
 /* BEGIN GENERATED — Suno song titles · run: node tools/song_titles.mjs */
