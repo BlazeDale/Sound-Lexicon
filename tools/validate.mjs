@@ -99,7 +99,7 @@ const suites = LIB.filter(v => v.cat === 'suite');
     const hit = MANDATED.filter(m => (v.neg || '').toLowerCase().includes(m.toLowerCase()));
     if (hit.length) baked.push(`#${v.n} (${hit.join('/')})`);
   }
-  baked.length ? fail(`mandated negatives already in neg field (appended at copy time — remove): ${baked.join(', ')}`) : pass(`neg fields exclude the 5 mandated negatives`);
+  baked.length ? fail(`mandated negatives already in neg field (appended at copy time — remove): ${baked.join(', ')}`) : pass(`neg fields exclude the ${MANDATED.length} mandated negatives`);
 }
 
 /* ---------- 6. version stamp + masthead derives at runtime ---------- */
