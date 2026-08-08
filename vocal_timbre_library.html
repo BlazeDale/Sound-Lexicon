@@ -611,7 +611,7 @@ document.getElementById('foot').textContent=`${LIB.length} entries · ${ac} acou
   document.getElementById('sub').innerHTML=`${nNum} numbered entries (acoustic wing, female wing, electronic shelf, inspirations wing) plus ${nSuite} ungendered suite prompts with memory seeds — mapped across register, grit, and affect. <span class="count-tag">Built for the latest Suno.</span>`;
 }
 
-/* ---------- SECTION FOLDS (accordion — one open at a time, default all closed) ---------- */
+/* ---------- SECTION FOLDS (accordion — one open at a time; grit map open on first visit) ---------- */
 const foldTabs=[].slice.call(document.querySelectorAll('.fold-tab'));
 const foldPanels=[].slice.call(document.querySelectorAll('.fold-panel'));
 function setFold(idx){                    // idx<0 or null → close all
@@ -623,6 +623,20 @@ foldTabs.forEach((t,i)=>t.addEventListener('click',()=>{
   setFold(t.classList.contains('on')?-1:i);   // clicking the open one closes it
 }));
 window.__setFold=setFold; window.__openFoldIdx=openFoldIdx;
+
+/* First visit opens the Register × grit map; after that the visitor's own last
+   choice wins (stored index, -1 = they closed everything). Located by label so
+   reordering the tabs can't point this at the wrong panel. */
+const FOLD_KEY='vtl_fold';
+const GRIT_FOLD=Math.max(0,foldTabs.findIndex(t=>/grit map/i.test(t.textContent||'')));
+(function(){
+  let saved=null;
+  try{const v=localStorage.getItem(FOLD_KEY); if(v!==null&&v!=='') saved=parseInt(v,10);}catch(e){}
+  setFold(Number.isInteger(saved)?saved:GRIT_FOLD);
+})();
+foldTabs.forEach(t=>t.addEventListener('click',()=>{
+  try{localStorage.setItem(FOLD_KEY,String(openFoldIdx()));}catch(e){}
+}));
 
 /* ---------- DEV AUTO-RELOAD (state-preserving) ----------
    Refreshes this tab so a saved edit shows without a manual reload.
