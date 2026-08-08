@@ -198,10 +198,11 @@
           </ul>
         </div>
         <div>
-          <h3>Five mandated negatives (every entry)</h3>
+          <h3>Seven mandated negatives (every entry)</h3>
           <ul>
-            <li>Harmonic stagnation · Dynamic flattening · Quantized sterility · Structural monotony · Predictability</li>
+            <li>Harmonic stagnation · Dynamic flattening · Quantized sterility · Structural monotony · Predictability · Vocal identity drift · Vocalist substitution</li>
             <li><span style="color:var(--muted)">Note: "Quantized sterility" fights gridded electronic genres — aimed at lifelessness, not the beat; first term to pull if the pocket loosens.</span></li>
+            <li><span style="color:var(--muted)">The last two guard voice continuity: "drift" fights the lead's timbre morphing across the track, "substitution" fights a different singer appearing in a later section. Pull both on wordless / choir-as-instrument entries, where the voice is meant to change.</span></li>
           </ul>
           <h3>Eight compositional terms (woven where genre supports)</h3>
           <ul>
@@ -408,7 +409,7 @@ function cardHTML(v){
   h+=`<div class="chips">${chips(v)}</div>`;
   h+=sunoBlock(v);
   h+=`<div class="blk"><div class="lab"><span>Style prompt</span>${copyBtn(v.style)}</div><pre>${esc(v.style)}</pre></div>`;
-  h+=`<div class="blk"><div class="lab"><span>Negative + 5 mandated</span>${copyBtn(v.neg+', Harmonic stagnation, Dynamic flattening, Quantized sterility, Structural monotony, Predictability')}</div><pre class="neg">${esc(v.neg)}, Harmonic stagnation, Dynamic flattening, Quantized sterility, Structural monotony, Predictability</pre></div>`;
+  h+=`<div class="blk"><div class="lab"><span>Negative + 7 mandated</span>${copyBtn(v.neg+', Harmonic stagnation, Dynamic flattening, Quantized sterility, Structural monotony, Predictability, Vocal identity drift, Vocalist substitution')}</div><pre class="neg">${esc(v.neg)}, Harmonic stagnation, Dynamic flattening, Quantized sterility, Structural monotony, Predictability, Vocal identity drift, Vocalist substitution</pre></div>`;
   if(v.lyric) h+=`<div class="blk"><div class="lab"><span>Demo lyric</span>${copyBtn(v.lyric)}</div><pre class="lyr">${esc(v.lyric)}</pre></div>`;
   if(v.seed) h+=`<div class="blk"><div class="lab"><span>Memory seed</span>${copyBtn(v.seed)}</div><pre class="lyr">${esc(v.seed)}</pre></div>`;
   h+=`</div>`; return h;

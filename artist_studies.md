@@ -1,6 +1,6 @@
 # Artist Studies — Inspirations Mode
 
-Companion to `vocal_timbre_library.html`. Method: describe the artist's ancestral ingredients (genres, eras, gear, scenes, constraints), never their sound or name. Standard set per artist: one **blend** + isolated **roots**, mixable pairwise to triangulate specific songs. Temperament rule: encode the attitude the artist brought to the ancestors, or you get their politest cousin. The five mandated negatives are assumed appended; neg fields below exclude them.
+Companion to `vocal_timbre_library.html`. Method: describe the artist's ancestral ingredients (genres, eras, gear, scenes, constraints), never their sound or name. Standard set per artist: one **blend** + isolated **roots**, mixable pairwise to triangulate specific songs. Temperament rule: encode the attitude the artist brought to the ancestors, or you get their politest cousin. The seven mandated negatives are assumed appended; neg fields below exclude them.
 
 All studies are now **promoted into the numbered library** and this doc is **generated** from it: everything inside the **`GENERATED`** markers is built by `tools/build.mjs` from the `inspiration` entries in `data.js`. Edit prompts there, then run `node tools/build.mjs`; never hand-edit below the marker. Character counts are computed by the tool. (The chassis-swap section below the marker is a hand-authored appendix.)
 
