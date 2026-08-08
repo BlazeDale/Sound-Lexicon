@@ -16,7 +16,7 @@
 
 /* Version stamp — the ONLY place to bump these. Title, <meta>, masthead, and
  * footer all derive from here + LIB counts at runtime, so counts never drift. */
-const VERSION = 'v22';
+const VERSION = 'v23';
 const UPDATED = '2026-08-08';
 
 /* ---------- MOST RECENT BATCH ----------
@@ -24,9 +24,9 @@ const UPDATED = '2026-08-08';
    (numbers for library entries, e.g. 133; suite ids like 'Q5' also work).
    These render as full cards in the "Most recent batch" strip up top. */
 const RECENT = {
-  label: 'Breakdown-peak narration',
+  label: 'Breakdown-peak narration — live wing',
   date:  '2026-08-08',
-  entries: [281, 282, 283, 284, 285]
+  entries: [286, 287, 288, 289, 290]
 };
 
 const LIB=[
@@ -681,6 +681,51 @@ Oh. That's pretty. That's actually really pretty?
 [Spoken] (silence, then the drop — grinning)
 Here it comes. Here it comes here it comes—
 OH MY GOD?`},
+{n:286,name:`Phase-music narration`,fam:`breakdown-peak narration`,cat:`lyrical`,bpm:`108`,role:`speech looped and phased into rhythm`,proc:`additive marimba · two patterns drifting out of sync`,aff:`A`,style:`Minimalist phase music near 108 BPM under continuous spoken narration: interlocking marimba and vibraphone figures built by addition, one note entering at a time, two identical patterns drifting slowly out of sync with each other and back again. The talking runs the whole length — flat and matter-of-fact at first, unsettled as the patterns separate, still and clear when they lock back into phase. Never sung. The lead is a unique and specific vocalist: dry, close and conversational, sentences lifting at the ends. Behind it: pulsing string chords, a bass clarinet doubling the low pattern, and short fragments of that same spoken voice looped and phased against themselves until the words dissolve into pure rhythm. Production clean and analytical, the live lead completely dry.`,neg:`sung melody, four-on-the-floor kick, distorted guitar, orchestral bombast, rubato phrasing, dense reverb wash, aggressive delivery, dance production`,lyric:`[Spoken] (flat, matter-of-fact, over the pattern)
+It's the same four notes? It's literally been the same four notes?
+
+[Spoken] (patterns drifting apart — unsettled)
+Wait. Wait, that's not— they're coming apart?
+Am I hearing that? Is that actually happening?
+
+[Spoken] (locked back in — still, clear)
+Oh. Okay. They found each other again?`},
+{n:287,name:`Spiritual-jazz crescendo narration`,fam:`breakdown-peak narration`,cat:`lyrical`,bpm:`96`,role:`narration riding a horn as it climbs`,proc:`modal vamp · upright bass · overblown tenor`,aff:`C`,style:`Spiritual jazz crescendo near 96 BPM under continuous spoken narration: a modal vamp on upright bass and piano, brushed drums loosening as the track goes, a tenor saxophone entering late and climbing into ecstatic overblown squalls. The talking begins offhand over the vamp, turns quiet and searching when the band thins to bass alone, then rides the horn upward as it goes. Never sung. The lead is a unique and specific vocalist: warm, close and conversational, unhurried, sentences rising at the ends. Behind it: one repeating modal figure, bowed bass drones, splash cymbals, everything played live and deliberately loose. Production roomy and analog, the voice mixed level with the band rather than above it.`,neg:`sung melody, quantized programmed drums, synth pads, dance production, tight pop structure, autotune, aggressive delivery, clinical mixing`,lyric:`[Spoken] (offhand, over the vamp)
+Nobody in here is talking? Everyone's just letting it happen?
+
+[Spoken] (band thins to bass — quiet, searching)
+I don't know what I came here to figure out.
+I think I thought it'd be obvious by now?
+
+[Spoken] (riding the horn up)
+Oh— okay, they're going. They're actually going—`},
+{n:288,name:`Gospel-swell narration`,fam:`breakdown-peak narration`,cat:`lyrical`,bpm:`84`,role:`plain personal speech against a rising choir`,proc:`Hammond organ · handclaps · tempo lifting`,aff:`E`,style:`Gospel swell near 84 BPM under continuous spoken narration: Hammond organ and piano beneath handclaps and tambourine, the tempo lifting almost imperceptibly across the track, a choir entering behind the speech and rising with each repetition until it fills everything. The talking stays plain and personal against it — offhand at the start, quieter and more honest as the organ builds, half-shouted when the choir finally opens up. The lead never sings. The lead is a unique and specific vocalist: close, warm and conversational, sentences lifting at the ends. Behind it: walking bass, snare on the backbeat, an organ swell holding under the last section. Production live and room-lit, the voice dry and forward.`,neg:`sung lead, solo melisma runs, programmed drums, synth production, dance beat, lo-fi mix, aggressive delivery, cold clinical room`,lyric:`[Spoken] (plain, against the organ)
+I'm not really a church person? Everyone here knows that?
+
+[Spoken] (organ building — quieter, honest)
+But something happens in the third verse. Every time.
+And I stop being clever about it?
+
+[Spoken] (half-shouted as the choir opens)
+Oh my god. Okay. OKAY—`},
+{n:289,name:`Drone-doom crescendo narration`,fam:`breakdown-peak narration`,cat:`lyrical`,bpm:`52`,role:`a small voice dwarfed, then shouting`,proc:`one sustained chord for minutes · bowed cymbals`,aff:`G`,style:`Drone-doom crescendo near 52 BPM under continuous spoken narration: amplifier hum and a single sustained chord held for minutes before the riff finally lands, cymbals bowed rather than struck, everything vast and impossibly slow. The talking runs throughout — offhand and small against the volume, hushed through the long suspended middle, then shouting to be heard at all when the riff arrives. Never sung. The lead is a unique and specific vocalist: close-mic-ed, dry and conversational, dwarfed by the room around it. Behind it: detuned guitar through cracking amplifiers, sub-bass felt more than heard, one cymbal left decaying for half a minute. Production enormous and airless behind an intimate voice.`,neg:`fast tempo, sung melody, bright major chords, pop structure, programmed drums, thin production, cheerful delivery, dense busy arrangement`,lyric:`[Spoken] (small against the volume)
+It's been one chord? For like, four minutes?
+
+[Spoken] (suspended middle, hushed)
+And nobody's moving. Everyone's just waiting.
+Like we all agreed to wait? Without discussing it?
+
+[Spoken] (shouting over the riff)
+THERE— oh my god, there it is—`},
+{n:290,name:`Americana slow-build narration`,fam:`breakdown-peak narration`,cat:`lyrical`,bpm:`88`,role:`band arriving one player at a time`,proc:`pedal steel bending under the speech · fiddle answers`,aff:`B`,style:`Americana slow-build near 88 BPM under continuous spoken narration: the band arriving one player at a time — acoustic guitar, then brushed drums, then bass, then pedal steel — climbing toward a single warm release near the end. The talking runs the whole way: offhand and porch-side at the start, unguarded in the middle when it thins back to one guitar, lifted and half-laughing when the full band comes in. Never sung. The lead is a unique and specific vocalist: close, warm and conversational, sentences rising at the ends. Behind it: pedal steel bending under the speech, fiddle answering in the gaps, a barroom piano low in the mix. Production live, warm and roomy, the voice right up front.`,neg:`sung melody, programmed drums, synth pads, dance production, autotune, aggressive delivery, clinical mixing, stadium rock bombast`,lyric:`[Spoken] (offhand, porch, one guitar)
+Somebody always starts playing before anybody asks?
+
+[Spoken] (thinned back to guitar — unguarded)
+I didn't think I'd miss this. I really didn't.
+And then the steel comes in and I'm just—
+
+[Spoken] (full band, half-laughing)
+Okay. Okay, that's not fair? That's genuinely not fair?`},
 ];
 
 /* BEGIN GENERATED — Suno song titles · run: node tools/song_titles.mjs */
