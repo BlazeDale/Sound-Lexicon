@@ -16,17 +16,17 @@
 
 /* Version stamp — the ONLY place to bump these. Title, <meta>, masthead, and
  * footer all derive from here + LIB counts at runtime, so counts never drift. */
-const VERSION = 'v23';
-const UPDATED = '2026-08-08';
+const VERSION = 'v24';
+const UPDATED = '2026-08-09';
 
 /* ---------- MOST RECENT BATCH ----------
    Update this after each run: label + date + the entry numbers/ids
    (numbers for library entries, e.g. 133; suite ids like 'Q5' also work).
    These render as full cards in the "Most recent batch" strip up top. */
 const RECENT = {
-  label: 'Breakdown-peak narration — live wing',
-  date:  '2026-08-08',
-  entries: [286, 287, 288, 289, 290]
+  label: 'Acquired-drawl club rap — inspirations study',
+  date:  '2026-08-09',
+  entries: [291, 292, 293, 294, 295]
 };
 
 const LIB=[
@@ -726,6 +726,11 @@ And then the steel comes in and I'm just—
 
 [Spoken] (full band, half-laughing)
 Okay. Okay, that's not fair? That's genuinely not fair?`},
+{n:291,name:`Acquired-drawl club rap — blend`,fam:`inspirations · acquired-drawl club rap`,cat:`inspiration`,artist:`f0b8b756a2e5344fb0bd0f7b5371266fb3bf2ff9fe12c044bb85dfd45180270c`,role:`Blend`,aff:`D`,style:`Club-pop rap crossover near 100 BPM, glossy and hook-first: a hard half-time rap verse wrapped in big radio production, the chorus handed off to a bright sung line. Snapping trap hats and triplet rolls, deep sliding 808s, a simple neon synth riff, handclaps, wide polished low end. A unique and specific vocalist: a low chest-placed rap lead delivered in a broad Southern American drawl — vowels stretched long and flat, final consonants dropped, syllables leaning back off the beat then snapping forward hard on the punch words, tone level and unhurried with a percussive chop on every rhyme. Not sung; pitch stays inside a narrow spoken band. The chorus answers in a light, high, airy pop tone — an obvious and deliberate contrast to the rap voice. Close modern mic, tight compression, bright and forward. Delivery cocky, teasing, self-amused: swagger played for fun rather than menace.`,neg:`sung rap verse, mumbled delivery, lo-fi tape haze, live band recording, acoustic guitar, screamed vocal, operatic tone, slow ballad tempo, jazz swing, choir layering`},
+{n:292,name:`Crunk drawl-at-source root`,fam:`inspirations · acquired-drawl club rap`,cat:`inspiration`,artist:`f0b8b756a2e5344fb0bd0f7b5371266fb3bf2ff9fe12c044bb85dfd45180270c`,role:`Root 1`,aff:`G`,style:`Southern American crunk rap isolated: the drawl at full strength. Near 72 BPM in half-time, heavy and sparse — cavernous 808 kick, rattling hi-hat triplets, one ominous minor synth line, cracking snares, huge empty space between the hits. A unique and specific vocalist: a low chest-placed rap lead in a thick regional drawl, vowels drawn out and diphthongs collapsed into a single long sound, final consonants clipped off, the flow dragging behind the beat then landing three hard syllables dead on the snare. Ad-libs doubled low and shouted into the gaps. No melody at all — pitch sits in speech range and rises only to bark. Close mic, heavy compression, low end enormous. Delivery hard, taunting and territorial: a voice daring the room to answer.`,neg:`sung hook, melodic autotune croon, fast double-time flow, bright pop production, live drums, acoustic instruments, cheerful delivery, lush reverb, orchestral strings, four-on-the-floor kick`},
+{n:293,name:`Club-bounce chant root`,fam:`inspirations · acquired-drawl club rap`,cat:`inspiration`,artist:`f0b8b756a2e5344fb0bd0f7b5371266fb3bf2ff9fe12c044bb85dfd45180270c`,role:`Root 2`,aff:`E`,style:`Dirty-South club bounce isolated: the chant that runs the floor. Near 104 BPM, bright and relentless — clattering programmed drums, rubbery bass, whistle stabs and airhorns, breakdowns where everything drops away to handclaps and voices. A unique and specific vocalist: a rap lead pitched high and forward and worked at chant volume, call-and-response against a shouted crowd answer, phrases short and repeated until repetition itself becomes the hook, consonants punched, vowels drawled wide on the held words. Half the track is the same six words returning. Roughly recorded and hot, the voice distorting slightly at the peaks, room noise left in. Delivery ecstatic and commanding — a floor being worked, not a story being told.`,neg:`sung melodic verse, slow tempo, lush production, whispered delivery, ballad structure, acoustic guitar, orchestral swell, autotune croon, ambient pads, mournful tone`},
+{n:294,name:`Euro club-pop hook root`,fam:`inspirations · acquired-drawl club rap`,cat:`inspiration`,artist:`f0b8b756a2e5344fb0bd0f7b5371266fb3bf2ff9fe12c044bb85dfd45180270c`,role:`Root 3`,aff:`C`,style:`Euro club-pop crossover isolated: the polished chorus the rap is built around. Near 126 BPM, gleaming and wide — sidechained supersaw chords, a bright plucked topline, a filtered pre-chorus lift, clean four-on-the-floor kick and a big open drop. A unique and specific vocalist: a light high sung lead, airy and forward with a soft breathy edge, phrases arcing upward and holding on one long open vowel, controlled vibrato only at the ends, sincere and unguarded where everything around it is bravado. Doubled and stacked in thirds on the hook, tuned close but never robotic. Modern pop production, glossy and loud, the voice sitting right on top. Delivery yearning and wide-eyed: the sincere counterweight, the part carrying the emotion.`,neg:`rapped verse, low chest growl, distorted vocal, lo-fi production, live band recording, slow tempo, spoken word, harsh consonants, dark minor drone, screamed delivery`},
+{n:295,name:`Native-register deadpan root`,fam:`inspirations · acquired-drawl club rap`,cat:`inspiration`,artist:`f0b8b756a2e5344fb0bd0f7b5371266fb3bf2ff9fe12c044bb85dfd45180270c`,role:`Root 4`,aff:`A`,style:`Deadpan talk-rap isolated: the untouched register underneath the accent. Near 92 BPM and deliberately plain — a dry loop of muted guitar and simple programmed drums, a little bass, almost no production, kept spare so nothing pulls focus off the speech. A unique and specific vocalist: a flat mid-register talk-rap in a broad Australian accent — non-rhotic, the R dropped off every word end, vowels flattened and fronted, statements lifting into a rise at the phrase end as though each one were a question. Half spoken, half loosely rapped, offhand and unbothered, sentences running on and trailing off. Nothing is sung; melody would erase the accent. Close dry mic, minimal processing, one take. Delivery cool and deadpan — bored, funny, entirely unimpressed with itself.`,neg:`sung melody, American accent, southern drawl, rap braggadocio, heavy 808 bass, glossy pop production, autotune, belted vocal, lush reverb, dramatic delivery`},
 ];
 
 /* BEGIN GENERATED — Suno song titles · run: node tools/song_titles.mjs */
@@ -1506,5 +1511,11 @@ const STUDY_META = {
     title: 'Crate-dug cinematic hip-hop',
     date: '2026-08-01',
     note: `Deliberately differentiated from study #6, which shares the crate-dug sample-collage surface: that one is an ASCENT (patience, uplift, one long climb), this one is a MONTAGE (hard cuts between movements, awe lurching into dread, no resolution). Temperament: an archivist's melancholy with no uplift attached — an entire record built from other people's records, the collection standing in for autobiography, the drums treated as the star and the fidelity kept a half-generation down. Play it warm, tidy or triumphant and it becomes the politest cousin. The four roots isolate the DNA — battle-turntablist cut craft, private-press psych from the bottom of the crate, the deep-soul 45 the loop was lifted off, and horror-score dread with tape-splice concrete. Roots 1 and 4 triangulate the nervy cut-up tracks; roots 2 and 3 triangulate the warm sorrowful ones. Every entry carries a real sung or rapped lead — no wordless treatments here (see the #226-230 lesson).`
+  },
+  'acquired-drawl club rap': {
+    no: 17,
+    title: 'Acquired-drawl club rap',
+    date: '2026-08-09',
+    note: `The subject's whole signature IS an acquired dialect — a native speaker of one variety of English rapping consistently in another — so this study doubles as the sharpest test yet for the dialect line (#256-275). Where Valspeak failed because the label is thinly modelled, a Southern American rap drawl is one of the most heavily represented registers Suno has: root 1 asks for it head-on, and if it renders while Valspeak never did, the gap was always the label and not the capability. Root 4 is the control — the same performer's untouched native register, deliberately spoken rather than sung, carrying the high-rising terminal that IS uptalk at its linguistic source (Australian question intonation is where the Valspeak feature came from in the first place). Roots 1 and 4 are therefore a matched pair at opposite dialect poles; run them back to back and the difference between them is the entire experiment. Roots 2 and 3 supply the surface the drawl actually rides on: club-bounce chant repetition and a glossy Euro club-pop hook, the bravado and the sincerity split into separate voices. Temperament across the set: swagger played as fun rather than threat — the blend must stay teasing and self-amused, since taking it seriously turns it into root 1 and loses the pop.`
   }
 };
