@@ -1050,6 +1050,62 @@ Deadpan talk-rap isolated: the untouched register underneath the accent. Near 92
 sung melody, American accent, southern drawl, rap braggadocio, heavy 808 bass, glossy pop production, autotune, belted vocal, lush reverb, dramatic delivery
 ```
 
+## Study 18 — Euphoric melodic bass (blend + 4 roots)
+
+*Generated from library entries #296–300 · 2026-08-09 — edit the `inspiration` entries in `data.js`, then run `node tools/build.mjs`.*
+
+Temperament: euphoria with grief underneath it — the drop is a release, not a victory. Play it purely triumphant and it collapses into generic festival bass; the ache in the breakdown is what separates the subject from everyone working the same tempo. The four roots deliberately pull apart lineages that sound unrelated on paper and are audibly the same person: uplifting trance supplies the breakdown and the octave climb, melodic bass supplies the detuned drop where the lead line is played by the bass itself, ethereal dream-pop supplies the weightless voice floating over everything, and melodic metalcore is the origin the electronics grew out of — the double-kick urgency and the torn-open peak survive into the drops even when no guitar is present. Roots 1 and 3 triangulate the breakdowns; roots 2 and 4 triangulate the impacts. First study written under the register/grit convention: every vocal sentence names both axes, and the five deliberately spread across the map rather than clustering — soprano/clear, tenor/pure, alto/rough, falsetto/breathy, tenor/screamed.
+
+### Blend (879)
+
+```
+Melodic dubstep near 150 BPM in half-time, euphoric and vast — a festival-scale build into a detuned drop where the melody carries more weight than the bass. Soaring supersaw chords, a long filtered riser, enormous sub, snarling detuned mid-bass across the drop, arpeggiated plucks, an orchestral swell under the breakdown. A unique and specific vocalist: a high clear soprano, bright and unforced, holding long open vowels through the breakdown with a wide slow vibrato and no rasp at all, phrases arcing upward and dissolving into reverb exactly as the drop lands. Sung in full lines; the melody hands over to the lead synth only after the voice has finished the phrase. Modern festival production, glossy and enormous, the vocal stacked and drenched in long reverb and delay. Delivery ecstatic and searching — devotional rather than triumphant, awe with an ache underneath it.
+```
+
+```
+rapped verse, spoken word, lo-fi production, acoustic recording, distorted vocal, deadpan delivery, four-on-the-floor throughout, minimal techno, dry close mix, wordless treatment
+```
+
+### Root 1 · Uplifting trance (766)
+
+```
+Uplifting trance isolated: the euphoric breakdown lineage. Near 138 BPM, wide and climbing — a long minor-key arpeggio, gated supersaw chords, a rolling offbeat bassline, and a breakdown that strips back to pads and one held melody before the climb returns. A unique and specific vocalist: a bright tenor, pure and unforced, placed forward and singing long sustained lines with an even tone and no grain, lifting a full octave across the build without ever hardening. Sung throughout, never chanted and never spoken. Late-90s European trance production carried into modern loudness — big hall reverb, tape-warm pads, everything reaching upward. Delivery earnest and yearning — hands-up sincerity with no irony in it, a voice reaching for something just out of range.
+```
+
+```
+half-time drop, dubstep bass, screamed vocal, rap delivery, lo-fi haze, distorted lead vocal, slow tempo, sparse minimal arrangement, spoken narration, wordless treatment
+```
+
+### Root 2 · Detuned drop-bass (827)
+
+```
+Melodic bass isolated: the drop as the entire point. Near 150 BPM in half-time, heavy and mechanical — a snarling detuned mid-bass carrying the lead melody itself, sub beneath it, drums dry and enormous, every second bar dropping out to let the bass speak alone. Little melodic content outside the drop; the tension is textural. A unique and specific vocalist: a smoky alto, low-set and husky, half-sung and clipped into rhythmic fragments between the bass phrases, tone dark and unpolished with a rough edge on the held notes, then chopped and pitched by the production until the voice becomes part of the instrument. Sung in real lines before the chop takes it. Modern bass production, aggressive and dry, the vocal deliberately subordinate to the low end. Delivery menacing and coiled — a threat held just under the surface.
+```
+
+```
+soaring clean topline, uplifting trance breakdown, orchestral swell, acoustic instruments, gentle delivery, bright pop sheen, sung ballad, lush warm reverb, cheerful tone, wordless treatment
+```
+
+### Root 3 · Weightless ethereal-vocal (791)
+
+```
+Ethereal dream-pop isolated: the voice as the entire architecture. Near 92 BPM, weightless and slow — a bed of blurred guitar and pad washes with no percussive attack, everything bowed and smeared, the harmony moving so slowly it reads as stillness. A unique and specific vocalist: a weightless falsetto, breathy and soft, floating far above the bed with almost no consonant attack, phrases dissolving before they resolve, stacked into wordless choirs and then thinning back to a single thread. Sung throughout in real lines; the wordless layers sit underneath the words, never instead of them. Recorded close and then buried in cathedral reverb and long tape delay, pitch drifting fractionally. Delivery melancholic and adrift — beauty with grief inside it, singing to nobody in particular.
+```
+
+```
+percussive drop, heavy bass, rapped delivery, belted power vocal, distorted tone, fast tempo, dry close mix, aggressive energy, spoken word, purely instrumental treatment
+```
+
+### Root 4 · Melodic metalcore (775)
+
+```
+Melodic metalcore isolated: the origin the electronics grew out of. Near 172 BPM, urgent and cathartic — drop-tuned palm-muted riffing, double-kick drums under a soaring lead-guitar melody, and a breakdown that halves the tempo and lands like a wall. A unique and specific vocalist: a strained tenor with a rasping edge, clean on the choruses and torn open at the peaks, alternating with a screamed low counter-voice through the verses, the clean line always carrying the melody while the harsh one answers it. Both are real sung parts with words, never a wordless texture. Dense modern metal production, guitars layered and scooped, drums triggered and huge, the vocal forward and unpolished. Delivery anguished and cathartic — someone breaking open rather than showing off.
+```
+
+```
+electronic drop, synth bass, dance production, four-on-the-floor kick, autotune, whispered delivery, ambient pads, slow ballad tempo, glossy pop sheen, wordless treatment
+```
+
 <!-- END GENERATED -->
 
 ---

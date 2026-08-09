@@ -110,9 +110,9 @@ const hits = (t, table) => table.filter(([re]) => {
 
 /* ---------- genre rollup — placement from the entry's own fam, else its opening clause ---------- */
 export const ROLLUP = [
-  ['Metal & heavy',         /\bmetal\b|sludge|doom|hardcore|screamo|grind/i],
+  ['Metal & heavy',         /\bmetal\b|metalcore|post-metal|sludge|doom|hardcore|screamo|grind/i],
   ['Hip-hop & rap',         /hip-hop|\brap\b|trap\b|crunk|turntabl|boom-bap|drill|grime|toaster|deejay/i],
-  ['Electronic & club',     /techno|house\b|electro|synth|trance|jungle|drum and bass|\bdnb\b|garage\b|breaks|disco|darkwave|minimal wave|industrial|hardstyle|psytrance|rave|club|idm/i],
+  ['Electronic & club',     /techno|house\b|electro|synth|trance|jungle|drum and bass|\bdnb\b|garage\b|breaks|disco|darkwave|minimal wave|industrial|hardstyle|psytrance|rave|club|idm|dubstep|riddim|\bbass\b/i],
   ['Ambient & atmospheric', /ambient|sleep|drone|soundscape|atmospher|new age/i],
   ['Soul, funk & R&B',      /soul\b|funk|r&b|motown|lovers-rock/i],
   ['Sacred & choral',       /sacred|gospel|choir|choral|qawwali|hymn|liturg|early music|plainchant|opera|art song|overtone|throat/i],
@@ -125,9 +125,11 @@ export const ROLLUP = [
 ];
 export function genreOf(entry) {
   const fam = entry.fam || '';
-  for (const [g, re] of ROLLUP) if (re.test(fam)) return g;
-  const opening = String(entry.style || '').split(/[,.:]/)[0];
-  for (const [g, re] of ROLLUP) if (re.test(opening)) return g;
+  const opening = String(entry.style || '').split(/[,.:]/)[0];   // the prompt's own first clause
+  // An inspiration study's `fam` names the STUDY, and its roots are deliberately different
+  // genres — so for those the entry's own opening clause wins and the fam is only a fallback.
+  const order = entry.cat === 'inspiration' ? [opening, fam] : [fam, opening];
+  for (const text of order) for (const [g, re] of ROLLUP) if (re.test(text)) return g;
   return 'Other';
 }
 
