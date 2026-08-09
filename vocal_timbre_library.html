@@ -322,7 +322,7 @@ const AFF={A:'cool / detached',B:'melancholic / weary',C:'earnest / yearning',D:
   // if the search box is edited away from the selected number, drop the pin highlight
   if(qbox) qbox.addEventListener('input',()=>{
     const sel=svg.querySelector('g.sel'); if(!sel) return;
-    if(qbox.value.trim().replace(/^#/,'')!==sel.getAttribute('data-n')){ sel.classList.remove('sel'); curNum=''; }
+    if(qbox.value.trim().replace(/^#/,'').toLowerCase()!==String(sel.getAttribute('data-n')).toLowerCase()){ sel.classList.remove('sel'); curNum=''; }
   });
   LIB.forEach(v=>{
     const t=TIMBRE[String(v.n)]||{r:5,g:5,rk:0,gk:0,z:'Other'};
@@ -523,7 +523,10 @@ function applyFilter(){
       :curCat==='liked'?likes.has(c.dataset.n)
       :curCat==='popular'?countOf(c)>0
       :c.dataset.cat===curCat;
-    const okQ=!curQ||(artistMode?c.dataset.artist===curQHash:(c.dataset.blob.includes(curQ)||('#'+c.dataset.n)===curQ||c.dataset.n===curQ.replace('#','')));
+    // entry ids are matched case-insensitively: curQ is lowercased on input, but suite ids
+    // are lettered ('V2', 'L1'), so a case-sensitive compare never matched them
+    const nid=String(c.dataset.n).toLowerCase();
+    const okQ=!curQ||(artistMode?c.dataset.artist===curQHash:(c.dataset.blob.includes(curQ)||('#'+nid)===curQ||nid===curQ.replace('#','')));
     // gaps: missing a demo song, or a song exists but no ♀/♂ take is tagged yet
     const sids=c.dataset.suno?c.dataset.suno.split(','):[];
     const G=window.__songGender||{};
