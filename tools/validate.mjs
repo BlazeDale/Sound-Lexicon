@@ -11,6 +11,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { loadData, checkInSync } from './build.mjs';
 import { loadHashes, findDenied } from './denylist.mjs';
+import { checkInSync as timbreInSync, derive } from './timbre.mjs';
 import { songIds } from './song_titles.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -161,6 +162,25 @@ const suites = LIB.filter(v => v.cat === 'suite');
   try {
     checkInSync() ? pass(`artist_studies.md generated region in sync`) : fail(`artist_studies.md generated region OUT OF SYNC — run: node tools/build.mjs`);
   } catch (e) { fail(`sync check failed: ${e.message}`); }
+}
+
+/* ---------- 10. derived register/grit in sync, and every entry covered ----------
+   The map axes are read off each prompt's vocal sentence, never hand-scored. A style
+   edit that isn't followed by `node tools/timbre.mjs` would leave a pin at stale
+   coordinates, so the block has to be regenerated with the data. */
+{
+  try {
+    timbreInSync()
+      ? pass(`TIMBRE block in sync with the prompts`)
+      : fail(`TIMBRE block OUT OF SYNC with the prompts — run: node tools/timbre.mjs`);
+  } catch (e) { fail(`timbre sync check failed: ${e.message}`); }
+
+  const silent = LIB.filter(v => { const d = derive(v); return !d.rk && !d.gk; });
+  const pct = Math.round(100 * (LIB.length - silent.length) / LIB.length);
+  pass(`${LIB.length - silent.length}/${LIB.length} entries (${pct}%) name a register or grit qualifier`
+    + (silent.length ? `; ${silent.length} read fully neutral` : ''));
+  if (html.includes('TIMBRE[String(v.n)]')) pass(`map reads derived timbre, not hand-scored fields`);
+  else fail(`the map is not reading the TIMBRE block`);
 }
 
 report();

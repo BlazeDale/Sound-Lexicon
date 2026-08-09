@@ -138,6 +138,23 @@ Validated before adoption against the 100 legacy hand scores: register r=0.90 (9
 
 1. Edit `data.js` (and `STUDY_META` if it's a promoted study; bump `VERSION`/`UPDATED` if releasing).
 2. `node tools/build.mjs` — regenerate `artist_studies.md`.
-3. `node tools/song_titles.mjs` — if you attached demos, pull their song titles.
-4. `node tools/validate.mjs` — must pass (the hook runs this too).
-5. Commit.
+3. `node tools/timbre.mjs` — re-derive register/grit after **any** style edit.
+4. `node tools/song_titles.mjs` — if you attached demos, pull their song titles.
+5. `node tools/validate.mjs` — must pass (the hook runs this too).
+6. Commit.
+
+## timbre.mjs — derive the map coordinates
+
+```
+node tools/timbre.mjs           # regenerate the TIMBRE block in data.js
+node tools/timbre.mjs --check   # exit 1 if out of sync (validate runs this)
+node tools/timbre.mjs --report  # what each entry resolved to, and whether the prompt said
+```
+
+Writes a generated `TIMBRE` block keyed by entry number: `{r, g, rk, gk, z}` — register,
+grit, whether the prompt actually *named* each axis, and the genre family. The map reads
+this, never the legacy `reg`/`grit` fields (which stay in `data.js` untouched as the
+historical hand-scored record, and are no longer used to draw anything).
+
+An entry whose prompt names neither axis resolves to neutral (5/5) and is drawn hollow —
+visible as "the prompt didn't say" rather than as a claim the prompt never made.
