@@ -92,6 +92,48 @@ Bump `VERSION` / `UPDATED` in `data.js` — the only place. The `<title>`, `<met
 masthead heading, sub-line, and footer all derive from those + `LIB` counts at
 runtime, so entry counts never need hand-editing and can't go stale.
 
+## Register & grit — write them into the prompt, never score them by hand
+
+The two map axes are **derived from the prompt text alone**. Nobody assigns `reg`/`grit`
+numbers by judgement — not for new entries, not for old ones. One rule for the whole
+library, so there is never a second class of "trusted" numbers.
+
+- **Register** = where the voice sits, low → high. **Grit** = how rough the tone is,
+  clean → torn. They are independent: #12 is low+smooth, #97 low+rough, #125 high+smooth,
+  #19 high+rough.
+- **Every entry's vocal sentence must name one register qualifier and one grit qualifier.**
+  A prompt naming neither reads *neutral* and sits dead-centre on the map — a silent loss
+  of coverage. Treat a missing qualifier as a defect in the prompt.
+
+Four rules that come out of validating this against the legacy hand scores:
+
+1. **Keep the qualifier inside the vocal clause** — the sentence after
+   `a unique and specific vocalist:`. The reader scopes to that clause; anything outside
+   it is ignored.
+2. **Keep instrument words out of that clause.** "voice sitting low in the mix" once made
+   #41 read register 1.5 against a true 6.3.
+3. **Negation is read, and is a legitimate tool.** "no grit", "without rasp", "no cry"
+   all read as smooth — a deliberate way to pin the clean end.
+4. **Volume is not grit.** "shouted", "belted", "pushed hard" describe effort, not
+   roughness — "shouted hooks" made #46 read grit 9.2 against a true 4.0. If the voice is
+   genuinely rough, add a tone word too.
+
+### Vocabulary (both axes 0–10)
+
+**Register** — profundo/subharmonic `0.8` · bass/cavernous/bellow `1.5–2` · baritone `2.5` ·
+contralto `3` · alto `4` · mid-register/mid-tone/speech range `5` · mezzo/baritone-tenor `5.5` ·
+tenor `6` · high/upper register/top notes `7.5` · countertenor/head voice `8` ·
+falsetto/soprano/shriek `8.5` · whistle register `9.5`
+
+**Grit** — pristine/pure/glassy/silken `0.6` · clean/clear/smooth/polished `1.2` ·
+breathy/airy/whispered `1.6` · soft/gentle/tender `1.8` · warm/round/velvet `2.5` ·
+nasal/pinched/reedy `4` · husky/smoky/woody `5` · weathered/worn/frayed/cracked `5.5` ·
+grain/gritty/sandy/buzzing `6.2` · rasp/gravel/hoarse/rough `6.8` ·
+growl/snarl/bark/throaty `8` · distorted/shredded/screamed/guttural/harsh `9.2`
+
+Validated before adoption against the 100 legacy hand scores: register r=0.90 (90% within
+2 points), grit r=0.81. Rules 3 and 4 above are what took grit from r=0.62 to r=0.81.
+
 ## Workflow for adding / editing entries
 
 1. Edit `data.js` (and `STUDY_META` if it's a promoted study; bump `VERSION`/`UPDATED` if releasing).
