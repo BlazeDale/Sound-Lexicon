@@ -118,6 +118,22 @@ Four rules that come out of validating this against the legacy hand scores:
    roughness — "shouted hooks" made #46 read grit 9.2 against a true 4.0. If the voice is
    genuinely rough, add a tone word too.
 
+**A word counts only if it *denotes* pitch placement or tonal roughness** — not if it
+merely correlates. These do **not** name an axis, however vocal they sound:
+
+| Word | Reads as | Why it doesn't count |
+|---|---|---|
+| `conversational` | nothing | delivery, not pitch — a conversational voice can sit anywhere |
+| `piercing` | nothing | intensity, not pitch |
+| `resonant` | nothing | resonance, not smoothness — a resonant voice can be gritty |
+| `shouted`, `belted`, `pushed hard` | nothing | effort, not roughness |
+| `bright`, `dark` | nothing | brightness is its own quality; say `high`/`low` if you mean pitch |
+| `clipped`, `vibrato`, `intimate`, `dry` | nothing | articulation, ornament, mood, production |
+
+Dropping the first three cost 10 entries' coverage and changed accuracy not at all
+(register r 0.898→0.900, grit 0.805→0.802) — a hollow "the prompt didn't say" beats a
+register inferred from a word about delivery.
+
 ### Vocabulary (both axes 0–10)
 
 **Register** — profundo/subharmonic `0.8` · bass/cavernous/bellow `1.5–2` · baritone `2.5` ·

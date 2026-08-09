@@ -21,6 +21,15 @@
  *   1. negation is read     — "no grit" / "without rasp" means smooth, not rough
  *   2. volume is not grit   — shouted/belted/pushed-hard describe effort, not roughness,
  *                             so those words are deliberately absent from the lexicon
+ *
+ * Rule 2 generalised (2026-08-09 vocabulary audit): a word only earns a place here if it
+ * DENOTES pitch placement or tonal roughness. Words that merely correlate with one are
+ * excluded, even when they happen to score well — `conversational` and `piercing` were
+ * dropped from register (delivery and intensity), `resonant` from grit (resonance is not
+ * smoothness). Measured against the answer key the change is a wash (reg r 0.898→0.900,
+ * grit 0.805→0.802) and costs 10 entries' coverage — but a hollow "the prompt didn't say"
+ * is worth more than a register inferred from a word about delivery, and it keeps the
+ * documented prompting vocabulary honest.
  */
 import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -66,10 +75,10 @@ const REG = [
   [/\bcontralto\b/i, 3],
   [/\bchest-placed low\b|\blow chest\b/i, 2],
   [/\balto\b/i, 4],
-  [/\bmid-tone\b|\bmid-register\b|\bmidrange\b|\bmid-placed\b|\bmiddle register\b|\bspeech range\b|\bconversational\b/i, 5],
+  [/\bmid-tone\b|\bmid-register\b|\bmidrange\b|\bmid-placed\b|\bmiddle register\b|\bspeech range\b/i, 5],
   [/\bmezzo\b/i, 5.5],
   [/\btenor\b/i, 6],
-  [/\bhigh\b|\bpitched high\b|\btop notes\b|\bupper register\b|\bpiercing\b/i, 7.5],
+  [/\bhigh\b|\bpitched high\b|\btop notes\b|\bupper register\b/i, 7.5],
   [/\bcountertenor\b|\bhead voice\b|\bhead-voice\b/i, 8],
   [/\bshriek\w*\b/i, 8.5],
   [/\bfalsetto\b/i, 8.5],
@@ -78,7 +87,7 @@ const REG = [
 ];
 const GRIT = [
   [/\bpristine\b|\bpure\b|\bglassy\b|\bsilken\b|\bcrystalline\b|\bchoirboy\b|\bbuttered\b/i, 0.6],
-  [/\bclean\b|\bclear\b|\bsmooth\b(?!ing)|\bpolished\b|\bresonant\b/i, 1.2],
+  [/\bclean\b|\bclear\b|\bsmooth\b(?!ing)|\bpolished\b/i, 1.2],
   [/\bbreathy\b|\bairy\b|\bfeathery\b|\bwhisper\w*\b/i, 1.6],
   [/\bsoft\b|\bgentle\b|\btender\b/i, 1.8],
   [/\bwarm\b|\bround\b|\bvelvet\w*\b/i, 2.5],
