@@ -1106,6 +1106,62 @@ Melodic metalcore isolated: the origin the electronics grew out of. Near 172 BPM
 electronic drop, synth bass, dance production, four-on-the-floor kick, autotune, whispered delivery, ambient pads, slow ballad tempo, glossy pop sheen, wordless treatment
 ```
 
+## Study 19 — Horror-groove metal (blend + 4 roots)
+
+*Generated from library entries #306–310 · 2026-08-12 — edit the `inspiration` entries in `data.js`, then run `node tools/build.mjs`.*
+
+Temperament: horror as showmanship — the whole catalogue is a drive-in barker's pitch delivered at arena volume, so it has to stay lurid and funny as well as heavy. Play it as straight humourless metal aggression and you get the politest cousin; the camp is where the identity lives, and the menace only works because it is also a performance. The groove is the second non-negotiable: everything sits at a stomping mid-tempo built for a crowd to move to, one riff repeated until it becomes a chant, never speed for its own sake. The four roots pull the collage apart — downtuned noise-rock groove is the body, the electro-industrial machine is the production the loops and samples arrive through (this catalogue lives as much in remixed form as in original form), hot-rod psychobilly is where the twang and the swagger come from, and monster-movie exotica is the source the spliced dialogue, theremin and 1950s dread are cut out of. Roots 1 and 2 triangulate the impacts; roots 3 and 4 triangulate the atmosphere and the camp. Second study written under the register/grit convention, spread deliberately across the map: bellow/growl, baritone/hoarse, mid-register/harsh, tenor-into-falsetto/husky, contralto/breathy.
+
+### Blend (890)
+
+```
+Horror-groove metal near 100 BPM, lurid and stomping — a drive-in monster picture blown up to arena size. One downtuned riff repeated until it becomes a chant, machine drum loops locked under a live kit, turntable scratches, organ stabs, a theremin whine, and spliced dialogue from old exploitation films used as hooks between the sections. A unique and specific vocalist: a cavernous bellow, snarled and growled through a blown-out megaphone, spitting short repeated phrases in a carnival-barker cadence, then dropping to a leering half-whisper just before the riff returns. Real chanted lines with words throughout, answered by a gang shout on every hook. Production loud and deliberately cheap-looking, guitars scooped and enormous, samples smeared across everything. Delivery showmanlike and menacing — a sideshow huckster who believes the pitch, camp and threat impossible to separate.
+```
+
+```
+clean sung ballad, polished pop vocal, blast beats, thrash tempo, acoustic arrangement, technical guitar solos, sincere earnest delivery, sparse minimal mix, wordless treatment
+```
+
+### Root 1 · Downtuned groove-sludge (744)
+
+```
+Downtuned groove metal isolated: the noise-rock underground it climbed out of. Near 92 BPM, filthy and lumbering — one detuned riff dragged through fuzz and feedback, low end distorted until it buzzes, drums heavy-footed and a fraction behind, no solos anywhere, the whole thing built on repetition and swing rather than speed. A unique and specific vocalist: a hoarse baritone, rough and frayed at the edges, chanting one line over and over until it becomes the hook, then tearing it open into a raw shout at every turnaround. Sung in real words, never a wordless texture. Recorded hot and cheap, everything clipping a little, the room left in. Delivery deranged and gleeful — a street preacher losing the thread, menace with a grin behind it.
+```
+
+```
+polished production, melodic clean chorus, guitar solo, fast thrash tempo, electronic dance beat, sung ballad, orchestral arrangement, bright pop sheen, wordless treatment
+```
+
+### Root 2 · Electro-industrial machine (803)
+
+```
+Industrial metal isolated: the machine half, the remix version. Near 122 BPM, airtight and mechanical — programmed drums quantised hard, a sequenced synth low end, one sampled riff chopped into a gated loop, sirens and metallic hits, and breakdowns that fall away to nothing but a filtered beat and warped dialogue. A unique and specific vocalist: a mid-register bark run through heavy distortion, harsh and clipped into rhythmic fragments, the same phrase repeated as a hook until the effect chain reads as part of the tone, one untreated line surfacing at each breakdown before the processing swallows it again. Chanted in real words throughout. Mix cold and precise, the voice engineered like another machine. Delivery detached and clinical — menace with no pulse behind it, all surface and no sweat.
+```
+
+```
+live drum kit, organic swing, acoustic instruments, warm analogue haze, clean sung topline, blues phrasing, ballad tempo, loose human timing, wordless treatment
+```
+
+### Root 3 · Hot-rod psychobilly (724)
+
+```
+Psychobilly surf-rock isolated: the hot-rod garage strut hiding under the metal. Near 148 BPM, twanging and greasy — reverb-drowned tremolo guitar, slapback upright bass, a shuffling snare with tambourine over it, a Farfisa organ, handclaps, the whole thing sounding like a 1962 monster-beach picture. A unique and specific vocalist: a smoky tenor with a husky edge, curling behind the beat with a rockabilly hiccup and a permanent sneer, sliding up into a whooped falsetto at the end of every second line. Sung in full lines with real words, forward and playful. Recorded to mono tape with slap echo on everything, cymbals splashing. Delivery cocky and self-amused — swagger for its own sake, danger played strictly as fun.
+```
+
+```
+downtuned metal riffing, programmed drums, screamed vocal, modern loudness mastering, synth production, slow tempo, mournful delivery, dense wall of guitars, wordless treatment
+```
+
+### Root 4 · Monster-movie exotica (802)
+
+```
+Monster-movie exotica isolated: the horror soundtrack the samples were lifted off. Near 78 BPM, eerie and lounge-lit — theremin, vibraphone, tremolo guitar, a bolero shuffle on bongos, muted trumpet and a string section playing 1958 dread, spliced with tape-warped dialogue and reversed cymbals. A unique and specific vocalist: a breathy contralto, soft and clean with no rasp at all, gliding through wordless lounge melisma over the verses and then singing real lines close in, half-spoken and knowing, as though narrating the picture from the back row. The words carry the piece; the wordless lines sit underneath them, never instead of them. Recorded to warm tape, wide and hissy, the voice held slightly too close. Delivery seductive and mournful — glamour with something badly wrong underneath it.
+```
+
+```
+heavy guitars, distorted vocal, metal drumming, modern digital production, aggressive delivery, fast tempo, four-on-the-floor kick, belted power vocal, dry clinical mix
+```
+
 <!-- END GENERATED -->
 
 ---

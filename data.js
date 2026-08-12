@@ -16,17 +16,17 @@
 
 /* Version stamp — the ONLY place to bump these. Title, <meta>, masthead, and
  * footer all derive from here + LIB counts at runtime, so counts never drift. */
-const VERSION = 'v27';
-const UPDATED = '2026-08-10';
+const VERSION = 'v28';
+const UPDATED = '2026-08-12';
 
 /* ---------- MOST RECENT BATCH ----------
    Update this after each run: label + date + the entry numbers/ids
    (numbers for library entries, e.g. 133; suite ids like 'Q5' also work).
    These render as full cards in the "Most recent batch" strip up top. */
 const RECENT = {
-  label: 'Americana narration cycle — five variations on #290',
-  date:  '2026-08-10',
-  entries: [301, 302, 303, 304, 305]
+  label: 'Horror-groove metal (inspirations mode) — blend + four roots',
+  date:  '2026-08-12',
+  entries: [306, 307, 308, 309, 310]
 };
 
 const LIB=[
@@ -781,6 +781,11 @@ I don't know how it does that. It's the same three chords.
 
 [Spoken] (widest point — matter-of-fact)
 And there it is. Huh. Every time?`},
+{n:306,name:`Horror-groove metal — blend`,fam:`inspirations · horror-groove metal`,cat:`inspiration`,artist:`6262be7ab65377006a52e9645f6ebe996e4d59a3dba078d16f56b3533959e3cd`,role:`Blend`,aff:`G`,style:`Horror-groove metal near 100 BPM, lurid and stomping — a drive-in monster picture blown up to arena size. One downtuned riff repeated until it becomes a chant, machine drum loops locked under a live kit, turntable scratches, organ stabs, a theremin whine, and spliced dialogue from old exploitation films used as hooks between the sections. A unique and specific vocalist: a cavernous bellow, snarled and growled through a blown-out megaphone, spitting short repeated phrases in a carnival-barker cadence, then dropping to a leering half-whisper just before the riff returns. Real chanted lines with words throughout, answered by a gang shout on every hook. Production loud and deliberately cheap-looking, guitars scooped and enormous, samples smeared across everything. Delivery showmanlike and menacing — a sideshow huckster who believes the pitch, camp and threat impossible to separate.`,neg:`clean sung ballad, polished pop vocal, blast beats, thrash tempo, acoustic arrangement, technical guitar solos, sincere earnest delivery, sparse minimal mix, wordless treatment`},
+{n:307,name:`Downtuned groove-sludge root`,fam:`inspirations · horror-groove metal`,cat:`inspiration`,artist:`6262be7ab65377006a52e9645f6ebe996e4d59a3dba078d16f56b3533959e3cd`,role:`Root 1`,aff:`F`,style:`Downtuned groove metal isolated: the noise-rock underground it climbed out of. Near 92 BPM, filthy and lumbering — one detuned riff dragged through fuzz and feedback, low end distorted until it buzzes, drums heavy-footed and a fraction behind, no solos anywhere, the whole thing built on repetition and swing rather than speed. A unique and specific vocalist: a hoarse baritone, rough and frayed at the edges, chanting one line over and over until it becomes the hook, then tearing it open into a raw shout at every turnaround. Sung in real words, never a wordless texture. Recorded hot and cheap, everything clipping a little, the room left in. Delivery deranged and gleeful — a street preacher losing the thread, menace with a grin behind it.`,neg:`polished production, melodic clean chorus, guitar solo, fast thrash tempo, electronic dance beat, sung ballad, orchestral arrangement, bright pop sheen, wordless treatment`},
+{n:308,name:`Electro-industrial machine root`,fam:`inspirations · horror-groove metal`,cat:`inspiration`,artist:`6262be7ab65377006a52e9645f6ebe996e4d59a3dba078d16f56b3533959e3cd`,role:`Root 2`,aff:`A`,style:`Industrial metal isolated: the machine half, the remix version. Near 122 BPM, airtight and mechanical — programmed drums quantised hard, a sequenced synth low end, one sampled riff chopped into a gated loop, sirens and metallic hits, and breakdowns that fall away to nothing but a filtered beat and warped dialogue. A unique and specific vocalist: a mid-register bark run through heavy distortion, harsh and clipped into rhythmic fragments, the same phrase repeated as a hook until the effect chain reads as part of the tone, one untreated line surfacing at each breakdown before the processing swallows it again. Chanted in real words throughout. Mix cold and precise, the voice engineered like another machine. Delivery detached and clinical — menace with no pulse behind it, all surface and no sweat.`,neg:`live drum kit, organic swing, acoustic instruments, warm analogue haze, clean sung topline, blues phrasing, ballad tempo, loose human timing, wordless treatment`},
+{n:309,name:`Hot-rod psychobilly root`,fam:`inspirations · horror-groove metal`,cat:`inspiration`,artist:`6262be7ab65377006a52e9645f6ebe996e4d59a3dba078d16f56b3533959e3cd`,role:`Root 3`,aff:`D`,style:`Psychobilly surf-rock isolated: the hot-rod garage strut hiding under the metal. Near 148 BPM, twanging and greasy — reverb-drowned tremolo guitar, slapback upright bass, a shuffling snare with tambourine over it, a Farfisa organ, handclaps, the whole thing sounding like a 1962 monster-beach picture. A unique and specific vocalist: a smoky tenor with a husky edge, curling behind the beat with a rockabilly hiccup and a permanent sneer, sliding up into a whooped falsetto at the end of every second line. Sung in full lines with real words, forward and playful. Recorded to mono tape with slap echo on everything, cymbals splashing. Delivery cocky and self-amused — swagger for its own sake, danger played strictly as fun.`,neg:`downtuned metal riffing, programmed drums, screamed vocal, modern loudness mastering, synth production, slow tempo, mournful delivery, dense wall of guitars, wordless treatment`},
+{n:310,name:`Monster-movie exotica root`,fam:`inspirations · horror-groove metal`,cat:`inspiration`,artist:`6262be7ab65377006a52e9645f6ebe996e4d59a3dba078d16f56b3533959e3cd`,role:`Root 4`,aff:`B`,style:`Monster-movie exotica isolated: the horror soundtrack the samples were lifted off. Near 78 BPM, eerie and lounge-lit — theremin, vibraphone, tremolo guitar, a bolero shuffle on bongos, muted trumpet and a string section playing 1958 dread, spliced with tape-warped dialogue and reversed cymbals. A unique and specific vocalist: a breathy contralto, soft and clean with no rasp at all, gliding through wordless lounge melisma over the verses and then singing real lines close in, half-spoken and knowing, as though narrating the picture from the back row. The words carry the piece; the wordless lines sit underneath them, never instead of them. Recorded to warm tape, wide and hissy, the voice held slightly too close. Delivery seductive and mournful — glamour with something badly wrong underneath it.`,neg:`heavy guitars, distorted vocal, metal drumming, modern digital production, aggressive delivery, fast tempo, four-on-the-floor kick, belted power vocal, dry clinical mix`},
 ];
 
 /* BEGIN GENERATED — Suno song titles · run: node tools/song_titles.mjs */
@@ -1610,6 +1615,12 @@ const STUDY_META = {
     title: 'Euphoric melodic bass',
     date: '2026-08-09',
     note: `Temperament: euphoria with grief underneath it — the drop is a release, not a victory. Play it purely triumphant and it collapses into generic festival bass; the ache in the breakdown is what separates the subject from everyone working the same tempo. The four roots deliberately pull apart lineages that sound unrelated on paper and are audibly the same person: uplifting trance supplies the breakdown and the octave climb, melodic bass supplies the detuned drop where the lead line is played by the bass itself, ethereal dream-pop supplies the weightless voice floating over everything, and melodic metalcore is the origin the electronics grew out of — the double-kick urgency and the torn-open peak survive into the drops even when no guitar is present. Roots 1 and 3 triangulate the breakdowns; roots 2 and 4 triangulate the impacts. First study written under the register/grit convention: every vocal sentence names both axes, and the five deliberately spread across the map rather than clustering — soprano/clear, tenor/pure, alto/rough, falsetto/breathy, tenor/screamed.`
+  },
+  'horror-groove metal': {
+    no: 19,
+    title: 'Horror-groove metal',
+    date: '2026-08-12',
+    note: `Temperament: horror as showmanship — the whole catalogue is a drive-in barker's pitch delivered at arena volume, so it has to stay lurid and funny as well as heavy. Play it as straight humourless metal aggression and you get the politest cousin; the camp is where the identity lives, and the menace only works because it is also a performance. The groove is the second non-negotiable: everything sits at a stomping mid-tempo built for a crowd to move to, one riff repeated until it becomes a chant, never speed for its own sake. The four roots pull the collage apart — downtuned noise-rock groove is the body, the electro-industrial machine is the production the loops and samples arrive through (this catalogue lives as much in remixed form as in original form), hot-rod psychobilly is where the twang and the swagger come from, and monster-movie exotica is the source the spliced dialogue, theremin and 1950s dread are cut out of. Roots 1 and 2 triangulate the impacts; roots 3 and 4 triangulate the atmosphere and the camp. Second study written under the register/grit convention, spread deliberately across the map: bellow/growl, baritone/hoarse, mid-register/harsh, tenor-into-falsetto/husky, contralto/breathy.`
   }
 };
 
@@ -1998,5 +2009,10 @@ const TIMBRE = {
   '303': {r:4,g:5,rk:1,gk:1,z:'Folk, country & roots'},
   '304': {r:5,g:1.2,rk:1,gk:1,z:'Folk, country & roots'},
   '305': {r:3,g:1.6,rk:1,gk:1,z:'Folk, country & roots'},
+  '306': {r:2,g:8,rk:1,gk:1,z:'Metal & heavy'},
+  '307': {r:2.5,g:6.8,rk:1,gk:1,z:'Metal & heavy'},
+  '308': {r:5,g:9.2,rk:1,gk:1,z:'Metal & heavy'},
+  '309': {r:7.3,g:5,rk:1,gk:1,z:'Rock & guitar'},
+  '310': {r:3,g:1.8,rk:1,gk:1,z:'Jazz & lounge'},
 };
 /* END GENERATED TIMBRE */
