@@ -1462,6 +1462,68 @@ Uneasy sway near 82 BPM, hypnotic and off-kilter — a rolling six-eight feel wi
 straight four-four march, screamed vocal, single unharmonised lead vocal, autotune, orchestral arrangement, fast tempo, trap hi-hats, bright pop sheen, wordless treatment
 ```
 
+## Study 26 — High-fantasy RPG score (blend + 0 roots)
+
+*Generated from library entries #362–366 · 2026-08-15 — edit the `inspiration` entries in `data.js`, then run `node tools/build.mjs`.*
+
+The first study anchored on a **game score** rather than a band or a record, and the first whose hidden search key is a work title rather than a performer. Written in produce-the-sound mode like studies 24 and 25 — no blend, no roots, five full cues each renderable on its own. That mode is the right one here for a reason the ancestry method can't serve: a score is not one sound, it is a set of cues written for different rooms by the same hand, so the through-line is the *hand*, and the five entries are five rooms rather than five ancestors.
+
+The five are the score's distinct vocal situations, not five versions of one: the main theme (folk melody on a whistle, orchestra swelling once and holding, a clear high voice singing an invented archaic tongue over the top); the infernal boss aria (six-eight, organ and brass, the villain singing their own victory in bel-canto manners with a growl underneath); the diegetic tavern song (hurdy-gurdy and nyckelharpa, a room clapping, a voice worn in and generous); the cursed-land dread cue (no pulse, prepared piano and waterphone, a voice whispering barely on pitch); and the end-credits song (piano to full hybrid arrangement, a grained belt that frays and is left uncorrected). Timbre spreads about as wide as the library allows — 8.5/1.2, 1.75/8, 4/5, 3/1.6, 5.5/6.2 — which is a property of the target, not a coverage exercise: a score genuinely has to hire five different voices.
+
+Temperament: earnestness without camp anywhere except the one place camp belongs. High fantasy played straight is the whole discipline here — awe rather than triumph in the theme, dread that never becomes a jump-scare sting, a tavern song whose cheer is load-bearing because everyone in the room is doomed, and a villain who is the only permitted theatrical performance in the set precisely because the rest is sincere. Politest-cousin failures, both easy to fall into: played big and bright it becomes generic epic-trailer music, all fanfare and no world; played reverently it becomes Hollywood-fantasy pastiche, which sounds like a film about a place rather than a place.
+
+Not covered, and available as a sixth if wanted: the massed-choir combat cue — driving low ostinato, chanted syllables, no individual lead. It was left out because the library charts individual vocal timbres and a battle choir has none; add it as its own entry rather than bending one of these five toward it.
+
+### Main theme · Wide-open main theme (986)
+
+```
+High-fantasy orchestral main theme near 92 BPM, wide-eyed and questing — a modal folk melody stated first on a solo tin whistle over hammered dulcimer, answered by full strings that swell without hurrying, horns carrying the tune at the halfway mark, a bodhrán and a low drum walking underneath to give it a pulse, harp and celeste glittering across the top, the cue building once and then holding instead of climaxing again. A unique and specific vocalist: a soprano floating clear and unforced above everything, long open vowels with vibrato arriving only at the ends of held notes, singing an invented archaic tongue rather than translatable lyrics. One voice from first line to last, a distant choir answering the phrase-ends far behind it. Cut on a real scoring stage with genuine hall decay and no close-miked pop sheen anywhere. Delivery hopeful and unsentimental — awe rather than triumph, a vast world seen for the first time by someone who does not yet know what it will cost.
+```
+
+```
+instrumental-only cue, synthetic sampled orchestra, distorted guitars, drum machine, autotune, four-on-the-floor club kick, rap delivery, triumphant marching fanfare, breathy pop whisper
+```
+
+### Infernal villain aria · Infernal villain aria (993)
+
+```
+Infernal boss-fight aria near 138 BPM in a lurching six-eight, theatrical and delighted with itself — pipe organ stating the villain's theme against staccato brass stabs, a chromatic string ostinato driving underneath, a full choir chanting Latin-shaped syllables on the offbeats, timpani and struck metal punctuating every phrase end, harpsichord scurrying through the gaps, the tempo pressing forward a little every eight bars. A unique and specific vocalist: a cavernous bass, plummy and velvet in the low range and audibly enjoying the sound of itself, breaking into a scraping growl at the peak of each phrase then dropping back into courtesy. Sung in real words as the villain narrating their own victory, one voice from first line to last, the choir answering rather than doubling. Big scoring-stage capture, brass wide, the lead centred and theatrically forward. Delivery courteous and monstrous — a host welcoming a guest to their own destruction, camp without ever tipping into joke.
+```
+
+```
+clean crooned lead, high tenor lead, four-on-the-floor club kick, trap hi-hats, acoustic folk arrangement, lo-fi bedroom production, autotune, rap delivery, instrumental-only cue
+```
+
+### Tavern refrain · Tavern refrain (941)
+
+```
+Diegetic tavern folk song near 116 BPM, warm and a little drunk — a hurdy-gurdy drone under a nyckelharpa carrying the tune, lute strummed flat on the beat, bodhrán and spoons keeping time, a fiddle joining on the second verse and a tin whistle on the third, the room clapping into every refrain and the tempo creeping up each time round. A unique and specific vocalist: an alto sitting comfortably in the middle of the range, husky and smoky, ornamenting the line with a quick catch on the way into each refrain and letting the phrase-ends fall away unpolished. Sung in real words, one voice from first line to last, the room joining raggedly on the refrain and nowhere else. Recorded as if from a corner of the room, the crowd audible, nothing separated or gridded. Delivery generous and rueful — a song sung for people who are all going to die soon and know it, played happily anyway, the sadness visible only when the room stops singing.
+```
+
+```
+orchestral arrangement, distorted guitars, drum kit, autotune, modern pop production, four-on-the-floor club kick, belted diva runs, gridded quantized timing, rap delivery
+```
+
+### Cursed-land dread · Cursed-land dread (922)
+
+```
+Dark-ambient horror cue near 60 BPM with no fixed pulse, airless and wrong — bowed double basses grinding sul ponticello, a detuned hurdy-gurdy drone beneath them, prepared piano struck with mallets, a waterphone bending upward at the edges, distant metal scrapes, and one very slow low drum every few bars that never accumulates into a rhythm. A unique and specific vocalist: a contralto whispering the melody barely on pitch, breathy and very close, sliding a semitone under each note and back up as though unsure of it, now and then letting one sustained tone bloom out of the whisper before it collapses back. Sung in real words, one voice from first line to last, no other singers anywhere in the cue. Captured very close and very dry with an enormous empty space audible behind it. Delivery frightened and hushed — someone narrating while hiding, curiosity losing to dread in real time, never once raising the voice.
+```
+
+```
+steady drum groove, melodic pop chorus, belted vocal, bright major-key lift, autotune, four-on-the-floor club kick, distorted guitars, orchestral fanfare, instrumental-only cue
+```
+
+### Credits song · Credits song (941)
+
+```
+Hybrid orchestral end-credits song near 76 BPM, expansive and hard-won — solo piano alone under the first verse, a cello countermelody entering beneath it, then strings, a slow live kit and a low synth pad lifting the second chorus, the tin whistle from the main theme returning once near the end, the arrangement stripping back to piano alone for the final line. A unique and specific vocalist: a mezzo with real grain in the tone, kept conversational and low through the verses then opening into a full chest-driven belt on each chorus where the voice frays audibly and is left uncorrected. Sung in real words, one voice from first line to last. Modern hybrid-score production, the lead forward and lightly compressed, the orchestra genuinely played and the electronics kept underneath it. Delivery exhausted and grateful — survival rather than triumph, sung by someone looking back at what it cost rather than celebrating that it is over.
+```
+
+```
+screamed vocal, autotune, trap hi-hats, lo-fi bedroom production, distorted guitars, spoken-word delivery, four-on-the-floor club kick, chiptune, instrumental-only cue
+```
+
 <!-- END GENERATED -->
 
 ---
