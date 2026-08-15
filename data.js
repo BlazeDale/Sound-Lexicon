@@ -16,7 +16,7 @@
 
 /* Version stamp — the ONLY place to bump these. Title, <meta>, masthead, and
  * footer all derive from here + LIB counts at runtime, so counts never drift. */
-const VERSION = 'v33';
+const VERSION = 'v34';
 const UPDATED = '2026-08-15';
 
 /* ---------- MOST RECENT BATCH ----------
@@ -24,9 +24,9 @@ const UPDATED = '2026-08-15';
    (numbers for library entries, e.g. 133; suite ids like 'Q5' also work).
    These render as full cards in the "Most recent batch" strip up top. */
 const RECENT = {
-  label: 'Sunburnt backyard punk-reggae (inspirations mode)',
+  label: 'Highland war-pipe chant',
   date:  '2026-08-15',
-  entries: [337, 338, 339, 340, 341]
+  entries: [342]
 };
 
 const LIB=[
@@ -817,6 +817,7 @@ And there it is. Huh. Every time?`},
 {n:339,name:`SoCal hardcore punk root`,fam:`inspirations · sunburnt backyard punk-reggae`,cat:`inspiration`,artist:`881ee8156b76283075eed6a33c37017fb0108187ca3154a89d3e78c9816397e6`,role:`Root 2`,aff:`G`,style:`Early-80s Southern Californian hardcore punk isolated: the speed the band never lost. Near 180 BPM, fast and unlovely — downstroked buzzsaw guitars on three chords, a bass pinned to eighth notes, drums riding a blur with the snare cracking on every offbeat, one two-bar breakdown and straight back in, no solo, songs over before they settle. A unique and specific vocalist: pushed to the top of the upper register, hoarse and barking, throwing lines out ahead of the beat and running out of breath mid-phrase, the tone tearing on the held words and never smoothed, gang shouts crashing in on the last line of each chorus. Sung in real words, one voice leading from first line to last. Recorded fast and cheap in a rehearsal room — guitars fizzing, cymbals washing over everything, no separation, the whole thing slightly too loud for the tape. Delivery bratty and unserious about everything except playing hard — skate-park aggression thrown for fun.`,neg:`clean crooner vocal, reggae skank, slow tempo, orchestral arrangement, autotune, trap production, polished studio mastering, extended guitar solo, wordless treatment`},
 {n:340,name:`Dancehall toasting root`,fam:`inspirations · sunburnt backyard punk-reggae`,cat:`inspiration`,artist:`881ee8156b76283075eed6a33c37017fb0108187ca3154a89d3e78c9816397e6`,role:`Root 3`,aff:`E`,style:`Mid-80s Jamaican dancehall toasting isolated: the sound-system voice. Near 100 BPM, springy and mechanical — a digital rub-a-dub riddim built on a preset drum machine, a synth bassline stabbing the offbeats, a two-note organ vamp and a rimshot loop, the same eight bars running the whole song and never developing. A unique and specific vocalist: an alto pitched in speech range and pushed forward, nasal and reedy, chatting in rhythm rather than singing melody, half-sung catchphrases dropped in and repeated, rolled syllables and a whooped call at the end of a line, talking to the crowd between couplets. Sung in real words, one voice on the microphone from first line to last. Recorded live onto the riddim in one take with the tape hot, the voice loud and dry over everything with a short slap echo on the ad-libs. Delivery boastful and quick-witted — working a dancefloor in real time, teasing rather than threatening.`,neg:`live drum kit, distorted guitars, belted sung chorus, orchestral arrangement, slow ballad tempo, acoustic-only arrangement, autotune, wordless treatment`},
 {n:341,name:`Back-porch singalong root`,fam:`inspirations · sunburnt backyard punk-reggae`,cat:`inspiration`,artist:`881ee8156b76283075eed6a33c37017fb0108187ca3154a89d3e78c9816397e6`,role:`Root 4`,aff:`B`,style:`Back-porch acoustic blues singalong isolated: the sweet side of the same voice. Near 84 BPM, warm and late — one steel-string guitar fingerpicked with a bottleneck sliding between the chords, a second guitar strumming loosely behind it, a shaker, no drums and no bass anywhere, crickets and a screen door somewhere behind the players. A unique and specific vocalist: a tenor, warm and round with no rasp at all, breathy at the start of phrases and unforced everywhere, drifting slightly behind the beat, a friend joining a third above on the chorus and dropping out when the words run out. Sung in real words, one lead voice from first line to last. Caught on a single microphone set on a chair — quiet, close, unprocessed, the guitar louder than it should be and the low end thin. Delivery wistful and easy — a song sung for four people at the end of a long day, nothing projected, nothing sold.`,neg:`drum kit, bass guitar, distorted guitars, studio polish, autotune, programmed beat, screamed vocal, dense layered production, wordless treatment`},
+{n:342,name:`Highland war-pipe chant`,fam:`Highland pipes · Celtic martial`,cat:`lyrical`,bpm:`92`,role:`teaching vocables chanted in the chanter's own timbre`,proc:`unbroken drones · rudimental pipe-band snares · hillside distance`,aff:`G`,style:`Great Highland war pipes near 92 BPM, martial and unrelenting — a pipe corps playing a clan gathering in unison, the drones never once stopping so the piece sits on one unbroken chord, high-tensioned rudimental snares rolling underneath, tenor drums flourishing on the accents, a bass drum on the marching pulse. No guitars, no kit, no harmony instruments at all. A unique and specific vocalist: a hard alto pitched to cut, nasal and reedy, buzzing in the tone like the chanter it is imitating, chanting the tune's own teaching vocables in tight rhythmic clusters, roughening to a hoarse open shout on the war cry and dropping back into the vocables without a break. Real words in the verses — a rally of repeated names and oaths, plain and hammered — with the vocable refrain answering each line. Recorded outdoors on a hillside, wind on the microphone, the band arriving with distance on it. Delivery implacable — the pipes as a weapon of nerve, heard over the ridge long before anyone is seen.`,neg:`instrumental only, drum kit, distorted guitars, electronic production, autotune, orchestral strings, crooned ballad delivery, slow tempo, modern pop sheen`},
 ];
 
 /* BEGIN GENERATED — Suno song titles · run: node tools/song_titles.mjs */
@@ -2165,5 +2166,6 @@ const TIMBRE = {
   '339': {r:7.5,g:8,rk:1,gk:1,z:'Metal & heavy'},
   '340': {r:4.5,g:4,rk:1,gk:1,z:'World & traditional'},
   '341': {r:6,g:2.5,rk:1,gk:1,z:'Folk, country & roots'},
+  '342': {r:4,g:6.8,rk:1,gk:1,z:'World & traditional'},
 };
 /* END GENERATED TIMBRE */
