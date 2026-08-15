@@ -1274,6 +1274,62 @@ Ambient-folk pop ballad near 72 BPM, weightless and nearly silent — guitar har
 belted power chorus, full drum kit, dense arrangement, autotune, string orchestra, fast tempo, guitar riffing, layered harmony stack, wordless treatment
 ```
 
+## Study 22 — Sunburnt backyard punk-reggae (blend + 4 roots)
+
+*Generated from library entries #337–341 · 2026-08-15 — edit the `inspiration` entries in `data.js`, then run `node tools/build.mjs`.*
+
+Temperament: the looseness is the conviction — players who learned reggae properly and then refused to tighten either half, throwing a party that is genuinely fun and quietly going wrong underneath. Sanded smooth this becomes the bright ska-pop crossover of study 9, which is exactly the politest-cousin failure to avoid here: the grain, the sun damage and the mournful undertow are the identity, not blemishes on it. Roots 1+4 triangulate the frame — Kingston dub's mixing desk as an instrument at one end, a back-porch singalong with no rhythm section at all at the other — and roots 2+3 triangulate the voice, hardcore punk's hoarse top-of-register bark against dancehall toasting's rhythmic chat in speech range. The lead moves between sung, slurred and toasted inside a single song, so 2+3 mixed together reproduce the switching that no single root carries. Root 4 is the deliberate clean control (no rasp anywhere). The fifth strand — the turntable-and-crate element, scratched hooks and sampled speech — rides inside the blend rather than taking a root of its own; isolate it if a track needs to lean that way.
+
+### Blend (992)
+
+```
+Sunburnt backyard punk-reggae near 92 BPM, loose and sun-bleached — a punk band playing reggae through a soundsystem's mixing desk. Offbeat skank guitar over a fat rolling one-drop bass, the kit flipping to double-time punk for a chorus and falling back into the one-drop without warning, spring reverb and tape-delay throws smearing the snare, a scratched turntable figure and a snippet of sampled speech between verses. A unique and specific vocalist: a husky mid-register voice with grain in it at every volume, sliding between plainly sung melody, half-toasted rhythmic chat and a hoarse shout when the tempo doubles, sweet and unforced on the low lines, fraying at the top and left that way. Sung in real words, one voice from first line to last. Cut like a party recorded in a garage — bleed, room noise, a laugh left in, nothing tightened. Delivery unhurried and hedonistic with something mournful under it, funny and doomed at once, never sneering, never tidied into polished ska-pop.
+```
+
+```
+polished ska-pop sheen, autotune, quantized programmed drums, trap hi-hats, orchestral arrangement, screamed metal vocals, edm drop, clean unroughened vocal, wordless treatment
+```
+
+### Root 1 · Kingston dub (975)
+
+```
+Seventies Kingston roots reggae and dub isolated: the mixing desk as the lead instrument. Near 72 BPM, deep and unhurried — a one-drop kit with the kick landing on the third beat, an enormous rolling bassline carrying the melody, bubbling organ shuffle, muted offbeat guitar chops, hand percussion. Whole instruments drop out for bars at a time and return soaked in spring reverb, the snare thrown into a long tape delay that feeds back until it swallows the bar. A unique and specific vocalist: a baritone sitting low and level, smoky and woody in tone, chanting more than singing, phrases repeated with small variations and left to hang, answering voices in thirds far back in the room. Sung in real words, plainly, one voice from first line to last. Analogue tape capture, warm and saturated, the top end rolled off, mono-leaning with the effects opened wide. Delivery meditative and unbothered — devotional weight carried at walking pace, never hurried, never brightened.
+```
+
+```
+distorted guitars, fast tempo, trap hi-hats, autotune, modern loudness mastering, screamed vocal, orchestral strings, bright digital sheen, wordless treatment
+```
+
+### Root 2 · SoCal hardcore punk (950)
+
+```
+Early-80s Southern Californian hardcore punk isolated: the speed the band never lost. Near 180 BPM, fast and unlovely — downstroked buzzsaw guitars on three chords, a bass pinned to eighth notes, drums riding a blur with the snare cracking on every offbeat, one two-bar breakdown and straight back in, no solo, songs over before they settle. A unique and specific vocalist: pushed to the top of the upper register, hoarse and barking, throwing lines out ahead of the beat and running out of breath mid-phrase, the tone tearing on the held words and never smoothed, gang shouts crashing in on the last line of each chorus. Sung in real words, one voice leading from first line to last. Recorded fast and cheap in a rehearsal room — guitars fizzing, cymbals washing over everything, no separation, the whole thing slightly too loud for the tape. Delivery bratty and unserious about everything except playing hard — skate-park aggression thrown for fun.
+```
+
+```
+clean crooner vocal, reggae skank, slow tempo, orchestral arrangement, autotune, trap production, polished studio mastering, extended guitar solo, wordless treatment
+```
+
+### Root 3 · Dancehall toasting (924)
+
+```
+Mid-80s Jamaican dancehall toasting isolated: the sound-system voice. Near 100 BPM, springy and mechanical — a digital rub-a-dub riddim built on a preset drum machine, a synth bassline stabbing the offbeats, a two-note organ vamp and a rimshot loop, the same eight bars running the whole song and never developing. A unique and specific vocalist: an alto pitched in speech range and pushed forward, nasal and reedy, chatting in rhythm rather than singing melody, half-sung catchphrases dropped in and repeated, rolled syllables and a whooped call at the end of a line, talking to the crowd between couplets. Sung in real words, one voice on the microphone from first line to last. Recorded live onto the riddim in one take with the tape hot, the voice loud and dry over everything with a short slap echo on the ad-libs. Delivery boastful and quick-witted — working a dancefloor in real time, teasing rather than threatening.
+```
+
+```
+live drum kit, distorted guitars, belted sung chorus, orchestral arrangement, slow ballad tempo, acoustic-only arrangement, autotune, wordless treatment
+```
+
+### Root 4 · Back-porch singalong (896)
+
+```
+Back-porch acoustic blues singalong isolated: the sweet side of the same voice. Near 84 BPM, warm and late — one steel-string guitar fingerpicked with a bottleneck sliding between the chords, a second guitar strumming loosely behind it, a shaker, no drums and no bass anywhere, crickets and a screen door somewhere behind the players. A unique and specific vocalist: a tenor, warm and round with no rasp at all, breathy at the start of phrases and unforced everywhere, drifting slightly behind the beat, a friend joining a third above on the chorus and dropping out when the words run out. Sung in real words, one lead voice from first line to last. Caught on a single microphone set on a chair — quiet, close, unprocessed, the guitar louder than it should be and the low end thin. Delivery wistful and easy — a song sung for four people at the end of a long day, nothing projected, nothing sold.
+```
+
+```
+drum kit, bass guitar, distorted guitars, studio polish, autotune, programmed beat, screamed vocal, dense layered production, wordless treatment
+```
+
 <!-- END GENERATED -->
 
 ---
