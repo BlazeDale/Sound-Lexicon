@@ -16,7 +16,7 @@
 
 /* Version stamp — the ONLY place to bump these. Title, <meta>, masthead, and
  * footer all derive from here + LIB counts at runtime, so counts never drift. */
-const VERSION = 'v34';
+const VERSION = 'v35';
 const UPDATED = '2026-08-15';
 
 /* ---------- MOST RECENT BATCH ----------
@@ -24,9 +24,9 @@ const UPDATED = '2026-08-15';
    (numbers for library entries, e.g. 133; suite ids like 'Q5' also work).
    These render as full cards in the "Most recent batch" strip up top. */
 const RECENT = {
-  label: 'Highland war-pipe chant',
+  label: 'One-at-a-time explorations',
   date:  '2026-08-15',
-  entries: [342]
+  entries: [342, 343]
 };
 
 const LIB=[
@@ -818,6 +818,7 @@ And there it is. Huh. Every time?`},
 {n:340,name:`Dancehall toasting root`,fam:`inspirations · sunburnt backyard punk-reggae`,cat:`inspiration`,artist:`881ee8156b76283075eed6a33c37017fb0108187ca3154a89d3e78c9816397e6`,role:`Root 3`,aff:`E`,style:`Mid-80s Jamaican dancehall toasting isolated: the sound-system voice. Near 100 BPM, springy and mechanical — a digital rub-a-dub riddim built on a preset drum machine, a synth bassline stabbing the offbeats, a two-note organ vamp and a rimshot loop, the same eight bars running the whole song and never developing. A unique and specific vocalist: an alto pitched in speech range and pushed forward, nasal and reedy, chatting in rhythm rather than singing melody, half-sung catchphrases dropped in and repeated, rolled syllables and a whooped call at the end of a line, talking to the crowd between couplets. Sung in real words, one voice on the microphone from first line to last. Recorded live onto the riddim in one take with the tape hot, the voice loud and dry over everything with a short slap echo on the ad-libs. Delivery boastful and quick-witted — working a dancefloor in real time, teasing rather than threatening.`,neg:`live drum kit, distorted guitars, belted sung chorus, orchestral arrangement, slow ballad tempo, acoustic-only arrangement, autotune, wordless treatment`},
 {n:341,name:`Back-porch singalong root`,fam:`inspirations · sunburnt backyard punk-reggae`,cat:`inspiration`,artist:`881ee8156b76283075eed6a33c37017fb0108187ca3154a89d3e78c9816397e6`,role:`Root 4`,aff:`B`,style:`Back-porch acoustic blues singalong isolated: the sweet side of the same voice. Near 84 BPM, warm and late — one steel-string guitar fingerpicked with a bottleneck sliding between the chords, a second guitar strumming loosely behind it, a shaker, no drums and no bass anywhere, crickets and a screen door somewhere behind the players. A unique and specific vocalist: a tenor, warm and round with no rasp at all, breathy at the start of phrases and unforced everywhere, drifting slightly behind the beat, a friend joining a third above on the chorus and dropping out when the words run out. Sung in real words, one lead voice from first line to last. Caught on a single microphone set on a chair — quiet, close, unprocessed, the guitar louder than it should be and the low end thin. Delivery wistful and easy — a song sung for four people at the end of a long day, nothing projected, nothing sold.`,neg:`drum kit, bass guitar, distorted guitars, studio polish, autotune, programmed beat, screamed vocal, dense layered production, wordless treatment`},
 {n:342,name:`Highland war-pipe chant`,fam:`Highland pipes · Celtic martial`,cat:`lyrical`,bpm:`92`,role:`teaching vocables chanted in the chanter's own timbre`,proc:`unbroken drones · rudimental pipe-band snares · hillside distance`,aff:`G`,style:`Great Highland war pipes near 92 BPM, martial and unrelenting — a pipe corps playing a clan gathering in unison, the drones never once stopping so the piece sits on one unbroken chord, high-tensioned rudimental snares rolling underneath, tenor drums flourishing on the accents, a bass drum on the marching pulse. No guitars, no kit, no harmony instruments at all. A unique and specific vocalist: a hard alto pitched to cut, nasal and reedy, buzzing in the tone like the chanter it is imitating, chanting the tune's own teaching vocables in tight rhythmic clusters, roughening to a hoarse open shout on the war cry and dropping back into the vocables without a break. Real words in the verses — a rally of repeated names and oaths, plain and hammered — with the vocable refrain answering each line. Recorded outdoors on a hillside, wind on the microphone, the band arriving with distance on it. Delivery implacable — the pipes as a weapon of nerve, heard over the ridge long before anyone is seen.`,neg:`instrumental only, drum kit, distorted guitars, electronic production, autotune, orchestral strings, crooned ballad delivery, slow tempo, modern pop sheen`},
+{n:343,name:`Keening Irish alt-rock — blend`,fam:`inspirations · keening Irish alt-rock`,cat:`inspiration`,artist:`a5cc7f88a488bec6850869f411acee726d9847c5226783f71dde44c6496d63dc`,role:`Blend`,aff:`C`,style:`Keening Irish alt-rock near 84 BPM, dreamlike then suddenly enormous — a chorused arpeggiated electric guitar ringing through delay over a plain unhurried bass and a kit that stays out of the way, the verses almost weightless, the chorus arriving as a wall of overdriven guitar with no change of tempo and no warning, a cello doubling the melody on the last one. A unique and specific vocalist: a mezzo held soft and breathy through the verses, then lifting into a bright keening head voice that slides up into notes from underneath, ornamented with sean-nós grace notes and a yodel-adjacent break flipped deliberately at the phrase-ends, hardening to a nasal snarl on the loud chorus and clean again the instant it drops. Sung in real words, one voice from first line to last, the long vowels held open and Irish. Produced wide and reverberant, the lead well forward. Delivery grieving and unembarrassed — lullaby tenderness and open anger in one performance, never smoothed into polite dream-pop.`,neg:`autotune, rap delivery, programmed trap beat, funk groove, growled metal vocal, orchestral-only arrangement, four-on-the-floor club kick, whispered throughout, wordless treatment`},
 ];
 
 /* BEGIN GENERATED — Suno song titles · run: node tools/song_titles.mjs */
@@ -1742,6 +1743,11 @@ const STUDY_META = {
     no: 22,
     date: '2026-08-15',
     note: `Temperament: the looseness is the conviction — players who learned reggae properly and then refused to tighten either half, throwing a party that is genuinely fun and quietly going wrong underneath. Sanded smooth this becomes the bright ska-pop crossover of study 9, which is exactly the politest-cousin failure to avoid here: the grain, the sun damage and the mournful undertow are the identity, not blemishes on it. Roots 1+4 triangulate the frame — Kingston dub's mixing desk as an instrument at one end, a back-porch singalong with no rhythm section at all at the other — and roots 2+3 triangulate the voice, hardcore punk's hoarse top-of-register bark against dancehall toasting's rhythmic chat in speech range. The lead moves between sung, slurred and toasted inside a single song, so 2+3 mixed together reproduce the switching that no single root carries. Root 4 is the deliberate clean control (no rasp anywhere). The fifth strand — the turntable-and-crate element, scratched hooks and sampled speech — rides inside the blend rather than taking a root of its own; isolate it if a track needs to lean that way.`
+  },
+  'keening Irish alt-rock': {
+    no: 23,
+    date: '2026-08-15',
+    note: `Written as a blend only — one entry at a time by request, so this study has no roots yet. Temperament: grief sung without embarrassment. The identity is a lullaby and an open accusation coming out of the same performance with no transition between them, so the arrangement must jump from weightless to enormous without a tempo change or a build — a crescendo would ruin it. Politest-cousin failure to avoid: sanded down this becomes pleasant jangling dream-pop, which loses the ornament, the snarl and the nerve. The vocal keeps both poles by design — breathy mezzo verses against a nasal snarl on the chorus — which reads as register 6.8 (the two poles averaged) and grit 8 (the roughest word named wins). Grit 8 overstates a performance that is clean most of the time; that is the derivation rule working as documented, not a defect in the prompt, and the snarl is too central to soften just to move a dot. Candidate roots if it expands: sean-nós keening ornament isolated; late-80s chorused jangle guitar isolated; loud-quiet grunge dynamics isolated; Irish traditional lament and protest song isolated.`
   }
 };
 
@@ -2167,5 +2173,6 @@ const TIMBRE = {
   '340': {r:4.5,g:4,rk:1,gk:1,z:'World & traditional'},
   '341': {r:6,g:2.5,rk:1,gk:1,z:'Folk, country & roots'},
   '342': {r:4,g:6.8,rk:1,gk:1,z:'World & traditional'},
+  '343': {r:6.8,g:8,rk:1,gk:1,z:'Rock & guitar'},
 };
 /* END GENERATED TIMBRE */

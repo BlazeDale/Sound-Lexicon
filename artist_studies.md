@@ -1330,6 +1330,22 @@ Back-porch acoustic blues singalong isolated: the sweet side of the same voice. 
 drum kit, bass guitar, distorted guitars, studio polish, autotune, programmed beat, screamed vocal, dense layered production, wordless treatment
 ```
 
+## Study 23 — Keening Irish alt-rock (blend + 0 roots)
+
+*Generated from library entries #343 · 2026-08-15 — edit the `inspiration` entries in `data.js`, then run `node tools/build.mjs`.*
+
+Written as a blend only — one entry at a time by request, so this study has no roots yet. Temperament: grief sung without embarrassment. The identity is a lullaby and an open accusation coming out of the same performance with no transition between them, so the arrangement must jump from weightless to enormous without a tempo change or a build — a crescendo would ruin it. Politest-cousin failure to avoid: sanded down this becomes pleasant jangling dream-pop, which loses the ornament, the snarl and the nerve. The vocal keeps both poles by design — breathy mezzo verses against a nasal snarl on the chorus — which reads as register 6.8 (the two poles averaged) and grit 8 (the roughest word named wins). Grit 8 overstates a performance that is clean most of the time; that is the derivation rule working as documented, not a defect in the prompt, and the snarl is too central to soften just to move a dot. Candidate roots if it expands: sean-nós keening ornament isolated; late-80s chorused jangle guitar isolated; loud-quiet grunge dynamics isolated; Irish traditional lament and protest song isolated.
+
+### Blend (998)
+
+```
+Keening Irish alt-rock near 84 BPM, dreamlike then suddenly enormous — a chorused arpeggiated electric guitar ringing through delay over a plain unhurried bass and a kit that stays out of the way, the verses almost weightless, the chorus arriving as a wall of overdriven guitar with no change of tempo and no warning, a cello doubling the melody on the last one. A unique and specific vocalist: a mezzo held soft and breathy through the verses, then lifting into a bright keening head voice that slides up into notes from underneath, ornamented with sean-nós grace notes and a yodel-adjacent break flipped deliberately at the phrase-ends, hardening to a nasal snarl on the loud chorus and clean again the instant it drops. Sung in real words, one voice from first line to last, the long vowels held open and Irish. Produced wide and reverberant, the lead well forward. Delivery grieving and unembarrassed — lullaby tenderness and open anger in one performance, never smoothed into polite dream-pop.
+```
+
+```
+autotune, rap delivery, programmed trap beat, funk groove, growled metal vocal, orchestral-only arrangement, four-on-the-floor club kick, whispered throughout, wordless treatment
+```
+
 <!-- END GENERATED -->
 
 ---
