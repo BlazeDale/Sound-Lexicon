@@ -20,7 +20,7 @@ const STUDIES_MD = join(ROOT, 'artist_studies.md');
 
 const STYLE_CAP = 1000;
 const LYRIC_CAP = 5000;
-const MANDATED = ['Harmonic stagnation', 'Dynamic flattening', 'Quantized sterility', 'Structural monotony', 'Predictability', 'Vocal identity drift', 'Vocalist substitution'];
+const MANDATED = ['Harmonic stagnation', 'Dynamic flattening', 'Quantized sterility', 'Structural monotony', 'Predictability', 'Vocal identity drift', 'Vocalist substitution', 'Soundtubes'];
 
 const len = s => [...s].length;
 const fails = [], passes = [];

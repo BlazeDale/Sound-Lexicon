@@ -52,7 +52,7 @@ Loads `data.js` and checks:
 - **numbering** — integer entry numbers unique
 - **RECENT** — every id in the most-recent batch resolves to a real entry
 - **no artist names** — entry name/fam/style/neg **and** `RECENT.label` checked against a hashed denylist (see below); names never appear in the repo
-- **mandated negatives** — the 7 mandated terms must *not* be pre-baked into `neg` (appended at copy time)
+- **mandated negatives** — the 8 mandated terms must *not* be pre-baked into `neg` (appended at copy time)
 - **version stamp + masthead** — `VERSION`/`UPDATED` set; title/counts derive at runtime; static `<title>` stays count-free
 - **HTML wiring** — references `data.js`; inline script parses; `<div>`/`<section>` balanced
 - **song titles** — every attached demo has a `SONG_TITLES` entry (else its song name isn't searchable), no stale entries, no artist name in a title, and the HTML still feeds titles into the search blob
