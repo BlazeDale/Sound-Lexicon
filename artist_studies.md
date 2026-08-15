@@ -1218,6 +1218,62 @@ Contemporary piano-pop anthem isolated: the build the song is architected on. Ne
 raspy torn vocal, distorted guitars, programmed trap beat, growl, fast tempo, rap delivery, lo-fi capture, four-on-the-floor club kick
 ```
 
+## Study 21 — Street-schooled pop-soul — track cut (blend + 0 roots)
+
+*Generated from library entries #332–336 · 2026-08-14 — edit the `inspiration` entries in `data.js`, then run `node tools/build.mjs`.*
+
+Corrective second pass on study #20, written after the first five demoed and missed. The ancestry approach pulled the blend toward busking-soul and a soul-revue arrangement, which is not what the target record sounds like — so this set drops the root method entirely and works from the owner's own description of the song, five renders of one arrangement rather than a blend plus roots. The fixed skeleton, present in all five: opens on a plain kick-and-snare pattern with light guitar harmonics over it and the voice entering within two bars; piano as strong isolated chords struck hard and left standing alone in the gaps, never arpeggiated; an open wash of faded guitar distortion that swells but never plays a riff; a wide low bass arriving under the piano on the chorus. The vocal is the other fixed element and the hardest part — pleading, close-mic'd, with BOTH a growled low drop and a delicate unsupported falsetto break in the same performance, the crack between them left unsmoothed. What varies is only which element carries the weight: cut 1 renders everything in balance, cut 2 strips the arrangement until the voice must carry it alone, cut 3 makes the distortion swell the emotional event, cut 4 puts the architecture in the piano and the wide bass, cut 5 makes the harmonics the motif and the falsetto the centrepiece. The register/grit spread is deliberately narrow here where earlier sets spread wide: every cut has to contain the same two-pole voice, so the axes are pinned by the target rather than by coverage. Failure mode to watch: rendered as a belted empowerment chorus with a full kit it becomes a generic radio ballad and the whole point — the fragility and the audible break — is gone.
+
+### Track cut 1 · Falsetto-break ballad — full render (949)
+
+```
+Cinematic alt-pop ballad near 80 BPM, close and pleading. It opens on nothing but a plain kick-and-snare pattern with light guitar harmonics chiming over it, and the voice enters within two bars. Piano comes in as strong isolated chords, struck hard and then left standing alone in the gaps with no arpeggios and no filling; an open wash of faded guitar distortion swells in behind them and never plays a riff; on the chorus a wide low bass moves under the piano and the picture opens out. A unique and specific vocalist: a pleading alto sung right on the microphone with the breath audible, dropping to a growled baritone at the bottom of each verse line and breaking up into a delicate unsupported falsetto at the top of the phrase, the crack between the two registers left in and never smoothed. Real words throughout, one voice from first line to last. Lead close and dry, everything behind it wide. Delivery imploring — asking, never declaring.
+```
+
+```
+belted power chorus, full kit fills, horn section, string orchestra, autotune, four-on-the-floor kick, busy guitar riffing, rap delivery, wordless treatment
+```
+
+### Track cut 2 · Falsetto-break ballad — voice bare (925)
+
+```
+Close-mic alt-pop ballad near 76 BPM, stark and confessional — the same song stripped until the voice has to carry it. A plain kick and snare, thin guitar harmonics, and strong piano chords struck once and left to decay alone through long silences; only a distant faded wash of guitar distortion under the last chorus, and a wide bass entering late beneath the piano. Nothing doubles the lead and nothing answers it. A unique and specific vocalist: a pleading mezzo pressed close to the microphone with breath and lip noise part of the tone, sinking into a low growl at the ends of the verse lines and cracking open into a fragile falsetto on every lift, the break between them audible and deliberately unrepaired. Real words, one voice, no harmony stack anywhere. Recorded dry and intimate, the room barely present, the lead uncomfortably close. Delivery exposed and imploring — arguing its case with nothing to hide behind.
+```
+
+```
+layered harmony stack, full drum kit, string section, autotune, belted power chorus, dense guitar riffing, fast tempo, reverb wash on the lead, wordless treatment
+```
+
+### Track cut 3 · Falsetto-break ballad — distortion swell (899)
+
+```
+Alt-rock ballad near 84 BPM, hushed and then flooded — same bones, but the faded guitar distortion is the emotional event. A plain kick-and-snare pulse and light guitar harmonics open it; strong piano chords are struck and left ringing alone; the distortion fades up from nothing under the first verse, hangs as a wall of sustained overdrive with no riff inside it, and swallows the final chorus whole while a wide bass moves under the piano. A unique and specific vocalist: a pleading contralto sitting low and heavy, hoarse and throat-forward with a growl on the verse lines, then tearing up into a thin falsetto break over the top of the distortion where the voice nearly fails. Real words throughout, one voice pushing against the wall of sound rather than mixed behind it. Lead close and dry, everything else enormous and faded. Delivery desperate — pleading at the top of a voice already worn.
+```
+
+```
+metal riffing, palm-muted chugging, screamed vocal, drum fills, autotune, bright pop sheen, fast tempo, horn section, wordless treatment
+```
+
+### Track cut 4 · Falsetto-break ballad — piano and wide bass (916)
+
+```
+Piano-led cinematic pop ballad near 78 BPM, spacious and grave — a plain kick and snare and a few guitar harmonics open it, then the piano takes the architecture: heavy chords struck hard and left standing alone in the silences, no arpeggios, no filling, the gaps as important as the notes. On the chorus a wide sub-heavy bass slides in beneath those chords and doubles their weight while an open faded guitar distortion glows dimly behind everything. A unique and specific vocalist: a pleading voice in the upper register, clear and unroughened through the verses, opening into a full supported line on the chorus and touching a delicate falsetto at the top of it, with one growled low phrase dropped in at the last verse. Real words, one voice carrying the whole arc. Wide modern production, piano and bass enormous, the lead close and dry in the middle. Delivery grave — restraint held back until the last chorus.
+```
+
+```
+busy piano arpeggios, drum fills, string orchestra, autotune, four-on-the-floor kick, guitar riffing, rap delivery, fast tempo, wordless treatment
+```
+
+### Track cut 5 · Falsetto-break ballad — harmonics and breath (873)
+
+```
+Ambient-folk pop ballad near 72 BPM, weightless and nearly silent — guitar harmonics are the motif rather than a texture, chiming through the whole piece over a kick and snare played so quietly they read as a pulse. Piano chords are struck rarely and left alone to decay for whole bars, an open faded guitar distortion breathes in and out far behind them, and a wide bass arrives only for the final chorus. A unique and specific vocalist: a pleading breathy falsetto held high and barely supported, air leaking around every note, dropping without warning into a low growl for a single line and climbing back out of it, the break between the two left raw. Real words throughout, one voice, close enough that the microphone catches the swallow before each phrase. Lead hushed and dry with long natural decay behind it. Delivery fragile — sung as if to one person in the room.
+```
+
+```
+belted power chorus, full drum kit, dense arrangement, autotune, string orchestra, fast tempo, guitar riffing, layered harmony stack, wordless treatment
+```
+
 <!-- END GENERATED -->
 
 ---
