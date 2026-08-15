@@ -1400,6 +1400,68 @@ Psychedelic heavy alt-rock near 76 BPM, wide and unsettled — phased guitars ri
 raspy torn vocal, growl, fast tempo, programmed dance beat, autotune, bright pop production, rap delivery, four-on-the-floor club kick, wordless treatment
 ```
 
+## Study 25 — Braided-harmony sludge (blend + 0 roots)
+
+*Generated from library entries #349–353 · 2026-08-15 — edit the `inspiration` entries in `data.js`, then run `node tools/build.mjs`.*
+
+Written in produce-the-sound mode like study 24 — five full arrangements, no blend and no roots. The defining feature here is not the riff, it is that **two voices are braided for the entire song**: not a lead with backing vocals, but a pair locked to identical phrasing on every syllable and every breath, harmonising a close sour interval that refuses to settle into a comfortable third. Every one of the five states that explicitly, and every neg field bans a single unharmonised lead, because a solo lead render is the one failure that makes the prompt land on generic sludge metal.
+
+IMPORTANT — pull two mandated negatives when copying this study. "Vocal identity drift" and "Vocalist substitution" fight the entire concept here: a second voice is meant to be present throughout. This is the same caveat the help panel documents for the wordless choir entries (#226–230), and it is the second study in the library that needs it.
+
+Temperament: numbness, not rage. Nothing here shouts to be heard — sickness gets described calmly by someone who has stopped expecting help, grief is stated flatly rather than performed, and the humour is gallows-deadpan, enjoying how bad the words sound out loud. Self-loathing with no self-pity anywhere in it. Politest-cousin failures: played angry it becomes ordinary aggressive metal; played prettily (the acoustic entry is most at risk) it becomes a sad-but-tasteful unplugged ballad, and the queasiness — the whole point — evaporates.
+
+The five differ by frame: braided dirge / snaking swagger with a talkbox-adjacent lead / all-acoustic dread with nothing distorted / the slowest heaviest crawl / an uneasy six-eight sway. Timbre spreads 4.3-ish down to cavernous because the harmony partner's register is inside each vocal clause and averages with the lead's — deliberate, since the pair is the instrument.
+
+### Braided-harmony dirge · Braided-harmony dirge (937)
+
+```
+Braided-harmony sludge near 66 BPM, heavy and airless — a half-time riff built on a sagging bent figure that keeps resolving a semitone lower than it should, guitars detuned and doubled slightly out of tune with each other, bass welded to the riff, drums dragging behind the groove and never catching up. A unique and specific vocalist: a nasal pinched tenor with no rasp on it at all, shadowed the entire way by a second baritone voice harmonising a close sour interval below, the two locked to identical phrasing on every syllable and every breath so they read as one braided instrument rather than a lead and a backing. Sung in real words, both voices present from first line to last, never trading and never dropping out. Dry unglamorous mix, no reverb tail, everything mid-forward. Delivery numb rather than angry — sickness described calmly by someone who has stopped expecting help, beauty dragged out of something plainly unwell.
+```
+
+```
+single unharmonised lead vocal, bright major-key lift, fast tempo, autotune, programmed drums, orchestral arrangement, clean undistorted guitars, rap delivery, wordless treatment
+```
+
+### Snake-riff swagger · Snake-riff swagger (847)
+
+```
+Heavy alt-rock swagger near 96 BPM, coiled and queasy — a snaking detuned riff bending every phrase a quarter-step sharp and letting it fall back, a wah-drenched lead answering the vocal line like a second singer, bass thick and simple, drums heavy and unhurried with the snare cracking late. A unique and specific vocalist: a nasal tenor pushed hard into a long penetrating wail, hoarse at the top and holding the note past the point of comfort, a second voice tracking it in a close harmony that never resolves sweetly. Sung in real words, both voices present from first line to last. Recorded dry and hot, guitars panned wide, the leads dead centre and untreated. Delivery sardonic and unwell — a swagger with no joy in it, gallows humour delivered deadpan by someone enjoying how bad it sounds to say out loud, menace without any raised voice.
+```
+
+```
+single unharmonised lead vocal, cheerful tone, clean crooned delivery, autotune, programmed beat, orchestral arrangement, fast punk tempo, trap production, wordless treatment
+```
+
+### Acoustic dread · Acoustic dread (881)
+
+```
+Acoustic dread near 72 BPM, hushed and unresolved — two acoustic guitars in a lowered tuning picking a circular figure that never lands on the tonic, an upright bass moving slowly beneath, brushed drums and a single tambourine, one bowed note swelling under the last chorus. Nothing distorts anywhere. A unique and specific vocalist: a weathered baritone, frayed and quiet, singing almost conversationally with breath audible before each entry, joined throughout by a second voice a close second above that leans on the interval instead of softening it. Sung in real words, both voices present from first line to last. Warm close capture, room noise left in, the guitars louder than the voices. Delivery resigned and unsentimental — grief stated flatly rather than performed, self-loathing with no self-pity anywhere in it, the prettiness of the arrangement making the words worse.
+```
+
+```
+distorted guitars, drum kit at full volume, electronic production, autotune, belted power vocal, single unharmonised lead vocal, fast tempo, orchestral strings, wordless treatment
+```
+
+### Drop-tuned crawl · Drop-tuned crawl (857)
+
+```
+Drop-tuned crawl near 58 BPM, monolithic and drugged — a detuned riff moving one semitone at a time and taking a whole bar to do it, guitars thick with low-end distortion, bass an octave under, drums enormous and slow with the cymbals left to decay into the next bar, everything sitting a fraction behind where the beat should be. A unique and specific vocalist: a cavernous voice low in the chest, growling and torn at the edges, holding a near-monotone through the verses and rising only to fall back, a second voice doubling it a fifth below so the pair sound heavier than either. Sung in real words, both voices present from first line to last. Airless mix, no space around anything, the low end swallowing the room. Delivery dead-eyed and unhurried — no rage and no plea, just the flat statement of someone already past caring, dread delivered as fact.
+```
+
+```
+fast tempo, bright production, clean unroughened vocal, single unharmonised lead vocal, autotune, programmed dance beat, acoustic-only arrangement, rap delivery, wordless treatment
+```
+
+### Gallows-humour sway · Gallows-humour sway (842)
+
+```
+Uneasy sway near 82 BPM, hypnotic and off-kilter — a rolling six-eight feel with the accents landing a beat early, clean chorused guitar over a fuzzed low riff, a talkbox lead chewing vowels between vocal lines, bass walking a simple loop, drums brushed on the verses and struck flat on the choruses. A unique and specific vocalist: a mid-register voice in speech range, smoky and husky without ever pushing, half-crooning the melody and letting it slur, shadowed by a second voice in a close harmony that keeps rubbing against the first. Sung in real words, both voices present from first line to last. Warm analogue capture, tape saturation, the voices tucked into the band rather than over it. Delivery darkly funny and detached — grim words carried on a frame that almost sways pleasantly, the joke and the despair impossible to separate.
+```
+
+```
+straight four-four march, screamed vocal, single unharmonised lead vocal, autotune, orchestral arrangement, fast tempo, trap hi-hats, bright pop sheen, wordless treatment
+```
+
 <!-- END GENERATED -->
 
 ---
