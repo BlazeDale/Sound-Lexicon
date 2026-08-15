@@ -1162,6 +1162,62 @@ Monster-movie exotica isolated: the horror soundtrack the samples were lifted of
 heavy guitars, distorted vocal, metal drumming, modern digital production, aggressive delivery, fast tempo, four-on-the-floor kick, belted power vocal, dry clinical mix
 ```
 
+## Study 20 — Street-schooled pop-soul (blend + 4 roots)
+
+*Generated from library entries #327–331 · 2026-08-14 — edit the `inspiration` entries in `data.js`, then run `node tools/build.mjs`.*
+
+Track-anchored as well as artist-anchored: the brief was a specific single, so the blend is written to be capable of reproducing that record on its own — mid-tempo, guitar-and-voice verse opening out into a full-band chorus, a self-reliance lyric refused rather than pleaded — while the four roots still supply the ancestry. Temperament: defiance delivered as calm certainty, not as anger or triumph. The grain in the voice is doing the emotional work, so the arrangement must stay under it; play the chorus as a big empowerment-pop payoff with the voice polished to match and you get the politest cousin, a generic radio anthem with none of the wear that makes the refusal believable. The second non-negotiable is scale mismatch — a voice audibly larger and older than the setting it is singing in, which is why the roots pull apart in two directions rather than four. Roots 1 and 4 triangulate the frame: the unsheltered open-air pitch where the projection and the wear were learned, and the modern piano-anthem architecture the single is actually built on (verse bare, kit on chorus one, stack on the last chorus). Roots 2 and 3 triangulate the voice: the church-schooled Southern soul belt the rasp and the melisma-as-argument descend from, and the late-2000s British retro-soul crossover that is the commercial frame a young voice with an old tone arrives through. Written under the register/grit convention and spread deliberately across the map: alto/husky-rasp, mezzo/weathered, contralto/throaty, alto/smoky, upper-register/pure. Root 4 is the deliberate clean control — same architecture, no grain at all — so running it against the blend isolates how much of the identity is the tear in the tone.
+
+### Blend (989)
+
+```
+Street-schooled pop-soul near 84 BPM, plainspoken and defiant — a self-reliance song that opens as one voice and one guitar and finishes as a full band. Verses on strummed steel-string with a single sustained piano chord under them and no drums at all; the first chorus brings kick, tambourine and a rounded bass, an organ pad swelling behind it and a small stacked harmony answering the hook; the last chorus drops the guitar out for one bar so the line lands bare. A unique and specific vocalist: a husky alto, grain audible even at low volume, thickening into an open rasp as it climbs and cracking a little at the top of every chorus, conversational through the verses and thrown wide open on the lift, quick blues ornaments on the phrase-ends that argue rather than decorate. Sung in real words, one voice from first line to last. Live-band warmth, close-mic'd and lightly compressed, breath and string noise left in. Delivery unbowed — refusal sung as calm certainty, never as anger.
+```
+
+```
+autotune, programmed pop beat, trap hi-hats, screamed vocal, wordless treatment, EDM drop, rap verse, whispered delivery, orchestral-only arrangement
+```
+
+### Root 1 · Open-air busking (946)
+
+```
+Open-air street busking isolated: the pitch the voice was trained on. Near 96 BPM, bare and unsheltered — one steel-string acoustic through a small battery amp on a stone-fronted shopping street, a shaker taped to the guitar body, footsteps and traffic and a gathering crowd bleeding into everything, a scrap of tuning and a word to the crowd left at the top. No overdubs, no second instrument anywhere. A unique and specific vocalist: a weathered mezzo, worn and frayed at the edges from singing outdoors daily, projecting hard with no monitor so the loud lines ride slightly sharp, phrase-ends falling away as the breath runs out. Sung in real words, full verses and choruses, the story carried plainly. Caught on a phone-grade recorder with no processing, low end thin, the voice too loud for the mic on the big notes and clipping a little. Delivery direct and unguarded — busking as work, played to strangers who have not stopped walking yet.
+```
+
+```
+studio polish, drum kit, bass guitar, overdubs, layered harmonies, reverb wash, autotune, electronic production, whispered close-mic delivery
+```
+
+### Root 2 · Southern soul belt (889)
+
+```
+Late-60s Southern soul isolated: the church-schooled belt the grain comes from. Near 72 BPM, slow and testifying — Hammond organ and triplet gospel piano under a horn section that answers every line, tremolo guitar, a dragging half-time backbeat with the snare left loose, tambourine on the twos. The arrangement climbs one step at a time and refuses to release early. A unique and specific vocalist: a contralto sitting low and heavy in the chest, throaty and gravel-edged, beginning almost conversational and pushing until the tone tears, holding notes past comfort and letting them break rather than smoothing them, melisma used as argument. Sung in full words, one lead answered by a small responding group. Cut live to tape in one room with bleed on every mic, saturated and mono-leaning. Delivery pleading and unyielding at once — a voice arguing with someone who is not in the room.
+```
+
+```
+programmed drums, synth production, modern loudness mastering, clean unroughened vocal, fast tempo, rap delivery, bright digital sheen, wordless treatment
+```
+
+### Root 3 · Retro-soul crossover (912)
+
+```
+Late-2000s British retro-soul pop isolated: the crossover frame a young voice with an old tone arrives through. Near 100 BPM, big-boned and vintage-styled — a live rhythm section playing 60s beat-group drums with an enormous dry snare, walking bass, muted guitar chank, a string arrangement and a short horn line, all cut new but voiced old. The chorus is built to be sung back by a room. A unique and specific vocalist: a smoky alto with a woody grain, young in pitch and old in tone, placed forward and close, sliding up into notes from underneath and clipping the ends short, no vibrato until the final held note. Sung in real words, plainly, the lyric closer to reported speech than poetry. Production deliberately period — plate reverb, tape compression, drums high and dry, the lead sitting on top with nothing hiding it. Delivery bruised and unapologetic — heartbreak stated as fact rather than performed.
+```
+
+```
+electronic drums, autotune, trap production, screamed vocal, heavy distorted guitars, slow ballad tempo, acoustic-only arrangement, wordless treatment
+```
+
+### Root 4 · Piano-anthem build (880)
+
+```
+Contemporary piano-pop anthem isolated: the build the song is architected on. Near 76 BPM, patient and widescreen — solo piano and voice for the whole first verse, a low string pad joining at the pre-chorus, kick and a single clap on the first chorus, full kit and cellos on the second, a final chorus stacked with a wordless harmony bed behind the lead. Every arrangement decision serves the lift and nothing else. A unique and specific vocalist: a clear voice in the upper register, pure and unroughened with no rasp at all, held quiet and controlled through the verses and opening into a full supported belt on the chorus without changing tone, breath audible before each entry. Sung in real words, one voice carrying the whole arc. Modern and spacious production, wide reverb on the piano, the lead dry and centred. Delivery resolute — certainty stated rather than fought for.
+```
+
+```
+raspy torn vocal, distorted guitars, programmed trap beat, growl, fast tempo, rap delivery, lo-fi capture, four-on-the-floor club kick
+```
+
 <!-- END GENERATED -->
 
 ---
