@@ -1346,6 +1346,60 @@ Keening Irish alt-rock near 84 BPM, dreamlike then suddenly enormous — a choru
 autotune, rap delivery, programmed trap beat, funk groove, growled metal vocal, orchestral-only arrangement, four-on-the-floor club kick, whispered throughout, wordless treatment
 ```
 
+## Study 24 — Pacific-Northwest heavy alt-rock (blend + 0 roots)
+
+*Generated from library entries #344–348 — edit the `inspiration` entries in `data.js`, then run `node tools/build.mjs`.*
+
+### Mid-tempo surge · Mid-tempo surge (973)
+
+```
+Pacific-Northwest heavy alt-rock near 104 BPM, surging and unpolished — two electric guitars in loose counterpoint, one grinding open chords through a cranked amp while the other picks a ringing figure across the top, a bass that walks and rolls instead of following the root, drums pushing slightly ahead of the beat and never correcting. Everything is played a fraction loose on purpose and nothing is edited to a grid. A unique and specific vocalist: a baritone sitting low and behind the beat, husky and grained, swallowing the ends of lines and then opening into a hoarse cracked roar on the last chorus and staying there. Sung in real words, one voice from first line to last. Cut like a band in a room, drums dry and mid-forward, amps bleeding into the vocal microphone. Delivery earnest to the point of discomfort — no posing, no wink, no showmanship; plainly moved and slightly embarrassed to be, with the band playing to hold that together rather than to impress.
+```
+
+```
+polished radio mastering, autotune, programmed drums, gridded quantized timing, glam-metal showmanship, orchestral arrangement, trap hi-hats, rap delivery, wordless treatment
+```
+
+### Drop-tuned odd-metre riff · Drop-tuned odd-metre riff (959)
+
+```
+Heavy alt-rock in a dropped tuning near 88 BPM, thick and wrong-footed — a detuned riff cycling in seven and played dead straight as though the odd bar were normal, guitars sludgy and slightly out of tune with each other, bass doubling the riff an octave down, drums swinging inside the weight rather than pounding it flat, a held drone ringing under the changes and one wailing lead break bent out over the top. A unique and specific vocalist: a tenor climbing into a metallic falsetto, harsh-edged and distorted at full stretch, holding notes far past comfort with no vibrato, unhurried and level on the low lines then wide open at the top. Sung in real words, one voice from first line to last. Dry aggressive mix, guitars wide, the voice centred and untreated. Delivery menacing and serene at once — aggression that is cold and sardonic rather than celebratory, beauty deliberately placed in a tuning that sounds wrong, never once smiling at the audience.
+```
+
+```
+standard tuning, straight four-four only, autotune, programmed drums, cheerful major-key lift, polished radio mastering, trap production, acoustic-only arrangement, wordless treatment
+```
+
+### Slow heavy dirge · Slow heavy dirge (900)
+
+```
+Slow heavy alt-rock dirge near 68 BPM, mournful and patient — a clean chorused guitar arpeggiating a bare figure over a simple low bass through the whole first half, drums entering late and brushed before they are struck, then the same chords returning under full distortion with a lead guitar bending long notes behind the voice, no tempo change anywhere. A unique and specific vocalist: a low chest-placed baritone, weathered and frayed, held quiet and conversational through the verses, cracking audibly on the final chorus and left uncorrected. Sung in real words, one voice from first line to last, the closing line repeated until it wears out. Warm analogue capture, room on the drums, the voice close and unglossed. Delivery grieving and self-conscious — resignation rather than protest, composure kept until it isn't, and the break treated as the truth of the song rather than as a technique.
+```
+
+```
+fast tempo, programmed beat, autotune, belted diva runs, orchestral-only arrangement, dance kick, rap delivery, corrected pitch on the break, wordless treatment
+```
+
+### Fast ragged burner · Fast ragged burner (917)
+
+```
+Fast heavy alt-rock near 152 BPM, driving and ragged — a tom-led tribal drum pattern under a one-chord riff that never resolves, bass grinding on a single note, a second guitar scraping harmonics and feedback across the top, one improvised lead break played sloppily and deliberately left in. A unique and specific vocalist: pushed hard into the upper register, throaty and barking, gulping breath between lines and shouting one repeated phrase through the last minute until the voice gives out. Sung in real words, one voice from first line to last, a second voice joining raggedly on the repeats. Recorded live and hot with everything slightly clipping, cymbals washing, no separation between anything. Delivery furious and physical — catharsis as manual labour rather than performance, a band that would rather sound exhausted than tight, and a lead audibly wrecking their own throat to get to the end of the take.
+```
+
+```
+slow tempo, clean crooned vocal, polished studio separation, autotune, programmed drums, orchestral arrangement, tidy edited take, trap production, wordless treatment
+```
+
+### Psychedelic drift-to-crush · Psychedelic drift-to-crush (874)
+
+```
+Psychedelic heavy alt-rock near 76 BPM, wide and unsettled — phased guitars ringing through long delay over a droning open string, a backwards-sounding swell closing every phrase, bass moving slowly underneath, drums brushed and distant, the whole first half floating with no downbeat to hold on to before the band drops into a slow crushing riff and stays there. A unique and specific vocalist: a mid-register voice held smooth and unroughened, breathy and almost spoken through the drifting section, then sustaining long clean notes over the heavy part without pushing or roughening at all. Sung in real words, one voice from first line to last. Spacious analogue mix, heavy reverb on the guitars, the voice dry and central. Delivery detached and eerie — a calm that reads as dread rather than as peace, beauty and menace held in the same breath with neither one resolved.
+```
+
+```
+raspy torn vocal, growl, fast tempo, programmed dance beat, autotune, bright pop production, rap delivery, four-on-the-floor club kick, wordless treatment
+```
+
 <!-- END GENERATED -->
 
 ---
