@@ -16,7 +16,7 @@
 
 /* Version stamp — the ONLY place to bump these. Title, <meta>, masthead, and
  * footer all derive from here + LIB counts at runtime, so counts never drift. */
-const VERSION = 'v43';
+const VERSION = 'v44';
 const UPDATED = '2026-08-16';
 
 /* ---------- MOST RECENT BATCH ----------
@@ -24,9 +24,9 @@ const UPDATED = '2026-08-16';
    (numbers for library entries, e.g. 133; suite ids like 'Q5' also work).
    These render as full cards in the "Most recent batch" strip up top. */
 const RECENT = {
-  label: 'Machine-tuned lead (five pitch-machines)',
+  label: 'One-at-a-time explorations',
   date:  '2026-08-16',
-  entries: [367, 368, 369, 370, 371]
+  entries: [372]
 };
 
 const LIB=[
@@ -847,6 +847,7 @@ And there it is. Huh. Every time?`},
 {n:369,suno:[`62c29f8e-743a-4b28-8b63-48f3bca01fd9`,`139a8586-0c1b-44a5-8d1c-747be0e2d6a3`],name:`Vocoder Italo romance`,fam:`machine-tuned lead`,cat:`lyrical`,bpm:`118`,role:`lead carried by the vocoder, never corrected after`,proc:`sixteenth arpeggio · gated toms · carrier and modulator`,aff:`D`,style:`Italo-disco near 118 BPM, neon and lovesick — a sixteenth-note arpeggio running throughout, gated toms falling through the pre-chorus, a fat analog bassline walking under four-on-the-floor, string-machine pads, handclaps on two and four, one detuned brass stab answering the hook. A unique and specific vocalist: a baritone sung entirely through a vocoder, buzzing and even and completely without vibrato, the performer supplying only the words while the machine supplies every pitch, consonants smeared into static and vowels ringing like a chord because they are one. This is the older machine and it runs the other way round from a tuner — nothing is corrected, the voice is carried. Real words throughout, one performer from first line to last, the unprocessed voice never appearing. Bright chrome-plated mix, the vocoder wide and the band kept dry behind it. Delivery smitten and deadpan — a love song from something that cannot be sure it is in love, played straight and never as a gag.`,neg:`untreated natural vocal, talkbox, transparent or inaudible processing, soulful ad-libs, rasp, live drum kit, guitar solo, novelty robot gag, wordless treatment`},
 {n:370,suno:[`57a34c09-c26b-42b2-a01f-da580c901e3d`,`151aeaf3-cd17-48a7-bf45-e40fbfc10854`],name:`Cloned-choir liturgy`,fam:`machine-tuned lead`,cat:`lyrical`,bpm:`60`,role:`one voice formant-shifted into an entire choir`,proc:`organ pedal drone · no percussion · octave-cloned stack`,aff:`A`,style:`Liturgical processional near 60 BPM, slow and weightless — one sustained pedal note beneath everything, a bell struck once at the end of each phrase, no percussion at all, the harmony moving a single part at a time so the chord changes before you notice it has. A unique and specific vocalist: a pure soprano, then that identical take formant-shifted and pitch-shifted into six copies of itself, an octave below and an octave above and three narrow intervals between, until one performer is a full choir with no other members. Every copy breathes at the same instant, which no real ensemble can do, and that is the tell. Real words throughout in liturgical Latin, the source take audible at the top of the stack the whole way. Mixed cathedral-wide with a long tail, the shifting artifacts left in rather than smoothed away. Delivery serene and entirely inhuman — devotional music performed by something with one throat and no congregation.`,neg:`untreated single unprocessed voice, real ensemble choir, human choral blend, percussion, drum kit, rasp, vibrato-heavy operatic delivery, dry close-mic pop production, wordless treatment`},
 {n:371,suno:[`e630c50c-3abb-430a-b59d-281720575749`,`cb850dd9-c953-4c62-b50a-9c64d741e694`],name:`Tuner-failure club`,fam:`machine-tuned lead`,cat:`lyrical`,bpm:`132`,role:`the corrector driven past its range and failing`,proc:`no fixed grid · octave-tracking errors · sibilant glitch`,aff:`G`,style:`Deconstructed club track near 132 BPM, hostile and structureless — a kick arriving and vanishing without warning, metallic impacts standing in for a snare, long silences where the drop should be, a sub tone bending a semitone flat underneath, no loop lasting more than eight bars. A unique and specific vocalist: an alto pushed hard and harsh into a pitch corrector deliberately set to the wrong key and a retune speed it cannot meet, so the machine chatters on every consonant, jumps to the wrong octave mid-word and holds it, and turns each sibilant into a different note. The failure is the performance — the singer is competent and the tuner is not, every error kept in and arranged rather than repaired. Real words throughout, one voice from first line to last however mangled it gets. Mixed loud and close with no reverb, the artifacts placed on the grid like percussion. Delivery furious and unstable — a voice fighting a machine that is losing, far more frightening than one that is winning.`,neg:`untreated natural vocal, transparent or inaudible pitch correction, smooth polished lead, sung ballad phrasing, warm analog haze, steady unbroken four-on-the-floor, comic glitch novelty, wordless treatment`},
+{n:372,name:`Sung-to-yell punk metal`,fam:`punk metal · melodic`,cat:`lyrical`,bpm:`168`,role:`melodic lead tearing into a cathartic yell, one voice`,proc:`downtuned power chords · half-time chorus · one clean bridge`,aff:`F`,style:`Melodic punk metal near 168 BPM, urgent and cathartic — downtuned power chords with the top end left bright, bass following the guitar in unison, fast eighth-note kick under a half-time chorus, one clean arpeggiated bridge, no breakdown anywhere. A unique and specific vocalist: a mezzo with real grain in the tone, holding a clear sung melody through the verses then tearing into an open-throated cathartic yell on every chorus, the switch landing mid-phrase and never tidied up, the shredded top of the range used as a destination rather than an effect. The same voice does both — no guest screamer, no second vocalist covering the transition. Real words throughout, one voice from first line to last. Modern loud mix, the lead forward and lightly compressed with the rasp left in. Delivery furious and unembarrassed — anger as release rather than aggression, sung by someone who means it and is not performing toughness.`,neg:`guttural death growl, monotone shouting, pop-punk gloss, autotune, guest screamer, layered second vocalist, breakdown chug, spoken-word delivery, wordless treatment`},
 ];
 
 /* BEGIN GENERATED — Suno song titles · run: node tools/song_titles.mjs */
@@ -2309,5 +2310,6 @@ const TIMBRE = {
   '369': {r:2.5,g:6.2,rk:1,gk:1,z:'Electronic & club'},
   '370': {r:8.5,g:0.6,rk:1,gk:1,z:'Sacred & choral'},
   '371': {r:4,g:9.2,rk:1,gk:1,z:'Electronic & club'},
+  '372': {r:5.5,g:9.2,rk:1,gk:1,z:'Metal & heavy'},
 };
 /* END GENERATED TIMBRE */
