@@ -826,9 +826,9 @@ One facet isolated: fragility and the live-take feel — small-room, never proje
 projected arena vocals, pristine comped take, pitch-corrected vocal, autotuned vocals, trap hi-hats, glossy modern-pop sheen, drum-machine beat, arena reverb, live-crowd ambience, belted stadium power
 ```
 
-## Study 14 — Coiled-to-cracked baritone delivery — lead-guitar cut (blend + 9 roots)
+## Study 14 — Coiled-to-cracked baritone delivery — lead-guitar cut (blend + 12 roots)
 
-*Generated from library entries #221–377 · 2026-07-22 — edit the `inspiration` entries in `data.js`, then run `node tools/build.mjs`.*
+*Generated from library entries #221–380 · 2026-07-22 — edit the `inspiration` entries in `data.js`, then run `node tools/build.mjs`.*
 
 The lead-guitar cut of study #13 (same artist, same five delivery facets as #216-220) — identical vocal-craft targets but with the artist's signature improvised lead-guitar flourish prompted in, and each entry's solo made to perform that entry's facet (behind-the-beat fills on the phrasing root, an erupting solo on the dynamics root, a fraying growl on the grain root, trembling bends on the on-the-verge root). Still pointedly NOT the live sound: a tight, song-length studio solo, never a sprawling jam. Kept separate so the solo-less #216-220 (and their demos) stay intact. In Suno, a bracketed [Guitar solo ...] section marker in the lyrics lands it reliably; style text alone hits only about half the time.
 
@@ -910,6 +910,36 @@ One facet isolated: dynamics as the whole drama. An ungendered baritone spends t
 
 ```
 constant loud intensity, unchanging level throughout, autotuned vocals, trap hi-hats, edm drop, glossy modern-pop sheen, drum-machine beat, arena reverb, live-crowd ambience, brickwall-compressed mix, rigid metronomic drumming
+```
+
+### Root 2 variant — lead phrases like a second singer, 128 · Restraint-to-rupture — guitar-sings-back variant (997)
+
+```
+One facet isolated: dynamics as the whole drama. An ungendered baritone spends the verse withheld — near-muttered, coiled low and quiet, holding everything back on purpose — then builds tight and deliberate into a sudden unguarded belt, the voice opening full-throated and cracking as it goes. Near 128 BPM on a live tom-led kit: floor- and rack-tom figures cutting across the beat, snare answering rather than keeping time, loose and elastic, nothing gridded. Under it a second electric guitar sets the rhythm subtly — clean muted chords low in the mix, holding the pulse the drums bend. The lead electric guitar plays as a second singer, phrasing in breaths: scooping into notes the way a voice does, vibrato widening on each held tail, answering each sung line with one of its own, then taking an improvised break at the peak. Close present mic, un-compressed so the quiet is truly quiet and the loud truly tears. Delivery earnest and yearning — reaching, breaking on the reach, reaching again.
+```
+
+```
+constant loud intensity, unchanging level throughout, autotuned vocals, trap hi-hats, edm drop, glossy modern-pop sheen, drum-machine beat, arena reverb, live-crowd ambience, brickwall-compressed mix, rigid metronomic drumming, rhythm guitar louder than the lead
+```
+
+### Root 2 variant — lead doubles then departs, 128 · Restraint-to-rupture — twin-voice unison variant (999)
+
+```
+One facet isolated: dynamics as the whole drama. An ungendered baritone spends the verse withheld — near-muttered, coiled low and quiet, holding everything back on purpose — then builds tight and deliberate into a sudden unguarded belt, the voice opening full-throated and cracking as it goes. Near 128 BPM on a live tom-led kit: floor- and rack-tom figures cutting across the beat, snare answering rather than keeping time, loose and elastic, nothing gridded. A second electric guitar sets the rhythm underneath, subtle and low — palm-muted chords marking the pulse while the drums pull against it. The lead electric guitar shadows the singing in unison through the verse, then breaks away into its own countermelody at the lift, two voices climbing over each other, bending and cracking together at the peak before one drops out. Close present mic, un-compressed so the quiet is truly quiet and the loud truly tears. Delivery earnest and yearning — reaching, breaking on the reach, reaching again.
+```
+
+```
+constant loud intensity, unchanging level throughout, autotuned vocals, trap hi-hats, edm drop, glossy modern-pop sheen, drum-machine beat, arena reverb, live-crowd ambience, brickwall-compressed mix, rigid metronomic drumming, rhythm guitar louder than the lead
+```
+
+### Root 2 variant — lead speaks where the voice withholds, 128 · Restraint-to-rupture — guitar-fills-the-silence variant (994)
+
+```
+One facet isolated: dynamics as the whole drama. An ungendered baritone spends the verse withheld — near-muttered, coiled low and quiet, holding everything back on purpose — then builds tight and deliberate into a sudden unguarded belt, the voice opening full-throated and cracking as it goes. Near 128 BPM on a live tom-led kit: floor- and rack-tom figures cutting across the beat, snare answering rather than keeping time, loose and elastic, nothing gridded. A second electric guitar holds the rhythm quietly beneath — clean chords, barely there, the only thing keeping time. The lead electric guitar takes the lines the singing refuses: it fills every silence in the withheld verse with long bent phrases, sustained and vocal, and when the belt finally arrives the two trade lines, the guitar wailing back louder each time. Close present mic, un-compressed so the quiet is truly quiet and the loud truly tears. Delivery earnest and yearning — reaching, breaking on the reach, reaching again.
+```
+
+```
+constant loud intensity, unchanging level throughout, autotuned vocals, trap hi-hats, edm drop, glossy modern-pop sheen, drum-machine beat, arena reverb, live-crowd ambience, brickwall-compressed mix, rigid metronomic drumming, rhythm guitar louder than the lead
 ```
 
 ### Root 3 · Swallowed-grain melisma (891)
