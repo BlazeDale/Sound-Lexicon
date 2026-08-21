@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Terminology Lessons · Sound Lexicon</title>
+<meta name="description" content="What musical terms actually mean, and whether a generative music model hears them.">
+<style>
+  :root{
+    --ink:#111419; --panel:#181c24; --panel2:#1f2530; --line:#2a313d;
+    --text:#e9e6dd; --muted:#98a0ad; --dim:#6b7280;
+    --amber:#e0a63c; --amber-dim:#8a6a2a;
+    --teal:#1a9e75; --rose:#d03b3b; --violet:#6a5acd; --blue:#3273c4;
+    --mono:'SF Mono','Menlo','Consolas','Liberation Mono',monospace;
+    --sans:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--ink);color:var(--text);font-family:var(--sans);line-height:1.5}
+  a{color:var(--amber)}
+  .wrap{max-width:1040px;margin:0 auto;padding:28px 20px 90px}
+  /* masthead */
+  header.masthead{border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:20px}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--amber);margin:0 0 8px}
+  .eyebrow a{color:var(--amber);text-decoration:none;border-bottom:1px dotted var(--amber-dim)}
+  .eyebrow a:hover{border-bottom-style:solid}
+  h1{font-size:30px;letter-spacing:-.01em;margin:0 0 6px;font-weight:700}
+  .sub{color:var(--muted);font-size:14px;margin:0}
+  .sub b{color:var(--text);font-weight:600}
+  /* the standing caveat — this page is about uncertainty, so it says so up top */
+  .caveat{margin:18px 0 0;background:var(--panel);border:1px solid var(--line);border-left:2px solid var(--amber);border-radius:9px;padding:13px 16px;font-size:13.5px;color:var(--muted)}
+  .caveat b{color:var(--text)}
+  /* controls */
+  .controls{position:sticky;top:0;background:var(--ink);padding:12px 0 10px;z-index:20;border-bottom:1px solid var(--line);margin-bottom:6px}
+  .crow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  #q{flex:1;min-width:220px;background:var(--panel);border:1px solid var(--line);border-radius:8px;color:var(--text);font-family:var(--mono);font-size:13px;padding:9px 12px}
+  #q::placeholder{color:var(--dim)}
+  #q:focus{outline:none;border-color:var(--amber)}
+  .pill{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;background:var(--panel);border:1px solid var(--line);color:var(--muted);border-radius:20px;padding:7px 12px;cursor:pointer}
+  .pill:hover{border-color:var(--amber);color:var(--text)}
+  .pill.on{background:var(--amber);color:#1a1206;border-color:var(--amber);font-weight:600}
+  .hits{font-family:var(--mono);font-size:11px;color:var(--dim)}
+  /* domain rail */
+  .rail{margin-top:10px}
+  .railgroup{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:6px}
+  .raillab{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-right:2px;flex:none;width:64px}
+  .dm{font-family:var(--mono);font-size:11px;background:var(--panel);border:1px solid var(--line);color:var(--muted);border-radius:6px;padding:5px 10px;cursor:pointer}
+  .dm:hover{border-color:var(--amber);color:var(--text)}
+  .dm.on{background:var(--panel2);color:var(--text);border-color:var(--amber)}
+  .dm i{font-style:normal;color:var(--dim);margin-left:5px;font-size:10px}
+  .dm.on i{color:var(--amber)}
+  .dblurb{font-size:13px;color:var(--muted);margin:10px 0 0;min-height:0}
+  /* cards */
+  .card{position:relative;background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--amber-dim);border-radius:10px;padding:18px 20px;margin:14px 0}
+  .card:target,.card.flash{animation:flashcard 1.4s ease-out}
+  @keyframes flashcard{0%{box-shadow:0 0 0 2px var(--amber)}100%{box-shadow:0 0 0 2px transparent}}
+  .ctop{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;padding-right:64px}
+  .term{font-size:20px;font-weight:700;letter-spacing:-.01em}
+  .anchor{font-family:var(--mono);font-size:11px;color:var(--dim);text-decoration:none}
+  .anchor:hover{color:var(--amber)}
+  .likewrap{position:absolute;top:12px;right:12px;display:flex;align-items:center;gap:3px}
+  .like{background:transparent;border:none;cursor:pointer;font-size:17px;line-height:1;color:var(--dim);padding:2px 4px;transition:transform .1s,color .12s}
+  .like:hover,.like.on{color:var(--rose)}
+  .like:active{transform:scale(1.3)}
+  .lcount{font-family:var(--mono);font-size:12px;color:var(--muted);min-width:9px;text-align:right}
+  .chips{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 0}
+  .chip{font-family:var(--mono);font-size:10.5px;letter-spacing:.03em;background:var(--panel2);border:1px solid var(--line);border-radius:5px;padding:2px 8px;color:var(--muted)}
+  .chip.dom{border-color:var(--amber-dim);color:var(--amber)}
+  .chip.kind b{color:var(--text);font-weight:600}
+  .gloss{font-size:16px;line-height:1.62;margin:14px 0 0;color:var(--text)}
+  .blk{margin-top:14px}
+  .lab{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--dim);margin-bottom:4px}
+  .body{font-size:14px;color:var(--text);line-height:1.6}
+  .body.mut{color:var(--muted)}
+  .syn{display:flex;gap:6px;flex-wrap:wrap}
+  .syn span{font-size:12.5px;background:var(--panel2);border:1px solid var(--line);border-radius:20px;padding:3px 10px;color:var(--muted)}
+  .myth{background:rgba(208,59,59,.07);border:1px solid rgba(208,59,59,.28);border-radius:8px;padding:11px 13px}
+  .myth .lab{color:var(--rose)}
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:680px){.twocol{grid-template-columns:1fr}}
+  /* resolution — the field the page exists for */
+  .res{margin-top:16px;border:1px solid var(--line);border-radius:9px;overflow:hidden}
+  .reshead{display:flex;align-items:center;gap:9px;flex-wrap:wrap;background:var(--panel2);padding:9px 13px;border-bottom:1px solid var(--line)}
+  .reshead .lab{margin:0}
+  .verdict{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;border-radius:5px;padding:3px 9px;font-weight:600}
+  .v-untested{background:rgba(224,166,60,.14);color:var(--amber);border:1px solid var(--amber-dim)}
+  .v-resolves{background:rgba(26,158,117,.14);color:var(--teal);border:1px solid var(--teal)}
+  .v-partial{background:rgba(106,90,205,.16);color:#9d92e6;border:1px solid var(--violet)}
+  .v-collapses{background:rgba(208,59,59,.13);color:var(--rose);border:1px solid var(--rose)}
+  .stamp{font-family:var(--mono);font-size:10.5px;color:var(--dim);margin-left:auto}
+  .res .body{padding:12px 13px}
+  /* evidence */
+  .ev{margin-top:16px}
+  .evstate{font-family:var(--mono);font-size:11.5px;color:var(--amber);background:rgba(224,166,60,.08);border:1px solid var(--amber-dim);border-radius:7px;padding:8px 11px;margin-bottom:10px}
+  .evstate.some{color:var(--teal);background:rgba(26,158,117,.08);border-color:var(--teal)}
+  .evitem{border-top:1px solid var(--line);padding:11px 0 3px}
+  .evitem:first-of-type{border-top:none}
+  .evhead{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+  .evn{font-family:var(--mono);font-size:11px;color:var(--dim)}
+  .evname{font-size:13.5px;font-weight:600}
+  .evspan{font-family:var(--mono);font-size:11px;background:rgba(224,166,60,.13);border:1px solid var(--amber-dim);color:var(--amber);border-radius:4px;padding:1px 6px}
+  .evstateT{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);border:1px solid var(--line);border-radius:4px;padding:1px 6px}
+  .evstateT.approved{color:var(--teal);border-color:var(--teal)}
+  .evstateT.rejected{color:var(--rose);border-color:var(--rose)}
+  .evwhy{font-size:13px;color:var(--muted);margin:5px 0 8px}
+  .evrow{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .btn{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;background:transparent;border:1px solid var(--line);color:var(--muted);border-radius:5px;padding:4px 10px;cursor:pointer}
+  .btn:hover{border-color:var(--amber);color:var(--amber)}
+  .btn.done{border-color:var(--teal);color:var(--teal)}
+  /* demo tiles (artwork is the play button; audio itself is hotlink-protected) */
+  .tiles{display:flex;gap:7px;flex-wrap:wrap}
+  .tile{position:relative;width:44px;height:44px;border-radius:7px;overflow:hidden;border:1px solid var(--line);background:var(--panel2);padding:0;cursor:pointer;flex:none}
+  .tile img{width:100%;height:100%;object-fit:cover;display:block}
+  .tile .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.32);color:#fff;font-size:13px;text-shadow:0 1px 3px rgba(0,0,0,.7)}
+  .tile:hover{border-color:var(--amber)}
+  .tile:hover .play{background:rgba(0,0,0,.10)}
+  .nodemo{font-family:var(--mono);font-size:11px;color:var(--dim)}
+  /* momentary-event hint (no seek mechanism exists — see design doc §5) */
+  .moment{margin-top:12px;font-size:12.5px;color:var(--muted);border-left:2px solid var(--violet);padding:2px 0 2px 11px}
+  /* prompt pop-out */
+  #ov{position:fixed;inset:0;background:rgba(8,10,14,.72);backdrop-filter:blur(2px);z-index:60;display:none;align-items:center;justify-content:center;padding:24px}
+  #ov.on{display:flex}
+  .modal{background:var(--panel);border:1px solid var(--line);border-radius:12px;max-width:760px;width:100%;max-height:86vh;overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+  .mhead{position:sticky;top:0;background:var(--panel);border-bottom:1px solid var(--line);padding:14px 18px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;z-index:2}
+  .mhead h3{margin:0;font-size:15px}
+  .mclose{margin-left:auto;background:transparent;border:1px solid var(--line);color:var(--muted);border-radius:6px;width:26px;height:26px;cursor:pointer;font-size:14px;line-height:1}
+  .mclose:hover{border-color:var(--amber);color:var(--amber)}
+  .mbody{padding:16px 18px 20px}
+  .mnote{font-size:13px;color:var(--muted);margin:0 0 14px}
+  .plab{display:flex;justify-content:space-between;align-items:center;margin:14px 0 5px}
+  .plab span{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+  pre{margin:0;background:var(--ink);border:1px solid var(--line);border-radius:7px;padding:12px 13px;font-family:var(--mono);font-size:12px;line-height:1.6;color:var(--text);white-space:pre-wrap;word-break:break-word}
+  pre.neg{color:var(--muted)}
+  mark{background:rgba(224,166,60,.26);color:var(--amber);border-radius:3px;padding:0 2px;font-weight:600;box-shadow:0 0 0 1px var(--amber-dim)}
+  /* side player */
+  #player{position:fixed;left:0;top:50%;transform:translateY(-50%);z-index:70;display:flex;align-items:center}
+  #player .pbody{width:320px;max-width:80vw;background:var(--panel);border:1px solid var(--line);border-left:none;border-radius:0 12px 12px 0;box-shadow:0 12px 44px rgba(0,0,0,.55);padding:11px;transition:width .25s,padding .25s,opacity .2s;overflow:hidden}
+  #player.collapsed .pbody{width:0;padding:0;border-width:0;opacity:0;pointer-events:none}
+  #player .ptab{background:var(--panel);border:1px solid var(--line);border-left:none;border-radius:0 8px 8px 0;color:var(--amber);cursor:pointer;padding:14px 5px;font-size:13px}
+  #player .ptitle{font-size:12px;color:var(--muted);margin:0 0 7px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  #player iframe{width:100%;height:120px;border:0;border-radius:8px;display:block;background:var(--panel2)}
+  footer{margin-top:44px;border-top:1px solid var(--line);padding-top:16px;font-size:12.5px;color:var(--dim)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="eyebrow"><a href="index.html">← Sound Lexicon</a></p>
+    <h1>Terminology Lessons</h1>
+    <p class="sub" id="sub">Loading…</p>
+    <div class="caveat">
+      <b>Nothing here has been verified by ear yet.</b> Every card states plainly whether the
+      generator actually distinguishes the term — and right now every one of them says
+      <em>untested</em>, because the only honest readout is a person listening. The evidence
+      attached to each card is drawn from prompts that already exist in the
+      <a href="vocal_timbre_library.html">Vocal Timbre Library</a>, with the exact wording
+      highlighted. It is <em>candidate</em> evidence until it has been approved by ear.
+    </div>
+  </header>
+
+  <div class="controls">
+    <div class="crow">
+      <input id="q" type="search" placeholder="Search a term, or how you'd say it — chugging, pumping, that soft jazz drum sound…" autocomplete="off">
+      <button class="pill" id="needs" type="button">Needs a listen</button>
+      <span class="hits" id="hits"></span>
+    </div>
+    <div class="rail" id="rail"></div>
+    <p class="dblurb" id="dblurb"></p>
+  </div>
+
+  <main id="cards"></main>
+
+  <footer id="foot"></footer>
+</div>
+
+<div id="ov" role="dialog" aria-modal="true" aria-labelledby="mtitle">
+  <div class="modal" id="modal">
+    <div class="mhead">
+      <h3 id="mtitle"></h3>
+      <button class="mclose" id="mclose" type="button" aria-label="Close">✕</button>
+    </div>
+    <div class="mbody" id="mbody"></div>
+  </div>
+</div>
+
+<div id="player" class="collapsed">
+  <div class="pbody">
+    <p class="ptitle" id="ptitle"></p>
+    <iframe id="pframe" allow="autoplay" title="Demo player"></iframe>
+  </div>
+  <button class="ptab" id="ptab" type="button" title="Show/hide the player">♪</button>
+</div>
+
+<script src="data.js"></script>
+<script src="lexicon_data.js"></script>
+<script>
+/* ============================================================================
+   Terminology Lessons — render.
+   A card is a TERM. The prompt is evidence and lives in the pop-out, never on the
+   card face (design doc §6). Evidence is not stored here: it points at entries in
+   LIB by number, so the prompt shown is always the real one, never a stale copy.
+   ========================================================================== */
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => (
+  {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+/* The eight mandated negatives are appended at generation time, not stored in the
+   entry — so the negative shown here must append them too, or the evidence would
+   not match what actually produced the demo. */
+const MANDATED = 'Harmonic stagnation, Dynamic flattening, Quantized sterility, Structural monotony, Predictability, Vocal identity drift, Vocalist substitution, Soundtubes';
+
+const byN = new Map(LIB.map(v => [String(v.n ?? v.id), v]));
+const domById = new Map(DOMAINS.map(d => [d.id, d]));
+const TITLES = (typeof SONG_TITLES !== 'undefined' && SONG_TITLES) || {};
+
+let curDomain = null, curNeeds = false;
+
+/* ---------- masthead counts derive from the data, so they never drift ---------- */
+{
+  const evCount = LEX.reduce((n, c) => n + (c.ev || []).length, 0);
+  const demoCount = LEX.reduce((n, c) => n + (c.ev || []).reduce(
+    (m, e) => m + ((byN.get(String(e.n)) || {}).suno || []).length, 0), 0);
+  document.getElementById('sub').innerHTML =
+    `<b>${LEX.length}</b> terms across <b>${DOMAINS.length}</b> domains · `
+    + `<b>${evCount}</b> pieces of candidate evidence · <b>${demoCount}</b> existing demos in reach · `
+    + `${LEX_VERSION} · ${LEX_UPDATED}`;
+  document.getElementById('foot').innerHTML =
+    `Sound Lexicon · Terminology Lessons ${esc(LEX_VERSION)} · ${esc(LEX_UPDATED)} — `
+    + `a companion to the <a href="vocal_timbre_library.html">Vocal Timbre Library</a>. `
+    + `Verdicts are stamped with the generator version and date they were made, because a verdict `
+    + `about a model that has since changed is worse than no verdict at all.`;
+}
+
+/* ---------- domain rail: the "select guitar, see every guitar thing" interaction ---------- */
+function buildRail() {
+  const rail = document.getElementById('rail');
+  const count = id => LEX.filter(c => c.domains.includes(id)).length;
+  const group = (label, kind) => {
+    const ds = DOMAINS.filter(d => d.kind === kind);
+    return `<div class="railgroup"><span class="raillab">${label}</span>`
+      + ds.map(d => `<button class="dm" type="button" data-dom="${d.id}">${esc(d.name)}<i>${count(d.id)}</i></button>`).join('')
+      + `</div>`;
+  };
+  rail.innerHTML =
+    `<div class="railgroup"><span class="raillab">All</span>`
+    + `<button class="dm on" type="button" data-dom="">Everything<i>${LEX.length}</i></button></div>`
+    + group('Physical', 'physical')
+    + group('Theory', 'theory');
+}
+
+/* ---------- search blob: the lay-language requirement lives here ----------
+   A reader who does not know the word "melisma" must still find it by typing
+   "runs", or by typing a phrase from the plain-language gloss. Domain names and
+   the titles of attached demo songs are folded in too. */
+function blob(c) {
+  const evNames = (c.ev || []).map(e => {
+    const v = byN.get(String(e.n)) || {};
+    const songs = (v.suno || []).map(id => TITLES[id] || '').join(' ');
+    return `${v.name || ''} ${v.fam || ''} ${e.span} ${songs}`;
+  }).join(' ');
+  return [c.term, c.gloss, c.myth, c.known, c.origin, c.range, c.res.note,
+    (c.syn || []).join(' '), c.domains.map(d => (domById.get(d) || {}).name).join(' '),
+    (c.kinds || []).join(' '), c.nature, evNames].join(' ').toLowerCase();
+}
+LEX.forEach(c => c._blob = blob(c));
+
+/* ---------- demo tiles ---------- */
+function tiles(v) {
+  const ids = (v.suno || []).filter(s => /^[0-9a-f-]{30,}$/i.test(s));
+  if (!ids.length) return `<span class="nodemo">no demo attached to this entry</span>`;
+  return `<div class="tiles">` + ids.map(id => {
+    const t = TITLES[id] || 'Demo';
+    return `<button class="tile" type="button" data-uuid="${esc(id)}" data-title="${esc(t)}" title="${esc(t)} — play">`
+      + `<img src="https://cdn2.suno.ai/image_${esc(id)}.jpeg" alt="" loading="lazy">`
+      + `<span class="play">▶</span></button>`;
+  }).join('') + `</div>`;
+}
+
+/* ---------- one card ---------- */
+function cardHTML(c) {
+  const doms = c.domains.map(d => `<span class="chip dom">${esc((domById.get(d) || {}).name || d)}</span>`).join('');
+  const kinds = c.kinds.map(k => `<span class="chip kind"><b>${k === 'instrument' ? 'Instrument / tool' : 'Technique'}</b></span>`).join('');
+  const nat = `<span class="chip">${c.nature === 'momentary' ? 'Momentary event' : 'Continuous'}</span>`;
+
+  const ev = c.ev || [];
+  const approved = ev.filter(e => e.state === 'approved').length;
+  const stateLine = approved
+    ? `<div class="evstate some">${approved} of ${ev.length} demos approved for this term by ear.</div>`
+    : `<div class="evstate">Documented, not yet demonstrated. ${ev.length} candidate${ev.length === 1 ? '' : 's'} drawn from existing prompts — none approved by ear yet.</div>`;
+
+  const evHTML = ev.map((e, i) => {
+    const v = byN.get(String(e.n)) || {};
+    return `<div class="evitem">
+      <div class="evhead">
+        <span class="evn">#${esc(e.n)}</span>
+        <span class="evname">${esc(v.name || 'unknown entry')}</span>
+        <span class="evspan">${esc(e.span)}</span>
+        <span class="evstateT ${esc(e.state)}">${esc(e.state)}</span>
+      </div>
+      <p class="evwhy">${esc(e.why)}</p>
+      <div class="evrow">
+        <button class="btn" type="button" data-prompt="${esc(c.id)}|${i}">Prompt</button>
+        ${tiles(v)}
+      </div>
+    </div>`;
+  }).join('');
+
+  const moment = c.nature === 'momentary'
+    ? `<p class="moment"><b>A momentary event.</b> There is no way to link you to the exact
+       moment — every seek mechanism was tested on 2026-08-21 and none of them work. So the
+       time gets named in words on the card, and a purpose-built demo should place the event
+       early, where the scrub is short.</p>` : '';
+
+  const r = c.res || {};
+  const stamp = r.verdict === 'untested'
+    ? `<span class="stamp">no verdict yet — nothing to stamp</span>`
+    : `<span class="stamp">${esc(r.model || '?')} · ${esc(r.date || '?')}</span>`;
+
+  return `<article class="card" id="${esc(c.id)}" data-id="${esc(c.id)}">
+    <div class="likewrap">
+      <button class="like" type="button" data-like="${esc(c.id)}" aria-label="Like">♥</button>
+      <span class="lcount" data-lc="${esc(c.id)}"></span>
+    </div>
+    <div class="ctop">
+      <span class="term">${esc(c.term)}</span>
+      <a class="anchor" href="#${esc(c.id)}" title="Link straight to this card">#${esc(c.id)}</a>
+    </div>
+    <div class="chips">${doms}${kinds}${nat}</div>
+
+    <p class="gloss">${esc(c.gloss)}</p>
+
+    <div class="blk">
+      <div class="lab">Also called</div>
+      <div class="syn">${(c.syn || []).map(s => `<span>${esc(s)}</span>`).join('')}</div>
+    </div>
+
+    <div class="blk myth">
+      <div class="lab">Common mistake</div>
+      <div class="body">${esc(c.myth)}</div>
+    </div>
+
+    <div class="blk twocol">
+      <div><div class="lab">Known for</div><div class="body">${esc(c.known)}</div></div>
+      <div><div class="lab">Origin</div><div class="body mut">${esc(c.origin)}</div></div>
+    </div>
+
+    <div class="blk">
+      <div class="lab">Range</div>
+      <div class="body">${esc(c.range)}</div>
+    </div>
+
+    ${moment}
+
+    <div class="res">
+      <div class="reshead">
+        <span class="lab">Does the generator hear it?</span>
+        <span class="verdict v-${esc(r.verdict)}">${esc(r.verdict)}</span>
+        ${stamp}
+      </div>
+      <div class="body mut">${esc(r.note)}</div>
+    </div>
+
+    <div class="ev">
+      <div class="lab">Evidence</div>
+      ${stateLine}
+      ${evHTML}
+    </div>
+  </article>`;
+}
+
+/* ---------- filter + render ---------- */
+function render() {
+  const term = document.getElementById('q').value.trim().toLowerCase();
+  const words = term ? term.split(/\s+/) : [];
+  const list = LEX.filter(c => {
+    if (curDomain && !c.domains.includes(curDomain)) return false;
+    if (curNeeds && (c.ev || []).some(e => e.state === 'approved')) return false;
+    return words.every(w => c._blob.includes(w));
+  });
+  document.getElementById('cards').innerHTML = list.length
+    ? list.map(cardHTML).join('')
+    : `<p class="body mut" style="padding:26px 2px">No term matches that. Try a plainer word — the cards are indexed by how a listener would describe the sound, not only by the technical name.</p>`;
+  document.getElementById('hits').textContent = `${list.length} of ${LEX.length}`;
+  const d = curDomain && domById.get(curDomain);
+  document.getElementById('dblurb').textContent = d ? d.blurb : '';
+  renderCounts();
+}
+
+/* ---------- likes ----------
+   Keys are namespaced with a "lex:" prefix. The vocal library keys its hearts by bare
+   entry number in the same Firebase namespace, so without this prefix card 1 here would
+   share a counter with entry 1 there (design doc §9). */
+const LIKES_KEY = 'lex_likes';
+const likeId = id => 'lex:' + id;
+function loadLikes() { try { return new Set(JSON.parse(localStorage.getItem(LIKES_KEY) || '[]')); } catch (e) { return new Set(); } }
+function saveLikes(s) { try { localStorage.setItem(LIKES_KEY, JSON.stringify([...s])); } catch (e) {} }
+let mine = loadLikes();
+function renderCounts() {
+  const counts = window.__likeCounts || {};
+  document.querySelectorAll('[data-lc]').forEach(el => {
+    const n = counts[likeId(el.dataset.lc)] || 0;
+    el.textContent = n || '';
+  });
+  document.querySelectorAll('[data-like]').forEach(b => b.classList.toggle('on', mine.has(b.dataset.like)));
+}
+window.__renderCounts = renderCounts;
+
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-like]');
+  if (!b) return;
+  const id = b.dataset.like, on = mine.has(id);
+  on ? mine.delete(id) : mine.add(id);
+  saveLikes(mine);
+  window.__bumpLike && window.__bumpLike(likeId(id), on ? -1 : 1);
+  renderCounts();
+});
+
+/* ---------- the prompt pop-out ----------
+   Highlights every occurrence of the recorded span. Escaping happens first, then the
+   escaped span is wrapped, so a span containing markup characters can never inject. */
+function hl(text, span) {
+  const e = esc(text), s = esc(span);
+  return s ? e.split(s).join(`<mark>${s}</mark>`) : e;
+}
+function openPrompt(cardId, idx) {
+  const c = LEX.find(x => x.id === cardId); if (!c) return;
+  const e = c.ev[idx]; const v = byN.get(String(e.n)); if (!v) return;
+  const neg = `${v.neg || ''}${v.neg ? ', ' : ''}${MANDATED}`;
+  document.getElementById('mtitle').innerHTML =
+    `${esc(c.term)} <span class="evn">— evidence from #${esc(e.n)} ${esc(v.name || '')}</span>`;
+  document.getElementById('mbody').innerHTML =
+    `<p class="mnote">The highlighted words are the exact span this lesson is about, shown where
+       they actually appear. Copy gives you the plain prompt with no highlighting.</p>
+     <div class="plab"><span>Positive prompt</span>
+       <button class="btn" type="button" data-copy="${encodeURIComponent(v.style || '')}">Copy</button></div>
+     <pre>${hl(v.style || '', e.span)}</pre>
+     <div class="plab"><span>Negative + 8 mandated</span>
+       <button class="btn" type="button" data-copy="${encodeURIComponent(neg)}">Copy</button></div>
+     <pre class="neg">${hl(neg, e.span)}</pre>`;
+  document.getElementById('ov').classList.add('on');
+}
+function closePrompt() { document.getElementById('ov').classList.remove('on'); }
+
+document.addEventListener('click', e => {
+  const p = e.target.closest('[data-prompt]');
+  if (p) { const [id, i] = p.dataset.prompt.split('|'); openPrompt(id, +i); return; }
+  if (e.target.id === 'mclose' || e.target.id === 'ov') closePrompt();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closePrompt(); });
+
+/* copy — yields the plain prompt, never the highlight markup */
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-copy]'); if (!b) return;
+  const txt = decodeURIComponent(b.dataset.copy);
+  const done = () => { const t = b.textContent; b.textContent = 'Copied'; b.classList.add('done');
+    setTimeout(() => { b.textContent = t; b.classList.remove('done'); }, 1200); };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(txt).then(done).catch(() => { fallback(txt); done(); });
+  } else { fallback(txt); done(); }
+});
+function fallback(txt) {
+  const ta = document.createElement('textarea');
+  ta.value = txt; ta.style.position = 'fixed'; ta.style.opacity = '0';
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); } catch (e) {}
+  document.body.removeChild(ta);
+}
+
+/* ---------- side player (the audio is hotlink-protected, so this is the embed) ---------- */
+document.addEventListener('click', e => {
+  const t = e.target.closest('.tile'); if (!t) return;
+  document.getElementById('ptitle').textContent = t.dataset.title || '';
+  document.getElementById('pframe').src = 'https://suno.com/embed/' + t.dataset.uuid;
+  document.getElementById('player').classList.remove('collapsed');
+});
+document.getElementById('ptab').addEventListener('click', () =>
+  document.getElementById('player').classList.toggle('collapsed'));
+
+/* ---------- controls ---------- */
+document.getElementById('q').addEventListener('input', render);
+document.getElementById('needs').addEventListener('click', e => {
+  curNeeds = !curNeeds; e.target.classList.toggle('on', curNeeds); render();
+});
+document.getElementById('rail').addEventListener('click', e => {
+  const b = e.target.closest('[data-dom]'); if (!b) return;
+  curDomain = b.dataset.dom || null;
+  document.querySelectorAll('[data-dom]').forEach(x => x.classList.toggle('on', x === b));
+  render();
+});
+
+/* ---------- deep links (§9: a stable fragment per card) ---------- */
+function jumpToHash() {
+  const id = decodeURIComponent(location.hash.slice(1)); if (!id) return;
+  const el = document.getElementById(id); if (!el) return;
+  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash');
+}
+window.addEventListener('hashchange', jumpToHash);
+
+buildRail();
+render();
+jumpToHash();
+</script>
+
+<script type="module">
+/* ---------- SHARED LIKE COUNTS ----------
+   Same Firebase project as the vocal library, deliberately — one site, one backend.
+   Keys here are prefixed "lex:" so the two pages cannot collide (design doc §9).
+   If the SDK cannot load, the page keeps working with local-only hearts. */
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getDatabase, ref, onValue, runTransaction } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+const firebaseConfig={
+  apiKey:"AIzaSyBJgYjvHXL69y_7i7qG2qwBzYVUA1lCZuE",
+  authDomain:"vocal-timbre-library.firebaseapp.com",
+  databaseURL:"https://vocal-timbre-library-default-rtdb.firebaseio.com",
+  projectId:"vocal-timbre-library",
+  storageBucket:"vocal-timbre-library.firebasestorage.app",
+  messagingSenderId:"303806829007",
+  appId:"1:303806829007:web:914e3d0d5dc51e697202ba",
+  measurementId:"G-T33BH0E51P"
+};
+try{
+  const db=getDatabase(initializeApp(firebaseConfig));
+  onValue(ref(db,'likes'),snap=>{
+    window.__likeCounts=snap.val()||{};
+    window.__renderCounts&&window.__renderCounts();
+  });
+  window.__bumpLike=(id,delta)=>runTransaction(ref(db,'likes/'+id),cur=>{
+    const v=(cur||0)+delta; return v<0?undefined:v;
+  }).catch(e=>console.warn('[likes] write failed',e));
+}catch(e){ console.warn('[likes] Firebase disabled, local-only hearts:',e); }
+</script>
+</body>
+</html>

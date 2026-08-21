@@ -1,7 +1,99 @@
-<!doctype html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
 <meta charset="utf-8">
-<title>Vocal Timbre Library</title>
-<meta http-equiv="refresh" content="0; url=vocal_timbre_library.html">
-<link rel="canonical" href="vocal_timbre_library.html">
-<body style="background:#111419;color:#e9e6dd;font-family:system-ui,sans-serif">
-<p style="padding:32px">Opening the <a href="vocal_timbre_library.html" style="color:#e0a63c">Vocal Timbre Library</a>…</p>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sound Lexicon</title>
+<meta name="description" content="Two libraries about describing sound to a generative music model: vocal timbre prompts, and what musical terminology actually does.">
+<style>
+  /* Deliberately dumb: two doors, a sentence each. A unified search across both
+     libraries would force a shared card model, and the two genuinely have different
+     shapes — see docs/instrument-theory-design.md §2 and §9. */
+  :root{
+    --ink:#111419; --panel:#181c24; --panel2:#1f2530; --line:#2a313d;
+    --text:#e9e6dd; --muted:#98a0ad; --dim:#6b7280;
+    --amber:#e0a63c; --amber-dim:#8a6a2a; --teal:#1a9e75;
+    --mono:'SF Mono','Menlo','Consolas','Liberation Mono',monospace;
+    --sans:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--ink);color:var(--text);font-family:var(--sans);line-height:1.5;min-height:100%}
+  a{color:var(--amber)}
+  .wrap{max-width:900px;margin:0 auto;padding:12vh 22px 60px}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--amber);margin:0 0 12px}
+  h1{font-size:clamp(32px,6vw,46px);letter-spacing:-.02em;margin:0 0 12px;font-weight:700}
+  .lede{color:var(--muted);font-size:16px;max-width:62ch;margin:0 0 40px;line-height:1.62}
+  .doors{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:720px){.doors{grid-template-columns:1fr}.wrap{padding-top:7vh}}
+  .door{display:block;text-decoration:none;color:inherit;background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--amber-dim);border-radius:12px;padding:24px 24px 22px;transition:border-color .15s,transform .15s,background .15s}
+  .door:hover{border-color:var(--amber);border-left-color:var(--amber);background:var(--panel2);transform:translateY(-2px)}
+  .door h2{font-size:20px;margin:0 0 8px;font-weight:700;letter-spacing:-.01em}
+  .door p{font-size:14px;color:var(--muted);margin:0 0 16px;line-height:1.6}
+  .stat{font-family:var(--mono);font-size:11.5px;color:var(--dim);border-top:1px solid var(--line);padding-top:12px}
+  .stat b{color:var(--amber);font-weight:600}
+  .go{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin-top:10px;display:block}
+  .badge{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;border-radius:4px;padding:2px 7px;margin-left:8px;vertical-align:middle;background:rgba(224,166,60,.14);color:var(--amber);border:1px solid var(--amber-dim)}
+  footer{margin-top:46px;border-top:1px solid var(--line);padding-top:16px;font-size:12.5px;color:var(--dim);max-width:70ch}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow">Sound Lexicon</p>
+  <h1>Describing sound to a machine.</h1>
+  <p class="lede">
+    Two libraries about the same stubborn problem: which words actually change what a
+    generative music model produces, and which ones only sound like they should. One
+    collects prompts that work. The other takes musical terminology apart and asks
+    whether the model hears it at all.
+  </p>
+
+  <div class="doors">
+    <a class="door" href="vocal_timbre_library.html">
+      <h2>Vocal Timbre Library</h2>
+      <p>
+        Ready-to-use prompts for singing voices — grain, register, delivery and the
+        production around them. Every entry is a usable artifact: copy the style string,
+        paste it, get the sound. Searchable, mapped, and demonstrated.
+      </p>
+      <div class="stat" id="s1">&nbsp;</div>
+      <span class="go">Open the library →</span>
+    </a>
+
+    <a class="door" href="terminology.html">
+      <h2>Terminology Lessons <span class="badge">New</span></h2>
+      <p>
+        What musical terms mean in plain language — instruments, tools, techniques and
+        song theory — and whether the model actually distinguishes them. A card here is a
+        lesson about one word, not a prompt. Searchable by the words a listener would
+        really use.
+      </p>
+      <div class="stat" id="s2">&nbsp;</div>
+      <span class="go">Start exploring →</span>
+    </a>
+  </div>
+
+  <footer>
+    Free to run and open source, bar one hosted database for the shared ♥ counts.
+    No artist or band names appear anywhere in either library — where a sound has a
+    lineage, it is described by era and scene instead.
+  </footer>
+</div>
+
+<script src="data.js"></script>
+<script src="lexicon_data.js"></script>
+<script>
+/* Counts are derived from the data files at runtime, so this page can never quietly
+   drift out of date the way a hand-typed number would. */
+const demos = new Set();
+LIB.forEach(v => (v.suno || []).forEach(s => demos.add(s)));
+document.getElementById('s1').innerHTML =
+  `<b>${LIB.length}</b> prompts · <b>${demos.size}</b> demos · ${VERSION} · ${UPDATED}`;
+
+const evc = LEX.reduce((n, c) => n + (c.ev || []).length, 0);
+const tested = LEX.filter(c => c.res.verdict !== 'untested').length;
+document.getElementById('s2').innerHTML =
+  `<b>${LEX.length}</b> terms · <b>${DOMAINS.length}</b> domains · `
+  + `<b>${tested}/${LEX.length}</b> verified by ear · ${LEX_VERSION} · ${LEX_UPDATED}`;
+</script>
+</body>
+</html>

@@ -13,6 +13,7 @@ import { loadData, checkInSync } from './build.mjs';
 import { loadHashes, findDenied } from './denylist.mjs';
 import { checkInSync as timbreInSync, derive } from './timbre.mjs';
 import { songIds } from './song_titles.mjs';
+import { checkLexicon } from './lexicon.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const HTML = join(ROOT, 'vocal_timbre_library.html');
@@ -181,6 +182,18 @@ const suites = LIB.filter(v => v.cat === 'suite');
     + (silent.length ? `; ${silent.length} read fully neutral` : ''));
   if (html.includes('TIMBRE[String(v.n)]')) pass(`map reads derived timbre, not hand-scored fields`);
   else fail(`the map is not reading the TIMBRE block`);
+}
+
+/* ---------- 11. Terminology Lessons (lexicon_data.js) ----------
+   Folded in here so one command still gates the whole repo. The invariant that matters
+   is the highlight span: a recorded span must occur literally in the prompt it points
+   at, or a card would claim to demonstrate a term its prompt never contained. */
+{
+  try {
+    const r = checkLexicon();
+    r.passes.forEach(p => pass(`lexicon: ${p}`));
+    r.fails.forEach(f => fail(`lexicon: ${f}`));
+  } catch (e) { fail(`lexicon checks could not run: ${e.message}`); }
 }
 
 report();
