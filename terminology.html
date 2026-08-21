@@ -111,6 +111,13 @@
   .vote.has{border-color:var(--amber-dim)}
   .vote.has .vc{color:var(--amber)}
   .evitem.supported{box-shadow:inset 2px 0 0 var(--teal);padding-left:11px}
+  /* learned: private per-browser progress, never shared */
+  .card.learned{border-left-color:var(--teal)}
+  .learn{font-family:var(--mono);font-size:10px;letter-spacing:.09em;text-transform:uppercase;background:transparent;border:1px solid var(--line);color:var(--dim);border-radius:20px;padding:3px 11px;cursor:pointer;transition:border-color .12s,color .12s,background .12s}
+  .learn:hover{border-color:var(--teal);color:var(--teal)}
+  .learn.on{background:rgba(26,158,117,.15);border-color:var(--teal);color:var(--teal);font-weight:600}
+  .progress{font-family:var(--mono);font-size:11px;color:var(--dim)}
+  .progress b{color:var(--teal)}
   /* "more examples" — the rest of the corpus using this wording, uncurated */
   .more{margin-top:14px;border-top:1px dashed var(--line);padding-top:12px}
   .morebtn{width:100%;text-align:left;display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:11px;letter-spacing:.07em;text-transform:uppercase;background:var(--panel2);border:1px solid var(--line);color:var(--muted);border-radius:7px;padding:9px 13px;cursor:pointer}
@@ -201,7 +208,10 @@
     <div class="crow">
       <input id="q" type="search" placeholder="Search a term, or how you'd say it — chugging, pumping, that soft jazz drum sound…" autocomplete="off">
       <button class="pill" id="needs" type="button" title="Only terms with no supporting vote yet">Needs a listen</button>
+      <button class="pill" id="funlearned" type="button" title="Lessons you have not marked as learned">Unlearned</button>
+      <button class="pill" id="flearned" type="button" title="Lessons you have marked as learned">Learned</button>
       <span class="hits" id="hits"></span>
+      <span class="progress" id="progress"></span>
     </div>
     <div class="rail" id="rail"></div>
     <p class="dblurb" id="dblurb"></p>
@@ -251,7 +261,7 @@ const byN = new Map(LIB.map(v => [String(v.n ?? v.id), v]));
 const domById = new Map(DOMAINS.map(d => [d.id, d]));
 const TITLES = (typeof SONG_TITLES !== 'undefined' && SONG_TITLES) || {};
 
-let curDomain = null, curNeeds = false;
+let curDomain = null, curNeeds = false, curLearn = null;   // curLearn: null | 'learned' | 'unlearned'
 
 /* ---------- masthead counts derive from the data, so they never drift ---------- */
 {
@@ -358,6 +368,17 @@ LEX.forEach(c => {
    Stored in the same Firebase `likes` map the hearts use — deliberately, because that
    path already exists, is already open, and its rule allows a counter to move by
    exactly ±1 per write, so a vote count cannot be inflated. No new rule needed. */
+/* ---------- LEARNED ----------
+   Which lessons you have taken in. Deliberately private and per-browser: it is your
+   progress through the material, not a claim about the material, so it has no business
+   in the shared database next to the votes. Stored in localStorage rather than an actual
+   cookie — same client-side result, but it is never attached to a request, has room to
+   grow, and matches how the votes and hearts on this page already persist. */
+const LEARNED_KEY = 'lex_learned';
+let learned = new Set();
+try { learned = new Set(JSON.parse(localStorage.getItem(LEARNED_KEY) || '[]')); } catch (e) {}
+const saveLearned = () => { try { localStorage.setItem(LEARNED_KEY, JSON.stringify([...learned])); } catch (e) {} };
+
 const VOTES_KEY = 'lex_votes';
 const voteKey = (cardId, n) => `lexev:${cardId}:${n}`;
 let myVotes = new Set();
@@ -454,7 +475,8 @@ function cardHTML(c) {
     ? `<span class="stamp">no verdict yet — nothing to stamp</span>`
     : `<span class="stamp">${esc(r.model || '?')} · ${esc(r.date || '?')}</span>`;
 
-  return `<article class="card" id="${esc(c.id)}" data-id="${esc(c.id)}">
+  const isLearned = learned.has(c.id);
+  return `<article class="card${isLearned ? ' learned' : ''}" id="${esc(c.id)}" data-id="${esc(c.id)}">
     <div class="likewrap">
       <button class="like" type="button" data-like="${esc(c.id)}" aria-label="Like">♥</button>
       <span class="lcount" data-lc="${esc(c.id)}"></span>
@@ -462,6 +484,9 @@ function cardHTML(c) {
     <div class="ctop">
       <span class="term">${esc(c.term)}</span>
       <a class="anchor" href="#${esc(c.id)}" title="Link straight to this card">#${esc(c.id)}</a>
+      <button class="learn${isLearned ? ' on' : ''}" type="button" data-learn="${esc(c.id)}"
+        title="${isLearned ? 'Marked as learned — click to unmark' : 'Mark this lesson as learned'}">
+        ${isLearned ? '&#10003; Learned' : 'Mark learned'}</button>
     </div>
     <div class="chips">${doms}${kinds}${nat}</div>
 
@@ -600,12 +625,17 @@ function render() {
   const list = LEX.filter(c => {
     if (curDomain && !c.domains.includes(curDomain)) return false;
     if (curNeeds && support(c).backed > 0) return false;   // live votes, not the file
+    if (curLearn === 'learned' && !learned.has(c.id)) return false;
+    if (curLearn === 'unlearned' && learned.has(c.id)) return false;
     return words.every(w => c._blob.includes(w));
   });
   document.getElementById('cards').innerHTML = list.length
     ? list.map(cardHTML).join('')
     : `<p class="body mut" style="padding:26px 2px">No term matches that. Try a plainer word — the cards are indexed by how a listener would describe the sound, not only by the technical name.</p>`;
   document.getElementById('hits').textContent = `${list.length} of ${LEX.length}`;
+  const done = LEX.filter(x => learned.has(x.id)).length;
+  document.getElementById('progress').innerHTML =
+    done ? `<b>${done}</b> / ${LEX.length} learned` : `none marked learned yet`;
   const d = curDomain && domById.get(curDomain);
   document.getElementById('dblurb').textContent = d ? d.blurb : '';
   renderCounts();
@@ -805,6 +835,29 @@ document.addEventListener('click', e => {
     refreshVotes();
   });
 });
+
+/* Marking a lesson learned re-renders, because it can change what the active filter
+   should be showing — mark the card you are reading while "Unlearned" is on and it
+   should leave the list. Scroll is preserved so the page does not jump. */
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-learn]'); if (!b) return;
+  const id = b.dataset.learn;
+  learned.has(id) ? learned.delete(id) : learned.add(id);
+  saveLearned();
+  const y = window.scrollY;
+  render();
+  window.scrollTo(0, y);
+});
+
+/* The two are mutually exclusive; clicking the active one clears it. */
+function setLearnFilter(which) {
+  curLearn = (curLearn === which) ? null : which;
+  document.getElementById('flearned').classList.toggle('on', curLearn === 'learned');
+  document.getElementById('funlearned').classList.toggle('on', curLearn === 'unlearned');
+  render();
+}
+document.getElementById('flearned').addEventListener('click', () => setLearnFilter('learned'));
+document.getElementById('funlearned').addEventListener('click', () => setLearnFilter('unlearned'));
 
 document.getElementById('rail').addEventListener('click', e => {
   const b = e.target.closest('[data-dom]'); if (!b) return;

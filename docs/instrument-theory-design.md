@@ -176,6 +176,20 @@ about those every run is how a real typo gets waved through.
 A vote on a "more" example is the signal it has earned a curated entry with a real
 reason — voted ones sort to the top of the expanded list so they surface without paging.
 
+### Learned: private progress, not shared state
+
+Each card can be marked **learned**, with **Unlearned / Learned** filters and a running
+count. This is the lay reader's route through the material — the page is meant to teach,
+and a reader working through it needs to know where they got to.
+
+It is stored in `localStorage`, **not** in the shared database, and that separation is the
+point: a vote is a claim about the material and belongs to everyone; whether you have read
+a lesson is about you and belongs in your browser. Putting progress next to the votes would
+have made one person's reading look like evidence.
+
+(Asked for as a cookie; localStorage does the same client-side job without being attached
+to every request, has room to grow, and is already how the votes and hearts persist here.)
+
 ### Minimal pairs
 
 The strongest form of evidence, and the default for a term whose uptake is in
