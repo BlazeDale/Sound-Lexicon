@@ -1,8 +1,10 @@
 # Instrument & Theory Library — design
 
-Status: **draft**, agreed in conversation 2026-08-21. Nothing built yet.
-This is a spec, not a task list. Where a decision was made, the reasoning is
-recorded with it so a later session doesn't re-litigate it.
+Status: agreed in conversation 2026-08-21; **first vertical slice built the same
+day** — splash page, lessons page, and one card per domain. This is a spec, not a
+task list. Where a decision was made, the reasoning is recorded with it so a later
+session doesn't re-litigate it. Where a decision was later *changed*, the old one
+and the reason for the change are kept too.
 
 ---
 
@@ -56,7 +58,7 @@ Fields, in rough card order:
 | Kinds | One or more of: instrument/tool, technique (§4) |
 | Resolution | Does the model actually distinguish this, or does it collapse into its parent? (§5) |
 | Range | Most terms are a dial, not a switch — note how the extremes behave |
-| Demos | Approved takes, with the prompt span recorded (§5, §6) |
+| Demos | Attached takes, with the prompt span recorded, vouched for by ear (§5, §6) |
 | Stamp | Model version + date for every uptake verdict (§8) |
 
 ## 4. Taxonomy
@@ -86,55 +88,50 @@ Three rules that keep this from leaking:
 
 ## 5. Evidence
 
-### Approval state
+### Demonstrated, or merely documented
 
-Every demo attached to a card carries a state: **candidate**, **approved**,
-or **rejected for this term**. Approval is a listening judgement, made by
-ear, by hand.
+A demo is attached to a term as a *claim* that it demonstrates it. Whether it
+actually does is a listening judgement — it cannot be read off the prompt, because
+a word appearing in a prompt is no evidence it survived into the audio.
 
-This does more than gatekeep. It gives the page an honest, visible
-"documented but not yet demonstrated" status — the page can admit what it
-hasn't proven, which is the credibility a lay reader needs — and it doubles
-as the work queue.
+This does more than gatekeep. It gives the page an honest, visible "documented but
+not yet demonstrated" status — the page can admit what it hasn't proven, which is
+the credibility a lay reader needs — and it doubles as the work queue.
 
-### How approval is actually recorded (added 2026-08-21)
+How that judgement is recorded changed once already; see the next section.
 
-Approval is a judgement made *while listening*, so it has to be one click on the card,
-not a note kept on paper and dictated afterwards. The page has an **✎ Approvals** mode
-that puts ✓ / ✗ / ↺ on every demo.
+### How support is actually recorded (revised 2026-08-21)
 
-Three layers, in precedence order, because no single one is sufficient:
+The first build made this a curator's three-state approval, edited on the card and synced
+back to `lexicon_data.js`. **Replaced the same day with a simple up-vote**, and the reasons
+are worth keeping:
 
-1. **Firebase** — shared and durable across devices.
-2. **localStorage** — this browser. Always available, so a listening session can start
-   without waiting on anything and is never lost if the shared write is refused.
-3. **`lexicon_data.js`** — the committed value. The published truth, the only copy
-   `validate.mjs` can check, and the only one that survives a cleared browser.
+- **Agreement, not decree.** "Does this track demonstrate this term?" is a question anyone
+  listening can answer, and several people agreeing is stronger evidence than one person
+  ruling. A count also degrades honestly — two votes says two, not "approved".
+- **It works today.** The database whitelists paths, and `lex_appr` was denied (probed, not
+  assumed), which left approvals stranded in one browser behind a console change. Votes are
+  counters in the existing `likes` map, keyed `lexev:<cardId>:<entry>`, so they need **no new
+  rule** — and that map's rule permits a change of exactly ±1 per write, so a count cannot be
+  inflated. Reusing the open path was the whole reason to prefer this shape.
+- **One system, not two.** The sync tool and the local approval buffer are gone. Live counts
+  live in Firebase like the ♥ counts; nothing about a vote needs committing.
 
-`node tools/approvals.mjs` folds 1 or 2 back down into 3. The repo stays the source of
-truth; the live layers are a working buffer, not a second home for the data.
+**The vote is per (term, demo) pair, never per track.** The same recording can plainly
+demonstrate one term and say nothing about another, so a per-track score would be meaningless.
 
-**A refused write is shown, never swallowed.** A silently-dropped approval is worse than
-no button at all — you would do the listening twice and not know it.
+A term reads as *demonstrated* once at least one listener has vouched for at least one of its
+demos; zero votes reads as "documented, not yet demonstrated", which is the honest state and
+what every card says today.
 
-**Firebase needs a rule before the shared layer works.** The database whitelists paths;
-as of 2026-08-21 only `likes` and `song_gender` are open, and `lex_appr` is denied
-(verified by probe). Until this is added in the Firebase console, approvals are
-browser-local and move to the repo via the page's **Copy for sync** button:
+`state` survives in `lexicon_data.js` for one narrow job: `'rejected'` strikes a piece of
+evidence that is simply wrong, so it is greyed and excluded from the tally rather than left
+to be voted down. The page no longer edits it.
 
-```json
-"lex_appr": {
-  ".read": true,
-  ".write": true,
-  "$card": { "$entry": {
-    ".validate": "newData.isString() && newData.val().matches(/^(candidate|approved|rejected)$/)"
-  } }
-}
-```
-
-Approving a demo is deliberately **not** the same act as setting the card's `res.verdict`.
-Demos are evidence; the verdict is a claim about the generator, and it carries a model
-version and date (§8). One does not imply the other.
+**Voting on a demo is still not the same act as setting the card's `res.verdict`.** Demos are
+evidence; a verdict is a claim about the generator and carries a model version and date (§8).
+Agreement that a track demonstrates a term is not the same as a finding about how the model
+behaves, and the page keeps them apart.
 
 ### Minimal pairs
 
