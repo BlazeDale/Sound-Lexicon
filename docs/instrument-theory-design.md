@@ -235,7 +235,12 @@ lives in a pop-out, not on the card face.
   the vocal library. Sometimes the lesson is in the negative; the eight
   mandated negatives are a standing example.
 - **The precise span the lesson is about is highlighted.**
-- **Copy yields the plain prompt** — no highlight markup in the clipboard.
+- **Copy yields the plain prompt** — no highlight markup in the clipboard. A highlight is
+also **click-to-copy on its own**: hovering one shows a Copy badge and clicking yields just
+that phrase, which is usually what you want to paste into a prompt you are writing and is
+fiddly to select by hand inside a wrapped monospace block. The confirmation is a `::after`
+badge rather than swapped text — a highlight must never rewrite the quoted prompt in front
+of the reader, which is what the buttons' own "Copied" label would have done.
 
 Recording the span: store the **literal phrase as it appears in that prompt**,
 per demo, and highlight every occurrence. Not character offsets — those go

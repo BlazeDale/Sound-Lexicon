@@ -156,7 +156,19 @@
   .plab span{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
   pre{margin:0;background:var(--ink);border:1px solid var(--line);border-radius:7px;padding:12px 13px;font-family:var(--mono);font-size:12px;line-height:1.6;color:var(--text);white-space:pre-wrap;word-break:break-word}
   pre.neg{color:var(--muted)}
-  mark{background:rgba(224,166,60,.26);color:var(--amber);border-radius:3px;padding:0 2px;font-weight:600;box-shadow:0 0 0 1px var(--amber-dim)}
+  mark{position:relative;background:rgba(224,166,60,.26);color:var(--amber);border-radius:3px;padding:0 2px;font-weight:600;box-shadow:0 0 0 1px var(--amber-dim);cursor:pointer;transition:background .12s}
+  mark:hover,mark:focus-visible{background:rgba(224,166,60,.46);outline:none;box-shadow:0 0 0 1px var(--amber)}
+  /* the affordance is a ::after badge, so copying never rewrites the quoted prompt text */
+  /* Sits tight in the gap above the phrase. It still overlaps the line above by a hair —
+     any floating affordance must — so it is kept small and fully opaque rather than
+     hovering high where it would blot out a whole word of the prompt. */
+  mark::after{content:'Copy';position:absolute;left:50%;bottom:calc(100% + 1px);transform:translateX(-50%);
+    font-family:var(--mono);font-size:8.5px;line-height:1.35;letter-spacing:.1em;text-transform:uppercase;font-weight:600;
+    background:var(--panel2);border:1px solid var(--amber-dim);color:var(--amber);border-radius:3px;
+    padding:0 5px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .12s;z-index:4}
+  mark:hover::after,mark:focus-visible::after{opacity:1}
+  mark.copied{background:rgba(26,158,117,.28);color:var(--teal);box-shadow:0 0 0 1px var(--teal)}
+  mark.copied::after{content:'Copied';opacity:1;border-color:var(--teal);color:var(--teal)}
   /* side player */
   #player{position:fixed;left:0;top:50%;transform:translateY(-50%);z-index:70;display:flex;align-items:center}
   #player .pbody{width:320px;max-width:80vw;background:var(--panel);border:1px solid var(--line);border-left:none;border-radius:0 12px 12px 0;box-shadow:0 12px 44px rgba(0,0,0,.55);padding:11px;transition:width .25s,padding .25s,opacity .2s;overflow:hidden}
@@ -670,7 +682,16 @@ document.addEventListener('click', e => {
    escaped span is wrapped, so a span containing markup characters can never inject. */
 function hl(text, span) {
   const e = esc(text), s = esc(span);
-  return s ? e.split(s).join(`<mark>${s}</mark>`) : e;
+  if (!s) return e;
+  /* Each highlight carries its own literal so it can be copied on its own — the phrase
+     is usually what you actually want to paste into a prompt you are writing, and it is
+     more fiddly to select by hand inside a wrapped block than the whole prompt is. */
+  const tag = `<mark data-span="${encodeURIComponent(span)}" role="button" tabindex="0"`
+    + ` aria-label="Copy this phrase">${s}</mark>`;   // aria-label, not title: a native
+                                                       // tooltip would fire alongside the
+                                                       // badge and cover more of the prompt
+
+  return e.split(s).join(tag);
 }
 function openPrompt(cardId, idx, src) {
   const c = LEX.find(x => x.id === cardId); if (!c) return;
@@ -682,7 +703,8 @@ function openPrompt(cardId, idx, src) {
     + ` from #${esc(e.n)} ${esc(v.name || '')}</span>`;
   document.getElementById('mbody').innerHTML =
     `<p class="mnote">The highlighted words are the exact span this lesson is about, shown where
-       they actually appear. Copy gives you the plain prompt with no highlighting.</p>
+       they actually appear — <b>click a highlight to copy just that phrase</b>. Copy at the
+       right gives you the whole prompt, plain, with no highlighting.</p>
      <div class="plab"><span>Positive prompt</span>
        <button class="btn" type="button" data-copy="${encodeURIComponent(v.style || '')}">Copy</button></div>
      <pre>${hl(v.style || '', e.span)}</pre>
@@ -700,15 +722,41 @@ document.addEventListener('click', e => {
 });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closePrompt(); });
 
-/* copy — yields the plain prompt, never the highlight markup */
+/* copy — yields plain text, never the highlight markup */
+function copyText(txt) {
+  if (navigator.clipboard && navigator.clipboard.writeText)
+    return navigator.clipboard.writeText(txt).catch(() => { fallback(txt); });
+  fallback(txt);
+  return Promise.resolve();
+}
+
 document.addEventListener('click', e => {
   const b = e.target.closest('[data-copy]'); if (!b) return;
   const txt = decodeURIComponent(b.dataset.copy);
-  const done = () => { const t = b.textContent; b.textContent = 'Copied'; b.classList.add('done');
-    setTimeout(() => { b.textContent = t; b.classList.remove('done'); }, 1200); };
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(txt).then(done).catch(() => { fallback(txt); done(); });
-  } else { fallback(txt); done(); }
+  copyText(txt).then(() => {
+    const t = b.textContent;
+    b.textContent = 'Copied'; b.classList.add('done');
+    setTimeout(() => { b.textContent = t; b.classList.remove('done'); }, 1200);
+  });
+});
+
+/* Same copy, different confirmation: a highlight must NOT swap its own text for the word
+   "Copied" the way the buttons do — that would rewrite the prompt in front of the reader.
+   The badge is a ::after, so the quoted phrase stays exactly as it appears in the prompt. */
+function copySpan(m) {
+  copyText(decodeURIComponent(m.dataset.span)).then(() => {
+    m.classList.add('copied');
+    clearTimeout(m._t);
+    m._t = setTimeout(() => m.classList.remove('copied'), 1300);
+  });
+}
+document.addEventListener('click', e => {
+  const m = e.target.closest('mark[data-span]'); if (m) copySpan(m);
+});
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Enter' && e.key !== ' ') return;
+  const m = document.activeElement;
+  if (m && m.matches && m.matches('mark[data-span]')) { e.preventDefault(); copySpan(m); }
 });
 function fallback(txt) {
   const ta = document.createElement('textarea');
