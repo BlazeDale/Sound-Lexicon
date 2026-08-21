@@ -29,7 +29,7 @@
  * Loaded as a classic <script> AFTER data.js, so LIB is already a global.
  */
 
-const LEX_VERSION = 'v1';
+const LEX_VERSION = 'v2';
 const LEX_UPDATED = '2026-08-21';
 
 /* ---------- TOP TIER: domains, not instruments ----------
@@ -186,6 +186,33 @@ const LEX = [
     { n:36, span:`ribbon mic`, state:'candidate', why:`"Single ribbon mic, dry porch-close capture, no processing" — a near-duplicate of the above in a different genre, useful as a consistency check.` },
     { n:1,  span:`ribbon mic`, state:'candidate', why:`The opposite case — the mic named inside a long chain, where isolating its contribution should be impossible.` },
     { n:12, span:`ribbon mic`, state:'candidate', why:`"Warm vintage ribbon mic" paired with room ambience, the connotation-cluster the note above warns about.` }
+  ]
+},
+
+{
+  id:'mic-into-the-red',
+  term:`Driving the mic into the red`,
+  gloss:`Singing — or more often screaming — louder than the microphone and the preamp behind it can cleanly handle, so the signal overloads and breaks up. The distortion is not added afterwards. It happens at the moment of capture, inside the equipment.`,
+  syn:[`mic overload`,`blown-out vocal`,`clipping the mic`,`redlining`,`cranking the mic`,`hot signal`,`trashed vocal`,`the mic cannot take it`],
+  myth:`It is not the singer's voice distorting. A perfectly clean voice can be driven into the red, and a shredded, fraying voice can be captured spotlessly. This is the equipment breaking up, not the throat — the two get confused because records that want one usually want both at once.`,
+  known:`Hardcore, garage rock, sludge and lo-fi indie — anywhere a recording is meant to sound like it barely survived the performance. It reads as urgency and refusal to polish, which is exactly why it kept being used long after it stopped being an accident.`,
+  origin:`Began as a mistake in cheap rooms and basement shows; adopted on purpose from the late-1970s punk underground, became a signature of 1980s hardcore and 1990s lo-fi and garage revival, and returned as deliberate, exaggerated clipping in 2010s hyperpop.`,
+  domains:['microphone','voice'],
+  match:['into the red','driven into clipping','blown-out','blown out','overdriven mic','overdriven dynamic mic','cranked dynamic mic','overdriven console','overdriven tube preamp'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`A wide dial, and the corpus happens to sit at three points on it. "Cranked dynamic mic ... light tape drive" (#27) is hot but intact — you hear the push, not the breakup. "Mic driven into the red" (#8, #72) is audibly wrecked. "Mic driven into clipping" (#13) is the far end, where consonants start losing their edges.
+
+Worth knowing before you open the examples below: the word "blown-out" travels. It gets applied to a whole mix, a drop or a master about as often as to a microphone, so it is a looser instruction than the explicit "mic driven into..." phrasing — and several of the matched examples are overloaded records rather than overloaded microphones.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`This is the sharp test of the whole Microphone domain, and it is deliberately paired with the ribbon-mic card. That card suspects microphone terms work purely by connotation — but ribbon warmth is subtle, so a null result there would prove very little. Overload is not subtle: it is a gross, unmistakable change to the sound. If the generator can do this and cannot do ribbon warmth, the boundary is about subtlety rather than about microphones. If it cannot do even this, the entire domain is connotation, and that single finding is worth more than sixty careful cards.
+
+A confound to design around before trusting any result: nearly every prompt using these phrases ALSO describes a voice that is already fraying, cracking or shouted full-force. So the existing corpus cannot separate "the model overloaded the capture chain" from "the model made someone shout". #70 is the one entry that puts the ambiguity in a single prompt, and a minimal pair against a calm vocal is what would settle it.` },
+  ev:[
+    { n:13, span:`Mic driven into clipping`, state:'candidate', why:`The far end of the dial, and the most explicit about mechanism — the prompt names the clipping and the room bleed rather than describing a sound.` },
+    { n:27, span:`Cranked dynamic mic`, state:'candidate', why:`The light end: hot and pushed, with "light tape drive", but nothing is meant to be actually broken. If the generator treats this the same as #13, the term is a switch and not a dial.` },
+    { n:70, span:`Overdriven dynamic mic`, state:'candidate', why:`The sharpest case on the card. This prompt describes the VOICE as "a blown-out mid-high yowl" and the CHAIN as an overdriven mic, separately, in one breath — so it is the natural place to hear whether the generator distinguishes a wrecked singer from a wrecked microphone.` },
+    { n:8,  span:`Mic driven into the red`, state:'candidate', why:`The same literal phrase as #72 in a completely unrelated genre — a consistency check on the wording itself rather than on the style around it.` }
   ]
 },
 
