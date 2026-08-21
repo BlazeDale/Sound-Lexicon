@@ -111,6 +111,22 @@
   .vote.has{border-color:var(--amber-dim)}
   .vote.has .vc{color:var(--amber)}
   .evitem.supported{box-shadow:inset 2px 0 0 var(--teal);padding-left:11px}
+  /* "more examples" — the rest of the corpus using this wording, uncurated */
+  .more{margin-top:14px;border-top:1px dashed var(--line);padding-top:12px}
+  .morebtn{width:100%;text-align:left;display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:11px;letter-spacing:.07em;text-transform:uppercase;background:var(--panel2);border:1px solid var(--line);color:var(--muted);border-radius:7px;padding:9px 13px;cursor:pointer}
+  .morebtn:hover{border-color:var(--amber);color:var(--text)}
+  .morebtn .caret{color:var(--amber);transition:transform .15s;display:inline-block;font-size:10px}
+  .morebtn.open .caret{transform:rotate(180deg)}
+  .moremeta{margin-left:auto;text-transform:none;letter-spacing:0;font-size:11px;color:var(--dim)}
+  .morelist{display:none;margin-top:6px}
+  .morelist.open{display:block}
+  .mitem{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:9px 0 9px 11px;border-top:1px solid var(--line)}
+  .mitem:first-child{border-top:none}
+  .mitem.supported{box-shadow:inset 2px 0 0 var(--teal)}
+  .mname{font-size:13px;font-weight:600}
+  .mrest{margin-left:auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .morefoot{margin-top:10px;display:flex;gap:8px;align-items:center}
+  .morenote{font-size:12px;color:var(--dim)}
   .evwhy{font-size:13px;color:var(--muted);margin:5px 0 8px}
   .evrow{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
   .btn{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;background:transparent;border:1px solid var(--line);color:var(--muted);border-radius:5px;padding:4px 10px;cursor:pointer}
@@ -274,6 +290,49 @@ function blob(c) {
 }
 LEX.forEach(c => c._blob = blob(c));
 
+/* ---------- DISCOVERY: the rest of the corpus that uses this wording ----------
+   Curated evidence is the lesson — each item carries a hand-written reason it was
+   chosen, and nothing can generate that. But the corpus keeps growing, and without a
+   path from a new prompt to the card that documents its term, the page drifts quietly.
+
+   Three decisions here are specifically about not becoming a maintenance burden:
+
+   1. Matching happens at RUNTIME against LIB. There is no generated list, no cache file
+      and no sync step, so writing a new prompt that says "sidechain" is the entire act of
+      attaching it — the card picks it up on next load with nothing to run.
+   2. The vocabulary is short STEMS, not inflections ('brush' catches brushed/brushes/
+      brushing). One or two strings per card, and no list of word forms to maintain.
+   3. Computed ONCE at load, not per render. Cost is cards × entries, and that product is
+      what grows; doing it on every keystroke of the search box would not survive a
+      hundred cards against five thousand prompts. */
+const MORE_CHUNK = 12;
+
+/* The recorded span must be a literal that really occurs, so pull it back out of the
+   prompt with its original casing rather than assuming the stem's. */
+function literalIn(prompt, stems) {
+  const low = prompt.toLowerCase();
+  for (const s of stems) {
+    const i = low.indexOf(s);
+    if (i >= 0) return prompt.slice(i, i + s.length);
+  }
+  return '';
+}
+LEX.forEach(c => {
+  const stems = ((c.match && c.match.length) ? c.match : [...new Set(c.ev.map(e => e.span))])
+    .map(s => s.toLowerCase());
+  const attached = new Set((c.ev || []).map(e => String(e.n)));
+  c._more = LIB.filter(v => {
+    const id = String(v.n ?? v.id);
+    if (attached.has(id)) return false;
+    if (!(v.suno || []).length) return false;    // nothing to listen to isn't an example
+    const t = `${v.style || ''}\n${v.neg || ''}`;
+    return stems.some(s => t.toLowerCase().includes(s));
+  }).map(v => ({
+    n: v.n ?? v.id,
+    span: literalIn(`${v.style || ''}\n${v.neg || ''}`, stems)
+  }));
+});
+
 /* ---------- SUPPORT VOTES ----------
    "Does this track actually demonstrate this term?" — one click, per listener,
    accumulating. The judgement is still made by ear (design doc §5); this just lets it
@@ -361,7 +420,7 @@ function cardHTML(c) {
       </div>
       <p class="evwhy">${esc(e.why)}</p>
       <div class="evrow">
-        <button class="btn" type="button" data-prompt="${esc(c.id)}|${i}">Prompt</button>
+        <button class="btn" type="button" data-prompt="${esc(c.id)}|${i}|ev">Prompt</button>
         ${tiles(v)}
         <button class="vote${mine ? ' on' : ''}${!mine && n > 0 ? ' has' : ''}" type="button"
           data-vote="${esc(c.id)}|${esc(e.n)}"
@@ -431,9 +490,96 @@ function cardHTML(c) {
       <div class="lab">Evidence</div>
       ${stateLine}
       <div class="evlist" data-list="${esc(c.id)}">${evHTML}</div>
+      ${moreBlock(c)}
     </div>
   </article>`;
 }
+
+/* ---------- "more examples" ----------
+   Deliberately NOT presented as evidence. These entries were never chosen, carry no
+   reason, and nobody has said they demonstrate anything — the button says so. What they
+   are is the honest picture of how heavily a term gets used, and a route by which a new
+   prompt reaches the card that documents it.
+
+   For a term like four-on-the-floor the count is itself a finding: 86 prompts lean on it. */
+const moreOpen = new Map();          // cardId -> how many are currently shown
+
+function moreBlock(c) {
+  const n = c._more.length;
+  if (!n) return '';
+  const shown = moreOpen.get(c.id) || 0;
+  return `<div class="more">
+    <button class="morebtn${shown ? ' open' : ''}" type="button" data-moretoggle="${esc(c.id)}">
+      <span class="caret">▾</span> ${n} more example${n === 1 ? '' : 's'}
+      <span class="moremeta">uses this wording · not curated, not vouched for</span>
+    </button>
+    <div class="morelist${shown ? ' open' : ''}" data-morelist="${esc(c.id)}">${moreItems(c, shown)}</div>
+  </div>`;
+}
+
+function moreItems(c, shown) {
+  if (!shown) return '';
+  /* voted ones first, so anything a listener has vouched for surfaces without paging
+     to find it — that is the signal it has earned a curated entry with a real reason. */
+  const ordered = c._more
+    .map((m, i) => ({ m, i }))
+    .sort((a, b) => (voteCount(c.id, b.m.n) - voteCount(c.id, a.m.n)) || (a.i - b.i));
+  const slice = ordered.slice(0, shown);
+  const rows = slice.map(({ m, i }) => {
+    const v = byN.get(String(m.n)) || {};
+    const cnt = voteCount(c.id, m.n), mine = myVotes.has(voteKey(c.id, m.n));
+    return `<div class="mitem${cnt > 0 ? ' supported' : ''}" data-ev="${esc(c.id)}|${esc(m.n)}">
+      <span class="evn">#${esc(m.n)}</span>
+      <span class="mname">${esc(v.name || '')}</span>
+      ${m.span ? `<span class="evspan">${esc(m.span)}</span>` : ''}
+      <span class="mrest">
+        <button class="btn" type="button" data-prompt="${esc(c.id)}|${i}|more">Prompt</button>
+        ${tiles(v)}
+        <button class="vote${mine ? ' on' : ''}${!mine && cnt > 0 ? ' has' : ''}" type="button"
+          data-vote="${esc(c.id)}|${esc(m.n)}"
+          title="${mine ? 'You vouched for this — click to take it back' : 'I hear the term in this track'}">
+          <span class="arrow">▲</span> Supports <span class="vc">${cnt || ''}</span>
+        </button>
+      </span>
+    </div>`;
+  }).join('');
+  const left = c._more.length - slice.length;
+  return rows + (left
+    ? `<div class="morefoot">
+         <button class="btn" type="button" data-moremore="${esc(c.id)}">Show ${Math.min(left, MORE_CHUNK)} more</button>
+         <span class="morenote">${left} still hidden</span>
+       </div>`
+    : `<div class="morefoot"><span class="morenote">That is all ${c._more.length} of them.</span></div>`);
+}
+
+/* Expansion patches only the affected card, so opening a list of 86 never re-renders
+   the page or moves anything the reader was looking at. */
+function paintMore(cardId) {
+  const c = LEX.find(x => x.id === cardId); if (!c) return;
+  const shown = moreOpen.get(cardId) || 0;
+  const list = document.querySelector(`[data-morelist="${cardId}"]`);
+  const btn = document.querySelector(`[data-moretoggle="${cardId}"]`);
+  if (!list || !btn) return;
+  list.innerHTML = moreItems(c, shown);
+  list.classList.toggle('open', shown > 0);
+  btn.classList.toggle('open', shown > 0);
+}
+
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-moretoggle]');
+  if (t) {
+    const id = t.dataset.moretoggle;
+    moreOpen.set(id, (moreOpen.get(id) || 0) ? 0 : MORE_CHUNK);
+    paintMore(id);
+    return;
+  }
+  const m = e.target.closest('[data-moremore]');
+  if (m) {
+    const id = m.dataset.moremore;
+    moreOpen.set(id, (moreOpen.get(id) || 0) + MORE_CHUNK);
+    paintMore(id);
+  }
+});
 
 /* ---------- filter + render ---------- */
 function render() {
@@ -526,12 +672,14 @@ function hl(text, span) {
   const e = esc(text), s = esc(span);
   return s ? e.split(s).join(`<mark>${s}</mark>`) : e;
 }
-function openPrompt(cardId, idx) {
+function openPrompt(cardId, idx, src) {
   const c = LEX.find(x => x.id === cardId); if (!c) return;
-  const e = c.ev[idx]; const v = byN.get(String(e.n)); if (!v) return;
+  const e = (src === 'more' ? c._more : c.ev)[idx]; if (!e) return;
+  const v = byN.get(String(e.n)); if (!v) return;
   const neg = `${v.neg || ''}${v.neg ? ', ' : ''}${MANDATED}`;
   document.getElementById('mtitle').innerHTML =
-    `${esc(c.term)} <span class="evn">— evidence from #${esc(e.n)} ${esc(v.name || '')}</span>`;
+    `${esc(c.term)} <span class="evn">— ${src === 'more' ? 'uses this wording' : 'evidence'}`
+    + ` from #${esc(e.n)} ${esc(v.name || '')}</span>`;
   document.getElementById('mbody').innerHTML =
     `<p class="mnote">The highlighted words are the exact span this lesson is about, shown where
        they actually appear. Copy gives you the plain prompt with no highlighting.</p>
@@ -547,7 +695,7 @@ function closePrompt() { document.getElementById('ov').classList.remove('on'); }
 
 document.addEventListener('click', e => {
   const p = e.target.closest('[data-prompt]');
-  if (p) { const [id, i] = p.dataset.prompt.split('|'); openPrompt(id, +i); return; }
+  if (p) { const [id, i, src] = p.dataset.prompt.split('|'); openPrompt(id, +i, src); return; }
   if (e.target.id === 'mclose' || e.target.id === 'ov') closePrompt();
 });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closePrompt(); });

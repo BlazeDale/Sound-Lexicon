@@ -60,6 +60,13 @@ const DOMAINS = [
      origin  era and scene — never a name (§7)
      domains one or more parents
      kinds   'instrument' and/or 'technique' — not exclusive
+     match   OPTIONAL discovery vocabulary: the literal word-stems that mean this term
+             in a prompt, matched case-insensitively. Powers the "more examples" button,
+             which finds matching entries in LIB at RUNTIME — there is no generated list
+             to regenerate and nothing to keep in sync, so the corpus can grow without
+             this file changing. Keep the stems SHORT ('brush' catches brushed/brushes/
+             brushing); that is what stops this becoming a list of inflections to
+             maintain forever. Defaults to the distinct `ev` spans when absent.
      nature  'continuous' | 'momentary' — decides whether a demo needs a time reference (§5)
      range   most terms are a dial, not a switch
      res     resolution: does the generator actually distinguish this? (§5)
@@ -76,6 +83,7 @@ const LEX = [
   known:`The engine of punk, metal and hard-rock rhythm playing. It turns a chord into a percussion instrument, which is what lets a guitar lock tightly to the kick drum instead of floating over it.`,
   origin:`Clipped rhythm playing in late-1950s surf and rockabilly; hard rock and metal made it the default rhythm texture from the 1970s onward.`,
   domains:['guitar'],
+  match:['palm mut','palm-mut'],
   kinds:['technique'],
   nature:'continuous',
   range:`A dial, not a switch. Heel barely touching and the note still rings, just tightened. Heel pressed hard across the bridge and there is almost no pitch left, only thud. Most recorded rhythm guitar sits in between and moves within a single riff.`,
@@ -98,6 +106,7 @@ const LEX = [
   known:`Jazz ballads, torch songs, and any arrangement that wants a pulse without a backbeat hitting the listener. They keep time as a texture rather than as a series of events.`,
   origin:`Early-20th-century dance bands needing a kit that would not drown a room; became the standard ballad voice of postwar small-group jazz.`,
   domains:['drums'],
+  match:['brush'],
   kinds:['instrument','technique'],
   nature:'continuous',
   range:`From a circular sweep with no articulation at all, to "brushed-then-struck" where the brush lands like a soft stick — a phrase the sister library uses verbatim in #1.`,
@@ -120,6 +129,7 @@ const LEX = [
   known:`Neo-soul, 1970s jazz fusion, lounge, and trip-hop. Its signature quality is that it fills space without competing: warm, round, and slightly out of focus by design.`,
   origin:`Developed from a wartime portable-instrument idea in the mid-1950s, mass-produced through the 60s and 70s, then rediscovered by 1990s hip-hop and neo-soul producers.`,
   domains:['keys'],
+  match:['rhodes'],
   kinds:['instrument'],
   nature:'continuous',
   range:`Played softly it is pure bell tone. Dug into, the tines overdrive into a bark. Running it through tremolo or chorus is so standard that many listeners believe the wobble is part of the instrument itself.`,
@@ -142,6 +152,7 @@ const LEX = [
   known:`Gospel and R&B runs, but equally Qawwali, flamenco, Byzantine chant and sean-nós. In pop it reads as virtuosity; in devotional music it reads as intensity.`,
   origin:`Ancient and near-universal in liturgical singing; entered Western popular music through gospel and soul, and became a mainstream pop expectation from the late 1980s.`,
   domains:['voice'],
+  match:['melisma'],
   kinds:['technique'],
   nature:'continuous',
   range:`From a light three-note curl at the end of a phrase — #20 calls it "light agile melisma curling around the phrase-ends" — to sustained microtonal runs that carry the entire line, as in #11.`,
@@ -164,6 +175,7 @@ const LEX = [
   known:`Broadcast and big-band recording from the 1930s to the 50s; now reached for deliberately on brass, guitar amps, and voices that would otherwise sound harsh.`,
   origin:`Broadcast and record studios of the 1930s. The standard studio voice microphone until condensers displaced it in the 1950s, then revived as a deliberate period choice.`,
   domains:['microphone'],
+  match:['ribbon mic','ribbon-mic','ribbon microphone'],
   kinds:['instrument'],
   nature:'continuous',
   range:`From "single ribbon mic, dry close porch-recording feel" (#3), where the mic is the entire signal chain, to "vintage ribbon mic into overdriven tube preamp" (#1), where the preamp is plainly doing most of the audible work.`,
@@ -186,6 +198,7 @@ const LEX = [
   known:`Vocals and snare drums from the late 1950s on. It is why so many classic records sound enormous without sounding like a church.`,
   origin:`German studio hardware of the late 1950s; the default studio reverb through the 60s and 70s, until digital units displaced it.`,
   domains:['room','voice','drums','guitar'],
+  match:['plate reverb','plate-reverb'],
   kinds:['instrument'],
   nature:'continuous',
   range:`From "only short plate reverb" (#241), where it merely thickens a voice, to "drenched in deep plate reverb that smears the phrase-tails" (#37), where it becomes the dominant texture of the record.`,
@@ -208,6 +221,7 @@ const LEX = [
   known:`House, trance, EDM and nu-disco. It is the mechanism behind the sense that dance music is inhaling and exhaling rather than simply repeating.`,
   origin:`A broadcast and mixing technique from the 1960s; became an audible musical effect in late-1990s French house and filtered disco.`,
   domains:['production'],
+  match:['sidechain','side-chain'],
   kinds:['technique'],
   nature:'continuous',
   range:`The corpus supplies three intensity settings of the same term in three prompts: "sidechained pads" (#88) as subtle glue, "brutal sidechain pump" (#J1), and "hard sidechain breathing" (#J3). That makes this the easiest term on the page to test as a range rather than a yes/no.`,
@@ -230,6 +244,7 @@ const LEX = [
   known:`Indian classical music, Highland pipes, Appalachian fiddle, doom metal and ambient. It is one of the oldest harmonic devices in existence.`,
   origin:`Predates written harmony; arrived independently in folk and devotional traditions across Europe, Asia and North Africa.`,
   domains:['harmony'],
+  match:['drone','droning'],
   kinds:['technique'],
   nature:'continuous',
   range:`From an instrument built to produce it — "pumping harmonium drone" (#11), "fiddle drone" (#3) — to a drone created as a by-product of an effect, as in "feedback drone" (#8).`,
@@ -252,6 +267,7 @@ const LEX = [
   known:`Disco first, then house, techno and most dance music since. Also common in rock and indie whenever a track wants relentlessness instead of swing.`,
   origin:`Named for the bass-drum pedal on the floor; became the defining figure of mid-1970s disco and carried into house and techno through the 80s.`,
   domains:['rhythm'],
+  match:['four-on-the-floor','four on the floor'],
   kinds:['technique'],
   nature:'continuous',
   range:`Binary at its core — the kick either lands on all four or it does not — but what surrounds it is not. Disco (#22) puts hi-hat sizzle on the offbeats to lighten it; techno strips them away to make it relentless.`,
@@ -274,6 +290,7 @@ const LEX = [
   known:`The final-chorus lift in ballads, contest pop and schlager. Used sparingly it is a structural device; used at the last chorus with a drum fill announcing it, it is a genre signature in its own right.`,
   origin:`A standard device in European art music long before popular song; the undisguised late-chorus lift is a mid-20th-century pop habit, strongest in contest and schlager traditions.`,
   domains:['form'],
+  match:['key change','key-change'],
   kinds:['technique'],
   nature:'momentary',
   range:`#E2 has "one late shimmering key change handled with restraint" — the event minimised. #356 decorates it: "a string flourish arriving on the key change". #355 is the maximal version, "lifting the final section a whole tone with no attempt to disguise it".`,
@@ -296,6 +313,7 @@ const LEX = [
   known:`West African musical practice and everything descended from it — work songs, field hollers, gospel, blues, jazz trading, hip-hop crowd chants. Sea shanties arrived at the same structure independently.`,
   origin:`West African musical practice carried into the Americas; independently present in European work-song and liturgical traditions.`,
   domains:['arrangement'],
+  match:['call-and-response','call and response'],
   kinds:['technique'],
   nature:'continuous',
   range:`From an occasional answering figure decorating a chorus, to "call-and-response as the whole architecture" (#148), where the form consists of nothing else.`,

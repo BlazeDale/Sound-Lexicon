@@ -140,6 +140,42 @@ evidence; a verdict is a claim about the generator and carries a model version a
 Agreement that a track demonstrates a term is not the same as a finding about how the model
 behaves, and the page keeps them apart.
 
+### More examples: letting a growing corpus reach the cards
+
+Curated evidence is the lesson — each item carries a hand-written reason it was chosen,
+and nothing can generate that. But new prompts kept arriving with no route to the card
+that documents their term: at the time this was added, **301 entries already matched a
+term's wording and were invisible to the page**.
+
+So each card carries a **"N more examples"** button that expands the rest. They are
+labelled *not curated, not vouched for*, carry no reason, and do not count toward the
+card's support tally. What they give a reader is the honest scale of a term's use — for
+four-on-the-floor, "87 more" *is* a finding — and what they give the project is a path by
+which writing a prompt is the entire act of attaching it.
+
+Three decisions here exist specifically to stop this becoming a maintenance burden:
+
+1. **Matched at runtime against `LIB`.** No generated list, no cache, no sync step. Add a
+   prompt to the vocal library and the relevant lesson picks it up on next load with
+   nothing to run and nothing to remember.
+2. **The vocabulary is short stems, not inflections.** `match:['brush']` catches brushed,
+   brushes, brushing; `['sidechain','side-chain']` catches both spellings and all their
+   endings. One or two strings per card — there is no list of word forms to keep up.
+   Absent, it falls back to the card's own `ev` spans.
+3. **Computed once at load and rendered in chunks of 12.** The cost is cards × entries,
+   and that product is what grows; doing it per keystroke of the search box would not
+   survive a hundred cards against five thousand prompts. Expansion patches one card, so
+   opening a list of 87 never re-renders the page.
+
+`validate.mjs` reports total reachable-but-uncurated entries every run, so drift is a
+number you see rather than something discovered months later — and it **fails** if a
+card's entire vocabulary matches nothing, which is what a typo looks like. Individual
+unused spelling variants are deliberate future-proofing and are not flagged; nagging
+about those every run is how a real typo gets waved through.
+
+A vote on a "more" example is the signal it has earned a curated entry with a real
+reason — voted ones sort to the top of the expanded list so they surface without paging.
+
 ### Minimal pairs
 
 The strongest form of evidence, and the default for a term whose uptake is in

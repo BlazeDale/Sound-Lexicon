@@ -115,6 +115,41 @@ export function checkLexicon() {
     if (badState.length) fail(`evidence state must be one of ${STATES.join('/')}: ${badState.join(', ')}`);
   }
 
+  /* ---------- discovery vocabulary and corpus reach ----------
+     The "more examples" button matches at runtime, so nothing here needs regenerating.
+     What CAN rot is the vocabulary: a mistyped stem matches nothing and the card quietly
+     stops seeing new prompts. Report both, so growth and drift are visible on every run
+     rather than discovered months later. */
+  {
+    const dead = [], reach = [];
+    let stems = 0, unattached = 0;
+    for (const c of LEX) {
+      const src = (c.match && c.match.length) ? c.match : [...new Set((c.ev || []).map(e => e.span))];
+      const bad = src.filter(s => typeof s !== 'string' || !s.trim());
+      if (bad.length) fail(`${c.id}: match must be non-empty strings`);
+      stems += src.length;
+      const low = src.map(s => String(s).toLowerCase());
+      const attached = new Set((c.ev || []).map(e => String(e.n)));
+      /* Flag a card only when its ENTIRE vocabulary reaches nothing. Individual unused
+         variants are deliberate future-proofing — the corpus may only use the hyphenated
+         spelling today — and listing them every run would train us to ignore the line,
+         which is how a real typo gets through. */
+      const anyHit = low.some(s => LIB.some(v => `${v.style || ''}\n${v.neg || ''}`.toLowerCase().includes(s)));
+      if (!anyHit) dead.push(`${c.id} (${low.map(s => `"${s}"`).join(', ')})`);
+      const more = LIB.filter(v => {
+        const id = String(v.n ?? v.id);
+        if (attached.has(id) || !(v.suno || []).length) return false;
+        const t = `${v.style || ''}\n${v.neg || ''}`.toLowerCase();
+        return low.some(s => t.includes(s));
+      }).length;
+      unattached += more;
+      if (more) reach.push(`${c.id} +${more}`);
+    }
+    pass(`discovery: ${stems} stems; ${unattached} corpus entries reachable but not curated`
+      + (reach.length ? ` (${reach.slice(0, 4).join(', ')}${reach.length > 4 ? `, +${reach.length - 4} more cards` : ''})` : ''));
+    if (dead.length) fail(`card(s) whose entire discovery vocabulary matches nothing — they will never see a new prompt: ${dead.join("; ")}`);
+  }
+
   /* ---------- verdicts have a shelf life (design doc §8) ----------
      A verdict is about ONE generator version at ONE date. An undated verdict looks
      authoritative while rotting, so it is rejected outright rather than warned about. */
