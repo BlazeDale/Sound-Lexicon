@@ -339,12 +339,20 @@ function cardHTML(c) {
   const ev = c.ev || [];
   const stateLine = `<div class="evstate" data-sup="${esc(c.id)}">${supportLine(c)}</div>`;
 
-  const evHTML = ev.map((e, i) => {
+  /* Best-supported evidence first: the strongest demonstration of a term should be the
+     first thing a reader meets under the lesson. Ties keep the authored order, which is
+     curated — the cleanest test case is deliberately written first — so an unvoted list
+     still reads in a considered sequence rather than an arbitrary one. `i` stays the
+     ORIGINAL index, because the prompt pop-out addresses evidence by position. */
+  const ordered = ev.map((e, i) => ({ e, i }))
+    .sort((a, b) => (voteCount(c.id, b.e.n) - voteCount(c.id, a.e.n)) || (a.i - b.i));
+
+  const evHTML = ordered.map(({ e, i }) => {
     const v = byN.get(String(e.n)) || {};
     const n = voteCount(c.id, e.n);
     const mine = myVotes.has(voteKey(c.id, e.n));
     return `<div class="evitem${e.state === 'rejected' ? ' st-rejected' : ''}${n > 0 ? ' supported' : ''}"
-                 data-ev="${esc(c.id)}|${esc(e.n)}">
+                 data-ev="${esc(c.id)}|${esc(e.n)}" data-idx="${i}">
       <div class="evhead">
         <span class="evn">#${esc(e.n)}</span>
         <span class="evname">${esc(v.name || 'unknown entry')}</span>
@@ -422,7 +430,7 @@ function cardHTML(c) {
     <div class="ev">
       <div class="lab">Evidence</div>
       ${stateLine}
-      ${evHTML}
+      <div class="evlist" data-list="${esc(c.id)}">${evHTML}</div>
     </div>
   </article>`;
 }
@@ -483,6 +491,21 @@ function refreshVotes() {
     const c = LEX.find(x => x.id === el.dataset.sup); if (!c) return;
     el.innerHTML = supportLine(c);
     el.classList.toggle('some', support(c).backed > 0);
+  });
+  reorderEvidence();
+}
+
+/* Keep best-supported first as votes land, without a full re-render. Moving existing
+   nodes leaves the card's height unchanged, so the reader's scroll position survives —
+   which matters most in the case this is for: voting while listening, part-way down a page. */
+function reorderEvidence() {
+  document.querySelectorAll('[data-list]').forEach(list => {
+    const cardId = list.dataset.list;
+    const items = [...list.children];
+    const cnt = el => voteCount(cardId, el.dataset.ev.split('|')[1]);
+    const sorted = items.slice().sort((a, b) =>
+      (cnt(b) - cnt(a)) || (+a.dataset.idx - +b.dataset.idx));
+    if (sorted.some((el, i) => el !== items[i])) sorted.forEach(el => list.appendChild(el));
   });
 }
 

@@ -117,6 +117,13 @@ are worth keeping:
 - **One system, not two.** The sync tool and the local approval buffer are gone. Live counts
   live in Firebase like the ♥ counts; nothing about a vote needs committing.
 
+**Evidence is ordered by support, best first.** The strongest demonstration of a term
+should be the first thing under the lesson, not whichever example happened to be written
+first. Ties keep the authored order, which is curated — the cleanest test case is written
+first deliberately — so an unvoted card still reads in a considered sequence rather than an
+arbitrary one. Reordering moves existing nodes rather than re-rendering, so a vote cast
+part-way down a page does not throw the reader's position.
+
 **The vote is per (term, demo) pair, never per track.** The same recording can plainly
 demonstrate one term and say nothing about another, so a per-track score would be meaningless.
 
