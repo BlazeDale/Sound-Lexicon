@@ -100,6 +100,7 @@
   .evspan{font-family:var(--mono);font-size:11px;background:rgba(224,166,60,.13);border:1px solid var(--amber-dim);color:var(--amber);border-radius:4px;padding:1px 6px}
   .evstateT{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);border:1px solid var(--line);border-radius:4px;padding:1px 6px}
   .evstateT.rejected{color:var(--rose);border-color:var(--rose)}
+  .evstateT.found{color:var(--teal);border-color:var(--teal)}
   /* support votes — "does this track actually demonstrate the term?", one click, shared */
   .evitem.st-rejected{opacity:.5}
   .vote{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;background:transparent;border:1px solid var(--line);color:var(--muted);border-radius:5px;padding:4px 10px;cursor:pointer;transition:border-color .12s,color .12s,background .12s}
@@ -391,15 +392,35 @@ const voteCount = (cardId, n) => (window.__likeCounts || {})[voteKey(cardId, n)]
    one of its demos. Zero votes reads as "not yet demonstrated" — which is the honest
    state for everything on the page right now, and the page says so rather than
    implying the silence means anything else. */
+/* The examples shown under a lesson: everything curated, PLUS any discovered example
+   somebody has vouched for.
+
+   The first build kept those strictly apart, and that was wrong in a way a vote exposes
+   immediately: vouch for a discovered take and it sorted to the top of a list that stays
+   collapsed, so the one example a person had actually confirmed was the one they could not
+   see. A vote is the whole signal of what deserves prominence — where the example came
+   from is a detail of how it was found. So a vouched-for discovery outranks a curated
+   example with no support, and says plainly that it has not been written up yet. */
+function examples(c) {
+  const curated = (c.ev || []).map((e, i) => ({ ...e, src: 'ev', i }));
+  const promoted = (c._more || [])
+    .map((m, i) => ({ ...m, src: 'more', i }))
+    .filter(m => voteCount(c.id, m.n) > 0);
+  return [...curated, ...promoted]
+    .filter(x => x.state !== 'rejected')
+    .sort((a, b) => (voteCount(c.id, b.n) - voteCount(c.id, a.n))
+      || (a.src === b.src ? a.i - b.i : (a.src === 'ev' ? -1 : 1)));
+}
+
 function support(c) {
-  const ev = (c.ev || []).filter(e => e.state !== 'rejected');
+  const list = examples(c);
   let backed = 0, votes = 0;
-  for (const e of ev) {
+  for (const e of list) {
     const n = voteCount(c.id, e.n);
     votes += n;
     if (n > 0) backed++;
   }
-  return { backed, votes, total: ev.length };
+  return { backed, votes, total: list.length };
 }
 
 function supportLine(c) {
@@ -428,35 +449,34 @@ function cardHTML(c) {
   const kinds = c.kinds.map(k => `<span class="chip kind"><b>${k === 'instrument' ? 'Instrument / tool' : 'Technique'}</b></span>`).join('');
   const nat = `<span class="chip">${c.nature === 'momentary' ? 'Momentary event' : 'Continuous'}</span>`;
 
-  const ev = c.ev || [];
   const stateLine = `<div class="evstate" data-sup="${esc(c.id)}">${supportLine(c)}</div>`;
 
-  /* Best-supported evidence first: the strongest demonstration of a term should be the
-     first thing a reader meets under the lesson. Ties keep the authored order, which is
-     curated — the cleanest test case is deliberately written first — so an unvoted list
-     still reads in a considered sequence rather than an arbitrary one. `i` stays the
-     ORIGINAL index, because the prompt pop-out addresses evidence by position. */
-  const ordered = ev.map((e, i) => ({ e, i }))
-    .sort((a, b) => (voteCount(c.id, b.e.n) - voteCount(c.id, a.e.n)) || (a.i - b.i));
-
-  const evHTML = ordered.map(({ e, i }) => {
-    const v = byN.get(String(e.n)) || {};
-    const n = voteCount(c.id, e.n);
-    const mine = myVotes.has(voteKey(c.id, e.n));
-    return `<div class="evitem${e.state === 'rejected' ? ' st-rejected' : ''}${n > 0 ? ' supported' : ''}"
-                 data-ev="${esc(c.id)}|${esc(e.n)}" data-idx="${i}">
+  /* Best-supported first. Ties keep the authored order, which is curated — the cleanest
+     test case is written first on purpose — so an unvoted list still reads as a considered
+     sequence. `i` stays the index into its OWN source list, because the prompt pop-out
+     addresses examples by position within `ev` or `_more`. */
+  const evHTML = examples(c).map(x => {
+    const v = byN.get(String(x.n)) || {};
+    const n = voteCount(c.id, x.n);
+    const mine = myVotes.has(voteKey(c.id, x.n));
+    const found = x.src === 'more';
+    return `<div class="evitem${x.state === 'rejected' ? ' st-rejected' : ''}${n > 0 ? ' supported' : ''}"
+                 data-ev="${esc(c.id)}|${esc(x.n)}" data-idx="${x.i}" data-src="${x.src}">
       <div class="evhead">
-        <span class="evn">#${esc(e.n)}</span>
+        <span class="evn">#${esc(x.n)}</span>
         <span class="evname">${esc(v.name || 'unknown entry')}</span>
-        <span class="evspan">${esc(e.span)}</span>
-        ${e.state === 'rejected' ? `<span class="evstateT rejected">ruled out</span>` : ''}
+        ${x.span ? `<span class="evspan">${esc(x.span)}</span>` : ''}
+        ${found ? `<span class="evstateT found">vouched for &middot; not written up</span>` : ''}
       </div>
-      <p class="evwhy">${esc(e.why)}</p>
+      ${found
+        ? `<p class="evwhy">Found by wording rather than chosen, and promoted here because
+             somebody vouched for it. It has no write-up yet explaining what to listen for.</p>`
+        : `<p class="evwhy">${esc(x.why)}</p>`}
       <div class="evrow">
-        <button class="btn" type="button" data-prompt="${esc(c.id)}|${i}|ev">Prompt</button>
+        <button class="btn" type="button" data-prompt="${esc(c.id)}|${x.i}|${x.src}">Prompt</button>
         ${tiles(v)}
         <button class="vote${mine ? ' on' : ''}${!mine && n > 0 ? ' has' : ''}" type="button"
-          data-vote="${esc(c.id)}|${esc(e.n)}"
+          data-vote="${esc(c.id)}|${esc(x.n)}"
           title="${mine ? 'You vouched for this — click to take it back' : 'I hear the term in this track'}">
           <span class="arrow">▲</span> Supports <span class="vc">${n || ''}</span>
         </button>
@@ -541,8 +561,12 @@ function cardHTML(c) {
    For a term like four-on-the-floor the count is itself a finding: 86 prompts lean on it. */
 const moreOpen = new Map();          // cardId -> how many are currently shown
 
+/* Anything vouched for has moved up into the evidence list, so it must not also sit
+   here — one example, one place. */
+const unpromoted = c => (c._more || []).filter(m => voteCount(c.id, m.n) === 0);
+
 function moreBlock(c) {
-  const n = c._more.length;
+  const n = unpromoted(c).length;
   if (!n) return '';
   const shown = moreOpen.get(c.id) || 0;
   return `<div class="more">
@@ -556,11 +580,11 @@ function moreBlock(c) {
 
 function moreItems(c, shown) {
   if (!shown) return '';
-  /* voted ones first, so anything a listener has vouched for surfaces without paging
-     to find it — that is the signal it has earned a curated entry with a real reason. */
+  /* No sorting needed: a vote promotes an example out of this list entirely, so
+     everything left here has zero support and keeps corpus order. */
   const ordered = c._more
     .map((m, i) => ({ m, i }))
-    .sort((a, b) => (voteCount(c.id, b.m.n) - voteCount(c.id, a.m.n)) || (a.i - b.i));
+    .filter(({ m }) => voteCount(c.id, m.n) === 0);   // promoted ones render as evidence
   const slice = ordered.slice(0, shown);
   const rows = slice.map(({ m, i }) => {
     const v = byN.get(String(m.n)) || {};
@@ -580,13 +604,13 @@ function moreItems(c, shown) {
       </span>
     </div>`;
   }).join('');
-  const left = c._more.length - slice.length;
+  const left = ordered.length - slice.length;
   return rows + (left
     ? `<div class="morefoot">
          <button class="btn" type="button" data-moremore="${esc(c.id)}">Show ${Math.min(left, MORE_CHUNK)} more</button>
          <span class="morenote">${left} still hidden</span>
        </div>`
-    : `<div class="morefoot"><span class="morenote">That is all ${c._more.length} of them.</span></div>`);
+    : `<div class="morefoot"><span class="morenote">That is all ${ordered.length} of them.</span></div>`);
 }
 
 /* Expansion patches only the affected card, so opening a list of 86 never re-renders
@@ -638,6 +662,7 @@ function render() {
     done ? `<b>${done}</b> / ${LEX.length} learned` : `none marked learned yet`;
   const d = curDomain && domById.get(curDomain);
   document.getElementById('dblurb').textContent = d ? d.blurb : '';
+  promotedSig = currentPromotedSig();   // set BEFORE renderCounts, or refreshVotes recurses
   renderCounts();
 }
 
@@ -664,8 +689,25 @@ function renderCounts() {
 }
 window.__renderCounts = renderCounts;
 
+/* A vote can change WHICH examples belong under a lesson, not just their order — the
+   first vote on a discovered take promotes it out of "more examples" and into the
+   evidence list. Moving nodes cannot express that, so membership changes force a real
+   re-render. This signature is how we tell the two apart. */
+let promotedSig = '';
+const currentPromotedSig = () => LEX
+  .map(c => c.id + ':' + (c._more || []).filter(m => voteCount(c.id, m.n) > 0).map(m => m.n).join('.'))
+  .join('|');
+
 /* Patch vote UI in place: button state, count, item highlight, and the card's header line. */
 function refreshVotes() {
+  const sig = currentPromotedSig();
+  if (sig !== promotedSig) {            // something got promoted or demoted — rebuild
+    promotedSig = sig;
+    const y = window.scrollY;
+    render();
+    window.scrollTo(0, y);
+    return;
+  }
   document.querySelectorAll('[data-vote]').forEach(b => {
     const [cardId, n] = b.dataset.vote.split('|');
     const key = voteKey(cardId, n), c = voteCount(cardId, n), mineV = myVotes.has(key);
@@ -691,8 +733,9 @@ function reorderEvidence() {
     const cardId = list.dataset.list;
     const items = [...list.children];
     const cnt = el => voteCount(cardId, el.dataset.ev.split('|')[1]);
+    const rank = el => el.dataset.src === 'ev' ? 0 : 1;    // curated first on a tie
     const sorted = items.slice().sort((a, b) =>
-      (cnt(b) - cnt(a)) || (+a.dataset.idx - +b.dataset.idx));
+      (cnt(b) - cnt(a)) || (rank(a) - rank(b)) || (+a.dataset.idx - +b.dataset.idx));
     if (sorted.some((el, i) => el !== items[i])) sorted.forEach(el => list.appendChild(el));
   });
 }

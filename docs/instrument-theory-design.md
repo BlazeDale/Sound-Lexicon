@@ -173,8 +173,21 @@ card's entire vocabulary matches nothing, which is what a typo looks like. Indiv
 unused spelling variants are deliberate future-proofing and are not flagged; nagging
 about those every run is how a real typo gets waved through.
 
-A vote on a "more" example is the signal it has earned a curated entry with a real
-reason — voted ones sort to the top of the expanded list so they surface without paging.
+**A vote promotes an example out of this list and into the evidence above it** (revised
+after the first real vote landed on one). Keeping the two strictly apart was wrong in a way
+a vote exposes immediately: vouch for a discovered take and it sorted to the top of a list
+that stays collapsed, so the one example a person had actually confirmed was the one they
+could not see.
+
+A vote is the whole signal of what deserves prominence; where an example came from is a
+detail of how it was found. So a vouched-for discovery now outranks a curated example with
+no support, sits in the evidence list, counts toward the tally, and is labelled *vouched
+for, not written up* — honest about lacking a reason, rather than hidden for it. It leaves
+the "more" list at the same moment, so nothing appears twice.
+
+That also means a vote can change which examples belong to a lesson, not just their order.
+Reordering nodes cannot express a membership change, so the page tracks a signature of what
+is promoted and does a real re-render when it shifts, patching in place otherwise.
 
 ### Learned: private progress, not shared state
 
