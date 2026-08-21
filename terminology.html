@@ -101,6 +101,18 @@
   .evstateT{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);border:1px solid var(--line);border-radius:4px;padding:1px 6px}
   .evstateT.approved{color:var(--teal);border-color:var(--teal)}
   .evstateT.rejected{color:var(--rose);border-color:var(--rose)}
+  /* approval editing — the listening pass. Off by default; the ✎ pill turns it on. */
+  .evitem.st-approved{box-shadow:inset 2px 0 0 var(--teal);padding-left:11px}
+  .evitem.st-rejected{opacity:.5}
+  .apprbtns{display:none;gap:4px;margin-left:2px}
+  body.editappr .apprbtns{display:inline-flex}
+  .ab{font-family:var(--mono);font-size:12px;line-height:1;background:transparent;border:1px solid var(--line);color:var(--muted);border-radius:5px;padding:4px 9px;cursor:pointer}
+  .ab:hover{border-color:var(--amber);color:var(--amber)}
+  .ab.on[data-set="approved"]{background:rgba(26,158,117,.18);border-color:var(--teal);color:var(--teal)}
+  .ab.on[data-set="rejected"]{background:rgba(208,59,59,.16);border-color:var(--rose);color:var(--rose)}
+  .warnbar{margin-top:10px;background:rgba(208,59,59,.10);border:1px solid rgba(208,59,59,.42);color:#eab6b6;border-radius:8px;padding:9px 12px;font-size:13px;display:none}
+  .warnbar.on{display:block}
+  .warnbar code{font-family:var(--mono);font-size:11.5px;color:var(--amber)}
   .evwhy{font-size:13px;color:var(--muted);margin:5px 0 8px}
   .evrow{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
   .btn{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;background:transparent;border:1px solid var(--line);color:var(--muted);border-radius:5px;padding:4px 10px;cursor:pointer}
@@ -162,8 +174,11 @@
     <div class="crow">
       <input id="q" type="search" placeholder="Search a term, or how you'd say it — chugging, pumping, that soft jazz drum sound…" autocomplete="off">
       <button class="pill" id="needs" type="button">Needs a listen</button>
+      <button class="pill" id="appr" type="button" title="Turn on the listening pass — ✓ / ✗ on every demo">✎ Approvals</button>
+      <button class="pill" id="expappr" type="button" style="display:none" title="Copy your approvals so they can be written into the repo">Copy for sync</button>
       <span class="hits" id="hits"></span>
     </div>
+    <div class="warnbar" id="warn"></div>
     <div class="rail" id="rail"></div>
     <p class="dblurb" id="dblurb"></p>
   </div>
@@ -263,6 +278,51 @@ function blob(c) {
 }
 LEX.forEach(c => c._blob = blob(c));
 
+/* ---------- APPROVAL STATE — the listening pass ----------
+   Approval is a judgement made by ear, so it has to be recordable while listening
+   rather than dictated afterwards from notes (design doc §5).
+
+   Three layers, in precedence order:
+     1. Firebase  — shared and durable, once the `lex_appr` rule exists
+     2. localStorage — this browser, always available, so a listening session can
+        start today and is never lost if the shared write is refused
+     3. the value committed in lexicon_data.js — the published truth
+
+   `node tools/approvals.mjs` folds 1 or 2 back into lexicon_data.js, which stays the
+   source of truth for anything published and the only thing validate.mjs can check. */
+const APPR_KEY = 'lex_appr';
+let apprLocal = {};
+try { apprLocal = JSON.parse(localStorage.getItem(APPR_KEY) || '{}'); } catch (e) { apprLocal = {}; }
+const apprKey = (cardId, n) => `${cardId}:${n}`;
+
+function evState(cardId, n, fileState) {
+  const remote = (window.__apprRemote || {})[cardId];
+  const r = remote && remote[String(n)];
+  if (r) return r;
+  const l = apprLocal[apprKey(cardId, n)];
+  return l || fileState;
+}
+function setEvState(cardId, n, state) {
+  apprLocal[apprKey(cardId, n)] = state;
+  try { localStorage.setItem(APPR_KEY, JSON.stringify(apprLocal)); } catch (e) {}
+  if (window.__apprWrite) window.__apprWrite(cardId, n, state);
+}
+/* Only says something is approved when a person actually said so. */
+function apprCounts(c) {
+  const ev = c.ev || [];
+  let ok = 0, no = 0;
+  for (const e of ev) {
+    const s = evState(c.id, e.n, e.state);
+    if (s === 'approved') ok++; else if (s === 'rejected') no++;
+  }
+  return { ok, no, total: ev.length };
+}
+
+function showWarn(html) {
+  const w = document.getElementById('warn');
+  w.innerHTML = html; w.classList.add('on');
+}
+
 /* ---------- demo tiles ---------- */
 function tiles(v) {
   const ids = (v.suno || []).filter(s => /^[0-9a-f-]{30,}$/i.test(s));
@@ -282,24 +342,33 @@ function cardHTML(c) {
   const nat = `<span class="chip">${c.nature === 'momentary' ? 'Momentary event' : 'Continuous'}</span>`;
 
   const ev = c.ev || [];
-  const approved = ev.filter(e => e.state === 'approved').length;
-  const stateLine = approved
-    ? `<div class="evstate some">${approved} of ${ev.length} demos approved for this term by ear.</div>`
-    : `<div class="evstate">Documented, not yet demonstrated. ${ev.length} candidate${ev.length === 1 ? '' : 's'} drawn from existing prompts — none approved by ear yet.</div>`;
+  const { ok, no } = apprCounts(c);
+  const stateLine = ok
+    ? `<div class="evstate some">${ok} of ${ev.length} demos approved for this term by ear${no ? `; ${no} rejected` : ''}.</div>`
+    : `<div class="evstate">Documented, not yet demonstrated. ${ev.length} candidate${ev.length === 1 ? '' : 's'} drawn from existing prompts — none approved by ear yet${no ? `, ${no} already rejected` : ''}.</div>`;
 
   const evHTML = ev.map((e, i) => {
     const v = byN.get(String(e.n)) || {};
-    return `<div class="evitem">
+    const st = evState(c.id, e.n, e.state);
+    const ab = (set, glyph, label) =>
+      `<button class="ab${st === set ? ' on' : ''}" type="button" title="${label}"
+        data-appr="${esc(c.id)}|${esc(e.n)}" data-set="${set}">${glyph}</button>`;
+    return `<div class="evitem st-${esc(st)}">
       <div class="evhead">
         <span class="evn">#${esc(e.n)}</span>
         <span class="evname">${esc(v.name || 'unknown entry')}</span>
         <span class="evspan">${esc(e.span)}</span>
-        <span class="evstateT ${esc(e.state)}">${esc(e.state)}</span>
+        <span class="evstateT ${esc(st)}">${esc(st)}</span>
       </div>
       <p class="evwhy">${esc(e.why)}</p>
       <div class="evrow">
         <button class="btn" type="button" data-prompt="${esc(c.id)}|${i}">Prompt</button>
         ${tiles(v)}
+        <span class="apprbtns">
+          ${ab('approved', '✓', 'This demo does demonstrate the term')}
+          ${ab('rejected', '✗', 'It does not — wrong or inaudible')}
+          ${ab('candidate', '↺', 'Back to undecided')}
+        </span>
       </div>
     </div>`;
   }).join('');
@@ -373,7 +442,7 @@ function render() {
   const words = term ? term.split(/\s+/) : [];
   const list = LEX.filter(c => {
     if (curDomain && !c.domains.includes(curDomain)) return false;
-    if (curNeeds && (c.ev || []).some(e => e.state === 'approved')) return false;
+    if (curNeeds && apprCounts(c).ok > 0) return false;   // live state, not the file's
     return words.every(w => c._blob.includes(w));
   });
   document.getElementById('cards').innerHTML = list.length
@@ -480,6 +549,48 @@ document.getElementById('q').addEventListener('input', render);
 document.getElementById('needs').addEventListener('click', e => {
   curNeeds = !curNeeds; e.target.classList.toggle('on', curNeeds); render();
 });
+/* ---------- the listening pass ---------- */
+document.getElementById('appr').addEventListener('click', e => {
+  const on = document.body.classList.toggle('editappr');
+  e.target.classList.toggle('on', on);
+  document.getElementById('expappr').style.display = on ? '' : 'none';
+  if (on && window.__apprShared !== true) showWarn(
+    `Approvals are saving <b>to this browser only</b> — the shared database has no rule for
+     <code>lex_appr</code> yet, so nothing here reaches another device. Keep going: nothing is
+     lost, and <b>Copy for sync</b> hands them over to be written into the repo.`);
+});
+
+/* A click records the judgement immediately — mid-listen, one keystroke's worth of effort.
+   Re-render in place so the card header count and the "Needs a listen" filter stay honest. */
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-appr]'); if (!b) return;
+  const [cardId, n] = b.dataset.appr.split('|');
+  setEvState(cardId, n, b.dataset.set);
+  const y = window.scrollY;
+  render();
+  window.scrollTo(0, y);
+});
+
+/* Export: the bridge to the repo when the shared path is unavailable. Clipboard rather
+   than a download, because the artifact sandbox and some browsers block script downloads. */
+document.getElementById('expappr').addEventListener('click', e => {
+  const out = {};
+  for (const c of LEX) for (const ev of (c.ev || [])) {
+    const s = evState(c.id, ev.n, ev.state);
+    if (s !== ev.state) (out[c.id] = out[c.id] || {})[ev.n] = s;
+  }
+  const n = Object.values(out).reduce((a, o) => a + Object.keys(o).length, 0);
+  const txt = JSON.stringify(out, null, 2);
+  const done = m => { const t = e.target.textContent; e.target.textContent = m;
+    setTimeout(() => { e.target.textContent = t; }, 1600); };
+  if (!n) { done('Nothing changed'); return; }
+  (navigator.clipboard && navigator.clipboard.writeText
+    ? navigator.clipboard.writeText(txt) : Promise.reject()
+  ).then(() => done(`Copied ${n}`)).catch(() => {
+    fallback(txt); done(`Copied ${n}`);
+  });
+});
+
 document.getElementById('rail').addEventListener('click', e => {
   const b = e.target.closest('[data-dom]'); if (!b) return;
   curDomain = b.dataset.dom || null;
@@ -496,6 +607,14 @@ function jumpToHash() {
 }
 window.addEventListener('hashchange', jumpToHash);
 
+/* Re-render without losing the reader's place — used when shared approvals arrive. */
+window.__rerender = () => { const y = window.scrollY; render(); window.scrollTo(0, y); };
+window.__apprRefused = () => showWarn(
+  `The shared database refused that write, so your approvals are saving
+   <b>to this browser only</b>. Nothing has been lost. Add a rule for
+   <code>lex_appr</code> in the Firebase console to share them, or use
+   <b>Copy for sync</b> to hand them over for the repo.`);
+
 buildRail();
 render();
 jumpToHash();
@@ -507,7 +626,7 @@ jumpToHash();
    Keys here are prefixed "lex:" so the two pages cannot collide (design doc §9).
    If the SDK cannot load, the page keeps working with local-only hearts. */
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getDatabase, ref, onValue, runTransaction } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+import { getDatabase, ref, onValue, runTransaction, set } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 const firebaseConfig={
   apiKey:"AIzaSyBJgYjvHXL69y_7i7qG2qwBzYVUA1lCZuE",
   authDomain:"vocal-timbre-library.firebaseapp.com",
@@ -527,6 +646,29 @@ try{
   window.__bumpLike=(id,delta)=>runTransaction(ref(db,'likes/'+id),cur=>{
     const v=(cur||0)+delta; return v<0?undefined:v;
   }).catch(e=>console.warn('[likes] write failed',e));
+
+  /* ---------- shared approvals (lex_appr/<cardId>/<entry> = state) ----------
+     Needs a database rule; until one exists the read below is refused and the page
+     falls back to the local buffer. The failure is SHOWN, never swallowed — a
+     silently-dropped approval would be worse than no button at all. */
+  onValue(ref(db,'lex_appr'),
+    snap=>{
+      window.__apprRemote=snap.val()||{};
+      window.__apprShared=true;
+      window.__rerender&&window.__rerender();
+    },
+    err=>{
+      window.__apprRemote={};
+      console.warn('[approvals] shared path unavailable, using this browser only:',err.message);
+    });
+
+  window.__apprWrite=(cardId,n,state)=>
+    set(ref(db,`lex_appr/${cardId}/${n}`),state)
+      .catch(e=>{
+        console.warn('[approvals] shared write refused, kept locally:',e.message);
+        window.__apprWrite=null;      // stop retrying; the local buffer still holds everything
+        window.__apprRefused&&window.__apprRefused();
+      });
 }catch(e){ console.warn('[likes] Firebase disabled, local-only hearts:',e); }
 </script>
 </body>

@@ -97,6 +97,45 @@ This does more than gatekeep. It gives the page an honest, visible
 hasn't proven, which is the credibility a lay reader needs — and it doubles
 as the work queue.
 
+### How approval is actually recorded (added 2026-08-21)
+
+Approval is a judgement made *while listening*, so it has to be one click on the card,
+not a note kept on paper and dictated afterwards. The page has an **✎ Approvals** mode
+that puts ✓ / ✗ / ↺ on every demo.
+
+Three layers, in precedence order, because no single one is sufficient:
+
+1. **Firebase** — shared and durable across devices.
+2. **localStorage** — this browser. Always available, so a listening session can start
+   without waiting on anything and is never lost if the shared write is refused.
+3. **`lexicon_data.js`** — the committed value. The published truth, the only copy
+   `validate.mjs` can check, and the only one that survives a cleared browser.
+
+`node tools/approvals.mjs` folds 1 or 2 back down into 3. The repo stays the source of
+truth; the live layers are a working buffer, not a second home for the data.
+
+**A refused write is shown, never swallowed.** A silently-dropped approval is worse than
+no button at all — you would do the listening twice and not know it.
+
+**Firebase needs a rule before the shared layer works.** The database whitelists paths;
+as of 2026-08-21 only `likes` and `song_gender` are open, and `lex_appr` is denied
+(verified by probe). Until this is added in the Firebase console, approvals are
+browser-local and move to the repo via the page's **Copy for sync** button:
+
+```json
+"lex_appr": {
+  ".read": true,
+  ".write": true,
+  "$card": { "$entry": {
+    ".validate": "newData.isString() && newData.val().matches(/^(candidate|approved|rejected)$/)"
+  } }
+}
+```
+
+Approving a demo is deliberately **not** the same act as setting the card's `res.verdict`.
+Demos are evidence; the verdict is a claim about the generator, and it carries a model
+version and date (§8). One does not imply the other.
+
 ### Minimal pairs
 
 The strongest form of evidence, and the default for a term whose uptake is in
