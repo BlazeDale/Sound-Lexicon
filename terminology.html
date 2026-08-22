@@ -93,6 +93,28 @@
   .v-collapses{background:rgba(208,59,59,.13);color:var(--rose);border:1px solid var(--rose)}
   .stamp{font-family:var(--mono);font-size:10.5px;color:var(--dim);margin-left:auto}
   .res .body{padding:12px 13px}
+  /* ---------- collapsed by default ----------
+     Ninety-nine lessons at full height is a page you scroll past rather than read. A card
+     opens on request; what stays visible is the bar that lets you decide whether to open it:
+     the term, what it actually is, where it belongs, and whether anybody has vouched for its
+     demos yet. Purely a CSS state — the whole card is still in the DOM, so votes, hearts and
+     the player patch a collapsed card exactly as they patch an open one. Hiding it also
+     spares the demo artwork: a lazy image inside display:none is never fetched. */
+  .chead{cursor:pointer;border-radius:9px;margin:-5px -7px 0;padding:5px 7px;transition:background .12s}
+  .chead:hover{background:rgba(255,255,255,.022)}
+  .chead:focus-visible{outline:1px solid var(--amber);outline-offset:1px}
+  .caret2{color:var(--muted);font-size:12px;transition:transform .15s,color .15s;display:inline-block;width:12px}
+  .chead:hover .caret2{color:var(--amber)}
+  .card.open .caret2{transform:rotate(90deg);color:var(--amber)}
+  .card:not(.open) .cbody{display:none}
+  /* Era and nature are for reading, not for choosing — the bar keeps domain and kind only. */
+  .card:not(.open) .chip.era,.card:not(.open) .chip.nat{display:none}
+  .csum{margin:9px 0 0;font-size:14px;line-height:1.5;color:var(--muted);
+        display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .card.open .csum{display:none}
+  .cmeta{font-family:var(--mono);font-size:10.5px;color:var(--dim);white-space:nowrap;margin-left:auto}
+  .cmeta b{color:var(--teal);font-weight:600}
+  .card.open .cmeta{display:none}
   /* evidence */
   .ev{margin-top:16px}
   .evstate{font-family:var(--mono);font-size:11.5px;color:var(--amber);background:rgba(224,166,60,.08);border:1px solid var(--amber-dim);border-radius:7px;padding:8px 11px;margin-bottom:10px}
@@ -251,6 +273,7 @@
       <button class="pill" id="needs" type="button" title="Only terms with no supporting vote yet">Needs a listen</button>
       <button class="pill" id="funlearned" type="button" title="Lessons you have not marked as learned">Unlearned</button>
       <button class="pill" id="flearned" type="button" title="Lessons you have marked as learned">Learned</button>
+      <button class="pill" id="expandall" type="button" title="Open every lesson currently listed">Open all</button>
       <span class="hits" id="hits"></span>
       <span class="progress" id="progress"></span>
     </div>
@@ -586,7 +609,7 @@ function tiles(v) {
 function cardHTML(c) {
   const doms = c.domains.map(d => `<span class="chip dom">${esc((domById.get(d) || {}).name || d)}</span>`).join('');
   const kinds = c.kinds.map(k => `<span class="chip kind"><b>${k === 'instrument' ? 'Instrument / tool' : 'Technique'}</b></span>`).join('');
-  const nat = `<span class="chip">${c.nature === 'momentary' ? 'Momentary event' : 'Continuous'}</span>`;
+  const nat = `<span class="chip nat">${c.nature === 'momentary' ? 'Momentary event' : 'Continuous'}</span>`;
   const eraChips = `<span class="chip era" data-era="${esc(c.first)}" title="First appeared. Click to search this decade.">from ${esc(c.first)}</span>`
     + ((c.peak || []).length
         ? `<span class="chip era pk" data-era="${esc(c.peak[0])}" title="Decades that popularised it. Click to search.">popular ${c.peak.map(esc).join(' &middot; ')}</span>`
@@ -657,21 +680,37 @@ function cardHTML(c) {
     : `<span class="stamp">${esc(r.model || '?')} · ${esc(r.date || '?')}</span>`;
 
   const isLearned = learned.has(c.id);
-  return `<article class="card${isLearned ? ' learned' : ''}" id="${esc(c.id)}" data-id="${esc(c.id)}">
+  const open = cardOpen.has(c.id);
+  /* What the bar has to answer is "is this the lesson I want?" — so the term, the one-line
+     definition, the domain it belongs to, and whether its demos have been vouched for. Not
+     the sound description: that one is the lesson itself and reads badly cut off. */
+  const sup = support(c);
+  const meta = `${sup.total} example${sup.total === 1 ? '' : 's'}`
+    + (sup.backed ? ` &middot; <b>${sup.backed} vouched</b>` : '');
+  return `<article class="card${isLearned ? ' learned' : ''}${open ? ' open' : ''}" id="${esc(c.id)}" data-id="${esc(c.id)}">
     <div class="likewrap">
       <button class="like" type="button" data-like="${esc(c.id)}" aria-label="Like">♥</button>
       <span class="lcount" data-lc="${esc(c.id)}"></span>
     </div>
-    <div class="ctop">
-      <span class="term">${esc(c.term)}</span>
-      <a class="anchor" href="#${esc(c.id)}" title="Link straight to this card">#${esc(c.id)}</a>
-      <button class="learn${isLearned ? ' on' : ''}" type="button" data-learn="${esc(c.id)}"
-        title="${isLearned ? 'Marked as learned — click to unmark' : 'Mark this lesson as learned'}">
-        ${isLearned ? '&#10003; Learned' : 'Mark learned'}</button>
+    <div class="chead" data-card="${esc(c.id)}" role="button" tabindex="0"
+         aria-expanded="${open ? 'true' : 'false'}"
+         title="${open ? 'Collapse this lesson' : 'Open this lesson'}">
+      <div class="ctop">
+        <span class="caret2">&#9656;</span>
+        <span class="term">${esc(c.term)}</span>
+        <a class="anchor" href="#${esc(c.id)}" title="Link straight to this card">#${esc(c.id)}</a>
+        <button class="learn${isLearned ? ' on' : ''}" type="button" data-learn="${esc(c.id)}"
+          title="${isLearned ? 'Marked as learned — click to unmark' : 'Mark this lesson as learned'}">
+          ${isLearned ? '&#10003; Learned' : 'Mark learned'}</button>
+        <span class="cmeta" data-cmeta="${esc(c.id)}">${meta}</span>
+      </div>
+      <div class="chips">${doms}${kinds}${nat}${eraChips}</div>
+      <p class="csum">${esc(c.gloss)}</p>
     </div>
-    <div class="chips">${doms}${kinds}${nat}${eraChips}</div>
 
+    <div class="cbody">
     <div class="hear">
+
       <div class="lab">What you hear</div>
       <p>${esc(c.sounds)}</p>
     </div>
@@ -725,6 +764,7 @@ function cardHTML(c) {
       <div class="evlist" data-list="${esc(c.id)}">${evHTML}</div>
       ${moreBlock(c)}
       ${addBlock(c)}
+    </div>
     </div>
   </article>`;
 }
@@ -849,6 +889,16 @@ function render() {
     done ? `<b>${done}</b> / ${LEX.length} learned` : `none marked learned yet`;
   const d = curDomain && domById.get(curDomain);
   document.getElementById('dblurb').textContent = d ? d.blurb : '';
+  /* Narrow the search to a single lesson and there is nothing left to choose between, so
+     opening it saves a click that has no alternative. Two or more stay shut. */
+  if (list.length === 1) cardOpen.add(list[0].id);
+  document.querySelectorAll('.card').forEach(el => {
+    const open = cardOpen.has(el.dataset.id);
+    el.classList.toggle('open', open);
+    const h = el.querySelector('.chead');
+    if (h) h.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  syncExpandAll();
   promotedSig = currentPromotedSig();   // set BEFORE renderCounts, or refreshVotes recurses
   needsSig = currentNeedsSig();         // likewise — see renderCounts
   renderCounts();
@@ -1007,6 +1057,12 @@ function refreshVotes() {
     const c = LEX.find(x => x.id === el.dataset.sup); if (!c) return;
     el.innerHTML = supportLine(c);
     el.classList.toggle('some', support(c).backed > 0);
+  });
+  document.querySelectorAll('[data-cmeta]').forEach(el => {      // the collapsed bar says it too
+    const c = LEX.find(x => x.id === el.dataset.cmeta); if (!c) return;
+    const s = support(c);
+    el.innerHTML = `${s.total} example${s.total === 1 ? '' : 's'}`
+      + (s.backed ? ` &middot; <b>${s.backed} vouched</b>` : '');
   });
   reorderEvidence();
 }
@@ -1256,10 +1312,66 @@ document.getElementById('rail').addEventListener('click', e => {
   render();
 });
 
+/* ---------- opening and closing a lesson ----------
+   Toggled in place rather than re-rendered: flipping one class is instant and leaves the
+   reader exactly where they were, while rebuilding ninety-nine cards to change one of them
+   would move the page under whoever just clicked. */
+const cardOpen = new Set();
+
+function setOpen(id, open) {
+  open ? cardOpen.add(id) : cardOpen.delete(id);
+  const card = document.getElementById(id);
+  if (!card) return;
+  card.classList.toggle('open', open);
+  const head = card.querySelector('.chead');
+  if (head) {
+    head.setAttribute('aria-expanded', open ? 'true' : 'false');
+    head.title = open ? 'Collapse this lesson' : 'Open this lesson';
+  }
+  markPlaying();          // tiles that were hidden are now real again
+}
+
+document.addEventListener('click', e => {
+  const head = e.target.closest('.chead');
+  if (!head) return;
+  /* The bar carries its own controls — the permalink, Mark learned, the era chips. A click
+     that landed on one of those was meant for it, not for the card. */
+  if (e.target.closest('a, button, [data-era]')) return;
+  const id = head.dataset.card;
+  setOpen(id, !cardOpen.has(id));
+});
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Enter' && e.key !== ' ') return;
+  const head = document.activeElement;
+  if (!head || !head.matches || !head.matches('.chead')) return;
+  e.preventDefault();
+  setOpen(head.dataset.card, !cardOpen.has(head.dataset.card));
+});
+
+/* Open or close everything at once. The label reads as what the button will DO, and which
+   one that is depends on what is currently on screen rather than on a remembered mode —
+   filter down to four cards, open them, and the button offers to close those four. */
+function visibleCards() { return [...document.querySelectorAll('.card')]; }
+document.getElementById('expandall').addEventListener('click', e => {
+  const cards = visibleCards();
+  const opening = cards.some(el => !cardOpen.has(el.dataset.id));
+  cards.forEach(el => setOpen(el.dataset.id, opening));
+  syncExpandAll();
+});
+function syncExpandAll() {
+  const btn = document.getElementById('expandall');
+  const cards = visibleCards();
+  const opening = cards.some(el => !cardOpen.has(el.dataset.id));
+  btn.textContent = opening ? 'Open all' : 'Close all';
+  btn.classList.toggle('on', !opening && cards.length > 0);
+}
+
 /* ---------- deep links (§9: a stable fragment per card) ---------- */
 function jumpToHash() {
   const id = decodeURIComponent(location.hash.slice(1)); if (!id) return;
   const el = document.getElementById(id); if (!el) return;
+  setOpen(id, true);                     // somebody followed a link to this lesson to read it
+  syncExpandAll();
   el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash');
 }
