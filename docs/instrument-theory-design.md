@@ -379,6 +379,19 @@ the schema correct.
 
 - Unified cross-library search.
 - Reverse links from vocal entries to the techniques they demonstrate.
+- **Pushing a ♥ through to a like on the generator's own site.** Asked and declined
+  2026-08-21. Two blockers, recorded so this is not re-investigated: hearts here are keyed
+  per ENTRY, not per song, so there is nothing song-shaped to send; and suno.com returns no
+  `Access-Control-Allow-Origin` header at all (checked, not assumed), so a browser refuses
+  any cross-origin request from the Pages origin. Liking also requires being authenticated
+  as a Suno user, and a visitor's session cookies are SameSite-protected and unreachable
+  from our page — the same cross-origin wall that blocks seeking the embed (§5).
+  A server-side relay holding one account's credentials could technically forward likes,
+  and should not: every visitor's heart would become a like from that one account, which is
+  a fabricated signal on a page whose whole value is not fabricating signals. The borrowed
+  -credential route is separately on record as classifier-blocked.
+  The honest version, if it is ever wanted: per-song hearts that link out so a visitor
+  likes the track themselves, as themselves.
 - Any automated uptake detection. Nothing in the generator's data exposes how
   a word was weighted; genre-level classification of a finished track cannot
   confirm a term landed. **The only readout is the audio**, and that means a
