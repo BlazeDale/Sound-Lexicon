@@ -106,6 +106,17 @@
   .evstateT{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);border:1px solid var(--line);border-radius:4px;padding:1px 6px}
   .evstateT.rejected{color:var(--rose);border-color:var(--rose)}
   .evstateT.found{color:var(--teal);border-color:var(--teal)}
+  /* a track a listener attached themselves — teal, the colour a vote already wears here */
+  .evstateT.addedt{color:var(--teal);border-color:var(--teal)}
+  .addev{margin-top:15px;border-top:1px dashed var(--line);padding-top:12px}
+  .addform{display:none;gap:8px;margin-top:10px;align-items:center;flex-wrap:wrap}
+  .addform.open{display:flex}
+  .addin{flex:1 1 280px;min-width:0;background:var(--panel2);border:1px solid var(--line);border-radius:7px;color:var(--text);font-family:var(--mono);font-size:11.5px;padding:7px 10px}
+  .addin:focus{outline:none;border-color:var(--teal)}
+  .addin::placeholder{color:var(--dim)}
+  .addmsg{flex-basis:100%;font-family:var(--mono);font-size:11px;color:var(--teal);margin:0}
+  .addmsg.bad{color:var(--rose)}
+  .addnote{flex-basis:100%;font-family:var(--mono);font-size:10.5px;color:var(--dim);margin:0}
   /* support votes — "does this track actually demonstrate the term?", one click, shared */
   .evitem.st-rejected{opacity:.5}
   .vote{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;background:transparent;border:1px solid var(--line);color:var(--muted);border-radius:5px;padding:4px 10px;cursor:pointer;transition:border-color .12s,color .12s,background .12s}
@@ -306,6 +317,23 @@ function ytLink(x) {
 
 const byN = new Map(LIB.map(v => [String(v.n ?? v.id), v]));
 const domById = new Map(DOMAINS.map(d => [d.id, d]));
+
+/* A demo the corpus already knows, addressed the way a listener addresses it: by the id in
+   its Suno link. Lets a pasted track resolve back to the entry that made it — prompt and
+   all — instead of arriving as an anonymous id. */
+const bySuno = new Map();
+LIB.forEach(v => (v.suno || []).forEach(id => bySuno.set(String(id), v)));
+
+/* Everything a listener pastes is squeezed through this. It accepts a whole Suno link, an
+   embed link, or a bare id, and yields ONLY the 36 characters of hex and dashes — which is
+   also the security story: the value reaches an <img> src, an iframe src and a database key,
+   and a whitelist this narrow cannot carry anything but an id. */
+const UUID_RE = /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i;
+const sunoIdFrom = text => {
+  const m = String(text || '').trim().match(UUID_RE);
+  return m ? m[0].toLowerCase() : '';
+};
+
 const TITLES = (typeof SONG_TITLES !== 'undefined' && SONG_TITLES) || {};
 
 /* ---------- AN EXCLUSION TEST IS NOT A DEMO ----------
@@ -408,9 +436,13 @@ function literalIn(prompt, stems) {
   }
   return '';
 }
+/* The words this card watches for. Hand-written `match` when there is one, otherwise the
+   spans its own evidence already uses. */
+const stemsOf = c => ((c.match && c.match.length) ? c.match : [...new Set((c.ev || []).map(e => e.span))])
+  .map(s => String(s).toLowerCase());
+
 LEX.forEach(c => {
-  const stems = ((c.match && c.match.length) ? c.match : [...new Set(c.ev.map(e => e.span))])
-    .map(s => s.toLowerCase());
+  const stems = stemsOf(c);
   const attached = new Set((c.ev || []).map(e => String(e.n)));
   c._more = LIB.filter(v => {
     const id = String(v.n ?? v.id);
@@ -450,7 +482,11 @@ try { learned = new Set(JSON.parse(localStorage.getItem(LEARNED_KEY) || '[]')); 
 const saveLearned = () => { try { localStorage.setItem(LEARNED_KEY, JSON.stringify([...learned])); } catch (e) {} };
 
 const VOTES_KEY = 'lex_votes';
-const voteKey = (cardId, n) => `lexev:${cardId}:${n}`;
+/* A vote is keyed by what it is about. Library entries are numbered, so anything shaped like
+   a Suno id can only be a track a listener attached — which is why the two live in one map
+   without a flag to keep in step: the id itself says which it is. */
+const voteKey = (cardId, n) =>
+  (UUID_RE.test(String(n)) ? 'lexadd:' : 'lexev:') + cardId + ':' + n;
 let myVotes = new Set();
 try { myVotes = new Set(JSON.parse(localStorage.getItem(VOTES_KEY) || '[]')); } catch (e) {}
 const saveVotes = () => { try { localStorage.setItem(VOTES_KEY, JSON.stringify([...myVotes])); } catch (e) {} };
@@ -461,8 +497,40 @@ const voteCount = (cardId, n) => (window.__likeCounts || {})[voteKey(cardId, n)]
    one of its demos. Zero votes reads as "not yet demonstrated" — which is the honest
    state for everything on the page right now, and the page says so rather than
    implying the silence means anything else. */
+/* ---------- A TRACK A LISTENER ATTACHED ----------
+   "I know a better example of this than any of these." Without somewhere to put that, the
+   only way to act on it was to tell the curator, so it mostly went unsaid.
+
+   It needs no table of its own and no new database rule, because the id goes in the KEY:
+   `lexadd:<cardId>:<suno id>`, a counter in the same `likes` map the hearts and the votes
+   already share. Everything follows from that one decision — the ±1 rule still guards it,
+   the existing listener already replicates it to every reader, the addition IS its first
+   vote, and a track nobody vouches for any more (count back to zero) simply stops being
+   listed. Nothing to moderate, nothing to clean up.
+
+   The index is rebuilt from the counts map rather than accumulated, so a snapshot from
+   the server is always the last word on what is attached. */
+let addIndex = new Map();                // cardId -> [{ n: suno id, src:'add', i }]
+function reindexAdds() {
+  const counts = window.__likeCounts || {};
+  addIndex = new Map();
+  for (const k in counts) {
+    if (counts[k] <= 0 || k.slice(0, 7) !== 'lexadd:') continue;
+    const rest = k.slice(7), cut = rest.lastIndexOf(':');
+    if (cut < 1) continue;
+    const cardId = rest.slice(0, cut), id = sunoIdFrom(rest.slice(cut + 1));
+    if (!id) continue;                   // anything not an id is not something we will render
+    if (!addIndex.has(cardId)) addIndex.set(cardId, []);
+    addIndex.get(cardId).push(id);
+  }
+  /* Sorted, so every reader sees the same order for the same data — an order that depended
+     on key enumeration would differ between browsers for no reason a reader could explain. */
+  for (const [k, ids] of addIndex) addIndex.set(k, ids.sort().map((n, i) => ({ n, src: 'add', i })));
+}
+const added = c => addIndex.get(c.id) || [];
+
 /* The examples shown under a lesson: everything curated, PLUS any discovered example
-   somebody has vouched for.
+   somebody has vouched for, PLUS any track a listener attached.
 
    The first build kept those strictly apart, and that was wrong in a way a vote exposes
    immediately: vouch for a discovered take and it sorted to the top of a list that stays
@@ -470,15 +538,16 @@ const voteCount = (cardId, n) => (window.__likeCounts || {})[voteKey(cardId, n)]
    see. A vote is the whole signal of what deserves prominence — where the example came
    from is a detail of how it was found. So a vouched-for discovery outranks a curated
    example with no support, and says plainly that it has not been written up yet. */
+const SRC_RANK = { ev: 0, more: 1, add: 2 };   // how a tie breaks: curated, then found, then attached
 function examples(c) {
   const curated = (c.ev || []).map((e, i) => ({ ...e, src: 'ev', i }));
   const promoted = (c._more || [])
     .map((m, i) => ({ ...m, src: 'more', i }))
     .filter(m => voteCount(c.id, m.n) > 0);
-  return [...curated, ...promoted]
+  return [...curated, ...promoted, ...added(c)]
     .filter(x => x.state !== 'rejected')
     .sort((a, b) => (voteCount(c.id, b.n) - voteCount(c.id, a.n))
-      || (a.src === b.src ? a.i - b.i : (a.src === 'ev' ? -1 : 1)));
+      || (SRC_RANK[a.src] - SRC_RANK[b.src]) || (a.i - b.i));
 }
 
 function support(c) {
@@ -530,25 +599,41 @@ function cardHTML(c) {
      sequence. `i` stays the index into its OWN source list, because the prompt pop-out
      addresses examples by position within `ev` or `_more`. */
   const evHTML = examples(c).map(x => {
-    const v = byN.get(String(x.n)) || {};
+    const attachedByReader = x.src === 'add';
+    /* An attached track is addressed by its Suno id, so it resolves through bySuno rather
+       than byN — and it may not resolve at all, which is fine: somebody can vouch for a
+       track this library never made. */
+    const v = (attachedByReader ? bySuno.get(String(x.n)) : byN.get(String(x.n))) || {};
     const n = voteCount(c.id, x.n);
     const mine = myVotes.has(voteKey(c.id, x.n));
     const found = x.src === 'more';
+    const num = attachedByReader
+      ? (v.n != null ? `<span class="evn">#${esc(v.n)}</span>` : '')
+      : `<span class="evn">#${esc(x.n)}</span>`;
+    const name = attachedByReader
+      ? (v.name || TITLES[x.n] || 'a track from outside the library')
+      : (v.name || 'unknown entry');
     return `<div class="evitem${x.state === 'rejected' ? ' st-rejected' : ''}${n > 0 ? ' supported' : ''}"
                  data-ev="${esc(c.id)}|${esc(x.n)}" data-idx="${x.i}" data-src="${x.src}">
       <div class="evhead">
-        <span class="evn">#${esc(x.n)}</span>
-        <span class="evname">${esc(v.name || 'unknown entry')}</span>
+        ${num}
+        <span class="evname">${esc(name)}</span>
         ${x.span ? `<span class="evspan">${esc(x.span)}</span>` : ''}
         ${found ? `<span class="evstateT found">vouched for &middot; not written up</span>` : ''}
+        ${attachedByReader ? `<span class="evstateT addedt">attached by a listener</span>` : ''}
       </div>
-      ${found
+      ${attachedByReader
+        ? `<p class="evwhy">Attached by somebody who thought it demonstrates the term better
+             than what was already here. The vote is the whole claim — nobody has written up
+             what to listen for, and no curator has agreed.</p>`
+        : found
         ? `<p class="evwhy">Found by wording rather than chosen, and promoted here because
              somebody vouched for it. It has no write-up yet explaining what to listen for.</p>`
         : `<p class="evwhy">${esc(x.why)}</p>`}
       <div class="evrow">
-        <button class="btn" type="button" data-prompt="${esc(c.id)}|${x.i}|${x.src}">Prompt</button>
-        ${tiles(v)}
+        ${attachedByReader && v.n == null ? ''
+          : `<button class="btn" type="button" data-prompt="${esc(c.id)}|${esc(attachedByReader ? x.n : x.i)}|${x.src}">Prompt</button>`}
+        ${attachedByReader ? tiles({ suno: [x.n] }) : tiles(v)}
         <button class="vote${mine ? ' on' : ''}${!mine && n > 0 ? ' has' : ''}" type="button"
           data-vote="${esc(c.id)}|${esc(x.n)}"
           title="${mine
@@ -639,6 +724,7 @@ function cardHTML(c) {
       ${stateLine}
       <div class="evlist" data-list="${esc(c.id)}">${evHTML}</div>
       ${moreBlock(c)}
+      ${addBlock(c)}
     </div>
   </article>`;
 }
@@ -744,6 +830,7 @@ document.addEventListener('click', e => {
 
 /* ---------- filter + render ---------- */
 function render() {
+  reindexAdds();                        // cards are about to read it
   const term = document.getElementById('q').value.trim().toLowerCase();
   const words = term ? term.split(/\s+/) : [];
   const list = LEX.filter(c => {
@@ -768,6 +855,86 @@ function render() {
   markPlaying();                        // cards were just rebuilt — restore the marker
 }
 
+/* ---------- "I know a better one" ----------
+   Kept behind a toggle: 99 cards each showing an open form would read as a page asking to be
+   filled in, and the common case is reading, not contributing. Draft text and the last
+   message survive a re-render — a vote landing from another reader must not eat what someone
+   is half way through typing. */
+const addOpen = new Set();               // cardId -> form showing
+const addDraft = new Map();              // cardId -> what is typed but not yet added
+const addMsg = new Map();                // cardId -> [message, ok?]
+
+function addBlock(c) {
+  const open = addOpen.has(c.id);
+  const [msg, ok] = addMsg.get(c.id) || ['', true];
+  return `<div class="addev">
+    <button class="btn" type="button" data-addtoggle="${esc(c.id)}"
+      title="Attach a track of your own to this lesson">${open ? '&times; Never mind' : '+ I know a better example'}</button>
+    <div class="addform${open ? ' open' : ''}">
+      <input class="addin" type="text" data-addin="${esc(c.id)}" spellcheck="false"
+             placeholder="Paste the Suno link of a track that demonstrates this"
+             value="${esc(addDraft.get(c.id) || '')}">
+      <button class="btn" type="button" data-addgo="${esc(c.id)}">Attach &amp; vouch</button>
+      ${msg ? `<p class="addmsg${ok ? '' : ' bad'}">${esc(msg)}</p>` : ''}
+      <p class="addnote">Attaching it counts as your vote. Take the vote back and it is gone
+        again — for everyone, if nobody else has vouched for it.</p>
+    </div>
+  </div>`;
+}
+
+/* One path for every vote on the page, whether it came from the button under an example or
+   from attaching a track: optimistic locally, rolled back if the database refuses. */
+function castVote(cardId, n) {
+  const key = voteKey(cardId, n);
+  const had = myVotes.has(key), delta = had ? -1 : 1;
+
+  had ? myVotes.delete(key) : myVotes.add(key);
+  saveVotes();
+  window.__likeCounts = window.__likeCounts || {};
+  window.__likeCounts[key] = Math.max(0, (window.__likeCounts[key] || 0) + delta);
+  reindexAdds();
+  refreshVotes();
+
+  const p = window.__bumpLike && window.__bumpLike(key, delta);
+  if (p && p.catch) p.catch(() => {                       // roll back a refused vote
+    had ? myVotes.add(key) : myVotes.delete(key);
+    saveVotes();
+    window.__likeCounts[key] = Math.max(0, (window.__likeCounts[key] || 0) - delta);
+    reindexAdds();
+    refreshVotes();
+  });
+}
+
+/* Attaching is a vote too — the question is only WHICH thing gets voted for. A track that is
+   already under the lesson must not arrive a second time under a different key, so a paste
+   that names one is redirected to it. That covers the likeliest paste of all: the demo the
+   reader just played from this very card. */
+function attachTrack(cardId) {
+  const c = LEX.find(x => x.id === cardId); if (!c) return;
+  const input = document.querySelector(`[data-addin="${cardId}"]`);
+  const raw = input ? input.value : '';
+  const say = (m, ok) => { addMsg.set(cardId, [m, ok]); rerender(); };
+  const id = sunoIdFrom(raw);
+  if (!id) return say('That is not a Suno link — open the song on Suno and copy the address bar.', false);
+
+  const hasId = n => ((byN.get(String(n)) || {}).suno || []).includes(id);
+  const here = examples(c).find(x => x.src === 'add' ? x.n === id : hasId(x.n));
+  const inMore = (c._more || []).find(m => hasId(m.n));
+  const target = here ? here.n : (inMore ? inMore.n : id);
+
+  if (myVotes.has(voteKey(cardId, target)))
+    return say('You have already vouched for that track under this lesson.', false);
+
+  addDraft.delete(cardId);
+  castVote(cardId, target);
+  say(here ? 'Already attached here — vouched for it instead.'
+    : inMore ? 'That one was already in "more examples" — vouched for, and moved up.'
+    : 'Attached, and vouched for.', true);
+}
+
+/* Membership changed, so patching cannot express it — rebuild, holding the reader's place. */
+function rerender() { const y = window.scrollY; render(); window.scrollTo(0, y); }
+
 /* ---------- likes ----------
    Keys are namespaced with a "lex:" prefix. The vocal library keys its hearts by bare
    entry number in the same Firebase namespace, so without this prefix card 1 here would
@@ -778,6 +945,7 @@ function loadLikes() { try { return new Set(JSON.parse(localStorage.getItem(LIKE
 function saveLikes(s) { try { localStorage.setItem(LIKES_KEY, JSON.stringify([...s])); } catch (e) {} }
 let mine = loadLikes();
 function renderCounts() {
+  reindexAdds();                        // a snapshot may have brought someone else's attachment
   const counts = window.__likeCounts || {};
   document.querySelectorAll('[data-lc]').forEach(el => {
     const n = counts[likeId(el.dataset.lc)] || 0;
@@ -806,7 +974,8 @@ window.__renderCounts = renderCounts;
    re-render. This signature is how we tell the two apart. */
 let promotedSig = '';
 const currentPromotedSig = () => LEX
-  .map(c => c.id + ':' + (c._more || []).filter(m => voteCount(c.id, m.n) > 0).map(m => m.n).join('.'))
+  .map(c => c.id + ':' + (c._more || []).filter(m => voteCount(c.id, m.n) > 0).map(m => m.n).join('.')
+     + '+' + added(c).map(a => a.n).join('.'))    // someone else attaching a track lands here
   .join('|');
 
 /* And the same trick for "Needs a listen", whose membership a vote can change too: one
@@ -850,7 +1019,7 @@ function reorderEvidence() {
     const cardId = list.dataset.list;
     const items = [...list.children];
     const cnt = el => voteCount(cardId, el.dataset.ev.split('|')[1]);
-    const rank = el => el.dataset.src === 'ev' ? 0 : 1;    // curated first on a tie
+    const rank = el => SRC_RANK[el.dataset.src] || 0;      // curated first on a tie
     const sorted = items.slice().sort((a, b) =>
       (cnt(b) - cnt(a)) || (rank(a) - rank(b)) || (+a.dataset.idx - +b.dataset.idx));
     if (sorted.some((el, i) => el !== items[i])) sorted.forEach(el => list.appendChild(el));
@@ -863,7 +1032,8 @@ document.addEventListener('click', e => {
   const id = b.dataset.like, on = mine.has(id);
   on ? mine.delete(id) : mine.add(id);
   saveLikes(mine);
-  window.__bumpLike && window.__bumpLike(likeId(id), on ? -1 : 1);
+  const w = window.__bumpLike && window.__bumpLike(likeId(id), on ? -1 : 1);
+  if (w && w.catch) w.catch(() => {});   // local-first: a refused heart simply does not stick
   renderCounts();
 });
 
@@ -885,11 +1055,20 @@ function hl(text, span) {
 }
 function openPrompt(cardId, idx, src) {
   const c = LEX.find(x => x.id === cardId); if (!c) return;
-  const e = (src === 'more' ? c._more : c.ev)[idx]; if (!e) return;
-  const v = byN.get(String(e.n)); if (!v) return;
+  let e, v;
+  if (src === 'add') {
+    /* An attached track is addressed by Suno id, and only has a prompt to show if it came
+       out of this library in the first place. The span is worked out on the spot — nobody
+       recorded one, because nobody curated it. */
+    v = bySuno.get(String(idx)); if (!v) return;
+    e = { n: v.n ?? v.id, span: literalIn(`${v.style || ''}\n${v.neg || ''}`, stemsOf(c)) };
+  } else {
+    e = (src === 'more' ? c._more : c.ev)[idx]; if (!e) return;
+    v = byN.get(String(e.n)); if (!v) return;
+  }
   const neg = `${v.neg || ''}${v.neg ? ', ' : ''}${MANDATED}`;
   document.getElementById('mtitle').innerHTML =
-    `${esc(c.term)} <span class="evn">— ${src === 'more' ? 'uses this wording' : 'evidence'}`
+    `${esc(c.term)} <span class="evn">— ${src === 'more' ? 'uses this wording' : src === 'add' ? 'attached by a listener' : 'evidence'}`
     + ` from #${esc(e.n)} ${esc(v.name || '')}</span>`;
   document.getElementById('mbody').innerHTML =
     `<p class="mnote">The highlighted words are the exact span this lesson is about, shown where
@@ -907,7 +1086,7 @@ function closePrompt() { document.getElementById('ov').classList.remove('on'); }
 
 document.addEventListener('click', e => {
   const p = e.target.closest('[data-prompt]');
-  if (p) { const [id, i, src] = p.dataset.prompt.split('|'); openPrompt(id, +i, src); return; }
+  if (p) { const [id, i, src] = p.dataset.prompt.split('|'); openPrompt(id, src === 'add' ? i : +i, src); return; }
   if (e.target.id === 'mclose' || e.target.id === 'ov') closePrompt();
 });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closePrompt(); });
@@ -992,34 +1171,49 @@ document.addEventListener('click', e => {
 document.getElementById('ptab').addEventListener('click', () =>
   document.getElementById('player').classList.toggle('collapsed'));
 
+/* ---------- attaching a track ----------
+   The toggle is patched in place rather than re-rendered: opening a form should not rebuild
+   99 cards, and a rebuild would take the focus straight back out of the input. */
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-addtoggle]');
+  if (!t) return;
+  const id = t.dataset.addtoggle, open = !addOpen.has(id);
+  open ? addOpen.add(id) : addOpen.delete(id);
+  if (!open) { addDraft.delete(id); addMsg.delete(id); }
+  t.innerHTML = open ? '&times; Never mind' : '+ I know a better example';
+  const form = t.parentElement.querySelector('.addform');
+  if (!form) return;
+  form.classList.toggle('open', open);
+  const box = form.querySelector('.addin');
+  if (open && box) box.focus();
+  else if (box) box.value = '';
+});
+document.addEventListener('click', e => {
+  const g = e.target.closest('[data-addgo]');
+  if (g) attachTrack(g.dataset.addgo);
+});
+document.addEventListener('input', e => {
+  const box = e.target.closest && e.target.closest('[data-addin]');
+  if (box) addDraft.set(box.dataset.addin, box.value);
+});
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Enter') return;
+  const box = e.target.closest && e.target.closest('[data-addin]');
+  if (box) { e.preventDefault(); attachTrack(box.dataset.addin); }
+});
+
 /* ---------- controls ---------- */
 document.getElementById('q').addEventListener('input', render);
 document.getElementById('needs').addEventListener('click', e => {
   curNeeds = !curNeeds; e.target.classList.toggle('on', curNeeds); render();
 });
 /* ---------- vouching for a demo ----------
-   Optimistic: the button and counts move at once, because a vote that waits on a round
-   trip feels broken while listening. The ±1 database rule is the backstop — if the write
-   is refused the local view is rolled back rather than left showing a vote nobody has. */
+   The mechanics moved into castVote, which attaching a track uses too — one optimistic
+   write, one rollback, whichever end of the page it was triggered from. */
 document.addEventListener('click', e => {
   const b = e.target.closest('[data-vote]'); if (!b) return;
   const [cardId, n] = b.dataset.vote.split('|');
-  const key = voteKey(cardId, n);
-  const had = myVotes.has(key), delta = had ? -1 : 1;
-
-  had ? myVotes.delete(key) : myVotes.add(key);
-  saveVotes();
-  window.__likeCounts = window.__likeCounts || {};
-  window.__likeCounts[key] = Math.max(0, (window.__likeCounts[key] || 0) + delta);
-  refreshVotes();
-
-  const p = window.__bumpLike && window.__bumpLike(key, delta);
-  if (p && p.catch) p.catch(() => {                       // roll back a refused vote
-    had ? myVotes.add(key) : myVotes.delete(key);
-    saveVotes();
-    window.__likeCounts[key] = Math.max(0, (window.__likeCounts[key] || 0) - delta);
-    refreshVotes();
-  });
+  castVote(cardId, n);
 });
 
 /* Marking a lesson learned re-renders, because it can change what the active filter
@@ -1101,12 +1295,17 @@ try{
   });
   window.__bumpLike=(id,delta)=>runTransaction(ref(db,'likes/'+id),cur=>{
     const v=(cur||0)+delta; return v<0?undefined:v;
-  }).catch(e=>console.warn('[likes] write failed',e));
+  }).catch(e=>{ console.warn('[likes] write failed',e); throw e; });   // rethrow: callers roll back
 
   /* Support votes need no wiring of their own: they are counters in the same `likes`
      map, keyed `lexev:<cardId>:<entry>`, so the listener and writer above already
      carry them. That is the reason for reusing the path rather than adding one — the
-     rule allowing exactly ±1 per write is what keeps a vote count honest. */
+     rule allowing exactly ±1 per write is what keeps a vote count honest.
+
+     A track a listener attaches rides the same path for the same reason, keyed
+     `lexadd:<cardId>:<suno id>`. Putting the id in the KEY is what avoids a second
+     table and a second rule: the value stays a counter that moves by one, so the
+     existing rule covers a kind of row it was never written for. */
 }catch(e){ console.warn('[likes] Firebase disabled, local-only hearts:',e); }
 </script>
 </body>
