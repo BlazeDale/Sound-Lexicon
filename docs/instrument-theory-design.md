@@ -424,6 +424,33 @@ anything physical (itself a finding worth one card, not sixty).
 shape, the minimal-pair method, and the browse interaction, before declaring
 the schema correct.
 
+## 10a. Which terms earn a card (added 2026-08-21)
+
+**Only terms that teach something non-obvious.** Raised on `unison`, and correctly: "several
+people play the same note" is a definition, not a lesson. No misconception to correct,
+nothing hidden in the mechanism, and knowing the word changes nothing about how you would
+write a prompt. A page of those is a glossary, and §1 says this is not a glossary.
+
+The test, before writing:
+
+- **Is there a real misconception waiting?** If the common-mistake field has to be stretched
+  to fill, the term is too obvious. Every strong card had one ready: the gate is on the
+  reverb and not the drum; warmth is brightness a ribbon fails to capture; falsetto is the
+  opposite of belting rather than a weaker version; a breakdown is the emptying-out and not
+  the drop.
+- **Would a lay reader be surprised by anything on the card?**
+- **Does the word do work in a prompt** — should its presence or absence change the audio?
+
+A thin term can still earn its place as a **comparison** — unison exists mainly to be told
+apart from double-tracking and stacked harmony — but the card has to say that outright
+rather than implying the term carries a lesson on its own.
+
+This is the second selection filter, and it pulls against the first. Choosing only terms the
+corpus already supports biases the page toward whatever happened to get prompted; choosing
+only terms that are easy to describe biases it toward the obvious. **The terms worth having
+are usually the ones with a surprise in them**, and those are exactly the ones that need
+demos commissioned rather than mined.
+
 ## 11. Open questions
 
 - Where does the boundary sit between a term that deserves a card and one
