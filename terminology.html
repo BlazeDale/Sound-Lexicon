@@ -182,7 +182,10 @@
   #player .pbody{width:320px;max-width:80vw;background:var(--panel);border:1px solid var(--line);border-left:none;border-radius:0 12px 12px 0;box-shadow:0 12px 44px rgba(0,0,0,.55);padding:11px;transition:width .25s,padding .25s,opacity .2s;overflow:hidden}
   #player.collapsed .pbody{width:0;padding:0;border-width:0;opacity:0;pointer-events:none}
   #player .ptab{background:var(--panel);border:1px solid var(--line);border-left:none;border-radius:0 8px 8px 0;color:var(--amber);cursor:pointer;padding:14px 5px;font-size:13px}
-  #player .ptitle{font-size:12px;color:var(--muted);margin:0 0 7px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  #player .phead{display:flex;align-items:center;gap:8px;margin:0 0 7px}
+  #player .ptitle{font-size:12px;color:var(--muted);margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;min-width:0}
+  .plikewrap{position:static;flex:none;display:flex;align-items:center;gap:3px}
+  .plikewrap[hidden]{display:none}
   #player iframe{width:100%;height:120px;border:0;border-radius:8px;display:block;background:var(--panel2)}
   footer{margin-top:44px;border-top:1px solid var(--line);padding-top:16px;font-size:12.5px;color:var(--dim)}
 </style>
@@ -235,7 +238,13 @@
 
 <div id="player" class="collapsed">
   <div class="pbody">
-    <p class="ptitle" id="ptitle"></p>
+    <div class="phead">
+      <p class="ptitle" id="ptitle"></p>
+      <span class="likewrap plikewrap" id="plikewrap" hidden>
+        <button class="like" id="plike" data-like="" aria-label="Like this lesson">&#9829;</button>
+        <span class="lcount" id="plikecount" data-lc=""></span>
+      </span>
+    </div>
     <iframe id="pframe" allow="autoplay" title="Demo player"></iframe>
   </div>
   <button class="ptab" id="ptab" type="button" title="Show/hide the player">♪</button>
@@ -840,10 +849,23 @@ function fallback(txt) {
 }
 
 /* ---------- side player (the audio is hotlink-protected, so this is the embed) ---------- */
+/* The player's heart carries the same class and data attributes as a card heart, so the
+   existing click handler and renderCounts() drive it with no special cases — hearting it
+   here updates the card too, because they are the same id. It is bound to the LESSON the
+   playing demo belongs to, since that is what the hearts on this page count. */
+function bindPlayerHeart(cardId) {
+  const wrap = document.getElementById('plikewrap'), b = document.getElementById('plike'),
+        cnt = document.getElementById('plikecount');
+  if (!cardId) { wrap.hidden = true; b.dataset.like = ''; cnt.dataset.lc = ''; return; }
+  b.dataset.like = cardId; cnt.dataset.lc = cardId; wrap.hidden = false;
+  renderCounts();
+}
 document.addEventListener('click', e => {
   const t = e.target.closest('.tile'); if (!t) return;
+  const card = t.closest('.card');
   document.getElementById('ptitle').textContent = t.dataset.title || '';
   document.getElementById('pframe').src = 'https://suno.com/embed/' + t.dataset.uuid;
+  bindPlayerHeart(card && card.dataset.id);
   document.getElementById('player').classList.remove('collapsed');
 });
 document.getElementById('ptab').addEventListener('click', () =>
