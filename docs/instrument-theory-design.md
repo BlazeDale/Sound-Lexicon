@@ -241,6 +241,39 @@ without requiring a confident claim about a black box, and — because the
 prompt span is recorded (§6) — the highlight in the pop-out literally shows
 the diff.
 
+### Commissioned demos must lean in hard (added 2026-08-21)
+
+The first commissioned set — five vocal fry prompts, #408-412 — came back **barely showing
+the term**, and the reason is a method error worth keeping.
+
+Those prompts followed the vocal library's house conventions closely: genre-first opening, a
+full plausible arrangement, a naturally-reading vocal clause. Those conventions optimise for
+a *usable, well-rounded prompt*. A demonstration prompt has the opposite goal — **isolate one
+variable and overdrive it** — and the two pull against each other.
+
+Four of the five had a structural reason the effect would be minimised. Indie-pop and alt-R&B
+both imply melodic singing, so fry confined to phrase-ends or onsets is the smallest possible
+dose of it. Screaming is the genre default in hardcore, which hides the fry mechanism rather
+than exposing it. An art-pop string quartet plus a clean top line simply outweighs the fried
+bottom. **The genre was doing more work than the term.**
+
+So, for any prompt written to demonstrate a term:
+
+- **Pick a setting that wants the effect, or almost no genre at all.** A strong genre cue
+  pulls hard toward that genre's conventions, and the generator prepends its own detected
+  base genre on top of ours, so the pull is doubled.
+- **Strip the arrangement.** Every named instrument is a competing instruction.
+- **Put the term in the opening** — the highest-weight position — not buried mid-prose.
+- **Overdo it.** Constant rather than occasional, the whole vocal rather than the edges. A
+  subtle correct instance proves nothing when the question is whether the word registers at all.
+- **Use the negatives against the genre's default vocal behaviour**, not just against
+  unwanted production.
+
+This does not invalidate #408-412. They stay, they keep their demos — a demoed entry is never
+edited (§ the never-retro-fix rule) — and they become the **low-dose end** of the range. A
+second set written the other way makes the contrast between them an experiment in its own
+right: same term, weak framing against strong framing.
+
 ### Resolution: does the term survive at all?
 
 Some specifics almost certainly resolve ("palm mute"). Others may collapse
