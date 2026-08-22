@@ -136,11 +136,19 @@
   .moremeta{margin-left:auto;text-transform:none;letter-spacing:0;font-size:11px;color:var(--dim)}
   .morelist{display:none;margin-top:6px}
   .morelist.open{display:block}
-  .mitem{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:9px 0 9px 11px;border-top:1px solid var(--line)}
+  /* no base left padding, so an unmarked row starts at exactly the same x as a curated
+     one; the inset bar adds its own indent only when there is a bar to clear */
+  .mitem{display:flex;align-items:center;gap:10px;padding:9px 0;border-top:1px solid var(--line)}
   .mitem:first-child{border-top:none}
-  .mitem.supported{box-shadow:inset 2px 0 0 var(--teal)}
+  .mitem.supported{box-shadow:inset 2px 0 0 var(--teal);padding-left:11px}
+  .mitem.neg-use{box-shadow:inset 2px 0 0 var(--violet);padding-left:11px}
   .mname{font-size:13px;font-weight:600}
-  .mrest{margin-left:auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  /* controls hold a fixed left column; the metadata takes what is left and truncates */
+  .mctl{flex:none;display:flex;align-items:center;gap:8px}
+  .mmeta{flex:1;min-width:0;display:flex;align-items:center;gap:8px;white-space:nowrap;overflow:hidden}
+  .mmeta .mname{overflow:hidden;text-overflow:ellipsis}
+  .mmeta .evspan,.mmeta .evstateT{flex:none}
+  @media(max-width:640px){.mitem{flex-wrap:wrap}.mmeta{flex-basis:100%}}
   .morefoot{margin-top:10px;display:flex;gap:8px;align-items:center}
   .morenote{font-size:12px;color:var(--dim)}
   .evwhy{font-size:13px;color:var(--muted);margin:5px 0 8px}
@@ -646,18 +654,28 @@ function moreItems(c, shown) {
   const rows = slice.map(({ m, i }) => {
     const v = byN.get(String(m.n)) || {};
     const cnt = voteCount(c.id, m.n), mine = myVotes.has(voteKey(c.id, m.n));
-    return `<div class="mitem${cnt > 0 ? ' supported' : ''}" data-ev="${esc(c.id)}|${esc(m.n)}">
-      <span class="evn">#${esc(m.n)}</span>
-      <span class="mname">${esc(v.name || '')}</span>
-      ${m.span ? `<span class="evspan">${esc(m.span)}</span>` : ''}
-      <span class="mrest">
+    const negUse = isNegUse(v, m.span);
+    /* Controls come FIRST so Prompt, the demo icons and the vote sit at the same left edge
+       as the curated evidence above. Previously the metadata led and the controls were
+       pushed right with margin-left:auto, so expanding this list made everything jump
+       across the card. The name is what gives way now — it truncates instead. */
+    return `<div class="mitem${cnt > 0 ? ' supported' : ''}${negUse ? ' neg-use' : ''}" data-ev="${esc(c.id)}|${esc(m.n)}">
+      <span class="mctl">
         <button class="btn" type="button" data-prompt="${esc(c.id)}|${i}|more">Prompt</button>
         ${tiles(v)}
         <button class="vote${mine ? ' on' : ''}${!mine && cnt > 0 ? ' has' : ''}" type="button"
           data-vote="${esc(c.id)}|${esc(m.n)}"
-          title="${mine ? 'You vouched for this — click to take it back' : 'I hear the term in this track'}">
-          <span class="arrow">▲</span> Supports <span class="vc">${cnt || ''}</span>
+          title="${mine
+            ? 'You vouched for this — click to take it back'
+            : (negUse ? 'The term is correctly absent here' : 'I hear the term in this track')}">
+          <span class="arrow">▲</span> ${negUse ? 'Stayed out' : 'Supports'} <span class="vc">${cnt || ''}</span>
         </button>
+      </span>
+      <span class="mmeta">
+        <span class="evn">#${esc(m.n)}</span>
+        <span class="mname">${esc(v.name || '')}</span>
+        ${m.span ? `<span class="evspan">${esc(m.span)}</span>` : ''}
+        ${negUse ? `<span class="evstateT negt">excluded here</span>` : ''}
       </span>
     </div>`;
   }).join('');
