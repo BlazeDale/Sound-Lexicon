@@ -1247,6 +1247,7 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
 
 #412 is a minimal pair built into a single take — clean sustained top and dropped creaking bottom in the same phrase, one voice — so it can be judged without comparing two files. The obvious first question is whether the generator distinguishes the five mechanisms at all, or produces one generic creak whenever the word appears.` },
   ev:[
+    { n:413, span:`vocal fry`, state:'candidate', why:`Fry with everything else taken away: no drums, no chords, no melody, one held tone underneath and a voice that never once lifts into a note. Every other example here has a genre around it that could be doing the work — this one has nothing to hide behind, which makes it the cleanest test on the page.` },
     { n:412, span:`vocal fry`, state:'candidate', why:`The built-in pair: a clean upper line and a fried bottom alternating inside the same phrase, so the contrast is audible in one take without any A/B.` },
     { n:410, span:`vocal fry`, state:'candidate', why:`Fry held as the entire timbre for a whole vocal, with the throat asked for almost no tone at all — the maximal case, and the easiest to falsify.` },
     { n:408, span:`vocal fry`, state:'candidate', why:`Fry as collapse: pitch giving out on the last word of every line, which is the form most listeners have actually heard without naming it.` },
