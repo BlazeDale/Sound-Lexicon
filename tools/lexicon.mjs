@@ -168,8 +168,12 @@ export function checkLexicon() {
      A demo attached to a prompt that EXCLUDED the term demonstrates its absence, not the
      term. The autotune card originally cited four such prompts and nothing else, so every
      one of its demos was a track with no autotune in it — the card looked fully evidenced
-     and proved the opposite of its subject. Negative evidence is still valuable (it tests
-     whether suppression works), it just cannot be the only kind. */
+     and proved the opposite of its subject.
+
+     The page no longer shows them at all: a lesson is a place to hear the term, and a track
+     that is silent on it teaches nothing there. They stay in the data, so this check is now
+     the floor under that filter — a card whose evidence is ALL negative-use would render
+     with no demos under it whatsoever. */
   {
     const noPositive = [], counts = [];
     for (const c of LEX) {
@@ -179,13 +183,13 @@ export function checkLexicon() {
         if ((v.style || '').includes(e.span)) pos++;
         else if ((v.neg || '').includes(e.span)) neg++;
       }
-      if (neg) counts.push(`${c.id} ${pos}+/${neg}-`);
+      if (neg) counts.push(`${c.id} ${pos} shown/${neg} hidden`);
       if ((c.ev || []).length && !pos) noPositive.push(c.id);
     }
     noPositive.length
       ? fail(`card(s) whose evidence is ALL negative-use — every demo proves the term is absent: ${noPositive.join(', ')}`)
       : pass(`every card has at least one positive demonstration`
-          + (counts.length ? `; ${counts.length} also carry exclusion tests (${counts.slice(0,4).join(', ')}${counts.length > 4 ? ', …' : ''})` : ''));
+          + (counts.length ? `; ${counts.length} also carry exclusion tests, hidden by the page (${counts.slice(0,4).join(', ')}${counts.length > 4 ? ', …' : ''})` : ''));
   }
 
   /* ---------- discovery vocabulary and corpus reach ----------
@@ -207,13 +211,14 @@ export function checkLexicon() {
          variants are deliberate future-proofing — the corpus may only use the hyphenated
          spelling today — and listing them every run would train us to ignore the line,
          which is how a real typo gets through. */
-      const anyHit = low.some(s => LIB.some(v => `${v.style || ''}\n${v.neg || ''}`.toLowerCase().includes(s)));
+      const anyHit = low.some(s => LIB.some(v => (v.style || '').toLowerCase().includes(s)));
       if (!anyHit) dead.push(`${c.id} (${low.map(s => `"${s}"`).join(', ')})`);
+      /* Style only, matching the page: a prompt that EXCLUDES the wording is not an example
+         of it, and counting those made this number nearly twice the reach a reader gets. */
       const more = LIB.filter(v => {
         const id = String(v.n ?? v.id);
         if (attached.has(id) || !(v.suno || []).length) return false;
-        const t = `${v.style || ''}\n${v.neg || ''}`.toLowerCase();
-        return low.some(s => t.includes(s));
+        return low.some(s => (v.style || '').toLowerCase().includes(s));
       }).length;
       unattached += more;
       if (more) reach.push(`${c.id} +${more}`);

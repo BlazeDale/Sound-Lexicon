@@ -106,9 +106,6 @@
   .evstateT{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);border:1px solid var(--line);border-radius:4px;padding:1px 6px}
   .evstateT.rejected{color:var(--rose);border-color:var(--rose)}
   .evstateT.found{color:var(--teal);border-color:var(--teal)}
-  .evstateT.negt{color:var(--violet);border-color:var(--violet)}
-  .evitem.neg-use{box-shadow:inset 2px 0 0 var(--violet);padding-left:11px}
-  .evitem.neg-use.supported{box-shadow:inset 2px 0 0 var(--violet)}
   /* support votes — "does this track actually demonstrate the term?", one click, shared */
   .evitem.st-rejected{opacity:.5}
   .vote{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;background:transparent;border:1px solid var(--line);color:var(--muted);border-radius:5px;padding:4px 10px;cursor:pointer;transition:border-color .12s,color .12s,background .12s}
@@ -141,7 +138,6 @@
   .mitem{display:flex;align-items:center;gap:10px;padding:9px 0;border-top:1px solid var(--line)}
   .mitem:first-child{border-top:none}
   .mitem.supported{box-shadow:inset 2px 0 0 var(--teal);padding-left:11px}
-  .mitem.neg-use{box-shadow:inset 2px 0 0 var(--violet);padding-left:11px}
   .mname{font-size:13px;font-weight:600}
   /* controls hold a fixed left column; the metadata takes what is left and truncates */
   .mctl{flex:none;display:flex;align-items:center;gap:8px}
@@ -312,6 +308,23 @@ const byN = new Map(LIB.map(v => [String(v.n ?? v.id), v]));
 const domById = new Map(DOMAINS.map(d => [d.id, d]));
 const TITLES = (typeof SONG_TITLES !== 'undefined' && SONG_TITLES) || {};
 
+/* ---------- AN EXCLUSION TEST IS NOT A DEMO ----------
+   A demo attached to a prompt that ruled the term OUT demonstrates its ABSENCE. The page
+   used to show those under the lesson anyway, flagged violet and labelled "listen for its
+   absence" — but a lesson is a place to HEAR the thing, and a track that is silent on it
+   teaches nothing there; it just reads as a demo that failed. So they are dropped at load,
+   once, BEFORE any count is taken, which is why the masthead totals, the support line and
+   the lists cannot disagree — they all read the same already-filtered `ev`.
+
+   Derived from the prompt rather than hand-tagged, so it cannot drift out of step with the
+   data, and nothing is removed from lexicon_data.js: the span still occurs literally in the
+   prompt, validate.mjs stays satisfied, and the item returns of its own accord the day that
+   entry stops excluding the term. */
+const isNegUse = (v, span) => !(v.style || '').includes(span) && (v.neg || '').includes(span);
+LEX.forEach(c => {
+  c.ev = (c.ev || []).filter(e => !isNegUse(byN.get(String(e.n)) || {}, e.span));
+});
+
 let curDomain = null, curNeeds = false, curLearn = null;   // curLearn: null | 'learned' | 'unlearned'
 
 /* ---------- masthead counts derive from the data, so they never drift ---------- */
@@ -403,11 +416,12 @@ LEX.forEach(c => {
     const id = String(v.n ?? v.id);
     if (attached.has(id)) return false;
     if (!(v.suno || []).length) return false;    // nothing to listen to isn't an example
-    const t = `${v.style || ''}\n${v.neg || ''}`;
-    return stems.some(s => t.toLowerCase().includes(s));
+    // Style only, never the negative: a prompt that EXCLUDES the wording is not an example
+    // of it. Matching both put more exclusions than examples into this list.
+    return stems.some(s => (v.style || '').toLowerCase().includes(s));
   }).map(v => ({
     n: v.n ?? v.id,
-    span: literalIn(`${v.style || ''}\n${v.neg || ''}`, stems)
+    span: literalIn(v.style || '', stems)
   }));
 });
 
@@ -467,38 +481,24 @@ function examples(c) {
       || (a.src === b.src ? a.i - b.i : (a.src === 'ev' ? -1 : 1)));
 }
 
-/* Is this evidence a NEGATIVE use — the term excluded from the prompt rather than asked
-   for? It matters more than it looks: a demo attached to a prompt that ruled the term out
-   demonstrates its ABSENCE. Treating the two alike put four such demos on the autotune card
-   and presented them as evidence of autotune. Derived from the prompt rather than
-   hand-tagged, so it cannot drift out of step with the data. */
-function isNegUse(v, span) {
-  return !(v.style || '').includes(span) && (v.neg || '').includes(span);
-}
-
 function support(c) {
-  let backed = 0, votes = 0, total = 0, negTotal = 0;
+  let backed = 0, votes = 0, total = 0;
   for (const e of examples(c)) {
-    const v = byN.get(String(e.n)) || {};
-    const n = voteCount(c.id, e.n);
-    votes += n;
-    if (isNegUse(v, e.span)) negTotal++;
-    else { total++; if (n > 0) backed++; }
+    votes += voteCount(c.id, e.n);
+    total++;
+    if (voteCount(c.id, e.n) > 0) backed++;
   }
-  return { backed, votes, total, negTotal };
+  return { backed, votes, total };
 }
 
 function supportLine(c) {
-  const { backed, votes, total, negTotal } = support(c);
+  const { backed, votes, total } = support(c);
   // Deliberately does NOT say "drawn from existing prompts": most evidence was mined from
   // the corpus, but some was commissioned for its card, and the line has to be true of both.
-  const neg = negTotal
-    ? ` Plus ${negTotal} exclusion test${negTotal === 1 ? '' : 's'} — prompts that ruled the term OUT, where what you listen for is its absence.`
-    : '';
   if (!backed) return `Documented, not yet demonstrated. ${total} candidate${total === 1 ? '' : 's'} `
-    + `attached — no one has vouched for any of them yet.` + neg;
+    + `attached — no one has vouched for any of them yet.`;
   return `<b>${backed} of ${total}</b> demos vouched for as demonstrating this term `
-    + `(${votes} vote${votes === 1 ? '' : 's'}).` + neg;
+    + `(${votes} vote${votes === 1 ? '' : 's'}).`;
 }
 
 /* ---------- demo tiles ---------- */
@@ -534,15 +534,13 @@ function cardHTML(c) {
     const n = voteCount(c.id, x.n);
     const mine = myVotes.has(voteKey(c.id, x.n));
     const found = x.src === 'more';
-    const negUse = isNegUse(v, x.span);
-    return `<div class="evitem${x.state === 'rejected' ? ' st-rejected' : ''}${n > 0 ? ' supported' : ''}${negUse ? ' neg-use' : ''}"
+    return `<div class="evitem${x.state === 'rejected' ? ' st-rejected' : ''}${n > 0 ? ' supported' : ''}"
                  data-ev="${esc(c.id)}|${esc(x.n)}" data-idx="${x.i}" data-src="${x.src}">
       <div class="evhead">
         <span class="evn">#${esc(x.n)}</span>
         <span class="evname">${esc(v.name || 'unknown entry')}</span>
         ${x.span ? `<span class="evspan">${esc(x.span)}</span>` : ''}
         ${found ? `<span class="evstateT found">vouched for &middot; not written up</span>` : ''}
-        ${negUse ? `<span class="evstateT negt">excluded here &middot; listen for its absence</span>` : ''}
       </div>
       ${found
         ? `<p class="evwhy">Found by wording rather than chosen, and promoted here because
@@ -555,8 +553,8 @@ function cardHTML(c) {
           data-vote="${esc(c.id)}|${esc(x.n)}"
           title="${mine
             ? 'You vouched for this — click to take it back'
-            : (negUse ? 'The term is correctly absent here' : 'I hear the term in this track')}">
-          <span class="arrow">▲</span> ${negUse ? 'Stayed out' : 'Supports'} <span class="vc">${n || ''}</span>
+            : 'I hear the term in this track'}">
+          <span class="arrow">▲</span> Supports <span class="vc">${n || ''}</span>
         </button>
       </div>
     </div>`;
@@ -682,12 +680,11 @@ function moreItems(c, shown) {
   const rows = slice.map(({ m, i }) => {
     const v = byN.get(String(m.n)) || {};
     const cnt = voteCount(c.id, m.n), mine = myVotes.has(voteKey(c.id, m.n));
-    const negUse = isNegUse(v, m.span);
     /* Controls come FIRST so Prompt, the demo icons and the vote sit at the same left edge
        as the curated evidence above. Previously the metadata led and the controls were
        pushed right with margin-left:auto, so expanding this list made everything jump
        across the card. The name is what gives way now — it truncates instead. */
-    return `<div class="mitem${cnt > 0 ? ' supported' : ''}${negUse ? ' neg-use' : ''}" data-ev="${esc(c.id)}|${esc(m.n)}">
+    return `<div class="mitem${cnt > 0 ? ' supported' : ''}" data-ev="${esc(c.id)}|${esc(m.n)}">
       <span class="mctl">
         <button class="btn" type="button" data-prompt="${esc(c.id)}|${i}|more">Prompt</button>
         ${tiles(v)}
@@ -695,15 +692,14 @@ function moreItems(c, shown) {
           data-vote="${esc(c.id)}|${esc(m.n)}"
           title="${mine
             ? 'You vouched for this — click to take it back'
-            : (negUse ? 'The term is correctly absent here' : 'I hear the term in this track')}">
-          <span class="arrow">▲</span> ${negUse ? 'Stayed out' : 'Supports'} <span class="vc">${cnt || ''}</span>
+            : 'I hear the term in this track'}">
+          <span class="arrow">▲</span> Supports <span class="vc">${cnt || ''}</span>
         </button>
       </span>
       <span class="mmeta">
         <span class="evn">#${esc(m.n)}</span>
         <span class="mname">${esc(v.name || '')}</span>
         ${m.span ? `<span class="evspan">${esc(m.span)}</span>` : ''}
-        ${negUse ? `<span class="evstateT negt">excluded here</span>` : ''}
       </span>
     </div>`;
   }).join('');
