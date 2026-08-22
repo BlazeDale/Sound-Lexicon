@@ -442,8 +442,10 @@ function support(c) {
 
 function supportLine(c) {
   const { backed, votes, total } = support(c);
+  // Deliberately does NOT say "drawn from existing prompts": most evidence was mined from
+  // the corpus, but some was commissioned for its card, and the line has to be true of both.
   if (!backed) return `Documented, not yet demonstrated. ${total} candidate${total === 1 ? '' : 's'} `
-    + `drawn from existing prompts — no one has vouched for any of them yet.`;
+    + `attached — no one has vouched for any of them yet.`;
   return `<b>${backed} of ${total}</b> demos vouched for as demonstrating this term `
     + `(${votes} vote${votes === 1 ? '' : 's'}).`;
 }

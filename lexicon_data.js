@@ -29,7 +29,7 @@
  * Loaded as a classic <script> AFTER data.js, so LIB is already a global.
  */
 
-const LEX_VERSION = 'v6';
+const LEX_VERSION = 'v7';
 const LEX_UPDATED = '2026-08-21';
 
 /* ---------- TOP TIER: domains, not instruments ----------
@@ -1092,6 +1092,33 @@ A confound to design around before trusting any result: nearly every prompt usin
     { n:2, span:`vibrato`, state:'candidate', why:`"Smooth vibrato arriving only at phrase ends" — placement specified rather than amount, which is the harder instruction.` },
     { n:3, span:`vibrato wobble`, state:'candidate', why:`Negative use, and it excludes the FAULT rather than the technique — a precision worth testing against a blunt exclusion.` },
     { n:4, span:`vibrato`, state:'candidate', why:`A blunt negative excluding vibrato outright, for direct comparison with #3.` }
+  ]
+},
+
+{
+  id:'vocal-fry',
+  term:`Vocal fry`,
+  sounds:`The bottom of the voice gives out and starts rattling. Instead of a note you get a slow dry creak — a run of clicks so close together they smear into a rasp, like a door easing open or a stick dragged along railings. It sits below where singing can reach, carries almost no pitch at all, and depending entirely on how it arrives it reads as either offhand and intimate or genuinely broken.`,
+  gloss:`The lowest vocal register, where the folds come together slackly and flap in irregular pulses instead of vibrating evenly. It takes very little air, which is why it turns up on its own at the end of a sentence when breath runs out.`,
+  syn:[`creak`,`creaky voice`,`glottal fry`,`croak`,`the low crackle`,`that rattle at the end of sentences`],
+  myth:`It is not damage, and it is not rasp. Rasp is a note being roughened while it still sounds; fry is a different mechanism producing almost no note at all. It is also not new — it became a much-discussed speech habit in the 2000s, which left people thinking singers had started doing something novel, when it is one of the oldest sounds a voice can make.`,
+  known:`Phrase-ends in modern pop and R&B, conversational indie and bedroom recording, ASMR, and extreme metal — where, driven hard, it is the actual mechanism behind screaming.`,
+  origin:`Present in speech and singing everywhere and always; entered Western popular music through conversational delivery on one side and the false-cord screaming of 1980s extreme metal on the other, then became a widely-noticed feature of everyday speech in the 2000s.`,
+  domains:['voice'],
+  match:['vocal fry','creaking rattle','fry scream'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`Enormous, and the five entries below were written to cover it deliberately: fry as the collapse at the end of a line (#408), as the scrape a phrase starts from (#409), as a register held for a whole vocal (#410), as the thing a scream is actually made of (#411), and as a deliberate contrast against a clean top line (#412).`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`The only card here whose evidence was COMMISSIONED rather than found. All 482 existing prompts contained not one instance of the term, so five were written to fill the gap — one per mechanism — and demoed. That makes this the cleanest test on the page by some distance: everywhere else the variable is tangled with whatever else the prompt was written for, whereas here the prompts exist for no reason but this term.
+
+#412 is a minimal pair built into a single take — clean sustained top and dropped creaking bottom in the same phrase, one voice — so it can be judged without comparing two files. The obvious first question is whether the generator distinguishes the five mechanisms at all, or produces one generic creak whenever the word appears.` },
+  ev:[
+    { n:412, span:`vocal fry`, state:'candidate', why:`The built-in pair: a clean upper line and a fried bottom alternating inside the same phrase, so the contrast is audible in one take without any A/B.` },
+    { n:410, span:`vocal fry`, state:'candidate', why:`Fry held as the entire timbre for a whole vocal, with the throat asked for almost no tone at all — the maximal case, and the easiest to falsify.` },
+    { n:408, span:`vocal fry`, state:'candidate', why:`Fry as collapse: pitch giving out on the last word of every line, which is the form most listeners have actually heard without naming it.` },
+    { n:409, span:`vocal fry`, state:'candidate', why:`Fry as attack rather than decay — each phrase starting on a scrape and blooming up into tone. The hardest placement of the five to get right.` },
+    { n:411, span:`vocal fry`, state:'candidate', why:`Fry driven until it tears into a scream, which tests whether the term survives being pushed past the point where most listeners would still call it fry.` }
   ]
 },
 ];
