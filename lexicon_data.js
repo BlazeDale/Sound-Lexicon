@@ -29,7 +29,7 @@
  * Loaded as a classic <script> AFTER data.js, so LIB is already a global.
  */
 
-const LEX_VERSION = 'v5';
+const LEX_VERSION = 'v6';
 const LEX_UPDATED = '2026-08-21';
 
 /* ---------- TOP TIER: domains, not instruments ----------
@@ -852,6 +852,246 @@ A confound to design around before trusting any result: nearly every prompt usin
     { n:18, span:`belting`, state:'candidate', why:`Belting to the point of failure, "where the voice thins and cracks" — the same technique with the strain made audible on purpose.` },
     { n:9,  span:`belting`, state:'candidate', why:`Negative use, protecting a fragile indie-folk falsetto — the direct opposite of the technique, excluded by name.` },
     { n:16, span:`belting`, state:'candidate', why:`A second negative, in outlaw country, where an unpushed conversational baritone was the whole intent.` }
+  ]
+},
+
+{
+  id:'condenser-mic',
+  term:`Condenser microphone`,
+  sounds:`Detail, and lots of it. The top end is right there — breath, sibilance, the click of a pick, the air moving in a room — and everything sounds present and immediate, as though a veil has been lifted off the performance. Push a loud voice into one and the same sensitivity turns against you: the top goes brittle and spiky, and consonants start to spit.`,
+  gloss:`A microphone that senses sound with a very light, electrically charged membrane. Being light, it responds to fast detail a heavier design would miss — which is why it captures high frequencies so completely.`,
+  syn:[`condenser`,`studio mic`,`the detailed one`,`bright mic`,`large-diaphragm mic`,`the crisp microphone`],
+  myth:`Brighter is not the same as better. A condenser hears more of everything, including the things you did not want — room noise, mouth noise, harshness in a strained voice — which is exactly why an engineer sometimes reaches for a duller microphone on purpose.`,
+  known:`The default studio vocal microphone since the 1950s, and standard on acoustic guitar, cymbals and anything whose appeal is in its detail.`,
+  origin:`Invented in the 1910s and made practical for studios by the 1930s; displaced the ribbon as the standard voice microphone through the 1950s and has held that position since.`,
+  domains:['microphone'],
+  match:['condenser'],
+  kinds:['instrument'],
+  nature:'continuous',
+  range:`The corpus splits it cleanly: "warm vintage condenser" (#2, #22) against "bright studio condenser" (#32). Same category of microphone, two opposite adjectives — and whether those adjectives do anything is the useful question.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`The direct partner to the ribbon-mic card and the pair that would settle the Microphone domain. Ribbon and condenser are genuinely opposite in the one respect a listener can hear — the top end is absent on one and emphasised on the other — so a prompt-pair swapping only that word should be plainly different if microphone terms register at all. If both produce the same voice, the connotation suspicion is confirmed and the domain shrinks from sixty cards to about three.` },
+  ev:[
+    { n:32, span:`condenser`, state:'candidate', why:`"Bright studio condenser" — the bright end named outright, and the clearest counterweight to the ribbon card.` },
+    { n:2,  span:`condenser`, state:'candidate', why:`"Warm vintage condenser, valve signal path" — the same microphone type described as warm, which tests whether the adjective or the noun is steering.` },
+    { n:20, span:`condenser`, state:'candidate', why:`"Warm condenser, intimate close capture" in neo-soul, pairing the microphone with close-miking so the two can be judged together.` },
+    { n:22, span:`condenser`, state:'candidate', why:`Disco falsetto through a vintage condenser and plush ambience — a high, bright voice, where a condenser's top end has the most to do.` }
+  ]
+},
+
+{
+  id:'room-bleed',
+  term:`Room bleed`,
+  sounds:`You can hear the space the band was standing in. Drums leak faintly into the vocal microphone, the guitar arrives twice — once straight and once off the walls — and a common air glues everything into one event. Instruments overlap where a modern mix would keep them apart, and the whole thing sounds like people playing at the same time in the same place, because they were.`,
+  gloss:`Sound from one source arriving in a microphone meant for another. Unavoidable when a band records together in one room, and increasingly chosen on purpose now that it is avoidable.`,
+  syn:[`bleed`,`live room sound`,`spill`,`played live in a room`,`leakage`,`all in one take`],
+  myth:`It is not the same as reverb. Reverb is an effect added to a track; bleed is other instruments genuinely arriving in the wrong microphone. You cannot turn it down later — it is baked into every track at once, which is why it forces commitment and why engineers spent decades trying to eliminate it.`,
+  known:`Soul and Motown-era recording, gospel, live jazz, and any modern record chasing the feeling of a band rather than an assembly. It is the main reason old records sound like a performance and new ones can sound like a construction.`,
+  origin:`Unavoidable in the single-room recording of the 1950s and 60s; deliberately eliminated by multitrack isolation in the 1970s, then deliberately reintroduced once its absence started to sound sterile.`,
+  domains:['room'],
+  match:['room bleed','live-room bleed','room bleeding'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`"Tight live-room bleed" (#V3) is controlled — enough to glue, not enough to blur. "Hot live capture with room bleed" (#122) lets it run, and the leakage becomes part of the arrangement rather than a side effect of it.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Interesting because it asks for an ARTEFACT of how a recording was made rather than for a sound. The generator has no room and no microphones, so nothing can literally bleed — the question is whether the word produces the audible consequences anyway: instruments sharing an ambience, a slightly cluttered midrange, a sense of one take. It sits with breakbeat in that respect, and the two would make a good joint test of whether process words work at all.` },
+  ev:[
+    { n:122, span:`room bleed`, state:'candidate', why:`"Hot live capture with room bleed" behind a full gospel-Motown arrangement — the maximal case, with many sources to leak into each other.` },
+    { n:62,  span:`room bleed`, state:'candidate', why:`"Live-band capture, warm room bleed" in afrobeat, where interlocking parts depend on sounding simultaneous rather than assembled.` },
+    { n:'V3', span:`live-room bleed`, state:'candidate', why:`"Tight live-room bleed" — the controlled end, and a different literal worth recording separately.` },
+    { n:5,   span:`live-room bleed`, state:'candidate', why:`A soul revue with an overdriven console, where the bleed is one part of a deliberately old signal chain.` }
+  ]
+},
+
+{
+  id:'counterpoint',
+  term:`Counterpoint`,
+  sounds:`Two tunes at once, and both of them are tunes. Neither is accompanying the other — they move independently, crossing over, pulling apart, arriving together at the ends of phrases — and your attention keeps flipping between them. It sounds busy in a satisfying rather than cluttered way, because each line makes complete sense on its own if you follow it.`,
+  gloss:`Two or more melodies played at the same time, each written to stand up alone while still fitting the others. Distinct from harmony, where one line leads and the rest supply notes underneath it.`,
+  syn:[`two melodies at once`,`interweaving lines`,`independent parts`,`polyphony`,`call it a conversation`,`the parts weaving`],
+  myth:`It is not the same as harmony, and it is not the same as unison. In harmony the other parts support the melody; in counterpoint they compete with it. That is why counterpoint can sound crowded on first listen and obvious on the fifth.`,
+  known:`Baroque keyboard writing above all, plus highlife and soukous guitar, progressive rock, and any arrangement where two guitars or a bass and a voice are genuinely arguing rather than agreeing.`,
+  origin:`Formalised in European church polyphony from the Renaissance and taught as a discipline ever since; arrived independently in West African guitar traditions, where interlocking independent lines are the basis of the style.`,
+  domains:['arrangement'],
+  match:['counterpoint'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`#344 has "two electric guitars in loose counterpoint", where the independence is casual. #143 has "interlocking counterpoint" across shifting meters, where it is a display of precision. #253 goes furthest: a ground bass cycling unchanged while everything else moves against it.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`One of the hardest asks on the page, and worth it. Counterpoint requires the generator to write two things that are individually coherent and mutually compatible — not a texture but an act of composition. If it lands, that is a much stronger claim about the model than any timbre card could make. If it produces one melody with a busy accompaniment, that is a clean and informative failure, and it would suggest the Arrangement domain has a ceiling.` },
+  ev:[
+    { n:253, span:`Counterpoint`, state:'candidate', why:`The clearest case in the corpus: counterpoint named as the borrowed element, with a ground bass of eight notes cycling unchanged beneath moving parts. Note the capital C.` },
+    { n:143, span:`counterpoint`, state:'candidate', why:`"Interlocking counterpoint" in shifting time signatures — the precision end, where failure would be obvious.` },
+    { n:105, span:`counterpoint`, state:'candidate', why:`"Two-guitar counterpoint" in highlife, the West African tradition where interlocking lines are the whole style rather than a technique applied to it.` },
+    { n:344, span:`counterpoint`, state:'candidate', why:`"Two electric guitars in loose counterpoint", one grinding chords while the other picks — the informal rock version of the same idea.` }
+  ]
+},
+
+{
+  id:'stacked-harmony',
+  term:`Stacked harmony`,
+  sounds:`One voice becomes a chord. The lead is joined by other voices singing different notes in exactly the same rhythm, so the line moves as a single block — and it stops sounding like a person and starts sounding like a choir, or like a sunbeam. Stack it high and it glows and thickens; the effect is always larger than any of the voices inside it, and the words stay perfectly clear because everyone is singing them together.`,
+  gloss:`Several vocal parts on different notes of a chord, moving in the same rhythm as the lead. Unlike counterpoint the parts do not move independently, and unlike unison they are not on the same note.`,
+  syn:[`harmony stack`,`stacked vocals`,`block harmony`,`close harmony`,`vocal wall`,`singing in thirds`],
+  myth:`Stacking is not the same as double-tracking or unison, though all three make a voice bigger. Double-tracking is one singer twice on the same note; unison is several people on the same note; stacking is several different notes at once. Only the last one is harmony.`,
+  known:`Bluegrass and gospel quartets, doo-wop, 1960s harmony pop and the folk-rock that followed it, and modern pop choruses where a single tracked voice is stacked into a wall.`,
+  origin:`Rooted in shape-note and gospel congregational singing and in barbershop practice; became a pop production default once multitracking let one singer supply every part.`,
+  domains:['arrangement','voice'],
+  match:['harmony stack','stacked harmon','harmony stacked'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`From "high harmony stack behind the lead" as one ingredient of a bluegrass band (#50), to #201 where "the vocal blend is the whole point" and three and four parts interweave and trade the lead between them.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Worth testing against unison and double-tracking as a set of three, because all three thicken a voice and they are constantly confused by ear. If the generator produces the same widened voice for all three, that is one finding covering three cards. The negatives help here too: several prompts exclude harmony stacks specifically to keep a single voice exposed, so suppression can be tested alongside production.` },
+  ev:[
+    { n:201, span:`harmony stack`, state:'candidate', why:`"The vocal blend is the whole point" — three and four parts interweaving and answering in thirds and fifths, so failure would be unmissable.` },
+    { n:50,  span:`harmony stack`, state:'candidate', why:`Bluegrass, where a high harmony stack sits behind the lead as one part of a band rather than as the point.` },
+    { n:165, span:`harmony stack`, state:'candidate', why:`Negative use — "auto-tuned harmony stacks" excluded from a prompt chasing a 1960s harmony sound, so the exclusion is about treatment rather than about harmony itself.` },
+    { n:269, span:`harmony stack`, state:'candidate', why:`A second negative, protecting a spoken-word piece where any sung harmony would break the conceit.` }
+  ]
+},
+
+{
+  id:'minor-key',
+  term:`Minor key`,
+  sounds:`The music turns dark before a single word registers. Chords land heavy and shadowed rather than bright and open, and tunes tend to sag downward where a major-key tune would climb. It reads instantly as sad, serious or menacing — and it is the fastest emotional decision a piece of music makes, usually settled within a second or two of the first chord.`,
+  gloss:`Music built on a minor scale, whose third note sits a semitone lower than a major scale's. That single lowered note is most of what listeners hear as sadness.`,
+  syn:[`minor`,`sad key`,`dark chords`,`in a minor`,`gloomy`,`that serious sound`],
+  myth:`Minor does not actually mean sad — it means minor. Enormous amounts of joyful music are in minor keys: klezmer, much dance music, plenty of folk. The sad association is a learned Western convention, strong enough to feel like a fact but not one.`,
+  known:`Everywhere, but it is load-bearing in trance and metal, in Eastern European and Middle Eastern traditions where it carries no sadness at all, and in film scoring where it is the shorthand for threat.`,
+  origin:`One half of the major-minor system that replaced the older church modes in European art music from the seventeenth century; the emotional convention attached to it hardened through nineteenth-century Romanticism.`,
+  domains:['harmony'],
+  match:['minor-key','minor key'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`"Minor-key arpeggios ringing on clean electric guitar" (#160) uses it as colour. "Rich minor-key harmonic movement" (#E5) uses it as structure. #268 excludes "minor-key gloom" specifically, which shows the convention being resisted rather than used.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`The most basic harmonic instruction there is, which makes it the right control for the whole Harmony domain. If the generator cannot reliably produce a minor key on request, then voice-leading and modal have no chance and those cards can be read accordingly. If it can, the interesting question moves immediately to whether it can do minor WITHOUT the sadness — which #268 suggests somebody has already wanted, since it excludes the gloom rather than the key.` },
+  ev:[
+    { n:297, span:`minor-key`, state:'candidate', why:`"A long minor-key arpeggio" driving uplifting trance — minor used for euphoria rather than sadness, which is the misconception made audible.` },
+    { n:'E5', span:`minor-key`, state:'candidate', why:`"Rich minor-key harmonic movement" through a breakdown and rebuild, so the key is structural rather than decorative.` },
+    { n:160, span:`minor-key`, state:'candidate', why:`College-rock arpeggios on clean guitar, where minor supplies mood without any drama around it.` },
+    { n:268, span:`minor-key`, state:'candidate', why:`Negative use, and an unusually precise one: it excludes "minor-key gloom" rather than the minor key itself.` }
+  ]
+},
+
+{
+  id:'fuzz',
+  term:`Fuzz`,
+  sounds:`A guitar that has stopped sounding like a guitar. The note collapses into a thick woolly buzz — closer to a swarm, or a torn speaker cone, than to a string — and then holds there, sustaining far longer than a clean note would. Single notes thicken into something almost vocal; chords turn to mush. It is warm, saturated and always a little out of control.`,
+  gloss:`Extreme distortion that squares the signal off almost completely, rather than merely roughening its edges. The original devices were built to imitate a broken amplifier and are still doing that.`,
+  syn:[`fuzzbox`,`fuzz pedal`,`that buzzy guitar`,`woolly distortion`,`torn speaker sound`,`the bee-in-a-jar tone`],
+  myth:`Fuzz is not just more distortion. Overdrive and distortion roughen a note while keeping its shape; fuzz replaces the shape almost entirely, which is why it sustains so long and why chords stop working under it. In practice they sit on a scale, and the ear places fuzz well past where distortion stops.`,
+  known:`1960s garage and psychedelia, stoner and doom metal, shoegaze and noise pop. It reads as primitive and unpolished even when it took great care to achieve.`,
+  origin:`A 1960s studio accident with a damaged channel, quickly built into pedals; became the defining guitar sound of garage and psychedelia and has been revived by every heavy scene since.`,
+  domains:['guitar'],
+  match:['fuzz'],
+  kinds:['instrument','technique'],
+  nature:'continuous',
+  range:`"Fuzz guitar with backwards swells" (#37) is fuzz as psychedelic colour. #55 has a clean voice "floating detached over the fuzz", where it is a bed rather than a lead. #72 puts it on the bass instead — "fuzz-drenched bass" — which is a different instrument doing the same thing.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`A good test of a distinction the generator may not make. Fuzz, overdrive and distortion are three different degrees with three different names, and the corpus uses all of them freely — 23 prompts say fuzz, 46 say distorted guitar. If asking for fuzz produces ordinary distortion, that is worth knowing, because the same question applies to every family of near-synonyms in this library. Easy to judge by ear too: real fuzz sustains and loses chord definition, and distortion does neither.` },
+  ev:[
+    { n:37, span:`Fuzz`, state:'candidate', why:`"Fuzz guitar with backwards swells" leading an acid-rock arrangement — the term in its home idiom. Note the capital F.` },
+    { n:55, span:`fuzz`, state:'candidate', why:`Stoner rock, with a clean detached voice floating over the fuzz — the contrast should make any failure of the guitar tone obvious.` },
+    { n:72, span:`fuzz`, state:'candidate', why:`"Fuzz-drenched bass" rather than guitar, testing whether the term carries to another instrument.` },
+    { n:70, span:`fuzz`, state:'candidate', why:`"A fuzzed reverb-soaked rawness" applied to the whole garage-rock texture rather than to one part.` }
+  ]
+},
+
+{
+  id:'wah',
+  term:`Wah`,
+  sounds:`A guitar vowel. The tone sweeps between a dark ooo and a nasal aah and back again, so the instrument seems to be talking, or crying, or asking a question. Rocked in time with the beat it stops being a tone and becomes a rhythm part — that chicka-chicka scratching under funk and disco. Left parked in one position it simply sounds honky and pinched, which is its other, sneakier use.`,
+  gloss:`A pedal that sweeps a narrow boost up and down the frequency range as the player rocks their foot. The moving peak imitates the way a mouth changes shape between vowels, which is why it sounds like speech.`,
+  syn:[`wah pedal`,`wah-wah`,`talking guitar`,`crying guitar`,`that chicka-chicka guitar`,`quacky guitar`],
+  myth:`It is not the same as a talkbox, which routes the actual guitar sound through a tube into the player's mouth so real words can be formed. A wah only suggests a vowel; a talkbox produces one. They are constantly confused because both make a guitar sound like it is speaking.`,
+  known:`Funk and disco rhythm playing, psychedelic and blues-rock lead work, and 1970s film scoring, where a parked wah is shorthand for a city street.`,
+  origin:`A mid-1960s pedal derived from a trumpet mute effect, intended for horn players; guitarists took it over almost immediately and it became a defining sound of funk and psychedelia.`,
+  domains:['guitar'],
+  match:['wah'],
+  kinds:['instrument','technique'],
+  nature:'continuous',
+  range:`The corpus captures the two opposite jobs cleanly: "wah rhythm guitar" (#22, #14) chopping percussively under a groove, and "wah lead" (#72) sweeping slowly across long sludge-metal notes.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Unusually testable for a guitar effect, because the movement is the whole point — a static filtered tone is a clear failure and a sweeping one is a clear success, and no expertise is needed to tell them apart. The rhythm-versus-lead split makes it doubly useful: it can be tested for the sound and separately for whether the generator applies it in time with the beat, which is a much harder ask.` },
+  ev:[
+    { n:22, span:`wah`, state:'candidate', why:`"Wah rhythm guitar" in disco — the percussive chopping use, where the sweep has to move in time with the beat.` },
+    { n:72, span:`wah`, state:'candidate', why:`"Wah lead" over Southern sludge — slow sweeps on long notes, the opposite job for the same pedal.` },
+    { n:14, span:`wah`, state:'candidate', why:`Funk with a talkbox in the same arrangement, which is a useful chance to hear whether the generator separates the two effects the misconception warns about.` },
+    { n:57, span:`wah`, state:'candidate', why:`Madchester, where wah rhythm guitar sits inside a loose shuffling break rather than a tight funk grid.` }
+  ]
+},
+
+{
+  id:'compression',
+  term:`Compression`,
+  sounds:`The gap between loud and quiet closes up. Quiet details rise into view — breath, finger squeak, the tail of a note — while the loudest moments stop leaping out, so everything sits forward and steady and nothing gets away from you. Overdone, it starts to breathe audibly: the whole sound ducks down after each hit and swells back up in the gaps, and cymbals seem to suck at the edges.`,
+  gloss:`Automatic volume control that turns the signal down whenever it exceeds a threshold, then lifts the whole thing back up. The result is a smaller distance between the loudest and quietest parts.`,
+  syn:[`compressed`,`squashed`,`levelled`,`glued`,`punchy`,`limited`,`that pumping sound`],
+  myth:`It makes things sound louder by making them quieter — the peaks come down first, and only then does everything get raised. It is also not the same as sidechain compression, which is this tool wired so that one sound ducks a different one. Same device, quite different purpose.`,
+  known:`Every commercial record ever released, which is why it is invisible until it is overdone. Deliberately audible compression is a genre signal in itself: hip-hop drums, 1970s rock, and anything wanting to sound aggressive.`,
+  origin:`Broadcast equipment from the 1930s built to stop transmitters overloading; adopted by studios as a creative tool, and central to the loudness competition that shaped records from the 1990s on.`,
+  domains:['production'],
+  match:['compressed','compression','compressor'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`"Lightly compressed" (#18) is the invisible setting nobody would notice missing. "Compressed overdriven disco bass played like a rock riff" (#J1) is the audible end, where the squashing is a texture in its own right.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Complicated by an ambiguity in the word itself, which is worth knowing before testing. Several corpus prompts use "compressed" in a purely figurative sense — phrasing compressed into small bent figures, a chord chime compressed into downstrokes — meaning condensed rather than dynamically controlled. So a discovery list for this term will contain false positives, and any test has to use prompts where the audio sense is unmistakable. That ambiguity is itself a finding about how carefully these prompts have to be read.` },
+  ev:[
+    { n:18,  span:`compressed`, state:'candidate', why:`"Close dynamic mic, lightly compressed" — the invisible end, named in a signal chain so the audio sense is unambiguous.` },
+    { n:'J1', span:`Compressed`, state:'candidate', why:`"Compressed overdriven disco bass" alongside a brutal sidechain pump, so both meanings of the device appear in one prompt. Note the capital C.` },
+    { n:14,  span:`tape compression`, state:'candidate', why:`"Tape compression" names the mechanism rather than the effect — a different literal, and a chance to see whether the specific form behaves like the generic one.` },
+    { n:146, span:`compressed`, state:'candidate', why:`Negative use: "bright compressed loudness" excluded from an ambient piece that needs its dynamics left intact.` }
+  ]
+},
+
+{
+  id:'swing',
+  term:`Swing`,
+  sounds:`The beat limps, pleasantly. Instead of splitting each beat into two even halves, the first half is stretched and the second clipped short, so pairs of notes fall long-short, long-short in a rolling, skipping gait. It is the difference between marching and strolling — and it makes music sound human before anything else has had a chance to.`,
+  gloss:`Playing pairs of notes unevenly rather than evenly, with the first of each pair longer than the second. How uneven is a sliding scale, and players adjust it constantly without counting.`,
+  syn:[`swung`,`shuffle`,`that skipping feel`,`bouncy rhythm`,`triplet feel`,`loping`],
+  myth:`It is not the same as being behind the beat. Swing changes the SPACING inside each beat while everybody stays lined up; playing behind the beat shifts a whole part late while the spacing stays even. A performance can do both at once, which is why they are so often conflated.`,
+  known:`Jazz above all — the word names an entire era of it — plus blues shuffles, boogie, hip-hop that programs a swing amount into its drums, and UK garage, which is built on an extreme setting of it.`,
+  origin:`Emerged in early jazz and blues from the rhythmic practices of the African diaspora; named and formalised as a style in the 1930s, and later rebuilt as a numeric setting in drum machines and sequencers.`,
+  domains:['rhythm'],
+  match:['swing'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`The corpus holds swing as a whole genre — "big-band swing" (#26), "Western swing" (#101), "gypsy-jazz manouche swing" (#47) — and separately as a feel a vocalist rides (#44). Whether the word means a style or a rhythm to the generator is exactly the ambiguity worth testing.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`The clearest genre-versus-mechanism collision on the page. Swing names both a rhythmic ratio and an entire era of jazz, and nearly every corpus use is the genre. So a demo that sounds right may be right for the wrong reason — the generator may be reaching for big bands rather than for uneven eighth notes. The clean test is asking for swing in a style that has no swing tradition at all, which is the same design the drone card needs for the same reason.` },
+  ev:[
+    { n:44,  span:`swing`, state:'candidate', why:`A spoken-word recitation "riding the swing" — the only case in the corpus where swing is clearly a feel rather than a genre, since nothing is being sung.` },
+    { n:26,  span:`swing`, state:'candidate', why:`"Big-band swing" — the genre reading, and the direct comparison that makes #44 informative.` },
+    { n:101, span:`swing`, state:'candidate', why:`"Western swing", the same rhythmic idea inside a country tradition rather than a jazz one.` },
+    { n:47,  span:`swing`, state:'candidate', why:`"Gypsy-jazz manouche swing" at speed, where the unevenness has to survive a very fast tempo to be audible at all.` }
+  ]
+},
+
+{
+  id:'vibrato',
+  term:`Vibrato`,
+  sounds:`The held note wobbles. Instead of sitting perfectly still, a sustained note pulses gently up and down in pitch several times a second — a shimmer that makes a voice sound warm and alive, and quietly disguises the fact that holding a note dead straight is very hard. Too much and it turns into a bleat or a wobble you cannot ignore; too little and the voice sounds cold, or synthetic, or nervous.`,
+  gloss:`A regular, small oscillation in the pitch of a sustained note. Singers and string players produce it deliberately; on most instruments it is the main way a long note is kept alive.`,
+  syn:[`wobble`,`the shake on long notes`,`warble`,`tremble`,`that operatic wobble`,`sustained shimmer`],
+  myth:`It is not melisma, though both make a note move. Melisma travels between different pitches carrying the melody along; vibrato circles a single pitch and never leaves it. It is also not a decoration added on top — most trained voices do it by default, and singing without it is the deliberate choice.`,
+  known:`Opera and musical theatre, where it is constant and expected, against indie, folk and modern pop, where its absence is a deliberate signal of intimacy or coolness.`,
+  origin:`Present in singing and string playing for centuries as an occasional ornament; became continuous and expected in Western classical singing during the nineteenth century, and its deliberate removal became a pop stance in the twentieth.`,
+  domains:['voice'],
+  match:['vibrato'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`#7 is constant — "even vibrato woven through every sustained note". #2 is rationed — "smooth vibrato arriving only at phrase ends". #3 excludes "vibrato wobble" specifically, naming the failure rather than the technique.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`A rare case where the useful test is about CONTROL rather than presence. Almost any sung output will have some vibrato, so the question is whether the generator can be told when to use it — constantly, only at phrase ends, or not at all. #7 and #2 are close to a ready-made pair for exactly that, and #3 adds the suppression case. If placement can be steered, that is a strong result about vocal instructions generally; if every voice wobbles the same way regardless, that limit applies well beyond this card.` },
+  ev:[
+    { n:7, span:`vibrato`, state:'candidate', why:`Operatic and continuous — "even vibrato woven through every sustained note", the maximal and most conventional case.` },
+    { n:2, span:`vibrato`, state:'candidate', why:`"Smooth vibrato arriving only at phrase ends" — placement specified rather than amount, which is the harder instruction.` },
+    { n:3, span:`vibrato wobble`, state:'candidate', why:`Negative use, and it excludes the FAULT rather than the technique — a precision worth testing against a blunt exclusion.` },
+    { n:4, span:`vibrato`, state:'candidate', why:`A blunt negative excluding vibrato outright, for direct comparison with #3.` }
   ]
 },
 ];
