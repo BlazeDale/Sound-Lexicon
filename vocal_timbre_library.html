@@ -112,6 +112,9 @@
   .song-art img{width:100%;height:100%;object-fit:cover;display:block}
   .song-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.30);color:#fff;font-size:15px;text-shadow:0 1px 3px rgba(0,0,0,.7);transition:background .12s}
   .song-art:hover{border-color:var(--amber)}
+  /* the demo currently loaded in the side player */
+  .song-art.playing{border-color:var(--amber);box-shadow:0 0 0 2px var(--amber),0 0 12px rgba(224,166,60,.35)}
+  .song-art.playing .song-play{background:rgba(224,166,60,.30)}
   .song-art:hover .song-play{background:rgba(0,0,0,.10)}
   .song-g{position:absolute;bottom:2px;right:2px;font-size:15px;font-weight:700;color:#fff;line-height:1;padding:1px 3px;border-radius:5px;background:rgba(0,0,0,.55);text-shadow:0 1px 2px #000}
   .song-g:empty{display:none}
@@ -616,6 +619,16 @@ document.querySelectorAll('.legend span[data-aff]').forEach(sp=>sp.addEventListe
   const labelOf=(card,art)=>(card?('#'+card.dataset.n+' '+(card.querySelector('.name')?.textContent||'').trim()):'')+(art&&art.dataset.title?' · '+art.dataset.title:'');
   const plikewrap=document.getElementById('plikewrap'), plike=document.getElementById('plike'),
         plikecount=document.getElementById('plikecount');
+  /* Mark the playing demo on its own artwork, so you can see what the player is holding
+     without hunting for it. Tracked by uuid rather than by node: a demo can appear both in
+     its card and in the most-recent strip, and both should light up. Filtering and sorting
+     move these nodes but never rebuild them, so the class survives on its own. */
+  let nowPlaying=null;
+  function markPlaying(){
+    document.querySelectorAll('.song-art').forEach(a=>
+      a.classList.toggle('playing', !!nowPlaying && a.dataset.uuid===nowPlaying));
+  }
+  window.__markPlaying=markPlaying;
   /* Bind the player's heart to whatever is playing. It carries the same class and data
      attributes as a card heart, so the existing click handler, syncHearts() and
      renderCounts() drive it with no special cases — like it here and the card updates
@@ -628,6 +641,7 @@ document.querySelectorAll('.legend span[data-aff]').forEach(sp=>sp.addEventListe
   }
   function play(uuid,lab,card){
     if(!uuid) return;
+    nowPlaying=uuid; markPlaying();
     pempty.style.display='none'; frame.style.display='block';
     frame.src='https://suno.com/embed/'+uuid;
     pnow.textContent=lab||'Playing';

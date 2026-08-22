@@ -149,6 +149,11 @@
   .tile img{width:100%;height:100%;object-fit:cover;display:block}
   .tile .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.32);color:#fff;font-size:13px;text-shadow:0 1px 3px rgba(0,0,0,.7)}
   .tile:hover{border-color:var(--amber)}
+  /* the demo currently loaded in the side player */
+  .tile.playing{border-color:var(--amber);box-shadow:0 0 0 2px var(--amber),0 0 12px rgba(224,166,60,.35)}
+  .tile.playing .play{background:rgba(224,166,60,.30)}
+  .tile.playing .play::after{content:'';position:absolute;inset:0;border-radius:6px;animation:pulseplay 1.8s ease-in-out infinite}
+  @keyframes pulseplay{0%,100%{box-shadow:inset 0 0 0 0 rgba(224,166,60,0)}50%{box-shadow:inset 0 0 0 2px rgba(224,166,60,.55)}}
   .tile:hover .play{background:rgba(0,0,0,.10)}
   .nodemo{font-family:var(--mono);font-size:11px;color:var(--dim)}
   /* momentary-event hint (no seek mechanism exists — see design doc §5) */
@@ -644,6 +649,7 @@ function paintMore(cardId) {
   list.innerHTML = moreItems(c, shown);
   list.classList.toggle('open', shown > 0);
   btn.classList.toggle('open', shown > 0);
+  markPlaying();                        // freshly rendered tiles need the marker too
 }
 
 document.addEventListener('click', e => {
@@ -684,6 +690,7 @@ function render() {
   document.getElementById('dblurb').textContent = d ? d.blurb : '';
   promotedSig = currentPromotedSig();   // set BEFORE renderCounts, or refreshVotes recurses
   renderCounts();
+  markPlaying();                        // cards were just rebuilt — restore the marker
 }
 
 /* ---------- likes ----------
@@ -859,7 +866,18 @@ function fallback(txt) {
   document.body.removeChild(ta);
 }
 
-/* ---------- side player (the audio is hotlink-protected, so this is the embed) ---------- */
+/* ---------- side player (the audio is hotlink-protected, so this is the embed) ----------
+   The playing demo is marked on its own tile so you can see what the player is holding
+   without scrolling to find it. Tracked as a uuid rather than a node, because the cards
+   are rebuilt on every render — a class set on an element would vanish on the next search
+   keystroke. The same demo can be attached to more than one lesson, and every instance
+   lights up, which is a small bonus: it shows where else that take is being used. */
+let nowPlaying = null;
+function markPlaying() {
+  document.querySelectorAll('.tile').forEach(t =>
+    t.classList.toggle('playing', !!nowPlaying && t.dataset.uuid === nowPlaying));
+}
+
 /* The player's heart carries the same class and data attributes as a card heart, so the
    existing click handler and renderCounts() drive it with no special cases — hearting it
    here updates the card too, because they are the same id. It is bound to the LESSON the
@@ -874,6 +892,8 @@ function bindPlayerHeart(cardId) {
 document.addEventListener('click', e => {
   const t = e.target.closest('.tile'); if (!t) return;
   const card = t.closest('.card');
+  nowPlaying = t.dataset.uuid;
+  markPlaying();
   document.getElementById('ptitle').textContent = t.dataset.title || '';
   document.getElementById('pframe').src = 'https://suno.com/embed/' + t.dataset.uuid;
   bindPlayerHeart(card && card.dataset.id);
