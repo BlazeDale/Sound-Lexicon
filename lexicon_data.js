@@ -399,6 +399,8 @@ A confound to design around before trusting any result: nearly every prompt usin
   known:`The defining drum sound of 1980s pop, new wave and synth-pop, and the fastest way to date a record to that decade. Later picked up again without irony by synthwave.`,
   origin:`A studio accident in early-1980s London — a talkback microphone run through heavy compression and a noise gate; spread through 1980s pop and new wave, and returned deliberately in 2010s synthwave and darksynth.`,
   first:`1980s`, peak:[`1980s`,`2010s`],
+  exemplar:{ kind:'popularised', title:`In the Air Tonight`, artist:`Phil Collins`, year:`1981`,
+    listen:`The drums stay away for three and a half minutes, so when the fill finally arrives the gated snare is the first thing you have heard hit hard — huge, and cut off dead. It is the sound this whole card describes, and the record that made every studio want it.` },
   domains:['production','drums'],
   match:['gated reverb','gated snare','gated drum','gated ambience'],
   kinds:['technique'],

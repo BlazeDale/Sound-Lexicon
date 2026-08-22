@@ -384,6 +384,31 @@ Policy: write origin as **era and scene** — "West Coast studio pop, mid-60s"
 hash it the way the artist study keys already are. The era-and-scene form
 reads better for a lay person anyway.
 
+### One carve-out: the exemplar record (added 2026-08-21)
+
+A lesson is far more useful when it can say *you have heard this on…* — a reader
+recognises a sound from one familiar record faster than from any description. Hashing is
+useless for that, since the entire point is that they can go and listen.
+
+So a card may carry an optional **`exemplar`**: title, artist, year, and one line on what
+to listen for, marked as either the record that **popularised** the term or the one that
+best **exemplifies** it — often different records, and the difference is part of the lesson.
+
+**The guard narrowed rather than lifted.** `findDenied` still scans term, gloss,
+misconception, known-for, origin, range, resolution note, synonyms and evidence reasons
+exactly as before; names are legal *only* inside `exemplar`. That is stronger than relaxing
+the rule, because a name now cannot drift into a synonym ring or an origin line by accident
+— verified by planting one and watching validation fail.
+
+**`data.js` is untouched and the rule there stays absolute.** The reason the no-names rule
+exists is that the vocal library ships prompts reconstructing an artist's sound, and naming
+names there reads as imitation. A lessons page citing the record that popularised gated
+reverb is ordinary music history. Different context, different exposure — agreed with
+BlazeDale 2026-08-21 on exactly that basis.
+
+Optional by design: melisma, drone, counterpoint and syncopation are older than recording,
+and inventing a canonical record for them would be worse than leaving the field empty.
+
 ## 8. Verdicts have a shelf life
 
 Every uptake judgement is about **one model version at one date**. The

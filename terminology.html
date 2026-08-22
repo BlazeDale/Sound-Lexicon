@@ -169,6 +169,12 @@
   @keyframes pulseplay{0%,100%{box-shadow:inset 0 0 0 0 rgba(224,166,60,0)}50%{box-shadow:inset 0 0 0 2px rgba(224,166,60,.55)}}
   .tile:hover .play{background:rgba(0,0,0,.10)}
   .nodemo{font-family:var(--mono);font-size:11px;color:var(--dim)}
+  /* the exemplar record — the only place on the page a real name may appear */
+  .exemplar{margin-top:16px;border:1px solid var(--line);border-left:2px solid var(--C);border-radius:9px;padding:11px 14px;background:rgba(26,158,117,.05)}
+  .exemplar .lab{color:var(--C);margin-bottom:5px}
+  .exrec{margin:0 0 5px;font-size:15px;color:var(--text)}
+  .exrec b{font-weight:700}
+  .exlisten{margin:0;font-size:13.5px;color:var(--muted);line-height:1.55}
   /* momentary-event hint (no seek mechanism exists — see design doc §5) */
   .moment{margin-top:12px;font-size:12.5px;color:var(--muted);border-left:2px solid var(--violet);padding:2px 0 2px 11px}
   /* prompt pop-out */
@@ -341,7 +347,8 @@ function blob(c) {
      land on gated reverb. Storing only the canonical form would quietly fail the shorter one. */
   const eras = [c.first, ...(c.peak || [])];
   const eraBlob = eras.concat(eras.map(e => e.replace(/^\d\d/, ''))).join(' ');
-  return [c.term, c.sounds, c.gloss, c.myth, c.known, c.origin, c.range, c.res.note, eraBlob,
+  const ex = c.exemplar ? `${c.exemplar.title} ${c.exemplar.artist} ${c.exemplar.year}` : '';
+  return [c.term, c.sounds, c.gloss, c.myth, c.known, c.origin, c.range, c.res.note, eraBlob, ex,
     (c.syn || []).join(' '), c.domains.map(d => (domById.get(d) || {}).name).join(' '),
     (c.kinds || []).join(' '), c.nature, evNames].join(' ').toLowerCase();
 }
@@ -596,6 +603,12 @@ function cardHTML(c) {
       <div class="lab">Range</div>
       <div class="body">${esc(c.range)}</div>
     </div>
+
+    ${c.exemplar ? `<div class="exemplar">
+      <div class="lab">${c.exemplar.kind === 'popularised' ? 'The record that popularised it' : 'The clearest example'}</div>
+      <p class="exrec"><b>${esc(c.exemplar.title)}</b> &middot; ${esc(c.exemplar.artist)} &middot; ${esc(c.exemplar.year)}</p>
+      <p class="exlisten">${esc(c.exemplar.listen)}</p>
+    </div>` : ''}
 
     ${moment}
 

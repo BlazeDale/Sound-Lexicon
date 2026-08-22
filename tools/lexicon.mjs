@@ -120,6 +120,25 @@ export function checkLexicon() {
     if (badState.length) fail(`evidence state must be one of ${STATES.join('/')}: ${badState.join(', ')}`);
   }
 
+  /* ---------- exemplar: the record that carries the term ----------
+     Optional by design. Melisma, drone, counterpoint and syncopation are older than
+     recording, and inventing a canonical record for them would be worse than leaving it
+     blank. `kind` records WHICH claim is being made — first to popularise it, or clearest
+     example — because those are frequently different records and the difference is part of
+     the lesson. */
+  {
+    const KINDS = ['popularised', 'exemplifies'];
+    const bad = [];
+    for (const c of LEX) {
+      const x = c.exemplar; if (!x) continue;
+      for (const f of ['title', 'artist', 'year', 'listen'])
+        if (!String(x[f] || '').trim()) bad.push(`${c.id} exemplar missing ${f}`);
+      if (!KINDS.includes(x.kind)) bad.push(`${c.id} exemplar.kind must be ${KINDS.join(' or ')}`);
+      if (x.year && !/^\d{4}$/.test(String(x.year))) bad.push(`${c.id} exemplar.year "${x.year}" is not a 4-digit year`);
+    }
+    bad.length ? fail(`exemplar problems: ${bad.join('; ')}`) : pass(`every exemplar names a record, a year, and what to listen for`);
+  }
+
   /* ---------- era tags ----------
      `first` is when the term appeared, `peak` when it was popularised — they are often
      different by decades, which is the point of keeping both. Values are constrained so the
@@ -224,6 +243,10 @@ export function checkLexicon() {
     const hashes = loadHashes();
     if (!hashes.size) { fail(`denylist empty — seed it: node tools/denylist.mjs add "Name"`); }
     else {
+      /* The carve-out is deliberately narrow. Names are legal ONLY inside `exemplar`, the
+         field built to carry them; every other field is scanned exactly as before. That is
+         stronger than relaxing the rule, because a name cannot drift into a synonym ring, an
+         origin line or an evidence reason by accident — the guard would still catch it. */
       const hits = [];
       for (const c of LEX) {
         const visible = [c.term, c.gloss, c.myth, c.known, c.origin, c.range, c.res?.note,
@@ -231,9 +254,10 @@ export function checkLexicon() {
         const found = findDenied(visible, hashes);
         if (found.length) hits.push(`${c.id} → ${found.join(', ')}`);
       }
+      const withEx = LEX.filter(c => c.exemplar).length;
       hits.length
-        ? fail(`artist name in a lexicon card (origin must be era-and-scene): ${hits.join('; ')}`)
-        : pass(`no artist names in any lexicon card (${hashes.size} hashed)`);
+        ? fail(`artist name outside the exemplar field (origin must stay era-and-scene): ${hits.join('; ')}`)
+        : pass(`no artist names outside \`exemplar\` (${hashes.size} hashed); ${withEx}/${LEX.length} cards carry one`);
     }
   }
 
