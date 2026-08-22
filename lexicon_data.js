@@ -29,7 +29,7 @@
  * Loaded as a classic <script> AFTER data.js, so LIB is already a global.
  */
 
-const LEX_VERSION = 'v10';
+const LEX_VERSION = 'v11';
 const LEX_UPDATED = '2026-08-21';
 
 /* ---------- TOP TIER: domains, not instruments ----------
@@ -1396,6 +1396,428 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
     { n:82, span:`sub bass`, state:'candidate', why:`Dub techno, the tradition that made sub-bass a musical part rather than a by-product.` },
     { n:89, span:`sub bass`, state:'candidate', why:`"Deep warm sub bass" under liquid drum and bass, where it has to sit beneath a busy break without muddying it.` },
     { n:87, span:`sub bass`, state:'candidate', why:`"Booming sub bass" in future bass, alongside supersaw chords that occupy a completely different part of the spectrum.` }
+  ]
+},
+
+{
+  id:'growl',
+  term:`Growl`,
+  sounds:`A low tearing rasp dragged underneath the note, like the voice is being pulled over gravel. Often the pitch is still there underneath and you can follow the tune, but it arrives wrapped in a rough buzzing that reads as effort and threat at once. Pushed further it loses pitch altogether and becomes pure texture with words riding on top.`,
+  gloss:`A rough distorted voice made by vibrating the false vocal folds — a second pair sitting just above the real ones — while the true folds carry whatever note is underneath.`,
+  syn:[`rasp`,`gravel`,`roar`,`grit`,`throaty`,`that scratchy voice`],
+  myth:`Done properly it is not shredding anyone's throat. The roughness comes from a structure ABOVE the vocal folds vibrating in sympathy, which is why a trained growler can do it nightly for decades while someone imitating it loses their voice in a week. The damage comes from faking it with the real folds.`,
+  known:`Metal and hardcore, but equally blues shouting, gospel and soul — anywhere a voice is meant to sound like it is under strain rather than in comfort.`,
+  origin:`Present in field holler, blues and gospel long before amplification; formalised as a teachable technique in 1980s and 90s extreme metal, where it became the default lead vocal rather than an ornament.`,
+  first:`ancient`, peak:[`1990s`,`2000s`],
+  exemplar:{ kind:'exemplifies', title:`Smokestack Lightning`, artist:`Howlin' Wolf`, year:`1956`,
+    listen:`The rasp sits on top of a perfectly clear pitch — you can follow the tune the whole way through. That is the distinction the card is about: growl is a texture added to a note, not the absence of one.` },
+  domains:['voice'],
+  match:['growl'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`#1 has "a controlled growl on every held note" — an edge applied to a sung line. #8 is the far end: "an extreme guttural growl, a low pitchless roar" with no note left in it at all.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`The most-used vocal texture word in the corpus at 193 prompts, so whether it registers is not in much doubt. The useful question is whether its RANGE registers — whether a controlled growl on held notes and a pitchless guttural roar come back as different things or as one generic rasp. #1 and #8 sit at opposite ends of that and would make a cheap pair.` },
+  ev:[
+    { n:1,  span:`growl`, state:'candidate', why:`"A controlled growl on every held note" — the subtle end, applied to a voice that is otherwise singing normally.` },
+    { n:8,  span:`growl`, state:'candidate', why:`"An extreme guttural growl, a low pitchless roar" — the maximal end, where the technique has replaced the note entirely.` },
+    { n:11, span:`growl`, state:'candidate', why:`Negative use, protecting a devotional tenor where any roughness would break the idiom.` },
+    { n:12, span:`growl`, state:'candidate', why:`A second negative, in a gospel bass part meant to be enormous and completely smooth.` }
+  ]
+},
+
+{
+  id:'whisper',
+  term:`Whisper`,
+  sounds:`All air and no note. The words are shaped but there is no pitch under them at all, so consonants turn sharp and hissy while vowels dissolve into breath. Because it forces the microphone close, it also arrives sounding physically nearer than singing does — someone at your ear rather than across a room.`,
+  gloss:`Speaking or singing with the vocal folds held apart so they never vibrate. The sound is pure turbulence — air rushing through a narrow gap — with no fundamental pitch in it.`,
+  syn:[`whispered vocal`,`breathed`,`hushed`,`ASMR voice`,`spoken under the breath`,`airy`],
+  myth:`You cannot whisper a tune. There is no pitch in a true whisper, which is why whispered singing is always either half-whispered — some fold vibration left in — or spoken over an instrument carrying the melody. Anything that sounds like a whispered melody is not fully whispered.`,
+  known:`Bedroom pop, trip-hop, horror scoring and ASMR-adjacent production. Anywhere a record wants intimacy without volume, or menace without shouting.`,
+  origin:`Impossible on a stage without amplification, so it arrives with the microphone — crooners found it in the 1930s, and every intimate-vocal genre since has depended on it.`,
+  first:`1930s`, peak:[`1990s`,`2010s`],
+  domains:['voice'],
+  match:['whisper'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`#82 is "half-whispered and drenched in cavernous echo" — partly voiced, so a pitch survives. #84 alternates "a cold clipped whisper" against a barked shout, using the absence of pitch as contrast.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Worth testing alongside close-miking rather than on its own, because the two always travel together — a whisper without a close microphone is simply inaudible, so any result here is really a result about both. The sharper question is whether the generator can produce a whisper with NO pitch, or whether it always leaves some voicing in and produces a breathy sung line instead. That difference is easy to hear and would say something about how it handles instructions that remove a feature rather than add one.` },
+  ev:[
+    { n:82,  span:`whisper`, state:'candidate', why:`"Half-whispered" — deliberately partial, so some pitch remains. The most common real-world form of the instruction.` },
+    { n:84,  span:`whisper`, state:'candidate', why:`"A cold clipped whisper" alternating with a shout, which puts the presence and absence of pitch side by side in one vocal.` },
+    { n:104, span:`whisper`, state:'candidate', why:`"A hissed chest-voice whisper" — a contradiction in terms that the prompt is asking for anyway, and a good test of how the instruction is resolved.` },
+    { n:2,   span:`whisper`, state:'candidate', why:`Negative use, keeping a noir-jazz croon fully voiced and supported.` }
+  ]
+},
+
+{
+  id:'harmonics',
+  term:`Harmonics`,
+  sounds:`A bell that appears out of a string. Touch it lightly at exactly the right spot rather than pressing it down and the fat fundamental vanishes, leaving a pure glassy chime far higher than the note being fretted — a different instrument entirely, and it rings on longer than it has any right to.`,
+  gloss:`Touching a string at an exact fraction of its length silences the fundamental and lets a single overtone sound alone. A pinch harmonic does the same with the thumb during the pick stroke, which is why it squeals rather than chimes.`,
+  syn:[`natural harmonics`,`pinch harmonic`,`squeal`,`chime`,`bell tones`,`flageolet`],
+  myth:`Touching a string lightly makes it sound HIGHER, which is the opposite of what pressing it down does. And the note was already there: every string sounds all of its overtones at once, and a harmonic simply removes everything below the one you wanted.`,
+  known:`Chiming clean guitar in post-rock and dream-pop, and the squealing pinch harmonics of hard rock and metal — the same physics used at opposite extremes.`,
+  origin:`Understood since antiquity as a property of vibrating strings; entered popular guitar playing in the 1960s and became a metal signature through the pinch harmonic in the 1980s.`,
+  first:`pre-1900`, peak:[`1980s`,`1990s`],
+  exemplar:{ kind:'exemplifies', title:`Roundabout`, artist:`Yes`, year:`1971`,
+    listen:`The opening is natural harmonics on an acoustic guitar — bell-like, far higher than the fretted notes around them, and ringing much longer. It is the clearest recorded demonstration of the fundamental being removed.` },
+  domains:['guitar'],
+  match:['harmonics','pinch-harmonic'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`#332 has "light guitar harmonics chiming over" a plain drum pattern — decoration. #27 has "screaming pinch-harmonic leads" in hard rock, which is the same physics turned into an aggressive squeal.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`A good candidate for resolving, because a harmonic is acoustically distinctive rather than a matter of tone colour — the fundamental is genuinely absent and the result is unusually pure. Failure would be equally clear: an ordinary fretted note in the same register would not fool anyone. The two senses are worth separating in any test, since "harmonics" and "pinch harmonic" produce very different sounds from the same principle.` },
+  ev:[
+    { n:242, span:`harmonics`, state:'candidate', why:`"Tape-delayed guitar harmonics" over a sleep-ambient bed with no percussion, so the chime is completely exposed.` },
+    { n:332, span:`harmonics`, state:'candidate', why:`"Light guitar harmonics chiming" over a plain kick-and-snare pattern — the decorative use in a pop setting.` },
+    { n:247, span:`harmonics`, state:'candidate', why:`Wavetable pads whose "harmonics shift under a held chord" — the same word applied to synthesis rather than to a string, and a useful check on which sense is heard.` },
+    { n:27,  span:`pinch-harmonic`, state:'candidate', why:`"Screaming pinch-harmonic leads" — the aggressive end, and a distinct literal worth recording separately.` }
+  ]
+},
+
+{
+  id:'feedback',
+  term:`Feedback`,
+  sounds:`A note that refuses to die and grows instead. Rather than decaying, it swells louder and louder as the amplifier keeps re-exciting the string, then slides upward into a howl that can hang there indefinitely. It is audibly unstable — the pitch shifts if anything moves.`,
+  gloss:`A loop rather than a sound: the amplifier's output vibrates the guitar strings, which the amplifier then amplifies again. The room is part of the circuit.`,
+  syn:[`howl`,`squeal`,`amp feedback`,`sustain`,`the screaming bit`,`ringing out`],
+  myth:`It is not distortion and it is not a pedal. Feedback is a physical loop between speaker and string, which is why it is controlled by where the player stands rather than by how they play — and why no amount of gain alone will produce it.`,
+  known:`Psychedelia, punk, shoegaze, sludge and noise rock. It was an engineering fault to be eliminated until players started walking toward their amplifiers on purpose.`,
+  origin:`A problem before it was a technique; adopted deliberately in the mid-1960s and central to every loud guitar scene since.`,
+  first:`1960s`, peak:[`1960s`,`1990s`],
+  exemplar:{ kind:'popularised', title:`I Feel Fine`, artist:`The Beatles`, year:`1964`,
+    listen:`The record opens on a single sustained feedback note before anything else happens — widely cited as the first deliberate use on a pop single. Hear how it swells rather than decays.` },
+  domains:['guitar'],
+  match:['feedback'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`#8 and #72 use "feedback drone" as a sustained bed underneath everything. #38 has "feedback swell" as punctuation between sections. #21 has "feedback bleed" — the artefact simply left in rather than played.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Interesting because the generator has no room, no amplifier and no strings, so nothing can literally feed back — whatever it produces is a synthesised imitation of a physical loop. It sits with breakbeat and room bleed in that respect: terms naming a PROCESS rather than a sound. The question is whether the word produces the characteristic swell-and-rise, or just a sustained distorted note that never goes anywhere.` },
+  ev:[
+    { n:8,  span:`feedback`, state:'candidate', why:`"Feedback drone" holding under funeral doom — sustained rather than gestural, so any failure to swell would show.` },
+    { n:38, span:`feedback`, state:'candidate', why:`"Feedback swell" used as punctuation between sections, which requires it to rise and then resolve rather than simply exist.` },
+    { n:21, span:`feedback`, state:'candidate', why:`"Feedback bleed" in a grunge setting — the artefact left in as authenticity rather than deployed as an effect.` },
+    { n:72, span:`feedback`, state:'candidate', why:`A second drone use, in Southern sludge, useful as a consistency check against #8.` }
+  ]
+},
+
+{
+  id:'drop-tuning',
+  term:`Drop tuning`,
+  sounds:`Everything sags. The same riff played lower sounds thicker, slacker and more menacing, and you can hear the looseness — strings flapping and buzzing against the frets in a way a tight high tuning never does. It reads as heavier than the pitch alone should account for, because the slackness adds a growl of its own.`,
+  gloss:`Tuning strings below standard pitch. Dropping only the lowest string means a three-note power chord can be played with one finger, which changes what is comfortable to play rather than merely how low it sounds.`,
+  syn:[`downtuned`,`drop D`,`detuned`,`tuned low`,`slack strings`,`heavy tuning`],
+  myth:`It is not simply lower. Slackening a string changes its timbre — it buzzes and rattles differently — and dropping the bottom string alone makes one-finger riffing possible across the neck. That ergonomic accident, not the pitch, is why whole genres were built on it.`,
+  known:`Sludge, doom, nu-metal and most heavy guitar music since the 1990s, along with the blues and folk open tunings it descends from.`,
+  origin:`Isolated in blues and folk open tunings for a century; became a defining heavy-guitar practice through 1990s sludge and nu-metal, and has kept dropping since.`,
+  first:`1960s`, peak:[`1990s`,`2000s`],
+  exemplar:{ kind:'exemplifies', title:`Bulls on Parade`, artist:`Rage Against the Machine`, year:`1996`,
+    listen:`Drop D throughout. The riff is playable with one finger because of the tuning, and the strings are audibly slack — listen for the rattle underneath the notes rather than only the pitch.` },
+  domains:['guitar'],
+  match:['downtuned','drop-tuned','drop d','detuned guitar'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`#8 has "detuned downtuned guitars in monolithic distortion" — as low and thick as the corpus goes. #55 uses it for stoner-rock weight rather than menace, which is the same tuning at a completely different temperature.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Hard to separate from its company, which is the honest problem with it. Every corpus prompt using a drop-tuning word also says sludge, doom or downtuned distortion, so the term may be doing nothing that the genre has not already supplied — the same connotation trap as the ribbon microphone, in a different domain. The cleaner test is a pair asking for drop tuning in a style with no tradition of it.` },
+  ev:[
+    { n:8,  span:`downtuned`, state:'candidate', why:`"Detuned downtuned guitars in monolithic distortion" — the extreme, where slackness should be unmistakable.` },
+    { n:55, span:`downtuned`, state:'candidate', why:`Stoner rock, where the same tuning is used for weight and sway rather than menace.` },
+    { n:72, span:`Downtuned`, state:'candidate', why:`"Downtuned sludge guitar grinding thick and slow" — the tuning paired with tempo to compound the effect. Note the capital D.` },
+    { n:97, span:`Downtuned`, state:'candidate', why:`A fourth use in blackened sludge, useful mainly for checking whether the word behaves consistently across neighbouring genres.` }
+  ]
+},
+
+{
+  id:'downpicking',
+  term:`Downpicking`,
+  sounds:`Relentless and machine-even. Every stroke hits the string in the same direction, so every note has an identical attack — where alternate picking gives you two subtly different tones taking turns, this gives one, over and over. At speed the strain is audible, and that effort is part of why it sounds punishing.`,
+  gloss:`Striking the strings only on the downstroke instead of alternating down and up. It is far more tiring and roughly half as fast, and that limitation is the entire point.`,
+  syn:[`downstrokes`,`all downs`,`buzzsaw guitar`,`machine picking`,`straight picking`],
+  myth:`It is a deliberate handicap. Alternate picking is faster and easier and it sounds wrong for this music — the uniform attack of all-downstrokes is what makes a riff sound mechanical and punishing instead of fluid, and no amount of speed substitutes for it.`,
+  known:`Hardcore punk, thrash and pop-punk rhythm guitar, where the evenness matters more than the tempo it costs.`,
+  origin:`Emerged with 1970s punk's economy of means and hardened into a thrash-metal discipline through the 1980s.`,
+  first:`1970s`, peak:[`1980s`,`1990s`],
+  exemplar:{ kind:'exemplifies', title:`Blitzkrieg Bop`, artist:`Ramones`, year:`1976`,
+    listen:`Every chord is a downstroke and they are all identical. Listen for the absence of variation between strokes — that sameness is what makes the rhythm feel like a machine rather than a person strumming.` },
+  domains:['guitar'],
+  match:['downstroke','downpick'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`#13 has "breakneck downstrokes" in hardcore, where speed is fighting the technique. #258 has "doubled downstroke guitars" in mall-punk, where evenness is being used for polish rather than aggression.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`A genuinely hard test, and worth it for that. The difference between downpicking and alternate picking is a difference in ATTACK CONSISTENCY, not in notes, tempo or tone — nothing about the written part changes. If the generator produces that evenness on request it is responding to something very subtle; if it produces a fast riff with varied attacks, that is a clean and specific failure rather than a vague one.` },
+  ev:[
+    { n:13,  span:`downstroke`, state:'candidate', why:`"Breakneck downstrokes" in hardcore punk — the tempo where the technique becomes physically hardest and most audible.` },
+    { n:212, span:`downstroke`, state:'candidate', why:`"Buzzsaw downstroke guitar" in proto-punk garage, sparse enough that individual strokes can be heard.` },
+    { n:157, span:`downstroke`, state:'candidate', why:`"Chord chime compressed into distorted downstrokes" — the prompt describing the technique as a transformation of something else.` },
+    { n:258, span:`downstroke`, state:'candidate', why:`"Doubled downstroke guitars" in polished mall-punk, where evenness serves gloss rather than aggression.` }
+  ]
+},
+
+{
+  id:'skank',
+  term:`Skank`,
+  sounds:`A short chop on the offbeats and nothing whatsoever on the beat. The guitar plays only in the gaps — a clipped, damped chik on the and of every count — so the downbeat is left conspicuously empty and the rhythm seems to float upward rather than land.`,
+  gloss:`The reggae and ska guitar part: a short muted chord struck on the offbeats only, leaving the downbeats to bass and drums.`,
+  syn:[`chank`,`offbeat guitar`,`upstroke`,`that reggae guitar`,`the chik`,`bubble`],
+  myth:`The interesting part is what is missing. The guitar never plays on the beat at all, and that hole is what makes the music feel buoyant — take the skank away and the groove becomes ordinary, but fill the downbeat in and it collapses entirely.`,
+  known:`Ska, rocksteady, reggae, two-tone and every ska revival since. It is the most instantly identifiable guitar part in popular music.`,
+  origin:`Developed in Jamaican ska and rocksteady through the 1960s, carried into 1970s roots reggae, and exported to Britain by the two-tone revival at the end of that decade.`,
+  first:`1960s`, peak:[`1970s`,`1980s`],
+  exemplar:{ kind:'exemplifies', title:`A Message to You, Rudy`, artist:`The Specials`, year:`1979`,
+    listen:`The guitar is doing nothing but offbeats for the entire song. Count along and notice that it never once lands with the bass — that consistent absence is the whole part.` },
+  domains:['guitar','rhythm'],
+  match:['skank','chank'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`#46 has "choppy offbeat guitar skank" at ska tempo, sharp and fast. #59 has the same part at lovers-rock pace, where the gaps are long enough to feel like real silence.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`A rhythmic-placement instruction rather than a timbral one, which puts it with syncopation and call-and-response. It also carries the usual confound: every corpus prompt using the word also says ska or reggae, and both genres imply the part. The clean test is asking for a skank in a style that has none, which would show whether the word specifies a placement or just summons a genre.` },
+  ev:[
+    { n:46,  span:`skank`, state:'candidate', why:`"Choppy offbeat guitar skank" in two-tone ska — fast, sharp, and the part most listeners picture first.` },
+    { n:59,  span:`skank`, state:'candidate', why:`Lovers rock, slow enough that the empty downbeats are long and obvious.` },
+    { n:190, span:`skank`, state:'candidate', why:`A ska-pop crossover, where the skank has to survive alongside pop arrangement conventions that fight it.` },
+    { n:10,  span:`skank`, state:'candidate', why:`"Deep and skanking" used to describe the whole track rather than the guitar part, which tests how far the word stretches.` }
+  ]
+},
+
+{
+  id:'one-drop',
+  term:`One-drop`,
+  sounds:`The bar begins with a hole. There is no kick at all on beat one — the kick and snare arrive together on the third beat instead — so the groove seems to sag and then catch itself. It makes reggae lean back even at a brisk tempo, and it is the clearest single reason the music does not feel like rock.`,
+  gloss:`A reggae drum pattern that leaves beat one empty and lands the kick and snare together on beat three.`,
+  syn:[`the one drop`,`reggae drums`,`dropped one`,`empty downbeat`,`rockers beat`],
+  myth:`The name describes the drop, not the hit. What defines the pattern is the ABSENCE on beat one — the silence exactly where nearly every other popular style puts its strongest accent.`,
+  known:`Roots reggae and everything descended from it. It is the direct counterpart to the backbeat card and very nearly its opposite.`,
+  origin:`Emerged in Jamaican reggae in the late 1960s as the music slowed out of rocksteady, and stayed the defining drum pattern of the roots era.`,
+  first:`1960s`, peak:[`1970s`,`1980s`],
+  exemplar:{ kind:'exemplifies', title:`No Woman, No Cry`, artist:`Bob Marley and the Wailers`, year:`1974`,
+    listen:`Count four through any bar and listen to where the drums are not. Beat one is empty for the entire song, and the kick and snare land together on three.` },
+  domains:['drums','rhythm'],
+  match:['one-drop'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`#193 has "a deep one-drop giving way to a skipping dancehall riddim" — the pattern abandoned mid-track. #190 has a kit "snapping between one-drop and double-time", which asks for it as one of two alternating feels.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`The most falsifiable rhythm term on the page: either beat one is empty or it is not, and anyone can count. That makes it an ideal companion to the backbeat card — backbeat is the Western default and one-drop is its inverse, so testing both would show whether the generator can be moved off its defaults at all, or only decorated within them.` },
+  ev:[
+    { n:10,  span:`one-drop`, state:'candidate', why:`"Deep one-drop drums" in roots dub, the pattern in its home idiom and unobstructed.` },
+    { n:59,  span:`one-drop`, state:'candidate', why:`A vocal "riding just behind the one-drop", which requires the pattern to be present enough for a delivery to lean against.` },
+    { n:193, span:`one-drop`, state:'candidate', why:`One-drop giving way to a dancehall riddim mid-track — the pattern has to be established and then abandoned.` },
+    { n:190, span:`one-drop`, state:'candidate', why:`A kit "snapping between one-drop and double-time", the hardest of the four because it asks for two feels alternating.` }
+  ]
+},
+
+{
+  id:'lo-fi',
+  term:`Lo-fi`,
+  sounds:`Damage you can hear and are meant to enjoy. The top end is gone, there is hiss and hum behind everything, the stereo image collapses inward, and nothing sounds like it was captured cleanly. It reads as intimate and unguarded rather than poor — like overhearing something rather than being performed at.`,
+  gloss:`Deliberately low-fidelity recording: limited bandwidth, added noise, cheap equipment, or all three. The imperfection is chosen rather than tolerated.`,
+  syn:[`lo fi`,`low fidelity`,`bedroom recording`,`tape hiss`,`rough recording`,`cheap and dirty`],
+  myth:`It is nearly always ADDED, not endured. Modern lo-fi is made by taking a clean digital recording and damaging it on purpose. And confusingly the word has become a genre name for calm instrumental beats that has almost nothing to do with fidelity — a lo-fi track in that sense is often immaculately produced.`,
+  known:`Cassette-era indie and four-track home recording, black metal, and the enormous modern streaming genre that borrowed the name.`,
+  origin:`A necessity of home recording before it was an aesthetic; adopted deliberately by 1980s and 90s indie and black metal, then detached from fidelity altogether when it became a genre label in the 2010s.`,
+  first:`1980s`, peak:[`1990s`,`2010s`],
+  exemplar:{ kind:'exemplifies', title:`Nebraska`, artist:`Bruce Springsteen`, year:`1982`,
+    listen:`Recorded onto a four-track cassette as a demo and released as it was. The hiss, the limited top end and the room are all audible, and the record is generally reckoned better for it than the band version that was attempted afterwards.` },
+  domains:['production'],
+  match:['lo-fi','lofi'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`#19 uses "lo-fi Scandinavian black-metal production" as an ideology — the roughness is the statement. Elsewhere it appears almost entirely as a NEGATIVE, excluded to protect a polished pop sheen.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`One of the largest positive-and-negative splits in the corpus after autotune: 107 uses, most of them exclusions. That makes it a second good test of whether negatives work, and a check on whether the two meanings of the word have been separated — asking for lo-fi could plausibly return either a damaged recording or a calm instrumental beat, and those are completely different results from the same instruction.` },
+  ev:[
+    { n:19,  span:`Lo-fi`, state:'candidate', why:`"Lo-fi Scandinavian black-metal production, freezing" — roughness as ideology rather than circumstance. Note the capital L.` },
+    { n:32,  span:`lo-fi`, state:'candidate', why:`Negative use, protecting a polished new-romantic production where any grit would break the period.` },
+    { n:35,  span:`lo-fi`, state:'candidate', why:`"Lo-fi rawness" excluded from stadium alt-rock, where the word is being used to mean roughness specifically.` },
+    { n:40,  span:`lo-fi`, state:'candidate', why:`A third exclusion, from yacht rock — about as far from the aesthetic as the corpus goes.` }
+  ]
+},
+
+{
+  id:'vinyl-crackle',
+  term:`Vinyl crackle`,
+  sounds:`A soft irregular popping and hiss underneath the music, like rain on a window a long way off. It never lines up with the beat, which is exactly why it works — it sits outside the music and makes everything above it feel like a recording of something rather than the thing itself.`,
+  gloss:`Surface noise from a record: dust, wear and static crackling in the groove. Now almost always added to a digital recording that never touched vinyl.`,
+  syn:[`crackle`,`surface noise`,`record hiss`,`dust and static`,`that old record sound`,`vinyl noise`],
+  myth:`It is nearly always fake, and everyone involved knows. The crackle on a modern record is a sample laid over a clean digital mix — nostalgia added as a texture. It works because it signals AGE rather than wear: nobody hears it as a damaged record, they hear it as an old one.`,
+  known:`Trip-hop, boom-bap and lo-fi beats, where it is as much a part of the palette as the drums.`,
+  origin:`An unavoidable defect for a century; became a deliberate texture once sampling made old records the raw material of new ones, from the late 1980s onward.`,
+  first:`1980s`, peak:[`1990s`,`2010s`],
+  exemplar:{ kind:'exemplifies', title:`Glory Box`, artist:`Portishead`, year:`1994`,
+    listen:`The crackle is present from the first bar and never stops. Notice it does not sync to anything — that independence from the beat is what makes it read as the surface of a record rather than as part of the arrangement.` },
+  domains:['production'],
+  match:['vinyl crackle','vinyl hiss','vinyl noise','crackle'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`#17 has "faint vinyl crackle" as a period detail. #J7 has "vinyl crackle as air" — the noise doing the job of ambience rather than of nostalgia, which is a different use of the same sound.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Easy to judge and hard to fake convincingly, which makes it a decent test. Real surface noise is irregular and unsynchronised; a poor imitation tends to be regular, or to sit at a level that follows the music. Worth listening specifically for whether the crackle drifts independently of the beat, because that is the tell.` },
+  ev:[
+    { n:17, span:`vinyl crackle`, state:'candidate', why:`"Faint vinyl crackle" in boom-bap, alongside turntable scratches — the noise as period signature.` },
+    { n:39, span:`vinyl crackle`, state:'candidate', why:`Trip-hop, where the crackle sits under a sparse arrangement and has room to be heard on its own.` },
+    { n:'J7', span:`vinyl crackle`, state:'candidate', why:`"Vinyl crackle as air" — the prompt using surface noise to do the job of ambience, which is a different intent from nostalgia.` },
+    { n:23, span:`vinyl crackle`, state:'candidate', why:`Negative use: excluded from a modern trap production to keep the mix clean and current.` }
+  ]
+},
+
+{
+  id:'quantization',
+  term:`Quantization`,
+  sounds:`Timing so exact it stops sounding like people. Every hit lands precisely on the grid, identical distances apart, with none of the microscopic drift a person produces — and past a certain point that perfection reads as cold rather than tight. Turn it off and the same part immediately sounds like someone playing it.`,
+  gloss:`Snapping recorded or programmed notes onto an exact rhythmic grid. Every sequencer does it by default, and how much it does is adjustable.`,
+  syn:[`on the grid`,`snapped to the beat`,`machine timing`,`tightened`,`programmed`,`robotic timing`],
+  myth:`Perfect timing usually sounds worse. Human playing drifts by a few milliseconds in ways the ear reads as feel, so software ships with "humanize" functions whose entire job is to put back the error quantization removed. The goal is almost never zero.`,
+  known:`All programmed music, and the defining sound of early drum machines — which could not do anything else.`,
+  origin:`Arrived with step sequencers and drum machines in the late 1970s; became adjustable rather than absolute as software sequencers matured through the 1990s.`,
+  first:`1970s`, peak:[`1980s`,`1990s`],
+  exemplar:{ kind:'exemplifies', title:`Blue Monday`, artist:`New Order`, year:`1983`,
+    listen:`Everything is on the grid and stays there for seven minutes. The famous opening kick pattern is machine-exact, and the contrast with the human vocal on top is most of what gives the record its coldness.` },
+  domains:['production','rhythm'],
+  match:['quantiz'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`#23 has "artificial quantized swoops" applied to a VOICE rather than to drums — pitch snapped to a grid instead of time. #107 asks for the opposite: "human and unquantized against the electronics".`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`The most useful test here is the negative one. #107 explicitly asks for an unquantized human feel set against machine parts, which requires the generator to hold two timing behaviours at once — the same structural demand the rubato card makes. If everything comes back on the grid regardless, that is a limit worth knowing before writing any more rhythm cards.` },
+  ev:[
+    { n:23,  span:`quantiz`, state:'candidate', why:`"Artificial quantized swoops" describing a VOICE — quantization applied to pitch rather than to time, which is a different sense worth separating.` },
+    { n:107, span:`quantiz`, state:'candidate', why:`"Human and unquantized against the electronics" — the term used by negation, and the hardest ask of the four.` },
+    { n:99,  span:`quantiz`, state:'candidate', why:`Negative use: quantized drums excluded from screamo to keep the performance ragged.` },
+    { n:147, span:`quantiz`, state:'candidate', why:`"Quantized timing" excluded from a garage blues duo, where looseness is the entire premise of the recording.` }
+  ]
+},
+
+{
+  id:'pocket',
+  term:`Pocket`,
+  sounds:`Everything sitting exactly where it should against everything else, and staying there. It is felt more than heard — the bass and the kick agree so consistently that the groove seems to hold you up rather than push you along. Take one player slightly out and it vanishes instantly, which is the easiest way to notice it exists.`,
+  gloss:`The consistent timing relationship between the players in a rhythm section — where each part sits relative to the beat and to each other, held steady across a whole performance.`,
+  syn:[`in the pocket`,`locked in`,`the groove`,`tight`,`sitting right`,`feel`],
+  myth:`It is not a vibe and it is not vagueness. Pocket is measurable: it is a specific and repeatable offset between parts, which is why some rhythm sections are hired for it and why a replacement player can make the same written part feel wrong. It also does not mean playing exactly on the beat — a pocket can sit late, early, or split.`,
+  known:`Funk, soul, reggae and hip-hop, where the rhythm section is the point rather than the accompaniment.`,
+  origin:`A players' term from mid-century American rhythm sections, absorbed into producer and engineer vocabulary and then into hip-hop as sampling made individual grooves reusable.`,
+  first:`1960s`, peak:[`1970s`,`1990s`],
+  exemplar:{ kind:'exemplifies', title:`Superstition`, artist:`Stevie Wonder`, year:`1972`,
+    listen:`Drums and clavinet lock into a relationship and hold it without variation for the whole record. Nothing rushes and nothing drags, and the groove feels like it is supporting the song rather than driving it.` },
+  domains:['rhythm'],
+  match:['pocket'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`#5 has "tight pocket drums" as the engine of a soul revue. #40 has "soft pocket drums" in yacht rock, where the same relationship is held at a fraction of the intensity.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`The hardest thing on this page to falsify, and worth being honest about that. Pocket is a relationship between parts rather than a property of any one of them, so there is no single sound to point at — a listener judging it is really judging whether the whole rhythm section agrees. It sits with voice-leading as a term the page may document better than it can ever demonstrate.` },
+  ev:[
+    { n:14, span:`pocket`, state:'candidate', why:`"Inhuman yet rhythmically locked in the pocket" — a talkbox voice asked to sit in the groove, which separates pocket from human feel unusually cleanly.` },
+    { n:5,  span:`pocket`, state:'candidate', why:`"Tight pocket drums" driving a full soul arrangement with horns and bass to agree with.` },
+    { n:17, span:`pocket`, state:'candidate', why:`A rapper "riding the pocket" — the term applied to a vocal's placement rather than to the rhythm section.` },
+    { n:40, span:`pocket`, state:'candidate', why:`"Soft pocket drums" in yacht rock, the same relationship held gently, and the most likely of the four to show nothing.` }
+  ]
+},
+
+{
+  id:'half-time',
+  term:`Half-time`,
+  sounds:`The music seems to slow down without slowing down. The snare moves from every second beat to every fourth, so the groove suddenly feels twice as slow and twice as heavy — while everything else, tempo included, carries on exactly as it was. It is the cheapest way to make a section feel enormous.`,
+  gloss:`Playing a drum pattern at half the apparent rate over an unchanged tempo: the backbeat lands once per bar instead of twice.`,
+  syn:[`half time feel`,`halftime`,`the slow bit`,`dragging feel`,`double-time's opposite`,`heavy feel`],
+  myth:`Nothing has actually slowed down. The tempo is identical and every other part can keep going untouched — it is only where the drums put their accents that changed. That is why a half-time section can drop in and out without the band counting anything differently.`,
+  known:`Dubstep and trap are built on it, and metal and post-rock use it to make a chorus or breakdown land heavier than the verse.`,
+  origin:`A long-standing arranging device across rock and funk; became structural rather than occasional in 2000s dubstep and trap, where the whole genre sits at a half-time feel.`,
+  first:`1960s`, peak:[`2000s`,`2010s`],
+  domains:['rhythm','drums'],
+  match:['half-time','halftime'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`#104 sits at "70 BPM half-time" for the whole track — the feel as the genre. #117 puts "the dragging half-time feel" against "the vocal's steady pace", so the two rates are audible at once.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Unusually testable, because the claim is arithmetic rather than aesthetic: the tempo must stay the same while the backbeat halves. A listener can tap along and check. The failure mode is equally specific — if the generator actually slows the tempo down, it has read half-time as a speed instruction rather than a feel, which is exactly the confusion the misconception describes.` },
+  ev:[
+    { n:104, span:`half-time`, state:'candidate', why:`"Creeping near 70 BPM half-time" — the feel sustained across a whole track rather than used as a section.` },
+    { n:117, span:`half-time`, state:'candidate', why:`"The dragging half-time feel" set against a vocal at a steady pace, so both rates have to coexist.` },
+    { n:72,  span:`half-time`, state:'candidate', why:`"Pounding half-time drums" in sludge, where the feel is doing the work of making a slow tempo feel slower still.` },
+    { n:125, span:`half-time`, state:'candidate', why:`Negative use: "half-time drag" excluded from a Northern soul stomper that needs to stay relentless.` }
+  ]
+},
+
+{
+  id:'vocal-chops',
+  term:`Vocal chops`,
+  sounds:`A voice turned into a keyboard. Fragments too short to be words — a syllable, a breath, a single vowel — are cut out and replayed at different pitches, so you hear something unmistakably human playing a melody it never actually sang. It sits in the uncanny gap between a voice and a synth.`,
+  gloss:`Short slices of a vocal recording pitched and sequenced as an instrument. The performer never sang the resulting melody; it was assembled from pieces of something else they sang.`,
+  syn:[`chops`,`chopped vocals`,`vocal stabs`,`pitched vocal`,`sliced vocals`,`that vowel synth`],
+  myth:`The melody you are hearing was never performed. Chops are usually built from a handful of syllables retuned across a keyboard, which is why they often sound slightly wrong in a way that is hard to place — the vowel does not change as pitch rises, the way a real voice's would.`,
+  known:`Future bass, EDM drops, tropical house and modern pop hooks, where a chopped vowel does the job a synth lead used to.`,
+  origin:`Sampling practice from 1980s hip-hop, where soul records were cut into fragments; became a melodic lead instrument in 2010s electronic pop.`,
+  first:`1980s`, peak:[`1990s`,`2010s`],
+  domains:['production','arrangement'],
+  match:['chopped','vocal chop'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`#17 has a "dusty chopped soul sample" used as raw material, in the original hip-hop sense. #23 has "pitched vocal chops" as a melodic hook, which is the modern pop use of the same technique.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`A good test of whether the generator can produce something that sounds sampled rather than sung, since it has no source recording to cut up — everything it makes is generated whole. That puts it with breakbeat and room bleed among terms naming a PROCESS the model cannot literally perform. The tell to listen for is whether the vowel stays fixed as the pitch moves, which is what gives real chops their character.` },
+  ev:[
+    { n:23, span:`vocal chop`, state:'candidate', why:`"Pitched vocal chops" as a melodic element in modern trap — the contemporary sense of the term.` },
+    { n:17, span:`chopped`, state:'candidate', why:`"Dusty chopped soul sample" in boom-bap — the original sampling sense, where chopping is about rearranging a record.` },
+    { n:64, span:`chopped`, state:'candidate', why:`"Chopped vocal stabs" in phonk, sitting in a deliberately degraded mix.` },
+    { n:53, span:`Chopped`, state:'candidate', why:`"Chopped amen-break drums at double-time" — chopping applied to drums rather than voice, which tests how wide the word is. Note the capital C.` }
+  ]
+},
+
+{
+  id:'hall-reverb',
+  term:`Hall and cathedral reverb`,
+  sounds:`Space you could walk around in. The tail is long — seconds rather than fractions — and it has a shape: you hear the sound leave, hit something far away and come back. Everything blurs into everything else, and the music has to slow down and simplify to survive it.`,
+  gloss:`Reverberation with a very long decay, from a real large space or an imitation of one. Unlike a plate, it carries directional information that reads as a specific room.`,
+  syn:[`cathedral reverb`,`hall`,`church reverb`,`big room`,`stone acoustic`,`sacred space`],
+  myth:`A long reverb forces the music to change. Play anything fast or harmonically busy in a cathedral and it turns to mud — which is why the music written for those buildings moves slowly, uses long notes and changes chords rarely. The acoustics came first and the style followed, not the other way round.`,
+  known:`Sacred choral music, doom and funeral metal, ambient, and any production wanting scale rather than intimacy.`,
+  origin:`The oldest reverb there is — a property of the buildings themselves, exploited for a millennium before anyone could simulate it; recreated electronically from the 1960s and convincingly from the 1990s.`,
+  first:`pre-1900`, peak:[`1990s`,`2000s`],
+  domains:['room'],
+  match:['cathedral','sanctuary','hall ','chapel'],
+  kinds:['instrument'],
+  nature:'continuous',
+  range:`#51 and #80 use it as the real acoustic of a real building, with the music built to suit it. #137 uses "one hymnal pad holding cathedral space" as a production effect inside an electronic arrangement, which is the opposite direction.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`The third member of the reverb set, alongside plate and spring, and the one with the clearest identity: a hall carries directional information that a plate does not, so the three should be distinguishable if reverb types register at all. This card also has an unusual dependency worth testing separately — if the generator produces a cathedral acoustic, does it also slow the music down and thin the harmony to suit, the way the misconception says real music does?` },
+  ev:[
+    { n:51,  span:`cathedral`, state:'candidate', why:`"Medieval monastic acoustics, raw cathedral air" behind unaccompanied chant — the acoustic completely exposed with nothing to mask it.` },
+    { n:67,  span:`cathedral`, state:'candidate', why:`"Natural cathedral reverb, no processing" on a baroque aria, where the space and the music were designed for each other.` },
+    { n:80,  span:`cathedral`, state:'candidate', why:`Byzantine chant in the same kind of space, useful as a consistency check on #51.` },
+    { n:137, span:`cathedral`, state:'candidate', why:`"One hymnal pad holding cathedral space" inside a darkwave arrangement — the acoustic used as a production effect rather than as a room.` }
+  ]
+},
+
+{
+  id:'dissonance-and-resolve',
+  term:`Dissonance and resolve`,
+  sounds:`Tension you can feel being applied and then released. A chord arrives that is uncomfortable — clashing, unfinished, leaning somewhere — and you find yourself waiting. Then it moves, and the arrival feels like relief. Most of what people call emotional in harmony is this happening over and over at different scales.`,
+  gloss:`Deliberately introducing an unstable interval or chord and then moving to a stable one. The pleasure is in the movement between them, not in either state alone.`,
+  syn:[`tension and release`,`clash and resolve`,`the itch`,`suspension`,`push and pull`,`unresolved`],
+  myth:`Dissonance is not wrong notes, and it is not a mistake being corrected. It is a tool, and what counts as dissonant is largely LEARNED — intervals that sounded unbearable to European ears in 1400 are ordinary now, and intervals ordinary elsewhere still sound wrong to Western listeners. The discomfort is cultural rather than physical.`,
+  known:`Everywhere, but load-bearing in jazz, romantic classical, film scoring and any music that wants to feel like it is going somewhere.`,
+  origin:`Formalised in European music theory over centuries, with the boundary of acceptable dissonance moving continuously outward; the rules of one era are the clichés of the next.`,
+  first:`pre-1900`, peak:[`1950s`,`1960s`],
+  domains:['harmony'],
+  match:['dissonance and resolve','tension-release','tension and release'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`#47 has it "constant" in gypsy jazz, where the line barely stops leaning. #48 has "warm dissonance and resolve as the chords bloom" in dream-pop, where the same device is used gently enough to read as sweetness.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`A control for the Harmony domain alongside minor key, and a more demanding one. Producing a minor key is a single choice; producing tension and release requires the harmony to go somewhere and then arrive, which is a claim about structure over time rather than colour. If it lands, that is meaningful evidence the generator handles harmonic motion rather than harmonic flavour — and if it does not, voice-leading and modal have their answer too.` },
+  ev:[
+    { n:47, span:`dissonance and resolve`, state:'candidate', why:`"Constant dissonance and resolve" in gypsy jazz, where the device runs continuously and has nowhere to hide.` },
+    { n:48, span:`dissonance and resolve`, state:'candidate', why:`"Warm dissonance and resolve as the chords bloom" — the same tool used gently, in dream-pop.` },
+    { n:54, span:`dissonance and resolve`, state:'candidate', why:`Chamber pop with "constant harmonic movement", so the resolution has an orchestral arrangement moving with it.` },
+    { n:66, span:`dissonance and resolve`, state:'candidate', why:`"Weary dissonance and resolve" in dark cabaret — the device carrying a specific emotional colour rather than a general one.` }
   ]
 },
 ];
