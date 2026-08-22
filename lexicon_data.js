@@ -29,7 +29,7 @@
  * Loaded as a classic <script> AFTER data.js, so LIB is already a global.
  */
 
-const LEX_VERSION = 'v8';
+const LEX_VERSION = 'v9';
 const LEX_UPDATED = '2026-08-21';
 
 /* ---------- TOP TIER: domains, not instruments ----------
@@ -1166,6 +1166,156 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
     { n:408, span:`vocal fry`, state:'candidate', why:`Fry as collapse: pitch giving out on the last word of every line, which is the form most listeners have actually heard without naming it.` },
     { n:409, span:`vocal fry`, state:'candidate', why:`Fry as attack rather than decay — each phrase starting on a scrape and blooming up into tone. The hardest placement of the five to get right.` },
     { n:411, span:`vocal fry`, state:'candidate', why:`Fry driven until it tears into a scream, which tests whether the term survives being pushed past the point where most listeners would still call it fry.` }
+  ]
+},
+
+{
+  id:'tremolo',
+  term:`Tremolo`,
+  sounds:`The volume pulses. A held note or chord swells and ducks and swells again, several times a second — the pitch never moves, only how loud it is, so it sounds like the sound is being fanned. Slow, it lurches seasickly. Fast, it stops being a wobble and becomes a shudder that reads as a texture in its own right.`,
+  gloss:`A regular oscillation in VOLUME. On an amplifier or pedal a circuit turns the signal up and down; on a string instrument, rapidly repeating one note achieves something similar by entirely different means.`,
+  syn:[`amp tremolo`,`that pulsing guitar`,`throb`,`wobble`,`choppy effect`,`tremolo picking`],
+  myth:`Tremolo and vibrato are swapped, industry-wide and permanently. Tremolo is volume; vibrato is pitch. But a guitar's whammy bar is called a tremolo arm and it bends pitch — vibrato — while a famous line of amplifiers labelled its tremolo circuit "vibrato". The names have been wrong for seventy years and nobody has fixed them, so a player asking for one and an engineer hearing it can mean two different things.`,
+  known:`Surf and rockabilly guitar, 1960s psychedelia, gothic country and shoegaze. Separately, "tremolo picking" in black metal means rapid repeated notes and involves no circuit at all.`,
+  origin:`Built into guitar amplifiers through the 1950s and immediately central to surf and psychedelia; revived by shoegaze and dream-pop in the late 1980s.`,
+  first:`1950s`, peak:[`1960s`,`1990s`],
+  domains:['guitar','production'],
+  match:['tremolo'],
+  kinds:['instrument','technique'],
+  nature:'continuous',
+  range:`#25 is gentle amp tremolo on a hollow-body. #41 has "tremolo swells" used as shoegaze texture rather than as an effect on a part. #19 is the other meaning entirely — "tremolo-picked" guitar, rapid repeated notes, no circuit involved.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`A rare case where one word carries two unrelated meanings inside the same corpus: the amplifier effect (#25, #41, #60) and the picking technique (#19). If the generator produces picking when the effect was wanted, that is not a failure to hear the word — it is the word being genuinely ambiguous, and any test has to say which is meant. Worth pairing with the vibrato card too, since the industry has had those two backwards for seventy years and the generator learned from text written by people using them wrongly.` },
+  ev:[
+    { n:25, span:`tremolo`, state:'candidate', why:`The classic use: a hollow-body guitar with amp tremolo in a 1950s rockabilly setting, where the pulse should be plainly audible.` },
+    { n:41, span:`tremolo`, state:'candidate', why:`"Tremolo swells" in shoegaze — the effect as an atmosphere rather than an ornament on a part.` },
+    { n:60, span:`Tremolo`, state:'candidate', why:`"Tremolo baritone guitar" in gothic country, slow and exposed, so any wobble in volume has nowhere to hide. Note the capital T.` },
+    { n:19, span:`Tremolo`, state:'candidate', why:`The ambiguity itself: "Tremolo-picked distorted guitar" in black metal, where the word means rapid picking. The most useful item here for telling the two senses apart.` }
+  ]
+},
+
+{
+  id:'transients',
+  term:`Transients`,
+  sounds:`The first few thousandths of a second of a note — the click of the pick, the thud of the hammer, the puff of breath before a flute tone settles. You do not hear it as a separate event; you hear it as what the instrument IS. Soften it and everything turns rounder and further away; sharpen it and the same performance jumps forward and hits harder without getting louder.`,
+  gloss:`The brief loud burst at the onset of a sound, before it settles into a steady tone. Almost all the information the ear uses to identify an instrument is packed into it.`,
+  syn:[`attack`,`the click`,`the hit`,`initial burst`,`snap`,`punch`],
+  myth:`Almost everything that tells you which instrument you are hearing lives in that first fraction of a second, not in the note that follows. Cut the attack off a recorded piano and most listeners can no longer identify it — it turns into something closer to an organ. The "tone" we think we are recognising is largely the attack, which is also why heavy compression makes a mix sound lifeless: it is flattening the part that carried the identity.`,
+  known:`Drum production, where punch is almost entirely a transient question; mixing and mastering; and sampling, where a badly-cut start turns a recognisable instrument into a synth pad.`,
+  origin:`Understood through early-20th-century acoustics research; became a practical production concern once compressors, and later samplers and transient shapers, let engineers reshape attacks directly.`,
+  first:`1930s`, peak:[`1980s`,`2000s`],
+  domains:['production','drums'],
+  match:['transient'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`Narrower in the corpus than in life. Every use is the Reese-bass spec — "a single reese bass transient at structural breaks only" — meaning one isolated attack event rather than the attack of every note.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`An honest limit worth stating before anyone reads too much into the evidence below. The corpus only ever uses "transient" in one narrow sense: a single isolated bass onset at a structural break. That IS a transient, so the term is being used correctly, but none of these demos can show the perceptual claim this card is actually about — that identity lives in the attack. Testing that needs a commissioned pair: the same phrase with sharp attacks and with softened ones, nothing else changed. Until then this card documents a real and surprising fact it cannot yet demonstrate.` },
+  ev:[
+    { n:131, span:`transient`, state:'candidate', why:`"A single reese bass transient at structural breaks only, non-rhythmic, non-repeating" — the most explicit statement of the intent in the corpus.` },
+    { n:84,  span:`transient`, state:'candidate', why:`The same spec inside dense industrial techno, where a single onset has to cut through a wall of sound to register at all.` },
+    { n:91,  span:`transient`, state:'candidate', why:`"Single reese transient at the break" in melodic dubstep — sparser surroundings, so the onset should be easier to hear.` },
+    { n:117, span:`transient`, state:'candidate', why:`A fourth use of the same spec, useful mainly as a consistency check on whether the wording produces the same event each time.` }
+  ]
+},
+
+{
+  id:'backbeat',
+  term:`Backbeat`,
+  sounds:`A hard snare crack on beats two and four, every bar, against a kick on one and three. It is what makes you nod on the offbeats instead of the downbeats, and it is so deeply built into Western popular music that its absence registers as something being missing rather than merely different.`,
+  gloss:`Accenting the second and fourth beats of a four-beat bar, usually with a snare, against a kick drum on one and three.`,
+  syn:[`two and four`,`the snare on the offbeat`,`that rock beat`,`crack on the two`,`the snap`,`straight beat`],
+  myth:`It feels universal and it is not. Most of the world's musical traditions do not accent two and four at all — the backbeat is a specifically African-American innovation that spread through gospel, blues and R&B until it became the default sound of popular music nearly everywhere. What sounds like "how music goes" is a regional habit less than a century old.`,
+  known:`Rock and roll, soul, Motown, country and effectively all Western pop since the 1950s. It is the single most recognisable rhythmic feature of the last seventy years of recorded music.`,
+  origin:`Emerged in African-American gospel, blues and rhythm and blues through the 1940s, and became the defining rhythmic signature of rock and roll from the mid-1950s onward.`,
+  first:`1940s`, peak:[`1950s`,`1960s`,`1970s`],
+  domains:['rhythm','drums'],
+  match:['backbeat'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`From "cracking backbeat" carrying a whole soul arrangement (#K1) to "four-on-the-snare backbeat" (#121), which doubles it up until the accent is on every beat and the idea nearly cancels itself out.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Best used as a control, in the way the minor-key card is. This is the most default thing in Western popular music, so producing it on request proves very little — the interesting test is the opposite direction: whether it can be SUPPRESSED. Ask for a groove with no backbeat and see whether the snare stays off two and four, or creeps back because everything the model learned puts it there. A failure to suppress would say something about defaults generally, well beyond this term.` },
+  ev:[
+    { n:121, span:`backbeat`, state:'candidate', why:`"Four-on-the-snare backbeat" — the term pushed to its limit, where accenting every beat arguably stops being a backbeat at all.` },
+    { n:31,  span:`backbeat`, state:'candidate', why:`"Big backbeat drums" in a wide stadium arrangement, the plainest and most foregrounded use.` },
+    { n:122, span:`backbeat`, state:'candidate', why:`"Heavy backbeat drums" inside a dense live Motown-style band, where it competes with piano, horns and a room.` },
+    { n:25,  span:`backbeat`, state:'candidate', why:`"Brushed-to-backbeat drums" — a transition into the backbeat rather than a constant one, which is the harder instruction.` }
+  ]
+},
+
+{
+  id:'formants',
+  term:`Formants`,
+  sounds:`The reason a voice still sounds like that person whether they sing high or low. Underneath the note sit fixed resonant peaks shaped by the throat and mouth, and they barely move when the pitch does — they are what makes an "ee" an "ee" and an "oh" an "oh". Move them and the singer stops sounding like a person of that size: the chipmunk effect is formants sliding upward when they should have stayed put.`,
+  gloss:`Resonant peaks in the vocal tract that shape vowels and carry a voice's identity. They are largely independent of pitch, which is why the same vowel stays the same vowel across a singer's whole range.`,
+  syn:[`vowel resonance`,`vocal tract resonance`,`formant shift`,`the chipmunk effect`,`throat shape`,`vowel colour`],
+  myth:`Pitch and formants are separate things, and that is why speeding a recording up sounds *wrong* rather than simply higher. Raise the pitch alone and you get a higher voice; drag the formants up with it and you get a smaller person. Modern pitch software keeps the two apart deliberately — which is precisely how a voice can be moved an octave and still sound human.`,
+  known:`Vocoders and talkboxes, hyperpop, and the formant control sitting in every pitch-correction plugin. It is also why a vocoder sounds like a robot *speaking* rather than a synth merely playing.`,
+  origin:`Described by 19th-century acoustics and central to 20th-century speech research; became a production control once vocoders and later digital pitch-shifters made formants adjustable independently of pitch.`,
+  first:`1930s`, peak:[`1970s`,`2010s`],
+  domains:['voice','production'],
+  match:['formant'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`#14 is a talkbox: mouth-shaped vowels riding a synth carrier, formants supplied by an actual mouth. #208 is a vocoder doing it electronically. #90 fuses formant-shift with autotune until it is part of the timbre. #246 is the strangest — a sine wave tracking the singer's formants an octave above.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Unusually well-evidenced for a perceptual term, and unusually testable, because formant errors are obvious to anyone: a voice with mismatched formants sounds like the wrong size of person, and nobody needs the word to hear that. The sharpest test is #90 against a plain pitch-shift — if the generator raises pitch and formants together it will produce a chipmunk, and if it holds formants steady it will produce a human, and the difference is unmistakable.` },
+  ev:[
+    { n:14,  span:`formant`, state:'candidate', why:`A talkbox, where the formants come from a real mouth shaping a synth carrier — the mechanism at its most physical.` },
+    { n:90,  span:`formant`, state:'candidate', why:`Hyperpop with formant-shift and autotune fused into one timbre. The best test of whether pitch and formants are being handled separately.` },
+    { n:208, span:`formant`, state:'candidate', why:`A vocoder doing electronically what #14 does mechanically — the same idea by another route, and a check on whether the word or the device is steering.` },
+    { n:246, span:`formant`, state:'candidate', why:`The outlier: a sine wave tracking the voice's formants an octave above, which asks the generator to treat formants as something separable and followable.` }
+  ]
+},
+
+{
+  id:'rubato',
+  term:`Rubato`,
+  sounds:`The tempo breathes. A phrase pushes forward and then hangs back, notes stretched and squeezed against the beat — and yet nobody loses their place, because the pulse is still there, remembered rather than played. It makes the music sound spoken instead of counted, and it is most of why a slow performance can feel human rather than merely slow.`,
+  gloss:`Deliberately flexible timing — stealing time from some notes and paying it back on others across a phrase. The name is literally "robbed time".`,
+  syn:[`give and take`,`elastic tempo`,`free time`,`pushing and pulling`,`out of tempo`,`played loose`],
+  myth:`Classically it does not mean the whole band slowing down. In its original form the accompaniment holds strict time while only the melody stretches against it, and the tension between the two IS the effect. Everybody slowing together is a later and much blunter thing that inherited the name.`,
+  known:`Romantic piano, opera, fado, tango and chamber pop — and any ballad where a lead is meant to sound like a person talking rather than a part being counted.`,
+  origin:`Eighteenth and nineteenth-century European performance practice, codified in the Romantic era; carried into popular ballad singing wherever a lead was meant to sound spoken rather than measured.`,
+  first:`pre-1900`, peak:[`1900s`,`1960s`],
+  domains:['rhythm'],
+  match:['rubato'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`#7 and #67 apply it to everything at once — "rubato-rich", "stately and rubato". #114 does the strict original: the vocal's "rubato yearning" set explicitly against a rigid pulse underneath.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`#114 makes this one of the sharpest tests on the page, because it asks for the hard version by accident — a rubato vocal over a rigid pulse. That requires the generator to hold two different time-feels at once, which is a much stronger claim than merely slowing down. And the failure mode is precise and nameable rather than vague: if everything slows together, the term has been read as ritardando, which is a different word for a different thing.` },
+  ev:[
+    { n:114, span:`rubato`, state:'candidate', why:`The strict original sense, and the hardest ask: a rubato vocal explicitly set against a rigid pulse, so two time-feels have to coexist.` },
+    { n:7,   span:`rubato`, state:'candidate', why:`"Rubato-rich" opera, the idiom the word belongs to, where the whole ensemble is expected to move with the singer.` },
+    { n:76,  span:`rubato`, state:'candidate', why:`Fado, where rubato is inseparable from the emotional convention of the style rather than a technique applied to it.` },
+    { n:67,  span:`rubato`, state:'candidate', why:`"Stately and rubato" in a baroque aria — restrained, and the most likely of the four to show nothing if the effect is subtle.` }
+  ]
+},
+
+{
+  id:'sub-bass',
+  term:`Sub-bass`,
+  sounds:`Felt before it is heard. Below roughly 60 Hz the ear largely stops reporting pitch and starts reporting pressure — the chest, the floor and the room answer before the note does. On a small speaker it can be entirely absent while the music still works; on a big system it is most of what you are actually experiencing.`,
+  gloss:`Frequencies at the very bottom of hearing, roughly below 60 Hz. Pitch perception is weak down there, so sub-bass reads as weight and pressure more than as notes.`,
+  syn:[`sub`,`808`,`low end`,`the rumble`,`chest frequencies`,`subs`],
+  myth:`You routinely hear a bass note that is not physically in the air. Small speakers cannot reproduce sub frequencies at all, yet the bassline still sounds present — the ear reconstructs the missing fundamental from the harmonics above it. Which means a mix can be judged, quite successfully, on speakers that are not playing its lowest part.`,
+  known:`Dub and sound-system culture, drum and bass, dubstep and trap — anywhere the lowest octave is a musical part in its own right rather than a by-product of the bass instrument.`,
+  origin:`Became a compositional element through Jamaican sound-system culture in the 1960s and 70s and the club systems built after it; the 808 drum machine made it a standard pop ingredient from the 1980s.`,
+  first:`1970s`, peak:[`1990s`,`2010s`],
+  domains:['production'],
+  match:['sub bass','sub-bass'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`"Deep sub bassline" (#82) is foundation — pressure under everything else. "Booming 808 sub-bass with sliding glides" (#23) is the opposite: the sub carrying melody, gliding between pitches down where pitch is hardest to hear.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Awkward to judge, and the awkwardness is itself the lesson. Whether you can hear this at all depends on what you are listening on — laptop speakers and most phones reproduce almost nothing below 100 Hz, so a demo that sounds thin there may be entirely correct. Anyone voting on this card should say what they listened on. That caveat applies to no other card here, which is a good argument for testing it deliberately rather than in passing.` },
+  ev:[
+    { n:23, span:`sub-bass`, state:'candidate', why:`"Booming 808 sub-bass with sliding glides" — sub carrying actual melody, which is the hardest thing to do down there and the easiest to get wrong.` },
+    { n:82, span:`sub bass`, state:'candidate', why:`Dub techno, the tradition that made sub-bass a musical part rather than a by-product.` },
+    { n:89, span:`sub bass`, state:'candidate', why:`"Deep warm sub bass" under liquid drum and bass, where it has to sit beneath a busy break without muddying it.` },
+    { n:87, span:`sub bass`, state:'candidate', why:`"Booming sub bass" in future bass, alongside supersaw chords that occupy a completely different part of the spectrum.` }
   ]
 },
 ];
