@@ -29,7 +29,7 @@
  * Loaded as a classic <script> AFTER data.js, so LIB is already a global.
  */
 
-const LEX_VERSION = 'v4';
+const LEX_VERSION = 'v5';
 const LEX_UPDATED = '2026-08-21';
 
 /* ---------- TOP TIER: domains, not instruments ----------
@@ -615,4 +615,243 @@ A confound to design around before trusting any result: nearly every prompt usin
   ]
 },
 
+{
+  id:'autotune',
+  term:`Autotune`,
+  sounds:`The pitch snaps instead of sliding. Notes arrive already dead in tune and lock there, and the small scoops a voice normally makes between them get flattened into hard little steps, so the line moves in jumps like a staircase. Held notes sit unnaturally still — no drift, no wobble — and the voice takes on a glassy, faintly electronic ring around the edges. You hear it most at the ends of phrases, where a person would sag and this simply does not.`,
+  gloss:`Software that pulls sung notes onto the nearest correct pitch. How fast it pulls is a setting: slow enough and it is an invisible repair, instant and it becomes the hard snapping effect people ask for by name.`,
+  syn:[`auto-tune`,`pitch correction`,`tuned vocals`,`that robot voice`,`hard-tuned vocals`,`snapped vocals`],
+  myth:`Two different things share one name, and confusing them causes most of the arguments. Gentle correction is meant to be inaudible and is on nearly every record you have ever heard. The hard snap is a deliberate effect. Hearing autotune does not mean somebody could not sing — usually it means somebody wanted that sound.`,
+  known:`Late-1990s pop onward as invisible repair; the hard setting became a signature of trap, hyperpop and modern R&B, where the artificiality is the point rather than an embarrassment.`,
+  origin:`A pitch-correction tool released in the late 1990s, adapted from seismic data analysis; its most extreme setting was used as an obvious effect on a hit almost immediately and has never stopped being one.`,
+  domains:['production','voice'],
+  match:['autotune','auto-tune','pitch correction'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`Invisible at one end and unmissable at the other, with very little useful middle. The corpus only ever names the audible end — "autotune snap" (#20), "autotune warble" — because the gentle setting is by definition the one nobody writes down.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`The most-used term in the whole corpus: 312 prompts, and overwhelmingly as a NEGATIVE — entry after entry excludes it to protect a human-sounding voice. That makes it the best test on this page of whether negatives work at all, which is a much bigger question than this one term. If asking for no autotune does not suppress it, the standing practice of appending eight mandated negatives to every prompt deserves re-examining. Note the opposite limit too: the corpus can barely test the positive case, because almost nothing here ever asked for it.` },
+  ev:[
+    { n:1,  span:`autotune`, state:'candidate', why:`A negative alongside "pitch correction" in the same list, so the same idea is excluded twice over — the strongest suppression case available.` },
+    { n:20, span:`autotune snap`, state:'candidate', why:`The negative names the audible effect rather than the tool, which is the more precise instruction and worth comparing against the bare word.` },
+    { n:2,  span:`autotune`, state:'candidate', why:`Excluded to protect a close, unhurried noir-jazz croon — a style where any snapping would be immediately obvious.` },
+    { n:5,  span:`autotune`, state:'candidate', why:`Excluded from a gritty soul belt, where the voice is meant to strain and drift out of tune on purpose.` }
+  ]
+},
+
+{
+  id:'tape-saturation',
+  term:`Tape saturation`,
+  sounds:`Everything softens at the corners. The sharpest transients get quietly rounded off, loud moments thicken and squash instead of stabbing, and a warm haze settles over the whole thing — often with a faint hiss behind it. Bass sounds fatter, cymbals lose their glassiness, and the record feels a little older and a little further away than it did, as though it has been played a few times before reaching you.`,
+  gloss:`What happens when magnetic tape is fed more signal than it can hold cleanly. The peaks compress and distort gently instead of clipping, adding harmonics that most people hear as warmth.`,
+  syn:[`tape warmth`,`analog warmth`,`tape hiss`,`that warm old sound`,`driven to tape`,`analogue glue`],
+  myth:`It is distortion, technically — just very polite distortion. People reach for it because it makes things sound cleaner and more expensive, which is odd given that what it actually does is damage the signal in a flattering way.`,
+  known:`Every record made before digital, and deliberately imitated ever since. It is the default meaning of the word warm when applied to a recording.`,
+  origin:`An unavoidable property of magnetic tape from the 1950s onward, tolerated and then exploited; reproduced deliberately in software from the 1990s once digital recording proved unforgivingly clean.`,
+  domains:['production'],
+  match:['tape saturation','tape warmth','tape hiss','tape-thick'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`"Light tape saturation on the voice" (#1) is a finishing touch you would not name if it were absent. "Soaked in cassette distortion and tape saturation so the voice grinds lo-fi and gritty" (#64) is the same idea taken far enough to become the texture.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Worth testing for degree rather than presence, because the corpus already sits at two clearly different intensities with the same words. It also shares the ribbon-mic problem: every prompt using it also says analog, vintage or 1970s, so the term may be riding on period language. If "light tape saturation" and "soaked in tape saturation" produce the same result, that is a finding about intensity modifiers generally.` },
+  ev:[
+    { n:1,   span:`tape saturation`, state:'candidate', why:`"Light tape saturation on the voice" — the subtle end, and specifically placed on the voice rather than the whole mix.` },
+    { n:64,  span:`tape saturation`, state:'candidate', why:`The extreme end: soaked in it until the voice grinds. If the intensity words do anything, this and #1 should be plainly different.` },
+    { n:21,  span:`tape saturation`, state:'candidate', why:`"Light tape saturation, close and dry" in grunge — the same light setting in a harsher genre, as a consistency check on #1.` },
+    { n:139, span:`tape saturation`, state:'candidate', why:`Applied to a whole industrial arrangement with red-lined samples rather than to a voice, testing whether the term works on a mix.` }
+  ]
+},
+
+{
+  id:'close-miking',
+  term:`Close-miking`,
+  sounds:`The singer is suddenly inches from your ear. You hear breath being taken, lips parting, the small click of a tongue, the scrape of fingers moving on a string — all the noises a performance makes that a room would normally swallow. The voice also gets noticeably fuller and heavier at the bottom just from being near the microphone, so it sounds intimate and slightly too large at once, like someone confiding in you.`,
+  gloss:`Placing the microphone very near the source instead of back in the room. Almost no room sound gets captured, and a directional microphone close up exaggerates low frequencies — an effect called proximity.`,
+  syn:[`close mic`,`right up on the mic`,`intimate capture`,`in your ear`,`breath detail`,`dry and close`],
+  myth:`It is not the same as singing quietly, though the two nearly always arrive together. You can close-mic a scream. What close-miking actually removes is the room — which is why it reads as private rather than as soft.`,
+  known:`Confessional folk, bedroom pop, modern country and ASMR-adjacent production. It is the standard way to make a listener feel spoken to rather than performed at.`,
+  origin:`Made practical by directional microphones from the 1930s, and by crooners who realised they no longer had to project; became the default for popular vocals once multitrack recording arrived.`,
+  domains:['microphone'],
+  match:['close-mic','close mic'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`From "close-mic'd and conversational" as one production choice among many (#106) to "sung almost into the listener's ear ... audible breath and lip detail" (#9), where the closeness is the entire idea of the record.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`The most testable term in the Microphone domain, because unlike ribbon warmth it has an audible consequence a listener can name: breath and mouth noise that would otherwise not be there. That gives a clear pass/fail a lay reader can judge — either you can hear the singer breathing or you cannot. If close-miking lands and ribbon does not, that sharpens the connotation suspicion considerably: the model may respond to described consequences but not to named equipment.` },
+  ev:[
+    { n:9,   span:`Close-mic`, state:'candidate', why:`The maximal case — breath and lip detail named explicitly as the point. Note the capital C, recorded as it appears.` },
+    { n:202, span:`close-mic`, state:'candidate', why:`"Close-mic captured with audible breath and string squeak" — the consequence spelled out for the guitar as well as the voice.` },
+    { n:106, span:`close-mic`, state:'candidate', why:`A modern pop production where closeness is one choice among many rather than the concept, so it should be the subtler result.` },
+    { n:1,   span:`close-mic`, state:'candidate', why:`Negative use: "breathy close-mic" excluded from a raw swamp-blues rasp meant to sound like a room, not an ear.` }
+  ]
+},
+
+{
+  id:'tape-delay',
+  term:`Tape delay`,
+  sounds:`An echo that falls apart as it repeats. The first repeat is nearly the sound itself; each one after is darker, softer and more smeared, wobbling slightly out of tune as it goes, until the last few are just warm blurred shapes. Push it and the repeats pile up and start to howl. It feels like the sound is receding down a corridor rather than bouncing off a wall.`,
+  gloss:`Echo made by recording onto a loop of tape and playing it back a fraction of a second later, over and over. Each pass through the machine degrades the copy a little more, which is why the repeats decay in quality as well as in volume.`,
+  syn:[`echo`,`delay`,`dub echo`,`echo throws`,`slapback`,`that trailing-off echo`],
+  myth:`It is not reverb. Reverb is a wash with no countable events in it; delay produces distinct repeats you could tap along with. And the degrading is not a fault being tolerated — it is the reason people still use tape delay when a perfect digital echo is free.`,
+  known:`Dub above all, where the echo is played as an instrument in real time, plus psychedelia, rockabilly and ambient. In dub it is not decoration; it is the arrangement.`,
+  origin:`Studio tape machines of the 1950s used as echo units; taken up as a compositional tool in 1960s and 70s Jamaican dub, where the mixing desk and the delay became instruments in their own right.`,
+  domains:['room'],
+  match:['tape delay','tape-delay','dub delay','delay throw','echo throw'],
+  kinds:['instrument'],
+  nature:'continuous',
+  range:`From "analogue tape delay" holding an ambient space open behind everything (#146) to a voice "drowned in spring reverb and tape delay" in dub techno (#82), where the repeats are louder than the source.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`The best structural test in the Room and Space domain, because unlike reverb this term has a countable consequence: distinct repeats at a spacing you could tap. Either they are there or they are not, and no expertise is needed to say which. Worth running against the spring and plate cards as a set — if the generator produces one generic wash for all three, that answers the whole domain; if it separates echo from reverb but not plate from spring, that draws the line in a specific and useful place.` },
+  ev:[
+    { n:82,  span:`tape delay`, state:'candidate', why:`Dub techno, with the voice drowned in delay and spring reverb together — the maximal case, and a chance to hear whether the two effects stay distinct.` },
+    { n:146, span:`tape delay`, state:'candidate', why:`Ambient, where the delay is holding the space open rather than throwing repeats — the same tool doing an almost opposite job.` },
+    { n:170, span:`tape delay`, state:'candidate', why:`Trip-hop with vinyl crackle and hiss alongside, so the delay has to be audible through a deliberately degraded mix.` },
+    { n:172, span:`tape delay`, state:'candidate', why:`Boom-bap, where the beat gives a clear pulse to hear the repeat spacing against — the easiest of the four to judge by counting.` }
+  ]
+},
+
+{
+  id:'mellotron',
+  term:`Mellotron`,
+  sounds:`Strings, flutes or a choir that are almost convincing and then quietly are not. The notes waver in pitch, sag and breathe unevenly, and each one runs out after a few seconds no matter how long you hold the key — so chords sink and have to be renewed. There is a soft hiss and a faint clunk underneath. It sounds like an orchestra remembered rather than an orchestra playing, which is why it always reads as haunted or nostalgic.`,
+  gloss:`A 1960s keyboard with a strip of recorded tape under every key. Pressing a key drags its tape across a playback head, so you are hearing a real player — recorded once, decades ago — and the tape physically runs out after about eight seconds.`,
+  syn:[`tron`,`tape keyboard`,`that wobbly string sound`,`ghostly strings`,`string machine`,`haunted orchestra`],
+  myth:`It is not a synthesiser imitating strings — it is actual recordings of real players, one short tape per note. The wobble and the drift are not effects applied to it; they are the tape stretching and the motor faltering, and every unit sounds slightly different because of how worn its tapes are.`,
+  known:`Psychedelia and progressive rock, and everything since that wants a sound to feel like a half-remembered library record. The flute and choir settings are the ones most people can identify without knowing the name.`,
+  origin:`Built in early-1960s Britain from an American tape-keyboard design intended for home entertainment; adopted by psychedelic and progressive bands who wanted orchestras they could not afford, and revived by hauntology and library-music revivalists.`,
+  domains:['keys'],
+  match:['mellotron','string-machine','string machine'],
+  kinds:['instrument'],
+  nature:'continuous',
+  range:`"Faint Mellotron" tucked deep into a Britpop mix (#28) against "a Mellotron flute choir wowing in and out of tune as the tape stretches" (#386), where the instability is the whole reason it is there.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`The third make-versus-category test on the page, after Rhodes and Hammond, and the most likely of the three to resolve — because what identifies a Mellotron is not its timbre but its FAULTS, and those are describable: pitch wobble, uneven attack, notes that die after a few seconds. #386 is unusually valuable here because it names the fault outright rather than the instrument's sound, so it can be compared against prompts that only name the make.` },
+  ev:[
+    { n:386, span:`Mellotron`, state:'candidate', why:`Names the defining fault, not just the instrument — a flute choir wowing in and out of tune as the tape stretches. The clearest statement of what the word is supposed to mean.` },
+    { n:233, span:`mellotron`, state:'candidate', why:`Private-press psych, the instrument in its native habitat alongside combo organ and tremolo guitar.` },
+    { n:242, span:`Mellotron`, state:'candidate', why:`"Mellotron-soft choir pads" in a lullaby — the make used as a texture word, which is the collapse risk worth testing.` },
+    { n:28,  span:`Mellotron`, state:'candidate', why:`"Faint Mellotron" buried in a dense Britpop mix, where the make is a period signal more than an audible part.` }
+  ]
+},
+
+{
+  id:'behind-the-beat',
+  term:`Behind the beat`,
+  sounds:`The singer is late and never catches up, on purpose. Every phrase starts a hair after you expect it and leans back against the rhythm, so the music seems to drag slightly even though nothing has slowed down — the band is exactly on time underneath. It feels unhurried, heavy-lidded, a little weary or a little cool depending on the song, and it is the difference between a performance that pushes at you and one that lets you come to it.`,
+  gloss:`Placing notes fractionally after the beat rather than on it, while the tempo stays exactly where it was. A feel, not a change of speed — the gap is far too small to count and far too large to miss.`,
+  syn:[`laid back`,`dragging`,`lazy phrasing`,`behind the pocket`,`relaxed timing`,`singing late`],
+  myth:`It is not slowing down, and it is not sloppy timing. The player knows precisely where the beat is and is choosing to sit late against it, consistently — which is much harder than landing on the beat, and is why a machine imitating it usually sounds wrong.`,
+  known:`Blues, soul, bossa nova, reggae toasting, trip-hop and outlaw country. Wherever music is meant to feel cool rather than urgent, this is usually how it is done.`,
+  origin:`Fundamental to blues and jazz phrasing and carried into everything descended from them; named and taught as a deliberate technique rather than discovered, because players did it long before anyone described it.`,
+  domains:['rhythm'],
+  match:['behind the beat','behind-the-beat'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`"Singing just behind the beat with an unhurried cool" (#68) is the gentle version. "Dragging behind the beat with weary defiance" (#98) leans much further, to where the delay is audible as attitude rather than as feel.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`A pure feel instruction, and possibly the subtlest thing documented on this page: the difference between landing on the beat and landing just after it is a few tens of milliseconds. That makes it a genuinely hard test and a valuable one, because if the generator can place a voice consistently late against a steady band, it is doing something more sophisticated than assembling textures. A null result would also be informative, and easy to hear — the voice would simply sit square.` },
+  ev:[
+    { n:68, span:`behind the beat`, state:'candidate', why:`Bossa and cool jazz, the idiom the phrase belongs to, and stated gently — "just behind the beat with an unhurried cool".` },
+    { n:98, span:`behind the beat`, state:'candidate', why:`"Dragging behind the beat with weary defiance" — the furthest-back version in the corpus, so the easiest to hear if the term lands at all.` },
+    { n:16, span:`behind the beat`, state:'candidate', why:`Outlaw country, where dropping behind the beat is paired with letting phrase-ends fall flat — two related timing choices in one prompt.` },
+    { n:10, span:`behind the beat`, state:'candidate', why:`Reggae toasting, where riding behind the beat works against a groove that is already displacing its own accents.` }
+  ]
+},
+
+{
+  id:'breakdown',
+  term:`Breakdown`,
+  sounds:`The floor drops out. Somewhere in the middle the drums and bass simply leave, and what is left — a single voice, a pad, a filtered loop — sounds suddenly exposed and much closer. Tension gathers while almost nothing is happening, often with something rising underneath, and then everything crashes back at once and hits far harder than it did before it left. The relief is the point.`,
+  gloss:`A section where the arrangement strips down to a fraction of itself, holds there, and then returns in full. What counts as stripped varies by genre, but the shape is always the same: remove, wait, restore.`,
+  syn:[`the drop-out`,`the quiet bit`,`the build`,`stripped section`,`when the beat drops out`,`the bit before the drop`],
+  myth:`In dance music people often use breakdown to mean the drop, which is its opposite — the breakdown is the emptying-out, the drop is the return. And a breakdown in metal means something different again: a slow, heavy, half-time riff section rather than a thinning at all.`,
+  known:`Trance and house, where the breakdown is the emotional centre of the track; also metalcore, drum and bass and bluegrass, each meaning something slightly different by the word.`,
+  origin:`Arrangement practice long predating the name; formalised in disco and house extended mixes of the 1970s and 80s, where a long emptying and rebuild gave a DJ somewhere to mix.`,
+  domains:['form'],
+  match:['breakdown'],
+  kinds:['technique'],
+  nature:'momentary',
+  range:`"Dropout breakdowns" as brief punctuation between riffs (#33) against "a long push and pull between the breakdown and the euphoric drop" (#88), where the section is a whole movement of the track.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`A form instruction like stop-time and key change, but a more forgiving one — a breakdown is a long, obvious event rather than a single instant, so it should be the easiest of the three for a generator to place and the easiest for a listener to confirm. That is exactly why it is worth testing early: if form instructions land anywhere, they land here, and a failure here would strongly suggest the whole Form domain is documentation of things we cannot demonstrate.` },
+  ev:[
+    { n:88, span:`breakdown`, state:'candidate', why:`Trance, where the breakdown is the emotional centre and explicitly set against the drop — the clearest structural framing in the corpus.` },
+    { n:'E5', span:`breakdown`, state:'candidate', why:`"A true breakdown and rebuild" named as extended tension-release, so the return matters as much as the emptying.` },
+    { n:33, span:`breakdowns`, state:'candidate', why:`Nu-metal "dropout breakdowns" — plural, brief and used as punctuation rather than as a section. The literal is recorded as it appears.` },
+    { n:'J1', span:`breakdowns`, state:'candidate', why:`"Hollowed breakdowns and wall-of-sound returns" in a disco-gospel hybrid, where the contrast is the arrangement's whole engine.` }
+  ]
+},
+
+{
+  id:'unison',
+  term:`Unison`,
+  sounds:`Several voices or instruments playing exactly the same notes at the same time — and it sounds bigger and more certain than one, without sounding like a chord. Nothing is stacked above or below; the line simply gets thicker, wider and more insistent, and any slight disagreement in tuning or timing between the players adds a shimmer at the edges. It reads as a crowd agreeing.`,
+  gloss:`Two or more parts on the same pitch, rather than on different notes of a chord. Octaves apart still counts. The effect is emphasis and weight, not harmony.`,
+  syn:[`in unison`,`all together`,`doubled line`,`everyone on the same note`,`gang vocal`,`one voice, many people`],
+  myth:`Unison is not harmony — there is only one note being sung, however many people are singing it. And it is not the same as double-tracking, where one person records twice: unison usually means genuinely different players, which is why it thickens without the tell-tale smearing.`,
+  known:`Riff-writing in rock and metal, where guitar and bass hitting a figure together makes it land like a fist; gang shouts in punk and hardcore; and prog, where unison across the whole band is used to show off precision.`,
+  origin:`As old as group singing. Its use as a deliberate arranging effect in popular music comes largely from work song and congregational singing, and from big-band writing where a section plays a line as one.`,
+  domains:['arrangement'],
+  match:['unison'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`#143 has "precise unison hits" as a display of accuracy; #157 has a voice "doubling its own hook in loose unison", where the looseness is the charm. #U2 goes further and puts the stacks "deliberately out of unison" — the same idea used as a fault on purpose.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`A useful counterpart to the double-tracking card: both thicken a line, but unison implies separate performers and double-tracking implies one performer twice. If the generator treats them as the same instruction, that is worth knowing, because they are not interchangeable in practice. The tighter question is whether "precise unison" and "loose unison" differ at all, which the corpus sets up almost by accident across #143 and #157.` },
+  ev:[
+    { n:143, span:`unison`, state:'candidate', why:`"Precise unison hits" across a whole prog band in shifting meters — accuracy as the point, so any raggedness would be a clear failure.` },
+    { n:157, span:`unison`, state:'candidate', why:`"Doubling its own hook in loose unison" — the opposite instruction, where imprecision is wanted.` },
+    { n:71,  span:`unison`, state:'candidate', why:`Massed voices roared in unison, which is the plain crowd-of-people case most listeners would picture first.` },
+    { n:'U2', span:`unison`, state:'candidate', why:`Stacks held "deliberately out of unison" so the phrasing rubs against itself — the term used by negation, which tests whether it is understood at all.` }
+  ]
+},
+
+{
+  id:'modal',
+  term:`Modal`,
+  sounds:`The music circles instead of arriving. Chords change and the tune moves, but the decisive pull home that most songs make never quite happens — so it can hang in one colour for a long time without sounding stuck. Often there is a slightly ancient or foreign flavour to it, a note in the scale sitting a step away from where a pop ear expects, and the whole thing feels more like weather than like a journey.`,
+  gloss:`Music built on a mode rather than on ordinary major or minor. A mode uses a different arrangement of steps, which removes the strong leading note that normally makes a piece want to resolve.`,
+  syn:[`modal harmony`,`dorian`,`mixolydian`,`churchy`,`folky`,`that ancient-sounding scale`,`floating harmony`],
+  myth:`It does not mean the music has no key or no rules. A mode is a scale like any other — what it lacks is the one strong pull toward home that major and minor have, which is why modal music sounds open rather than unresolved. It is also not inherently sad; several modes are brighter than major.`,
+  known:`Plainchant and folk song, jazz from the late 1950s, and a great deal of psychedelia, metal and film music. It is the standard way to make a piece sound old, wide or unplaceable.`,
+  origin:`The system of European liturgical chant, retained in folk traditions after art music narrowed to major and minor; deliberately revived by jazz players in the late 1950s and by folk-rock and psychedelia in the 1960s.`,
+  domains:['harmony'],
+  match:['modal'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`From "long modal phrases" in unaccompanied chant, where there is no harmony at all and the mode IS the melody (#51), to "modal Eastern color" laid over progressive metal (#130), where it is a flavour on top of ordinary rock harmony.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`The second Harmony card, and a fairer test than voice-leading because a mode has an audible surface: a listener may not name the flat seventh but they will hear that something sounds old or foreign. That gives a lay reader something to judge. Watch for a confound, though — every corpus prompt using the word also names a tradition (chant, maqam, Appalachian, Eastern), so the model may be reaching for the genre rather than the harmony. The clean test is asking for a modal version of something with no modal tradition at all.` },
+  ev:[
+    { n:51,  span:`modal`, state:'candidate', why:`Plainchant: unaccompanied and monophonic, so there is nothing but the mode to hear — the purest case available.` },
+    { n:'H2', span:`modal`, state:'candidate', why:`An Appalachian folk hymn, the same harmonic idea in a Western folk tradition rather than a liturgical one.` },
+    { n:130, span:`modal`, state:'candidate', why:`"Modal Eastern color" over progressive metal — the mode as an overlay on a rock arrangement, which is the harder and more modern use.` },
+    { n:118, span:`modal`, state:'candidate', why:`"Modal melodies in relaxed repeating phrases" in organic house, where the circling quality matters more than any period flavour.` }
+  ]
+},
+
+{
+  id:'belting',
+  term:`Belting`,
+  sounds:`Full-power singing carried much higher than a speaking voice should comfortably go, and you can hear the effort in it. The tone is bright, forward and slightly strained, with a hard ringing edge that cuts through everything else, and the vowels tend to flatten and widen as the singer pushes. It sounds like someone shouting in tune — thrilling, and always faintly like it might not survive another line.`,
+  gloss:`Carrying the heavy chest register up into high notes at full volume, instead of letting the voice thin into a lighter register. It is loud by definition, and physically demanding.`,
+  syn:[`belting it out`,`full voice`,`chest voice up high`,`powerhouse singing`,`going for it`,`that big note`],
+  myth:`Belting is not just singing loudly, and it is not the same as shouting — it is a specific way of carrying one register upward that takes considerable control. It is also the opposite of falsetto rather than a stronger version of it: falsetto thins out to go high, belting refuses to.`,
+  known:`Musical theatre, gospel, soul and stadium rock. It is the sound of the last chorus, and the reason a key change so often arrives underneath it.`,
+  origin:`Emerged in early-twentieth-century musical theatre and vaudeville, where singers had to fill a room without amplification; carried into gospel, soul and rock, and now the default expectation for a big pop chorus.`,
+  domains:['voice'],
+  match:['belting','belted'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`#27 is belting as power — "at full force, screaming up into sustained banshee wails". #18 is belting as strain — "up into the register where the voice thins and cracks", where the failure is the expressive point.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`The natural partner to the falsetto card: they are the two ways of going high, and they are opposites. That makes a pair unusually clean — the same prompt asking for a belted high note and a falsetto one should produce plainly different voices, and if it does not, the entire vocal-register vocabulary is in question. Like autotune, this term appears heavily as a negative too, so it can be tested in both directions with material that already exists.` },
+  ev:[
+    { n:27, span:`belting`, state:'candidate', why:`"Belting at full force" in hard rock — the maximal, unambiguous case.` },
+    { n:18, span:`belting`, state:'candidate', why:`Belting to the point of failure, "where the voice thins and cracks" — the same technique with the strain made audible on purpose.` },
+    { n:9,  span:`belting`, state:'candidate', why:`Negative use, protecting a fragile indie-folk falsetto — the direct opposite of the technique, excluded by name.` },
+    { n:16, span:`belting`, state:'candidate', why:`A second negative, in outlaw country, where an unpushed conversational baritone was the whole intent.` }
+  ]
+},
 ];
