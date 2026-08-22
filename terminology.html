@@ -104,6 +104,9 @@
   .evstateT{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);border:1px solid var(--line);border-radius:4px;padding:1px 6px}
   .evstateT.rejected{color:var(--rose);border-color:var(--rose)}
   .evstateT.found{color:var(--teal);border-color:var(--teal)}
+  .evstateT.negt{color:var(--violet);border-color:var(--violet)}
+  .evitem.neg-use{box-shadow:inset 2px 0 0 var(--violet);padding-left:11px}
+  .evitem.neg-use.supported{box-shadow:inset 2px 0 0 var(--violet)}
   /* support votes — "does this track actually demonstrate the term?", one click, shared */
   .evitem.st-rejected{opacity:.5}
   .vote{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;background:transparent;border:1px solid var(--line);color:var(--muted);border-radius:5px;padding:4px 10px;cursor:pointer;transition:border-color .12s,color .12s,background .12s}
@@ -429,25 +432,38 @@ function examples(c) {
       || (a.src === b.src ? a.i - b.i : (a.src === 'ev' ? -1 : 1)));
 }
 
+/* Is this evidence a NEGATIVE use — the term excluded from the prompt rather than asked
+   for? It matters more than it looks: a demo attached to a prompt that ruled the term out
+   demonstrates its ABSENCE. Treating the two alike put four such demos on the autotune card
+   and presented them as evidence of autotune. Derived from the prompt rather than
+   hand-tagged, so it cannot drift out of step with the data. */
+function isNegUse(v, span) {
+  return !(v.style || '').includes(span) && (v.neg || '').includes(span);
+}
+
 function support(c) {
-  const list = examples(c);
-  let backed = 0, votes = 0;
-  for (const e of list) {
+  let backed = 0, votes = 0, total = 0, negTotal = 0;
+  for (const e of examples(c)) {
+    const v = byN.get(String(e.n)) || {};
     const n = voteCount(c.id, e.n);
     votes += n;
-    if (n > 0) backed++;
+    if (isNegUse(v, e.span)) negTotal++;
+    else { total++; if (n > 0) backed++; }
   }
-  return { backed, votes, total: list.length };
+  return { backed, votes, total, negTotal };
 }
 
 function supportLine(c) {
-  const { backed, votes, total } = support(c);
+  const { backed, votes, total, negTotal } = support(c);
   // Deliberately does NOT say "drawn from existing prompts": most evidence was mined from
   // the corpus, but some was commissioned for its card, and the line has to be true of both.
+  const neg = negTotal
+    ? ` Plus ${negTotal} exclusion test${negTotal === 1 ? '' : 's'} — prompts that ruled the term OUT, where what you listen for is its absence.`
+    : '';
   if (!backed) return `Documented, not yet demonstrated. ${total} candidate${total === 1 ? '' : 's'} `
-    + `attached — no one has vouched for any of them yet.`;
+    + `attached — no one has vouched for any of them yet.` + neg;
   return `<b>${backed} of ${total}</b> demos vouched for as demonstrating this term `
-    + `(${votes} vote${votes === 1 ? '' : 's'}).`;
+    + `(${votes} vote${votes === 1 ? '' : 's'}).` + neg;
 }
 
 /* ---------- demo tiles ---------- */
@@ -479,13 +495,15 @@ function cardHTML(c) {
     const n = voteCount(c.id, x.n);
     const mine = myVotes.has(voteKey(c.id, x.n));
     const found = x.src === 'more';
-    return `<div class="evitem${x.state === 'rejected' ? ' st-rejected' : ''}${n > 0 ? ' supported' : ''}"
+    const negUse = isNegUse(v, x.span);
+    return `<div class="evitem${x.state === 'rejected' ? ' st-rejected' : ''}${n > 0 ? ' supported' : ''}${negUse ? ' neg-use' : ''}"
                  data-ev="${esc(c.id)}|${esc(x.n)}" data-idx="${x.i}" data-src="${x.src}">
       <div class="evhead">
         <span class="evn">#${esc(x.n)}</span>
         <span class="evname">${esc(v.name || 'unknown entry')}</span>
         ${x.span ? `<span class="evspan">${esc(x.span)}</span>` : ''}
         ${found ? `<span class="evstateT found">vouched for &middot; not written up</span>` : ''}
+        ${negUse ? `<span class="evstateT negt">excluded here &middot; listen for its absence</span>` : ''}
       </div>
       ${found
         ? `<p class="evwhy">Found by wording rather than chosen, and promoted here because
@@ -496,8 +514,10 @@ function cardHTML(c) {
         ${tiles(v)}
         <button class="vote${mine ? ' on' : ''}${!mine && n > 0 ? ' has' : ''}" type="button"
           data-vote="${esc(c.id)}|${esc(x.n)}"
-          title="${mine ? 'You vouched for this — click to take it back' : 'I hear the term in this track'}">
-          <span class="arrow">▲</span> Supports <span class="vc">${n || ''}</span>
+          title="${mine
+            ? 'You vouched for this — click to take it back'
+            : (negUse ? 'The term is correctly absent here' : 'I hear the term in this track')}">
+          <span class="arrow">▲</span> ${negUse ? 'Stayed out' : 'Supports'} <span class="vc">${n || ''}</span>
         </button>
       </div>
     </div>`;

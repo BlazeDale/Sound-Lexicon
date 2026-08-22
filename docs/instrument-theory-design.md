@@ -231,6 +231,33 @@ have made one person's reading look like evidence.
 (Asked for as a cookie; localStorage does the same client-side job without being attached
 to every request, has room to grow, and is already how the votes and hearts persist here.)
 
+### Negative-use evidence proves the opposite (added 2026-08-21)
+
+A demo attached to a prompt that **excluded** a term demonstrates its absence, not the term.
+Obvious once stated; got wrong anyway. The autotune card originally cited four prompts that
+all listed autotune as a NEGATIVE, so every demo on it was a track with no autotune in it —
+the card looked fully evidenced and proved the opposite of its subject. Four positive uses
+existed in the corpus the whole time, including one entry named for the effect.
+
+The cause was mechanical: 311 of 315 corpus uses are negatives, so the first matches found
+were all negatives, and nothing in the page or the validator distinguished them.
+
+Three fixes, all in place:
+
+- **`validate.mjs` fails a card whose evidence is entirely negative-use.** Derived by
+  checking whether the recorded span sits in the entry's `style` or only in its `neg`, so it
+  cannot drift out of step with the data and needs no hand-tagging.
+- **The page labels them** — violet edge, *excluded here · listen for its absence* — and
+  counts them separately: "1 candidate attached … plus 3 exclusion tests".
+- **The vote changes meaning with them.** On a positive it reads *Supports*, meaning "I hear
+  the term". On a negative it reads *Stayed out*, because hearing the term there would mean
+  the suppression FAILED. The same button would otherwise have collected the two opposite
+  claims into one number.
+
+Negative evidence is worth keeping — it is the only way to test whether suppression works,
+which matters far beyond any single card, since every prompt in the library carries eight
+mandated negatives on the assumption that it does. It just cannot stand alone.
+
 ### Minimal pairs
 
 The strongest form of evidence, and the default for a term whose uptake is in

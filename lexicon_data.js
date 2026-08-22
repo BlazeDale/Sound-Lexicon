@@ -628,14 +628,16 @@ A confound to design around before trusting any result: nearly every prompt usin
   match:['autotune','auto-tune','pitch correction'],
   kinds:['technique'],
   nature:'continuous',
-  range:`Invisible at one end and unmissable at the other, with very little useful middle. The corpus only ever names the audible end — "autotune snap" (#20), "autotune warble" — because the gentle setting is by definition the one nobody writes down.`,
+  range:`The corpus covers this end to end, which is rarer than it sounds. #23 has "the autotune snap an audible part of the timbre" and #90 has it "fused into the timbre" — the effect as the instrument. #321 is the other extreme: "a light autotune sheen on the sustained notes", present but not announcing itself.`,
   res:{ verdict:'untested', model:null, date:null,
-    note:`The most-used term in the whole corpus: 312 prompts, and overwhelmingly as a NEGATIVE — entry after entry excludes it to protect a human-sounding voice. That makes it the best test on this page of whether negatives work at all, which is a much bigger question than this one term. If asking for no autotune does not suppress it, the standing practice of appending eight mandated negatives to every prompt deserves re-examining. Note the opposite limit too: the corpus can barely test the positive case, because almost nothing here ever asked for it.` },
+    note:`The most-used term in the whole corpus by a distance: 315 prompts, but 311 of them are NEGATIVE — entry after entry excluding it to protect a human-sounding voice. That lopsidedness makes it the best test on this page of whether negatives work at all, which is a far bigger question than this one term: every prompt in the library carries eight mandated negatives on the assumption that they do.
+
+Only four prompts ask for it, and all four are cited below, because a demo attached to a prompt that EXCLUDED the term demonstrates its absence rather than the term. That sounds obvious and was got wrong here first time round — this card originally cited four negatives and nothing else, so every one of its demos was a track with no autotune in it.` },
   ev:[
-    { n:1,  span:`autotune`, state:'candidate', why:`A negative alongside "pitch correction" in the same list, so the same idea is excluded twice over — the strongest suppression case available.` },
-    { n:20, span:`autotune snap`, state:'candidate', why:`The negative names the audible effect rather than the tool, which is the more precise instruction and worth comparing against the bare word.` },
-    { n:2,  span:`autotune`, state:'candidate', why:`Excluded to protect a close, unhurried noir-jazz croon — a style where any snapping would be immediately obvious.` },
-    { n:5,  span:`autotune`, state:'candidate', why:`Excluded from a gritty soul belt, where the voice is meant to strain and drift out of tune on purpose.` }
+    { n:23,  span:`autotune snap`, state:'candidate', why:`The definitive case — an entry built around the effect, with "the autotune snap an audible part of the timbre" and notes locking and gliding artificially.` },
+    { n:90,  span:`autotune`, state:'candidate', why:`Hyperpop, with autotune and formant-shift "fused into the timbre" rather than applied over it — the effect as the instrument itself.` },
+    { n:321, span:`autotune`, state:'candidate', why:`The subtle end: "a light autotune sheen on the sustained notes". If this and #23 sound alike, the term is a switch rather than the dial the card describes.` },
+    { n:1,   span:`autotune`, state:'candidate', why:`The suppression test, and the only negative kept: excluded alongside "pitch correction" in the same list, so the idea is ruled out twice over. Listen for its ABSENCE, not its presence.` }
   ]
 },
 
