@@ -29,7 +29,7 @@
  * Loaded as a classic <script> AFTER data.js, so LIB is already a global.
  */
 
-const LEX_VERSION = 'v11';
+const LEX_VERSION = 'v12';
 const LEX_UPDATED = '2026-08-21';
 
 /* ---------- TOP TIER: domains, not instruments ----------
@@ -1818,6 +1818,883 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
     { n:48, span:`dissonance and resolve`, state:'candidate', why:`"Warm dissonance and resolve as the chords bloom" — the same tool used gently, in dream-pop.` },
     { n:54, span:`dissonance and resolve`, state:'candidate', why:`Chamber pop with "constant harmonic movement", so the resolution has an orchestral arrangement moving with it.` },
     { n:66, span:`dissonance and resolve`, state:'candidate', why:`"Weary dissonance and resolve" in dark cabaret — the device carrying a specific emotional colour rather than a general one.` }
+  ]
+},
+
+{
+  id:'chorus-effect',
+  term:`Chorus`,
+  sounds:`One instrument sounding like several of itself, slightly out of agreement. The tone widens and shimmers, drifting in and out of tune by a tiny amount, and it seems to spread across the stereo field rather than sitting in one place. On a clean electric guitar it turns a plain chord into something liquid and glassy.`,
+  gloss:`A very short delay whose delay time is constantly wobbling, mixed back with the original. The wobble detunes the copy slightly, which is what produces the shimmer.`,
+  syn:[`chorused`,`that watery guitar`,`shimmer`,`widened`,`80s guitar sound`,`glassy`],
+  myth:`It is not adding voices, and there is no choir in it. Chorus works by imitating what happens when several players attempt the same part — they are never quite in tune or in time with each other — using a single detuned copy. The name describes the illusion, not the method.`,
+  known:`1980s guitar pop, new wave, post-punk and dream-pop; also the standard way to widen a bass or a synth pad without making it louder.`,
+  origin:`Built into amplifiers and pedals from the mid-1970s and inescapable through the 1980s, to the point that its absence became a period marker in the 1990s.`,
+  first:`1970s`, peak:[`1980s`],
+  exemplar:{ kind:'exemplifies', title:`Come As You Are`, artist:`Nirvana`, year:`1991`,
+    listen:`The opening riff is a clean guitar through a chorus pedal. Listen for the slight detuning at the edges of each note — one guitar sounding like it cannot quite agree with itself.` },
+  domains:['guitar','production'],
+  match:['chorused','chorus-drenched','chorus pedal'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`#4 has "chorused single-coil guitar" as a cold gothic texture. #48 has "chiming chorus-drenched guitars" in dream-pop, where the same effect is pushed until it becomes the whole atmosphere.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Sits in the same family as the vibrato and tremolo cards — all three modulate something periodically, and the corpus uses all three freely. Whether the generator distinguishes them is one question worth three cards at once: chorus detunes a copy, vibrato moves the pitch of the original, tremolo moves its volume. A prompt-pair swapping only the word would show whether those are three instructions or one.` },
+  ev:[
+    { n:4,   span:`Chorused`, state:'candidate', why:`"Chorused single-coil guitar" in coldwave — thin and brittle rather than lush, which is the less obvious use. Note the capital C.` },
+    { n:48,  span:`chorus-drenched`, state:'candidate', why:`"Chiming chorus-drenched guitars" in dream-pop, the effect taken to saturation.` },
+    { n:93,  span:`chorused`, state:'candidate', why:`"Chorused synth lead" rather than guitar, testing whether the term carries to another source.` },
+    { n:'W5', span:`chorused`, state:'candidate', why:`"Glistening chorused guitar" in a soft-gloss production, where the effect is doing polish rather than atmosphere.` }
+  ]
+},
+
+{
+  id:'phaser',
+  term:`Phaser`,
+  sounds:`A slow whooshing sweep passing through the sound, like something moving past you. Certain frequencies disappear and reappear in a rolling pattern, so the tone seems to breathe and rotate without changing pitch or volume. On a guitar it sounds underwater; on drums it sounds like the room is turning.`,
+  gloss:`A set of notches swept up and down the frequency range, mixed with the dry signal. What you hear is frequencies being removed and restored, not anything added.`,
+  syn:[`phase`,`phasing`,`flanger`,`jet plane sound`,`whoosh`,`swirl`],
+  myth:`It works by SUBTRACTION. Nothing is added to the sound — a phaser cancels selected frequencies and then moves which ones it is cancelling, so the swoosh is the sound of parts of the signal going missing in a moving pattern. Flanging is the same idea with more notches and a shorter delay, which is why the two are so easily confused.`,
+  known:`Psychedelia, funk guitar and electric piano, 1970s progressive rock, and shoegaze.`,
+  origin:`Discovered as tape flanging in the 1960s — literally pressing a finger on the flange of a tape reel to slow one of two copies — and built into pedals through the 1970s.`,
+  first:`1960s`, peak:[`1970s`],
+  domains:['guitar','production'],
+  match:['phased','phaser','flange'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`#127 has "phased clean guitars floating above" a dense arrangement — the effect as air. #A2 has "phaser-swept leads", where the sweep is a feature of the part rather than of the atmosphere.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Directly connected to a card the page cannot yet write. Phasing and flanging are comb filtering, which is also what happens when two microphones pick up one source at slightly different distances — the hollow sound engineers spend their lives avoiding. The corpus has no term for that, so this card is the only place the mechanism appears at all. If it resolves, a comb-filtering card becomes worth commissioning.` },
+  ev:[
+    { n:127, span:`phased`, state:'candidate', why:`"Phased clean guitars floating above" a polymetric arrangement, where the sweep provides movement rather than a hook.` },
+    { n:'A2', span:`phaser`, state:'candidate', why:`"Phaser-swept leads" — the effect applied to a lead line, so the sweep has to be audible against a melody.` },
+    { n:126, span:`phased`, state:'candidate', why:`"Phased guitars weaving over shifting 5/4 and 9/8" — the effect surviving inside rhythmic complexity.` },
+    { n:129, span:`phased`, state:'candidate', why:`"Phased guitars grinding" in post-metal, where distortion competes with the sweep for the same frequencies.` }
+  ]
+},
+
+{
+  id:'arpeggiator',
+  term:`Arpeggiator`,
+  sounds:`A chord taken apart and played back as a rapid pattern, one note at a time, perfectly evenly, forever. It never tires and never varies, and because the notes are machine-spaced it sits somewhere between a part and a texture — you stop hearing individual notes and start hearing a shimmer with a pitch.`,
+  gloss:`A device that takes the notes you are holding down and plays them in sequence rather than together, at a set rate and in a set order.`,
+  syn:[`arp`,`sequenced synth`,`that pulsing synth`,`gated pattern`,`rolling notes`],
+  myth:`The player is not playing the part. They hold a chord and the machine decides the rhythm, the order and the speed — so changing a single held note rewrites the whole figure. It is closer to configuring an instrument than to performing on one, which is why arpeggiated parts sound superhuman without anyone being a virtuoso.`,
+  known:`Synth-pop, synthwave, trance, Berlin-school electronic music and almost every score written for a chase sequence.`,
+  origin:`Built into synthesisers from the mid-1970s; became a defining sound of 1980s synth-pop and never left electronic music.`,
+  first:`1970s`, peak:[`1980s`,`2010s`],
+  exemplar:{ kind:'popularised', title:`I Feel Love`, artist:`Donna Summer`, year:`1977`,
+    listen:`The entire backing is a sequenced arpeggio that never varies for six minutes. It was startling at the time precisely because no player could have sustained it, and the whole of synth-pop follows from it.` },
+  domains:['keys','production'],
+  match:['arpeggiat','arp sequence'],
+  kinds:['instrument','technique'],
+  nature:'continuous',
+  range:`#73 has a "brittle arpeggiated sequence" as cold minimal-wave texture. #182 has "a bright arpeggiated hook" — the same device asked to carry the tune rather than the atmosphere.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Should be among the easier terms to confirm, because the result is mechanically distinctive: perfectly even spacing, a repeating order, no dynamic variation between notes. A human-sounding broken chord would be an obvious failure. Worth testing alongside quantization, since both are about machine regularity and a generator that blurs one probably blurs the other.` },
+  ev:[
+    { n:73,  span:`arpeggiat`, state:'candidate', why:`"Brittle arpeggiated sequence" in minimal wave — sparse, so the evenness of the spacing is fully exposed.` },
+    { n:86,  span:`arpeggiat`, state:'candidate', why:`"Arpeggiated bassline" in synthwave, the device doing a bass part rather than a lead.` },
+    { n:182, span:`arpeggiat`, state:'candidate', why:`"A bright arpeggiated hook" — the arpeggio asked to function as the memorable melody.` },
+    { n:186, span:`arpeggiat`, state:'candidate', why:`"Arpeggiated synths" in early-80s freestyle, where the device sits inside a dance arrangement rather than defining it.` }
+  ]
+},
+
+{
+  id:'ad-lib',
+  term:`Ad-lib`,
+  sounds:`A second voice commenting on the first. Short interjections — a yeah, a laugh, a repeated word, a wail — landing in the gaps of the main vocal, usually panned wider and mixed slightly behind it. It makes a single performer sound like a person with company.`,
+  gloss:`Vocal interjections outside the written line, recorded on a separate track and placed in the spaces of the lead.`,
+  syn:[`ad libs`,`vocal runs`,`interjections`,`the yeahs`,`background vocals`,`hype vocals`],
+  myth:`In modern rap and R&B they are almost never improvised, despite the name. Ad-libs are written, comped and placed as carefully as the lead — often the most deliberate thing on the record — and in some styles the ad-lib track is what makes an artist recognisable more than the lead vocal is.`,
+  known:`Gospel and soul first, then hip-hop and modern R&B, where the ad-lib became a structural element rather than a flourish.`,
+  origin:`Grew out of gospel's answering voices and soul's testifying asides; became a defining production layer in 1990s hip-hop and the trap era after it.`,
+  first:`1950s`, peak:[`1990s`,`2010s`],
+  domains:['voice','arrangement'],
+  match:['ad-lib','adlib'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`#5 has "rising ad-libs" as gospel-rooted flourishes on top of a belt. #K1 has "an ad-lib call the group answers back", which turns the ad-lib into a call-and-response mechanism rather than a decoration.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Structurally demanding in a way that is easy to underrate: an ad-lib has to land in the GAPS of the lead vocal, which means the generator has to leave holes and then fill them with a second voice. That is the same requirement as call-and-response, and the two would test each other. The likely failure is a doubled lead rather than a separate answering layer, which is easy to hear.` },
+  ev:[
+    { n:5,   span:`ad-lib`, state:'candidate', why:`"Gospel-rooted melisma and rising ad-libs" — the tradition the technique comes from, with the ad-libs decorating a belt.` },
+    { n:'K1', span:`ad-lib`, state:'candidate', why:`"An ad-lib call the group answers back" — the ad-lib functioning as a call, which requires a second party to respond.` },
+    { n:214, span:`ad-lib`, state:'candidate', why:`"Ad-libbed pleas and repeated words" in sixties soul, building across a performance rather than punctuating it.` },
+    { n:167, span:`ad-lib`, state:'candidate', why:`"Ad-libbed wails circling the final choruses" in folk, well outside the term's usual home genres.` }
+  ]
+},
+
+{
+  id:'vamp',
+  term:`Vamp`,
+  sounds:`A short figure repeating with no intention of going anywhere. Two chords, or one, cycling while something else happens over the top — a solo, a preacher, a crowd. Because it does not develop, your attention moves off the harmony and onto whatever is riding above it, and the repetition starts to feel like ground rather than music.`,
+  gloss:`A short repeated passage, usually one or two chords, designed to be extended for as long as needed rather than to progress.`,
+  syn:[`vamping`,`groove section`,`two-chord loop`,`riding out`,`the outro jam`,`turn it over`],
+  myth:`It is written to be indefinite. "Vamp till ready" was a stage instruction — keep going until the singer arrives, the scene changes, or the preacher finishes — so a vamp has no built-in length, which is why live versions can run for twenty minutes without anyone getting lost.`,
+  known:`Gospel, soul, afrobeat, funk and jazz, and the entire structure of most dance music, which is a vamp with production changes over it.`,
+  origin:`A functional device of theatre pits and church bands, where accompaniment had to stretch to fit unpredictable events; absorbed into soul, funk and afrobeat as an organising principle rather than a stopgap.`,
+  first:`pre-1900`, peak:[`1960s`,`1970s`],
+  domains:['form','harmony'],
+  match:['vamp'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`#149 has "two-chord vamps hammered past the point of reason" — repetition as aggression. #62 has "the long vamp breathing on slow tension-release", where the same device is being used for patience.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`A structural instruction, and one that fights a strong default: nearly everything a generator has learned about songs involves harmonic movement and section changes. Asking for a vamp asks it to deliberately NOT develop, which is closer to the drone card than to any other form term. If it keeps introducing changes anyway, that is a useful finding about how strongly song-shaped conventions are baked in.` },
+  ev:[
+    { n:62,  span:`vamp`, state:'candidate', why:`"The long vamp breathing on slow tension-release" in afrobeat, the tradition where vamping is the whole architecture.` },
+    { n:149, span:`vamp`, state:'candidate', why:`"Two-chord vamps hammered past the point of reason" — repetition pushed until it becomes confrontational.` },
+    { n:124, span:`vamp`, state:'candidate', why:`"Shifting minor vamps" in psychedelic soul, which asks for repetition that nonetheless moves between figures.` },
+    { n:'K5', span:`vamp`, state:'candidate', why:`"Vamping boogaloo changes" under a percussion party, where the vamp exists to support something else entirely.` }
+  ]
+},
+
+{
+  id:'interlocking',
+  term:`Interlocking parts`,
+  sounds:`A pattern nobody is playing. Two or three parts, each simple and each full of gaps, fit into each other's spaces so that the combination produces a figure none of the individual players is performing. Listen to any one part alone and it sounds incomplete; listen to all of them and a melody appears that exists only in the overlap.`,
+  gloss:`Splitting a musical line between two or more players so that each contributes only some of its notes. The complete figure exists only in the combination.`,
+  syn:[`hocket`,`interlocking rhythms`,`weaving parts`,`answering figures`,`split melody`,`the parts locking`],
+  myth:`No one is playing the tune. Each musician has a partial, gap-filled pattern that would sound wrong on its own, and the melody you hear is an emergent property of them fitting together — which is why these traditions are impossible to perform solo and why the parts are learned as relationships rather than as lines.`,
+  known:`West and Central African drumming and guitar traditions, Gnawa, gamelan, and everything descended from them — highlife, soukous, afrobeat, and a good deal of minimalism.`,
+  origin:`Fundamental to West and Central African ensemble music for centuries and to Indonesian gamelan independently; entered Western popular music through afrobeat, highlife and 1960s minimalism.`,
+  first:`ancient`, peak:[`1970s`,`1980s`],
+  exemplar:{ kind:'exemplifies', title:`Zombie`, artist:`Fela Kuti`, year:`1976`,
+    listen:`Follow one guitar for a while, then the other. Each is sparse and full of holes; together they produce a continuous figure neither is playing. That gap-filling is the whole technique.` },
+  domains:['arrangement','rhythm'],
+  match:['interlocking','hocket'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`#96 has "qraqeb iron castanets interlocking" — percussion only, no pitch involved. #100 has "requinto and twelve-string guitars interlocking", where the technique carries melody as well as rhythm.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`One of the hardest asks on the page, and among the most informative. Interlocking requires the generator to write two parts that are individually incomplete and mutually completing — a compositional relationship rather than a texture. It sits with counterpoint in that respect, but is harder still, because counterpoint's lines each stand alone and these deliberately do not. A convincing result would be a strong claim; a wall of busy percussion would be a clean failure.` },
+  ev:[
+    { n:96,  span:`interlocking`, state:'candidate', why:`Gnawa, where interlocking castanets are the entire rhythmic architecture and there is no harmony to hide behind.` },
+    { n:62,  span:`interlocking`, state:'candidate', why:`"Interlocking percussion" in afrobeat, the idiom most listeners will recognise the technique from.` },
+    { n:100, span:`interlocking`, state:'candidate', why:`"Requinto and twelve-string guitars interlocking" — pitched instruments, so the emergent figure is melodic rather than rhythmic.` },
+    { n:99,  span:`interlocking`, state:'candidate', why:`"Trebly interlocking guitars" in screamo, the technique borrowed into a genre with no tradition of it.` }
+  ]
+},
+
+{
+  id:'talk-singing',
+  term:`Talk-singing`,
+  sounds:`Speech that keeps sliding into pitch and back out again. The rhythm is conversational and the words come first, but the voice keeps landing on notes and leaving them — never quite committing to a melody, never quite abandoning one. It sounds candid, because we associate pitch with performance and speech with honesty.`,
+  gloss:`Delivery that sits deliberately between speech and song: pitched enough to follow a line, spoken enough to keep the rhythm of talking. Sprechgesang is its formal notated form.`,
+  syn:[`sprechgesang`,`sprechstimme`,`half-spoken`,`talk-sing`,`spoken-sung`,`patter`],
+  myth:`It is a technique, not a failure to sing. Sprechgesang was notated deliberately in early-twentieth-century art song, with pitches specified and instructions to leave them immediately — and the modern pop version is an equally deliberate choice, usually made by singers perfectly capable of holding a note.`,
+  known:`Art song and cabaret first, then folk narrative, post-punk, Madchester, hip-hop's melodic edge and a great deal of modern indie.`,
+  origin:`Formalised in European art song in the early 1900s; arrived in popular music through cabaret and folk narration and became a default indie posture from the 1980s.`,
+  first:`1900s`, peak:[`1980s`,`2010s`],
+  exemplar:{ kind:'popularised', title:`Pierrot Lunaire`, artist:`Arnold Schoenberg`, year:`1912`,
+    listen:`The score specifies pitches and then instructs the performer to abandon each one immediately after touching it. It is the technique in its most explicit written form, and every talk-sung pop vocal is a descendant.` },
+  domains:['voice'],
+  match:['half-spoken','talk-sing','sprechgesang','sprechstimme'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`#77 is the formal version — "sprechstimme, half-spoken and half-pitched, sliding through the notes". #57 is the pop version, "half-spoken verses melting into soaring ecstatic hooks", where it exists to make the chorus land harder.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`A genuine test of gradation rather than category. The instruction is not "speak" or "sing" but a specific point between them, and the likely failure is collapsing to one end — either a clean sung line or flat spoken word. #57 is the sharpest case because the contrast is built in: if the verses come back sung, the whole architecture of the prompt is lost, which makes the failure unmissable.` },
+  ev:[
+    { n:77,  span:`half-spoken`, state:'candidate', why:`Formal sprechstimme — pitched and abandoned deliberately, the technique at its most explicit.` },
+    { n:57,  span:`half-spoken`, state:'candidate', why:`"Half-spoken verses melting into soaring ecstatic hooks" — the contrast is the architecture, so a failure here would be structural rather than tonal.` },
+    { n:30,  span:`half-spoken`, state:'candidate', why:`Folk-rock narration, "wry, narrative, half-spoken and biting", where the speech end dominates.` },
+    { n:'J2', span:`talk-sing`, state:'candidate', why:`"A flat deadpan talk-sing" in electroclash — a different literal, and the most affectless version of the technique.` }
+  ]
+},
+
+{
+  id:'rimshot',
+  term:`Rimshot`,
+  sounds:`A snare with a crack on it. The hit is sharper, louder and more wooden than an ordinary snare stroke, with a woody knock riding on top of the buzz — it cuts through a loud band in a way a normal hit will not, and in a quiet arrangement it sounds like something breaking.`,
+  gloss:`Striking the rim and the head of the snare at the same instant with one stick, so both sound together.`,
+  syn:[`crack`,`rim crack`,`stick shot`,`that loud snare`,`cross-stick`,`the whack`],
+  myth:`It is not hitting the rim. Both surfaces are struck simultaneously by one stick, and it is the combination that produces the crack — hitting only the rim gives you the quiet woodblock click of a cross-stick, which is a completely different sound and often confused with this one.`,
+  known:`Ska and reggae accents, country and rockabilly backbeats, jazz punctuation, and any arrangement needing the snare to cut without the drummer simply hitting harder.`,
+  origin:`As old as the modern kit; became a genre signature in 1950s country and rockabilly and in Jamaican ska a decade later.`,
+  first:`1920s`, peak:[`1950s`,`1970s`],
+  domains:['drums'],
+  match:['rimshot','rim shot'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`#46 and #191 use "rimshot accents" as ska punctuation, fast and bright. #141 has "rimshot cracks echoing in stone" in gothic post-punk, where the sharpness is being used for menace instead of lift.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`A small, precise timbral difference of the kind this page is generally bad at testing, and worth having for that reason. The distinction from an ordinary snare hit is real and audible but easy to lose in a dense mix, so #141 is the most useful item here — a slow, exposed arrangement where a wrong snare would be obvious. The confusion with cross-stick is also worth probing directly, since the corpus never distinguishes them.` },
+  ev:[
+    { n:141, span:`rimshot`, state:'candidate', why:`"Rimshot cracks echoing in stone" — slow and exposed, so the specific attack is fully audible.` },
+    { n:46,  span:`rimshot`, state:'candidate', why:`"Fast drums with rimshot accents" in ska, where the crack has to cut through horns and organ.` },
+    { n:152, span:`rimshot`, state:'candidate', why:`"Rimshots, choked cymbal, kick on the theatrical accents" — vaudeville punctuation, the comic use of the sound.` },
+    { n:191, span:`rimshot`, state:'candidate', why:`A second ska use, useful as a consistency check against #46.` }
+  ]
+},
+
+{
+  id:'blast-beat',
+  term:`Blast beat`,
+  sounds:`A continuous roar of drums with no groove left in it. Kick and snare alternate so fast that they stop reading as separate hits and become a single texture, with cymbals riding on top as a wash. It is less a rhythm than a wall — you cannot nod to it, which is largely the point.`,
+  gloss:`A very fast drum pattern alternating kick and snare in single strokes, usually with the cymbal on every stroke. The rate is high enough that the pattern is heard as texture rather than pulse.`,
+  syn:[`blast`,`blasting`,`machine-gun drums`,`the wall`,`grind drums`],
+  myth:`It is not simply fast drumming. A blast beat is a specific alternation, and the reason it works is that it destroys the sense of a downbeat entirely — the ear stops tracking a pulse and starts hearing noise with pitch above it. Fast drumming that keeps a groove is not a blast beat.`,
+  known:`Grindcore, black metal and death metal. It is the drum equivalent of tremolo picking, and the two nearly always appear together.`,
+  origin:`Emerged in 1980s grindcore and hardcore and became a defining device of black and death metal through the 1990s.`,
+  first:`1980s`, peak:[`1990s`,`2000s`],
+  domains:['drums','rhythm'],
+  match:['blast beat','blast-beat'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`#19 has "blast-beat drums" under tremolo-picked guitar — the standard pairing. #411 has blast beats that "crush down to half-time at every turnaround", which uses the wall specifically so its removal can land.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Appears mostly as a NEGATIVE in the corpus — four prompts exclude it to keep progressive metal from tipping into extremity — so it doubles as another suppression test. The positive question is whether the generator produces the specific alternation or simply fast drumming, which the misconception says are different things. #411 is the most useful item because the half-time drop gives an unmistakable reference point either side of the blast.` },
+  ev:[
+    { n:19,  span:`blast-beat`, state:'candidate', why:`"Blast-beat drums" with tremolo-picked guitar — the canonical pairing, in black metal where the technique belongs.` },
+    { n:411, span:`blast-beat`, state:'candidate', why:`Blast beats crushing down to half-time at every turnaround, so the contrast makes the texture unmissable. One of our own commissioned prompts.` },
+    { n:126, span:`blast beat`, state:'candidate', why:`Negative use, keeping ritual doom-prog from tipping into extreme metal.` },
+    { n:128, span:`blast beat`, state:'candidate', why:`A second exclusion, in atmospheric prog, where the wall would destroy the space the prompt is asking for.` }
+  ]
+},
+
+{
+  id:'eight-oh-eight',
+  term:`The 808`,
+  sounds:`A bass drum that is really a bass note. The kick decays slowly — a full second or more — sliding downward as it goes, so it stops functioning as percussion and starts carrying pitch. Alongside it, a thin snappy snare, a cowbell nobody can mistake, and hi-hats like grains of sand.`,
+  gloss:`A drum machine from 1980 whose sounds are synthesised rather than sampled. Its bass drum is a long decaying sine wave, which is why the word now means low-end bass as often as it means drums.`,
+  syn:[`808`,`eight-oh-eight`,`trap bass`,`boom`,`sub kick`,`drum machine`],
+  myth:`It failed. The machine was discontinued after about three years because it sounded nothing like real drums, which was the complaint at the time — and it became foundational precisely because of that. Its bass drum is a tuned sine, so an 808 pattern is a bassline, which is why producers speak of the 808 as an instrument that plays notes.`,
+  known:`Electro and early hip-hop, Miami bass, and the entire trap era, where 808 means the bass part rather than the kit.`,
+  origin:`Released in 1980, discontinued in 1983 after poor sales, and adopted by artists who could afford it second-hand because nobody else wanted it.`,
+  first:`1980s`, peak:[`1980s`,`2010s`],
+  exemplar:{ kind:'popularised', title:`Planet Rock`, artist:`Afrika Bambaataa and the Soulsonic Force`, year:`1982`,
+    listen:`The record that made the machine famous. The kick is unmistakably a tuned tone rather than a drum, and the handclap and cowbell are the factory sounds, unmodified.` },
+  domains:['drums','production'],
+  match:['808'],
+  kinds:['instrument'],
+  nature:'continuous',
+  range:`#23 has "booming 808 sub-bass with sliding glides" — the kick used purely as a pitched bass instrument. #100 has a "tuba or 808-doubled bassline", which puts the machine alongside an acoustic instrument doing the same job.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`A make-versus-category test like the Rhodes and Hammond cards, but with an unusually specific tell: the 808 kick has a long pitched decay, and nothing else in a drum kit does. That means failure looks like an ordinary kick drum, which is easy to hear. It also overlaps the sub-bass card deliberately — if a listener can hear the 808 on their device at all, that itself tells them something about their speakers.` },
+  ev:[
+    { n:23,  span:`808`, state:'candidate', why:`"Booming 808 sub-bass with sliding glides" — the kick functioning entirely as a pitched bass instrument.` },
+    { n:64,  span:`808`, state:'candidate', why:`"Booming distorted 808 bass" in phonk, where the tone is deliberately overdriven past the original machine's character.` },
+    { n:90,  span:`808`, state:'candidate', why:`"Distorted 808 bass" in hyperpop, sitting in a deliberately clipped and bright mix.` },
+    { n:100, span:`808`, state:'candidate', why:`"Tuba or 808-doubled bassline" — the machine offered as an alternative to an acoustic instrument for the same part.` }
+  ]
+},
+
+{
+  id:'scat',
+  term:`Scat`,
+  sounds:`A voice playing an instrumental solo. No words, just syllables — doo, bah, shoo-bee — fired off with the articulation of a trumpet or a saxophone rather than the phrasing of a singer. The syllables land on the notes the way a horn player's tongue lands on them, which is why it sounds like brass made of breath.`,
+  gloss:`Improvised singing on nonsense syllables, phrased as an instrumental solo rather than as a vocal line.`,
+  syn:[`scatting`,`vocalese`,`doo-bee-doo`,`nonsense syllables`,`vocal solo`,`bebop singing`],
+  myth:`The syllables are not random. They are chosen for how they ARTICULATE — hard consonants for accented notes, soft ones for notes that slur, exactly as a horn player uses the tongue. A singer scatting well is imitating tonguing, not making noises, which is why some syllables sound wrong in a place a musician would notice.`,
+  known:`Jazz from the 1920s onward, and the vocalese tradition that put lyrics to famous solos afterwards.`,
+  origin:`Emerged in 1920s jazz singing and became a virtuoso discipline through the bebop era, when the vocal solo had to keep up with instrumental ones.`,
+  first:`1920s`, peak:[`1940s`,`1950s`],
+  exemplar:{ kind:'exemplifies', title:`How High the Moon`, artist:`Ella Fitzgerald`, year:`1947`,
+    listen:`Listen to the consonants rather than the notes. The hard and soft syllables are doing exactly what a horn player's tongue does — that articulation is the technique, and the pitches are almost secondary.` },
+  domains:['voice'],
+  match:['scat','vocalese'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`#47 has "scatting fluid swung runs and slipping into sung lines" — scat and singing alternating. #K1 has "scatted doubles of the bass riff", where the voice is doubling an instrument rather than soloing over it.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`A useful test of whether wordless vocal means anything specific to the generator. The library's standing rule is that vocals are never optional and are never wordless, so this is one of very few cards asking for a voice with no lyric — and the risk is that it returns humming, or ooh-and-aah pads, rather than articulated syllables. The tell is consonants: real scat is full of them, and a wordless pad has none.` },
+  ev:[
+    { n:47,  span:`scat`, state:'candidate', why:`"Scatting fluid swung runs and slipping into sung lines" — the technique alternating with ordinary singing in one vocal.` },
+    { n:'K1', span:`scat`, state:'candidate', why:`"Scatted doubles of the bass riff" — the voice doubling an instrumental line rather than improvising over it.` },
+    { n:49,  span:`scat`, state:'candidate', why:`Negative use: "jazz scat" excluded from darksynth, where any jazz phrasing would break the idiom.` }
+  ]
+},
+
+{
+  id:'vocoder',
+  term:`Vocoder`,
+  sounds:`A machine speaking with a human mouth. You hear words and vowels clearly, but the pitch and tone belong to a synthesiser — so it sings in perfect chords no throat could produce while still sounding like it is articulating language. Robotic and choir-like at once.`,
+  gloss:`A device that analyses the shaping of a voice and imposes that shaping onto another sound. It needs two inputs: someone speaking, and a synth playing the notes.`,
+  syn:[`vocoded`,`robot voice`,`talking synth`,`synth choir`,`voice box`,`electronic vocal`],
+  myth:`It is not an effect applied to a voice. A vocoder takes the vowel shaping from one signal and stamps it on another — the pitch you hear is the synth's, and the words are the singer's, and neither alone produces the result. It was also not invented for music: it was built in the 1930s for compressing and encrypting telephone speech.`,
+  known:`Electro and funk, Kraftwerk-descended synth-pop, French house and modern electronic pop.`,
+  origin:`Developed in 1930s telephone research and used for wartime voice encryption; adapted for music in the late 1960s and central to electronic pop from the late 1970s.`,
+  first:`1930s`, peak:[`1970s`,`1980s`],
+  exemplar:{ kind:'popularised', title:`The Robots`, artist:`Kraftwerk`, year:`1978`,
+    listen:`The words are perfectly intelligible and the pitch is obviously not a person's. That split — human articulation, machine tone — is the whole mechanism, and it is unusually easy to hear here.` },
+  domains:['voice','production'],
+  match:['vocod'],
+  kinds:['instrument','technique'],
+  nature:'continuous',
+  range:`#J8 is "lightly vocoded" — the machine barely touching a human voice. #208 is "a vocoded, formant-shifted voice, robotic and choir-like", where nothing human is left in the tone at all.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Directly connected to the formants card, since a vocoder is a formant-transfer device — it is that principle built into hardware. The pair is worth testing together: if formants register but vocoder does not, the generator understands the phenomenon but not the instrument, which would be a genuinely informative split. Confusion with autotune is also likely and worth checking, since both are commonly called "the robot voice" and they work nothing alike.` },
+  ev:[
+    { n:208, span:`vocod`, state:'candidate', why:`"A vocoded, formant-shifted voice, robotic and choir-like" — the maximal case, and the one that names the underlying mechanism.` },
+    { n:'J8', span:`vocod`, state:'candidate', why:`"Lightly vocoded" — the subtle end, where a human voice should still be recognisable underneath.` },
+    { n:'J10', span:`vocod`, state:'candidate', why:`A voice "shadowed by its own vocoded double an octave above", which requires both the dry and the processed version at once.` },
+    { n:'J5', span:`vocod`, state:'candidate', why:`"Vocoder-shadowed at the edges" — the effect used as a halo rather than as the voice itself.` }
+  ]
+},
+
+{
+  id:'turnaround',
+  term:`Turnaround`,
+  sounds:`A small flourish at the end of a section that hands you back to the beginning. Usually a couple of bars where the harmony leans away and then snaps home, often with a fill underneath — it makes a repeat feel like a return rather than a restart, and you stop noticing that the same eight bars have come round again.`,
+  gloss:`A short passage at the end of a repeated section whose job is to lead back into its beginning without the seam showing.`,
+  syn:[`the turn`,`the change`,`the run-up`,`the lick at the end`,`link`,`the way back round`],
+  myth:`Its entire purpose is to hide repetition. A twelve-bar blues is the same twelve bars over and over, and the turnaround is what stops that from sounding like a loop — remove it and the form becomes obviously circular. It is doing structural work while sounding like decoration.`,
+  known:`Blues above all, where the turnaround is a named and expected feature, plus jazz standards, country and soul.`,
+  origin:`Formalised in blues and early jazz, where repeating forms needed a device to make repetition feel intentional; inherited by every popular style built on a cycling structure.`,
+  first:`1900s`, peak:[`1950s`,`1970s`],
+  domains:['form','harmony'],
+  match:['turnaround'],
+  kinds:['technique'],
+  nature:'momentary',
+  range:`#181 has "brass stabs punctuating the turnarounds" — the device marked by arrangement. #V3 has a vocal taking "a half-laughing growl-edge on the turnarounds", where a singer is treating the seam as a place for personality.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`A form instruction placed at a specific point, like key change and stop-time, but subtler than either because it is meant to be unobtrusive. That makes it hard to fail visibly and hard to confirm — the honest test is comparative: generate a cycling form with and without the term and listen for whether the repeat sounds inevitable or merely repeated. This may be a card that documents better than it demonstrates.` },
+  ev:[
+    { n:101, span:`turnaround`, state:'candidate', why:`"Tension-release in the turnarounds" in Western swing, where the device is named as the source of the harmonic interest.` },
+    { n:181, span:`turnaround`, state:'candidate', why:`"Brass stabs punctuating the turnarounds" — the seam marked deliberately by the arrangement.` },
+    { n:'V3', span:`turnaround`, state:'candidate', why:`A vocal treating the turnaround as its own moment, which requires the structural point to exist before it can be decorated.` },
+    { n:'K1', span:`turnaround`, state:'candidate', why:`"Ooh and whoa runs at turnarounds" — vocal flourishes tied to the structural position rather than to the lyric.` }
+  ]
+},
+
+{
+  id:'riser',
+  term:`Riser`,
+  sounds:`Something climbing that never arrives, until it does. A sound — usually filtered noise — gets steadily higher, brighter and louder across several bars, pulling tension upward with it, and then everything cuts and the drop lands in the hole it left. On its own it is not musical at all; it is pure anticipation.`,
+  gloss:`A sound engineered to rise continuously in pitch, brightness or volume across a build, ending at the moment a new section begins.`,
+  syn:[`build`,`sweep`,`uplifter`,`white-noise rise`,`the build-up`,`tension riser`],
+  myth:`It works by not resolving. A riser deliberately withholds arrival for as long as the listener will tolerate, so the drop is felt as release rather than as a new section — which means the riser is doing the drop's emotional work. Take it out and the drop still happens but stops landing.`,
+  known:`Trance, EDM, dubstep and festival electronic music, and increasingly film and trailer scoring, which borrowed it wholesale.`,
+  origin:`Grew out of 1990s trance breakdowns and became a standardised production component in 2000s festival dance music.`,
+  first:`1990s`, peak:[`2000s`,`2010s`],
+  domains:['production','form'],
+  match:['riser','uplifter'],
+  kinds:['technique'],
+  nature:'momentary',
+  range:`#87 and #91 use "white-noise risers" in their standard form. #90 has "bitcrushed risers" in hyperpop, where the device is degraded on purpose so the build sounds broken rather than smooth.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Momentary and structural, so it belongs with key change and stop-time — but easier than either, because a riser is long and unmissable rather than instantaneous. The specific thing to check is whether it ENDS where the next section begins. A riser that peaks early, or fades instead of cutting, is a failure of placement rather than of sound, and that distinction is exactly what the Form domain is trying to establish.` },
+  ev:[
+    { n:88, span:`riser`, state:'candidate', why:`"Breakdown risers" in trance, the idiom that invented the device and where its placement is most conventional.` },
+    { n:87, span:`riser`, state:'candidate', why:`"White-noise risers" in future bass, the standard modern form of the sound.` },
+    { n:90, span:`riser`, state:'candidate', why:`"Bitcrushed risers, sudden dropouts" — the device deliberately damaged, so the build sounds broken rather than smooth.` },
+    { n:91, span:`riser`, state:'candidate', why:`A fourth use in melodic dubstep, useful for checking whether placement is consistent across neighbouring genres.` }
+  ]
+},
+
+{
+  id:'reversed-sound',
+  term:`Reversed sound`,
+  sounds:`Everything happens backwards. Instead of hitting and fading, a note swells up out of nothing and stops dead at its loudest point — the decay has become the attack. Cymbals suck inward, piano chords bloom, and reversed reverb arrives BEFORE the note it belongs to, which is why it sounds like the music knows what is coming.`,
+  gloss:`Playing a recorded sound backwards, which inverts its envelope: what was a sharp attack and slow decay becomes a slow swell and a sudden stop.`,
+  syn:[`backwards`,`reverse`,`backmasking`,`sucked-in cymbal`,`swell`,`played in reverse`],
+  myth:`What makes it uncanny is the ENVELOPE, not the notes. Nearly every natural sound starts loud and fades, so the ear treats that shape as normal — reverse it and the sound stops resembling anything physical, even though the pitches are unchanged. Reversed reverb is stranger still, because the echo of a note arrives before the note.`,
+  known:`Psychedelia, shoegaze and dream-pop for reversed guitar and cymbals; hip-hop and big beat for reversed crashes announcing a drop.`,
+  origin:`A tape-editing discovery of the mid-1960s, adopted immediately by psychedelic producers and permanently available to everyone once editing became digital.`,
+  first:`1960s`, peak:[`1960s`,`1990s`],
+  exemplar:{ kind:'popularised', title:`Rain`, artist:`The Beatles`, year:`1966`,
+    listen:`The reversed vocal at the end is usually cited as the first on a released record. Hear how each phrase swells up and then stops abruptly — the envelope inverted, with the pitches themselves left intact.` },
+  domains:['production'],
+  match:['backwards','reversed','reverse-'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`#37 has "fuzz guitar with backwards swells" — the classic psychedelic use. #392 has "a backwards cymbal announcing every drop", where the device has become a structural signpost rather than a texture.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Another PROCESS term the generator cannot literally perform: there is no recording to play backwards, so anything it produces is a synthesised imitation of an inverted envelope. That puts it with breakbeat, feedback, room bleed and vocal chops, a group now large enough to test as a set. The tell is simple and needs no expertise — does the sound swell and stop, or hit and fade?` },
+  ev:[
+    { n:37,  span:`backwards`, state:'candidate', why:`"Fuzz guitar with backwards swells" — the canonical psychedelic use, where the inverted envelope is the point.` },
+    { n:392, span:`backwards`, state:'candidate', why:`"A backwards cymbal announcing every drop" — the device used structurally, so its placement matters as much as its sound.` },
+    { n:348, span:`backwards`, state:'candidate', why:`"A backwards-sounding swell closing every phrase" — note the hedge in the prompt itself, which is asking for the impression rather than the process.` },
+    { n:228, span:`reversed`, state:'candidate', why:`"Reversed hits" among stuttered rolls and time-stretched tails — reversal as one editing tool among several.` }
+  ]
+},
+
+{
+  id:'jangle',
+  term:`Jangle`,
+  sounds:`Bright, ringing, slightly metallic chords where you can hear the individual strings rather than a single block of sound. It shimmers without distorting, and the high strings sustain longer than they should — the result is chiming and a little cold, more like a bell than a guitar.`,
+  gloss:`The bright chiming sound of a clean electric guitar with heavy treble and compression, classically from a twelve-string where each note is doubled an octave up.`,
+  syn:[`jangly`,`chime`,`ringing guitar`,`that Rickenbacker sound`,`bright clean guitar`,`shimmer`],
+  myth:`It is not simply a clean guitar. Jangle depends on compression and treble as much as on the instrument — compression is what makes the high strings ring on rather than decay, and without it the same guitar just sounds thin. The twelve-string's doubled octaves add a chorus effect by purely physical means.`,
+  known:`1960s folk-rock, and everything that revived it: eighties indie, Britpop, and modern guitar pop.`,
+  origin:`Defined by mid-1960s folk-rock and the electric twelve-string; revived deliberately by 1980s indie guitar bands and repeatedly since.`,
+  first:`1960s`, peak:[`1960s`,`1980s`],
+  exemplar:{ kind:'popularised', title:`Mr. Tambourine Man`, artist:`The Byrds`, year:`1965`,
+    listen:`The opening figure is an electric twelve-string, compressed and bright. Listen for the octave doubling inside each note — that physical doubling is what a chorus pedal was later built to imitate.` },
+  domains:['guitar'],
+  match:['jangl'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`#4 has "brittle treble jangle" used coldly in coldwave. #28 has "layered jangly distorted guitars" in Britpop, where jangle and distortion are being asked to coexist, which is close to a contradiction.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`A composite term rather than a single property, which makes it a good test of whether the generator handles bundles. Jangle is treble plus compression plus, usually, a twelve-string, and each of those is separately nameable. If asking for jangle produces all three, the word is functioning as a genuine shorthand; if it produces a generically clean guitar, the components are not connected in whatever it learned.` },
+  ev:[
+    { n:4,   span:`jangl`, state:'candidate', why:`"Brittle treble jangle" in coldwave — jangle stripped of warmth, which isolates the treble component.` },
+    { n:30,  span:`jangl`, state:'candidate', why:`"Jangly electric guitar" alongside acoustic and harmonica in folk-rock, the term's home idiom.` },
+    { n:28,  span:`jangl`, state:'candidate', why:`"Layered jangly distorted guitars" — jangle asked to survive distortion, which normally destroys it.` },
+    { n:157, span:`jangl`, state:'candidate', why:`"Jangling chord chime compressed into distorted downstrokes" — the prompt describing jangle being deliberately transformed into something else.` }
+  ]
+},
+
+{
+  id:'clavinet',
+  term:`Clavinet`,
+  sounds:`A keyboard that behaves like a guitar. Every note is short, wiry and percussive with a hard pluck at the front and almost no sustain, so it functions as rhythm rather than harmony — chords come out as chops. Put a wah on it and it becomes indistinguishable in function from a funk guitar part.`,
+  gloss:`An electric keyboard whose keys drive a rubber pad against a string, with the vibration taken by magnetic pickups. It is a struck-string instrument amplified, not a synthesiser.`,
+  syn:[`clav`,`funk keyboard`,`that funky keys sound`,`wah clav`,`plucky keys`],
+  myth:`It is closer to a guitar than to a piano. The string is struck and picked up magnetically, exactly as an electric guitar's is, which is why it responds to wah pedals and distortion the way a guitar does and why it sits in the rhythm section rather than the harmony section.`,
+  known:`Funk and disco above all, reggae, and 1970s soul — anywhere the keyboard is expected to play a groove rather than pads.`,
+  origin:`Designed in early-1960s Germany as a portable electric clavichord for early-music players; taken over almost immediately by funk musicians for reasons its makers never intended.`,
+  first:`1960s`, peak:[`1970s`],
+  exemplar:{ kind:'exemplifies', title:`Higher Ground`, artist:`Stevie Wonder`, year:`1973`,
+    listen:`The main riff is a clavinet through a wah pedal, and it is doing a guitar's job entirely — percussive, short, rhythmic. Nothing about the part is idiomatic for a keyboard.` },
+  domains:['keys'],
+  match:['clavinet'],
+  kinds:['instrument'],
+  nature:'continuous',
+  range:`#14 has a "clavinet riff" as the lead hook of a funk track. #10 has a "bubbling clavinet organ" in reggae dub, where it is textural and half-buried instead.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`The fourth make-versus-category test, after Rhodes, Hammond and Mellotron, and the most distinctive of the four — a clavinet does not sound remotely like a piano, so a generic electric keyboard would be an obvious failure rather than a near miss. Worth testing with and without a wah instruction, since the two are so often paired that the generator may treat them as one thing.` },
+  ev:[
+    { n:14,  span:`Clavinet`, state:'candidate', why:`"Clavinet riff" leading a funk arrangement — the instrument doing the job it is famous for. Note the capital C.` },
+    { n:181, span:`clavinet`, state:'candidate', why:`"Wah clavinet and glassy electric piano" side by side, which asks the generator to distinguish two electric keyboards in one prompt.` },
+    { n:184, span:`clavinet`, state:'candidate', why:`"Clavinet and clean funk guitar chops" — the instrument next to the guitar it behaves like, so any confusion between them would show.` },
+    { n:10,  span:`clavinet`, state:'candidate', why:`"Bubbling clavinet organ" in reggae dub — textural and half-buried, the least idiomatic use of the four.` }
+  ]
+},
+
+{
+  id:'harpsichord',
+  term:`Harpsichord`,
+  sounds:`Bright, brittle and entirely even. Every note has a hard plucked attack and a thin metallic ring, and — the strange part — every note is the same loudness no matter how hard the key is hit. That evenness makes fast passages glitter and slow ones sound oddly mechanical.`,
+  gloss:`A keyboard instrument that PLUCKS its strings with a quill rather than striking them. Because the pluck is mechanical, touch has almost no effect on volume.`,
+  syn:[`harpsichord`,`plucked keyboard`,`baroque keyboard`,`that tinkly old keyboard`,`clavecin`],
+  myth:`It cannot play louder. No amount of force changes the volume, so a harpsichordist cannot shape a phrase dynamically at all — expression has to come from timing and ornament instead. That single limitation is why the piano, which could get louder and softer, replaced it almost completely within a generation.`,
+  known:`Baroque music, and its deliberate revival in 1960s pop and psychedelia, where the sound reads instantly as antique or eerie.`,
+  origin:`The dominant keyboard of Europe for two centuries until the piano displaced it around 1800; revived as a period instrument in the twentieth century and borrowed by pop in the 1960s.`,
+  first:`pre-1900`, peak:[`1960s`],
+  domains:['keys'],
+  match:['harpsichord'],
+  kinds:['instrument'],
+  nature:'continuous',
+  range:`#67 has "harpsichord continuo" in a baroque aria — the instrument in its own idiom. #363 has it "scurrying through the gaps" of a villain aria, and #J8 has "harpsichord-bright synth plucks", which is a synth imitating it rather than the thing itself.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`The most falsifiable instrument card on the page, because of the dynamics limitation. If the generator produces a harpsichord whose notes vary in loudness with the phrasing, it has produced something no harpsichord can do — an error a listener can catch without knowing anything about the instrument. #J8 is also useful in the other direction, since it asks for a synth imitating a harpsichord, which should NOT have that constraint.` },
+  ev:[
+    { n:67,  span:`Harpsichord`, state:'candidate', why:`"Harpsichord continuo" in a baroque aria — the instrument in its own repertoire, exposed and unaccompanied by anything modern. Note the capital H.` },
+    { n:363, span:`harpsichord`, state:'candidate', why:`"Harpsichord scurrying through the gaps" at a pressing tempo, where the evenness of the notes should be most audible.` },
+    { n:'J8', span:`harpsichord`, state:'candidate', why:`"Harpsichord-bright synth plucks" — a synth imitating the instrument, which is a different instruction and a useful control.` },
+    { n:253, span:`harpsichord`, state:'candidate', why:`Negative use: excluded from a techno piece to keep the baroque reference from becoming literal.` }
+  ]
+},
+
+{
+  id:'wurlitzer',
+  term:`Wurlitzer electric piano`,
+  sounds:`Reedy and hollow where a Rhodes is bell-like. Played softly it is sweet and slightly nasal; leaned on, it barks — a hard buzzing bite at the front of the note that no acoustic piano makes. It sits forward in a mix rather than behind it, which is the opposite of its more famous rival.`,
+  gloss:`An electric piano whose hammers strike small metal reeds rather than tines, picked up electrostatically. A different instrument from a Rhodes, with a different sound and a different job.`,
+  syn:[`Wurli`,`electric piano`,`reed piano`,`that barking e-piano`,`the other electric piano`],
+  myth:`It is not a Rhodes and does not sound like one. Rhodes strikes tines and produces a rounded bell; Wurlitzer strikes reeds and produces a reedy bark that distorts pleasantly when pushed. They are constantly filed together under "electric piano", which loses the distinction that actually matters when choosing one.`,
+  known:`Soul, 1970s singer-songwriter records, garage and psychedelia, and modern indie — often where a Rhodes would be too smooth.`,
+  origin:`Produced from the 1950s as a portable practice and school instrument; adopted across soul and rock through the 1960s and 70s, and never fully displaced by the Rhodes despite being less famous.`,
+  first:`1950s`, peak:[`1960s`,`1970s`],
+  exemplar:{ kind:'exemplifies', title:`Dreamer`, artist:`Supertramp`, year:`1974`,
+    listen:`The keyboard hook is a Wurlitzer and it bites — hear the buzzing edge on the harder notes, which a Rhodes would soften into a bell instead. It is the clearest recorded contrast between the two instruments.` },
+  domains:['keys'],
+  match:['wurlitzer'],
+  kinds:['instrument'],
+  nature:'continuous',
+  range:`#303 has "a Wurlitzer holding one chord for a very long time" — sustained and exposed. #315 has "Wurlitzer chords smeared with tremolo", which stacks the instrument's own character with an effect.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`The sharpest make-versus-category test on the page, because the Rhodes card already exists and the two instruments are genuinely different but constantly conflated. A prompt-pair swapping only the word would be decisive: if both come back as the same rounded electric piano, that is a clear collapse into the category, and it would say something about every branded instrument in this library. #395 is especially useful because it asks for both at once.` },
+  ev:[
+    { n:1,   span:`Wurlitzer`, state:'candidate', why:`"Dirty Wurlitzer" in swamp blues-rock — the instrument pushed until it barks, which is its distinguishing behaviour. Note the capital W.` },
+    { n:303, span:`Wurlitzer`, state:'candidate', why:`"A Wurlitzer holding one chord for a very long time" — sustained and completely exposed, so the reed character has nowhere to hide.` },
+    { n:395, span:`Wurlitzer`, state:'candidate', why:`"Lush Rhodes and Wurlitzer chords" in one arrangement — the direct comparison, and the single most useful item for this card.` },
+    { n:315, span:`Wurlitzer`, state:'candidate', why:`"Wurlitzer chords smeared with tremolo", which stacks an effect on top of the instrument's own character.` }
+  ]
+},
+
+{
+  id:'honky-tonk-piano',
+  term:`Honky-tonk piano`,
+  sounds:`A piano that sounds cheerfully wrecked. The notes are slightly out of tune with each other so every chord shimmers and beats, and the tone is hard, bright and clattery rather than round — you can hear the mechanism. It sounds like a bar-room upright that nobody has maintained, because that is exactly what it is imitating.`,
+  gloss:`A deliberately detuned and brightened upright piano, often with tacks in the hammers to add a metallic click. The disrepair is engineered.`,
+  syn:[`tack piano`,`saloon piano`,`bar-room piano`,`detuned upright`,`ragtime piano`,`out-of-tune piano`],
+  myth:`The out-of-tuneness is the instrument, not a fault. Studios detune pianos on purpose and push drawing pins into the hammers to get the click — a perfectly tuned piano cannot produce this sound at all, and the shimmer comes precisely from strings within a single note disagreeing with each other.`,
+  known:`Country, ragtime, vaudeville, western swing and any record wanting to sound like a bar rather than a concert hall.`,
+  origin:`Named for the rough American drinking establishments whose pianos were never maintained; imitated deliberately from the ragtime revival onward and standard in country production by the 1950s.`,
+  first:`1900s`, peak:[`1950s`,`1970s`],
+  domains:['keys'],
+  match:['honky-tonk','tack piano'],
+  kinds:['instrument'],
+  nature:'continuous',
+  range:`#16 has "honky-tonk piano" as one colour in an outlaw country arrangement. #45 builds a whole track around it — "honky-tonk country, shuffling and weepy" — where the instrument defines the genre rather than decorating it.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Interesting because the instruction is essentially to make something WORSE in a specific way, and most of what a generator has learned about pianos will pull toward in-tune and well-recorded. The tell is the beating between strings inside single notes — a clean piano with a bright EQ is the likely failure, and it is easy to distinguish by ear from genuine detuning.` },
+  ev:[
+    { n:45,  span:`Honky-tonk`, state:'candidate', why:`"Honky-tonk country, shuffling and weepy" — the instrument naming and defining the whole track. Note the capital H.` },
+    { n:16,  span:`honky-tonk`, state:'candidate', why:`"Honky-tonk piano" as one element of an outlaw country arrangement, competing with pedal steel and brushed drums.` },
+    { n:'V3', span:`honky-tonk`, state:'candidate', why:`"Sparse honky-tonk piano stabs" in a live-TV-special setting, used percussively rather than harmonically.` },
+    { n:151, span:`honky-tonk`, state:'candidate', why:`"Honky-tonk heartbreak waltzes" — the term used to name a repertoire rather than an instrument, which tests how far it stretches.` }
+  ]
+},
+
+{
+  id:'dynamic-mic',
+  term:`Dynamic microphone`,
+  sounds:`Solid and unfussy. The very top is softened and the fine detail — room, breath, air — is simply not there, so a voice arrives thick and present rather than open. It also refuses to break: shout into one and it stays composed where a more sensitive microphone would spit and distort.`,
+  gloss:`A microphone with a coil and magnet moving a diaphragm. The moving parts are comparatively heavy, so it responds more slowly and captures less detail — and survives almost anything.`,
+  syn:[`dynamic`,`stage mic`,`handheld`,`the rugged one`,`live mic`,`SM-style mic`],
+  myth:`It is a loudspeaker running backwards. The mechanism is identical — coil, magnet, diaphragm — just used in reverse, and you can genuinely speak into a small speaker and get audio out. That heaviness is why it hears less detail than a condenser and why it survives being dropped, screamed into and rained on.`,
+  known:`Live vocals almost universally, guitar amplifiers, snare drums, and any studio vocal wanting body rather than air.`,
+  origin:`Developed in the 1930s and refined into the ruggedised stage designs of the 1950s and 60s that still dominate live sound.`,
+  first:`1930s`, peak:[`1960s`,`1970s`],
+  domains:['microphone'],
+  match:['dynamic mic'],
+  kinds:['instrument'],
+  nature:'continuous',
+  range:`#5 has a "vintage dynamic mic, lightly overdriven console" — chosen for grit. #16 has one with "dry close room, minimal processing", chosen instead for plainness and body.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`The third and last microphone type on the page, completing a set with ribbon and condenser. Together the three are the best available test of whether microphone terminology does anything at all: they differ in one respect a listener can name — how much top end survives — and a prompt-set swapping only that word should be plainly different if the domain is real. If all three sound alike, the connotation suspicion is settled and this domain stops needing cards.` },
+  ev:[
+    { n:5,  span:`dynamic mic`, state:'candidate', why:`"Vintage dynamic mic, lightly overdriven console" — chosen for grit and body on a soul belt.` },
+    { n:16, span:`dynamic mic`, state:'candidate', why:`"Dry close room, minimal processing" — the microphone with nothing around it to confound the result, which makes this the cleanest of the four.` },
+    { n:10, span:`dynamic mic`, state:'candidate', why:`Into a saturated console with spring reverb, so the chain is doing as much as the microphone.` },
+    { n:17, span:`dynamic mic`, state:'candidate', why:`"Dry vintage dynamic mic, close and upfront" on a rap vocal, where the lack of air is the point.` }
+  ]
+},
+
+{
+  id:'tube-mic',
+  term:`Tube microphone`,
+  sounds:`Detailed like a condenser, but rounder at the edges. Loud moments thicken slightly instead of getting sharper, and there is a faint richness on sustained notes that makes voices sound larger and slightly softened. It flatters almost everything, which is exactly the complaint against it.`,
+  gloss:`A condenser microphone whose internal amplifier is a valve rather than a transistor. The valve adds harmonics, especially as the signal gets louder.`,
+  syn:[`valve mic`,`tube condenser`,`vintage mic`,`the expensive one`,`warm mic`],
+  myth:`The warmth is distortion. A valve adds harmonic content the original sound did not contain, and that colouration is exactly what people are paying for — a technically more accurate microphone sounds thinner and less pleasant, which is an awkward fact for anyone who describes their gear as transparent.`,
+  known:`Studio vocals across every era that could afford them, and the default reference for a classic, expensive vocal sound.`,
+  origin:`The only way to build a condenser before transistors, so every early studio microphone was one; became a deliberate choice rather than a necessity once solid-state designs arrived in the 1960s.`,
+  first:`1930s`, peak:[`1950s`,`1960s`],
+  domains:['microphone'],
+  match:['tube mic','valve mic'],
+  kinds:['instrument'],
+  nature:'continuous',
+  range:`#34 has a "warm vintage tube mic" on a doo-wop tenor with "no grit" — the flattering use. #37 has one in "cavernous spring-and-plate ambience", where the microphone's colour is competing with a very coloured room.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`The hardest of the four microphone cards to falsify, because the difference between a tube and a solid-state condenser is genuinely subtle and every corpus prompt using the term also says vintage or warm. That is the ribbon-mic connotation trap in its purest form. The honest expectation is that this card collapses into the condenser one — and if it does, that is a useful boundary rather than a disappointment.` },
+  ev:[
+    { n:34, span:`tube mic`, state:'candidate', why:`"Warm vintage tube mic, plush hall plate" on a sweet tenor with no grit — the flattering use the term is famous for.` },
+    { n:25, span:`tube mic`, state:'candidate', why:`"Vintage tube mic, mono tape with hard slapback" — the microphone inside a heavily period-specific chain.` },
+    { n:26, span:`tube mic`, state:'candidate', why:`A big-band crooner, where the valve's behaviour on loud sustained notes has the most to do.` },
+    { n:37, span:`tube mic`, state:'candidate', why:`In cavernous spring-and-plate ambience, where the room is so coloured that the microphone's own contribution should be hardest to isolate.` }
+  ]
+},
+
+{
+  id:'shuffle',
+  term:`Shuffle`,
+  sounds:`A rolling limp. Each beat is divided into three, but the middle one is left out — so you get a long note and a short one, over and over, with a gap you can feel where the missing note should be. It sounds like walking with a stone in your shoe, in the best way, and it is impossible to sit still to.`,
+  gloss:`A rhythm built on triplets with the middle note of each group omitted. The result is a long-short pattern with a distinctly rolling gait.`,
+  syn:[`shuffle beat`,`swung eighths`,`triplet feel`,`boogie`,`that rolling beat`,`bounce`],
+  myth:`It is not swing, though they are close relatives. Swing stretches a pair of notes by a variable amount that players adjust by feel; a shuffle is explicitly triplet-based and much more fixed. And the note that is not played still matters — you feel the gap where the middle triplet should be, which is why a shuffle sounds rolling rather than merely uneven.`,
+  known:`Blues above all, plus boogie-woogie, rockabilly, country and a great deal of early rock and roll.`,
+  origin:`Emerged from boogie-woogie piano and blues in the early twentieth century; carried into rock and roll, country and rhythm and blues as one of their foundational feels.`,
+  first:`1920s`, peak:[`1950s`,`1960s`],
+  exemplar:{ kind:'exemplifies', title:`Pride and Joy`, artist:`Stevie Ray Vaughan`, year:`1983`,
+    listen:`The whole record is a shuffle and the guitar states it constantly. Count three inside each beat and notice you only ever hear the first and third — the missing middle is what gives it the roll.` },
+  domains:['rhythm','drums'],
+  match:['shuffle','shuffling'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`#1 has a "slow heavy shuffle around 72 BPM", where the gaps are long enough to feel like real space. #57 has a Madchester track pushing "against the shuffle", using it as something to fight rather than to ride.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Best tested directly against the swing card, since the misconception is entirely about the boundary between them. A prompt-pair swapping only shuffle for swing would show whether the generator holds two closely-related feels apart or treats them as one — and given that swing also names a genre while shuffle does not, this pairing partly controls for the genre confound the swing card warns about.` },
+  ev:[
+    { n:1,  span:`shuffle`, state:'candidate', why:`"Slow heavy shuffle around 72 BPM" — slow enough that the omitted middle triplet is easy to feel.` },
+    { n:45, span:`shuffle`, state:'candidate', why:`"Brushed shuffle drums" in honky-tonk, where brushes soften the attack and the feel has to carry itself.` },
+    { n:16, span:`shuffle`, state:'candidate', why:`A second brushed shuffle in outlaw country, useful as a consistency check against #45.` },
+    { n:57, span:`shuffle`, state:'candidate', why:`"Push and pull against the shuffle" — the feel used as something to resist rather than to sit inside.` }
+  ]
+},
+
+{
+  id:'polymeter',
+  term:`Polymeter and polyrhythm`,
+  sounds:`Two clocks running at once. In polymeter, parts repeat at different lengths — a five-beat figure against a four-beat one — so they drift apart and only realign occasionally, and the music seems to rotate. In polyrhythm the span is the same but divided differently, three against two, so the parts constantly cross without ever drifting.`,
+  gloss:`Two different metres running simultaneously, or two different subdivisions of the same span. The first drifts and realigns; the second locks and crosses.`,
+  syn:[`odd meter`,`cross-rhythm`,`three against two`,`5/4`,`shifting time`,`math rhythm`],
+  myth:`They are two different things and are constantly swapped. Polyrhythm divides the SAME length of time in two incompatible ways — three against two — so the pattern repeats immediately. Polymeter uses DIFFERENT lengths — five against four — so the parts take twenty beats to come back around. One creates friction, the other creates rotation.`,
+  known:`West and Central African music, where polyrhythm is foundational; progressive rock, math rock and modern metal, which mostly use polymeter and call it either.`,
+  origin:`Fundamental to West African ensemble music for centuries; entered Western popular music through jazz and afrobeat, and became a progressive-rock signature from the 1970s.`,
+  first:`ancient`, peak:[`1970s`,`2000s`],
+  exemplar:{ kind:'exemplifies', title:`Schism`, artist:`Tool`, year:`2001`,
+    listen:`The main riff alternates bar lengths so the guitar and drums keep sliding out of phase and back. Try counting a steady four through it and notice how the parts drift — that drift is polymeter rather than polyrhythm.` },
+  domains:['rhythm'],
+  match:['polymeter','polyrhythm','cross-rhythm'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`#127 has "shifting 5/4 and 9/8 polymeters with surgical interlock" — precision as the aesthetic. #128 has the same metres "felt as breath rather than grid", which asks for the identical structure to sound loose.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Among the most demanding structural asks on the page, and unusually easy to check: a listener can count. The interesting question is whether the generator distinguishes the two ideas the card separates, or produces generic rhythmic complexity for either word. Note the corpus itself only ever says polymeter for the prog entries and polyrhythm for the afrobeat one, which suggests the distinction was already being made correctly by whoever wrote them.` },
+  ev:[
+    { n:127, span:`polymeter`, state:'candidate', why:`"Shifting 5/4 and 9/8 polymeters with surgical interlock" — the metres named explicitly, so the claim is checkable by counting.` },
+    { n:128, span:`polymeter`, state:'candidate', why:`The same metres "felt as breath rather than grid" — identical structure, opposite feel, which is the harder instruction.` },
+    { n:62,  span:`polyrhythm`, state:'candidate', why:`Afrobeat, and the corpus's only use of polyrhythm rather than polymeter — the other half of the distinction this card draws.` },
+    { n:129, span:`polymeter`, state:'candidate', why:`Polymeters that "lurch rather than dance", where the drift is meant to feel uncomfortable.` }
+  ]
+},
+
+{
+  id:'overtone-singing',
+  term:`Overtone singing`,
+  sounds:`One person singing two notes at once. Underneath sits a low steady drone; above it a thin whistling tone moves separately, like a flute being played by the same throat. The upper line is piercing and pure and seems to float free of the voice producing it, which is why it sounds impossible the first time you hear it.`,
+  gloss:`Shaping the mouth and throat so precisely that a single harmonic already present in the voice is amplified into a separate audible pitch above the fundamental.`,
+  syn:[`throat singing`,`harmonic singing`,`khoomei`,`kargyraa`,`sygyt`,`two notes at once`],
+  myth:`The second note was already there. Every voice contains a whole series of overtones; overtone singing does not add a pitch, it isolates and amplifies one that was always present by tuning the mouth into a very narrow filter. The melody is made by changing vowel shape, not by singing it.`,
+  known:`Central Asian traditions above all — Tuvan and Mongolian — with distinct styles for the low growled form and the high whistled one, plus Tibetan chant and Western avant-garde borrowings.`,
+  origin:`Developed over centuries in Central Asian pastoral cultures; encountered by Western musicians in the twentieth century and adopted into minimalism and experimental vocal music.`,
+  first:`ancient`, peak:[`1990s`],
+  domains:['voice'],
+  match:['overtone','kargyraa','sygyt','khoomei','throat singing'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`#6 is the low form — "a subharmonic kargyraa drone, an impossibly low fundamental". #74 is the high one — "a sygyt overtone whistle, a piercing flute-like harmonic forced" above the voice. Same principle, opposite ends.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Falsifiable in an unusually satisfying way: either two pitches are audible simultaneously from one voice or they are not, and no expertise is needed to tell. The likely failure is a single ordinary voice with a synth doubling above it, which would be a near miss rather than a null — and distinguishing those two outcomes is exactly the kind of listening this page is for. Directly connected to the formants card, since the mechanism is the same filtering, used deliberately.` },
+  ev:[
+    { n:6,  span:`overtone`, state:'candidate', why:`"Central-Asian overtone singing" with a kargyraa drone — the low form, where the fundamental is the striking part.` },
+    { n:74, span:`overtone`, state:'candidate', why:`"A sygyt overtone whistle, a piercing flute-like harmonic forced" above the voice — the high form, and the clearest test of whether two pitches emerge from one source.` }
+  ]
+},
+
+{
+  id:'head-voice',
+  term:`Head voice`,
+  sounds:`The voice thins and lifts but keeps its body. Higher than a comfortable speaking range and lighter than a belt, yet still fully sounded — not the hollow breathiness of falsetto. Somewhere between the two ranges there is usually a moment where the mechanism changes, and hearing a singer cross it cleanly is most of what technique sounds like.`,
+  gloss:`The upper register where the vocal folds vibrate along a shorter length and thinner edge, but still fully. Distinct from falsetto, where they thin further and stop meeting completely.`,
+  syn:[`upper register`,`the top`,`light register`,`mixed voice`,`passaggio`,`going up light`],
+  myth:`Head voice and falsetto are not the same, and neither is simply "high". They are different fold behaviours, and the join between registers — the passaggio — is a real physical event that singers spend years learning to disguise. A voice that flips audibly is not necessarily untrained; sometimes the flip is the effect being asked for.`,
+  known:`Classical singing, musical theatre and soul, plus modern pop where the lift into head voice at a chorus is a standard emotional device.`,
+  origin:`Named and taught in European classical pedagogy for centuries; the deliberate audible flip became a pop expression from soul and gospel onward.`,
+  first:`pre-1900`, peak:[`1990s`,`2010s`],
+  domains:['voice'],
+  match:['head voice','head-voice'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`#87 has "chest lifting to an easy head voice" — the join hidden, which is the classical ideal. #124 has "sudden octave lifts into a keening head voice", where the change is meant to be heard.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Completes a set with falsetto and belting: three ways of going high that this page now documents separately and that listeners routinely conflate. Testing all three against one another would be the single most efficient experiment available here — if the generator produces the same voice for all three, the entire vocal-register vocabulary collapses, and if it distinguishes them, that is strong evidence it models something about voice production rather than just brightness.` },
+  ev:[
+    { n:9,   span:`head voice`, state:'candidate', why:`"Breathy falsetto floating high in the head voice" — the prompt conflating the two terms exactly as the misconception describes, which makes it the most interesting item here.` },
+    { n:87,  span:`head voice`, state:'candidate', why:`"Chest lifting to an easy head voice" — the join deliberately smooth, which is the harder thing to produce.` },
+    { n:124, span:`head voice`, state:'candidate', why:`"Sudden octave lifts into a keening head voice" — the change made audible on purpose.` },
+    { n:91,  span:`head voice`, state:'candidate', why:`"Chest lifting to a raw head voice with grit on the peak", which stacks a texture on top of the register change.` }
+  ]
+},
+
+{
+  id:'talkbox',
+  term:`Talkbox`,
+  sounds:`A guitar or synth speaking actual words. The instrument supplies the pitch while a mouth supplies the vowels, so you hear recognisable speech with none of a voice's tone in it — closer to an instrument learning to talk than to a voice being processed.`,
+  gloss:`A speaker sealed in a box, its sound piped up a plastic tube into the player's mouth. They shape the sound with their lips and tongue, and a microphone in front of their face picks up the result.`,
+  syn:[`talk box`,`tube effect`,`talking guitar`,`mouth tube`,`voice bag`],
+  myth:`Nothing is being done to a voice, and the guitar is not miked. The sound comes physically out of a tube in the player's mouth, gets shaped by their actual mouth, and is captured by a microphone in front of their face — so the vocal cords are never used at all. That is what distinguishes it from a vocoder, which does the same job electronically.`,
+  known:`1970s funk and rock leads, and later hip-hop and G-funk, where it became a signature of an entire regional sound.`,
+  origin:`Developed from earlier mouth-tube devices and popularised through 1970s rock and funk; revived by West Coast hip-hop production in the 1990s.`,
+  first:`1970s`, peak:[`1970s`,`1990s`],
+  exemplar:{ kind:'exemplifies', title:`Rocky Mountain Way`, artist:`Joe Walsh`, year:`1973`,
+    listen:`The solo is a guitar talking. Notice there is no vocal tone underneath the words at all — only the guitar's pitch, shaped into vowels by a mouth, which is exactly the mechanism the card describes.` },
+  domains:['guitar','voice'],
+  match:['talkbox','talk box'],
+  kinds:['instrument','technique'],
+  nature:'continuous',
+  range:`#14 runs a whole lead vocal through one — "mouth-shaped vowels riding a synth carrier". #W3 has "talkbox glints far back", the same device used as an occasional texture rather than a voice.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Pairs directly with the vocoder card, since the two do the same job by opposite means — one mechanical and one electronic — and are routinely confused. If the generator distinguishes them, it is modelling the mechanism rather than the outcome, which would be a strong result. Also connected to formants: all three cards are about vowel shaping separated from pitch, which makes them the most tightly linked group on the page.` },
+  ev:[
+    { n:14,  span:`talkbox`, state:'candidate', why:`A whole lead vocal through a talkbox — "mouth-shaped vowels riding a synth carrier", the mechanism stated outright.` },
+    { n:353, span:`talkbox`, state:'candidate', why:`"A talkbox lead chewing vowels between vocal lines" — the device alternating with an ordinary voice, so both are present for comparison.` },
+    { n:'W3', span:`talkbox`, state:'candidate', why:`"Talkbox glints far back" — used as texture rather than as a lead, and the subtlest of the four.` },
+    { n:249, span:`talkbox`, state:'candidate', why:`Negative use: a "robotic talkbox lead" excluded from sleep ambient, where any speech-like artifice would break the mood.` }
+  ]
+},
+
+{
+  id:'string-machine',
+  term:`String machine`,
+  sounds:`A synthetic orchestra that never changes its mind. Lush, slightly cold, and completely even — every note has the same tone and the same swell, so chords bloom as a single mass rather than as separate players. It does not breathe, and that stillness is exactly why it sounds nostalgic rather than orchestral.`,
+  gloss:`A keyboard with a fixed oscillator for every key and a chorus circuit across the output. Not a synthesiser imitating strings — a purpose-built instrument that only makes one sound.`,
+  syn:[`string synth`,`solina`,`ensemble keyboard`,`fake strings`,`synth strings`,`string pad`],
+  myth:`It is not a synthesiser. There is no filter to sweep and no envelope to shape — every key has its own permanently running oscillator, which is why it never runs out of polyphony and why every note sounds identical. What makes it lush is a chorus circuit on the output, so the instrument is doing one thing very well and nothing else at all.`,
+  known:`1970s disco and progressive rock, French and Italian library music, synthwave, and any modern production reaching for period warmth.`,
+  origin:`Built through the 1970s as an affordable substitute for a string section; obsolete once polyphonic synthesisers arrived, and revived as a deliberate period sound from the 2000s.`,
+  first:`1970s`, peak:[`1970s`,`2010s`],
+  domains:['keys'],
+  match:['string-machine','string machine'],
+  kinds:['instrument'],
+  nature:'continuous',
+  range:`#81 has "warm string-machine pads" as a bed under Detroit techno. #W3 has "analog string-machine swells", where the instrument is doing the gestural work an orchestra would.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`A good test of whether a specific instrument survives inside a broad category, like the Rhodes and Wurlitzer cards. The failure to watch for here is a modern orchestral sample library — genuinely lush, genuinely strings, and completely wrong, because the whole character of a string machine is its evenness and its refusal to sound like players. If the generator produces something that breathes, it has produced the wrong instrument.` },
+  ev:[
+    { n:81,  span:`string-machine`, state:'candidate', why:`"Warm string-machine pads" under Detroit techno — the instrument as a bed, where its evenness is an advantage.` },
+    { n:'J4', span:`string-machine`, state:'candidate', why:`"Warm string-machine pads" inside a synth-funk arrangement with sidechain, so it has to hold up against a moving mix.` },
+    { n:'W3', span:`string-machine`, state:'candidate', why:`"Analog string-machine swells" doing gestural work an orchestra would normally do, which is where the difference should be most audible.` }
+  ]
+},
+
+{
+  id:'filter-sweep',
+  term:`Filter sweep`,
+  sounds:`The sound opening up or closing down. Frequencies are removed from the top and then gradually let back in, so a part starts muffled and distant and becomes bright and present without ever getting louder in any simple way. Done slowly it feels like a curtain lifting; done with resonance it whistles as it passes.`,
+  gloss:`Moving a filter's cutoff point across the frequency range while audio passes through it, so the amount of high or low content changes continuously.`,
+  syn:[`filter`,`sweep`,`opening up`,`low-pass`,`the whoosh`,`cutoff`,`muffled to bright`],
+  myth:`It only ever removes. A filter cannot add anything — a sweep that sounds like it is adding energy is really restoring frequencies it had been taking away, which is why the effect works best when you have heard the full sound first. Resonance is the one exception, and it emphasises a frequency rather than creating one.`,
+  known:`The single most-used gesture in electronic music: house, techno, trance, disco and every build in dance music since.`,
+  origin:`Inherent to subtractive synthesis from the 1960s; became a structural device rather than a sound-design tool once dance music organised itself around builds and drops.`,
+  first:`1960s`, peak:[`1990s`,`2000s`],
+  domains:['production'],
+  match:['filter sweep','filter opening','low-pass','lowpass'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`#227 has "a filter opening a fraction at a time across minutes" — the sweep as the entire structure of a track. #95 has "a light filter sweep so the voice pumps with the groove", where it is rhythmic rather than architectural.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Worth testing for duration rather than presence. A filter sweep is trivially easy to produce for a bar; sustaining one across minutes, as #227 asks, requires the generator to plan a gesture over the length of a track, which is the same long-form structural demand the vamp and breakdown cards make. That is where interesting failure lives — not in whether it can filter, but in whether it can filter slowly.` },
+  ev:[
+    { n:227, span:`filter opening`, state:'candidate', why:`"A filter opening a fraction at a time across minutes" — the longest-form use in the corpus, and the hardest to sustain.` },
+    { n:83,  span:`filter sweep`, state:'candidate', why:`"A repeated phrase pushed through a resonant filter sweep" on a VOICE rather than a synth, where resonance should be obvious.` },
+    { n:95,  span:`filter sweep`, state:'candidate', why:`"A light filter sweep so the voice pumps with the groove" — the effect tied to the rhythm rather than to the arrangement.` },
+    { n:136, span:`filter sweep`, state:'candidate', why:`"Filter sweeps, gated drums hitting huge, lowpass gated" — several filter behaviours in one prompt, which tests how finely they are separated.` }
+  ]
+},
+
+{
+  id:'bitcrush',
+  term:`Bitcrush`,
+  sounds:`Digital audio falling apart. The sound gets grainy and brittle, with a fizzing crust on the quiet parts and a hard edge on the loud ones — and as it degrades further, aliasing adds metallic tones that were never in the original. It sounds broken in a specifically computerised way, nothing like tape or vinyl damage.`,
+  gloss:`Reducing the resolution of digital audio — fewer bits, a lower sample rate, or both — so the signal is described more crudely and the error becomes audible.`,
+  syn:[`bit reduction`,`sample-rate reduction`,`crushed`,`8-bit`,`digital grit`,`aliasing`],
+  myth:`Nothing is being added. Bitcrushing REMOVES precision, and the fizz you hear is the error left over when the signal cannot be described accurately — which is why it sounds nothing like analogue damage. Early samplers sounded like this because they had no choice, and their limitations are now a deliberate aesthetic.`,
+  known:`Chiptune, hyperpop, glitch and industrial, and any modern production wanting damage that reads as digital rather than nostalgic.`,
+  origin:`An unavoidable artefact of early digital samplers and consoles in the 1980s; adopted deliberately once the limitation disappeared and the sound became a period reference.`,
+  first:`1980s`, peak:[`2000s`,`2010s`],
+  domains:['production'],
+  match:['bitcrush','bit-crush','sample-rate reduction'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`#24 has a shout "run through heavy distortion and bit-crush, voice clipped and filtered into a grinding machine" — total destruction. #90 has "bitcrushed risers", where the damage is applied to one element for contrast.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Deliberately paired with the lo-fi and vinyl-crackle cards, because all three are damage and they are not interchangeable: crackle is a surface, tape is a soft saturation, and bitcrush is a resolution failure that sounds unmistakably computerised. If the generator produces the same generic grit for all three, that is a single finding covering three cards — and it would suggest damage is being modelled as a mood rather than as a mechanism.` },
+  ev:[
+    { n:24, span:`bit-crush`, state:'candidate', why:`"Heavy distortion and bit-crush, voice clipped and filtered into a grinding machine" — the maximal case, applied to a vocal.` },
+    { n:90, span:`bitcrush`, state:'candidate', why:`"Bitcrushed risers" in hyperpop, where only one element is degraded so the contrast is audible.` },
+    { n:246, span:`bitcrush`, state:'candidate', why:`Negative use: bitcrush and sample-rate reduction excluded together from sleep ambient, naming both mechanisms explicitly.` },
+    { n:247, span:`bitcrush`, state:'candidate', why:`A second exclusion, listed alongside lo-fi crackle and tape hiss — three kinds of damage separated in one negative field.` }
+  ]
+},
+
+{
+  id:'mono',
+  term:`Mono`,
+  sounds:`Everything in one place. All the instruments arrive from the same point rather than spread across a stage, so the mix feels denser and more forceful but less spacious — parts have to fight for room instead of sitting beside each other. On a good mono record nothing sounds missing; it sounds concentrated.`,
+  gloss:`A single channel of audio rather than two. Every element occupies the same position, so separation has to be achieved by frequency and arrangement rather than by placement.`,
+  syn:[`single channel`,`centred`,`mono mix`,`no stereo`,`summed`,`one speaker`],
+  myth:`For a great many classic records the mono mix is the real one. Through the 1960s the mono version was mixed with care and the stereo was a contractual afterthought, often done quickly by someone else — so the "better" stereo version can be the compromised one. Mono is also still what a club, a phone speaker and a supermarket ceiling actually play.`,
+  known:`Everything before the mid-1960s, deliberately revived by garage, punk and lo-fi scenes, and permanently relevant because so much playback is still mono in practice.`,
+  origin:`The only option until stereo arrived commercially in the late 1950s, and the preferred format for pop mixing well into the 1960s; a deliberate aesthetic choice thereafter.`,
+  first:`pre-1900`, peak:[`1950s`,`1960s`],
+  exemplar:{ kind:'exemplifies', title:`Pet Sounds`, artist:`The Beach Boys`, year:`1966`,
+    listen:`Mixed in mono on purpose by a producer who worked that way deliberately. Everything is concentrated into one point and the arrangement does the separating — nothing is spread out, and nothing needs to be.` },
+  domains:['production'],
+  match:['mono-leaning','mono mix','in mono'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`#1 has "1970s analog studio grit, mono-leaning, dusty" — mono as period authenticity. #J2 has "mono-leaning, hot, unapologetic", where it is being used for aggression and density instead.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Awkward to judge for the same reason as sub-bass, and worth saying so: whether you can hear this depends on how you are listening, and on a phone speaker every card on this page is already mono. Anyone voting should say what they used. The specific thing to listen for is not the absence of width but the presence of density — a real mono mix arranges parts so they do not collide, and a stereo mix folded down usually sounds crowded instead.` },
+  ev:[
+    { n:1,   span:`mono-leaning`, state:'candidate', why:`"1970s analog studio grit, mono-leaning, dusty" — mono as period authenticity in a blues-rock setting.` },
+    { n:13,  span:`mono-leaning`, state:'candidate', why:`"Late-1980s basement-show rawness, mono-leaning and hot" — mono as a marker of cheap recording rather than of an era.` },
+    { n:'J2', span:`Mono-leaning`, state:'candidate', why:`"Mono-leaning, hot, unapologetic" in electroclash, where the density is the aesthetic point. Note the capital M.` },
+    { n:125, span:`mono-leaning`, state:'candidate', why:`"Punchy dense mono-leaning capture" in Northern soul, which names the density the card's listening note describes.` }
+  ]
+},
+
+{
+  id:'panning',
+  term:`Panning`,
+  sounds:`Instruments placed left and right across the space between the speakers. Done conventionally you barely notice it — it just sounds uncrowded. Done extremely, parts arrive entirely from one side, and the record stops sounding like a performance in a room and starts sounding like an arrangement of separate objects.`,
+  gloss:`Placing a sound in the stereo field by varying its level between the two channels. The apparent position is an illusion built from that difference.`,
+  syn:[`stereo placement`,`hard left`,`wide mix`,`spread`,`in the left speaker`,`stereo image`],
+  myth:`Stereo is manufactured, not captured. Almost nothing in a modern mix is where it is because that is where it was played — each part is placed by a knob, and the sense of a band standing in a room is an illusion assembled afterwards. Early stereo made this obvious by putting whole rhythm sections in one speaker and vocals in the other, which now sounds absurd.`,
+  known:`Universal since the 1960s, with fashions swinging between extreme separation, near-mono restraint, and the very wide mixes of modern pop.`,
+  origin:`Commercial stereo arrived in the late 1950s and was used crudely at first, since nobody had conventions for it; the placement grammar most records still use settled through the 1970s.`,
+  first:`1950s`, peak:[`1960s`,`2010s`],
+  domains:['production'],
+  match:['panned','stereo width','wide mix'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`#273 has "two voices talk to each other across the track, panned left and right" — placement carrying the concept of the song. #312 has a mix simply "panned wide", where it is doing atmosphere rather than meaning.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`#273 is the interesting case by a distance, because the panning is not decoration — two voices are placed on opposite sides so the listener can follow a conversation. That makes it checkable in a way width never is: either the voices are separated and the dialogue is followable, or the instruction did nothing. Most panning instructions cannot be falsified that cleanly, so this card is worth testing through that one entry rather than the others.` },
+  ev:[
+    { n:273, span:`panned`, state:'candidate', why:`"Two voices talk to each other across the track, panned left and right" — placement carrying meaning, and the only genuinely falsifiable panning case in the corpus.` },
+    { n:168, span:`panned`, state:'candidate', why:`"Stacked into one-person choirs panned wide" — width used to make one singer sound like several.` },
+    { n:312, span:`panned`, state:'candidate', why:`"Mixed loose and roomy, panned wide" in amapiano, where the width is atmosphere rather than structure.` },
+    { n:'P4', span:`panned`, state:'candidate', why:`"Distant harmonic swells panned wide" set against a whisper, so width and intimacy are contrasted deliberately.` }
+  ]
+},
+
+{
+  id:'clave',
+  term:`Clave`,
+  sounds:`A five-stroke pattern that everything else obeys. Three hits, then two, spread across two bars in a lopsided figure that never varies — and once you hear it, every other part in the music turns out to be arranged around it. It is quiet and usually played on two sticks, and it governs the entire ensemble.`,
+  gloss:`The organising rhythmic pattern of Afro-Cuban music: a fixed five-stroke figure over two bars, in either a three-two or a two-three orientation.`,
+  syn:[`son clave`,`the key pattern`,`sticks`,`3-2`,`2-3`,`the clave`],
+  myth:`Music can be wrong relative to it, and musicians will say so. Being "off clave" — playing a phrase whose accents contradict the pattern, or flipping its orientation mid-tune — is a genuine error rather than a variation, in a way that has no equivalent in most Western popular music. The pattern is a rule, not a part.`,
+  known:`Son, mambo, salsa, Latin jazz and everything descended from them, plus a great deal of New Orleans music and, through it, rock and roll.`,
+  origin:`Carried from West Africa to Cuba and formalised in son; spread through Latin jazz and mambo in the mid-twentieth century and into North American popular music alongside them.`,
+  first:`pre-1900`, peak:[`1950s`,`1960s`],
+  exemplar:{ kind:'exemplifies', title:`Oye Como Va`, artist:`Tito Puente`, year:`1963`,
+    listen:`Find the two sticks in the mix and follow only them. Then notice the piano, bass and horns are all arranged around that figure — it is the smallest sound on the record and the one everything else is answering to.` },
+  domains:['rhythm'],
+  match:['clave','tumbao','montuno'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`#390 has "a piano montuno locked to the clave, tumbao bass anticipating every chord" — the full system, with everything organised around the pattern. #105 has "clave-laced percussion" in highlife, where it is a flavour rather than a governor.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`The most rule-governed thing on this page, and the most interesting failure mode. A generator can produce Latin percussion trivially; producing music that is correctly ORGANISED around the clave is a much stronger claim, and being off clave is an error a knowledgeable listener hears immediately while most others do not notice at all. #390 is the test case, because it names the whole system — montuno, tumbao and clave together — so a result can be judged on whether those parts agree.` },
+  ev:[
+    { n:390, span:`clave`, state:'candidate', why:`"A piano montuno locked to the clave, tumbao bass anticipating every chord" — the full system named, so internal agreement can be judged.` },
+    { n:'K5', span:`clave`, state:'candidate', why:`A voice "riding the clave with natural swing", which requires the pattern to be present enough for a vocal to lock to it.` },
+    { n:65,  span:`clave`, state:'candidate', why:`"Congas and claves" in calypso — the instrument named rather than the organising principle, which is a weaker use worth distinguishing.` },
+    { n:105, span:`clave`, state:'candidate', why:`"Clave-laced percussion" in highlife, where the pattern is a flavour borrowed into a tradition it does not govern.` }
+  ]
+},
+
+{
+  id:'pedal-tone',
+  term:`Pedal tone`,
+  sounds:`One note held underneath while the chords above it change and change again. Unlike a drone it is not neutral — the harmony above keeps moving into and out of agreement with it, so the held note is alternately consonant, sour, and consonant again, and the tension builds simply because it will not move.`,
+  gloss:`A sustained or repeated note, usually in the bass, held while the harmony above it changes. Named for the organ pedal that made it easy.`,
+  syn:[`pedal point`,`held bass`,`organ pedal`,`sustained bass note`,`the note that stays`],
+  myth:`It is not a drone. A drone sits underneath music that mostly agrees with it; a pedal tone is deliberately held while the harmony moves AGAINST it, so the friction is the point rather than a by-product. That is why a pedal tone builds tension and a drone dissolves it.`,
+  known:`Organ music and baroque writing, film scoring, post-rock and trance builds — anywhere tension needs to accumulate without the harmony stopping.`,
+  origin:`Named for the sustained bass notes of organ pedals in European church music; adopted across orchestral writing, film scoring and popular music wherever a build was needed.`,
+  first:`pre-1900`, peak:[`1970s`,`2000s`],
+  domains:['harmony'],
+  match:['pedal tone','pedal point'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`#255 has "an unmoving pedal tone beneath harmony that keeps changing above it" — the mechanism stated outright. #407 has "a low pedal tone beneath, no pulse anywhere", where it is closer to the drone card and the boundary between them blurs.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Deliberately paired with the drone card so the boundary can be tested. Both hold a note; the difference is entirely whether the harmony above moves against it, which means a result here is really a result about whether the generator handles harmonic motion over a fixed bass. #255 names the requirement explicitly and is the best test on the card; #407 is closer to a drone and would show where the two terms merge.` },
+  ev:[
+    { n:255, span:`pedal tone`, state:'candidate', why:`"An unmoving pedal tone beneath harmony that keeps changing above it" — the mechanism spelled out, and the clearest test available.` },
+    { n:284, span:`pedal tone`, state:'candidate', why:`"An organ pedal tone" in a sacred-choir setting, the instrument the technique is named after.` },
+    { n:407, span:`pedal tone`, state:'candidate', why:`"A low pedal tone beneath, no pulse anywhere" — the case closest to a drone, useful for finding where the two terms stop being distinct.` }
   ]
 },
 ];
