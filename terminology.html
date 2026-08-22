@@ -66,6 +66,8 @@
   .chip{font-family:var(--mono);font-size:10.5px;letter-spacing:.03em;background:var(--panel2);border:1px solid var(--line);border-radius:5px;padding:2px 8px;color:var(--muted)}
   .chip.dom{border-color:var(--amber-dim);color:var(--amber)}
   .chip.kind b{color:var(--text);font-weight:600}
+  .chip.era{border-color:var(--blue);color:#8fb6e8;cursor:pointer}
+  .chip.era:hover{background:rgba(50,115,196,.16);color:#bcd6f5}
   /* "What you hear" leads the card — the lay reader recognises sound, not mechanism */
   .hear{margin:14px 0 0;border-left:2px solid var(--amber);padding:2px 0 2px 14px}
   .hear .lab{color:var(--amber);margin-bottom:5px}
@@ -327,7 +329,11 @@ function blob(c) {
     const songs = (v.suno || []).map(id => TITLES[id] || '').join(' ');
     return `${v.name || ''} ${v.fam || ''} ${e.span} ${songs}`;
   }).join(' ');
-  return [c.term, c.sounds, c.gloss, c.myth, c.known, c.origin, c.range, c.res.note,
+  /* Both spellings go in: someone typing "80s" and someone typing "1980s" should both
+     land on gated reverb. Storing only the canonical form would quietly fail the shorter one. */
+  const eras = [c.first, ...(c.peak || [])];
+  const eraBlob = eras.concat(eras.map(e => e.replace(/^\d\d/, ''))).join(' ');
+  return [c.term, c.sounds, c.gloss, c.myth, c.known, c.origin, c.range, c.res.note, eraBlob,
     (c.syn || []).join(' '), c.domains.map(d => (domById.get(d) || {}).name).join(' '),
     (c.kinds || []).join(' '), c.nature, evNames].join(' ').toLowerCase();
 }
@@ -483,6 +489,10 @@ function cardHTML(c) {
   const doms = c.domains.map(d => `<span class="chip dom">${esc((domById.get(d) || {}).name || d)}</span>`).join('');
   const kinds = c.kinds.map(k => `<span class="chip kind"><b>${k === 'instrument' ? 'Instrument / tool' : 'Technique'}</b></span>`).join('');
   const nat = `<span class="chip">${c.nature === 'momentary' ? 'Momentary event' : 'Continuous'}</span>`;
+  const eraChips = `<span class="chip era" data-era="${esc(c.first)}" title="First appeared. Click to search this decade.">from ${esc(c.first)}</span>`
+    + ((c.peak || []).length
+        ? `<span class="chip era pk" data-era="${esc(c.peak[0])}" title="Decades that popularised it. Click to search.">popular ${c.peak.map(esc).join(' &middot; ')}</span>`
+        : '');
 
   const stateLine = `<div class="evstate" data-sup="${esc(c.id)}">${supportLine(c)}</div>`;
 
@@ -547,7 +557,7 @@ function cardHTML(c) {
         title="${isLearned ? 'Marked as learned — click to unmark' : 'Mark this lesson as learned'}">
         ${isLearned ? '&#10003; Learned' : 'Mark learned'}</button>
     </div>
-    <div class="chips">${doms}${kinds}${nat}</div>
+    <div class="chips">${doms}${kinds}${nat}${eraChips}</div>
 
     <div class="hear">
       <div class="lab">What you hear</div>
@@ -976,6 +986,16 @@ function setLearnFilter(which) {
 }
 document.getElementById('flearned').addEventListener('click', () => setLearnFilter('learned'));
 document.getElementById('funlearned').addEventListener('click', () => setLearnFilter('unlearned'));
+
+/* An era chip is a shortcut into the search box rather than a filter of its own — the
+   toolbar already carries three filters and a fourth rail would cost more than it returns. */
+document.addEventListener('click', e => {
+  const chip = e.target.closest('.chip.era'); if (!chip) return;
+  const q = document.getElementById('q');
+  q.value = chip.dataset.era;
+  q.dispatchEvent(new Event('input'));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
 
 document.getElementById('rail').addEventListener('click', e => {
   const b = e.target.closest('[data-dom]'); if (!b) return;

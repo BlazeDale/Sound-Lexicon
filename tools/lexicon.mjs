@@ -120,6 +120,26 @@ export function checkLexicon() {
     if (badState.length) fail(`evidence state must be one of ${STATES.join('/')}: ${badState.join(', ')}`);
   }
 
+  /* ---------- era tags ----------
+     `first` is when the term appeared, `peak` when it was popularised — they are often
+     different by decades, which is the point of keeping both. Values are constrained so the
+     decade search stays exact: a stray "60s" or "1963" would be invisible to a search for
+     "1960s" while looking perfectly fine on the card. */
+  {
+    const OK = /^(1[89]\d0s|20[0-2]0s|ancient|pre-1900)$/;
+    const bad = [], noPeak = [];
+    for (const c of LEX) {
+      if (!OK.test(c.first || '')) bad.push(`${c.id} first="${c.first}"`);
+      if (!Array.isArray(c.peak)) { bad.push(`${c.id} peak is not an array`); continue; }
+      for (const p of c.peak) if (!OK.test(p)) bad.push(`${c.id} peak="${p}"`);
+      if (!c.peak.length) noPeak.push(c.id);
+    }
+    bad.length
+      ? fail(`era tag(s) not a recognised decade (use 1960s / 2010s / ancient / pre-1900): ${bad.join(', ')}`)
+      : pass(`every card carries a first-use decade and a peak list`
+          + (noPeak.length ? `; ${noPeak.length} deliberately have no peak era (${noPeak.join(', ')})` : ''));
+  }
+
   /* ---------- a card must have at least one POSITIVE demonstration ----------
      A demo attached to a prompt that EXCLUDED the term demonstrates its absence, not the
      term. The autotune card originally cited four such prompts and nothing else, so every

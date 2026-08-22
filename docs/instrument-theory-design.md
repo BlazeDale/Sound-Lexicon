@@ -55,6 +55,7 @@ Fields, in rough card order:
 | Misconception | The thing people commonly get wrong ("reverb is not echo") |
 | What it's known for | Its characteristic use and effect |
 | Origin | Era and scene — see §7 on names |
+| First / Peak | Decade the term appeared, and the decades that popularised it. Often decades apart, which is why both are kept. Searchable |
 | Domains | One or more parents (§4) |
 | Kinds | One or more of: instrument/tool, technique (§4) |
 | Resolution | Does the model actually distinguish this, or does it collapse into its parent? (§5) |
