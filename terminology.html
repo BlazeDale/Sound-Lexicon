@@ -174,6 +174,9 @@
   .exemplar .lab{color:var(--C);margin-bottom:5px}
   .exrec{margin:0 0 5px;font-size:15px;color:var(--text)}
   .exrec b{font-weight:700}
+  .exlink{color:var(--text);text-decoration:none;border-bottom:1px solid transparent}
+  .exlink:hover{color:var(--C);border-bottom-color:var(--C)}
+  .exlink .ext{font-size:11px;color:var(--C);margin-left:2px}
   .exlisten{margin:0;font-size:13.5px;color:var(--muted);line-height:1.55}
   /* momentary-event hint (no seek mechanism exists — see design doc §5) */
   .moment{margin-top:12px;font-size:12.5px;color:var(--muted);border-left:2px solid var(--violet);padding:2px 0 2px 11px}
@@ -293,6 +296,17 @@ const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => (
    entry — so the negative shown here must append them too, or the evidence would
    not match what actually produced the demo. */
 const MANDATED = 'Harmonic stagnation, Dynamic flattening, Quantized sterility, Structural monotony, Predictability, Vocal identity drift, Vocalist substitution, Soundtubes';
+
+/* Link to a title-and-artist SEARCH rather than a hardcoded video id, unless a card
+   supplies one. Two reasons, and the second is the important one: a specific id would have
+   to be invented, and an invented eleven-character id does not fail cleanly — it resolves
+   to some unrelated video. A search always lands on the right record and never rots when a
+   video is taken down, made private or region-locked. `exemplar.video` overrides it when a
+   real id is known and worth pinning. */
+function ytLink(x) {
+  if (x.video) return `https://www.youtube.com/watch?v=${encodeURIComponent(x.video)}`;
+  return `https://www.youtube.com/results?search_query=${encodeURIComponent(x.title + ' ' + x.artist)}`;
+}
 
 const byN = new Map(LIB.map(v => [String(v.n ?? v.id), v]));
 const domById = new Map(DOMAINS.map(d => [d.id, d]));
@@ -606,7 +620,8 @@ function cardHTML(c) {
 
     ${c.exemplar ? `<div class="exemplar">
       <div class="lab">${c.exemplar.kind === 'popularised' ? 'The record that popularised it' : 'The clearest example'}</div>
-      <p class="exrec"><b>${esc(c.exemplar.title)}</b> &middot; ${esc(c.exemplar.artist)} &middot; ${esc(c.exemplar.year)}</p>
+      <p class="exrec"><a class="exlink" href="${esc(ytLink(c.exemplar))}" target="_blank" rel="noopener noreferrer"
+         title="Find this on YouTube (opens in a new tab)"><b>${esc(c.exemplar.title)}</b> &middot; ${esc(c.exemplar.artist)} &middot; ${esc(c.exemplar.year)} <span class="ext">&#8599;</span></a></p>
       <p class="exlisten">${esc(c.exemplar.listen)}</p>
     </div>` : ''}
 

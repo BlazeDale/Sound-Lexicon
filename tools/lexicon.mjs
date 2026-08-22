@@ -135,6 +135,11 @@ export function checkLexicon() {
         if (!String(x[f] || '').trim()) bad.push(`${c.id} exemplar missing ${f}`);
       if (!KINDS.includes(x.kind)) bad.push(`${c.id} exemplar.kind must be ${KINDS.join(' or ')}`);
       if (x.year && !/^\d{4}$/.test(String(x.year))) bad.push(`${c.id} exemplar.year "${x.year}" is not a 4-digit year`);
+      /* `video` is optional and overrides the search link. Shape-checked because a
+         malformed id does not fail visibly — it resolves to an unrelated video, which is
+         worse than a broken link. */
+      if (x.video !== undefined && !/^[A-Za-z0-9_-]{11}$/.test(String(x.video)))
+        bad.push(`${c.id} exemplar.video "${x.video}" is not an 11-character YouTube id`);
     }
     bad.length ? fail(`exemplar problems: ${bad.join('; ')}`) : pass(`every exemplar names a record, a year, and what to listen for`);
   }

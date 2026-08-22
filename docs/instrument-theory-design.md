@@ -409,6 +409,14 @@ BlazeDale 2026-08-21 on exactly that basis.
 Optional by design: melisma, drone, counterpoint and syncopation are older than recording,
 and inventing a canonical record for them would be worse than leaving the field empty.
 
+The record links out to a **title-and-artist YouTube search**, not a hardcoded video id, and
+opens in a new tab. Two reasons, the second being the one that decided it: a specific id
+would have to be invented, and an invented eleven-character id does not fail cleanly — it
+resolves to some unrelated video, which is worse than a dead link. A search also never rots
+when a video is taken down, made private or region-locked. An optional `exemplar.video`
+overrides it where a real id is known and worth pinning; the validator shape-checks it for
+exactly the same reason.
+
 ## 8. Verdicts have a shelf life
 
 Every uptake judgement is about **one model version at one date**. The
