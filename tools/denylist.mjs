@@ -36,8 +36,17 @@ export function findDenied(text, hashes = loadHashes()) {
   const hits = new Set();
   for (let i = 0; i < words.length; i++) {
     for (let w = 1; w <= MAX_WORDS && i + w <= words.length; w++) {
-      const gram = words.slice(i, i + w).join(' ').replace(/[^\p{L}\p{N} ]/gu, '').trim();
-      if (gram && hashes.has(hash(gram))) hits.add(gram);
+      const raw = words.slice(i, i + w).join(' ').trim();
+      const stripped = raw.replace(/[^\p{L}\p{N} ]/gu, '').trim();
+      /* Test BOTH forms. `add` hashes a name as written, so a hyphenated or
+         apostrophed name ("T-Pain", "Guns N' Roses") is stored with its punctuation —
+         while stripping it here produced a different hash that could never match. Any
+         such name was therefore silently unguarded. Checking the raw gram as well closes
+         that without re-hashing the names already stored, whose hashes are unchanged
+         because stripping is a no-op for them. */
+      for (const gram of new Set([stripped, raw])) {
+        if (gram && hashes.has(hash(gram))) { hits.add(gram); break; }
+      }
     }
   }
   return [...hits];
