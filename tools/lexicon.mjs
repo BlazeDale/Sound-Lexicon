@@ -63,14 +63,19 @@ export function checkLexicon() {
 
   /* ---------- required prose fields; a card is a lesson, not a stub ---------- */
   {
-    const need = ['term', 'gloss', 'myth', 'known', 'origin', 'range'];
+    /* `sounds` is required, not optional. A card without it explains how a thing is made
+       and leaves the reader still unable to hear it — the exact failure this page exists
+       to avoid. Length floor because a one-liner here is nearly always mechanism in
+       disguise. */
+    const need = ['term', 'sounds', 'gloss', 'myth', 'known', 'origin', 'range'];
     const thin = [];
     for (const c of LEX) {
       const missing = need.filter(f => !(c[f] || '').trim());
       if (missing.length) thin.push(`${c.id} (${missing.join(', ')})`);
       if (!Array.isArray(c.syn) || !c.syn.length) thin.push(`${c.id} (no synonym ring — lay search depends on it)`);
+      if ((c.sounds || '').trim().length < 120) thin.push(`${c.id} (sounds too thin to describe a sound)`);
     }
-    thin.length ? fail(`incomplete card(s): ${thin.join('; ')}`) : pass(`all cards carry gloss, misconception, known-for, origin, range and synonyms`);
+    thin.length ? fail(`incomplete card(s): ${thin.join('; ')}`) : pass(`all cards describe what you hear, plus gloss, misconception, known-for, origin, range and synonyms`);
   }
 
   /* ---------- taxonomy: parents resolve, kinds and nature legal ---------- */

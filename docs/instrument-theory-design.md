@@ -49,7 +49,8 @@ Fields, in rough card order:
 | Field | Purpose |
 |---|---|
 | Term | The canonical name |
-| Lay gloss | What it is, in plain language, no jargon |
+| **What you hear** | **The sound as a listener experiences it. Leads the card — see below** |
+| Lay gloss | What it actually is, in plain language — usually the mechanism. Supports the above, never replaces it |
 | Synonym ring | Musician's slang + what a lay person would actually type |
 | Misconception | The thing people commonly get wrong ("reverb is not echo") |
 | What it's known for | Its characteristic use and effect |
@@ -60,6 +61,33 @@ Fields, in rough card order:
 | Range | Most terms are a dial, not a switch — note how the extremes behave |
 | Demos | Attached takes, with the prompt span recorded, vouched for by ear (§5, §6) |
 | Stamp | Model version + date for every uptake verdict (§8) |
+
+### Describe the sound, not the mechanism (added 2026-08-21)
+
+The first pass of cards failed this and it took a reader to notice. Every gloss led with
+**how the thing is made** — tines, coiled springs, foil ribbons, vocal folds — because
+mechanism is the easy thing to write. Nine of twenty-two cards described no sound at all.
+A reader could finish the Hammond card knowing about tonewheels and drawbars and still be
+unable to pick the instrument out of a song.
+
+That misses the stated first-priority audience: someone who knows what they like but not
+what it is called. They recognise music **by ear**, so the card has to hand them something
+they can match against a memory.
+
+**`sounds` is therefore a required field and the first thing on the card.** Concrete over
+abstract — "a giant thud that stops dead", not "a percussive articulation"; "a thick
+breathy roar that seems to inhale", not "a tonewheel organ timbre". Say what it does to
+the sound, what it feels like, and where in a song you notice it. The test for any card:
+*could somebody who had never heard the word still recognise this from what is written?*
+
+`validate.mjs` requires it and enforces a length floor, because a one-line answer here is
+nearly always mechanism in disguise.
+
+Two things fell out of doing it that were not the goal. The sensory text is folded into the
+search blob, so the page became searchable by ear-words — "boing" finds spring reverb,
+"shhh" finds brushes, "breathes" finds sidechain compression, "lurch" finds breakbeat.
+And the [[no-artist-names-written]] rule stops hurting here: with the sound properly
+described, a card no longer needs to gesture at a record it is not allowed to name.
 
 ## 4. Taxonomy
 

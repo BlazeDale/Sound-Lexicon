@@ -66,7 +66,10 @@
   .chip{font-family:var(--mono);font-size:10.5px;letter-spacing:.03em;background:var(--panel2);border:1px solid var(--line);border-radius:5px;padding:2px 8px;color:var(--muted)}
   .chip.dom{border-color:var(--amber-dim);color:var(--amber)}
   .chip.kind b{color:var(--text);font-weight:600}
-  .gloss{font-size:16px;line-height:1.62;margin:14px 0 0;color:var(--text)}
+  /* "What you hear" leads the card — the lay reader recognises sound, not mechanism */
+  .hear{margin:14px 0 0;border-left:2px solid var(--amber);padding:2px 0 2px 14px}
+  .hear .lab{color:var(--amber);margin-bottom:5px}
+  .hear p{font-size:16px;line-height:1.62;margin:0;color:var(--text)}
   .blk{margin-top:14px}
   .lab{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--dim);margin-bottom:4px}
   .body{font-size:14px;color:var(--text);line-height:1.6}
@@ -316,7 +319,7 @@ function blob(c) {
     const songs = (v.suno || []).map(id => TITLES[id] || '').join(' ');
     return `${v.name || ''} ${v.fam || ''} ${e.span} ${songs}`;
   }).join(' ');
-  return [c.term, c.gloss, c.myth, c.known, c.origin, c.range, c.res.note,
+  return [c.term, c.sounds, c.gloss, c.myth, c.known, c.origin, c.range, c.res.note,
     (c.syn || []).join(' '), c.domains.map(d => (domById.get(d) || {}).name).join(' '),
     (c.kinds || []).join(' '), c.nature, evNames].join(' ').toLowerCase();
 }
@@ -519,7 +522,15 @@ function cardHTML(c) {
     </div>
     <div class="chips">${doms}${kinds}${nat}</div>
 
-    <p class="gloss">${esc(c.gloss)}</p>
+    <div class="hear">
+      <div class="lab">What you hear</div>
+      <p>${esc(c.sounds)}</p>
+    </div>
+
+    <div class="blk">
+      <div class="lab">What it actually is</div>
+      <div class="body">${esc(c.gloss)}</div>
+    </div>
 
     <div class="blk">
       <div class="lab">Also called</div>

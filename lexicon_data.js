@@ -29,7 +29,7 @@
  * Loaded as a classic <script> AFTER data.js, so LIB is already a global.
  */
 
-const LEX_VERSION = 'v3';
+const LEX_VERSION = 'v4';
 const LEX_UPDATED = '2026-08-21';
 
 /* ---------- TOP TIER: domains, not instruments ----------
@@ -53,7 +53,15 @@ const DOMAINS = [
    One card = one term. Fields in rough card order (§3):
      id      stable URL fragment — deep-linkable, never renumber
      term    canonical name
-     gloss   plain language, no jargon. The lay reader's entry point.
+     sounds  WHAT YOU HEAR. Sensory and recognisable — what the thing does to the sound,
+             what it feels like, where in a song you notice it. This LEADS the card, because
+             the first-priority reader knows what they like but not what it is called, and
+             recognises music by ear rather than by mechanism. Concrete over abstract: "a
+             giant thud that stops dead", not "a percussive articulation". Test each one by
+             asking whether somebody who had never heard the word could still match it to a
+             memory. Mechanism is NOT this field.
+     gloss   what it actually is, in plain language and no jargon — usually the mechanism.
+             Supports `sounds`; never replaces it.
      syn     synonym ring: musician's slang AND what someone would actually type
      myth    the thing people commonly get wrong
      known   characteristic use and effect
@@ -77,6 +85,7 @@ const LEX = [
 {
   id:'palm-mute',
   term:`Palm mute`,
+  sounds:`A guitar that stops talking and starts thumping. Each strum lands as a short, fat, muffled chunk with the ring cut off it, so chords hit like blows instead of chiming. Lift the hand and the same riff suddenly blooms open and rings out — that switch between choked and open is usually the whole hook.`,
   gloss:`The side of the picking hand rests on the strings right where they meet the bridge, so each note comes out short and thick instead of ringing on. It is the difference between a guitar that sings and a guitar that chugs.`,
   syn:[`chug`,`chugging`,`muted strumming`,`chunky guitar`,`choppy guitar`,`that ch-ch-ch guitar sound`,`damped strings`],
   myth:`It is not the same as playing quietly. A palm mute can be brutally loud — what makes it a mute is that the note stops fast, not that it is soft.`,
@@ -100,6 +109,7 @@ const LEX = [
 {
   id:'brushes',
   term:`Brushes`,
+  sounds:`Instead of a crack on the backbeat, a soft continuous shhh circling round and round like someone sweeping a floor in time. Nothing snaps, nothing cuts through. You feel the beat as a wash rather than counting it, and the room seems smaller and later at night than it did a moment ago.`,
   gloss:`Wire or nylon brushes used instead of drumsticks. They can be swept across the drumhead for a continuous shhh, or tapped for a soft, blunt hit with no crack to it.`,
   syn:[`brushed drums`,`wire brushes`,`swept snare`,`swishing drums`,`soft jazz drums`,`that brushy sound`],
   myth:`Brushes are not just quiet sticks. A stick played softly still goes tick; a brush can produce a sustained sweeping sound that a stick physically cannot make at any volume.`,
@@ -123,6 +133,7 @@ const LEX = [
 {
   id:'rhodes',
   term:`Rhodes electric piano`,
+  sounds:`A soft hollow bell tone with a woody knock at the front of each note, blurred at the edges as though heard through warm air. Chords sit back behind everything else and glow rather than cut. Lean on the keys and it barks — the bell turns gritty and starts to bite.`,
   gloss:`An electric piano from the 1960s and 70s whose hammers strike small metal tines instead of strings. Bell-like and round when played gently; it growls when played hard.`,
   syn:[`electric piano`,`e-piano`,`bell piano`,`that warm keyboard sound`,`tine piano`,`suitcase piano`],
   myth:`It is not a synthesiser and not a digital piano. It is a mechanical instrument with moving parts — the sound is metal actually being struck, not a waveform being generated.`,
@@ -146,6 +157,7 @@ const LEX = [
 {
   id:'melisma',
   term:`Melisma`,
+  sounds:`One syllable stretches out and the voice goes travelling — three notes, or thirty — rippling upward and sliding back down before the word finally lands. The vowel bends and catches on the way, so you hear a singer decorating a word rather than merely singing it. Held long enough it stops sounding like melody and starts sounding like weeping, or like ecstasy.`,
   gloss:`Singing several — sometimes many — different notes on a single syllable, instead of one note per syllable. The word stretches while the melody keeps moving underneath it.`,
   syn:[`runs`,`vocal runs`,`riffs`,`ornamentation`,`curls`,`that thing where they sing lots of notes on one word`],
   myth:`It is not vibrato. Vibrato wobbles around a single pitch; melisma actually travels between different pitches. It is also not inherently showing off — it is the default in several of the world's oldest vocal traditions.`,
@@ -169,6 +181,7 @@ const LEX = [
 {
   id:'ribbon-mic',
   term:`Ribbon microphone`,
+  sounds:`Everything sits a step further back with the glare taken off. Sss sounds soften, brass loses its bite, cymbals turn to air, and the very top of the sound is simply not there — not muffled, just absent. A voice reads as close and old rather than bright and present.`,
   gloss:`A microphone that senses sound with a thin strip of metal foil hanging in a magnet, rather than a stiff plastic diaphragm. It does not capture the very top end, which listeners hear as warm or smooth.`,
   syn:[`ribbon mic`,`warm mic`,`vintage mic`,`smooth microphone`,`old radio mic`,`velocity mic`],
   myth:`Warmth is not something the microphone adds — it is brightness the microphone fails to capture. A ribbon is gentle at the top because the foil is heavy and slow to move, not because it enriches anything.`,
@@ -192,6 +205,7 @@ const LEX = [
 {
   id:'mic-into-the-red',
   term:`Driving the mic into the red`,
+  sounds:`The sound tears. At the loudest moments the voice stops getting louder and starts breaking into a crushed, fuzzy rasp — edges fraying, consonants splattering. You can hear the equipment failing, and it sounds like the performance is barely being contained. The whole recording feels one notch too hot, and the excitement is in that.`,
   gloss:`Singing — or more often screaming — louder than the microphone and the preamp behind it can cleanly handle, so the signal overloads and breaks up. The distortion is not added afterwards. It happens at the moment of capture, inside the equipment.`,
   syn:[`mic overload`,`blown-out vocal`,`clipping the mic`,`redlining`,`cranking the mic`,`hot signal`,`trashed vocal`,`the mic cannot take it`],
   myth:`It is not the singer's voice distorting. A perfectly clean voice can be driven into the red, and a shredded, fraying voice can be captured spotlessly. This is the equipment breaking up, not the throat — the two get confused because records that want one usually want both at once.`,
@@ -219,6 +233,7 @@ A confound to design around before trusting any result: nearly every prompt usin
 {
   id:'plate-reverb',
   term:`Plate reverb`,
+  sounds:`A wide, smooth, silvery halo behind the voice that fades away evenly to nothing. Enormous, but not like anywhere — no walls, no corners, no echo you could pace out. Voices and snares sit inside a shimmer that flatters everything and belongs to no room you have ever stood in.`,
   gloss:`Reverb made by vibrating a large sheet of steel and listening to it with pickups. It gives a dense, smooth wash with no sense of a room's shape — big, but not like anywhere in particular.`,
   syn:[`plate`,`lush reverb`,`smooth reverb`,`studio reverb`,`the wash`,`that big vocal reverb`],
   myth:`It is not a recording of a room. There is no room involved at all — a plate is a piece of furniture-sized hardware. The reason it sounds unnatural in a pleasing way is that no physical space decays that evenly.`,
@@ -242,6 +257,7 @@ A confound to design around before trusting any result: nearly every prompt usin
 {
   id:'sidechain-compression',
   term:`Sidechain compression`,
+  sounds:`The track breathes. On every kick drum everything else ducks away for an instant and swells back up, so the music pulses in and out like lungs. Once you notice it you cannot stop hearing it — the whole record seems to inhale on the beat and exhale between beats.`,
   gloss:`The bass and pads are automatically turned down every time the kick drum hits, then let straight back up. You hear it as a rhythmic breathing or pumping underneath the track.`,
   syn:[`pumping`,`ducking`,`the pump`,`sidechain`,`that breathing sound`,`the whoosh in dance music`],
   myth:`The pumping is usually the point, not a side effect. It started as a mixing fix to stop the kick and bass fighting each other, but in dance music it is now added deliberately and exaggerated well past what any fix would need.`,
@@ -265,6 +281,7 @@ A confound to design around before trusting any result: nearly every prompt usin
 {
   id:'drone',
   term:`Drone`,
+  sounds:`One note that simply will not go away, humming underneath everything from beginning to end. Chords move above it and it stays put, so each change rubs against it — sometimes sweet, sometimes sour — and the music stops feeling like it is travelling anywhere. There is a faint buzz where the held note grinds against the others. Hypnotic, and slightly airless on purpose.`,
   gloss:`One note held or repeated underneath everything else while the melody moves above it. It does not change to follow the chords — the chords change around it.`,
   syn:[`held note`,`sustained bass`,`pedal tone`,`the hum`,`that one note underneath`,`tambura`],
   myth:`A drone is not simply a long chord. The point is that it stays put while the harmony moves against it — the friction between the fixed note and the moving one is the whole effect.`,
@@ -288,6 +305,7 @@ A confound to design around before trusting any result: nearly every prompt usin
 {
   id:'four-on-the-floor',
   term:`Four-on-the-floor`,
+  sounds:`A kick drum straight down the middle — boom, boom, boom, boom — identical, unhurried, never missing. There is no puzzle to it: your body locks on within two bars and stays locked. Everything above can be as strange as it likes, because the floor never moves.`,
   gloss:`The kick drum lands on every single beat — one, two, three, four — with no gaps. It is the steadiest pulse available, and it is why you can dance to a track you have never heard before.`,
   syn:[`four to the floor`,`steady kick`,`dance beat`,`thumping kick`,`straight kick`,`that boom boom boom boom`],
   myth:`It describes the kick drum only — not the tempo, and not the genre. A slow, sad song can be four-on-the-floor, and plenty of very fast music is not.`,
@@ -311,6 +329,7 @@ A confound to design around before trusting any result: nearly every prompt usin
 {
   id:'key-change',
   term:`Key change`,
+  sounds:`Everything lifts at once. The last chorus arrives brighter and higher, the singer sounds like they are reaching a little harder, and the whole band has climbed with them — a physical sensation of the song standing up. Done bluntly there is a half-second hinge where the old key ends and the new one starts, and you can hear the join.`,
   gloss:`The whole song moves up (or down) into a different key partway through, usually for a final chorus. Everything shifts together, so it lands as a lift rather than as a wrong note.`,
   syn:[`modulation`,`key lift`,`stepping up`,`gear change`,`when it goes up at the end`,`truck-driver's modulation`],
   myth:`It is not the singer straining higher — the entire arrangement moves with them. And it is not automatically cheesy: the unprepared last-chorus lift is only one kind, and most other key changes are designed to be invisible.`,
@@ -334,6 +353,7 @@ A confound to design around before trusting any result: nearly every prompt usin
 {
   id:'call-and-response',
   term:`Call and response`,
+  sounds:`A gap, then an answer. One voice sings a line and stops; something else — a choir, a horn section, a crowd — fills the space it left, and the two trade back and forth. The pleasure is entirely in the gap: you start anticipating the reply, and when it lands the music feels populated rather than performed.`,
   gloss:`One voice or instrument makes a statement and another answers it. The answer is a genuine reply — it waits its turn rather than playing along underneath.`,
   syn:[`call-and-answer`,`question and answer`,`trading`,`back-and-forth`,`antiphony`,`when the choir answers the singer`],
   myth:`It is not the same as backing vocals or harmony. Backing vocals sing with the lead; a response happens after the call, in the gap the call deliberately leaves open.`,
@@ -358,6 +378,7 @@ A confound to design around before trusting any result: nearly every prompt usin
 {
   id:'gated-reverb',
   term:`Gated reverb`,
+  sounds:`A snare that sounds like it was hit in an aircraft hangar and then had the hangar switched off. Each hit blooms out huge for a fraction of a second and stops dead — a giant thud with a hard edge on the end of it, no tail, no ring. Drums sound colossal and slightly unreal at the same time.`,
   gloss:`A huge reverb is put on the drum and then chopped off a fraction of a second after it starts, instead of being allowed to fade. You get the size of an enormous room with none of the ring — a giant thud that stops dead.`,
   syn:[`gated snare`,`the 80s drum sound`,`big snare`,`that huge stopping snare`,`gated ambience`,`the drum that cuts off`],
   myth:`The gate is on the reverb, not on the drum. Nothing is being cut from the hit itself — the enormous room around it is switched off mid-decay, which is why it sounds impossible rather than merely loud.`,
@@ -381,6 +402,7 @@ A confound to design around before trusting any result: nearly every prompt usin
 {
   id:'falsetto',
   term:`Falsetto`,
+  sounds:`The voice thins out and floats. It goes high without the strain you expect — breathy, hollow, a little glassy, as though the singer stepped sideways into a lighter instrument instead of pushing harder. Often you can hear the exact moment they flip into it, a small break or catch, and that flip is half the thrill.`,
   gloss:`A separate way of making high notes, where only the edges of the vocal folds vibrate. It comes out lighter and more hollow than an ordinary voice pushed high, and it can be reached easily where a normal high note takes force.`,
   syn:[`the light high voice`,`airy high notes`,`the thin register`,`breathy high singing`,`head voice`,`when they go up soft and floaty`],
   myth:`Falsetto and head voice are not the same thing, though they are treated as synonyms constantly. Head voice is the ordinary voice carried high with the folds still fully vibrating; falsetto is a different mechanism that has thinned out. And falsetto is not automatically quiet — it can be belted hard.`,
@@ -404,6 +426,7 @@ A confound to design around before trusting any result: nearly every prompt usin
 {
   id:'slide-guitar',
   term:`Slide guitar`,
+  sounds:`A guitar that whines and cries between the notes instead of stepping between them. Pitches swoop and slither, wobbling around a note the way a voice does, and you can hear the object rattling faintly against the strings. It sounds like something moaning — which is why it answers singers so well.`,
   gloss:`Rather than pressing a string down behind a fret, a smooth hard object is laid on top of it and moved along. The pitch slides continuously instead of stepping, so the guitar can cry and wail between the notes.`,
   syn:[`bottleneck`,`slide`,`steel`,`that crying guitar`,`whining guitar`,`glass slide`,`the guitar that sounds like singing`],
   myth:`It is not a whammy bar or a pitch-bend effect. Nothing is stretching the string — the note is being carried along it by hand, which is why a slide can travel any distance and stop anywhere between two frets.`,
@@ -427,6 +450,7 @@ A confound to design around before trusting any result: nearly every prompt usin
 {
   id:'hammond-organ',
   term:`Hammond organ`,
+  sounds:`A thick, breathy roar that seems to inhale. Each note starts with a faint percussive click, and chords swell up from underneath rather than arriving — then the whole sound begins to rotate, wobbling and swirling around the room as though the speaker were spinning, which it is. Pushed hard it stops sounding like an organ and starts sounding like a crowd shouting.`,
   gloss:`An electric organ that makes its sound with spinning metal wheels beside magnetic pickups. Nine sliders called drawbars mix its harmonics, and it is nearly always heard through a cabinet with a rotating speaker that sets the sound swirling.`,
   syn:[`Hammond`,`drawbar organ`,`tonewheel organ`,`gospel organ`,`that church organ sound`,`the swirly organ`],
   myth:`The swirl is not the organ. It comes from a separate rotating-speaker cabinet, and a Hammond heard without one sounds startlingly plain. The two are so rarely separated that most listeners hear them as a single instrument.`,
@@ -450,6 +474,7 @@ A confound to design around before trusting any result: nearly every prompt usin
 {
   id:'breakbeat',
   term:`Breakbeat`,
+  sounds:`Drums that lurch. The snare cracks a fraction late, the hats are uneven, the loop leans and rolls instead of marching — and every few bars you hear it come back around to the same seam, because it is the same few seconds repeating. It sounds like a person playing, slightly worn and slightly dusty.`,
   gloss:`A drum pattern lifted from the few seconds of an old record where everything except the drums drops out, then looped. Its swing and its slight unevenness come from having been played by a person, once, decades ago.`,
   syn:[`breaks`,`the break`,`chopped drums`,`sampled drums`,`that shuffly drum loop`,`looped drums`],
   myth:`It is not a drum-machine pattern. The whole point is that it is a recording of a human drummer being reused, which is why breakbeats feel loose in a way programmed beats have to work hard to imitate.`,
@@ -473,6 +498,7 @@ A confound to design around before trusting any result: nearly every prompt usin
 {
   id:'syncopation',
   term:`Syncopation`,
+  sounds:`The accents land in the cracks. Just as you expect a hit on the beat it arrives a fraction early or late, or the beat is left empty and the note falls between it and the next, so the rhythm trips and catches and tugs at you. It is the thing that makes your head nod without anybody asking it to.`,
   gloss:`Putting the emphasis where the beat is not. Notes land in the gaps between counts rather than on them, so the rhythm pulls against the pulse instead of confirming it.`,
   syn:[`offbeat`,`off the beat`,`upbeat accents`,`that pushed feel`,`against the grid`,`the funky bit`],
   myth:`Syncopation is not the same as being fast or complicated. A slow, very simple part can be heavily syncopated, and a rapid busy part played squarely on the beat is not syncopated at all.`,
@@ -496,6 +522,7 @@ A confound to design around before trusting any result: nearly every prompt usin
 {
   id:'spring-reverb',
   term:`Spring reverb`,
+  sounds:`A metallic, splashy shimmer with a distinct boing inside it, wobbling slightly and clattering whenever a loud note hits. It does not sound like a room at all — it sounds like a springy metal box, drippy and cheap in the way that became the sound of surf guitar and dub. Knock the amp and it crashes like stage thunder.`,
   gloss:`Reverb made by sending the sound down an actual coiled spring and listening to what comes back. It is boingy and metallic rather than smooth, and it splashes audibly when hit hard.`,
   syn:[`spring`,`boing`,`that surf guitar reverb`,`twangy reverb`,`amp reverb`,`drip`,`the splashy one`],
   myth:`It is not a small version of a room. A spring imitates no space at all — the drip and rattle are the spring's own resonance, which is exactly why it sounds cheap in a way people came to love rather than tolerate.`,
@@ -519,6 +546,7 @@ A confound to design around before trusting any result: nearly every prompt usin
 {
   id:'voice-leading',
   term:`Voice-leading`,
+  sounds:`Mostly you hear its absence. When it is good, chord changes slip past almost unnoticed — the harmony seems to melt from one shape into the next and you follow without being told to. When it is bad, every change lands as a lump: the whole block of notes jumps somewhere else at once and the music sounds typed rather than played. Listen underneath the tune for small stepwise movements, and for one note holding still while everything shifts around it.`,
   gloss:`How the individual notes inside chords move from one chord to the next. Good voice-leading shifts each part as little as it can, so a change of chord feels like a step rather than a jump.`,
   syn:[`how the chords connect`,`inner parts`,`part-writing`,`smooth changes`,`the movement underneath`,`when chords flow`],
   myth:`It is not the melody, and it is not the chord progression either. It is what happens to the notes underneath the melody while the progression changes — and you notice its absence far more readily than its presence.`,
@@ -542,6 +570,7 @@ A confound to design around before trusting any result: nearly every prompt usin
 {
   id:'stop-time',
   term:`Stop-time`,
+  sounds:`Everything drops out at once. The band cuts, leaving a hole with one voice or one instrument alone inside it, and the silence around them is suddenly enormous. You can feel the beat still running even though nothing is playing it — and when the band slams back in, it lands exactly where you were already counting.`,
   gloss:`The band stops together, leaving a hole. One voice or instrument carries on alone in the gap, then everyone comes back in. The silence is arranged, not an accident.`,
   syn:[`the drop-out`,`band hits`,`breaks`,`hits and holds`,`that bit where everything stops`,`the pause`],
   myth:`It is not a pause, and it is not a fade. Nobody has stopped counting — the pulse continues silently through the gap, which is exactly why the return lands where the ear was already expecting it.`,
@@ -565,6 +594,7 @@ A confound to design around before trusting any result: nearly every prompt usin
 {
   id:'double-tracking',
   term:`Double-tracking`,
+  sounds:`One voice that sounds like slightly more than one. Wider and thicker, with a faint blur at the edges of words, and the consonants not quite lining up — a tiny smear on every t and s. It sounds assured and a little unreal, the singer somehow further away and larger than life at once.`,
   gloss:`The same singer records the same part twice and both takes play at once. The tiny differences of timing and pitch between them thicken the voice and blur its edges.`,
   syn:[`doubling`,`double-tracked vocals`,`stacked vocals`,`thickened vocals`,`twice-sung`,`that wide vocal sound`],
   myth:`It is not harmony, and it is not a chorus effect. Both takes sing the identical part — the width comes entirely from human inaccuracy, which is why a perfectly copied track sounds like nothing at all while a slightly out-of-tune second take sounds enormous.`,
