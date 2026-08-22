@@ -763,6 +763,7 @@ function render() {
   const d = curDomain && domById.get(curDomain);
   document.getElementById('dblurb').textContent = d ? d.blurb : '';
   promotedSig = currentPromotedSig();   // set BEFORE renderCounts, or refreshVotes recurses
+  needsSig = currentNeedsSig();         // likewise — see renderCounts
   renderCounts();
   markPlaying();                        // cards were just rebuilt — restore the marker
 }
@@ -783,10 +784,19 @@ function renderCounts() {
     el.textContent = n || '';
   });
   document.querySelectorAll('[data-like]').forEach(b => b.classList.toggle('on', mine.has(b.dataset.like)));
-  // votes arriving from elsewhere shouldn't yank the page out from under a reader,
-  // so patch them in place — unless the active filter depends on them.
-  if (curNeeds) { const y = window.scrollY; render(); window.scrollTo(0, y); }
-  else refreshVotes();
+  /* Votes arriving from elsewhere shouldn't yank the page out from under a reader, so
+     patch them in place — unless a vote just moved a card out of "Needs a listen", which
+     is a membership change no amount of patching can express.
+
+     The test has to be on the MEMBERSHIP, not on the filter being active. Re-rendering
+     whenever the pill was on meant render() → renderCounts() → render() with nothing to
+     stop it, and turning the pill on froze the tab outright. */
+  if (curNeeds && currentNeedsSig() !== needsSig) {
+    needsSig = currentNeedsSig();
+    const y = window.scrollY;
+    render();
+    window.scrollTo(0, y);
+  } else refreshVotes();
 }
 window.__renderCounts = renderCounts;
 
@@ -798,6 +808,12 @@ let promotedSig = '';
 const currentPromotedSig = () => LEX
   .map(c => c.id + ':' + (c._more || []).filter(m => voteCount(c.id, m.n) > 0).map(m => m.n).join('.'))
   .join('|');
+
+/* And the same trick for "Needs a listen", whose membership a vote can change too: one
+   bit per card, backed or not. Only computed while the pill is on, which is the only time
+   it can decide anything. */
+let needsSig = '';
+const currentNeedsSig = () => curNeeds ? LEX.map(c => support(c).backed > 0 ? '1' : '0').join('') : '';
 
 /* Patch vote UI in place: button state, count, item highlight, and the card's header line. */
 function refreshVotes() {
