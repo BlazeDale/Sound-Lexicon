@@ -256,15 +256,7 @@
     <p class="eyebrow"><a href="index.html">← Sound Lexicon</a></p>
     <h1>Terminology Lessons</h1>
     <p class="sub" id="sub">Loading…</p>
-    <div class="caveat">
-      <b>Nothing here has been verified by ear yet.</b> Every card states plainly whether the
-      generator actually distinguishes the term — and right now every one of them says
-      <em>untested</em>, because the only honest readout is a person listening. The evidence
-      attached to each card is drawn from prompts that already exist in the
-      <a href="vocal_timbre_library.html">Vocal Timbre Library</a>, with the exact wording
-      highlighted. Play one — and if you can hear the term in it, <b>vote it up</b>. That is
-      how a card stops being a claim and starts being demonstrated.
-    </div>
+    <div class="caveat" id="caveat">Loading…</div>
   </header>
 
   <div class="controls">
@@ -573,9 +565,8 @@ const saveVotes = () => { try { localStorage.setItem(VOTES_KEY, JSON.stringify([
 const voteCount = (cardId, n) => (window.__likeCounts || {})[voteKey(cardId, n)] || 0;
 
 /* A term counts as demonstrated when at least one listener has vouched for at least
-   one of its demos. Zero votes reads as "not yet demonstrated" — which is the honest
-   state for everything on the page right now, and the page says so rather than
-   implying the silence means anything else. */
+   one of its demos. Zero votes reads as "not yet demonstrated" rather than as anything
+   worse — silence here is nobody having played it, not a demo that failed. */
 /* ---------- A TRACK A LISTENER ATTACHED ----------
    "I know a better example of this than any of these." Without somewhere to put that, the
    only way to act on it was to tell the curator, so it mostly went unsaid.
@@ -637,6 +628,35 @@ function support(c) {
     if (voteCount(c.id, e.n) > 0) backed++;
   }
   return { backed, votes, total };
+}
+
+/* ---------- the standing note, which is not standing ----------
+   This used to open "Nothing here has been verified by ear yet", which was true on the day
+   it was typed and quietly stopped being true the moment the votes started arriving — a
+   frozen sentence sitting on top of a live page, telling readers the opposite of what the
+   cards underneath them said. Everything else here derives its counts at runtime for exactly
+   this reason, and this was the last thing that did not.
+
+   It also promised something the mechanism does not do. A vote marks a DEMO as one a
+   listener could hear the term in. The verdict on the card is a different judgement, written
+   by hand in lexicon_data.js, and voting does not move it — so the note now says which is
+   which rather than implying that enough hearts settle the question. */
+function caveatLine() {
+  const heard = LEX.filter(c => support(c).backed > 0).length;
+  const waiting = LEX.length - heard;
+  return `<b>${heard ? `${heard} of ${LEX.length} terms have been heard.` : 'Nothing here has been heard yet.'}</b> `
+    + (waiting
+      ? `${waiting === LEX.length ? 'Every' : `The other ${waiting}`} card${waiting === 1 ? '' : 's'} `
+        + `${waiting === 1 ? 'has' : 'have'} candidates attached and nobody has played `
+        + `${waiting === 1 ? 'it' : 'them'} yet — the <em>Needs a listen</em> filter is that list. `
+      : `Every card has a demo somebody vouched for. `)
+    + `The evidence under each is drawn from prompts that already exist in the `
+    + `<a href="vocal_timbre_library.html">Vocal Timbre Library</a>, with the exact wording `
+    + `highlighted; a few were commissioned to test their term and nothing else. Play one, and `
+    + `<b>vote it up</b> if you can hear the term in it. What that does not do is settle the `
+    + `card's verdict — that line reads <em>untested</em> everywhere and is a separate `
+    + `judgement, because a demo one listener finds convincing is not yet a term the generator `
+    + `can be relied on to distinguish.`;
 }
 
 function supportLine(c) {
@@ -1136,6 +1156,8 @@ function refreshVotes() {
     el.innerHTML = supportLine(c);
     el.classList.toggle('some', support(c).backed > 0);
   });
+  const cav = document.getElementById('caveat');   // a vote landing anywhere changes this count
+  if (cav) cav.innerHTML = caveatLine();
   document.querySelectorAll('[data-cmeta]').forEach(el => {      // the collapsed bar says it too
     const c = LEX.find(x => x.id === el.dataset.cmeta); if (!c) return;
     const s = support(c);
@@ -1456,6 +1478,12 @@ function jumpToHash() {
 window.addEventListener('hashchange', jumpToHash);
 
 buildRail();
+/* Painted once here so the note is right before Firebase answers — and again on every vote,
+   so it is right afterwards too. It cannot be painted up with the masthead counts: reading a
+   vote needs `added`, which is not initialised that early, and the whole script dies there.
+   If the backend never answers this reads zero heard, which is the truthful thing to tell a
+   reader who cannot see anybody else's votes. */
+document.getElementById('caveat').innerHTML = caveatLine();
 render();
 jumpToHash();
 </script>
