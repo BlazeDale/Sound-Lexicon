@@ -352,6 +352,12 @@ LIB.forEach(v => (v.suno || []).forEach(id => bySuno.set(String(id), v)));
    also the security story: the value reaches an <img> src, an iframe src and a database key,
    and a whitelist this narrow cannot carry anything but an id. */
 const UUID_RE = /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i;
+/* A share link carries a lookup token, not the id — suno.com/s/<token> resolves to the
+   song only on Suno's side, and this page cannot follow it: suno.com sends no CORS headers,
+   so a fetch from here cannot read where it lands, and a cross-origin frame cannot be asked
+   its address either. There is no client-side fix, only a better sentence — which is why
+   this shape is recognised purely to say what to do instead. */
+const SHARE_RE = /suno\.com\/s\/[A-Za-z0-9_-]{6,}/i;
 const sunoIdFrom = text => {
   const m = String(text || '').trim().match(UUID_RE);
   return m ? m[0].toLowerCase() : '';
@@ -922,7 +928,7 @@ function addBlock(c) {
       title="Attach a track of your own to this lesson">${open ? '&times; Never mind' : '+ I know a better example'}</button>
     <div class="addform${open ? ' open' : ''}">
       <input class="addin" type="text" data-addin="${esc(c.id)}" spellcheck="false"
-             placeholder="Paste the Suno link of a track that demonstrates this"
+             placeholder="Paste the suno.com/song/… link of a track that demonstrates this"
              value="${esc(addDraft.get(c.id) || '')}">
       <button class="btn" type="button" data-addgo="${esc(c.id)}">Attach &amp; vouch</button>
       ${msg ? `<p class="addmsg${ok ? '' : ' bad'}">${esc(msg)}</p>` : ''}
@@ -965,7 +971,9 @@ function attachTrack(cardId) {
   const raw = input ? input.value : '';
   const say = (m, ok) => { addMsg.set(cardId, [m, ok]); rerender(); };
   const id = sunoIdFrom(raw);
-  if (!id) return say('That is not a Suno link — open the song on Suno and copy the address bar.', false);
+  if (!id) return say(SHARE_RE.test(raw)
+    ? 'A share link has no song id in it. Open it on Suno and copy the address bar link instead — that one carries the id.'
+    : 'That is not a Suno link — open the song on Suno and copy the address bar.', false);
 
   const hasId = n => ((byN.get(String(n)) || {}).suno || []).includes(id);
   const here = examples(c).find(x => x.src === 'add' ? x.n === id : hasId(x.n));
