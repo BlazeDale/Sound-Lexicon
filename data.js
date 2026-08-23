@@ -16,17 +16,17 @@
 
 /* Version stamp — the ONLY place to bump these. Title, <meta>, masthead, and
  * footer all derive from here + LIB counts at runtime, so counts never drift. */
-const VERSION = 'v55';
-const UPDATED = '2026-08-21';
+const VERSION = 'v56';
+const UPDATED = '2026-08-23';
 
 /* ---------- MOST RECENT BATCH ----------
    Update this after each run: label + date + the entry numbers/ids
    (numbers for library entries, e.g. 133; suite ids like 'Q5' also work).
    These render as full cards in the "Most recent batch" strip up top. */
 const RECENT = {
-  label: 'Vocal fry — five mechanisms, plus one that leans in hard',
-  date:  '2026-08-21',
-  entries: [408, 409, 410, 411, 412, 413]
+  label: 'Vamp — the coda that stops composing and keeps going',
+  date:  '2026-08-23',
+  entries: [414]
 };
 
 const LIB=[
@@ -889,6 +889,7 @@ And there it is. Huh. Every time?`},
 {n:411,suno:[`9f885d03-a911-4738-a966-21da6a79ea41`,`4923bb4b-40d0-42d6-aa5c-9078dbf7a17f`],name:`Fry-scream blackened hardcore`,fam:`metal · blackened hardcore`,cat:`acoustic`,bpm:`168`,role:`screamed lead built on fry driven past distortion`,proc:`fry as amplified mechanism · creak pushed until it tears · words still cutting`,aff:`G`,style:`Blackened hardcore near 168 BPM, corrosive and relentless — tremolo-picked guitars over blast-beat drums that crush down to half-time at every turnaround, bass locked hard to the kick, and one dissonant chord left ringing between sections. A unique and specific vocalist: a baritone voice, guttural and shredded, screaming entirely on amplified vocal fry — the creaking rattle driven so hard it tears into a continuous throat-scraped howl, words still cutting through the roar rather than dissolving into it. Real words throughout, one voice from first line to last. Dense mix, guitars scooped and enormous, the voice sitting inside the wall rather than over it. Delivery furious and unbroken, sustained well past the point of comfort.`,neg:`clean singing, melodic vocal, autotune, bright sheen, slow ballad tempo, wordless treatment, gentle delivery, orchestral swell`},
 {n:412,suno:[`55d804c7-8142-42fa-b379-322a18a6f517`,`1dffc7ee-da14-45e1-9abf-dbd36becfcc6`],name:`Clean-top fry-bottom art-pop`,fam:`art pop · register contrast`,cat:`acoustic`,bpm:`100`,role:`lead alternating a polished top line with a collapsing bottom`,proc:`fry as deliberate contrast · control and collapse line by line · glassy bed`,aff:`A`,style:`Art-pop near 100 BPM, glassy and precise — clean arpeggiated electric guitar, a string quartet answering in short stabs, a programmed kit with a soft gated snare, and one analogue synth line doubling the melody an octave above. A unique and specific vocalist: a high voice, frayed at the bottom and clear at the top, flipping without warning between a clean sustained upper line and a dropped creaking vocal fry at the end of the very same phrase — the two registers set against each other on purpose, one polished and one audibly falling apart. Real words throughout, one voice from first line to last. Bright wide mix, the lead centred with the strings placed either side. Delivery poised and faintly unsettling, control and collapse alternating line by line.`,neg:`consistent smooth delivery, growl, rasp throughout, autotune, dense distortion, wordless treatment, fast tempo, muddy low-end`},
 {n:413,suno:[`81ffa2fc-d38e-48fb-82d4-862a352d4afb`,`cad7be68-c064-4178-b477-5d29d5fbeb42`],name:`Unbroken fry study`,fam:`minimal drone · vocal study`,cat:`acoustic`,bpm:`50`,role:`fry as the entire performance, with nothing else in the track`,proc:`term in the opening · one sustained tone and no arrangement · singing negated outright`,aff:`A`,style:`Minimal drone piece near 50 BPM built entirely around vocal fry — one low sustained tone held unbroken underneath and nothing else at all: no drums, no chords, no riff, no melody, nothing that moves or changes for the whole track. A unique and specific vocalist: a bass-register voice, gravel-dry and completely pitchless, delivering every syllable in unbroken vocal fry from the first word to the last — a continuous creaking rattle, the folds flapping loose and slow, the individual clicks audible one by one at the front of every phrase, the voice never once lifting into a sung note and never settling onto a pitch. The fry is the entire performance and the only thing happening in the recording. Real words throughout, one voice, no other vocal of any kind anywhere. Bone-dry close capture, no reverb, no processing, nothing placed around the voice. Delivery flat and unhurried, the rattle left completely exposed.`,neg:`singing, sung melody, sustained pitch, melodic vocal, clean tone, belting, vibrato, harmony vocals, drums, full arrangement, reverb wash, bright production, instrumental hook, tempo change`},
+{n:414,name:`Endless-coda vamp`,fam:`piano rock · endless coda`,cat:`acoustic`,bpm:`74`,role:`plain lead riding one refrain across an outro that never develops`,proc:`vamp as the whole second half · four chords for four minutes · pile-on instead of progression`,aff:`E`,style:`Piano-led rock hymn near 74 BPM whose entire second half is one uplifting vamp — solo upright piano to open, bass and brushed kit arriving a verse later, tambourine after that, the song building normally until the last chorus, where the changes stop. From there it is four chords cycling unchanged for four minutes: no modulation, no bridge, no new section, nothing composed after that point. The lift comes only from what piles onto the loop — brass, hand-claps, a rising organ, a hall full of people — over a progression that has stopped moving. A unique and specific vocalist: a tenor, warm and lightly grained, singing the verses plainly and then riding the vamp for its whole length on one repeated refrain line, going higher and rougher each turn and never once leaving it. Real words throughout, one lead voice from first line to last, a crowd joining the refrain behind it. Big warm room mix, lead centred, crowd wide. Delivery generous and rising — an ending that refuses to end.`,neg:`key change, modulation in the outro, new chord progression after the last chorus, extra verse, early fade-out, tempo change, wordless treatment, autotune, electronic beat, screamed delivery`},
 ];
 
 /* BEGIN GENERATED — Suno song titles · run: node tools/song_titles.mjs */
@@ -2519,5 +2520,6 @@ const TIMBRE = {
   '411': {r:2.5,g:9.2,rk:1,gk:1,z:'Metal & heavy'},
   '412': {r:7.5,g:5.5,rk:1,gk:1,z:'Pop & vocal'},
   '413': {r:1.5,g:6.8,rk:1,gk:1,z:'Ambient & atmospheric'},
+  '414': {r:6,g:6.2,rk:1,gk:1,z:'Rock & guitar'},
 };
 /* END GENERATED TIMBRE */

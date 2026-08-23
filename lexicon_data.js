@@ -1978,6 +1978,7 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   res:{ verdict:'untested', model:null, date:null,
     note:`A structural instruction, and one that fights a strong default: nearly everything a generator has learned about songs involves harmonic movement and section changes. Asking for a vamp asks it to deliberately NOT develop, which is closer to the drone card than to any other form term. If it keeps introducing changes anyway, that is a useful finding about how strongly song-shaped conventions are baked in.` },
   ev:[
+    { n:414, span:`vamp`, state:'candidate', why:`Written to test the term rather than to use it: the whole second half is one four-chord loop with nothing composed after the last chorus, so every bit of the ending's lift has to come from what is stacked over a progression that has stopped moving. If the generator writes a bridge or a key change into that outro, the word did not land — and the failure is easy to hear rather than a matter of taste.` },
     { n:62,  span:`vamp`, state:'candidate', why:`"The long vamp breathing on slow tension-release" in afrobeat, the tradition where vamping is the whole architecture.` },
     { n:149, span:`vamp`, state:'candidate', why:`"Two-chord vamps hammered past the point of reason" — repetition pushed until it becomes confrontational.` },
     { n:124, span:`vamp`, state:'candidate', why:`"Shifting minor vamps" in psychedelic soul, which asks for repetition that nonetheless moves between figures.` },
