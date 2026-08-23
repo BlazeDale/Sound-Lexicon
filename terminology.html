@@ -38,6 +38,8 @@
   .pill{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;background:var(--panel);border:1px solid var(--line);color:var(--muted);border-radius:20px;padding:7px 12px;cursor:pointer}
   .pill:hover{border-color:var(--amber);color:var(--text)}
   .pill.on{background:var(--amber);color:#1a1206;border-color:var(--amber);font-weight:600}
+  .pill[disabled]{opacity:.4;cursor:default}
+  .pill[disabled]:hover{border-color:var(--line);color:var(--muted)}
   .hits{font-family:var(--mono);font-size:11px;color:var(--dim)}
   /* domain rail */
   .rail{margin-top:10px}
@@ -265,6 +267,7 @@
       <button class="pill" id="needs" type="button" title="Only terms with no supporting vote yet">Needs a listen</button>
       <button class="pill" id="funlearned" type="button" title="Lessons you have not marked as learned">Unlearned</button>
       <button class="pill" id="flearned" type="button" title="Lessons you have marked as learned">Learned</button>
+      <button class="pill" id="frandom" type="button" title="One lesson you have not marked learned — click again for a different one">Teach me one</button>
       <button class="pill" id="expandall" type="button" title="Open every lesson currently listed">Open all</button>
       <span class="hits" id="hits"></span>
       <span class="progress" id="progress"></span>
@@ -425,6 +428,7 @@ LEX.forEach(c => {
 });
 
 let curDomain = null, curNeeds = false, curLearn = null;   // curLearn: null | 'learned' | 'unlearned'
+let curPick = null;   // a single card id, chosen at random — a lens over the filters, not one of them
 
 /* ---------- masthead counts derive from the data, so they never drift ---------- */
 {
@@ -945,17 +949,27 @@ document.addEventListener('click', e => {
 });
 
 /* ---------- filter + render ---------- */
+const searchWords = () => {
+  const term = document.getElementById('q').value.trim().toLowerCase();
+  return term ? term.split(/\s+/) : [];
+};
+
+/* Every filter except the random pick, which sits on top of these rather than beside them:
+   "one at random" has to mean one out of whatever is already being looked at, or picking a
+   lesson while a domain is selected would jump you out of that domain. */
+function passes(c, words) {
+  if (curDomain && !c.domains.includes(curDomain)) return false;
+  if (curNeeds && support(c).backed > 0) return false;   // live votes, not the file
+  if (curLearn === 'learned' && !learned.has(c.id)) return false;
+  if (curLearn === 'unlearned' && learned.has(c.id)) return false;
+  return words.every(w => c._blob.includes(w));
+}
+const pickable = words => LEX.filter(c => !learned.has(c.id) && passes(c, words));
+
 function render() {
   reindexAdds();                        // cards are about to read it
-  const term = document.getElementById('q').value.trim().toLowerCase();
-  const words = term ? term.split(/\s+/) : [];
-  const list = LEX.filter(c => {
-    if (curDomain && !c.domains.includes(curDomain)) return false;
-    if (curNeeds && support(c).backed > 0) return false;   // live votes, not the file
-    if (curLearn === 'learned' && !learned.has(c.id)) return false;
-    if (curLearn === 'unlearned' && learned.has(c.id)) return false;
-    return words.every(w => c._blob.includes(w));
-  });
+  const words = searchWords();
+  const list = curPick ? LEX.filter(c => c.id === curPick) : LEX.filter(c => passes(c, words));
   document.getElementById('cards').innerHTML = list.length
     ? list.map(cardHTML).join('')
     : `<p class="body mut" style="padding:26px 2px">No term matches that. Try a plainer word — the cards are indexed by how a listener would describe the sound, not only by the technical name.</p>`;
@@ -965,6 +979,14 @@ function render() {
     done ? `<b>${done}</b> / ${LEX.length} learned` : `none marked learned yet`;
   const d = curDomain && domById.get(curDomain);
   document.getElementById('dblurb').textContent = d ? d.blurb : '';
+  /* The pill reports what it can do rather than being clicked to find out: nothing left to
+     draw from is a state worth seeing, and it is the state a reader is working towards. */
+  const rand = document.getElementById('frandom'), pool = pickable(words).length;
+  rand.classList.toggle('on', !!curPick);
+  rand.disabled = !pool;
+  rand.title = pool ? `One of the ${pool} lessons here you have not marked learned — click again for a different one`
+    : curLearn === 'learned' ? 'Nothing to draw from — this view is the lessons you HAVE learned'
+    : 'Nothing left to draw from — every lesson in this view is marked learned';
   /* Narrow the search to a single lesson and there is nothing left to choose between, so
      opening it saves a click that has no alternative. Two or more stay shut. */
   if (list.length === 1) cardOpen.add(list[0].id);
@@ -1358,10 +1380,31 @@ document.addEventListener('keydown', e => {
   if (box) { e.preventDefault(); attachTrack(box.dataset.addin); }
 });
 
-/* ---------- controls ---------- */
-document.getElementById('q').addEventListener('input', render);
+/* ---------- controls ----------
+   Touching any other control drops the pick. A lens that survived the filter under it would
+   leave the toolbar lying — every other pill would look broken, because the one card on
+   screen would not answer to any of them. */
+const clearPick = () => { curPick = null; };
+document.getElementById('q').addEventListener('input', () => { clearPick(); render(); });
 document.getElementById('needs').addEventListener('click', e => {
+  clearPick();
   curNeeds = !curNeeds; e.target.classList.toggle('on', curNeeds); render();
+});
+
+/* ---------- one lesson, at random ----------
+   149 cards is a library, not a lesson — and the honest state of a reader arriving is that
+   they do not know which one they need. This picks for them, out of the ones they have not
+   marked learned, and leans on a rule that was already here: a list of exactly one opens
+   itself, so the lesson arrives read-to-read rather than as a heading to click.
+
+   The current pick is excluded from the draw, so a second click always moves. When it is the
+   last one left the click does nothing rather than pretending to reshuffle. */
+document.getElementById('frandom').addEventListener('click', () => {
+  const pool = pickable(searchWords()).filter(c => c.id !== curPick);
+  if (!pool.length) return;
+  curPick = pool[Math.floor(Math.random() * pool.length)].id;
+  render();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 /* ---------- vouching for a demo ----------
    The mechanics moved into castVote, which attaching a track uses too — one optimistic
@@ -1387,6 +1430,7 @@ document.addEventListener('click', e => {
 
 /* The two are mutually exclusive; clicking the active one clears it. */
 function setLearnFilter(which) {
+  clearPick();
   curLearn = (curLearn === which) ? null : which;
   document.getElementById('flearned').classList.toggle('on', curLearn === 'learned');
   document.getElementById('funlearned').classList.toggle('on', curLearn === 'unlearned');
@@ -1407,6 +1451,7 @@ document.addEventListener('click', e => {
 
 document.getElementById('rail').addEventListener('click', e => {
   const b = e.target.closest('[data-dom]'); if (!b) return;
+  clearPick();
   curDomain = b.dataset.dom || null;
   document.querySelectorAll('[data-dom]').forEach(x => x.classList.toggle('on', x === b));
   render();
@@ -1469,6 +1514,9 @@ function syncExpandAll() {
 /* ---------- deep links (§9: a stable fragment per card) ---------- */
 function jumpToHash() {
   const id = decodeURIComponent(location.hash.slice(1)); if (!id) return;
+  /* A pick hides every other card, so a permalink into one of them would find nothing in the
+     DOM and quietly do nothing at all. Being sent to a named lesson outranks the lens. */
+  if (curPick && curPick !== id && LEX.some(c => c.id === id)) { clearPick(); render(); }
   const el = document.getElementById(id); if (!el) return;
   setOpen(id, true);                     // somebody followed a link to this lesson to read it
   syncExpandAll();
