@@ -352,16 +352,66 @@ LIB.forEach(v => (v.suno || []).forEach(id => bySuno.set(String(id), v)));
    also the security story: the value reaches an <img> src, an iframe src and a database key,
    and a whitelist this narrow cannot carry anything but an id. */
 const UUID_RE = /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i;
-/* A share link carries a lookup token, not the id — suno.com/s/<token> resolves to the
-   song only on Suno's side, and this page cannot follow it: suno.com sends no CORS headers,
-   so a fetch from here cannot read where it lands, and a cross-origin frame cannot be asked
-   its address either. There is no client-side fix, only a better sentence — which is why
-   this shape is recognised purely to say what to do instead. */
 const SHARE_RE = /suno\.com\/s\/[A-Za-z0-9_-]{6,}/i;
 const sunoIdFrom = text => {
   const m = String(text || '').trim().match(UUID_RE);
   return m ? m[0].toLowerCase() : '';
 };
+
+/* ---------- following a share link ----------
+   suno.com/s/<token> is what Suno's Share button hands out, so it is the link a reader is
+   likeliest to have — and rejecting it was turning people away at the one moment they
+   wanted to contribute. It carries a lookup token rather than an id, and nothing in this
+   page can follow it on its own: suno.com sends no CORS headers, so the response arrives
+   opaque — status 0, address blank, body unreadable — and a cross-origin frame will not be
+   asked where it landed either. Both were tried before this was written.
+
+   So the page borrows somebody else's server to read the share page for it. What comes back
+   is never trusted as content: it is scanned for 36 characters of hex and dashes and nothing
+   else, and that id then walks exactly the same whitelisted path as one pasted by hand. A
+   proxy that lied could only lie about WHICH id it returns — the same power a reader already
+   has by pasting a different link — so this opens nothing that was closed.
+
+   The cost is real and belongs in the open: for a share link, the pasted address and the
+   reader's own address reach a third party. It happens only for that one shape. A /song/
+   link already carries its id and never leaves the page, and if every proxy is down the
+   reader is told to open it on Suno, which is where this started.
+
+   To own it rather than borrow it: a Cloudflare Worker of about ten lines — fetch the share
+   address with redirect manual, hand back the Location header with an allow-origin header —
+   replaces this with one address that answers to us and reads nothing but a header.
+
+   Only a plain proxy will do. A reader service was tried as a second string and had to be
+   thrown out: it RENDERS the page, so it came back with dozens of song ids belonging to
+   whatever else the site had put on screen, the right one not even first. A dead link that
+   attaches a random song is worse than a dead link that says so. */
+const SHARE_PROXY = u => 'https://corsproxy.io/?url=' + encodeURIComponent(u);
+
+/* Which id in the page is THE song is not a guess: a share page states it in its canonical
+   link, and that is the only place read. The fallback — one /song/ id and no other — exists
+   for a page that stops carrying a canonical, and refuses as soon as there is more than one
+   candidate. A page with no song in it at all yields nothing, which is what a dead share
+   token must do: verified against a made-up token, whose landing page carries a UUID of its
+   own and would happily have been mistaken for an answer by any looser reading. */
+const CANON_RE = /rel=["']canonical["'][^>]*\/song\/([0-9a-f-]{36})|\/song\/([0-9a-f-]{36})[^>]*rel=["']canonical["']/i;
+const SONG_ID_RE = /\/song\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/gi;
+function songIdIn(html) {
+  const canon = html.match(CANON_RE);
+  if (canon) return (canon[1] || canon[2]).toLowerCase();
+  const all = [...new Set([...html.matchAll(SONG_ID_RE)].map(m => m[1].toLowerCase()))];
+  return all.length === 1 ? all[0] : '';
+}
+async function resolveShare(url) {
+  try {
+    const stop = new AbortController();
+    const timer = setTimeout(() => stop.abort(), 8000);   // a hung proxy must not hang the form
+    const res = await fetch(SHARE_PROXY(url), { signal: stop.signal });
+    clearTimeout(timer);
+    if (!res.ok) return '';
+    const id = songIdIn(await res.text());
+    return UUID_RE.test(id) ? id : '';                    // back through the whitelist regardless
+  } catch (e) { return ''; }                              // dead, slow, or rate-limited
+}
 
 const TITLES = (typeof SONG_TITLES !== 'undefined' && SONG_TITLES) || {};
 
@@ -928,7 +978,7 @@ function addBlock(c) {
       title="Attach a track of your own to this lesson">${open ? '&times; Never mind' : '+ I know a better example'}</button>
     <div class="addform${open ? ' open' : ''}">
       <input class="addin" type="text" data-addin="${esc(c.id)}" spellcheck="false"
-             placeholder="Paste the suno.com/song/… link of a track that demonstrates this"
+             placeholder="Paste a Suno link of a track that demonstrates this — a share link works too"
              value="${esc(addDraft.get(c.id) || '')}">
       <button class="btn" type="button" data-addgo="${esc(c.id)}">Attach &amp; vouch</button>
       ${msg ? `<p class="addmsg${ok ? '' : ' bad'}">${esc(msg)}</p>` : ''}
@@ -965,16 +1015,36 @@ function castVote(cardId, n) {
    already under the lesson must not arrive a second time under a different key, so a paste
    that names one is redirected to it. That covers the likeliest paste of all: the demo the
    reader just played from this very card. */
+const addBusy = new Set();               // cardId -> a share link is being followed right now
+
 function attachTrack(cardId) {
   const c = LEX.find(x => x.id === cardId); if (!c) return;
+  if (addBusy.has(cardId)) return;       // a second Enter must not start a second lookup
   const input = document.querySelector(`[data-addin="${cardId}"]`);
   const raw = input ? input.value : '';
   const say = (m, ok) => { addMsg.set(cardId, [m, ok]); rerender(); };
-  const id = sunoIdFrom(raw);
-  if (!id) return say(SHARE_RE.test(raw)
-    ? 'A share link has no song id in it. Open it on Suno and copy the address bar link instead — that one carries the id.'
-    : 'That is not a Suno link — open the song on Suno and copy the address bar.', false);
 
+  const id = sunoIdFrom(raw);
+  if (id) return finishAttach(cardId, id, say);
+
+  const share = raw.match(SHARE_RE);
+  if (!share) return say('That is not a Suno link — open the song on Suno and copy the address bar.', false);
+
+  /* The draft is deliberately NOT cleared here: until an id comes back there is nothing to
+     attach, and a reader whose proxy times out must still have their link in the box. */
+  addBusy.add(cardId);
+  say('Following that share link…', true);
+  resolveShare('https://' + share[0]).then(found => {
+    addBusy.delete(cardId);
+    if (found) finishAttach(cardId, found, say);
+    else say('That share link could not be followed just now. Open it on Suno and copy the '
+      + 'address bar link instead — that one carries the id.', false);
+  });
+}
+
+/* Everything from here on is the same whether the id was pasted or followed. */
+function finishAttach(cardId, id, say) {
+  const c = LEX.find(x => x.id === cardId); if (!c) return;
   const hasId = n => ((byN.get(String(n)) || {}).suno || []).includes(id);
   const here = examples(c).find(x => x.src === 'add' ? x.n === id : hasId(x.n));
   const inMore = (c._more || []).find(m => hasId(m.n));
