@@ -29,8 +29,8 @@
  * Loaded as a classic <script> AFTER data.js, so LIB is already a global.
  */
 
-const LEX_VERSION = 'v14';
-const LEX_UPDATED = '2026-08-22';
+const LEX_VERSION = 'v15';
+const LEX_UPDATED = '2026-08-25';
 
 /* ---------- TOP TIER: domains, not instruments ----------
    `kind` splits the rail into the two families the doc argues are peers: the physical
@@ -4115,6 +4115,140 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
     { n:41, span:`noise floor`, state:'candidate', why:`"Oceanic noise floor" in shoegaze — the noise raised until it becomes an instrument, the furthest extreme of the term.` },
     { n:64, span:`tape hiss`, state:'candidate', why:`"Vinyl and tape hiss" named together, which is the physically impossible pairing this card's misconception is about.` },
     { n:79, span:`tape hiss`, state:'candidate', why:`The same double pairing in vaporwave, useful for judging whether the two noises come back distinguishable or as one generic dirt.` }
+  ]
+},
+
+{
+  id:'c800g',
+  term:`Sony C-800G`,
+  sounds:`Glassy, and lit from above. The top of a voice — breath, air, the edge of every S — arrives exaggerated and pushed forward, so the singer sounds like they are standing in front of the track rather than inside it. The low end is large at the same time, which is the trick: bright without ever sounding thin. Push it at all and those S sounds turn to razors, which is why almost every record made on one has been de-essed hard afterwards.`,
+  gloss:`A large tube condenser with a deliberately lifted top end, cooled by a heat pump bolted to its back so the valve inside can run hot without adding noise. It is the microphone most modern rap, R&B and pop vocals are recorded through.`,
+  syn:[`C-800G`,`the rap mic`,`the R&B vocal mic`,`modern bright mic`,`the one with the cooler on it`,`the expensive studio mic`],
+  myth:`The brightness is not extra detail — it is a high-frequency lift built in at the factory, a decision someone made on your behalf. A flatter, more accurate microphone captures the same performance with less air on it and sounds duller by comparison, which is an odd thing to pay this much to avoid. And the lift has a cost: this microphone is a large part of why modern vocals need aggressive de-essing, and why so many of them end up very slightly lisped.`,
+  known:`The default vocal microphone in American rap, R&B and pop rooms since the mid-1990s, and the most consistent single reason a modern vocal sounds glossy and forward no matter who is singing.`,
+  origin:`Introduced in the early 1990s by a Japanese electronics manufacturer as a studio flagship; taken up first by New York R&B rooms, then near-universally by hip-hop, where a lifted top suited voices that had to cut through very dense low end.`,
+  first:`1990s`, peak:[`2000s`,`2010s`],
+  exemplar:{ kind:'exemplifies', title:`Hotline Bling`, artist:`Drake`, year:`2015`,
+    listen:`The vocal sits in front of everything with a hard glassy edge on every S and a wide bloom underneath it. Nothing in the arrangement is that bright — the sheen arrives on the way in, at the microphone, before any of the production touches it.` },
+  domains:['microphone'],
+  match:['c-800g','c800g','modern mic'],
+  kinds:['instrument'],
+  nature:'continuous',
+  range:`The corpus never names a microphone model — it names a category — so the nearest wording is "modern mic", and all three prompts using it also say bright, tuned or slick: "Modern mic into hard tuning and slick digital chain" (#23), "Modern mic into a slick digital chain, tuned and bright" (#69), and "Close modern mic, tight compression, bright and forward" (#291). That cluster is this microphone described without being named. "Bright studio condenser" (#32) is the same instruction moved back to the 1980s.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`The first model-level microphone card on the page, and it exists to ask something the four type cards cannot: does naming a specific object do anything that naming its category does not? The honest expectation is no — that "Sony C-800G" and "bright modern condenser" produce the same vocal, because a model name almost certainly carries no acoustic meaning to a generator and travels only with the era and genre words around it. If that is right, the whole idea of prompting for gear by model collapses in a single test, which is worth more than a shelf of careful model cards. The thing to listen for is sibilance: this microphone's signature is an S that is slightly too loud, and a result without one has not resolved the term.` },
+  ev:[
+    { n:69,  span:`Modern mic into a slick digital chain, tuned and bright`, state:'candidate', why:`The fullest statement of the sound anywhere in the corpus — bright and tuned named in one breath, which is how this microphone is nearly always used.` },
+    { n:291, span:`Close modern mic`, state:'candidate', why:`"Close modern mic, tight compression, bright and forward" on a club-rap lead — the exact chain this microphone sits at the front of.` },
+    { n:23,  span:`Modern mic`, state:'candidate', why:`"Modern mic into hard tuning" on melodic trap: the commonest real-world use, and the one where the sibilance has the most to fight through.` },
+    { n:32,  span:`Bright studio condenser`, state:'candidate', why:`The same brightness asked for in a 1980s setting instead of a modern one — useful for judging whether the word bright or the era around it is doing the steering.` }
+  ]
+},
+
+{
+  id:'rotary-speaker',
+  term:`Rotary speaker`,
+  sounds:`The sound starts turning. A chord that was sitting still begins to sway and swirl around you, its pitch wavering very slightly up and down as though it were circling the room — because it is. Fast, it becomes a fluttering urgent shimmer; slow, a wide breathing sway. The most expressive sound it makes is neither of those: it is the few seconds in between, while the thing physically winds up or coasts down.`,
+  gloss:`A loudspeaker cabinet whose horn physically spins. The rotation throws sound around the room and shifts its pitch minutely as it moves toward you and away again — real Doppler, not an electronic imitation of it.`,
+  syn:[`Leslie`,`rotating speaker`,`spinning speaker`,`the swirly cabinet`,`organ swirl`,`rotary cab`],
+  myth:`It is not a chorus pedal and it is not tremolo, though it gets called both. Chorus copies a signal and detunes the copy; tremolo moves the volume up and down. This is an object moving through air, which is why the wobble is never quite even and why no pedal that does not model the mechanics can do the wind-up. The second mistake is bigger: it does not belong to the organ. Guitars, whole horn sections and lead vocals have all been played through one, and a voice through a rotary cabinet is among the most recognisable sounds of 1960s pop.`,
+  known:`Gospel, soul, blues and progressive-rock organ almost without exception; psychedelic guitar; and mid-1960s lead vocals, once studios worked out the cabinet did not care what you fed it.`,
+  origin:`Built in 1940s America to make an electric organ sound like pipes in a church, and sold separately from the organ it was designed for because the two manufacturers refused to do business with each other. Adopted by gospel and soul players through the 1950s, and turned on guitars and voices by psychedelic studios in the 1960s.`,
+  first:`1940s`, peak:[`1960s`,`1970s`],
+  exemplar:{ kind:'exemplifies', title:`Tomorrow Never Knows`, artist:`The Beatles`, year:`1966`,
+    listen:`The lead vocal in the second half is not doubled and not reverbed — it is circling. The pitch wavers very slightly and the voice seems to move around you, which is a speaker spinning in a room rather than anything added to the tape afterwards.` },
+  domains:['keys','production','voice'],
+  match:['leslie','rotary speaker','rotating speaker','swirling organ','drawbar organ','organ swirl'],
+  kinds:['instrument'],
+  nature:'continuous',
+  range:`The corpus always arrives at this cabinet through the organ and never by name: "swirling organ" in Madchester baggy (#57), in psychedelic space rock (#196) and in ye-ye pop (#356), and "drawbar organ" in arena hard rock (#211). Four decades, three countries, one cabinet doing the same thing in all of them — and not a single prompt in the library puts it on a voice or a guitar, which is where the more interesting half of the term lives.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Deliberately split off from the Hammond-organ card, which names the cabinet in passing and moves on. The test that matters is whether the swirl can be pulled off the organ: a prompt asking for a rotary speaker on a voice or a guitar, with no organ named anywhere in it. If the generator can only produce the swirl attached to an organ, then rotary speaker is not a term it holds — it is a feature of the word Hammond, and these two cards should be merged. The corpus cannot settle this on its own, because every entry that reaches the cabinet reaches it through an organ.` },
+  ev:[
+    { n:57,  span:`swirling organ`, state:'candidate', why:`Late-1980s Manchester, saturated and warm — the cabinet at a slow wide sway underneath a loose funk-rock groove.` },
+    { n:196, span:`swirling organ`, state:'candidate', why:`Psychedelic space rock at 72 BPM, sitting alongside tape-delay throws and phased cymbals. The best place to hear whether the swirl stays distinguishable from the other modulations around it.` },
+    { n:356, span:`swirling organ`, state:'candidate', why:`Ye-ye pop, where the cabinet is doing light decorative work behind a talk-sung charm vocal rather than carrying the record.` },
+    { n:211, span:`drawbar organ`, state:'candidate', why:`Named through the organ's sliders rather than its cabinet, in a 70s stadium setting. Nothing in the wording mentions rotation, so this is the case where the swirl either comes along uninvited or does not come at all.` }
+  ]
+},
+
+{
+  id:'slapback',
+  term:`Slapback echo`,
+  sounds:`Every word arrives twice. One hard repeat lands a fraction of a second behind the voice — close enough that it does not read as an echo, far enough that you can hear the seam — and then it stops. No tail, no wash, nothing trailing off. It sounds like a ghost standing one step behind the singer, and it makes a small dry room sound like a stage.`,
+  gloss:`A single delayed repeat, roughly a tenth of a second late, with the feedback turned off so it never repeats again. Originally made by running tape past two heads and feeding the second one back into the mix.`,
+  syn:[`slapback`,`slap echo`,`rockabilly echo`,`tape slap`,`one-repeat delay`,`doubling echo`],
+  myth:`It is not reverb, and it is not a delay sitting quietly in the background — it is one loud repeat and then silence. The whole character lives in the feedback being at zero. Turn feedback up even slightly and you get a wash that belongs to a completely different decade, which is why records reaching for a 1950s sound with an ordinary delay never quite land it.`,
+  known:`Rockabilly and 1950s rock and roll almost as a defining feature, then country vocals and guitars, surf, psychobilly, and any modern record that wants to sound like it was cut live in one take in Memphis.`,
+  origin:`An accident of tape machines in early-1950s Memphis, where monitoring off the second head of a recorder put a repeat behind the singer. It was kept because it made a two-piece session sound like a band, and it has been imitated ever since.`,
+  first:`1950s`, peak:[`1950s`,`1980s`],
+  exemplar:{ kind:'exemplifies', title:`That's All Right`, artist:`Elvis Presley`, year:`1954`,
+    listen:`The voice and the guitar each come back once, hard, about a tenth of a second late, and then nothing. Listen at the end of a line: the repeat lands and the sound stops dead with no tail behind it. That absence is what separates this from reverb.` },
+  domains:['production','voice','guitar'],
+  match:['slapback','slap-back','slapback delay','slapback tape echo','slap echo'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`Two different things sit under one word here. "Drenched in heavy slapback tape echo that doubles every line a beat behind" (#25) is the effect at full strength on a voice. "Slapback upright bass" (#309) is not an echo at all — it is a player slapping the strings against the fingerboard, a wording collision the term has carried since the 1950s. #41 supplies the contrast that defines the term: the same machine set long and washed instead of short and hard.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`The cleanest available test of whether delay TIMING registers as a number or only as a mood. Slapback is defined by two specific settings — around a tenth of a second, feedback at zero — so a generator that produces any generic echo has not resolved it. It is also unusually easy to judge without training: count the repeats. One is slapback, more than one is something else. Worth running directly against the tape-delay card, which names the same machine set the opposite way.` },
+  ev:[
+    { n:25,  span:`heavy slapback tape echo that doubles every line a beat behind`, state:'candidate', why:`The maximal case, and the only prompt in the library that explains the mechanism as well as naming it.` },
+    { n:309, span:`slapback upright bass`, state:'candidate', why:`The wording collision, in psychobilly: here the word means a bass technique, not an echo. A useful trap — a delayed bass coming back would mean the word was read and the sentence was not.` },
+    { n:41,  span:`tape echo`, state:'candidate', why:`The contrast case: the same machine set the other way, "drenched in reverb and tape echo" until the voice becomes texture. If this and #25 arrive sounding alike, the timing is not being read.` }
+  ]
+},
+
+{
+  id:'delay-throw',
+  term:`Delay throw`,
+  sounds:`One word suddenly leaves. The singer carries on, but a single syllable is caught and thrown backwards into the distance, repeating and shrinking until it disappears — while everything else stays dry and close. It punctuates rather than decorates: because the rest of the vocal is untouched, the thrown word reads as emphasis, or as a hole opening up behind the track.`,
+  gloss:`Sending one word or one hit to a delay instead of the whole part, usually by pushing a fader up for a moment. Everything else stays dry, so the effect is an event rather than a setting.`,
+  syn:[`echo throw`,`dub throw`,`throwing the delay`,`delay send`,`spin`,`word echo`],
+  myth:`It is not the same as putting delay on the vocal. A vocal with delay running throughout sounds washed and set back; a throw leaves the voice dry and sends only one moment away, which is how it can be enormous without pushing the singer backwards. It is also performed — a hand moving a fader in real time — which is why it lands in a slightly different place each chorus instead of on a grid.`,
+  known:`Dub reggae, where it was invented and where it is the entire language; then dancehall, house and drum and bass; and modern pop, where a thrown word at the end of a pre-chorus is a standard way to open a hole before the drop.`,
+  origin:`Kingston mixing rooms in the early 1970s, where engineers treated the desk as an instrument and rode the send faders live during a take. Carried into British and American dance production through the 1980s, and into mainstream pop by the 2000s.`,
+  first:`1970s`, peak:[`1970s`,`2010s`],
+  exemplar:{ kind:'exemplifies', title:`King Tubby Meets Rockers Uptown`, artist:`Augustus Pablo`, year:`1976`,
+    listen:`Individual notes vanish into the distance while the bass and drums stay bone dry in front of you. Nothing is drenched — the effect arrives, takes one sound away with it, and leaves. You can hear a hand moving.` },
+  domains:['production','voice','arrangement'],
+  match:['delay throw','echo throw','dub delay','thrown into the distance'],
+  kinds:['technique'],
+  nature:'momentary',
+  range:`The corpus uses the term across five genres and never once as a setting — always as an event. "Occasional dub delay throws catch a single word and repeat it into the distance while the talking continues" (#277) is the mechanism written out in full. "Dubby delay throws" sit decoratively inside early-2000s crossover pop (#193); "dub delay throws" hold together a track built from chopped vocal fragments (#228); and "spring reverb and tape-delay throws smearing the snare" (#337) moves the throw off the voice and onto the drums, which is the same gesture aimed somewhere else.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`The most useful term on this page for testing whether a generator can do something MOMENTARY. Nearly every production term in this library is a setting — something true of the whole track — and those can be satisfied by applying an effect globally. A throw cannot be faked that way: if the entire vocal comes back drenched, the term has failed even though the effect is audibly present. That gives a rare failure mode a lay listener can judge outright. Listen for whether the dry vocal survives.` },
+  ev:[
+    { n:277, span:`Occasional dub delay throws catch a single word and repeat it into the distance`, state:'candidate', why:`The mechanism spelled out inside the prompt, over continuous spoken narration — the clearest statement of the term in the library.` },
+    { n:193, span:`dubby delay throws`, state:'candidate', why:`Named in passing in early-2000s crossover pop, where the throw is decoration rather than architecture. The subtle end of the range.` },
+    { n:337, span:`spring reverb and tape-delay throws smearing the snare`, state:'candidate', why:`The throw taken off the voice and put on the drums, which is where dub used it first.` },
+    { n:228, span:`dub delay throws`, state:'candidate', why:`Inside a track made entirely of chopped vocal fragments, where telling a throw from an edit is genuinely hard — the case most likely to come back as an undifferentiated wash.` }
+  ]
+},
+
+{
+  id:'telephone-vocal',
+  term:`Telephone vocal`,
+  sounds:`The voice goes small and tinny, as though it were coming out of a phone lying on a table across the room. The bottom is gone, the air at the top is gone, and what is left is a narrow band in the middle that sounds pinched, nasal and slightly broken up. Because everything else on the record is full-range, the effect is spatial as much as tonal — the singer is somewhere else, and when the filter lifts the whole track seems to open.`,
+  gloss:`A voice passed through a narrow band-pass filter, with the low and high ends both removed and only the middle left. Usually with a little distortion added, because real telephones and megaphones distort.`,
+  syn:[`telephone filter`,`band-passed vocal`,`megaphone vocal`,`lo-fi vocal filter`,`radio voice`,`bullhorn vocal`],
+  myth:`It is not just making the vocal small and distant. Distance is made with reverb, and a distant voice keeps its low end — this removes the bottom, which is why a telephone vocal can be as loud as anything on the record and still sound far away. The related mistake is treating it as a texture: it is nearly always structural, put on a verse precisely so the unfiltered chorus arrives like a door opening.`,
+  known:`Pop and indie verses through the 2000s and 2010s as an intro device, hip-hop skits, electroclash and synthpop as a deadpan affect, and industrial and metal as a megaphone snarl.`,
+  origin:`As old as recorded novelty — 1960s records reached for actual megaphones and telephone handsets — but its modern form is a plug-in preset, and it became a standard verse-into-chorus device once every producer had one within reach in the 2000s.`,
+  first:`1960s`, peak:[`2000s`,`2010s`],
+  exemplar:{ kind:'exemplifies', title:`Pumped Up Kicks`, artist:`Foster the People`, year:`2010`,
+    listen:`The verse vocal is thin and boxed in with no low end at all, and then the chorus arrives full and wide. The arrangement barely changes across that line — almost all of the size comes from the filter coming off the voice.` },
+  domains:['production','voice'],
+  match:['telephone-narrow','telephone filter','band-passed','bandpass vocal','megaphone','filtered to androgyny'],
+  kinds:['technique'],
+  nature:'continuous',
+  range:`The corpus reaches the same filter from four directions. "A telephone-narrow filter with bored precision" (#J2) is the deadpan electroclash use. "Band-passed and smeared into the sample bed" (#J1) uses it to erase identity — the voice is "filtered to androgyny" in the same sentence. "Band-passed like a distant transmission" (#228) uses it for distance. And "snarled and growled through a blown-out megaphone" (#306) is the same narrow band with distortion piled on until it reads as aggression rather than distance.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Expected to be one of the easier terms on this page, because unlike ribbon warmth it is a gross change any listener can name without training — you can hear a phone. The interesting question is the second half of the term: whether the filter can be put on ONE SECTION and lifted for the next. Every corpus prompt here describes a whole-track treatment, so the structural use — verse filtered, chorus not — is entirely untested, and it is the use that actually matters in pop. A generator that filters the whole song has produced the sound and missed the point.` },
+  ev:[
+    { n:'J2', span:`telephone-narrow filter`, state:'candidate', why:`The plainest naming in the library, on a flat deadpan talk-sing where the filter is the whole vocal identity.` },
+    { n:'J1', span:`band-passed and smeared into the sample bed`, state:'candidate', why:`The filter used to remove a singer's identity rather than to place them, with "filtered to androgyny" sitting in the same sentence.` },
+    { n:228, span:`band-passed like a distant transmission`, state:'candidate', why:`The distance use, under a chopped-break track. Worth comparing against reverb-based distance: the low end is gone here, and reverb would have left it.` },
+    { n:306, span:`blown-out megaphone`, state:'candidate', why:`The same narrow band with heavy distortion over it, snarled rather than spoken — the aggressive end of the range.` }
   ]
 },
 
