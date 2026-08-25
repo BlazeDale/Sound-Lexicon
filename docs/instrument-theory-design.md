@@ -115,6 +115,44 @@ Three rules that keep this from leaking:
   a capo are each an object *and* a way of playing. Tag both and stop
   arbitrating.
 
+### Difficulty to hear (added 2026-08-25)
+
+A third axis, orthogonal to both of the above: `hear`, an integer 1–4.
+
+```
+1  Easy       you hear it the first time, without being told it is there
+2  Medium     plainly there once someone names it — pointing at, not training
+3  Hard       needs repeated listening or an A/B; a quality, not an event
+4  Very hard  a trained ear, a minimal pair, or both
+```
+
+Why it is a separate field rather than something derived:
+
+- **It is what a reader actually navigates by.** Domain answers "what is this
+  about"; `kinds` and `nature` answer "what sort of thing is it". Neither
+  answers the question someone browsing a hundred cards is really asking,
+  which is *what will this cost me*. A beginner wants the 1s and a trained ear
+  wants the 4s, and neither of those is a domain.
+- **It is not the verdict, and the page must not let the two blur.** `res.verdict`
+  is about the generator; this is about the listener. A term can be trivially
+  easy to hear and still be one the generator cannot produce on request —
+  autotune is a 1 and untested, and both are true at once. The standing caveat
+  says so outright for that reason.
+- **It is a judgement, and it is stamped as one.** Unlike a span or an era it
+  cannot be checked against anything, so the honest move is to say so on the
+  page rather than to let a coloured edge imply a measurement.
+- **Required, never defaulted.** `checkLexicon` rejects a card without one. A
+  silent default would fill the easy tier with cards nobody ever rated, and
+  nothing about the page would look broken.
+
+One ramp of four colours (green → red) carries it everywhere it appears: the
+card's left edge, the chip on the card, and the rail buttons. The rail is
+therefore also the key, so there is no separate legend to fall out of sync.
+Difficulty is the one **multi-select** filter on the page — the useful question
+is nearly always a band ("the easy half", "the two hard tiers") rather than a
+single level, and the two toolbar shortcuts exist because those bands are the
+one selection the rail cannot reach in a single click.
+
 ## 5. Evidence
 
 ### Demonstrated, or merely documented

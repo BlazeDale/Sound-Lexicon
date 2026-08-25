@@ -26,6 +26,12 @@ const STATES = ['candidate', 'approved', 'rejected'];
 const VERDICTS = ['untested', 'resolves', 'partial', 'collapses'];
 const KINDS = ['instrument', 'technique'];
 const NATURES = ['continuous', 'momentary'];
+/* How hard the term is to HEAR, which is a different axis from how hard it is to
+   understand. 1 is audible unprompted, 4 needs a trained ear or a minimal pair.
+   Required on every card: an unrated card would silently vanish from the difficulty
+   filter while looking perfectly fine on the page. */
+const HEAR = [1, 2, 3, 4];
+const HEAR_NAME = { 1: 'Easy', 2: 'Medium', 3: 'Hard', 4: 'Very hard' };
 
 export function loadLexicon(path = LEXDATA) {
   const src = readFileSync(path, 'utf8');
@@ -93,6 +99,24 @@ export function checkLexicon() {
     const empty = DOMAINS.filter(d => !covered.has(d.id)).map(d => d.name);
     pass(`${covered.size}/${DOMAINS.length} domains have at least one card`
       + (empty.length ? `; still empty: ${empty.join(', ')}` : ''));
+  }
+
+  /* ---------- difficulty to hear ----------
+     Deliberately separate from `kinds` and `nature`, which describe WHAT a term is. This
+     describes what it costs a listener, and it is the axis a reader actually navigates by:
+     a beginner wants the 1s and a trained ear wants the 4s, and neither of those is a
+     domain. Rejected outright rather than defaulted, because a silent default would fill
+     the easy tier with cards nobody ever rated. */
+  {
+    const bad = [], dist = { 1: 0, 2: 0, 3: 0, 4: 0 };
+    for (const c of LEX) {
+      if (!HEAR.includes(c.hear)) { bad.push(`${c.id} (hear=${JSON.stringify(c.hear)})`); continue; }
+      dist[c.hear]++;
+    }
+    bad.length
+      ? fail(`every card needs a hearing difficulty of 1-4 (1 easy, 4 very hard): ${bad.join(', ')}`)
+      : pass(`every card rated for difficulty to hear: `
+          + HEAR.map(h => `${dist[h]} ${HEAR_NAME[h].toLowerCase()}`).join(', '));
   }
 
   /* ---------- THE SPAN INVARIANT (design doc §6) ----------

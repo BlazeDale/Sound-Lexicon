@@ -11,6 +11,10 @@
     --text:#e9e6dd; --muted:#98a0ad; --dim:#6b7280;
     --amber:#e0a63c; --amber-dim:#8a6a2a;
     --teal:#1a9e75; --rose:#d03b3b; --violet:#6a5acd; --blue:#3273c4;
+    /* Difficulty to HEAR, ramped green to red. One ramp, used everywhere the level
+       appears — card edge, card chip, rail button — so the colour means the same thing
+       in all three places and a reader only has to learn it once. */
+    --d1:#3fae7f; --d2:#d9a536; --d3:#d9752f; --d4:#cf4b4b;
     --mono:'SF Mono','Menlo','Consolas','Liberation Mono',monospace;
     --sans:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
   }
@@ -40,6 +44,13 @@
   .pill.on{background:var(--amber);color:#1a1206;border-color:var(--amber);font-weight:600}
   .pill[disabled]{opacity:.4;cursor:default}
   .pill[disabled]:hover{border-color:var(--line);color:var(--muted)}
+  /* The two difficulty shortcuts keep the ramp instead of going amber, so a lit pill says
+     WHICH end of the scale is showing rather than just "a filter is on". */
+  .pill.diff::before{content:'';display:inline-block;width:7px;height:7px;border-radius:50%;
+    background:currentColor;margin-right:6px;vertical-align:baseline;opacity:.85}
+  .pill.diff.easy{color:var(--d1)} .pill.diff.hard{color:var(--d4)}
+  .pill.diff:hover{border-color:currentColor}
+  .pill.diff.on{background:var(--panel2);border-color:currentColor;font-weight:600}
   .hits{font-family:var(--mono);font-size:11px;color:var(--dim)}
   /* domain rail */
   .rail{margin-top:10px}
@@ -50,9 +61,20 @@
   .dm.on{background:var(--panel2);color:var(--text);border-color:var(--amber)}
   .dm i{font-style:normal;color:var(--dim);margin-left:5px;font-size:10px}
   .dm.on i{color:var(--amber)}
+  /* Difficulty buttons carry their own colour even when off, so the rail doubles as the
+     key for the card edges — there is no separate legend to keep in sync. */
+  .dm.diff{border-left-width:3px}
+  .dm.diff.d1{border-left-color:var(--d1)} .dm.diff.d2{border-left-color:var(--d2)}
+  .dm.diff.d3{border-left-color:var(--d3)} .dm.diff.d4{border-left-color:var(--d4)}
+  .dm.diff.on{border-color:currentColor;background:var(--panel2)}
+  .dm.diff.on i{color:inherit}
   .dblurb{font-size:13px;color:var(--muted);margin:10px 0 0;min-height:0}
   /* cards */
   .card{position:relative;background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--amber-dim);border-radius:10px;padding:18px 20px;margin:14px 0}
+  /* The left edge is the only card-level colour, so it carries the one thing worth
+     scanning a hundred cards for: what it will cost you to hear this. */
+  .card.d1{border-left-color:var(--d1)} .card.d2{border-left-color:var(--d2)}
+  .card.d3{border-left-color:var(--d3)} .card.d4{border-left-color:var(--d4)}
   .card:target,.card.flash{animation:flashcard 1.4s ease-out}
   @keyframes flashcard{0%{box-shadow:0 0 0 2px var(--amber)}100%{box-shadow:0 0 0 2px transparent}}
   .ctop{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;padding-right:64px}
@@ -70,6 +92,14 @@
   .chip.kind b{color:var(--text);font-weight:600}
   .chip.era{border-color:var(--blue);color:#8fb6e8;cursor:pointer}
   .chip.era:hover{background:rgba(50,115,196,.16);color:#bcd6f5}
+  /* Difficulty rides on the card's own colour so it reads at a glance in a long list. */
+  .chip.diff{cursor:pointer;font-weight:600;border-color:currentColor}
+  .chip.diff:hover{background:rgba(255,255,255,.05)}
+  .chip.diff .n{opacity:.62;font-weight:400;margin-right:5px}
+  .d1 .chip.diff,.dm.diff.d1.on{color:var(--d1)}
+  .d2 .chip.diff,.dm.diff.d2.on{color:var(--d2)}
+  .d3 .chip.diff,.dm.diff.d3.on{color:var(--d3)}
+  .d4 .chip.diff,.dm.diff.d4.on{color:var(--d4)}
   /* "What you hear" leads the card — the lay reader recognises sound, not mechanism */
   .hear{margin:14px 0 0;border-left:2px solid var(--amber);padding:2px 0 2px 14px}
   .hear .lab{color:var(--amber);margin-bottom:5px}
@@ -109,7 +139,8 @@
   .chead:hover .caret2{color:var(--amber)}
   .card.open .caret2{transform:rotate(90deg);color:var(--amber)}
   .card:not(.open) .cbody{display:none}
-  /* Era and nature are for reading, not for choosing — the bar keeps domain and kind only. */
+  /* Era and nature are for reading, not for choosing — the closed bar keeps domain, kind and
+     difficulty, which are the three you would sort a hundred cards by. */
   .card:not(.open) .chip.era,.card:not(.open) .chip.nat{display:none}
   .csum{margin:9px 0 0;font-size:14px;line-height:1.5;color:var(--muted);
         display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
@@ -265,6 +296,8 @@
     <div class="crow">
       <input id="q" type="search" placeholder="Search a term, or how you'd say it — chugging, pumping, that soft jazz drum sound…" autocomplete="off">
       <button class="pill" id="needs" type="button" title="Only terms with no supporting vote yet">Needs a listen</button>
+      <button class="pill diff easy" id="feasy" type="button" title="Terms you can hear straight away, or as soon as someone names them">Easy to hear</button>
+      <button class="pill diff hard" id="fhard" type="button" title="Terms that need repeated listening, an A/B, or a trained ear">Hard to hear</button>
       <button class="pill" id="funlearned" type="button" title="Lessons you have not marked as learned">Unlearned</button>
       <button class="pill" id="flearned" type="button" title="Lessons you have marked as learned">Learned</button>
       <button class="pill" id="frandom" type="button" title="One lesson you have not marked learned — click again for a different one">Teach me one</button>
@@ -428,6 +461,16 @@ LEX.forEach(c => {
 });
 
 let curDomain = null, curNeeds = false, curLearn = null;   // curLearn: null | 'learned' | 'unlearned'
+/* Difficulty is a SET, unlike the domain rail's single choice, because the useful question
+   is nearly always a band rather than a level — "the easy half", "the two hard tiers" — and
+   forcing one at a time would make the commonest ask a two-step. Empty means no constraint. */
+const curHear = new Set();
+const HEAR = {
+  1: { name: 'Easy',      say: `You hear it the first time, without being told it is there.` },
+  2: { name: 'Medium',    say: `Plainly there once someone names it — you need pointing at it, not training.` },
+  3: { name: 'Hard',      say: `Needs repeated listening or an A/B. It is a quality of the sound rather than an event in it.` },
+  4: { name: 'Very hard', say: `A trained ear, a minimal pair, or both — and a few of these may not survive the test at all.` }
+};
 let curPick = null;   // a single card id, chosen at random — a lens over the filters, not one of them
 
 /* ---------- masthead counts derive from the data, so they never drift ---------- */
@@ -456,11 +499,36 @@ function buildRail() {
       + ds.map(d => `<button class="dm" type="button" data-dom="${d.id}">${esc(d.name)}<i>${count(d.id)}</i></button>`).join('')
       + `</div>`;
   };
+  /* Its own group rather than a third domain family: difficulty cuts ACROSS domains, and a
+     reader picking "Guitar" and "Very hard" together is the point rather than a conflict. */
+  const hcount = h => LEX.filter(c => c.hear === h).length;
+  const diffs = `<div class="railgroup"><span class="raillab">To hear</span>`
+    + [1, 2, 3, 4].map(h => `<button class="dm diff d${h}" type="button" data-hear="${h}"`
+        + ` title="${esc(HEAR[h].say)}">${esc(HEAR[h].name)}<i>${hcount(h)}</i></button>`).join('')
+    + `</div>`;
   rail.innerHTML =
     `<div class="railgroup"><span class="raillab">All</span>`
     + `<button class="dm on" type="button" data-dom="">Everything<i>${LEX.length}</i></button></div>`
     + group('Physical', 'physical')
-    + group('Theory', 'theory');
+    + group('Theory', 'theory')
+    + diffs;
+}
+
+/* One writer for the difficulty state, because three controls point at it — the rail, the
+   two shortcut pills, and the chip on every card. Anything that sets it must leave all
+   three agreeing, and the cheapest way to guarantee that is to never set it anywhere else. */
+function setHear(levels) {
+  curHear.clear();
+  levels.forEach(h => curHear.add(h));
+  syncHear();
+  render();
+}
+function syncHear() {
+  document.querySelectorAll('[data-hear]').forEach(b =>
+    b.classList.toggle('on', curHear.has(+b.dataset.hear)));
+  const is = set => set.length === curHear.size && set.every(h => curHear.has(h));
+  document.getElementById('feasy').classList.toggle('on', is([1, 2]));
+  document.getElementById('fhard').classList.toggle('on', is([3, 4]));
 }
 
 /* ---------- search blob: the lay-language requirement lives here ----------
@@ -478,7 +546,10 @@ function blob(c) {
   const eras = [c.first, ...(c.peak || [])];
   const eraBlob = eras.concat(eras.map(e => e.replace(/^\d\d/, ''))).join(' ');
   const ex = c.exemplar ? `${c.exemplar.title} ${c.exemplar.artist} ${c.exemplar.year}` : '';
-  return [c.term, c.sounds, c.gloss, c.myth, c.known, c.origin, c.range, c.res.note, eraBlob, ex,
+  /* Both the label and the level, so "very hard" and "4/4" both land, and so does someone
+     typing "easy to hear" into the box instead of finding the pill. */
+  const hearBlob = `${HEAR[c.hear].name} to hear ${c.hear}/4`;
+  return [c.term, c.sounds, c.gloss, c.myth, c.known, c.origin, c.range, c.res.note, eraBlob, ex, hearBlob,
     (c.syn || []).join(' '), c.domains.map(d => (domById.get(d) || {}).name).join(' '),
     (c.kinds || []).join(' '), c.nature, evNames].join(' ').toLowerCase();
 }
@@ -660,7 +731,17 @@ function caveatLine() {
     + `<b>vote it up</b> if you can hear the term in it. What that does not do is settle the `
     + `card's verdict — that line reads <em>untested</em> everywhere and is a separate `
     + `judgement, because a demo one listener finds convincing is not yet a term the generator `
-    + `can be relied on to distinguish.`;
+    + `can be relied on to distinguish.`
+    /* The scale is a judgement, and saying so is the price of putting a number on a card.
+       It is also a different axis from the verdict above it, which is the confusion worth
+       heading off: a term can be trivially easy to hear and still be one the generator
+       cannot produce on request. */
+    + ` <br><br><b>Every card also carries how hard the term is to HEAR</b>, one to four, `
+    + `coloured along the left edge — ${[1, 2, 3, 4].map(h =>
+        `<b style="color:var(--d${h})">${HEAR[h].name.toLowerCase()}</b>`).join(', ')}. `
+    + `That is our judgement of what it costs a listener, not a measurement, and it is a `
+    + `separate question from whether the generator can produce the term at all: plenty of `
+    + `things on the <b style="color:var(--d1)">easy</b> end may still fail their test.`;
 }
 
 function supportLine(c) {
@@ -690,6 +771,11 @@ function cardHTML(c) {
   const doms = c.domains.map(d => `<span class="chip dom">${esc((domById.get(d) || {}).name || d)}</span>`).join('');
   const kinds = c.kinds.map(k => `<span class="chip kind"><b>${k === 'instrument' ? 'Instrument / tool' : 'Technique'}</b></span>`).join('');
   const nat = `<span class="chip nat">${c.nature === 'momentary' ? 'Momentary event' : 'Continuous'}</span>`;
+  /* Stays visible on a closed card, unlike era and nature. It is the one piece of metadata
+     worth having before you decide whether to open the thing. */
+  const diff = `<span class="chip diff" data-hear="${c.hear}"
+    title="Difficulty to hear: ${esc(HEAR[c.hear].say)} Click to see the rest of this tier."
+    ><span class="n">${c.hear}/4</span> ${esc(HEAR[c.hear].name)} to hear</span>`;
   const eraChips = `<span class="chip era" data-era="${esc(c.first)}" title="First appeared. Click to search this decade.">from ${esc(c.first)}</span>`
     + ((c.peak || []).length
         ? `<span class="chip era pk" data-era="${esc(c.peak[0])}" title="Decades that popularised it. Click to search.">popular ${c.peak.map(esc).join(' &middot; ')}</span>`
@@ -767,7 +853,7 @@ function cardHTML(c) {
   const sup = support(c);
   const meta = `${sup.total} example${sup.total === 1 ? '' : 's'}`
     + (sup.backed ? ` &middot; <b>${sup.backed} vouched</b>` : '');
-  return `<article class="card${isLearned ? ' learned' : ''}${open ? ' open' : ''}" id="${esc(c.id)}" data-id="${esc(c.id)}">
+  return `<article class="card d${c.hear}${isLearned ? ' learned' : ''}${open ? ' open' : ''}" id="${esc(c.id)}" data-id="${esc(c.id)}">
     <div class="likewrap">
       <button class="like" type="button" data-like="${esc(c.id)}" aria-label="Like">♥</button>
       <span class="lcount" data-lc="${esc(c.id)}"></span>
@@ -784,7 +870,7 @@ function cardHTML(c) {
           ${isLearned ? '&#10003; Learned' : 'Mark learned'}</button>
         <span class="cmeta" data-cmeta="${esc(c.id)}">${meta}</span>
       </div>
-      <div class="chips">${doms}${kinds}${nat}${eraChips}</div>
+      <div class="chips">${diff}${doms}${kinds}${nat}${eraChips}</div>
       <p class="csum">${esc(c.gloss)}</p>
     </div>
 
@@ -959,6 +1045,7 @@ const searchWords = () => {
    lesson while a domain is selected would jump you out of that domain. */
 function passes(c, words) {
   if (curDomain && !c.domains.includes(curDomain)) return false;
+  if (curHear.size && !curHear.has(c.hear)) return false;
   if (curNeeds && support(c).backed > 0) return false;   // live votes, not the file
   if (curLearn === 'learned' && !learned.has(c.id)) return false;
   if (curLearn === 'unlearned' && learned.has(c.id)) return false;
@@ -1450,12 +1537,42 @@ document.addEventListener('click', e => {
 });
 
 document.getElementById('rail').addEventListener('click', e => {
+  /* Difficulty toggles, domains replace. The two behave differently on purpose: there is
+     one domain a term belongs to at a time and a whole band of difficulties worth seeing
+     together, so a second click on a lit tier removes it rather than swapping to it. */
+  const h = e.target.closest('[data-hear]');
+  if (h) {
+    clearPick();
+    const lvl = +h.dataset.hear;
+    setHear(curHear.has(lvl) ? [...curHear].filter(x => x !== lvl) : [...curHear, lvl]);
+    return;
+  }
   const b = e.target.closest('[data-dom]'); if (!b) return;
   clearPick();
   curDomain = b.dataset.dom || null;
   document.querySelectorAll('[data-dom]').forEach(x => x.classList.toggle('on', x === b));
   render();
 });
+
+/* The chip on a card is a lens rather than a toggle: someone clicking "3/4 Hard to hear"
+   on a card is asking to see that tier, not to add it to whatever was already selected. */
+document.addEventListener('click', e => {
+  const chip = e.target.closest('.chip.diff'); if (!chip) return;
+  clearPick();
+  const lvl = +chip.dataset.hear;
+  setHear(curHear.size === 1 && curHear.has(lvl) ? [] : [lvl]);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+/* The two shortcuts span the scale where the rail cannot in one click. Each is a straight
+   set-or-clear, so pressing the lit one gets you back to everything. */
+const bandPill = (id, band) => document.getElementById(id).addEventListener('click', () => {
+  clearPick();
+  const on = band.length === curHear.size && band.every(h => curHear.has(h));
+  setHear(on ? [] : band);
+});
+bandPill('feasy', [1, 2]);
+bandPill('fhard', [3, 4]);
 
 /* ---------- opening and closing a lesson ----------
    Toggled in place rather than re-rendered: flipping one class is instant and leaves the
@@ -1481,7 +1598,7 @@ document.addEventListener('click', e => {
   if (!head) return;
   /* The bar carries its own controls — the permalink, Mark learned, the era chips. A click
      that landed on one of those was meant for it, not for the card. */
-  if (e.target.closest('a, button, [data-era]')) return;
+  if (e.target.closest('a, button, [data-era], [data-hear]')) return;
   const id = head.dataset.card;
   setOpen(id, !cardOpen.has(id));
 });

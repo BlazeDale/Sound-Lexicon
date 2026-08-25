@@ -1,0 +1,4 @@
+
+# scratch: never belongs in the repo
+node_modules/
+domtest/
