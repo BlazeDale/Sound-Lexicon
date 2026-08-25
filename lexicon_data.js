@@ -29,7 +29,7 @@
  * Loaded as a classic <script> AFTER data.js, so LIB is already a global.
  */
 
-const LEX_VERSION = 'v16';
+const LEX_VERSION = 'v17';
 const LEX_UPDATED = '2026-08-25';
 
 /* ---------- TOP TIER: domains, not instruments ----------
@@ -4249,6 +4249,167 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
     { n:'J1', span:`band-passed and smeared into the sample bed`, state:'candidate', why:`The filter used to remove a singer's identity rather than to place them, with "filtered to androgyny" sitting in the same sentence.` },
     { n:228, span:`band-passed like a distant transmission`, state:'candidate', why:`The distance use, under a chopped-break track. Worth comparing against reverb-based distance: the low end is gone here, and reverb would have left it.` },
     { n:306, span:`blown-out megaphone`, state:'candidate', why:`The same narrow band with heavy distortion over it, snarled rather than spoken — the aggressive end of the range.` }
+  ]
+},
+
+{
+  id:'pushing-the-beat',
+  term:`Pushing the beat`,
+  sounds:`Everything arrives a fraction early and never settles. Each phrase starts a hair before you expect it and leans forward into the rhythm, so the music feels like it is straining at a leash even though the tempo has not moved. It reads as urgency, eagerness, sometimes panic — the opposite of cool. In a whole band doing it together the song seems to be running slightly downhill.`,
+  gloss:`Placing notes fractionally before the beat rather than on it, while the tempo underneath stays where it was. The mirror image of playing behind the beat, and just as deliberate.`,
+  syn:[`ahead of the beat`,`on top of the beat`,`pushing`,`rushing`,`leaning forward`,`playing early`,`urgent timing`],
+  myth:`Pushing and speeding up are different things, and the difference is the whole point. A pushed phrase lands early against a tempo that has not changed; a rushed band actually gets faster and the whole record moves. Records do both at once often enough that they get conflated, but a player pushing deliberately holds the tempo while leaning on it, which is far harder than either landing square or simply accelerating.`,
+  known:`Punk and hardcore, where it is most of the energy; garage rock; big-band and swing singing, where a crooner sits marginally early to sound light rather than urgent; and battle rap, where it reads as confidence.`,
+  origin:`As old as ensemble playing, and named only in opposition to its mirror — the vocabulary for it comes from mid-century jazz, where laying back and playing on top were understood as two ends of one dial. Adopted as an identity rather than a nuance by 1970s punk, which made the forward lean permanent.`,
+  first:`ancient`, peak:[`1940s`,`1970s`],
+  exemplar:{ kind:'exemplifies', title:`Blitzkrieg Bop`, artist:`Ramones`, year:`1976`,
+    listen:`Count along from the first bar and keep counting. By the last chorus you will be behind, because the band is arriving fractionally early on every downbeat and the lean accumulates. Nothing about the song is difficult to play — the forward pressure is the arrangement.` },
+  domains:['rhythm','voice'],
+  match:['ahead of the beat','pushing the beat','on top of the beat','pushed ahead'],
+  kinds:['technique'],
+  nature:'continuous', hear:3,
+  range:`The same instruction produces two opposite characters in the corpus, which is what makes this worth its own card. "Swinging the phrasing loose and just ahead of the beat" (#26) is a big-band crooner sounding light and unbothered. "Phrases spat ahead of the beat" (#149) is Detroit garage punk sounding like it might come apart. Same physical placement, opposite meanings, and only the words around it decide which one you get. #344 moves the push off the singer entirely and onto the band.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Deliberately paired with the behind-the-beat card, and the pair is worth more than either alone. That card asks whether the generator can place a voice consistently late; this one asks whether the dial has another end, or whether "ahead of the beat" simply resolves to fast and aggressive. The failure mode to watch for is specific and easy to hear: a result that is genuinely quicker rather than merely early has confused a feel with a tempo, and the two are the thing this card exists to separate. A generator that can do both directions against a steady band is doing something considerably more sophisticated than assembling textures.` },
+  ev:[
+    { n:26,  span:`swinging the phrasing loose and just ahead of the beat`, state:'candidate', why:`The elegant end: a big-band crooner sitting marginally early so the delivery reads as light and unforced rather than urgent.` },
+    { n:149, span:`phrases spat ahead of the beat`, state:'candidate', why:`The aggressive end, in Detroit garage punk — "more attitude than accuracy", where the push is the whole attitude.` },
+    { n:344, span:`drums pushing slightly ahead of the beat and never correcting`, state:'candidate', why:`The push moved off the voice and onto the kit, with the prompt stating outright that it is never corrected. The clearest test of whether the tempo stays put.` },
+    { n:232, span:`riding just ahead of the beat`, state:'candidate', why:`A battle turntablist's MC, where being early reads as showmanship. Useful against #149: the same placement, no aggression asked for.` }
+  ]
+},
+
+{
+  id:'countermelody',
+  term:`Countermelody`,
+  sounds:`A second tune, underneath or beside the first, going somewhere of its own. It is not the chords and it is not harmony shadowing the singer — it moves when the melody holds still and holds still when the melody moves, so the two seem to be having a conversation rather than travelling together. Once you notice it you can follow it instead of the tune, and the song has two songs in it.`,
+  gloss:`A melody written to run at the same time as the main one, independent of it but fitting it. Usually given to an instrument while a voice carries the tune.`,
+  syn:[`counter line`,`second melody`,`obbligato`,`answering line`,`the line underneath`,`the other tune`],
+  myth:`It is not harmony. A harmony line moves in parallel with the melody and depends on it for its shape; a countermelody has its own shape and would still be a tune if you took the melody away. The commonest place to find one is the bass, which is why a bass part that stops playing roots and starts singing changes a record so much more than adding an instrument would.`,
+  known:`Baroque pop, soul and Motown arranging, film scoring, gospel, and the horn and string writing of 1960s and 70s pop. Also most of what a good bass player is doing when a song sounds richer than its chords.`,
+  origin:`Inherited wholesale from European counterpoint by way of arrangers trained in it, and absorbed into popular music through mid-century studio orchestras; the bass-as-countermelody idea arrives separately from soul and Motown in the 1960s.`,
+  first:`pre-1900`, peak:[`1960s`,`1970s`],
+  exemplar:{ kind:'exemplifies', title:`God Only Knows`, artist:`The Beach Boys`, year:`1966`,
+    listen:`Follow the bass instead of the voice for one verse. It is not holding down roots — it is a tune, moving where the melody rests. Then listen to the last section, where two vocal lines chase each other and neither is accompanying the other.` },
+  domains:['arrangement','harmony'],
+  match:['countermelody','counter-melody','answering phrase','answering line'],
+  kinds:['technique'],
+  nature:'continuous', hear:2,
+  range:`The corpus hands the line to a different instrument every time, which is the useful part: "woodwind countermelody" inside a full romantic orchestra (#54), "a cello countermelody entering beneath" a solo piano (#366), "the bass playing a countermelody instead of the root" in Midwest emo (#326), and a second voice that "breaks away into its own countermelody at the lift" (#379). Four instruments, one job — and the last of those is the hardest case, because a second voice doing this is one small step from being harmony.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`The sharpest test here is not whether a second line appears but whether it is INDEPENDENT. A generator asked for a countermelody can satisfy the word by adding a harmony line — parallel, dependent, moving exactly when the melody moves — and that is the failure this card is for. It has a clean check a lay listener can run: try to hum the second line on its own. If it only makes sense against the tune, it is harmony. #326 is the best prompt for the test because it says what the line must NOT do, which is play the root.` },
+  ev:[
+    { n:326, span:`the bass playing a countermelody instead of the root`, state:'candidate', why:`The only prompt in the library that defines the term by exclusion — not the root — which makes it the cleanest pass/fail on the page for this word.` },
+    { n:366, span:`a cello countermelody entering beneath it`, state:'candidate', why:`Solo piano with one line entering under it, and nothing else in the arrangement to hide behind.` },
+    { n:54,  span:`woodwind countermelody`, state:'candidate', why:`Inside a full baroque-pop orchestra, where the line has to be heard through strings, harp and timpani. The crowded case.` },
+    { n:379, span:`breaks away into its own countermelody at the lift`, state:'candidate', why:`A second VOICE, which starts in unison and then separates. The hardest case, because a voice doing this is one step away from harmony and the prompt is asking for the step to be taken.` }
+  ]
+},
+
+{
+  id:'blue-note',
+  term:`Blue note`,
+  sounds:`A note that sounds wrong and right at once. It arrives slightly flatter than the note the chord underneath is expecting, and it does not resolve — it just sits there, aching, sour and warm together. On a guitar it is the note a bend stops short of; in a voice it is the moment a plain melody suddenly sounds like it means something.`,
+  gloss:`A pitch bent slightly below the third, seventh or fifth of a major scale — often to somewhere between two notes rather than onto either one.`,
+  syn:[`blue third`,`flat third`,`bluesy note`,`worried note`,`the sour note`,`blues inflection`],
+  myth:`It is not simply the minor third, and this is the misconception the whole idea lives or dies on. A blue note is frequently BETWEEN the major and minor third — a pitch that does not exist on a piano keyboard at all. That is why blues pianists strike both notes at once and let them grind, and why a blues guitarist bends up and deliberately stops before arriving. An instrument with fixed pitches cannot play the note; it can only gesture at where the note would be.`,
+  known:`Blues, gospel, jazz, soul, country and rock — which is to say most of what English-speaking popular music has been for a century. It is the single most portable idea in the whole vocabulary.`,
+  origin:`African-American music of the late nineteenth century, where a scale system treating pitch as continuous met European fixed-pitch instruments and did not give way. Carried into jazz and blues recording from the 1920s and into everything since.`,
+  first:`pre-1900`, peak:[`1920s`,`1950s`,`1960s`],
+  exemplar:{ kind:'exemplifies', title:`What'd I Say`, artist:`Ray Charles`, year:`1959`,
+    listen:`Listen to the electric-piano figure that opens it and repeats all the way through. Two notes a semitone apart are being struck together and left to grind. That crush is a fixed-pitch instrument reaching for a pitch in the gap between its own keys — it cannot play the note, so it plays both sides of it.` },
+  domains:['harmony','voice','guitar'],
+  match:['blue note','blue third','blues-bent','bluesy','blues curl'],
+  kinds:['technique'],
+  nature:'momentary', hear:2,
+  range:`The corpus reaches it from three directions. As harmony, "comfort with a blue note inside it" describes a whole record's mood (#169). As a guitar gesture, "blues-bent guitar solo" (#195) and "bluesy bends" (#221, #374) put it in the hands. And #368 is the strangest use in the library: a bluegrass prompt that names "the blue third" precisely in order to have a pitch corrector delete it, which is the only place on the page where the absence of a term is the commissioned subject.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Deliberately separated from the bending card, which covers the gesture. This one is about a PITCH, and the two come apart in the case that matters: a blue note played on a piano, where no bending is possible. That is the test worth running — ask for blues piano and listen for whether the major and minor third are struck together, or whether the generator quietly substitutes a clean minor third and produces something that is merely in a minor key. Substituting the minor third is the likeliest outcome and would be a real finding, because it is the difference between a system that has the concept and one that has the nearest note to it.` },
+  ev:[
+    { n:221, span:`bluesy bends`, state:'candidate', why:`An improvised lead guitar answering the voice in bluesy bends — the commonest use, and the one with the most demos attached.` },
+    { n:195, span:`blues-bent guitar solo`, state:'candidate', why:`"A wailing blues-bent guitar solo at the peak" of a progressive space-rock build, where the idiom is a visitor rather than the native language.` },
+    { n:169, span:`blue note`, state:'candidate', why:`Named as a property of a whole record rather than of a note — "comfort with a blue note inside it" — which is the loosest instruction of the four and the one most likely to evaporate.` },
+    { n:374, span:`soulful bluesy bends`, state:'candidate', why:`The same gesture in a restraint-to-rupture arrangement, where the solo is meant to be expressive rather than fast. A consistency check against #221.` }
+  ]
+},
+
+{
+  id:'the-drop',
+  term:`The drop`,
+  sounds:`The floor arrives. Everything has been climbing and thinning out, and then for a moment there is almost nothing at all — and the beat and the bass land together underneath you. It is physical rather than melodic: you feel it in the chest more than you hear it, and the part that does the work is the silence immediately before it.`,
+  gloss:`The moment a dance record releases the tension it has been building — the beat and the low end returning together after a passage that stripped them away.`,
+  syn:[`drop`,`the beat comes back in`,`the switch`,`when it kicks in`,`release`,`the hit`],
+  myth:`The drop is made by what is taken away in front of it, not by what arrives in it. Plenty of drops are quieter than the build that led to them — dubstep and trap routinely strip the top end away and let a sub-bass arrive in a room that suddenly has space in it. Add everything with no build and you get loudness; take enough away and the same arrival becomes an event. The related mistake is calling it a chorus. It occupies a chorus's place in the song and does a chorus's job, but there is often no tune in it at all.`,
+  known:`Dubstep, future bass, trap, big-room house and trance, dancehall, and mainstream pop from about 2010 onward, where the drop displaced the chorus as the thing a record is built to arrive at.`,
+  origin:`Descended from the disco and funk break — the passage where the band dropped out and left the rhythm section — by way of jungle and UK garage in the 1990s; named and formalised as a structural unit by 2000s dubstep, and absorbed into pop production within a decade.`,
+  first:`1990s`, peak:[`2010s`],
+  exemplar:{ kind:'exemplifies', title:`Scary Monsters and Nice Sprites`, artist:`Skrillex`, year:`2010`,
+    listen:`Listen to the bar immediately before the first drop rather than the drop itself. The drums cut out, the top end vanishes and there is a moment of nearly nothing. What arrives afterwards is not really louder — it is lower and wider, and the impact comes from the hole in front of it.` },
+  domains:['form','production','rhythm'],
+  match:['the drop','the drops','into the drop','across the drops'],
+  kinds:['technique'],
+  nature:'momentary', hear:1,
+  range:`The corpus treats it as architecture rather than as an effect, and says so repeatedly: "the drops built on sharp tension-release and hard dynamic contrast" in ragga-jungle (#53), "the drop works on hard dynamic contrast and tense tension-release" in Memphis phonk (#64). Elsewhere it is a place rather than a mechanism — "pitched vocal-chop stabs in the drop" (#87), "growl bass on the drop" (#91) — and #116 uses it as somewhere for a voice to survive rather than somewhere for a bass to land.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`The most structurally demanding term documented here, and the reason it is worth testing is that it cannot be satisfied locally. Almost everything else on this page is a texture or a gesture that can be applied anywhere in a track; a drop requires a generator to have withheld something earlier in order to release it now, which means planning across a span longer than a phrase. That makes the failure mode easy to hear and worth naming in advance: a record that is uniformly big and busy has produced drop MATERIAL without producing a drop. Listen for the empty bar, not the loud one.` },
+  ev:[
+    { n:87,  span:`pitched vocal-chop stabs in the drop`, state:'candidate', why:`Future bass, with six demos attached — the genre where the drop is most nakedly the point of the record.` },
+    { n:91,  span:`detuned melodic-dubstep growl bass on the drop`, state:'candidate', why:`The bass named as the thing that arrives, plus "a single reese transient at the break" — the two halves of the mechanism in one prompt.` },
+    { n:64,  span:`The drop works on hard dynamic contrast and tense tension-release`, state:'candidate', why:`The mechanism stated rather than the contents, in Memphis phonk. If a result here is merely loud, the card has its answer.` },
+    { n:116, span:`sustaining clear commanding peaks across the drop`, state:'candidate', why:`Big-room, where a voice has to hold through the drop instead of stopping for it. The awkward case, and the one closest to a chorus.` }
+  ]
+},
+
+{
+  id:'ghost-notes',
+  term:`Ghost notes`,
+  sounds:`A quiet chatter in the gaps you feel rather than hear. Between the loud hits there is a second layer of much softer ones, played so lightly they barely speak — and consciously you register almost none of them. What you notice instead is that the groove breathes and pulls, and that a pattern which should sound plain sounds alive.`,
+  gloss:`Notes struck deliberately too softly to be heard as notes — on a snare with the stick barely lifted, or on a string kept muted by the fretting hand. They fill the space between the notes you are meant to hear.`,
+  syn:[`ghost strokes`,`ghosted notes`,`whisper notes`,`the quiet hits`,`dead notes`,`muted strokes`],
+  myth:`The groove people describe as tight is mostly made of notes they cannot consciously hear. Take the ghost notes out of a funk drum pattern and leave everything else identical — same tempo, same accents, same kit — and it goes stiff and hollow immediately. That is an uncomfortable result if you believe a groove is defined by where the loud hits land, because it means the audible part of a pattern is not the part doing the work. The word also collides with an unrelated sense: a ghost of a voice far back in a mix has nothing to do with this.`,
+  known:`Funk and R&B drumming above all, then hip-hop production, Motown and neo-soul bass, and the muted scratch that funk rhythm guitar is mostly made of.`,
+  origin:`American funk and R&B drumming of the 1960s, where the technique was developed to keep a pattern moving without adding volume; carried into rock through session players in the 1970s and into sampled hip-hop by inheritance, since a sampled break brings its ghost notes with it.`,
+  first:`1960s`, peak:[`1970s`,`1990s`],
+  exemplar:{ kind:'exemplifies', title:`Rosanna`, artist:`Toto`, year:`1982`,
+    listen:`Between the backbeat cracks there is a continuous quiet rustle on the snare. Turn the record up and it resolves into a whole second pattern; at normal volume you do not hear it as notes at all, only as the reason the groove leans and swings.` },
+  domains:['drums','rhythm','guitar'],
+  match:['ghost note','ghosted','ghosting the','dead notes'],
+  kinds:['technique'],
+  nature:'continuous', hear:4,
+  range:`Only three prompts in the library use the word, and they do not agree on what it means. "Ghosted ride" in noir jazz (#2) is the technique proper. "Muted funk guitar ghosting the backbeat" (#257) applies it to a guitar, which is where most listeners have heard it without knowing. And #U3's "ghosting the phrase-ends" is a vocal double trailing the lead — the other sense of the word entirely, and a useful trap.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Rated the hardest thing on this page to hear, and rated that way on purpose: ghost notes are BY DESIGN below the threshold at which a listener registers them as notes. That makes the ordinary test — can you hear it — the wrong question. The right one is comparative, and it needs a minimal pair: the same pattern at the same tempo with and without, judged on whether the groove leans. If a listener cannot tell the two apart, that is a finding about the generator; if they can tell them apart but cannot say why, that is the term working exactly as it does on a real record.` },
+  ev:[
+    { n:2,   span:`ghosted ride`, state:'candidate', why:`The technique proper, on a ride cymbal in a 1950s noir-jazz ballad — quiet enough that the whole arrangement has to be quiet for it to matter.` },
+    { n:257, span:`muted funk guitar ghosting the backbeat`, state:'candidate', why:`The guitar version, in Y2K teen-pop. This is where most listeners have heard ghost notes without ever having a name for them.` },
+    { n:'U3', span:`ghosting the phrase-ends`, state:'candidate', why:`The word collision, and worth keeping: here it means a vocal double trailing the lead, not a quiet stroke. A result that comes back with a haunted-sounding voice has read the word and not the sentence.` }
+  ]
+},
+
+{
+  id:'fingerpicking',
+  term:`Fingerpicking`,
+  sounds:`One guitar sounding like two players. A steady low pulse keeps time underneath — even, thumb-driven, almost mechanical — while a separate melody moves over it at its own pace. The notes are rounder and softer at the edges than a pick makes them, and because the two hands are doing different jobs the instrument accompanies itself and needs nothing else in the room.`,
+  gloss:`Playing with the fingers rather than a pick, usually with the thumb keeping an alternating bass while the fingers pick melody and chords above it.`,
+  syn:[`fingerstyle`,`picked not strummed`,`Travis picking`,`thumb and fingers`,`nails on the strings`,`no pick`],
+  myth:`It is not just playing without a pick, and it is not the same as playing quietly. The effect comes from the independence: the thumb is running a clock the fingers are free to ignore, which is why one fingerpicked guitar can carry an entire song and why the same chords strummed sound like an accompaniment waiting for something else to arrive. Anyone can put the pick down; the hard part is the two parts not agreeing with each other.`,
+  known:`Folk and singer-songwriter records almost by definition, country and ragtime guitar, Piedmont and Delta blues, Celtic and flamenco playing, and classical guitar entirely — where a pick is not used at all.`,
+  origin:`Parlour and classical guitar practice carried into rural American blues, country and ragtime in the early 1900s, where the alternating-thumb pattern became the standard way one player kept both time and tune; spread widely through the folk revival of the 1950s and 60s.`,
+  first:`1900s`, peak:[`1960s`,`1970s`],
+  exemplar:{ kind:'exemplifies', title:`Blackbird`, artist:`The Beatles`, year:`1968`,
+    listen:`There is one guitar and no other instrument, and you can follow two parts in it. A low string keeps a steady pulse while a melody moves independently above — and when the melody pauses, the pulse carries on without it, which is what tells you they are separate.` },
+  domains:['guitar'],
+  match:['fingerpick','fingerstyle','nails on nickel','alternating thumb'],
+  kinds:['technique'],
+  nature:'continuous', hear:2,
+  range:`The corpus swings the term across the whole range of what it can do. At one end it is bare and intimate: "fingerpicked nylon guitar" under a whispered indie-folk falsetto (#9). At the other it is an engine — "fingerpicked electric guitar as engine — galloping, hypnotic, no pick, nails on nickel — doubled and tripled" (#168), where the technique is driving a full production rather than accompanying a singer. #150 puts both in one prompt, with fingerpicked acoustic verses detonating into power chords.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`The interesting question is not whether an acoustic guitar appears but whether the two hands come back doing different jobs. A generator can satisfy the word with a softly strummed or arpeggiated guitar, and an arpeggio is the near miss to watch for: it runs through a chord one note at a time in order, which is a single part, where fingerpicking is two. #168 is the useful adversarial case because it asks for the technique in a role — hypnotic, galloping, doubled and tripled — where a lazy substitution would be least obvious.` },
+  ev:[
+    { n:168, span:`Fingerpicked electric guitar as engine`, state:'candidate', why:`"Galloping, hypnotic, no pick, nails on nickel — doubled and tripled" — the technique carrying a whole production rather than a singer, and named down to the fingernails.` },
+    { n:9,   span:`Fingerpicked nylon guitar`, state:'candidate', why:`The bare case: nylon strings under a close-miked falsetto with almost nothing else, so there is nowhere for a strum to hide.` },
+    { n:150, span:`fingerpicked open-tuned acoustic verses`, state:'candidate', why:`Verses that "detonate into slabbed power-chord slide choruses" — the technique used as the quiet half of a dynamic argument.` },
+    { n:165, span:`fingerpicked electric filigree on top`, state:'candidate', why:`Laurel Canyon pop, where a fingerpicked electric decorates over a strummed acoustic. The two are in the same prompt, which makes it the natural place to hear whether they come back distinguishable.` }
   ]
 },
 
