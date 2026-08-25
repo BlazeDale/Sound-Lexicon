@@ -29,7 +29,7 @@
  * Loaded as a classic <script> AFTER data.js, so LIB is already a global.
  */
 
-const LEX_VERSION = 'v17';
+const LEX_VERSION = 'v18';
 const LEX_UPDATED = '2026-08-25';
 
 /* ---------- TOP TIER: domains, not instruments ----------
@@ -4410,6 +4410,168 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
     { n:9,   span:`Fingerpicked nylon guitar`, state:'candidate', why:`The bare case: nylon strings under a close-miked falsetto with almost nothing else, so there is nowhere for a strum to hide.` },
     { n:150, span:`fingerpicked open-tuned acoustic verses`, state:'candidate', why:`Verses that "detonate into slabbed power-chord slide choruses" — the technique used as the quiet half of a dynamic argument.` },
     { n:165, span:`fingerpicked electric filigree on top`, state:'candidate', why:`Laurel Canyon pop, where a fingerpicked electric decorates over a strummed acoustic. The two are in the same prompt, which makes it the natural place to hear whether they come back distinguishable.` }
+  ]
+},
+
+{
+  id:'wordless-vocal',
+  term:`Wordless vocal`,
+  sounds:`A voice singing, with nothing to say. Open vowels — ooh, ah, a hummed la — held and moved through the melody exactly as a lead instrument would, so you follow it the way you would follow a guitar line. Because there is nothing to understand, nothing competes with the tune, and the result is usually warmer and more direct than the same melody played on anything else.`,
+  gloss:`Singing without lyrics: open vowels, syllables, or humming, used as a melodic line rather than as language.`,
+  syn:[`vocalise`,`open-vowel singing`,`oohs and aahs`,`humming`,`la-la-la`,`voice as instrument`,`no lyrics`],
+  myth:`No lyrics is not the same as no vocals, and confusing the two is how ambient, electronic and post-rock records end up with nothing human in them at all. A wordless vocal is a decision to promote the voice to an instrument, not a decision to leave it out — and because the words are gone, nothing is competing with the melody, which is why wordless passages so often turn out to be the emotional peak of a record rather than filler in it. Worth knowing too: vocalISE means singing without words, while vocalESE in jazz means the opposite — putting lyrics onto a recorded instrumental solo. One letter, near-opposite meanings.`,
+  known:`Sacred and choral music of every tradition, film scoring, ambient and post-rock, house and trance, gospel choirs behind a lead, and the enormous number of pop hooks that are a syllable rather than a word.`,
+  origin:`Older than notation in liturgical singing; formalised as concert vocalise in nineteenth-century Europe; used as pure texture by film composers from the 1950s, and standard in ambient and electronic production from the 1990s.`,
+  first:`ancient`, peak:[`1990s`,`2010s`],
+  exemplar:{ kind:'exemplifies', title:`The Great Gig in the Sky`, artist:`Pink Floyd`, year:`1973`,
+    listen:`There is a lead vocal running for most of the track and not one word in it. It occupies the slot a guitar solo would have taken, and it carries more of the record than any lyric on the album — which is the whole argument for the technique in four minutes.` },
+  domains:['voice','arrangement'],
+  match:['wordless','vocalese','vocalise','open-vowel','ooh-ooh'],
+  kinds:['technique'],
+  nature:'continuous', hear:1,
+  range:`The corpus uses it at every level of prominence. As atmosphere it is barely there — "wordless vowels and one half-heard phrase surfacing through the pads" (#M4). As support it is a section — "a choir stacks behind the choruses, wordless and swaying" (#140). As structure it takes the ending outright, with the "coda sung wordless and communal" (#159). And #115 puts it on the boundary, with a lead that is "wordless at the edges of phrases" and forms words only at each section's centre.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`This card exists partly as a corrective. The standing risk with atmospheric and electronic prompts is that a generator reads calm, ambient or textural as an instruction to leave the voice out, and the resulting track is not wrong so much as empty. Asking for a wordless vocal is the sharpest available test of whether the two ideas are separable: the term explicitly requires a voice AND explicitly forbids language, so a result with either words in it or nobody singing has failed in an unambiguous, easily judged way. #115 is the hardest case on purpose, because the words come and go within a single phrase.` },
+  ev:[
+    { n:115, span:`wordless at the edges of phrases`, state:'candidate', why:`The boundary case: a voice that dissolves into vowels at the edges of phrases and forms words only at the centre of each section. Nothing else in the library asks for the line to be drawn this finely.` },
+    { n:140, span:`wordless and swaying`, state:'candidate', why:`A choir stacked behind the choruses — the supporting use, where the wordlessness keeps it from competing with the lead.` },
+    { n:159, span:`coda sung wordless and communal`, state:'candidate', why:`The structural use: the words run out and the record ends on the sound of a crowd singing a vowel. Also a false-summit build, so the coda has a lot to live up to.` },
+    { n:'M4', span:`wordless vowels and one half-heard phrase surfacing through the pads`, state:'candidate', why:`The faintest end — "more texture than lead". The case most likely to come back with no voice at all, which is exactly the failure this card is about.` }
+  ]
+},
+
+{
+  id:'passaggio',
+  term:`Passaggio`,
+  sounds:`The place a voice changes gear. Climbing, the tone suddenly thins and brightens and some of the weight falls away — and for an instant it sounds like it might break. Trained singers cross it so smoothly you only notice the colour change; untrained ones crack audibly, always at the same pitch, because it is a physical event rather than a matter of effort.`,
+  gloss:`The transition between vocal registers, where the folds change how they vibrate. Every voice has one, at roughly the same place in its range, whether or not you can hear it happen.`,
+  syn:[`the break`,`chest-to-head`,`changing gear`,`register break`,`the flip`,`where the voice turns over`],
+  myth:`A trained singer does not avoid the passaggio — they cross it. The years of work go into disguising a join, not preventing a crack, and the join is still there in every professional voice you have ever heard. The second thing worth knowing turns the whole idea over: a yodel is this exact event performed deliberately and as loudly as possible. The thing classical training exists to hide is the thing an entire folk tradition is built on. The word also collides with "the break" in dance music, which is an unrelated passage of drums.`,
+  known:`Opera and musical-theatre training above all. In pop it is structural: a verse written below the break and a chorus written above it is one of the most reliable ways to make a chorus feel like a lift, and modern builds are frequently engineered to cross it at the drop.`,
+  origin:`Named by Italian bel canto pedagogy — the word is simply "passage" — though the physical event long predates anyone describing it. Exploited rather than hidden by American folk, country and rock singing from the twentieth century onward.`,
+  first:`pre-1900`, peak:[`1980s`,`2010s`],
+  exemplar:{ kind:'exemplifies', title:`Take On Me`, artist:`a-ha`, year:`1985`,
+    listen:`The verse sits comfortably low and the chorus leaps to a note that cannot be sung the same way. Listen at the leap itself rather than at the top — the tone thins and brightens at the same pitch every time, which is the mechanism changing rather than the singer trying harder.` },
+  domains:['voice'],
+  match:['chest-to-head','passaggio','register break','chest to head'],
+  kinds:['technique'],
+  nature:'momentary', hear:2,
+  range:`Every prompt in the library that names it uses it the same way: as the engine of a build. "Controlled chest-to-head lift" (#86) is the gentle version inside 80s romantic pop. #133 climbs "through chest-to-head transitions into enormous gritty resonant projection at the peaks", and #132 times the crossing to land "exactly as the bass returns" — the register change and the arrangement change made to happen in the same instant. Not one prompt uses it as a mistake, which is a gap: the crack is the version most listeners have actually heard.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Deliberately split from the chest-voice and head-voice cards, which describe the two places a voice can be. This one is about the journey between them, and the difference is testable: those two terms are satisfied by a timbre, this one only by a change happening at a particular moment. The specific thing to listen for is CONSISTENCY of pitch. A real passaggio sits in the same narrow band of the range every time a singer passes through it, so a result where the tone changes at a different note in each chorus has produced a timbre shift rather than a register break, and the two are not the same event.` },
+  ev:[
+    { n:86,  span:`controlled chest-to-head lift`, state:'candidate', why:`The gentle version, inside 80s romantic pop — a lift rather than a break, and the case where the join is meant to be almost invisible.` },
+    { n:133, span:`climbing through chest-to-head transitions into enormous gritty resonant projection`, state:'candidate', why:`The full-distance version, from "a fragile hushed tone at the floor" to the top of the voice. The widest crossing in the corpus.` },
+    { n:132, span:`rising through chest-to-head transitions into gritty resonant full projection exactly as the bass returns`, state:'candidate', why:`The crossing timed to the arrangement, so the register change and the drop happen in the same instant. The clearest test of whether it lands at a moment rather than over a section.` },
+    { n:131, span:`chest-to-head transitions with emotional grit and resonance`, state:'candidate', why:`Melodic techno, where the voice has to cross the break over a machine rather than over a band. Useful as a consistency check on where the crossing falls.` }
+  ]
+},
+
+{
+  id:'spoken-narration',
+  term:`Spoken narration`,
+  sounds:`Nobody is singing. Someone is talking to you, at conversational pitch and conversational pace, for the whole record — and the music carries on underneath as though it were a room they happened to be standing in. Because the voice is not locked to the beat, the words drift across the bar lines, and the effect is unnervingly direct: it sounds less like a performance than like being spoken to.`,
+  gloss:`A voice that speaks rather than sings for the length of a track. No pitch, no melody, and no rhythmic lock to the beat.`,
+  syn:[`spoken word`,`narration`,`monologue`,`talking over the track`,`the voice never sings`,`speech over music`],
+  myth:`It is neither rapping nor talk-singing, and the difference is rhythmic rather than melodic. Rap is welded to the grid — the syllables are a percussion part, and their placement is the craft. Talk-singing lands on real pitches and leaves them immediately. Narration does neither: it floats free of both the scale and the bar line. That also makes it much harder to sustain than it looks, because nothing in the delivery is holding it up — no melody to remember, no groove to ride. When it fails, it fails as tedium rather than as a wrong note.`,
+  known:`House and techno records built around a monologue, trip-hop, spoken-word poetry over jazz, French chanson parlée, storytelling country, and the interlude tradition in hip-hop.`,
+  origin:`Recitation over music is ancient, but the pop form dates from 1960s spoken-word records and French pop; it became a club device through 1990s house and has been a recurring pop mode since.`,
+  first:`1960s`, peak:[`1990s`,`2010s`],
+  exemplar:{ kind:'exemplifies', title:`The Revolution Will Not Be Televised`, artist:`Gil Scott-Heron`, year:`1971`,
+    listen:`The voice never sings a note, and it never locks to the drums either. Listen for where the lines end — they fall across the bar lines rather than on them, which is the thing that separates this from rapping over the same band.` },
+  domains:['voice','form','arrangement'],
+  match:['spoken narration','the vocal never sings','spoken-word','talks the whole way through'],
+  kinds:['technique'],
+  nature:'continuous', hear:1,
+  range:`The library holds a whole commissioned run of these, one per tempo, and the range is the point. #280 is dub techno at 108 with a tired voice "still talking at the end of the night"; #279 is jungle at 174 with "a voice talking faster than it can quite manage"; #277 sets it against "a relentless machine pulse"; and #275 states the rule outright — the vocal "never sings, never chants, simply talks". Same instruction, six tempos, and what changes is how much the music can be ignored.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`One of the few terms on this page with a completely unambiguous failure mode: if any of it is sung, the term has not landed. That makes it unusually cheap to judge and unusually valuable, because the pull towards melody is exactly what a generator trained on songs would be expected to have. The subtler half is worth listening for separately — whether the speech stays free of the grid, or whether it quietly turns into rapping in order to fit. A result that scans in bars has produced hip-hop, not narration, and the difference is audible in where the sentences end.` },
+  ev:[
+    { n:275, span:`the vocal never sings, never chants, simply talks`, state:'candidate', why:`The rule stated in the prompt itself, over peak-time house. The definitional case, and the natural first test.` },
+    { n:279, span:`rapid-fire spoken narration`, state:'candidate', why:`Jungle at 174 BPM, with "a voice talking faster than it can quite manage" — the tempo most likely to drag the delivery into rapping.` },
+    { n:280, span:`slow spoken narration at the end of the night`, state:'candidate', why:`Dub techno at 108 with a tired, quiet voice. The opposite pressure: slow enough that a generator might reach for singing to fill the space.` },
+    { n:277, span:`a relentless machine pulse against a voice that will not stop talking`, state:'candidate', why:`Warehouse techno, where the track is explicitly indifferent to the speaker. The clearest case of the music being a room rather than an accompaniment.` }
+  ]
+},
+
+{
+  id:'upright-bass',
+  term:`Upright bass`,
+  sounds:`Each note is a thump with a pitch attached. You hear the finger and the wood before you hear the note, and then the note dies quickly instead of hanging on — so an upright line leaves air between its notes where an electric bass would leave a hum. Bowed instead of plucked it does the opposite and turns into a low sustained groan with no attack at all, which barely sounds like the same instrument.`,
+  gloss:`The acoustic double bass, played standing, plucked or bowed. Its notes decay fast and carry a lot of body and finger noise, so it works as a percussion instrument as much as a pitched one.`,
+  syn:[`double bass`,`stand-up bass`,`acoustic bass`,`string bass`,`the big fiddle`,`doghouse bass`],
+  myth:`It is not a bass guitar in a different shape. The note dies almost immediately, and that decay is the whole character — it is why a walking line on an upright sounds like footsteps rather than a drone, and why removing one from a jazz recording takes away part of the drum kit. The thump and the slap are not defects being tolerated either: in rockabilly the string cracking back against the fingerboard IS the snare, which is how a three-piece band with no drummer still has a backbeat.`,
+  known:`Jazz and swing essentially without exception, bluegrass, rockabilly, western swing, and modern records reaching for the sound of people in a room rather than a production.`,
+  origin:`The orchestral double bass moved into dance bands and early jazz in the 1900s and 1910s, where amplification did not yet exist and it was the only bass loud enough; largely displaced by the electric bass from the 1950s onward, and retained since as a deliberate choice rather than a necessity.`,
+  first:`pre-1900`, peak:[`1940s`,`1950s`],
+  exemplar:{ kind:'exemplifies', title:`So What`, artist:`Miles Davis`, year:`1959`,
+    listen:`The record opens with the bass almost alone. Every note swells slightly and then dies inside its own beat, leaving a gap before the next one — and you can hear the string against the wood arriving at the same moment as the pitch, as a single event.` },
+  domains:['arrangement','rhythm'],
+  match:['upright bass','double bass','stand-up bass','upright thump','slapped upright'],
+  kinds:['instrument'],
+  nature:'continuous', hear:2,
+  range:`Four completely different instruments hide under one name in the corpus. "Slapping upright bass" in bluegrass (#50) is percussion. "Upright bass thumping under all of it" in a one-mic bluegrass narration (#301) is the floor of the arrangement. "Upright bass notes placed like stones" (#Q1) is the opposite — sparse, deliberate, each note an event. And #305 asks for a BOWED upright, which removes the attack entirely and produces something with almost nothing in common with the other three.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`The useful test here is not the timbre but the DECAY, because that is the thing a generator can most plausibly get wrong while sounding fine. An upright note dies inside its beat; a sustaining bass playing the same line at the same tempo will sound acceptable in isolation and wrong the moment it is next to brushed drums, because the gaps that the style depends on have been filled in. #Q1 is the sharpest case — notes "placed like stones" only works if there is silence between them. The bowed variant in #305 is worth running separately, since it is the one use that inverts every property this card describes.` },
+  ev:[
+    { n:'Q1', span:`upright bass notes placed like stones`, state:'candidate', why:`The sparse extreme, in a hushed arrangement with brushed drums "barely touched". Everything depends on the silence between the notes, which makes this the cleanest decay test in the library.` },
+    { n:50,  span:`slapping upright bass`, state:'candidate', why:`Bluegrass, where the slap is doing percussive work rather than harmonic work — the instrument at its least bass-like.` },
+    { n:305, span:`bowed upright bass`, state:'candidate', why:`Bowed rather than plucked, which removes the attack and the decay both. The one prompt that inverts the card, and therefore the one most likely to expose a generic low string sound.` },
+    { n:301, span:`upright bass thumping under all of it`, state:'candidate', why:`A one-mic bluegrass recording where instruments enter by getting louder. The bass has to be audible as a thump without any close-miking to help it.` }
+  ]
+},
+
+{
+  id:'arpeggio',
+  term:`Arpeggio`,
+  sounds:`A chord that ripples instead of landing. The notes arrive one at a time and ring into each other, so the harmony is still completely present but nothing ever thuds — it turns over and over, going nowhere on purpose. Played by hand the spacing is faintly uneven, and that unevenness is most of why it sounds like a person.`,
+  gloss:`The notes of a chord played in sequence rather than struck together. A broken chord.`,
+  syn:[`broken chord`,`picked chord`,`rippling chords`,`rolled chord`,`arpeggiated figure`,`the rolling guitar part`],
+  myth:`An arpeggio is not an arpeggiator, and the two do not sound alike. A machine arpeggiator is perfectly even — same note length, same spacing, indefinitely — while a played arpeggio breathes, and producers reaching for warmth will deliberately play one slightly badly to get that back. It is also not a melody. The notes all belong to the chord, so an arpeggio can run for four minutes without going anywhere at all, and a record built on one is using it as wallpaper with a pulse rather than as a tune.`,
+  known:`Harp and piano writing of every era, clean-toned and fingerpicked guitar, emo and math rock, and roughly every ballad introduction ever recorded.`,
+  origin:`The word is Italian for "harp-like", and the technique is as old as instruments that sound better one note at a time; it became a pop signature through 1960s clean electric guitar and again through sequenced synth patterns in the 1970s and 80s.`,
+  first:`pre-1900`, peak:[`1980s`,`2000s`],
+  exemplar:{ kind:'exemplifies', title:`Every Breath You Take`, artist:`The Police`, year:`1983`,
+    listen:`The guitar never plays a chord as a block. One shape rolls over and over for the entire song, so the harmony is always there and nothing ever lands. Listen to the spacing between the notes — it is not quite even, which is the difference between this and a sequencer playing the same figure.` },
+  domains:['guitar','keys','harmony'],
+  match:['arpeggio','arpeggios','broken chord','rolled chord'],
+  kinds:['technique'],
+  nature:'continuous', hear:2,
+  range:`The corpus spreads it across four instruments and two eras. "Harp arpeggios" sit inside a full romantic orchestra (#7); "piano arpeggios" open a modern anthem (#35); "clean guitars picking interlocking arpeggios in an odd tuning" are the entire texture of a Midwest emo track (#326); and "analog polysynth arpeggios rising through the mix" (#112) is the contested case, because a synth arpeggio is the one most likely to have been sequenced rather than played.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Deliberately kept separate from the arpeggiator card, and the pair is the test. Those two terms describe the same NOTES and different HANDS: one is a machine running a chord at fixed intervals, the other is a person breaking one up. If a prompt-pair swapping only that word produces the same figure with the same mechanical spacing, then the page has learned something narrow but real — that the generator holds the note pattern and not the performance behind it. #326 is the most demanding case here, since interlocking arpeggios in an odd tuning require the figure to be irregular by design.` },
+  ev:[
+    { n:326, span:`clean guitars picking interlocking arpeggios in an odd tuning`, state:'candidate', why:`Two guitars interlocking rather than one repeating, in a tuning that makes the shapes irregular. The furthest thing from a sequencer in the corpus.` },
+    { n:112, span:`analog polysynth arpeggios rising through the mix`, state:'candidate', why:`The contested case: a synth arpeggio, which is exactly where the played and the sequenced versions are hardest to tell apart. The direct partner to the arpeggiator card.` },
+    { n:35,  span:`Piano arpeggios`, state:'candidate', why:`An anthem opening, where the arpeggio is holding the harmony alone before the drums arrive — nothing to hide behind.` },
+    { n:7,   span:`harp arpeggios`, state:'candidate', why:`Inside a full romantic orchestra with strings, woodwind countermelody and timpani. The crowded case, and the instrument the word is named after.` }
+  ]
+},
+
+{
+  id:'cadence',
+  term:`Cadence`,
+  sounds:`The sound of a phrase finishing. Two or three chords arrive in an order your ear already knows and the music lands, like a door closing. Swap the last one and it does not land — the phrase stops without ending and you keep waiting, which is a strange and specific feeling that has nothing to do with the melody or the words.`,
+  gloss:`The chord movement that ends a musical phrase, and what tells you whether it has ended, paused, or been refused.`,
+  syn:[`the ending`,`resolution`,`how a phrase lands`,`perfect cadence`,`the turn at the end`,`full stop`],
+  myth:`The word means two unrelated things and both are common in the same sentence. In harmony a cadence is how a phrase's chords finish. In rap and in speech, cadence means the rhythmic pattern of the delivery and has nothing to do with chords at all — so "a great cadence" is a compliment about flow, while "a weak cadence" is a complaint about harmony. Nothing in the word itself distinguishes them. The harmonic sense also has an underrated member: the cadence that deliberately refuses to land, which is how a song makes you wait through another eight bars without you knowing why.`,
+  known:`Harmony: every hymn, every jazz standard, and the four repeating chords under an enormous share of pop. Delivery: drill, grime and rap generally, where it is one of the standard words of praise.`,
+  origin:`European harmonic practice, formalised by the seventeenth century and inherited by popular song wholesale. The delivery sense is far younger, arriving through rhetoric and then through hip-hop in the late twentieth century.`,
+  first:`pre-1900`, peak:[`1950s`,`2010s`],
+  exemplar:{ kind:'exemplifies', title:`Stand By Me`, artist:`Ben E. King`, year:`1961`,
+    listen:`The same four chords repeat from the first bar to the last, and every fourth bar the final two push and then land. Try stopping the record on the chord immediately before that landing — it feels physically unfinished, and that feeling is the entire subject of this card.` },
+  domains:['harmony','form'],
+  match:['cadence','cadences','phrase cadence'],
+  kinds:['technique'],
+  nature:'momentary', hear:3,
+  range:`Both meanings are live in the library, sometimes a few entries apart. Harmonic: "cadences landing like slammed doors" in a hard electronic track (#J8), "hold-release at every phrase cadence" in an angular hymn (#H3), and a line that "rises to the cadence and settles over the drone" in Eastern-Orthodox sacred song (#80). Delivery: "half-shouted in drill-like cadence on the beat" (#58), which is about syllables and not about chords at all. The same word, doing two jobs, with only the surrounding sentence to tell them apart.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`The interesting question is which meaning a generator reaches for, and it is a question the corpus cannot settle on its own because every prompt here supplies context that resolves the ambiguity. The test that would settle it is a bare prompt using the word with nothing around it to disambiguate: whichever sense comes back is the one the term defaults to, and that is worth knowing before writing the word into anything. Beyond that, the harmonic sense has a specific and hearable failure — a cadence that does not arrive where the phrase ends is not a cadence, it is just chords, and #H3's demand for one at EVERY phrase end is the cleanest way to hear whether the two are being lined up.` },
+  ev:[
+    { n:'J8', span:`cadences landing like slammed doors`, state:'candidate', why:`The most-demoed entry attached to any card on this page, and the most emphatic harmonic use — cadence as impact rather than as grammar.` },
+    { n:'H3', span:`hold-release at every phrase cadence`, state:'candidate', why:`Every phrase, which means the harmony and the phrasing have to line up repeatedly rather than once. The strictest version of the term in the library.` },
+    { n:80,  span:`rises to the cadence and settles over the drone`, state:'candidate', why:`Sacred chant over a drone, where a cadence has to be audible against a note that never changes — the hardest possible background for hearing one.` },
+    { n:58,  span:`half-shouted in drill-like cadence on the beat`, state:'candidate', why:`The other meaning entirely: delivery, not harmony. Kept as the collision case, because a result here that changes the chords has read the word and ignored the sentence.` }
   ]
 },
 
