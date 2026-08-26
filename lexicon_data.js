@@ -29,8 +29,8 @@
  * Loaded as a classic <script> AFTER data.js, so LIB is already a global.
  */
 
-const LEX_VERSION = 'v18';
-const LEX_UPDATED = '2026-08-25';
+const LEX_VERSION = 'v19';
+const LEX_UPDATED = '2026-08-26';
 
 /* ---------- TOP TIER: domains, not instruments ----------
    `kind` splits the rail into the two families the doc argues are peers: the physical
@@ -4572,6 +4572,196 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
     { n:'H3', span:`hold-release at every phrase cadence`, state:'candidate', why:`Every phrase, which means the harmony and the phrasing have to line up repeatedly rather than once. The strictest version of the term in the library.` },
     { n:80,  span:`rises to the cadence and settles over the drone`, state:'candidate', why:`Sacred chant over a drone, where a cadence has to be audible against a note that never changes — the hardest possible background for hearing one.` },
     { n:58,  span:`half-shouted in drill-like cadence on the beat`, state:'candidate', why:`The other meaning entirely: delivery, not harmony. Kept as the collision case, because a result here that changes the chords has read the word and ignored the sentence.` }
+  ]
+},
+
+
+{
+  id:'stab',
+  term:`Stab`,
+  sounds:`A chord that arrives and is gone before you can settle into it. One hit, no tail, silence where the ring should be — and because it stops so abruptly, the gap after it becomes part of the rhythm. A record built on stabs feels like it is being punched in time rather than played, and you find yourself hearing the holes as clearly as the hits.`,
+  gloss:`A chord played short and cut off, so it works as a rhythmic event rather than as harmony you can lean on. Any instrument that can play a chord can play one.`,
+  syn:[`stabs`,`hits`,`punches`,`horn stabs`,`organ stab`,`chord jabs`,`that short chord hit`],
+  myth:`A stab is not an instrument and not a genre sound — it is an envelope. The same three notes held for a bar are a pad; cut to a sixteenth they are a stab, and nothing else about them has changed. That is why the word travels across horns, organs, strings, synths and chopped vocals without ever meaning a different thing. The second misreading is that a stab is loud. What makes it read as a stab is the silence it leaves behind: fill in the gap and the punch disappears at exactly the same volume.`,
+  known:`House and techno, where a sampled organ chord cut to a fraction of a second has carried entire records; soul and funk horn punctuation; ska organ on the offbeats; dub chords fired into delay; and the short, hard string figures of modern trailer music.`,
+  origin:`Arranged brass punctuation in swing bands and then in 1960s soul; adopted wholesale by 1970s reggae organ and disco strings, and made a defining electronic gesture by late-1980s house, where the stab stopped being punctuation and became the hook.`,
+  first:`1960s`, peak:[`1970s`,`1990s`],
+  exemplar:{ kind:'exemplifies', title:`Show Me Love`, artist:`Robin S.`, year:`1993`,
+    listen:`The whole record is one organ chord played short, over and over. Nothing sustains — each hit stops dead, and the hole it leaves is where the groove lives. Try humming the riff and you will find you hum the gaps too.` },
+  domains:['arrangement','rhythm'],
+  match:['stab'],
+  kinds:['technique'],
+  nature:'momentary', hear:1,
+  range:`The corpus spreads it across five instrument families and one genuinely awkward case. Synth: "Analog polysynth stabs" in Detroit techno (#81) and "screeching industrial synth stabs" in hard techno (#84). Voice: "pitched vocal-chop stabs in the drop" (#87). Strings: "Sawing synthetic string stabs looped like a trapped thought" (#J6). Brass: horn and brass stabs throughout the soul and ska entries. And then #82 — "Rolling dub-chord stab washed in delay" — which is a short attack with an enormous tail, and therefore the one use that pulls against the definition.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Ninety prompts use the word and nearly all of them also name house, techno, funk or ska, so the corpus on its own cannot separate "stab" the articulation from "stab" the genre cue. The sharp test is #82, because it asks for the two halves of the envelope to disagree: the attack short, the tail long. A generator that has learned stab as "short sound" will shorten the whole event and lose the dub, and that failure is audible without any comparison — the delay simply will not be there. Worth checking on a non-electronic prompt too, since a stab on an acoustic instrument is where the word is most likely to be read as loudness.` },
+  ev:[
+    { n:87, span:`pitched vocal-chop stabs in the drop`, state:'candidate', why:`The most-demoed use in the corpus, and the case furthest from the word's origin — a human voice made into a chord hit. If the envelope is what the term carries, it should survive the change of instrument.` },
+    { n:81, span:`Analog polysynth stabs`, state:'candidate', why:`The plain synth case, sitting beside "warm string-machine pads" in the same sentence — the same kind of sound with the opposite envelope, inside one prompt.` },
+    { n:82, span:`Rolling dub-chord stab washed in delay`, state:'candidate', why:`The contested one. Short attack, long tail. The test of whether "stab" is heard as an envelope or simply as brevity.` },
+    { n:85, span:`tightly gated stab sequence`, state:'candidate', why:`Berlin techno at its most stripped, where the gate makes the cut-off explicit and there is almost nothing else in the arrangement to hide behind.` }
+  ]
+},
+
+{
+  id:'swell',
+  term:`Swell`,
+  sounds:`A sound that is suddenly there without ever having started. The note fades up out of nothing, so there is no pluck, no strike, no consonant at the front of it — and because your ear identifies instruments largely by their attack, a swelled guitar stops sounding like a guitar and starts sounding like a bowed string or a held breath. Records use it to make something arrive from underneath rather than land on top.`,
+  gloss:`Bringing a sound up in volume after it has already begun, so the attack is hidden. Done with a volume pedal, an organ's expression pedal, a fader, a bow, or by a player simply leaning into a held note.`,
+  syn:[`volume swell`,`fade-in`,`pedal swell`,`bloom`,`cymbal swell`,`rise`,`that thing where it fades up into the note`],
+  myth:`It is not the same as getting louder. A crescendo is a change in level across a passage; a swell reshapes a single note or chord so that its beginning is removed. That is the entire trick, and it is why a swell registers as a change of identity rather than as a dynamic — take the attack off a piano and most listeners cannot name the instrument any more. It is also not necessarily slow. A fast swell in front of a chord reads as a gasp, not as atmosphere, and the same gesture at two speeds does two unrelated jobs.`,
+  known:`Volume-pedal and pedal-steel guitar, orchestral and cymbal swells laid in front of a downbeat, Hammond swells behind a gospel line, supersaw chord swells in modern dance music, and reversed sounds, which are the extreme case of the same idea.`,
+  origin:`Available on any instrument a player can lean into, but made a deliberate device by the organ's expression pedal and the guitar volume pedal in the 1950s and 60s; the synthesiser then turned it from a gesture into a setting, which is why it is everywhere in electronic music and rarely remarked on.`,
+  first:`1950s`, peak:[`1960s`,`1980s`,`2010s`],
+  exemplar:{ kind:'exemplifies', title:`Shine On You Crazy Diamond`, artist:`Pink Floyd`, year:`1975`,
+    listen:`Minutes pass before anything is struck. The chords arrive by fading up, so there is no instant you could point at as the start of a note — which is why the record seems to have been going on before you arrived.` },
+  domains:['arrangement','production'],
+  match:['swell'],
+  kinds:['technique'],
+  nature:'momentary', hear:2,
+  range:`Ninety-four prompts use it, and the useful spread is by instrument rather than by degree. "Hammond organ swell" holds a gospel quartet together at 60 BPM (#12). "Crushing cymbal swells" fill the bars of funeral doom at 48 (#8). "Supersaw chord swells" open a future-bass drop (#87). "One big cymbal-swell sunrise into the final chorus" (#D5) uses a single one as a structural event. And "Fuzz guitar with backwards swells" (#37) is the limit case: the attack is not hidden, it has been removed by running the tape the other way.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`The failure mode is specific and easy to hear once you know to listen for it: a swell rendered as a crescendo. The level rises, and the pick, the mallet or the key is still audible at the front of the note. So the test is not "did it get louder" but "can I hear the attack" — and it can be answered on a single listen with no comparison prompt at all. The second thing worth checking is what happens on an instrument that physically cannot swell. A piano has one envelope and no way to fade into a note; whether a generator refuses, ignores the word, or quietly substitutes strings would say a good deal about how the term is being represented.` },
+  ev:[
+    { n:87, span:`Supersaw chord swells`, state:'candidate', why:`The best-demoed swell in the library, and the modern default — a synth chord fading up into a drop, where the swell is doing the work of an intake of breath.` },
+    { n:37, span:`Fuzz guitar with backwards swells`, state:'candidate', why:`The extreme end: the attack removed by reversing the sound rather than by hiding it. If this comes back as a forwards guitar that gets louder, the term has been read as a dynamic.` },
+    { n:12, span:`Hammond organ swell`, state:'candidate', why:`The oldest and plainest case — an expression pedal under a gospel quartet at 60 BPM, with nothing else moving fast enough to disguise it.` },
+    { n:'D5', span:`one big cymbal-swell sunrise into the final chorus`, state:'candidate', why:`A single swell used as a structural signal rather than as a texture. Its job is to make an arrival feel inevitable, so it either lands in the right bar or it is decoration.` }
+  ]
+},
+
+{
+  id:'comping',
+  term:`Comping`,
+  sounds:`Chords arriving in places you could not have predicted, and then not arriving where you expected. A comping player is not keeping time and not playing the tune — they are reacting: filling the singer's gaps, going quiet the instant the singer moves, shoving a chord in behind a line that has just landed. When it is good you barely register it. When it stops, the soloist suddenly sounds like somebody standing alone in an empty room.`,
+  gloss:`Accompanying — playing chords behind a soloist or singer in a way that answers what they are doing, rather than laying down a fixed pattern underneath them.`,
+  syn:[`accompanying`,`chording behind`,`backing chords`,`feeding chords`,`rhythm playing`,`the piano behind the solo`],
+  myth:`The word means two unrelated things and studio conversation uses both, sometimes in the same sentence. In performance, comping is accompanying. In recording, to comp a vocal is to assemble one composite take out of a dozen, line by line, and it has nothing to do with chords at all — so "the comp is done" and "the comping is great" are remarks about different crafts. Inside the performance sense, the usual misunderstanding is that comping is a pattern. It is the opposite: what makes it comping rather than strumming is that the placement changes constantly in answer to somebody else, which means a comping part played identically twice has stopped being one.`,
+  known:`Jazz piano and guitar behind a soloist, bossa nova guitar, the four-to-the-bar acoustic guitar that powered swing rhythm sections, and organ or electric piano behind a gospel preacher.`,
+  origin:`Small-group jazz practice of the 1930s and 40s, when the pianist's left hand stopped keeping time — that job having moved to the bass — and became free to answer the soloist instead. The abbreviation is of "accompany", and it stayed jazz slang for decades before spreading.`,
+  first:`1930s`, peak:[`1940s`,`1950s`,`1960s`],
+  exemplar:{ kind:'exemplifies', title:`'Round Midnight`, artist:`Miles Davis`, year:`1957`,
+    listen:`Listen only to the piano, and only in the spaces. It never states the beat and never plays the melody. It puts a chord in wherever the trumpet has just stopped, and goes quiet the moment the trumpet moves again — the part is entirely made of somebody else's silences.` },
+  domains:['keys','guitar','arrangement'],
+  match:['comping'],
+  kinds:['technique'],
+  nature:'continuous', hear:3,
+  range:`Eight prompts, and they sit at very different points on the reactive-to-fixed axis. "Sparse felt-piano comping" at 60 BPM (#2) is comping so spare it is nearly absence. "Comping jazz piano" inside a big band (#26) has almost no room left by the horns. "Archtop comping" in western swing (#101) means four even chords to the bar — felt rather than heard, and about as un-reactive as the word ever gets. "Nylon-string guitar with bossa comping" (#68) is a fixed pattern by genre convention. And "tremolo guitar comping" in southern soul (#214) is the case where the accompaniment has its own timbre trick running underneath it.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`The question is whether comping registers as a ROLE or merely as "there are chords". A generator that returns an even chordal pattern has satisfied the word by dictionary and missed it entirely by ear, and nothing about the result will look wrong. So the listening test has to be about placement, not sound: do the chords move around the vocal, and do they stop when the voice enters? #2 is the cleanest case, because at 60 BPM with a brushed kit and almost nothing else, a metronomic answer would be impossible to miss. #101 is the useful control — a style where evenly placed chords are the correct answer, so a result that reacts there is arguably wrong.` },
+  ev:[
+    { n:101, span:`archtop comping`, state:'candidate', why:`Western swing, where the convention is four even chords to the bar. The end of the range where comping is meant to be steady, and therefore the control case.` },
+    { n:68, span:`Nylon-string guitar with bossa comping`, state:'candidate', why:`Bossa comping is a named pattern rather than a reaction, which makes it the test of whether the word can carry a specific figure and not just a role.` },
+    { n:214, span:`tremolo guitar comping`, state:'candidate', why:`Sixties soul, with the accompaniment carrying a timbre effect of its own. A chance to hear whether the comping survives being given something else to do.` },
+    { n:2, span:`sparse felt-piano comping`, state:'candidate', why:`The sharpest test on the card: a noir ballad at 60 BPM where the piano has almost nothing to do, so any tendency to fall into a steady pattern is fully exposed.` }
+  ]
+},
+
+{
+  id:'voicing',
+  term:`Voicing`,
+  sounds:`Two records play the same chord and one of them glows while the other sounds like a school hymn. Nothing about the chord's name has changed — what changed is which note sits at the bottom, how far apart the rest are stacked, and which ones were simply left out. Spread wide and low it sounds vast. Bunched in the middle it sounds tense and crowded. With one note missing it sounds open and unfinished, and nobody can say why.`,
+  gloss:`The arrangement of a chord's notes: which is lowest, how they are spaced, which are doubled, which are omitted. The chord's name says nothing about any of it.`,
+  syn:[`chord voicing`,`inversion`,`open voicing`,`how the chord is stacked`,`spread`,`the way the chords are laid out`],
+  myth:`A chord symbol is not a sound. It names a set of notes and is silent about the arrangement of them, which is where nearly all of a chord's character lives — the same C major can be a hymn, a Rhodes glow or a wall of menace. This is also the answer to the most common complaint in amateur recording: that somebody played the right chords and it still sounded wrong. The chords were right; the voicing was not. The bass note matters most of all. Putting something other than the root at the bottom keeps the chord's name intact and changes its entire weight, which is why so many beloved progressions turn out to be ordinary chords with an unexpected note underneath.`,
+  known:`Jazz piano, where voicing is essentially the whole craft of the instrument; the wide, low string writing of film scores; the deliberately gapped two-note voicing of rock guitar; and the stacked-fourths sound of modal jazz, which is one voicing idea heard as a whole era.`,
+  origin:`Explicit in European part-writing for centuries under other names. It became a named craft of its own through twentieth-century jazz and dance-band arranging, where the same tune had to be made to sound new by rearrangement rather than by rewriting.`,
+  first:`pre-1900`, peak:[`1950s`,`1960s`],
+  exemplar:{ kind:'exemplifies', title:`Maiden Voyage`, artist:`Herbie Hancock`, year:`1965`,
+    listen:`Four chords carry the whole piece, and they are famous not for what they are but for how they are stacked — in fourths rather than thirds, so nothing sits where the ear expects and none of them quite settles. Play the same four chords in plain root position and the piece simply evaporates.` },
+  domains:['harmony','keys','arrangement'],
+  match:['voicing'],
+  kinds:['technique'],
+  nature:'continuous', hear:4,
+  range:`The corpus attaches it to one recurring demand and then changes the instrument under it: "dissonance and resolve suspended in the pad voicings" (#W4, #115), "in the supersaw voicings" (#114), "in the string voicings" (#123), "ground into the stab voicings" (#J6), "left ringing in open guitar voicings" (#Q1, #L3). The instrument moves and the instruction does not — that the tension should live in the spacing of the chord rather than in the movement between chords. That is the harder of the two ways to get it, and it is the one being asked for every time.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Probably the hardest term on this page to judge, and possibly the most valuable, because it cannot fail visibly. A generator will always produce SOME voicing, so the word can never come back obviously wrong — which means the only honest test is a comparison rather than a listen. Run the same prompt with and without the voicing clause and ask two narrow questions: did the bass note stop being the root, and did the chords open up. If neither changes, the word is decoration and every prompt in the library that leans on it is spending characters for nothing. Listen at the bottom of the chord, not the top; that is where the difference lives and where a generic answer will keep putting the root.` },
+  ev:[
+    { n:'W4', span:`dissonance and resolve suspended in the pad voicings`, state:'candidate', why:`Six demos, and a ballad slow enough that the chords are exposed for whole bars. The best chance in the library of hearing the spacing rather than the progression.` },
+    { n:'Q1', span:`dissonance and resolve left ringing in open guitar voicings`, state:'candidate', why:`Open guitar voicings in near-silent bars, left to ring. Sparse enough that a closed, ordinary shape would be immediately obvious.` },
+    { n:'J6', span:`dissonance and resolve ground into the stab voicings`, state:'candidate', why:`The opposite conditions — chords cut to stabs at 122 BPM, so the voicing has to register in a fraction of a second. The test of whether it survives brevity.` },
+    { n:123, span:`dissonance and resolve in the string voicings`, state:'candidate', why:`Written strings rather than a keyboard, where voicing is a matter of who plays which note. The case closest to the term's origin in arranging.` }
+  ]
+},
+
+{
+  id:'refrain',
+  term:`Refrain`,
+  sounds:`A line that keeps coming back. Not a section — one line, usually the last of each verse, often the title, arriving in the same place every time with the same words and the same tune. Because nothing around it changes to announce it, it works by accumulation: the tenth time you hear it, it is carrying everything that happened in between. Songs built this way feel like they are closing in rather than opening up.`,
+  gloss:`A repeated line or short phrase that returns at a fixed point, usually at the end of every verse — as opposed to a chorus, which is a separate section with its own music.`,
+  syn:[`the repeated line`,`the returning line`,`the tag`,`burden`,`the hook line`,`the bit at the end of every verse`],
+  myth:`A refrain is not a chorus, and the difference is structural rather than one of degree. A chorus is a section: its own melody, its own chords, and you leave the verse to get to it. A refrain lives inside the verse and uses the verse's own music — which is why a song can have a powerful refrain and no chorus whatsoever, and why so much folk and older popular song gets wrongly described as having no hook. The complication is that the word has drifted. In ordinary use, and in a great deal of pop writing, "refrain" simply means chorus, and in call-and-response traditions it can mean the group of people who sing the answering line. All three senses are live and nothing in the word tells you which is meant.`,
+  known:`Folk ballads and protest song, hymns, blues, and any tradition where verses pile up and the same line answers each of them. Also used loosely for the chorus throughout pop criticism, and for the answering voices in call-and-response singing.`,
+  origin:`The oldest repeating device in sung poetry, and considerably older than the chorus as a separate section — which is a comparatively recent invention. The strict sense survives in folk and hymnody; the loose sense spread through twentieth-century writing about popular song and has largely won.`,
+  first:`ancient`, peak:[`1960s`],
+  exemplar:{ kind:'exemplifies', title:`Blowin' in the Wind`, artist:`Bob Dylan`, year:`1963`,
+    listen:`There is no chorus in this song at all. Each verse ends on the same line, sung to the verse's own melody, and that line is the part everyone remembers — a clean demonstration that the memorable part of a song does not need a section of its own.` },
+  domains:['form'],
+  match:['refrain'],
+  kinds:['technique'],
+  nature:'momentary', hear:3,
+  range:`All three senses are live in the library, sometimes a few entries apart. Strict: #315 keeps "one refrain returning between the improvisations" in an otherwise improvised Ethio-jazz piece, and #103 has a frame drum "entering only at the refrain". Loose: #J3 asks for "full arena refrains", which plainly means choruses, and #122 contrasts "simmering verses and eruptive refrains". Response: #105 answers its call lines with "a small warm refrain group" — here the refrain is a set of people. #M5 uses it structurally, the voice "joined at the final refrain by its own quiet double", which only makes sense if the refrain has already returned several times unaccompanied.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Like the cadence card, the real question is which sense a bare use of the word selects, and the corpus cannot answer it because every prompt here supplies context that resolves the ambiguity. The failure to listen for is specific: a result that answers "refrain" by building a separate chorus section has chosen the loose sense, and in #315 that would destroy the very form the prompt asked for. That makes #315 the sharpest test in the library — improvisation with one returning line is a shape a chorus cannot occupy without wrecking it. #105 is the second test and a different one: if the refrain group comes back as a stack of harmonies on the lead rather than as a separate answering voice, the response sense has been lost.` },
+  ev:[
+    { n:'M5', span:`joined at the final refrain by its own quiet double`, state:'candidate', why:`Four demos, and the refrain used as an architectural fact — the doubling only means something if the line has already returned alone several times.` },
+    { n:315, span:`one refrain returning between the improvisations`, state:'candidate', why:`The strict sense at its purest: a fixed line inside a form that is otherwise free. A generator that answers with a chorus has broken the piece, which makes this the clearest verdict available.` },
+    { n:'J3', span:`full arena refrains`, state:'candidate', why:`The loose sense, meaning chorus outright. Kept as the collision case — two prompts in the same library asking for opposite structures with the same word.` },
+    { n:105, span:`answered by a small warm refrain group`, state:'candidate', why:`The third sense: the refrain as a group of singers rather than as a line. Highlife call-and-response, where the answer has to come from somebody else.` }
+  ]
+},
+
+{
+  id:'fill',
+  term:`Fill`,
+  sounds:`The gap gets filled. A phrase ends, the singing stops for a beat or two, and something rushes into the hole — a tumble round the drums, a run up the piano, three notes from the bass — and then it is gone and the next line starts. You mostly notice fills when they are missing: a record where nothing ever answers the ends of the lines feels stiff and oddly polite, and one where the fills stop just before a chorus feels like a held breath.`,
+  gloss:`A short burst of playing in a gap left by the main part, usually at the end of a phrase or a section. Any instrument can play one; the drums simply have the most gaps.`,
+  syn:[`drum fill`,`a roll`,`a lick`,`flourish`,`answering phrase`,`the bit between the lines`],
+  myth:`A fill is not a solo and it is not decoration. Its real job is structural: a fill tells you where you are in the song, which is why the biggest one always arrives immediately before the chorus, and why a section can change without any other cue being given. It is also not a drum term — trombone fills, piano fills and bass fills all mean the same thing, and the association with drums comes from the kit having the most silence to work in. The last misreading is that more is better. Entire genres are defined by refusing them: a part that never fills reads as machine-like or as discipline, and taking the fills away is the cheapest way to make a live band sound programmed.`,
+  known:`The drum fill into every chorus in rock and pop, gospel and jazz piano answering the ends of a singer's lines, bass fills in soul, and horn or string figures dropped into vocal gaps in arranged music.`,
+  origin:`As old as ensemble playing, but named and standardised by twentieth-century studio practice, where a fill's placement stopped being a player's flourish and became a signpost for the listener — the thing that tells you the chorus is one bar away.`,
+  first:`1930s`, peak:[`1960s`,`1970s`,`1980s`],
+  exemplar:{ kind:'exemplifies', title:`Good Times Bad Times`, artist:`Led Zeppelin`, year:`1969`,
+    listen:`The drums answer nearly every vocal line, and the answers are more memorable than the riff. Notice where they fall — always in the gap, never across the singing — and that the largest one is always the one handing you the next section.` },
+  domains:['drums','arrangement','form'],
+  match:['fills','drum fill','piano fills'],
+  kinds:['technique'],
+  nature:'momentary', hear:1,
+  range:`The corpus uses the word for four different instruments and, more revealingly, uses its absence as an instruction. Present: "muted trombone fills" (#26), "fretless bass fills" (#32), "jazzy piano fills" (#89), and "fills that resolve the polyrhythm" (#143). Withheld on purpose: "no fills beyond what a beginner would dare" (#147) and "fills refused until the breach" (#163), where the refusal is the whole character of the drumming. And #156 asks for fills that fail — "stumbling fills, dropped beats, cymbal chokes" — which is a third thing again.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Two opposite failure modes, both easy to hear. A fill that plays across the vocal rather than in its gap has been read as an ornament, and the giveaway is that nothing steps back to make room for it. A fill that lands somewhere other than a phrase end has been read as a texture — activity rather than punctuation. #143 is the hardest test here, because a fill that resolves a polyrhythm has to arrive at one specific point in a shifting bar, so generic drum busyness cannot answer it. The prompts that FORBID fills are worth running too, and for the same reason melisma is: a term the generator can be told to withhold is a term it can locate.` },
+  ev:[
+    { n:143, span:`fills that resolve the polyrhythm`, state:'candidate', why:`The strictest use in the library. The fill has a job — landing the odd meter back on itself — so it cannot be satisfied by drum activity at the right moment.` },
+    { n:89, span:`jazzy piano fills`, state:'candidate', why:`Piano rather than drums, at 174 BPM, in the gaps of a soulful vocal. The test of whether the term survives moving off the kit.` },
+    { n:156, span:`stumbling fills`, state:'candidate', why:`Fills asked for as failure — deliberately broken, alongside dropped beats and cymbal chokes. Only meaningful if the correct version is understood first.` },
+    { n:32, span:`fretless bass fills`, state:'candidate', why:`The bass filling the vocal gaps in early-80s synthpop, where the arrangement is otherwise sequenced. The clearest case of a fill as the one human gesture in a machine part.` }
+  ]
+},
+
+{
+  id:'toms',
+  term:`Toms`,
+  sounds:`Drums with a pitch and no crack. Where a snare goes tss and a kick goes thud, a tom goes boom and keeps ringing — a round, hollow, wooden note you can very nearly hum. Because nothing on a tom snaps, a groove built on them loses its backbeat entirely and starts to feel like marching, or ceremony, or something happening outdoors at night. It is the sound people reach for the word tribal to describe, and it is why the drums in a huge cinematic build are almost never ones you could dance to.`,
+  gloss:`The pitched drums of the kit, mounted above and beside the player. They carry no snare wires under the head, so each hit is a full resonant note rather than a sharp crack.`,
+  syn:[`tom-toms`,`floor tom`,`rack toms`,`the boomy drums`,`the low drums`,`jungle drums`],
+  myth:`Toms are not simply bigger snares. A snare's rattle comes from wires stretched under its bottom head; a tom has none, so what is left is the drum's own note. That one difference is why a tom cannot carry a backbeat — there is no crack to place on the two and the four — and why moving a part onto the toms alters the feel of a song far more than moving it up or down in pitch ever would. The second misconception is that tom-heavy means loud. It usually means the reverse of a rock kit: fewer cymbals, no rattle, more ring, and a groove drawing its energy from repetition instead of impact.`,
+  known:`The ceremonial builds of doom and progressive metal, mid-1960s garage and psychedelia, the tom-and-percussion drive of late-70s and 80s arena pop, processional and marching music, and any arrangement reaching for something older than a drum kit.`,
+  origin:`Adapted into the Western kit early in the twentieth century from Chinese and African drums, which is where the persistent and lazy "tribal" description came from; became a lead voice in popular music through 1960s psychedelia, and again through the enormous tom-driven productions of the early 1980s.`,
+  first:`1920s`, peak:[`1960s`,`1980s`],
+  exemplar:{ kind:'exemplifies', title:`Tusk`, artist:`Fleetwood Mac`, year:`1979`,
+    listen:`Barely a cymbal on it and no ordinary backbeat anywhere. The groove is toms and stamping, and the result does not sound like rock drumming at all — it sounds like a procession, which is precisely what removing the snare's crack does to a beat.` },
+  domains:['drums'],
+  match:['tom-heavy','tribal tom','tom build','floor tom','tom fill'],
+  kinds:['instrument'],
+  nature:'continuous', hear:1,
+  range:`#126 states the case outright — "massed tribal toms played as ceremony rather than groove" — toms used specifically to stop a groove forming. #128 sets "distant tribal toms" far back to hold the floor under synth drones, so the toms are architecture rather than rhythm. #70 and #37 use "tom-heavy drums" in 1960s garage and acid rock, where the toms are simply what the kit sounds like. And #D5 uses "pounding tom builds" as a device: toms as the sound of something approaching.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`One of the cheapest verdicts available on this page, because the failure is unmistakable and needs no comparison. The test is whether the two and the four still crack. If a result asked for tom-heavy drums still has a snare backbeat under it, the toms have been added as a layer rather than substituted for the kit, and the entire point — a groove with no crack in it — has been lost. #126 is the strictest version, since "as ceremony rather than groove" rules out the compromise where the toms decorate an ordinary beat. Worth listening for pitch too: real toms are tuned in relation to each other, and a fill that moves between them should descend.` },
+  ev:[
+    { n:126, span:`massed tribal toms played as ceremony rather than groove`, state:'candidate', why:`The definitional case, and the strictest. The prompt forbids the compromise outright, so a snare backbeat under this one is a plain failure rather than an interpretation.` },
+    { n:128, span:`distant tribal toms`, state:'candidate', why:`Toms placed far back to hold the floor under drones — the case where they are doing architectural work rather than keeping time.` },
+    { n:70, span:`pounding tom-heavy drums`, state:'candidate', why:`1960s garage at 150 BPM, where tom-heavy is the character of the whole kit rather than a special effect. The test of whether the term registers at speed.` },
+    { n:'D5', span:`pounding tom builds`, state:'candidate', why:`Toms as a structural device — the sound of an arrival approaching. Their job is to create expectation, so they either resolve into the chorus or they were only a texture.` }
   ]
 },
 
