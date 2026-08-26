@@ -718,13 +718,23 @@ function support(c) {
    which rather than implying that enough hearts settle the question. */
 function caveatLine() {
   const heard = LEX.filter(c => support(c).backed > 0).length;
-  const waiting = LEX.length - heard;
+  /* Split out, because these two are unheard for opposite reasons and the sentence used to
+     claim both had candidates waiting. A card with no evidence at all is not queued for a
+     listen; there is nothing to queue. */
+  const ahead = LEX.filter(c => !support(c).total).length;
+  const waiting = LEX.length - heard - ahead;
   return `<b>${heard ? `${heard} of ${LEX.length} terms have been heard.` : 'Nothing here has been heard yet.'}</b> `
     + (waiting
-      ? `${waiting === LEX.length ? 'Every' : `The other ${waiting}`} card${waiting === 1 ? '' : 's'} `
+      ? `${!heard ? waiting : waiting + heard === LEX.length ? 'Every other' : `Another ${waiting}`} card${waiting === 1 ? '' : 's'} `
         + `${waiting === 1 ? 'has' : 'have'} candidates attached and nobody has played `
         + `${waiting === 1 ? 'it' : 'them'} yet — the <em>Needs a listen</em> filter is that list. `
-      : `Every card has a demo somebody vouched for. `)
+      : `Every card with evidence under it has a demo somebody vouched for. `)
+    + (ahead
+      ? `<b>${ahead}</b> ${ahead === 1 ? 'card is' : 'cards are'} ahead of the evidence entirely: `
+        + `no prompt in the library has ever asked for ${ahead === 1 ? 'that term' : 'those terms'}, `
+        + `and ${ahead === 1 ? 'it was' : 'they were'} written anyway, because what the prompts `
+        + `happen to say is not the same question as what is worth knowing. `
+      : '')
     + `The evidence under each is drawn from prompts that already exist in the `
     + `<a href="vocal_timbre_library.html">Vocal Timbre Library</a>, with the exact wording `
     + `highlighted; a few were commissioned to test their term and nothing else. Play one, and `
@@ -746,10 +756,19 @@ function caveatLine() {
 
 function supportLine(c) {
   const { backed, votes, total } = support(c);
+  /* A card with nothing under it is not a card that failed. Some terms have never been
+     asked for in a prompt — the library's vocabulary records what we happened to write, not
+     what is worth knowing — and saying so plainly is more useful than "0 candidates
+     attached", which reads as a bug. It also names the thing to do about it. */
+  if (!total) return c.corpus === 'absent'
+    ? `<b>Not in the library's vocabulary.</b> No prompt here has ever asked for this term, `
+      + `so there is nothing to play yet — the lesson is ahead of the evidence. Written `
+      + `because it is worth knowing, not because a prompt needed it.`
+    : `Nothing attached yet.`;
   // Deliberately does NOT say "drawn from existing prompts": most evidence was mined from
   // the corpus, but some was commissioned for its card, and the line has to be true of both.
   if (!backed) return `Documented, not yet demonstrated. ${total} candidate${total === 1 ? '' : 's'} `
-    + `attached — no one has vouched for any of them yet.`;
+    + `attached — no one has vouched for ${total === 1 ? 'it' : 'any of them'} yet.`;
   return `<b>${backed} of ${total}</b> demos vouched for as demonstrating this term `
     + `(${votes} vote${votes === 1 ? '' : 's'}).`;
 }
@@ -1046,7 +1065,10 @@ const searchWords = () => {
 function passes(c, words) {
   if (curDomain && !c.domains.includes(curDomain)) return false;
   if (curHear.size && !curHear.has(c.hear)) return false;
-  if (curNeeds && support(c).backed > 0) return false;   // live votes, not the file
+  /* "Needs a listen" is a queue of things somebody could go and play. Live votes, not the
+     file — and a card with nothing attached is not in the queue, because there is nothing
+     there to listen to; it needs a prompt written first, which is a different job. */
+  if (curNeeds && (support(c).backed > 0 || !support(c).total)) return false;
   if (curLearn === 'learned' && !learned.has(c.id)) return false;
   if (curLearn === 'unlearned' && learned.has(c.id)) return false;
   return words.every(w => c._blob.includes(w));

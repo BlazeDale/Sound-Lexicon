@@ -216,13 +216,46 @@ export function checkLexicon() {
           + (counts.length ? `; ${counts.length} also carry exclusion tests, hidden by the page (${counts.slice(0,4).join(', ')}${counts.length > 4 ? ', …' : ''})` : ''));
   }
 
+  /* ---------- TERMS THE CORPUS HAS NEVER ASKED FOR ----------
+     A lesson does not need a prompt behind it. The library's prompt vocabulary is a record
+     of what we happened to write, not of what a listener needs to know, and some of the most
+     useful things on this page — why a voice thickens when it moves closer to a microphone,
+     why two microphones can make a drum thinner instead of louder — have never once been
+     asked for in `data.js`. Refusing to write those would let our own habits set the
+     syllabus.
+
+     So a card may declare `corpus:'absent'`: no prompt in the library uses this term, the
+     card is documentation ahead of evidence, and it carries no `ev`. That is a claim, and it
+     is checked in BOTH directions — an absent card whose words later turn up in a prompt
+     fails here, because the flag has gone stale and the card is owed its evidence. The one
+     thing that stays forbidden is silence: a card with no evidence and no flag is an empty
+     `ev` nobody noticed, which is why the absence has to be said out loud. */
+  {
+    const bad = [];
+    for (const c of LEX) {
+      if (c.corpus !== undefined && c.corpus !== 'absent')
+        bad.push(`${c.id} corpus="${c.corpus}" (only 'absent' or omitted)`);
+      if (c.corpus === 'absent' && (c.ev || []).length)
+        bad.push(`${c.id} says the corpus is silent on it and then cites ${(c.ev || []).length} prompt(s)`);
+      if (c.corpus !== 'absent' && !(c.ev || []).length)
+        bad.push(`${c.id} has no evidence and does not say why — set corpus:'absent' if the library has never used the term`);
+    }
+    const absent = LEX.filter(c => c.corpus === 'absent');
+    bad.length
+      ? fail(`evidence-free card(s) not declared: ${bad.join('; ')}`)
+      : pass(`${LEX.length - absent.length}/${LEX.length} cards cite prompts; `
+          + (absent.length
+              ? `${absent.length} declared ahead of the corpus (${absent.map(c => c.id).join(', ')})`
+              : `none declared ahead of the corpus`));
+  }
+
   /* ---------- discovery vocabulary and corpus reach ----------
      The "more examples" button matches at runtime, so nothing here needs regenerating.
      What CAN rot is the vocabulary: a mistyped stem matches nothing and the card quietly
      stops seeing new prompts. Report both, so growth and drift are visible on every run
      rather than discovered months later. */
   {
-    const dead = [], reach = [];
+    const dead = [], stale = [], reach = [];
     let stems = 0, unattached = 0;
     for (const c of LEX) {
       const src = (c.match && c.match.length) ? c.match : [...new Set((c.ev || []).map(e => e.span))];
@@ -236,7 +269,11 @@ export function checkLexicon() {
          spelling today — and listing them every run would train us to ignore the line,
          which is how a real typo gets through. */
       const anyHit = low.some(s => LIB.some(v => (v.style || '').toLowerCase().includes(s)));
-      if (!anyHit) dead.push(`${c.id} (${low.map(s => `"${s}"`).join(', ')})`);
+      /* An absent card keeps its stems for exactly this moment: the day the corpus catches
+         up, its silence stops being true and this says so. Matching nothing is the normal
+         state for one of these, and is not a typo. */
+      if (c.corpus === 'absent') { if (anyHit) stale.push(`${c.id}`); }
+      else if (!anyHit) dead.push(`${c.id} (${low.map(s => `"${s}"`).join(', ')})`);
       /* Style only, matching the page: a prompt that EXCLUDES the wording is not an example
          of it, and counting those made this number nearly twice the reach a reader gets. */
       const more = LIB.filter(v => {
@@ -250,6 +287,7 @@ export function checkLexicon() {
     pass(`discovery: ${stems} stems; ${unattached} corpus entries reachable but not curated`
       + (reach.length ? ` (${reach.slice(0, 4).join(', ')}${reach.length > 4 ? `, +${reach.length - 4} more cards` : ''})` : ''));
     if (dead.length) fail(`card(s) whose entire discovery vocabulary matches nothing — they will never see a new prompt: ${dead.join("; ")}`);
+    if (stale.length) fail(`card(s) claiming the corpus never uses their term, which it now does — attach the evidence and drop corpus:'absent': ${stale.join(', ')}`);
   }
 
   /* ---------- verdicts have a shelf life (design doc §8) ----------

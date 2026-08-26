@@ -29,7 +29,7 @@
  * Loaded as a classic <script> AFTER data.js, so LIB is already a global.
  */
 
-const LEX_VERSION = 'v20';
+const LEX_VERSION = 'v21';
 const LEX_UPDATED = '2026-08-26';
 
 /* ---------- TOP TIER: domains, not instruments ----------
@@ -81,6 +81,14 @@ const DOMAINS = [
      range   most terms are a dial, not a switch
      res     resolution: does the generator actually distinguish this? (§5)
      ev      evidence: {n, span, state, why}
+     corpus  OPTIONAL, only value 'absent': no prompt in the library has ever used this term,
+             so the card carries no `ev` and says so on the page. A lesson does not need a
+             prompt behind it — the corpus records what we happened to write, not what is
+             worth knowing, and letting it set the syllabus would leave out things like why
+             a voice thickens as it nears a microphone. The claim is checked both ways: an
+             absent card whose words later appear in a prompt FAILS, because the flag has
+             gone stale and the card is owed its evidence. Keep `match` populated on these —
+             it is what notices the day the corpus catches up.
 */
 const LEX = [
 
@@ -4979,6 +4987,222 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
     { n:45, span:`Telecaster twang`, state:'candidate', why:`The instrumental sense, in a prompt that ALSO carries the vocal one. Paired with #16 it shows the collision from both sides.` },
     { n:119, span:`twangy low guitar motif soaked in space`, state:'candidate', why:`Purely instrumental and far from country — cinematic downtempo, where twang is being used as atmosphere rather than as genre signalling.` },
     { n:309, span:`twanging and greasy`, state:'candidate', why:`The word applied to a whole arrangement rather than to one part. The loosest use in the corpus, and the test of how far it stretches before it stops meaning anything.` }
+  ]
+},
+
+
+{
+  id:'proximity-effect',
+  term:`Proximity effect`,
+  sounds:`A voice getting bigger and warmer as it gets closer, and not merely louder. Move in on a microphone and the bottom of the voice swells up out of nowhere — chest, weight, a private thickness — until it sounds like somebody speaking into your ear rather than across a room. Step back a foot and it thins out and turns ordinary again. It is the sound of late-night radio, of a crooner, of a confession, and it is almost entirely a matter of distance.`,
+  gloss:`Directional microphones boost low frequencies as the source gets closer to them. Inches of movement produce a large change in warmth, with no change of setting anywhere.`,
+  syn:[`working the mic`,`close and warm`,`that radio voice`,`bass boost from being close`,`eating the microphone`,`intimacy`],
+  myth:`The warmth is not the microphone's character, and it is not EQ. It is geometry — how a directional microphone works at all — which is why the same expensive microphone produces a thin voice at two feet and a chocolate one at two inches, and why the vintage-sounding warmth people chase in gear is often just a singer standing closer. Two consequences follow. Omnidirectional microphones do not do it, so the effect disappears entirely on a recording made with one. And a singer who moves during a take changes their own tone as they move, which is why experienced vocalists back off on loud notes and lean in for quiet ones: they are not managing volume, they are playing the microphone as an instrument.`,
+  known:`Radio announcing, crooning, close-miked jazz vocals, podcast and voiceover sound, and the deliberately huge kick-drum and bass-cabinet sounds got by pushing a microphone right up against a source.`,
+  origin:`A property of directional microphones from their invention in the 1930s, and noticed almost immediately by singers, who built an entire style of intimate performance on standing closer than anybody previously could.`,
+  first:`1930s`, peak:[`1940s`,`1950s`],
+  exemplar:{ kind:'exemplifies', title:`In the Wee Small Hours of the Morning`, artist:`Frank Sinatra`, year:`1955`,
+    listen:`The voice has a body to it that no amount of volume would produce — you are hearing distance, not level. Listen for the weight arriving on the quietest phrases, which is exactly where a singer leans in.` },
+  domains:['microphone','voice'],
+  corpus:'absent',
+  match:['proximity effect','working the mic','close enough to the mic'],
+  kinds:['technique'],
+  nature:'continuous', hear:2,
+  range:`From an inch away, where the low end is so exaggerated that speech becomes almost unintelligible and engineers reach for a filter to undo it, out to about a foot, where it has essentially gone. The useful part of the range is very small, which is why microphone technique is measured in inches and why a singer with a habit of drifting is difficult to record.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Nothing in this library has ever asked for it, which is itself worth noticing: the corpus says "close-miked" and "intimate close capture" a great deal, and never once names the physical thing those phrases are reaching for. So the first test is whether the term buys anything the existing wording does not. The specific thing to listen for is low-frequency weight that tracks the PERFORMANCE rather than sitting constant — warmth arriving on the confided lines and receding on the loud ones. A result that is uniformly warm has produced an EQ setting, which is the ordinary failure and is not the same thing at all.` }
+},
+
+{
+  id:'flanger',
+  term:`Flanger`,
+  sounds:`A jet engine passing overhead, inside the music. A whooshing sweep runs up and down through the sound, hollow and metallic, dragging a comb of notches with it — much more extreme than the gentle shimmer of a chorus and much more obviously mechanical than a phaser's slow swirl. At its most intense it sounds like the record is being sucked down a drain, and at its mildest it puts a cold, ringing edge on a guitar that makes it sound slightly wrong on purpose.`,
+  gloss:`A very short delayed copy of a sound, mixed back in with the delay time constantly moving. The copy cancels and reinforces the original at a moving series of frequencies, producing the sweeping metallic hollowness.`,
+  syn:[`flange`,`flanged`,`jet plane sound`,`whoosh`,`that swooshing guitar`,`comb filter sweep`],
+  myth:`Flanger, phaser and chorus get used interchangeably and are three different machines. All three copy a sound and modulate the copy, but the copy is doing something different in each: a flanger delays it by a millisecond or two and sweeps the delay, a phaser shifts its phase without delaying it, and a chorus delays it by long enough that it reads as a second player rather than as interference. The audible difference is character — a flanger is metallic and drastic, a phaser is liquid and rounded, a chorus is warm and doubled. And the name is not a metaphor: it comes from an engineer physically slowing one of two tape machines by pressing on the flange of the reel, which is how the effect was made before anything existed to make it.`,
+  known:`Psychedelic and progressive rock, the whole drum kit on 1970s rock records, new wave guitar, dub, and a standard sweep across a build in electronic music.`,
+  origin:`Discovered in the tape studios of the 1960s by running two copies of a recording slightly out of step, and made a pedal in the 1970s once electronics could do it without a second tape machine.`,
+  first:`1960s`, peak:[`1970s`,`1980s`],
+  exemplar:{ kind:'exemplifies', title:`Bold as Love`, artist:`The Jimi Hendrix Experience`, year:`1967`,
+    listen:`The closing section is one of the first flangers on a record, made with tape rather than a pedal. Listen to the whole band being swept at once — that is the giveaway, since a pedal would normally be on one instrument.` },
+  domains:['production','guitar'],
+  corpus:'absent',
+  match:['flange','flanged','flanger'],
+  kinds:['technique'],
+  nature:'continuous', hear:2,
+  range:`From a barely-there metallic sheen used to make a rhythm guitar sit oddly, through the classic slow sweep that takes several seconds to travel, to the extreme setting where feedback is fed back through the delay and the sound becomes a screaming resonant whistle — three effects that share nothing but a circuit.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`The library has a phaser card and a chorus card and no prompt anywhere that says flange, which makes this a genuine hole in the vocabulary rather than a term we chose against. The obvious test is the three-way one the myth describes: identical prompts differing only in which of the three modulation words is used. If they come back sounding alike, that is a real and useful finding about how the generator represents effects — one modulation idea with three names — and it would apply to the tremolo and vibrato cards too. Listen for the sweep's character rather than its presence: metallic and hollow is a flanger, liquid and rounded is a phaser.` }
+},
+
+{
+  id:'phase-cancellation',
+  term:`Phase cancellation`,
+  sounds:`Two sounds added together and getting smaller. A part that was full on its own goes thin, hollow and strangely distant when something else joins it — the low end drops out, the middle sounds scooped, and the whole thing seems to move somewhere behind the speakers. Nothing has been turned down. In the worst case a sound almost disappears when a stereo mix is folded to mono, which is why a record that sounds enormous on headphones can sound gutted on a phone.`,
+  gloss:`When two copies of a sound arrive slightly out of step, the parts that disagree subtract instead of adding. The result is a loss of body and a hollow, comb-like tone rather than a doubling.`,
+  syn:[`out of phase`,`phasing`,`comb filtering`,`hollow`,`thin when combined`,`mono collapse`],
+  myth:`Adding a second copy of something does not necessarily make it louder — it can make it quieter, and this is the single most counterintuitive fact in recording. Put two microphones on one guitar amp and the guitar can come out thinner than with either alone, because the sound reaches the second microphone slightly later and the two arrivals fight. It is also not a rare fault: every multi-microphone recording is a controlled amount of it, and much of what engineers do when they move a microphone an inch is hunting for a version they like. The related trap is width. Widening tricks work by making the two channels disagree, and disagreement is exactly what cancels in mono — so the wider a mix is made by that route, the more of it vanishes when a listener plays it on a single speaker.`,
+  known:`Drum kits recorded with many microphones, direct-and-amplifier bass recordings, stereo-widened synths, and the entire practice of checking a mix in mono — which exists because of this and nothing else.`,
+  origin:`A property of waves rather than an invention, and a practical problem from the moment recordings used more than one microphone; became a routine part of studio craft with multitrack recording in the 1960s, and a commercial one once mono radio was the main way records were heard.`,
+  first:`1930s`, peak:[`1960s`,`1970s`],
+  exemplar:{ kind:'exemplifies', title:`Bohemian Rhapsody`, artist:`Queen`, year:`1975`,
+    listen:`Not an example of the fault but of the discipline: an enormously layered record that stays solid when you play it on one speaker. Try folding a favourite modern wide-sounding track to mono and compare how much of it survives — the difference is this card.` },
+  domains:['production','microphone'],
+  corpus:'absent',
+  match:['out of phase','phase cancel','comb filter','mono collapse'],
+  kinds:['technique'],
+  nature:'continuous', hear:3,
+  range:`From the mild and useful — the slight hollowing that makes a close-miked snare sit back — through the audible, where a bass loses its bottom octave the moment the second source is unmuted, to total, where two identical signals exactly out of step produce silence. The last one is a laboratory case and the reason the whole idea is easy to demonstrate and hard to notice.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Not a term to put in a prompt so much as one to listen with, and the card exists for that reason. The library's prompts ask for "wide stereo" a great deal and have never once asked what that width survives, which is the useful question: a generated track that sounds enormous in stereo and collapses to a thin husk in mono has been given width by disagreement rather than by content. That test costs nothing — fold any demo on this site to mono and listen for what leaves. Worth running across the entries the stereo-width card cites, since a finding there would apply to every wide prompt in the corpus at once.` }
+},
+
+{
+  id:'pre-delay',
+  term:`Pre-delay`,
+  sounds:`A voice standing in a cathedral and still sounding close to you. There is a gap — a few hundredths of a second — between the word and the room answering it, and in that gap the voice arrives dry and present before the reverb blooms in behind it. Take the gap away and the singer steps backwards into the wash; put it back and they walk forward again, with the same amount of reverb still around them. Nothing about the size of the space has changed.`,
+  gloss:`The delay between a sound and the beginning of its reverb. It is what tells the ear how far away the walls are, and, separately, how far away the source is.`,
+  syn:[`predelay`,`the gap before the reverb`,`distance`,`close but in a big room`,`separation`],
+  myth:`Reverb does not make things sound distant — reverb ARRIVING IMMEDIATELY makes things sound distant. That single control is why the standard complaint about reverb, that it pushes the vocal back and buries it, is usually a mistake rather than a trade-off: the same amount of reverb with a proper gap in front of it leaves the voice exactly where it was. The physical reason is that in a real room you hear the direct sound first and the walls afterwards, and the length of that pause is the ear's main clue to size. Which means pre-delay is doing two jobs that sound like one: it places the listener relative to the singer, and it tells them how big the building is.`,
+  known:`Almost every pop vocal recorded since multitrack reverb existed; drum ambience that needs to be huge without smearing; and orchestral recording, where the gap is real and set by where the microphones stand rather than by a control.`,
+  origin:`Inherent in real rooms and in the plate and chamber reverbs of the 1950s and 60s, but only became an adjustable number with digital reverb in the late 1970s — at which point engineers discovered they could have size and closeness at the same time, which no real room had ever offered.`,
+  first:`1970s`, peak:[`1980s`,`1990s`],
+  exemplar:{ kind:'exemplifies', title:`Nothing Compares 2 U`, artist:`Sinéad O'Connor`, year:`1990`,
+    listen:`The voice is unmistakably in a big space and unmistakably right in front of you, which is a combination no real room provides. Listen to the end of a line: the word finishes dry, and only then does the room turn up.` },
+  domains:['room','production'],
+  corpus:'absent',
+  match:['pre-delay','predelay','before the reverb'],
+  kinds:['technique'],
+  nature:'continuous', hear:4,
+  range:`Zero, where the reverb starts with the sound and the source is pushed into the distance. Twenty to fifty thousandths of a second, where a voice stays present in a large space — the default of pop vocal production. And beyond a hundred, where the gap stops reading as a room and starts being heard as a separate echo, which is a different effect wearing the same control.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`The hardest thing on this page to hear and one of the easiest to demonstrate, which is an unusual combination and the reason it is rated four. Nobody detects a pre-delay in isolation; everybody hears the difference when it changes. That makes the honest test a comparison and nothing else: the same prompt asking for a huge room with the vocal close, against one asking for a huge room, and then a single question — did the voice move? A generator that treats reverb as one dial will move the singer backwards as the room grows, and that failure is the most common one in amateur mixing too, which is a point in its favour as a lesson.` }
+},
+
+{
+  id:'portamento',
+  term:`Portamento`,
+  sounds:`The note does not arrive, it travels. Instead of stepping from one pitch to the next, the sound slides continuously through everything in between — so you hear the journey rather than the destination, and the effect is vocal even when a machine is doing it. On a synth it is the rubbery swoop that makes a bassline sound like it is being poured. On a voice it is longing, or drunkenness, or grief, depending entirely on how slow it is.`,
+  gloss:`A continuous slide in pitch between two notes, with no step and no separate attack on the second one. On synthesisers it is a setting, usually labelled glide.`,
+  syn:[`glide`,`slide`,`glissando`,`swoop`,`sliding into the note`,`that rubbery bass slide`],
+  myth:`It is not the same as a bend and not the same as a scoop, though all three slide. A bend leaves a note and comes back or stretches it away from where it should be; a scoop approaches a note from below and settles on it; portamento connects two real notes, both of which are meant to be there. The distinction matters because portamento removes the attack of the second note, and the attack is most of what tells you a new note has begun — which is why a portamento passage can sound like one continuous sound with a moving pitch rather than like a melody at all. It is also not the same as glissando, strictly: a glissando steps through the notes in between, a portamento smears through the cracks between them, and only instruments with no frets or keys can do the second properly.`,
+  known:`Trombone and fretless bass, the human voice in nearly every tradition, Indian and Arabic classical singing where the slide carries most of the ornament, theremin, pedal steel, and monophonic synth basslines from the 1970s onward.`,
+  origin:`As old as singing and as old as any unfretted string; named in European classical practice, where it drifted in and out of fashion; became a machine setting with the monophonic synthesisers of the late 1960s and 70s, where a glide control was standard.`,
+  first:`pre-1900`, peak:[`1970s`,`1980s`],
+  exemplar:{ kind:'exemplifies', title:`Good Vibrations`, artist:`The Beach Boys`, year:`1966`,
+    listen:`The wavering high line in the chorus never lands on a note — it slides between them continuously, which is what makes it sound uncanny rather than merely high. Follow it and try to find the moment a new note starts; there isn't one.` },
+  domains:['voice','keys','arrangement'],
+  corpus:'absent',
+  match:['portamento','glide time','sliding between the notes'],
+  kinds:['technique'],
+  nature:'momentary', hear:2,
+  range:`From so fast it merely softens the join between two notes — barely perceptible, and standard on synth leads to stop them sounding brittle — to so slow that the slide occupies the whole space between the notes and the destination is reached just as it is abandoned. Somewhere in the middle it stops sounding like expression and starts sounding like an instrument out of control, which is a line singers and synthesists both play with deliberately.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`The corpus never uses the word and describes the thing constantly — "sliding between notes", "sliding up into pitch from underneath", "notes bending downward at phrase-ends" all appear in prompts — so this card is a test of whether the technical term is worth more than the description. That is a genuinely open question and the answer might be no. The listening test is precise: is the second note's attack gone? A result that reaches the note by sliding and then re-articulates it has produced a scoop, not a portamento, and the two are not interchangeable. On a synth prompt the same question is easier to answer, because a monophonic glide either connects the notes or does not.` }
+},
+
+{
+  id:'click-track',
+  term:`Click track`,
+  sounds:`A record that never speeds up. Play a song from before about 1980 alongside a modern one and the old one drifts — it hurries into the chorus, sags in the quiet verse, and finishes at a different tempo from where it started — while the modern one holds a single tempo from the first bar to the last, exactly. Once you notice the steadiness you cannot stop hearing it, and it reads as either professionalism or as a faint airlessness, depending on the song.`,
+  gloss:`A metronome played into the performers' headphones so everything recorded lines up to one fixed tempo. It is not on the record; it is the reason the record does not drift.`,
+  syn:[`the click`,`playing to a click`,`metronome`,`grid`,`locked tempo`,`recorded to a metronome`],
+  myth:`Bands speeding up is not sloppiness — it is what excitement sounds like, and a great deal of the energy in older records is tempo that moves. The click track was adopted because it makes editing and overdubbing possible, not because drifting was thought to be wrong, and what it costs is the arrangement's ability to lean. It is also not the same as quantization: a click leaves the human timing intact and only stops the whole performance from wandering, while quantization moves each individual hit onto a grid. A band can play to a click and still be loose, which is why "recorded to a click" and "sounds mechanical" are separate accusations that get treated as one.`,
+  known:`Effectively every commercially recorded song since the 1980s, all film and television scoring, and any record built by overdubbing rather than by everyone playing at once. Its absence is now a deliberate stylistic choice, and a marketed one.`,
+  origin:`Film scoring, where music had to match picture to the frame, from the 1930s onward; spread into popular recording through the 1960s and 70s as multitracking made it necessary, and became near-universal once tape was replaced by editing on a screen.`,
+  first:`1930s`, peak:[`1980s`,`1990s`],
+  exemplar:{ kind:'exemplifies', title:`Whole Lotta Love`, artist:`Led Zeppelin`, year:`1969`,
+    listen:`Not a click track — the opposite, and easier to hear that way round. The tempo moves with the intensity, pushing through the riff and easing off behind the vocal, and that movement is doing work no fixed tempo could. Tap along and you will have to keep adjusting.` },
+  domains:['rhythm','production'],
+  match:['click track','to a click','no click','rushing the tempo','rushing slightly'],
+  kinds:['technique'],
+  nature:'continuous', hear:3,
+  range:`Not really a dial but a fork, and the library only ever takes one side of it. Two prompts say "no click anywhere" outright — #326, where a "loose live kit" is asked to rush "slightly into every chorus", and #358, a stamping sea shanty. Two more describe the same thing without naming the cause: "urgent drums rushing the tempo" (#99) and "a live drummer rushing slightly" (#233). Not one prompt in the corpus asks for a click, which is the expected shape — nobody specifies the default. What varies across the four is the SIZE of the drift, from a few beats per minute to a section arriving somewhere else entirely.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`One of the few cards here about something a generator may not be able to fail at, and that is the interesting part. A model trained overwhelmingly on modern recordings would be expected to hold a fixed tempo by default, which means the useful prompts are exactly the four the corpus already has: every one of them asks for tempo to MOVE. If it cannot be made to, that is a real limit worth documenting, and it would explain something the library has noticed without naming — that its more human-sounding prompts still come back oddly steady. #326 is the sharpest test because it names where the rushing should happen: into every chorus, which is a claim about the shape of the drift and not merely its presence. The rubato card asks a neighbouring question about one player; this one asks it about a whole band.` },
+  ev:[
+    { n:326, span:`a loose live kit rushing slightly into every chorus, no click anywhere`, state:'candidate', why:`The whole card in one clause: the click refused and the consequence specified, with the rushing placed at a named point in the form rather than scattered.` },
+    { n:233, span:`a live drummer rushing slightly`, state:'candidate', why:`The drift named without naming its cause, inside an otherwise ambitious arrangement. The test of whether "live drummer" alone carries any tempo movement.` },
+    { n:99, span:`urgent drums rushing the tempo`, state:'candidate', why:`Rushing as urgency rather than as looseness — the case where moving tempo is the emotional content and not a charming flaw.` },
+    { n:358, span:`no other instruments and no click anywhere`, state:'candidate', why:`A stamping crowd with no instruments to hold it steady. If tempo can drift anywhere it should drift here, which makes this the least forgiving version of the test.` }
+  ]
+},
+
+{
+  id:'pinch-harmonic',
+  term:`Pinch harmonic`,
+  sounds:`A guitar note that suddenly screams. A held note, usually a bent one on a distorted guitar, jumps into a thin piercing squeal an octave or two above where it should be — a needle of sound that cuts straight through the band and then falls away with the note. It sounds like the string is being hurt. Placed once at the end of a phrase it is punctuation; used constantly it becomes a whole style's accent.`,
+  gloss:`The picking hand's thumb touches the string a fraction of a second after the pick does, killing the fundamental and leaving one of the harmonics above it — which is why the note comes out far higher than the note being fretted.`,
+  syn:[`squeal`,`pinch`,`artificial harmonic`,`pick harmonic`,`that guitar scream`,`squealies`],
+  myth:`The squeal is not distortion and not a whammy bar, and it is not the guitar being played badly. It is a specific and quite difficult technique that requires the thumb to land in one of a small number of exact places along the string, which is why the same player can produce a squeal on one note and nothing on the note next to it — the harmonic is only there at particular points. It is also not the same as a natural harmonic, the bell-like chime got by touching a string over a fret: same physics, but that one is quiet and clean, and this one only exists because distortion makes an otherwise faint harmonic as loud as the note it replaced.`,
+  known:`Hard rock and heavy metal lead playing from the late 1970s onward, where it became one of the genre's defining punctuation marks; also used sparingly in country and blues playing, where it is quieter and rarely noticed as the same technique.`,
+  origin:`A guitar-shop discovery of the 1970s, made possible by high-gain amplification — the harmonic had always been there and was inaudible until distortion raised it to the level of the note.`,
+  first:`1970s`, peak:[`1980s`,`1990s`],
+  exemplar:{ kind:'exemplifies', title:`Unchained`, artist:`Van Halen`, year:`1981`,
+    listen:`The squeals are used as punctuation, not as notes — they arrive at the ends of phrases, high above the riff, and fall away immediately. Listen for how they sit an octave or more above where the chord is, which is the giveaway that you are hearing a harmonic and not a bend.` },
+  domains:['guitar'],
+  match:['pinch harmonic','pinch-harmonic','squeal'],
+  kinds:['technique'],
+  nature:'momentary', hear:1,
+  range:`From a faint extra brightness on the front of a note — the version most listeners never identify as anything — through the classic screaming punctuation at the end of a bent phrase, to the extreme where a player finds a harmonic on nearly every note and the guitar seems to be shrieking continuously. The library reaches for only one point on that range, and reaches for it once: "screaming pinch-harmonic leads" in late-70s arena rock (#27), which is the loud middle.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Included partly because it is so easy to judge. The squeal is unmistakable and momentary, so a result either contains one or does not, with none of the ambiguity that makes the harmony cards hard. That makes it a good probe for a more general question: whether a specific PLAYING technique, as distinct from a tone or a genre, survives into a generated performance at all. The related risk is that it comes back as a permanent quality — a guitar that squeals continuously — because the term was read as a timbre rather than as an event, and that failure is worth recording separately, since it would apply to every momentary technique in the library. One prompt out of four hundred uses the word, so the card is thin on evidence by circumstance rather than by choice: it is a term the corpus has barely thought to ask for.` },
+  ev:[
+    { n:27, span:`screaming pinch-harmonic leads`, state:'candidate', why:`The corpus's only use of the term, in the genre that made it a signature. Plural and open-ended, which is the risk the card names — nothing here says how often, so a guitar that squeals on every note would technically satisfy it.` }
+  ]
+},
+
+{
+  id:'bridge',
+  term:`Bridge`,
+  sounds:`The bit of the song that only happens once. Two-thirds of the way in, everything changes — new chords, often a new key, sometimes the drums drop away entirely — and for twenty or thirty seconds you are somewhere you have not been and will not return to. Then the last chorus arrives and lands harder than either of the previous two, because you have been away.`,
+  gloss:`A section, usually appearing once and late, built from different material to the verse and chorus. Its purpose is contrast: to interrupt the alternation before it wears out.`,
+  syn:[`middle eight`,`the middle bit`,`the change`,`release`,`the section that only comes once`,`the departure`],
+  myth:`A bridge is not a solo section and not a breakdown, though it often contains one of them. It is defined by its harmony being NEW — material that has not appeared and will not appear again — which is why an instrumental over the verse chords is not a bridge no matter where it sits. The other confusion is regional and complete: in guitar-shop usage the bridge is also the hardware the strings pass over on the body, so "at the bridge" is a place on the instrument and "the bridge" is a place in the song. The word's real job is structural economy. Verse and chorus alternating is a machine that gets predictable at exactly the three-minute mark, and the bridge is the cheapest known way to make the final chorus feel earned rather than merely repeated.`,
+  known:`Standard in popular song from the 1930s onward, near-compulsory in mid-century songwriting, and now optional — a great deal of contemporary pop and almost all dance music omits it entirely and gets its contrast from arrangement instead.`,
+  origin:`The B section of the thirty-two-bar song form of American popular music in the 1920s and 30s, where its function was to relieve three statements of the same eight bars; carried into rock and pop wholesale and gradually loosened into "the different bit near the end".`,
+  first:`1920s`, peak:[`1940s`,`1960s`,`1980s`],
+  exemplar:{ kind:'exemplifies', title:`We Are the Champions`, artist:`Queen`, year:`1977`,
+    listen:`The section before the final chorus goes somewhere the song has not been, harmonically and in intensity, and never goes there again. Notice that the last chorus is not written any bigger than the first — it only feels bigger because of what came before it.` },
+  domains:['form'],
+  match:['bridge'],
+  kinds:['technique'],
+  nature:'momentary', hear:2,
+  range:`The library is more interesting on this term for its refusals than its uses. Present: "one clean arpeggiated bridge" in melodic punk metal (#372), "lone-voice-and-heartbeat bridge to total fanfare" (#D5), and "a controlled break surfacing on the bridge" (#123), where the bridge is where a vocal is allowed to crack. Refused: "Under three minutes, no bridge, count-in left on tape" (#149) and "no modulation, no bridge, no new section, nothing composed after that point" (#414), which builds a whole entry out of the absence. And #157 wants "maybe a hummed bridge" and is "out before the second bridge could exist".`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Structural terms are the ones a generator is most likely to satisfy loosely, and the loose satisfaction is easy to spot here: something different happens in the right place, but it is built from the verse's chords. So the test is harmonic, not sectional — does the bridge introduce material that has not been heard? #372 is the sharpest positive case, because "one clean arpeggiated bridge" specifies both the count and the texture, and #414 is the sharpest negative, since a prompt that forbids new sections outright fails visibly if one appears. Those two together are worth more than four positives would be.` },
+  ev:[
+    { n:372, span:`one clean arpeggiated bridge`, state:'candidate', why:`Specifies the count and the texture — one, clean, arpeggiated — inside a genre whose convention is to keep moving. Both halves are checkable.` },
+    { n:'D5', span:`lone-voice-and-heartbeat bridge`, state:'candidate', why:`The bridge as a subtraction: the arrangement strips to a voice and a pulse. The clearest case of a bridge earning the final chorus by leaving.` },
+    { n:123, span:`a controlled break surfacing on the bridge`, state:'candidate', why:`A bridge used as the one place the vocal is permitted to crack, which ties the section to a performance decision rather than to a chord change.` },
+    { n:157, span:`maybe a hummed bridge`, state:'candidate', why:`Deliberately tentative, in a song built to be over in under two minutes. Tests whether an optional section can be offered rather than instructed.` }
+  ]
+},
+
+{
+  id:'overdubbing',
+  term:`Overdubbing`,
+  sounds:`A band that was never in a room. Everything is perfectly separate — the guitar does not bleed into the vocal microphone, the singer's breath does not move when the drums hit, and each part sits in its own clean space — and nothing anybody plays is a reaction to anything happening at that moment, because it had already happened. Records made the other way sound audibly different: messier, with everything faintly present in everything else, and with players adjusting to each other in real time.`,
+  gloss:`Recording parts one at a time onto the same track, each played while listening back to what is already there, rather than capturing everyone at once.`,
+  syn:[`overdubs`,`layering`,`tracked separately`,`built up`,`played to the track`,`no overdubs`],
+  myth:`Almost every record is assembled rather than performed, and this is the fact most listeners have never been told. What sounds like five people playing together is usually five performances stacked over days, which is why the guitarist can answer the vocal line so neatly and why nobody ever gets in anybody's way. The consequence worth hearing is what it costs: musicians playing together push and pull against each other, and a stacked arrangement cannot do that, because the earlier parts cannot respond to the later ones. That is the real difference behind "sounds live" — not the room, not the noise, but the direction the reacting can travel.`,
+  known:`Essentially all popular recording since the 1960s, and definitionally all one-person recording; its refusal is a whole aesthetic in bluegrass, jazz, gospel and the deliberately live-sounding end of rock.`,
+  origin:`Made possible by multitrack tape in the 1950s and turned from a trick into the default method of making records over the following decade — arguably the single biggest change in how music is produced, and one that happened without listeners being aware of it.`,
+  first:`1950s`, peak:[`1960s`,`1970s`],
+  exemplar:{ kind:'exemplifies', title:`Nebraska`, artist:`Bruce Springsteen`, year:`1982`,
+    listen:`Almost nothing is overdubbed — a voice, a guitar and a harmonica, mostly captured together on a four-track in a bedroom. Compare it to any full-band record and listen for what is missing: the separation. Everything here is in the same air, and the parts can only respond forwards.` },
+  match:['overdub','no overdubs','cut live to tape','one take'],
+  domains:['production','arrangement'],
+  kinds:['technique'],
+  nature:'continuous', hear:3,
+  range:`The library states both ends outright. Refused: "No overdubs, no second instrument anywhere" (#328), "cut live to tape" (#214), and "one take" (#295), which take the method away deliberately. Present and audible: "a second guitar overdubbed slightly late because there was no way to fix it" (#399) — an overdub whose imperfection is being kept on purpose, which is the only prompt in the corpus treating the method as a sound rather than as a process.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`A term about how a recording was made rather than about what is in it, which puts it in the same awkward category as the sampling card: a generator does not overdub, so the question is whether the word produces the ARTEFACTS of one method or the other. Those are listable. Live capture: bleed between parts, a shared room on everything, timing that moves together. Overdubbed: silence between parts, separate spaces, timing that agrees without anybody adjusting. #399 is the most demanding test in the library on this, because it asks for a specific overdubbing FAILURE — a part late and left late — which requires the method to be modelled well enough to go wrong in the right way.` },
+  ev:[
+    { n:399, span:`a second guitar overdubbed slightly late`, state:'candidate', why:`The one prompt treating overdubbing as an audible sound rather than a process, and asking for its characteristic failure kept rather than fixed.` },
+    { n:328, span:`No overdubs, no second instrument anywhere`, state:'candidate', why:`The method refused outright. A result with any stacking in it fails plainly, which makes this the cheapest verdict on the card.` },
+    { n:295, span:`one take`, state:'candidate', why:`Four demos, and the strongest form of the refusal — not merely unstacked but uncorrected, so any evidence of assembly is a failure.` },
+    { n:214, span:`cut live to tape`, state:'candidate', why:`Sixties soul with a horn section and a full band, where playing together is the whole sound. The test of whether "live" produces bleed and mutual adjustment or just a room reverb.` }
   ]
 },
 
