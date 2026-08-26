@@ -29,7 +29,7 @@
  * Loaded as a classic <script> AFTER data.js, so LIB is already a global.
  */
 
-const LEX_VERSION = 'v19';
+const LEX_VERSION = 'v20';
 const LEX_UPDATED = '2026-08-26';
 
 /* ---------- TOP TIER: domains, not instruments ----------
@@ -2985,7 +2985,7 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   term:`Nasal placement`,
   sounds:`A voice that seems to come from behind the eyes rather than from the chest. It is thin, bright and slightly pinched, with a reedy buzz to it — and it cuts. A nasal singer can be heard over a loud band without appearing to push, where a rounder voice of the same volume would disappear.`,
   gloss:`Resonating a voice forward in the face and sinuses rather than in the chest or throat, producing a bright, penetrating tone with a characteristic reedy edge.`,
-  syn:[`singing through the nose`,`reedy`,`twang`,`forward placement`,`whiny`,`that pinched country sound`],
+  syn:[`singing through the nose`,`reedy`,`in the mask`,`forward placement`,`whiny`,`that pinched country sound`],
   myth:`Almost no air actually goes through the nose — pinch your nostrils while singing a nasal note and very little changes. It is resonance, not airflow. And it is not a fault: it is the cheapest way ever found to make a voice audible over an ensemble, which is exactly why it turns up in every tradition that had to compete with loud instruments and no amplification.`,
   known:`Bluegrass and old-time, country, qawwali, pop-punk, and much of North African and South Asian singing. In each case the voice has to carry over something loud without a microphone, or has to sound like it does.`,
   origin:`Universal in unamplified folk traditions worldwide for the projection it buys; entered American popular music through Appalachian and country singing, and was picked up as an attitude marker by punk from the late 1970s.`,
@@ -4762,6 +4762,223 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
     { n:128, span:`distant tribal toms`, state:'candidate', why:`Toms placed far back to hold the floor under drones — the case where they are doing architectural work rather than keeping time.` },
     { n:70, span:`pounding tom-heavy drums`, state:'candidate', why:`1960s garage at 150 BPM, where tom-heavy is the character of the whole kit rather than a special effect. The test of whether the term registers at speed.` },
     { n:'D5', span:`pounding tom builds`, state:'candidate', why:`Toms as a structural device — the sound of an arrival approaching. Their job is to create expectation, so they either resolve into the chorus or they were only a texture.` }
+  ]
+},
+
+
+{
+  id:'detuning',
+  term:`Detuning`,
+  sounds:`Two copies of the same note, very slightly apart, and what you hear is neither of them. The pitch starts to shimmer and pulse — a slow wobble that gets faster the further apart they are — and the sound becomes thick, wide and restless in a way one copy never could be. Push it further and the shimmer turns sour and seasick. Kept small it simply reads as size, and nobody hears a second note at all.`,
+  gloss:`Deliberately setting two or more copies of the same note slightly apart in pitch so they beat against each other, producing thickness and movement rather than a chord.`,
+  syn:[`detuned`,`out of tune on purpose`,`beating`,`chorusing`,`fattened`,`spread`,`that thick wobbling synth sound`],
+  myth:`Detuned does not mean out of tune. An out-of-tune note is the wrong note; a detuned sound is the right note played twice with a deliberate disagreement between the copies, and the disagreement is the product. This is the single mechanism underneath a surprising amount of the page: the chorus effect, the supersaw, the reese bass, a twelve-string guitar, a honky-tonk piano and most of what people call stereo width are all the same trick at different settings. The second confusion is a genuine collision of vocabulary. On a guitar, "detuned" almost always means tuned LOWER — a real change of pitch, not a beating copy — so the same word describes opposite things depending on whose gear is being discussed.`,
+  known:`Every thick analogue synth patch ever made; the twelve-string jangle of 1960s pop; saloon pianos; the string machines of the 1970s; and the enormous detuned leads of trance, hardwave and dubstep, where the amount of detune is effectively the emotional dial.`,
+  origin:`As old as two players attempting one note, and exploited deliberately once instruments had several oscillators to set against each other — the divide-down organs and polysynths of the 1960s and 70s. Digital synthesis then made perfect tuning free and instantly undesirable, and detune has been a standard control ever since.`,
+  first:`1940s`, peak:[`1980s`,`1990s`,`2010s`],
+  exemplar:{ kind:'exemplifies', title:`Cars`, artist:`Gary Numan`, year:`1979`,
+    listen:`The synth line is thick and slightly restless, and the restlessness is not vibrato — it is copies of one note refusing to agree. Listen to a held note and you will hear a slow pulsing inside it that nothing is playing.` },
+  domains:['production','keys','harmony'],
+  match:['detun'],
+  kinds:['technique'],
+  nature:'continuous', hear:2,
+  range:`The corpus carries both meanings of the word and never remarks on it. Beating copies: "Detuned analog brass-synth fanfares" (#J5), "detuned analog polysynth leads" (#114), "Detuned upright piano" in junkyard blues (#66), and "Detuned toy-piano motif" in horrorcore (#104), where the detuning is doing the work of menace. Lowered pitch: "Detuned downtuned guitars in monolithic distortion" (#8) and "Detuned seven-string guitar chugging on the groove" (#33) — both of which mean tuned down, and one of which says so twice.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`The collision is the test. A prompt saying "detuned guitar" and a prompt saying "detuned synth" ask for opposite operations, and both readings are well represented in the corpus, so which one a generator reaches for on an instrument that could take either — a piano, a bass — would be worth knowing before writing the word anywhere. Beyond that, the specific thing to hear is beating: a slow pulse inside a held note that no player is producing. Its absence is the failure. A patch that is merely thick, or merely wide, has been given the adjective and not the mechanism, and the difference shows up on sustained notes rather than on short ones — which is why #J5's held fanfares are a better test than any of the fast material.` },
+  ev:[
+    { n:'J5', span:`Detuned analog brass-synth fanfares`, state:'candidate', why:`Six demos, and long held fanfares — sustained notes are where beating is audible and where a merely thick patch gives itself away.` },
+    { n:66, span:`Detuned upright piano`, state:'candidate', why:`The acoustic case. A piano detunes within a single note, string against string, which is a different physical route to the same effect and cannot be faked with an effect pedal.` },
+    { n:104, span:`Detuned toy-piano motif`, state:'candidate', why:`Detuning used for meaning rather than for size — a nursery sound made wrong. The test of whether small amounts register as unease rather than as error.` },
+    { n:114, span:`detuned analog polysynth leads`, state:'candidate', why:`The modern default, at the loud end, sitting in the same prompt as supersaw voicings. The two named separately, so a result that collapses them is visible.` }
+  ]
+},
+
+{
+  id:'supersaw',
+  term:`Supersaw`,
+  sounds:`A chord that sounds like a hundred synthesisers agreeing. Enormous, bright and slightly seasick, with a shimmer running through it that never settles, and it fills the entire width of the speakers without any single note being findable inside it. It is the sound of a festival at night. Played quietly it turns into an ache; played at full size it stops being a chord and becomes weather.`,
+  gloss:`A synth sound made by stacking many sawtooth waves and detuning them against each other. Originally one preset on one 1990s synthesiser, then an entire genre's default voice.`,
+  syn:[`saw stack`,`trance lead`,`detuned saws`,`hoover`,`that huge festival synth`,`big trance chords`],
+  myth:`It is not an effect placed on a synth, and no amount of chorus or reverb produces it. The width is built into the oscillator itself — several saws playing the same note at slightly different tunings — which is why a supersaw is already wide in mono and why a single one can carry a chorus that a whole band could not. The other misconception is that it is a synthesiser sound in general. It is a specific and dateable one: a preset on a machine from the mid-1990s, so recognisable that using it places a record in a genre whether or not that was intended.`,
+  known:`Uplifting and vocal trance, eurodance, hardwave, festival EDM, melodic dubstep, and every trailer cue reaching for scale without an orchestra.`,
+  origin:`A single oscillator type on a Japanese synthesiser released in 1996, built to give one machine the thickness of a stack of analogue ones; adopted immediately by European trance and never really put down since.`,
+  first:`1990s`, peak:[`1990s`,`2000s`,`2010s`],
+  exemplar:{ kind:'popularised', title:`Sandstorm`, artist:`Darude`, year:`1999`,
+    listen:`The lead is the sound this card is about, at its least disguised. Notice that it is enormous but not loud, and that you cannot pick out a single oscillator anywhere inside it — that inability is the whole design.` },
+  domains:['keys','production'],
+  match:['supersaw'],
+  kinds:['instrument'],
+  nature:'continuous', hear:1,
+  range:`Fourteen prompts, and the spread is entirely about restraint. "Sawtooth supersaw lead" in vocal trance (#88) is the plain, canonical article. "Supersaw lift reserved for the final chorus" (#109) treats it as a resource to be withheld — the sound only arrives once. "Softened supersaws in wide layers" (#E5) sands the brightness off it for a ballad. And "a supersaw chord wall" behind spoken narration (#278) is the maximal end, where it is not a lead at all but the room the talking happens in.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`A useful card precisely because the term is narrow and dateable. If "supersaw" resolves, it is evidence that a named preset can carry a specific timbre through a prompt, which is the same question the Rhodes and the reese cards ask about makes and models. If it merely produces a bright synth chord, then the library's electronic prompts are relying on a word that is doing no work. The tell is width in mono: a real supersaw is wide before any stereo processing, so collapsing the result to mono and hearing whether it stays huge separates the sound from a stereo effect placed over a plain saw. #109 is the second test and a structural one — a supersaw "reserved for the final chorus" is a claim about absence as much as presence.` },
+  ev:[
+    { n:88, span:`sawtooth supersaw lead`, state:'candidate', why:`The plainest use in the corpus, in the genre the sound belongs to. If it does not resolve here it will not resolve anywhere.` },
+    { n:109, span:`supersaw lift reserved for the final chorus`, state:'candidate', why:`Structural rather than timbral: the sound must be withheld for three minutes to mean anything. Tests whether the word can be placed in time as well as in the mix.` },
+    { n:278, span:`a supersaw chord wall`, state:'candidate', why:`The maximal end, and unusual company — a wall of it behind a voice that never sings, so the supersaw has to be an environment rather than a hook.` },
+    { n:'E5', span:`softened supersaws in wide layers`, state:'candidate', why:`Deliberately blunted for a ballad. The test of whether the term survives being asked to be gentle, or whether it always arrives at full brightness.` }
+  ]
+},
+
+{
+  id:'noise-gate',
+  term:`Noise gate`,
+  sounds:`Silence where there used to be a low hum of everything. Between the hits, the recording goes properly quiet — no room, no breath, no amp hiss — and then the next hit arrives out of nothing. It makes a performance sound tighter and slightly unreal, as though each sound were happening in a separate sealed box. Set hard and fast, you hear the silence snap open and shut, and that chattering on and off becomes a rhythm of its own.`,
+  gloss:`An automatic switch that mutes a channel whenever the signal falls below a set level, so quiet material — hiss, bleed, room tone — is replaced by nothing at all.`,
+  syn:[`gate`,`gated`,`noise gate`,`chopped off`,`tightened up`,`the silence between hits`],
+  myth:`A gate adds nothing. It is pure subtraction, which is why it is the one studio device whose success is normally inaudible — a properly set gate on a tom just means you stop hearing the rest of the kit through that microphone. It is also not compression, though both are automatic volume devices and the words get swapped constantly. A compressor turns loud things down; a gate turns quiet things off. And it is not the gated-reverb sound: that is a gate placed across a reverb rather than across the instrument, which is a specific and much more recent trick built out of this general tool.`,
+  known:`Cleaning bleed off close-miked drums, silencing high-gain guitar amps between riffs, tightening bass, and — used deliberately hard — the chopped, stuttering pads and basses of electronic music, where the gate stops hiding and becomes the effect.`,
+  origin:`A studio problem-solver of the 1960s and 70s, invented to deal with tape hiss and microphone bleed on increasingly multitracked recordings; turned into a musical device in the 1980s, once engineers noticed that what it removed was more interesting than what it left.`,
+  first:`1960s`, peak:[`1980s`,`1990s`],
+  exemplar:{ kind:'exemplifies', title:`Personal Jesus`, artist:`Depeche Mode`, year:`1990`,
+    listen:`Listen to the space between the drum hits rather than to the hits. It is not quiet — it is absent, cut to nothing, so each beat arrives out of a hole. That hole is a gate, and it is why a fairly simple pattern sounds so severe.` },
+  domains:['production','drums'],
+  match:['gated','gate '],
+  kinds:['technique'],
+  nature:'continuous', hear:2,
+  range:`The corpus uses it in three different jobs. As tightening: "tight gated drums" in vintage funk (#14) and "gated drums stretched low" in vaporwave (#79), where the gate is holding a warped sound together. As a signal-chain move on the voice: "Mic through heavy distortion, gated and clinical" (#84), which is the gate cleaning up after the distortion it sits behind. And as an audible arrangement device: "dynamic contrast in gated dropouts before each refrain" (#W1), where the gating is the thing you are supposed to notice.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Awkward to test for the reason the card exists: a gate working properly is inaudible, so a positive result looks like nothing in particular. That makes the audible uses the only ones worth running. #W1 is the best of them, because a gated dropout is a specific event at a specific place in the form — the mix has to close and reopen before the refrain, not merely get quieter. The failure to listen for is a fade: a generator that has learned "gated" as a texture word will produce something tight and short without ever producing actual silence, and the difference is audible in the tails. Worth a separate check on whether the term is being confused with gated reverb, since that card's sound is far more famous than this one's and would be the obvious thing to reach for.` },
+  ev:[
+    { n:'W1', span:`dynamic contrast in gated dropouts before each refrain`, state:'candidate', why:`The gate as an audible structural event, placed at a named point in the form. The clearest test on the card, because a gentle fade would plainly not be the same thing.` },
+    { n:84, span:`Mic through heavy distortion, gated and clinical`, state:'candidate', why:`Gate placed on a voice after heavy distortion — the classic reason to use one, since distortion raises everything the gate is there to remove.` },
+    { n:79, span:`gated drums stretched low`, state:'candidate', why:`A gate holding together a slowed, warped sample, where the tails would otherwise smear into each other. The case where subtraction is doing constructive work.` },
+    { n:14, span:`tight gated drums`, state:'candidate', why:`The plain 1970s studio use, where a successful gate should be inaudible — kept as the control, and as the reminder that most gating is not meant to be heard.` }
+  ]
+},
+
+{
+  id:'dropout',
+  term:`Dropout`,
+  sounds:`Everything stops except one thing. A bar arrives where the drums, the bass and the whole bottom of the record simply are not there, and what is left — a voice, a hiss, a single chord — is suddenly enormous because nothing is competing with it. Then the track returns and hits far harder than it did before, without having got any louder. The hole is doing all the work.`,
+  gloss:`Cutting most or all of an arrangement out for a short stretch, so that what remains is exposed and the return lands as an impact.`,
+  syn:[`drop out`,`cut`,`the bit where it all stops`,`breakdown`,`stripped bar`,`sudden silence`],
+  myth:`A dropout is not a quiet section, and the difference is that quiet is a level while a dropout is an absence — parts are gone, not turned down. It is also not the same as a breakdown or a drop, though the words overlap in dance music: a breakdown is a section, a drop is an arrival, and a dropout can be a single bar with no structural role beyond making the next one hurt. The counterintuitive part is that it makes a record feel louder. Nothing gains a decibel; the loudness comes from having briefly been shown the alternative, which is why removing a bar is more effective than adding a chorus.`,
+  known:`Electronic music of every kind, where the silent bar before the drop is close to compulsory; hip-hop and metal breakdowns; and the older tradition of stop-time, which is the same idea played by a band rather than cut by an editor.`,
+  origin:`Live-band devices — stop-time, the break, the false ending — moved into the recording studio once arrangements could be cut rather than performed; multitrack editing and then the sequencer made the single silent bar a routine gesture from the 1970s onward.`,
+  first:`1970s`, peak:[`1990s`,`2010s`],
+  exemplar:{ kind:'exemplifies', title:`Take Me Out`, artist:`Franz Ferdinand`, year:`2004`,
+    listen:`A minute in, the record stops dead — not fades, stops — and restarts at a different tempo as a different song. The silence is short enough to be a gap and long enough to be frightening, and everything after it sounds bigger for having been interrupted.` },
+  domains:['form','arrangement','production'],
+  match:['dropout','drop out','drops out'],
+  kinds:['technique'],
+  nature:'momentary', hear:1,
+  range:`The library uses it at four different sizes. A single held breath: "sudden full-mix dropouts like held breath" (#J6). A weapon: "dropouts used like thrown fists" (#J9), where the cut is aggressive rather than suspenseful. A structural contrast: "dynamic contrast between dropout silence and full skronk" (#102), which makes the dropout one of the two states the whole track alternates between. And a texture reveal: "dynamic contrast in beat dropouts where only vinyl noise and voice remain" (#L2) — a dropout that exists to expose the noise floor, which is the opposite of what a dropout is normally for.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`The failure mode is a duck rather than a cut: the arrangement dips in level and comes back, which satisfies "dynamic contrast" and misses the term entirely. So the question is binary and easy to answer — is anything still playing? #L2 is the most demanding version, because the dropout there has to leave a specific residue behind (vinyl noise and a voice) rather than leaving nothing, which means both the cut and its exception have to land. Worth noting for a later test that this term and the sidechain-compression card describe two ways of making a hole in a mix, one editorial and one automatic, and a prompt-pair would show whether the generator distinguishes them.` },
+  ev:[
+    { n:'J6', span:`sudden full-mix dropouts like held breath`, state:'candidate', why:`Four demos, and the definitional version: the FULL mix, suddenly, as suspense. Nothing should be playing, which makes the verdict unambiguous.` },
+    { n:'J9', span:`dropouts used like thrown fists`, state:'candidate', why:`The same device as aggression rather than suspense. Tests whether placement and character survive, since a fist and a held breath are the same silence used oppositely.` },
+    { n:102, span:`dynamic contrast between dropout silence and full skronk`, state:'candidate', why:`No wave, where the dropout is one of only two states the track has. The cut is structural rather than decorative, so a dip in level would be plainly wrong.` },
+    { n:'L2', span:`dynamic contrast in beat dropouts where only vinyl noise and voice remain`, state:'candidate', why:`The hardest case: a dropout with a specified residue. Everything must go except two named things, so it fails visibly in both directions.` }
+  ]
+},
+
+{
+  id:'gang-vocals',
+  term:`Gang vocals`,
+  sounds:`A crowd shouting the line back at you. Not a choir and not harmony — a group of people on one note, none of them trying to sound trained, arriving slightly ragged at the edges because nobody is perfectly together. It sounds like a room rather than a recording, and it does something specific to the listener: it stops being a performance you are watching and becomes a thing you are supposed to join.`,
+  gloss:`A group of untrained or deliberately rough voices shouting or singing a line in unison, usually on a hook, recorded to sound like a crowd rather than a section.`,
+  syn:[`gang shout`,`shout-along`,`the whole band singing`,`crowd vocals`,`football chant`,`everyone joins in`],
+  myth:`The roughness is the point, not a budget. Tighten a gang vocal — line up the consonants, tune it, blend it — and it stops sounding like a crowd and starts sounding like backing singers, which is the opposite of what it was for. That is also what separates it from the choir and stacked-harmony cards: a choir suppresses individuality to make one instrument, and a stacked lead multiplies one person, while a gang vocal keeps everybody's edges deliberately visible so you can hear that there are several of them. It is a unison, but not every unison is one.`,
+  known:`Punk and hardcore hooks, glam and pop-punk backing, folk metal and any music with a martial streak, terrace and football chants, and the shout answers of stadium-scale pop.`,
+  origin:`Work songs, terrace chants and drinking songs long before records; entered popular music as a deliberate production choice through glam and then punk in the 1970s, where a chorus everybody could shout was both an aesthetic and a recruitment device.`,
+  first:`1970s`, peak:[`1970s`,`1980s`,`2000s`],
+  exemplar:{ kind:'exemplifies', title:`We're Not Gonna Take It`, artist:`Twisted Sister`, year:`1984`,
+    listen:`The chorus is not sung to you, it is shouted with you. Listen for the ragged edges — the words do not start at quite the same instant, and nobody is holding a note — which is exactly what makes it sound like a crowd instead of a group of singers.` },
+  domains:['voice','arrangement'],
+  match:['gang-shout','gang shout','gang-roar','gang-bellow','gang vocal','gang-style'],
+  kinds:['technique'],
+  nature:'momentary', hear:1,
+  range:`Eight prompts, and the useful variable is what the gang is FOR. As an answer: "answering gang-bellow chorus" and "the gang-roar answers back" in folk metal (#71), where the crowd is a second character. As punctuation: "gang shouts crashing in on the last line of each chorus" (#339) and "answered by a gang shout on every hook" (#306), both timed to a specific line. As distance: "gang-shout backing far behind" (#18, #194), where the crowd is deliberately buried, which is the pop-punk convention. And "gang-style shout answers" (#D5), where the whole record is built to be joined.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`The listening test is not the sound but the tightness. A result that returns clean, tuned, tightly-aligned backing vocals has produced a section rather than a gang, and the giveaway is the consonants: real gang vocals do not start together. The second thing to check is number — a gang should be unplaceably many, and two tracked voices sound like two tracked voices. #71 is the sharpest test because the prompt gives the gang a dramatic role: it ANSWERS the lead, so it has to be separable from it and cannot be a stack of the same singer. That also makes it the best available check on whether the generator can put a different set of people in the room at all.` },
+  ev:[
+    { n:71, span:`answering gang-bellow chorus`, state:'candidate', why:`The gang as a second character answering the lead. It cannot be a stack of the singer, which makes this the strictest version in the library.` },
+    { n:306, span:`answered by a gang shout on every hook`, state:'candidate', why:`Timed to a repeating structural point rather than used as texture — every hook, so a result that scatters them has misread the instruction.` },
+    { n:339, span:`gang shouts crashing in on the last line of each chorus`, state:'candidate', why:`Placed on one specific line. The test of whether the crowd can be aimed rather than merely summoned.` },
+    { n:'D5', span:`gang-style shout answers`, state:'candidate', why:`A record built to be joined, at stadium scale. The case where the gang is the emotional point of the arrangement rather than an accent on it.` }
+  ]
+},
+
+{
+  id:'chant',
+  term:`Chant`,
+  sounds:`Singing that will not move. The voice keeps returning to one note and speaks the words across it, so the words carry the rhythm and the pitch mostly stays put — and because there is no tune to follow, your attention slides onto the text and the repetition. Given a few minutes it stops feeling like music and starts feeling like a procedure. Many people together doing it sounds less like a performance than like a decision.`,
+  gloss:`Delivery built on a fixed reciting note rather than a melody: the pitch returns to the same place while the words move, usually with words repeated and with rhythm coming from speech.`,
+  syn:[`chanting`,`intoning`,`reciting`,`monotone singing`,`incantation`,`plainchant`,`that one-note singing`],
+  myth:`Chant is not simply a very simple melody. The organising principle is a reciting tone — one note the line keeps coming back to — so what sounds like an absence of tune is actually a rule, and it is the rule that makes chant feel ancient rather than merely plain. It is also not the same as talk-singing or narration: chant sits on a definite pitch, while those two do not, which is why a chant can be sung by fifty people in unison and a spoken line cannot. And it is not automatically sacred. The football terrace, the picket line and the warehouse rave all use the identical device for the identical reason: it is the only vocal form a crowd can perform without rehearsal.`,
+  known:`Plainchant and Byzantine chant, Sufi and Hindu devotional practice, Afrobeat and highlife call lines, hip-hop hooks, folk metal war-chants, techno monotone, and protest.`,
+  origin:`Older than notation and present in nearly every liturgical tradition on earth; entered popular music twice over — through the modal and devotional borrowings of the 1960s, and again through electronic and metal music of the 1990s, which wanted its hypnotic and martial qualities rather than its religion.`,
+  first:`ancient`, peak:[`1990s`],
+  exemplar:{ kind:'exemplifies', title:`Sadeness (Part I)`, artist:`Enigma`, year:`1990`,
+    listen:`The chanted voices barely move. Follow the pitch rather than the words and you will hear it return again and again to the same note, stepping away only to come back — which is why it can sit over a completely unrelated dance beat without either one having to give way.` },
+  domains:['voice','form'],
+  match:['chant'],
+  kinds:['technique'],
+  nature:'continuous', hear:2,
+  range:`Thirty-five prompts, spread from the sacred to the mechanical. "A clean low monophonic chant, even and vibratoless" (#51) is the strict article — one voice, one line, no ornament. "Chanting long microtonal phrases" (#80) is the ornamented liturgical version, where the reciting tone is decorated but never abandoned. "A mid-register chant-sing" in Afrobeat (#62) is the halfway case that has a real tune in it. And "chanted low and forward in a hypnotic monotone" over acid techno (#83) is the secular descendant, using the device purely for hypnosis.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`The failure is likely to be pleasant and wrong: a gentle, simple, pretty melody instead of a fixed reciting tone. So the test is narrow and mechanical — follow the pitch and ask whether it keeps returning to one note. If the line has a shape, an arc, a climb to a high point, it is a melody and the term has been read as a mood word. #51 is the cleanest verdict available because plainchant leaves nothing to hide behind: one voice, free metre, no accompaniment. #83 is the more interesting one, because a chant over a four-on-the-floor kick has to resist the pull of the grid, and a result that starts phrasing in bars has quietly become something else.` },
+  ev:[
+    { n:51, span:`a clean low monophonic chant`, state:'candidate', why:`One voice, free metre, nothing else in the arrangement. The strictest possible test of whether a reciting tone appears, since there is nowhere for a melody to hide.` },
+    { n:83, span:`chanted low and forward in a hypnotic monotone`, state:'candidate', why:`The secular version over acid techno, where the grid pulls hard against the free rhythm chant depends on. The most likely place to hear the term collapse into ordinary singing.` },
+    { n:62, span:`a mid-register chant-sing`, state:'candidate', why:`The deliberate halfway case — Afrobeat chant with a real tune in it. Useful for locating where the generator draws the line between chanting and singing.` },
+    { n:80, span:`chanting long microtonal phrases`, state:'candidate', why:`Byzantine cantor: ornament everywhere, and yet the reciting tone survives underneath it. Tests whether decoration and monotony can coexist as they do in the real tradition.` }
+  ]
+},
+
+{
+  id:'sampling',
+  term:`Sampling`,
+  sounds:`A piece of one record turning up inside another. You hear it as a change of air: for a few seconds the room is different, the tape is older, the instruments were played by other people on another day — and then a modern drum machine starts underneath it and the two eras are simply stacked. Once you notice the seam you cannot stop hearing it, and the mismatch is usually the point rather than a flaw.`,
+  gloss:`Taking a fragment of an existing recording and using it as material in a new one — looped, chopped, slowed, pitched or left whole.`,
+  syn:[`sampled`,`the sample`,`flip`,`lifted`,`chopped up`,`plunderphonics`,`that bit from another song`],
+  myth:`A sample is not an imitation of an instrument, it is the recording itself. That means everything that was on the original comes with it — the room, the tape, the era, the mistakes, the other players bleeding into the microphone — which is why a four-bar sample can supply an atmosphere that would take a full session to build, and why replaying the same notes on the same instruments does not sound the same and never has. The words also mislead: on a keyboard, "samples" often means recorded single notes of an instrument, which is a completely different practice from lifting a passage out of a finished record. And a sample being recognisable is not the ordinary case — most are chosen precisely so that they will not be.`,
+  known:`Hip-hop from its beginnings, jungle and drum and bass, house, trip-hop, vaporwave and plunderphonics, and — less visibly — nearly all mainstream pop production, where the sampled element is usually a drum sound rather than a passage.`,
+  origin:`Tape splicing in postwar experimental studios, then dedicated instruments from the late 1970s that could hold a few seconds of audio; the decisive moment was cheap samplers reaching hip-hop producers in the 1980s, which turned a studio curiosity into a compositional method and, shortly after, into a legal problem.`,
+  first:`1970s`, peak:[`1980s`,`1990s`],
+  exemplar:{ kind:'exemplifies', title:`Bitter Sweet Symphony`, artist:`The Verve`, year:`1997`,
+    listen:`The string figure that runs through the entire record is not a string arrangement written for it — it is a few seconds of an orchestral recording made three decades earlier, looped. Listen to how the strings sit in a different, older-sounding space than everything around them, and never quite join the band.` },
+  domains:['production','arrangement'],
+  match:['sample','sampled','sampler'],
+  kinds:['technique'],
+  nature:'continuous', hear:2,
+  range:`The corpus samples four different kinds of thing, and the kind changes the job entirely. A passage: "Dusty chopped soul sample" (#17), which supplies the harmony and the mood at once. An atmosphere: "muted-trumpet sample" and "faint string loop" in trip-hop (#39), where the sampled material is scenery. A signal: "air-horn and siren samples" in dancehall (#69) and "metallic percussion samples" in industrial techno (#84) — samples used as punctuation, with no musical content at all. And a whole record slowed: "Slowed sample-based chords" in vaporwave (#79), where the sample IS the track and the processing is the composition.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Almost certainly the least testable term on this page, and worth saying so plainly. A generator does not sample; it produces audio that resembles sampled music, so the honest question is not whether it samples but whether the word buys anything — specifically, whether "sample" produces the ARTEFACTS that make sampling audible. Those are concrete and listable: a different room on that element, a hard seam at the loop point, filtered top end, bleed from instruments that are not otherwise present, and a fragment that repeats identically rather than being played again. #17 is the best test because dusty chopped soul is the case where those artefacts are most expected, and #69 the cheapest, because a siren either arrives as a foreign object or it does not.` },
+  ev:[
+    { n:69, span:`air-horn and siren samples`, state:'candidate', why:`Samples with no musical content — pure signals imported whole. The easiest verdict on the card: a foreign object either turns up in the track or it does not.` },
+    { n:39, span:`muted-trumpet sample`, state:'candidate', why:`Trip-hop, where the sample is scenery rather than structure, and where the tell would be a trumpet sitting in a different and older space than the rest of the mix.` },
+    { n:64, span:`dark eerie sample`, state:'candidate', why:`Deliberately unspecific — the prompt names a mood and not a source. Useful for finding out what the word alone conjures when nothing tells it what to lift.` },
+    { n:17, span:`Dusty chopped soul sample`, state:'candidate', why:`The definitional case, in the genre that invented the practice. If sampling artefacts appear anywhere, they should appear here, which makes this the reference test.` }
+  ]
+},
+
+{
+  id:'twang',
+  term:`Twang`,
+  sounds:`A bright, hard, carrying sound with a kind of pinched edge on the front of it. On a voice it sits forward in the face and cuts through a band without ever seeming loud — the words come at you point-first. On a guitar it is the spring-loaded snap of a single note played near the bridge, with a hard attack and a fast decay. Both are the same word and, oddly, roughly the same quality: brightness with an edge, and the ability to be heard through anything.`,
+  gloss:`A bright, penetrating, edged tone. Of a voice, it is produced by narrowing the throat above the vocal folds; of a guitar, it is the sharp attack and quick decay of a solid-body played clean, usually with reverb behind it.`,
+  syn:[`twangy`,`country twang`,`that pinched country voice`,`Telecaster twang`,`bite`,`nasal`,`carrying tone`],
+  myth:`Twang is not nasality, and the two get treated as one thing constantly — including in the synonym rings people actually search with. Nasal tone comes from sound routed through the nose; twang comes from a narrowing of the throat above the vocal folds, and a singer can do it with the nose completely closed off. The test is physical and takes two seconds: pinch your nostrils while making the sound. If it changes, you were being nasal. If it does not, that was twang. The distinction matters because twang is the mechanism behind loudness without effort — it is how a voice carries over a band without pushing, which is why it turns up wherever singers had no amplification and something to compete with. The second thing worth knowing is that the word does two jobs in music talk. On a guitar it describes an attack, and the two senses can appear one sentence apart without anybody noticing.`,
+  known:`Country and bluegrass singing, honky-tonk, gospel, Bulgarian and other Eastern European traditional singing, and belters of every kind. On the instrument side: Telecaster country playing, surf, rockabilly, and any clean electric guitar with spring reverb behind it.`,
+  origin:`Older than any of its genres as a vocal technique — it is what unamplified singers everywhere reached for — but named and identified with American country music from the 1940s onward; the guitar sense arrives with solid-body electrics in the 1950s and was used in their advertising, which is how it stuck.`,
+  first:`1950s`, peak:[`1950s`,`1960s`],
+  exemplar:{ kind:'exemplifies', title:`Coal Miner's Daughter`, artist:`Loretta Lynn`, year:`1970`,
+    listen:`The voice is bright and hard-edged and it cuts straight through the band, but it never sounds like it is being pushed. Try the nose test on your own voice while imitating it: the carrying quality survives with your nostrils pinched, which is what tells you this is throat and not nose.` },
+  domains:['voice','guitar'],
+  match:['twang'],
+  kinds:['technique'],
+  nature:'continuous', hear:2,
+  range:`The two senses sit inside single prompts and nothing marks the switch. #16 asks for a voice "dry and grainy with a hard country twang on the vowels" and, two sentences later, for "Telecaster twang with spring reverb" — the same word for a vocal placement and a guitar attack. #45 does exactly the same thing. Elsewhere it is purely instrumental: "twangy low guitar motif soaked in space" in cinematic downtempo (#119), "twanging and greasy" for a whole horror-groove arrangement (#309), and "jaw-harp twang" (#6), which is neither voice nor guitar and means the physical object.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`A collision card, and the test is which sense wins when a prompt supplies both — as #16 and #45 do. The vocal sense is the one at risk, because the guitar sense is more strongly associated with the genre word "country" that surrounds it in almost every prompt here, so the plausible failure is a twangy guitar behind a voice with no twang in it at all. That failure is easy to check and worth checking, because the vocal sense carries something no other term on the page does: audibility without volume. Listen specifically for whether the voice cuts through the arrangement while remaining obviously unforced. A loud voice is not this.` },
+  ev:[
+    { n:16, span:`a hard country twang on the vowels`, state:'candidate', why:`The vocal sense, stated on the vowels where it lives. The same prompt also asks for Telecaster twang, so both meanings are competing inside one instruction — which is the whole subject of this card.` },
+    { n:45, span:`Telecaster twang`, state:'candidate', why:`The instrumental sense, in a prompt that ALSO carries the vocal one. Paired with #16 it shows the collision from both sides.` },
+    { n:119, span:`twangy low guitar motif soaked in space`, state:'candidate', why:`Purely instrumental and far from country — cinematic downtempo, where twang is being used as atmosphere rather than as genre signalling.` },
+    { n:309, span:`twanging and greasy`, state:'candidate', why:`The word applied to a whole arrangement rather than to one part. The loosest use in the corpus, and the test of how far it stretches before it stops meaning anything.` }
   ]
 },
 
