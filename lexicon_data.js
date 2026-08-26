@@ -29,7 +29,7 @@
  * Loaded as a classic <script> AFTER data.js, so LIB is already a global.
  */
 
-const LEX_VERSION = 'v21';
+const LEX_VERSION = 'v22';
 const LEX_UPDATED = '2026-08-26';
 
 /* ---------- TOP TIER: domains, not instruments ----------
@@ -5004,13 +5004,15 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   exemplar:{ kind:'exemplifies', title:`In the Wee Small Hours of the Morning`, artist:`Frank Sinatra`, year:`1955`,
     listen:`The voice has a body to it that no amount of volume would produce — you are hearing distance, not level. Listen for the weight arriving on the quietest phrases, which is exactly where a singer leans in.` },
   domains:['microphone','voice'],
-  corpus:'absent',
-  match:['proximity effect','working the mic','close enough to the mic'],
+  match:['proximity effect','working the microphone','working the mic'],
   kinds:['technique'],
   nature:'continuous', hear:2,
-  range:`From an inch away, where the low end is so exaggerated that speech becomes almost unintelligible and engineers reach for a filter to undo it, out to about a foot, where it has essentially gone. The useful part of the range is very small, which is why microphone technique is measured in inches and why a singer with a habit of drifting is difficult to record.`,
+  range:`From an inch away, where the low end is so exaggerated that speech becomes almost unintelligible and engineers reach for a filter to undo it, out to about a foot, where it has essentially gone. The useful part of the range is very small, which is why microphone technique is measured in inches and why a singer with a habit of drifting is difficult to record. #415 was written to cover the whole of it inside one performance — in on the confided lines, back a foot on the loud ones — which is the only way to hear the range rather than a point on it.`,
   res:{ verdict:'untested', model:null, date:null,
-    note:`Nothing in this library has ever asked for it, which is itself worth noticing: the corpus says "close-miked" and "intimate close capture" a great deal, and never once names the physical thing those phrases are reaching for. So the first test is whether the term buys anything the existing wording does not. The specific thing to listen for is low-frequency weight that tracks the PERFORMANCE rather than sitting constant — warmth arriving on the confided lines and receding on the loud ones. A result that is uniformly warm has produced an EQ setting, which is the ordinary failure and is not the same thing at all.` }
+    note:`Until #415 the library had never asked for it, which was worth noticing on its own: the corpus says "close-miked" and "intimate close capture" a great deal and never once names the physical thing those phrases are reaching for. So the first question is whether the term buys anything the existing wording does not. The specific thing to listen for is low-frequency weight that tracks the PERFORMANCE rather than sitting constant — warmth arriving on the confided lines and receding on the loud ones, with the quiet lines coming out the biggest. A result that is uniformly warm has produced an EQ setting, which is the ordinary failure and is not the same thing at all. The prompt strips the arrangement to a piano and removes compression by name, because both would flatten exactly the change being tested.` },
+  ev:[
+    { n:415, span:`built entirely on proximity effect — the singer working the microphone`, state:'candidate', why:`Written for this card. The term is in the opening clause and the arrangement is stripped to almost nothing, so a tone that does not move with the singer's distance has nowhere to hide.` }
+  ]
 },
 
 {
@@ -5026,13 +5028,15 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   exemplar:{ kind:'exemplifies', title:`Bold as Love`, artist:`The Jimi Hendrix Experience`, year:`1967`,
     listen:`The closing section is one of the first flangers on a record, made with tape rather than a pedal. Listen to the whole band being swept at once — that is the giveaway, since a pedal would normally be on one instrument.` },
   domains:['production','guitar'],
-  corpus:'absent',
   match:['flange','flanged','flanger'],
   kinds:['technique'],
   nature:'continuous', hear:2,
-  range:`From a barely-there metallic sheen used to make a rhythm guitar sit oddly, through the classic slow sweep that takes several seconds to travel, to the extreme setting where feedback is fed back through the delay and the sound becomes a screaming resonant whistle — three effects that share nothing but a circuit.`,
+  range:`From a barely-there metallic sheen used to make a rhythm guitar sit oddly, through the classic slow sweep that takes several seconds to travel, to the extreme setting where feedback is fed back through the delay and the sound becomes a screaming resonant whistle — three effects that share nothing but a circuit. #418 asks for the middle of that range and refuses to confine it to one instrument: the sweep runs across the drums, the guitar and the voice at once, which is how the tape original worked and how no pedal does.`,
   res:{ verdict:'untested', model:null, date:null,
-    note:`The library has a phaser card and a chorus card and no prompt anywhere that says flange, which makes this a genuine hole in the vocabulary rather than a term we chose against. The obvious test is the three-way one the myth describes: identical prompts differing only in which of the three modulation words is used. If they come back sounding alike, that is a real and useful finding about how the generator represents effects — one modulation idea with three names — and it would apply to the tremolo and vibrato cards too. Listen for the sweep's character rather than its presence: metallic and hollow is a flanger, liquid and rounded is a phaser.` }
+    note:`The library had a phaser card and a chorus card and, until #418, no prompt anywhere that said flange — a genuine hole in the vocabulary rather than a term we chose against. The obvious test is the three-way one the myth describes: identical prompts differing only in which of the three modulation words is used. If they come back sounding alike, that is a real and useful finding about how the generator represents effects — one modulation idea with three names — and it would apply to the tremolo and vibrato cards too. #418 sets that up by naming the other two as negatives, so a phaser-like swirl is a stated failure rather than a judgement call. Listen for the sweep's character rather than its presence: metallic and hollow is a flanger, liquid and rounded is a phaser.` },
+  ev:[
+    { n:418, span:`built entirely around a flanger`, state:'candidate', why:`Written for this card. The sweep is asked for across the whole mix rather than on one instrument, and the two confusable neighbours — phaser swirl, chorus shimmer — are excluded by name in the negatives.` }
+  ]
 },
 
 {
@@ -5070,13 +5074,15 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   exemplar:{ kind:'exemplifies', title:`Nothing Compares 2 U`, artist:`Sinéad O'Connor`, year:`1990`,
     listen:`The voice is unmistakably in a big space and unmistakably right in front of you, which is a combination no real room provides. Listen to the end of a line: the word finishes dry, and only then does the room turn up.` },
   domains:['room','production'],
-  corpus:'absent',
   match:['pre-delay','predelay','before the reverb'],
   kinds:['technique'],
   nature:'continuous', hear:4,
-  range:`Zero, where the reverb starts with the sound and the source is pushed into the distance. Twenty to fifty thousandths of a second, where a voice stays present in a large space — the default of pop vocal production. And beyond a hundred, where the gap stops reading as a room and starts being heard as a separate echo, which is a different effect wearing the same control.`,
+  range:`Zero, where the reverb starts with the sound and the source is pushed into the distance. Twenty to fifty thousandths of a second, where a voice stays present in a large space — the default of pop vocal production. And beyond a hundred, where the gap stops reading as a room and starts being heard as a separate echo, which is a different effect wearing the same control. #416 asks for the middle setting and makes it audible by leaving silence after every line, so the room's late bloom can be heard arriving on its own.`,
   res:{ verdict:'untested', model:null, date:null,
-    note:`The hardest thing on this page to hear and one of the easiest to demonstrate, which is an unusual combination and the reason it is rated four. Nobody detects a pre-delay in isolation; everybody hears the difference when it changes. That makes the honest test a comparison and nothing else: the same prompt asking for a huge room with the vocal close, against one asking for a huge room, and then a single question — did the voice move? A generator that treats reverb as one dial will move the singer backwards as the room grows, and that failure is the most common one in amateur mixing too, which is a point in its favour as a lesson.` }
+    note:`The hardest thing on this page to hear and one of the easiest to demonstrate, which is an unusual combination and the reason it is rated four. Nobody detects a pre-delay in isolation; everybody hears the difference when it changes. That makes the honest test a comparison and nothing else: the same prompt asking for a huge room with the vocal close, against one asking for a huge room, and then a single question — did the voice move? A generator that treats reverb as one dial will move the singer backwards as the room grows, and that failure is the most common one in amateur mixing too, which is a point in its favour as a lesson. #416 is the near half of that pair, and it removes the usual escape routes: nothing else in the arrangement is reverberant, so a wash spread across the whole track would be plainly wrong rather than merely different.` },
+  ev:[
+    { n:416, span:`built around pre-delay`, state:'candidate', why:`Written for this card. It asks for the two halves of the effect separately — the word dry and close, the room answering afterwards — and leaves silence after each line so the gap is exposed. The far half of the comparison, the same room with no gap, has not been written yet.` }
+  ]
 },
 
 {
@@ -5092,13 +5098,15 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   exemplar:{ kind:'exemplifies', title:`Good Vibrations`, artist:`The Beach Boys`, year:`1966`,
     listen:`The wavering high line in the chorus never lands on a note — it slides between them continuously, which is what makes it sound uncanny rather than merely high. Follow it and try to find the moment a new note starts; there isn't one.` },
   domains:['voice','keys','arrangement'],
-  corpus:'absent',
   match:['portamento','glide time','sliding between the notes'],
   kinds:['technique'],
   nature:'momentary', hear:2,
-  range:`From so fast it merely softens the join between two notes — barely perceptible, and standard on synth leads to stop them sounding brittle — to so slow that the slide occupies the whole space between the notes and the destination is reached just as it is abandoned. Somewhere in the middle it stops sounding like expression and starts sounding like an instrument out of control, which is a line singers and synthesists both play with deliberately.`,
+  range:`From so fast it merely softens the join between two notes — barely perceptible, and standard on synth leads to stop them sounding brittle — to so slow that the slide occupies the whole space between the notes and the destination is reached just as it is abandoned. Somewhere in the middle it stops sounding like expression and starts sounding like an instrument out of control, which is a line singers and synthesists both play with deliberately. #417 sits at the slow extreme on purpose — slides long enough that each destination is reached just as it is abandoned — because that is the end where the missing attack is impossible to miss.`,
   res:{ verdict:'untested', model:null, date:null,
-    note:`The corpus never uses the word and describes the thing constantly — "sliding between notes", "sliding up into pitch from underneath", "notes bending downward at phrase-ends" all appear in prompts — so this card is a test of whether the technical term is worth more than the description. That is a genuinely open question and the answer might be no. The listening test is precise: is the second note's attack gone? A result that reaches the note by sliding and then re-articulates it has produced a scoop, not a portamento, and the two are not interchangeable. On a synth prompt the same question is easier to answer, because a monophonic glide either connects the notes or does not.` }
+    note:`Until #417 the corpus never used the word while describing the thing constantly — "sliding between notes", "sliding up into pitch from underneath", "notes bending downward at phrase-ends" all appear in prompts — so this card is a test of whether the technical term is worth more than the description. That is a genuinely open question and the answer might be no. The listening test is precise: is the second note's attack gone? A result that reaches the note by sliding and then re-articulates it has produced a scoop, not a portamento, and the two are not interchangeable. On a synth prompt the same question is easier to answer, because a monophonic glide either connects the notes or does not; #417 makes the vocal case as answerable by removing everything that would supply an attack for free — no percussion, no chord changing underneath, one drone and a voice.` },
+  ev:[
+    { n:417, span:`built entirely on portamento`, state:'candidate', why:`Written for this card, at the slow end where the slide is unmissable. Its negatives ban the specific near-miss the card warns about — notes re-articulated at the top of the slide, which is a scoop and not this.` }
+  ]
 },
 
 {
@@ -5148,7 +5156,8 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   res:{ verdict:'untested', model:null, date:null,
     note:`Included partly because it is so easy to judge. The squeal is unmistakable and momentary, so a result either contains one or does not, with none of the ambiguity that makes the harmony cards hard. That makes it a good probe for a more general question: whether a specific PLAYING technique, as distinct from a tone or a genre, survives into a generated performance at all. The related risk is that it comes back as a permanent quality — a guitar that squeals continuously — because the term was read as a timbre rather than as an event, and that failure is worth recording separately, since it would apply to every momentary technique in the library. One prompt out of four hundred uses the word, so the card is thin on evidence by circumstance rather than by choice: it is a term the corpus has barely thought to ask for.` },
   ev:[
-    { n:27, span:`screaming pinch-harmonic leads`, state:'candidate', why:`The corpus's only use of the term, in the genre that made it a signature. Plural and open-ended, which is the risk the card names — nothing here says how often, so a guitar that squeals on every note would technically satisfy it.` }
+    { n:419, span:`built around pinch harmonics`, state:'candidate', why:`Written for this card, and written to answer the risk the note names: one squeal per phrase, in a bar of space left open for it, with continuous squealing excluded outright. Placement is the test, not presence.` },
+    { n:27, span:`screaming pinch-harmonic leads`, state:'candidate', why:`The corpus's only unprompted use of the term, in the genre that made it a signature. Plural and open-ended — nothing here says how often — which is exactly why #419 was written beside it.` }
   ]
 },
 
