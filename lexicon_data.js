@@ -29,7 +29,7 @@
  * Loaded as a classic <script> AFTER data.js, so LIB is already a global.
  */
 
-const LEX_VERSION = 'v22';
+const LEX_VERSION = 'v23';
 const LEX_UPDATED = '2026-08-26';
 
 /* ---------- TOP TIER: domains, not instruments ----------
@@ -193,6 +193,7 @@ const LEX = [
   res:{ verdict:'untested', model:null, date:null,
     note:`One of the few terms in the corpus with evidence pointing both ways. It appears in 52 positive prompts and also in negative prompts (#4, #16) written specifically to keep it out. If it works as a negative, that is a strong signal it resolves — a term the model can be asked to suppress is a term it recognises. That inference is worth testing directly, because it would apply to every other term used as a negative.` },
   ev:[
+    { n:421, span:`running whole phrases as melisma`, state:'candidate', why:`Written for this card, at the maximal end: melisma as the melody itself rather than as ornament on one, with "one note per syllable" excluded by name in the negatives.` },
     { n:11, span:`melisma`, state:'candidate', why:`The maximal end — "long microtonal melisma" as the central feature of the vocal, not an ornament on it.` },
     { n:20, span:`melisma`, state:'candidate', why:`The minimal end — "light agile melisma curling around the phrase-ends".` },
     { n:16, span:`melismatic`, state:'candidate', why:`The lesson is in the NEGATIVE here: "melismatic runs" appears in the neg field, an attempt to suppress the term. Note the inflection — the literal recorded is what is actually present, not the dictionary form.` },
@@ -956,6 +957,7 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   res:{ verdict:'untested', model:null, date:null,
     note:`The natural partner to the falsetto card: they are the two ways of going high, and they are opposites. That makes a pair unusually clean — the same prompt asking for a belted high note and a falsetto one should produce plainly different voices, and if it does not, the entire vocal-register vocabulary is in question. Like autotune, this term appears heavily as a negative too, so it can be tested in both directions with material that already exists.` },
   ev:[
+    { n:421, span:`holding the belted peaks wide open`, state:'candidate', why:`The same prompt asks for belting on top of the melisma, which is the harder combination — sustained full-voice peaks that must not thin out while the line is also travelling.` },
     { n:27, span:`belting`, state:'candidate', why:`"Belting at full force" in hard rock — the maximal, unambiguous case.` },
     { n:18, span:`belting`, state:'candidate', why:`Belting to the point of failure, "where the voice thins and cracks" — the same technique with the strain made audible on purpose.` },
     { n:9,  span:`belting`, state:'candidate', why:`Negative use, protecting a fragile indie-folk falsetto — the direct opposite of the technique, excluded by name.` },
@@ -1226,6 +1228,7 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   res:{ verdict:'untested', model:null, date:null,
     note:`A rare case where the useful test is about CONTROL rather than presence. Almost any sung output will have some vibrato, so the question is whether the generator can be told when to use it — constantly, only at phrase ends, or not at all. #7 and #2 are close to a ready-made pair for exactly that, and #3 adds the suppression case. If placement can be steered, that is a strong result about vocal instructions generally; if every voice wobbles the same way regardless, that limit applies well beyond this card.` },
   ev:[
+    { n:420, span:`an enormous slow vibrato`, state:'candidate', why:`Written for this card. Vibrato is the only event in the prompt — arriving late in the note rather than with it, on a voice low and slow enough that a wobble cannot hide. The negatives ban straight-tone sustain outright, so its absence is a stated failure.` },
     { n:7, span:`vibrato`, state:'candidate', why:`Operatic and continuous — "even vibrato woven through every sustained note", the maximal and most conventional case.` },
     { n:2, span:`vibrato`, state:'candidate', why:`"Smooth vibrato arriving only at phrase ends" — placement specified rather than amount, which is the harder instruction.` },
     { n:3, span:`vibrato wobble`, state:'candidate', why:`Negative use, and it excludes the FAULT rather than the technique — a precision worth testing against a blunt exclusion.` },
@@ -1446,6 +1449,7 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   res:{ verdict:'untested', model:null, date:null,
     note:`The most-used vocal texture word in the corpus at 193 prompts, so whether it registers is not in much doubt. The useful question is whether its RANGE registers — whether a controlled growl on held notes and a pitchless guttural roar come back as different things or as one generic rasp. #1 and #8 sit at opposite ends of that and would make a cheap pair.` },
   ev:[
+    { n:423, span:`a baritone that growls the melody rather than singing it`, state:'candidate', why:`Written for this card. The growl is the default tone rather than an effect reached for at phrase ends, and it sits in hot jazz rather than in metal, where a growl is the genre default and proves less.` },
     { n:1,  span:`growl`, state:'candidate', why:`"A controlled growl on every held note" — the subtle end, applied to a voice that is otherwise singing normally.` },
     { n:8,  span:`growl`, state:'candidate', why:`"An extreme guttural growl, a low pitchless roar" — the maximal end, where the technique has replaced the note entirely.` },
     { n:11, span:`growl`, state:'candidate', why:`Negative use, protecting a devotional tenor where any roughness would break the idiom.` },
@@ -1662,6 +1666,7 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   res:{ verdict:'untested', model:null, date:null,
     note:`One of the largest positive-and-negative splits in the corpus after autotune: 107 uses, most of them exclusions. That makes it a second good test of whether negatives work, and a check on whether the two meanings of the word have been separated — asking for lo-fi could plausibly return either a damaged recording or a calm instrumental beat, and those are completely different results from the same instruction.` },
   ev:[
+    { n:424, span:`Lo-fi boom-bap near 86 BPM, dusty and unhurried`, state:'candidate', why:`Written for this card. Lo-fi named in the opening clause with its artefacts specified rather than implied — crackle, hiss, a dragging loop — and hi-fi mastering excluded in the negatives.` },
     { n:19,  span:`Lo-fi`, state:'candidate', why:`"Lo-fi Scandinavian black-metal production, freezing" — roughness as ideology rather than circumstance. Note the capital L.` },
     { n:32,  span:`lo-fi`, state:'candidate', why:`Negative use, protecting a polished new-romantic production where any grit would break the period.` },
     { n:35,  span:`lo-fi`, state:'candidate', why:`"Lo-fi rawness" excluded from stadium alt-rock, where the word is being used to mean roughness specifically.` },
@@ -2149,6 +2154,7 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   res:{ verdict:'untested', model:null, date:null,
     note:`A useful test of whether wordless vocal means anything specific to the generator. The library's standing rule is that vocals are never optional and are never wordless, so this is one of very few cards asking for a voice with no lyric — and the risk is that it returns humming, or ooh-and-aah pads, rather than articulated syllables. The tell is consonants: real scat is full of them, and a wordless pad has none.` },
   ev:[
+    { n:423, span:`dropped into wordless scat between the lines`, state:'candidate', why:`Scat placed against sung words in the same performance, so the switch between language and pure syllable happens inside one voice and can be heard arriving.` },
     { n:47,  span:`scat`, state:'candidate', why:`"Scatting fluid swung runs and slipping into sung lines" — the technique alternating with ordinary singing in one vocal.` },
     { n:'K1', span:`scat`, state:'candidate', why:`"Scatted doubles of the bass riff" — the voice doubling an instrumental line rather than improvising over it.` },
     { n:49,  span:`scat`, state:'candidate', why:`Negative use: "jazz scat" excluded from darksynth, where any jazz phrasing would break the idiom.` }
@@ -2526,6 +2532,7 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   res:{ verdict:'untested', model:null, date:null,
     note:`Falsifiable in an unusually satisfying way: either two pitches are audible simultaneously from one voice or they are not, and no expertise is needed to tell. The likely failure is a single ordinary voice with a synth doubling above it, which would be a near miss rather than a null — and distinguishing those two outcomes is exactly the kind of listening this page is for. Directly connected to the formants card, since the mechanism is the same filtering, used deliberately.` },
   ev:[
+    { n:422, span:`it splits into audible overtones`, state:'candidate', why:`Written for this card, which had nothing else in the corpus that could ever reach it. The demand is unambiguous: one singer, two audible pitches, and the second one produced by nobody.` },
     { n:6,  span:`overtone`, state:'candidate', why:`"Central-Asian overtone singing" with a kargyraa drone — the low form, where the fundamental is the striking part.` },
     { n:74, span:`overtone`, state:'candidate', why:`"A sygyt overtone whistle, a piercing flute-like harmonic forced" above the voice — the high form, and the clearest test of whether two pitches emerge from one source.` }
   ]
@@ -2658,6 +2665,7 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   res:{ verdict:'untested', model:null, date:null,
     note:`Deliberately paired with the lo-fi and vinyl-crackle cards, because all three are damage and they are not interchangeable: crackle is a surface, tape is a soft saturation, and bitcrush is a resolution failure that sounds unmistakably computerised. If the generator produces the same generic grit for all three, that is a single finding covering three cards — and it would suggest damage is being modelled as a mood rather than as a mechanism.` },
   ev:[
+    { n:424, span:`run through a bitcrusher until the sample rate is audible`, state:'candidate', why:`Written for this card, and pointed at the voice rather than at the drums. The test is whether the degradation lands on the vocal itself, which is where bitcrushing is hardest to mistake for tape or vinyl damage.` },
     { n:24, span:`bit-crush`, state:'candidate', why:`"Heavy distortion and bit-crush, voice clipped and filtered into a grinding machine" — the maximal case, applied to a vocal.` },
     { n:90, span:`bitcrush`, state:'candidate', why:`"Bitcrushed risers" in hyperpop, where only one element is degraded so the contrast is audible.` },
     { n:246, span:`bitcrush`, state:'candidate', why:`Negative use: bitcrush and sample-rate reduction excluded together from sleep ambient, naming both mechanisms explicitly.` },
@@ -4929,6 +4937,7 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   res:{ verdict:'untested', model:null, date:null,
     note:`The failure is likely to be pleasant and wrong: a gentle, simple, pretty melody instead of a fixed reciting tone. So the test is narrow and mechanical — follow the pitch and ask whether it keeps returning to one note. If the line has a shape, an arc, a climb to a high point, it is a melody and the term has been read as a mood word. #51 is the cleanest verdict available because plainchant leaves nothing to hide behind: one voice, free metre, no accompaniment. #83 is the more interesting one, because a chant over a four-on-the-floor kick has to resist the pull of the grid, and a result that starts phrasing in bars has quietly become something else.` },
   ev:[
+    { n:422, span:`a chant with no melody to follow`, state:'candidate', why:`The reciting-tone test stated in the prompt itself — lines returning to the same note with no tune to follow, in a tradition with no instruments to supply one.` },
     { n:51, span:`a clean low monophonic chant`, state:'candidate', why:`One voice, free metre, nothing else in the arrangement. The strictest possible test of whether a reciting tone appears, since there is nowhere for a melody to hide.` },
     { n:83, span:`chanted low and forward in a hypnotic monotone`, state:'candidate', why:`The secular version over acid techno, where the grid pulls hard against the free rhythm chant depends on. The most likely place to hear the term collapse into ordinary singing.` },
     { n:62, span:`a mid-register chant-sing`, state:'candidate', why:`The deliberate halfway case — Afrobeat chant with a real tune in it. Useful for locating where the generator draws the line between chanting and singing.` },
