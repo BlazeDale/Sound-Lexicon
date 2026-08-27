@@ -29,8 +29,8 @@
  * Loaded as a classic <script> AFTER data.js, so LIB is already a global.
  */
 
-const LEX_VERSION = 'v24';
-const LEX_UPDATED = '2026-08-26';
+const LEX_VERSION = 'v25';
+const LEX_UPDATED = '2026-08-27';
 
 /* ---------- TOP TIER: domains, not instruments ----------
    `kind` splits the rail into the two families the doc argues are peers: the physical
@@ -1013,6 +1013,7 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   res:{ verdict:'untested', model:null, date:null,
     note:`Interesting because it asks for an ARTEFACT of how a recording was made rather than for a sound. The generator has no room and no microphones, so nothing can literally bleed — the question is whether the word produces the audible consequences anyway: instruments sharing an ambience, a slightly cluttered midrange, a sense of one take. It sits with breakbeat in that respect, and the two would make a good joint test of whether process words work at all.` },
   ev:[
+    { n:433, span:`room bleed everywhere, the kit leaking into every microphone`, state:'candidate', why:`Bleed asked for as the recording method rather than as a texture — a whole band at once in one small room, isolated multitrack capture excluded by name, and the leakage described as an audible consequence (the piano arriving twice, once straight and once off the walls) rather than as an adjective.` },
     { n:122, span:`room bleed`, state:'candidate', why:`"Hot live capture with room bleed" behind a full gospel-Motown arrangement — the maximal case, with many sources to leak into each other.` },
     { n:62,  span:`room bleed`, state:'candidate', why:`"Live-band capture, warm room bleed" in afrobeat, where interlocking parts depend on sounding simultaneous rather than assembled.` },
     { n:'V3', span:`live-room bleed`, state:'candidate', why:`"Tight live-room bleed" — the controlled end, and a different literal worth recording separately.` },
@@ -2399,6 +2400,7 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   res:{ verdict:'untested', model:null, date:null,
     note:`Interesting because the instruction is essentially to make something WORSE in a specific way, and most of what a generator has learned about pianos will pull toward in-tune and well-recorded. The tell is the beating between strings inside single notes — a clean piano with a bright EQ is the likely failure, and it is easy to distinguish by ear from genuine detuning.` },
   ev:[
+    { n:433, span:`honky-tonk piano arriving twice, once straight and once off the walls`, state:'candidate', why:`A third use, distinct from both existing ones: the instrument is neither a colour (#16) nor the genre (#45) but the thing the room is demonstrated on — which makes it the case where a clean piano with a bright EQ, the card's expected failure, would be immediately obvious.` },
     { n:45,  span:`Honky-tonk`, state:'candidate', why:`"Honky-tonk country, shuffling and weepy" — the instrument naming and defining the whole track. Note the capital H.` },
     { n:16,  span:`honky-tonk`, state:'candidate', why:`"Honky-tonk piano" as one element of an outlaw country arrangement, competing with pedal steel and brushed drums.` },
     { n:'V3', span:`honky-tonk`, state:'candidate', why:`"Sparse honky-tonk piano stabs" in a live-TV-special setting, used percussively rather than harmonically.` },
@@ -4154,10 +4156,11 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   match:['c-800g','c800g','modern mic'],
   kinds:['instrument'],
   nature:'continuous', hear:4,
-  range:`The corpus never names a microphone model — it names a category — so the nearest wording is "modern mic", and all three prompts using it also say bright, tuned or slick: "Modern mic into hard tuning and slick digital chain" (#23), "Modern mic into a slick digital chain, tuned and bright" (#69), and "Close modern mic, tight compression, bright and forward" (#291). That cluster is this microphone described without being named. "Bright studio condenser" (#32) is the same instruction moved back to the 1980s.`,
+  range:`Until #431 the corpus never named a microphone model — it named a category — so the nearest wording was "modern mic", and all three prompts using it also say bright, tuned or slick: "Modern mic into hard tuning and slick digital chain" (#23), "Modern mic into a slick digital chain, tuned and bright" (#69), and "Close modern mic, tight compression, bright and forward" (#291). That cluster is this microphone described without being named. "Bright studio condenser" (#32) is the same instruction moved back to the 1980s. #431 names the object, which is what makes the comparison possible at all.`,
   res:{ verdict:'untested', model:null, date:null,
     note:`The first model-level microphone card on the page, and it exists to ask something the four type cards cannot: does naming a specific object do anything that naming its category does not? The honest expectation is no — that "Sony C-800G" and "bright modern condenser" produce the same vocal, because a model name almost certainly carries no acoustic meaning to a generator and travels only with the era and genre words around it. If that is right, the whole idea of prompting for gear by model collapses in a single test, which is worth more than a shelf of careful model cards. The thing to listen for is sibilance: this microphone's signature is an S that is slightly too loud, and a result without one has not resolved the term.` },
   ev:[
+    { n:431, span:`a Sony C-800G into a slick digital chain`, state:'candidate', why:`Written for this card, and the first prompt in the library to name a microphone by model rather than by category. Deliberately worded so the model sits in the same sentence as the category description it is being tested against, and the signature the card cares about is asked for outright: sibilance kept, no de-esser anywhere.` },
     { n:69,  span:`Modern mic into a slick digital chain, tuned and bright`, state:'candidate', why:`The fullest statement of the sound anywhere in the corpus — bright and tuned named in one breath, which is how this microphone is nearly always used.` },
     { n:291, span:`Close modern mic`, state:'candidate', why:`"Close modern mic, tight compression, bright and forward" on a club-rap lead — the exact chain this microphone sits at the front of.` },
     { n:23,  span:`Modern mic`, state:'candidate', why:`"Modern mic into hard tuning" on melodic trap: the commonest real-world use, and the one where the sibilance has the most to fight through.` },
@@ -4212,6 +4215,7 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   res:{ verdict:'untested', model:null, date:null,
     note:`The cleanest available test of whether delay TIMING registers as a number or only as a mood. Slapback is defined by two specific settings — around a tenth of a second, feedback at zero — so a generator that produces any generic echo has not resolved it. It is also unusually easy to judge without training: count the repeats. One is slapback, more than one is something else. Worth running directly against the tape-delay card, which names the same machine set the opposite way.` },
   ev:[
+    { n:433, span:`one hard repeat about a tenth of a second behind each word, feedback at zero`, state:'candidate', why:`The card's own test written into a prompt: both defining settings stated as numbers rather than as a mood, with "multiple repeats" and "feedback on the delay" excluded by name. #25 asks for slapback and then describes it as a beat behind, which at 150 BPM is four times too long — this one is the version you can count.` },
     { n:25,  span:`heavy slapback tape echo that doubles every line a beat behind`, state:'candidate', why:`The maximal case, and the only prompt in the library that explains the mechanism as well as naming it.` },
     { n:309, span:`slapback upright bass`, state:'candidate', why:`The wording collision, in psychobilly: here the word means a bass technique, not an echo. A useful trap — a delayed bass coming back would mean the word was read and the sentence was not.` },
     { n:41,  span:`tape echo`, state:'candidate', why:`The contrast case: the same machine set the other way, "drenched in reverb and tape echo" until the voice becomes texture. If this and #25 arrive sounding alike, the timing is not being read.` }
@@ -4263,8 +4267,9 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   nature:'continuous', hear:1,
   range:`The corpus reaches the same filter from four directions. "A telephone-narrow filter with bored precision" (#J2) is the deadpan electroclash use. "Band-passed and smeared into the sample bed" (#J1) uses it to erase identity — the voice is "filtered to androgyny" in the same sentence. "Band-passed like a distant transmission" (#228) uses it for distance. And "snarled and growled through a blown-out megaphone" (#306) is the same narrow band with distortion piled on until it reads as aggression rather than distance.`,
   res:{ verdict:'untested', model:null, date:null,
-    note:`Expected to be one of the easier terms on this page, because unlike ribbon warmth it is a gross change any listener can name without training — you can hear a phone. The interesting question is the second half of the term: whether the filter can be put on ONE SECTION and lifted for the next. Every corpus prompt here describes a whole-track treatment, so the structural use — verse filtered, chorus not — is entirely untested, and it is the use that actually matters in pop. A generator that filters the whole song has produced the sound and missed the point.` },
+    note:`Expected to be one of the easier terms on this page, because unlike ribbon warmth it is a gross change any listener can name without training — you can hear a phone. The interesting question is the second half of the term: whether the filter can be put on ONE SECTION and lifted for the next. Every corpus prompt here described a whole-track treatment until #432, which asks for the structural use outright — verse filtered, chorus not. That is the use that actually matters in pop, and it is the half of the term the corpus had never reached. A generator that filters the whole song has produced the sound and missed the point.` },
   ev:[
+    { n:432, span:`every verse is band-passed hard into a telephone-narrow band`, state:'candidate', why:`Written for this card, and the only prompt here that asks for the filter on ONE SECTION. The verses are band-passed and every chorus lifts it off, with "filter left on the chorus" excluded by name — so a generator that treats the whole track has produced the sound and failed the test.` },
     { n:'J2', span:`telephone-narrow filter`, state:'candidate', why:`The plainest naming in the library, on a flat deadpan talk-sing where the filter is the whole vocal identity.` },
     { n:'J1', span:`band-passed and smeared into the sample bed`, state:'candidate', why:`The filter used to remove a singer's identity rather than to place them, with "filtered to androgyny" sitting in the same sentence.` },
     { n:228, span:`band-passed like a distant transmission`, state:'candidate', why:`The distance use, under a chopped-break track. Worth comparing against reverb-based distance: the low end is gone here, and reverb would have left it.` },
@@ -5021,10 +5026,11 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   match:['proximity effect','working the microphone','working the mic'],
   kinds:['technique'],
   nature:'continuous', hear:2,
-  range:`From an inch away, where the low end is so exaggerated that speech becomes almost unintelligible and engineers reach for a filter to undo it, out to about a foot, where it has essentially gone. The useful part of the range is very small, which is why microphone technique is measured in inches and why a singer with a habit of drifting is difficult to record. #415 was written to cover the whole of it inside one performance — in on the confided lines, back a foot on the loud ones — which is the only way to hear the range rather than a point on it.`,
+  range:`From an inch away, where the low end is so exaggerated that speech becomes almost unintelligible and engineers reach for a filter to undo it, out to about a foot, where it has essentially gone. The useful part of the range is very small, which is why microphone technique is measured in inches and why a singer with a habit of drifting is difficult to record. #415 was written to cover the whole of it inside one performance — in on the confided lines, back a foot on the loud ones — which is the only way to hear the range rather than a point on it. #430 does the opposite on purpose and pins the far end — an inch, held there, where the buildup is large enough to start eating the consonants.`,
   res:{ verdict:'untested', model:null, date:null,
     note:`Until #415 the library had never asked for it, which was worth noticing on its own: the corpus says "close-miked" and "intimate close capture" a great deal and never once names the physical thing those phrases are reaching for. So the first question is whether the term buys anything the existing wording does not. The specific thing to listen for is low-frequency weight that tracks the PERFORMANCE rather than sitting constant — warmth arriving on the confided lines and receding on the loud ones, with the quiet lines coming out the biggest. A result that is uniformly warm has produced an EQ setting, which is the ordinary failure and is not the same thing at all. The prompt strips the arrangement to a piano and removes compression by name, because both would flatten exactly the change being tested.` },
   ev:[
+    { n:430, span:`proximity effect taken past its useful range`, state:'candidate', why:`The complement to #415. Where that entry moves the singer in and out to show the range, this one pins the extreme and holds it: an inch, for the whole take, with the high-pass filter that would normally undo it refused by name. The tell is consonants thickening under the buildup, which is the failure engineers filter out and this prompt asks to keep.` },
     { n:415, span:`built entirely on proximity effect — the singer working the microphone`, state:'candidate', why:`Written for this card. The term is in the opening clause and the arrangement is stripped to almost nothing, so a tone that does not move with the singer's distance has nowhere to hide.` }
   ]
 },
@@ -5067,13 +5073,15 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   exemplar:{ kind:'exemplifies', title:`Bohemian Rhapsody`, artist:`Queen`, year:`1975`,
     listen:`Not an example of the fault but of the discipline: an enormously layered record that stays solid when you play it on one speaker. Try folding a favourite modern wide-sounding track to mono and compare how much of it survives — the difference is this card.` },
   domains:['production','microphone'],
-  corpus:'absent',
   match:['out of phase','phase cancel','comb filter','mono collapse'],
   kinds:['technique'],
   nature:'continuous', hear:3,
   range:`From the mild and useful — the slight hollowing that makes a close-miked snare sit back — through the audible, where a bass loses its bottom octave the moment the second source is unmuted, to total, where two identical signals exactly out of step produce silence. The last one is a laboratory case and the reason the whole idea is easy to demonstrate and hard to notice.`,
   res:{ verdict:'untested', model:null, date:null,
-    note:`Not a term to put in a prompt so much as one to listen with, and the card exists for that reason. The library's prompts ask for "wide stereo" a great deal and have never once asked what that width survives, which is the useful question: a generated track that sounds enormous in stereo and collapses to a thin husk in mono has been given width by disagreement rather than by content. That test costs nothing — fold any demo on this site to mono and listen for what leaves. Worth running across the entries the stereo-width card cites, since a finding there would apply to every wide prompt in the corpus at once.` }
+    note:`Not a term to put in a prompt so much as one to listen with, and the card exists for that reason. #434 is the first prompt written to ask for it directly, and taking the card out of the absent column changes what can be tested here. The library asks for "wide stereo" a great deal and had never once asked what that width survives, which is the useful question: a generated track that sounds enormous in stereo and collapses to a thin husk in mono has been given width by disagreement rather than by content. That test costs nothing — fold any demo on this site to mono and listen for what leaves. Worth running across the entries the stereo-width card cites, since a finding there would apply to every wide prompt in the corpus at once.` },
+  ev:[
+    { n:434, span:`pushed slightly out of phase with its original`, state:'candidate', why:`Written for this card, and the first prompt in the library that asks for doubling as SUBTRACTION rather than as thickening. Comb filtering is named as the texture and a mono collapse as the intended outcome, so the ask is for width that is deliberately fragile — which makes the fold-to-mono test a pass/fail rather than a matter of taste.` }
+  ]
 },
 
 {
