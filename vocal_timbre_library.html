@@ -17,6 +17,27 @@
   *{box-sizing:border-box}
   html,body{margin:0;background:var(--ink);color:var(--text);font-family:var(--sans);line-height:1.5}
   a{color:var(--amber)}
+  /* ---------- site nav (shared across pages; keep the three copies identical) ----------
+     A slim constant strip so no page is a dead end: the wordmark goes home, the two tabs
+     are the whole site. It sticks above the page's own sticky controls bar, which is why
+     .controls parks at --navh rather than 0. */
+  :root{ --navh:38px }
+  html{scroll-padding-top:var(--navh)}
+  .sitenav{position:sticky;top:0;z-index:30;background:var(--ink);border-bottom:1px solid var(--line)}
+  .sitenav-in{max-width:1040px;margin:0 auto;padding:0 20px;display:flex;align-items:center;height:var(--navh);gap:2px}
+  .sitenav .brand{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;margin-right:16px;white-space:nowrap}
+  .sitenav .brand::before{content:'←';margin-right:8px;color:var(--dim)}
+  .sitenav .brand:hover{color:var(--amber)}
+  .sitenav .brand:hover::before{color:var(--amber)}
+  .navtab{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);text-decoration:none;padding:0 12px;line-height:calc(var(--navh) - 2px);border-bottom:2px solid transparent;white-space:nowrap}
+  .navtab:hover{color:var(--text)}
+  .navtab[aria-current="page"]{color:var(--amber);border-bottom-color:var(--amber)}
+  @media(max-width:520px){
+    .sitenav-in{padding:0 14px}
+    .sitenav .brand{margin-right:8px;letter-spacing:.12em}
+    .sitenav .brand span{display:none}
+    .navtab{padding:0 8px;letter-spacing:.06em}
+  }
   .wrap{max-width:1040px;margin:0 auto;padding:32px 20px 80px}
   header.masthead{border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:24px}
   .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--amber);margin:0 0 8px}
@@ -68,7 +89,7 @@
   .legend span[data-aff]:hover{background:var(--panel2)}
   .legend span.sel{border-color:var(--amber);background:var(--panel2)}
   /* controls */
-  .controls{position:sticky;top:0;background:var(--ink);padding:12px 0;z-index:10;border-bottom:1px solid var(--line);display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .controls{position:sticky;top:var(--navh);background:var(--ink);padding:12px 0;z-index:10;border-bottom:1px solid var(--line);display:flex;gap:10px;flex-wrap:wrap;align-items:center}
   #q{flex:1;min-width:200px;background:var(--panel);border:1px solid var(--line);border-radius:8px;color:var(--text);font-family:var(--mono);font-size:13px;padding:9px 12px}
   #q::placeholder{color:var(--dim)}
   .tab{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;background:var(--panel);border:1px solid var(--line);color:var(--muted);border-radius:20px;padding:7px 13px;cursor:pointer}
@@ -151,6 +172,13 @@
 </style>
 </head>
 <body>
+<nav class="sitenav" aria-label="Sound Lexicon">
+  <div class="sitenav-in">
+    <a class="brand" href="index.html">Sound<span>&nbsp;Lexicon</span></a>
+    <a class="navtab" href="vocal_timbre_library.html" aria-current="page">Vocal Timbre</a>
+    <a class="navtab" href="terminology.html">Terminology</a>
+  </div>
+</nav>
 <div id="player" class="collapsed">
   <div class="pbody">
     <div class="phead"><span id="pnow">Nothing playing</span><span class="likewrap plikewrap" id="plikewrap" hidden><button class="like" id="plike" data-like="" title="Like this style" aria-label="Like this style">♡</button><span class="lcount" id="plikecount" data-count=""></span></span><button type="button" id="prand" title="Play a random demo from the current filter, and jump to it">🎲 Random</button></div>

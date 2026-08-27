@@ -21,6 +21,27 @@
   *{box-sizing:border-box}
   html,body{margin:0;background:var(--ink);color:var(--text);font-family:var(--sans);line-height:1.5}
   a{color:var(--amber)}
+  /* ---------- site nav (shared across pages; keep the three copies identical) ----------
+     A slim constant strip so no page is a dead end: the wordmark goes home, the two tabs
+     are the whole site. It sticks above the page's own sticky controls bar, which is why
+     .controls parks at --navh rather than 0. */
+  :root{ --navh:38px }
+  html{scroll-padding-top:var(--navh)}
+  .sitenav{position:sticky;top:0;z-index:30;background:var(--ink);border-bottom:1px solid var(--line)}
+  .sitenav-in{max-width:1040px;margin:0 auto;padding:0 20px;display:flex;align-items:center;height:var(--navh);gap:2px}
+  .sitenav .brand{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;margin-right:16px;white-space:nowrap}
+  .sitenav .brand::before{content:'←';margin-right:8px;color:var(--dim)}
+  .sitenav .brand:hover{color:var(--amber)}
+  .sitenav .brand:hover::before{color:var(--amber)}
+  .navtab{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);text-decoration:none;padding:0 12px;line-height:calc(var(--navh) - 2px);border-bottom:2px solid transparent;white-space:nowrap}
+  .navtab:hover{color:var(--text)}
+  .navtab[aria-current="page"]{color:var(--amber);border-bottom-color:var(--amber)}
+  @media(max-width:520px){
+    .sitenav-in{padding:0 14px}
+    .sitenav .brand{margin-right:8px;letter-spacing:.12em}
+    .sitenav .brand span{display:none}
+    .navtab{padding:0 8px;letter-spacing:.06em}
+  }
   .wrap{max-width:1040px;margin:0 auto;padding:28px 20px 90px}
   /* masthead */
   header.masthead{border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:20px}
@@ -34,7 +55,7 @@
   .caveat{margin:18px 0 0;background:var(--panel);border:1px solid var(--line);border-left:2px solid var(--amber);border-radius:9px;padding:13px 16px;font-size:13.5px;color:var(--muted)}
   .caveat b{color:var(--text)}
   /* controls */
-  .controls{position:sticky;top:0;background:var(--ink);padding:12px 0 10px;z-index:20;border-bottom:1px solid var(--line);margin-bottom:6px}
+  .controls{position:sticky;top:var(--navh);background:var(--ink);padding:12px 0 10px;z-index:20;border-bottom:1px solid var(--line);margin-bottom:6px}
   .crow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
   #q{flex:1;min-width:220px;background:var(--panel);border:1px solid var(--line);border-radius:8px;color:var(--text);font-family:var(--mono);font-size:13px;padding:9px 12px}
   #q::placeholder{color:var(--dim)}
@@ -283,10 +304,17 @@
 </style>
 </head>
 <body>
+<nav class="sitenav" aria-label="Sound Lexicon">
+  <div class="sitenav-in">
+    <a class="brand" href="index.html">Sound<span>&nbsp;Lexicon</span></a>
+    <a class="navtab" href="vocal_timbre_library.html">Vocal Timbre</a>
+    <a class="navtab" href="terminology.html" aria-current="page">Terminology</a>
+  </div>
+</nav>
 <div class="wrap">
 
   <header class="masthead">
-    <p class="eyebrow"><a href="index.html">← Sound Lexicon</a></p>
+    <p class="eyebrow">Sound Lexicon · musical terminology</p>
     <h1>Terminology Lessons</h1>
     <p class="sub" id="sub">Loading…</p>
     <div class="caveat" id="caveat">Loading…</div>
