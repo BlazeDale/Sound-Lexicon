@@ -29,7 +29,7 @@
  * Loaded as a classic <script> AFTER data.js, so LIB is already a global.
  */
 
-const LEX_VERSION = 'v23';
+const LEX_VERSION = 'v24';
 const LEX_UPDATED = '2026-08-26';
 
 /* ---------- TOP TIER: domains, not instruments ----------
@@ -714,6 +714,7 @@ A confound to design around before trusting any result: nearly every prompt usin
 
 Only four prompts ask for it, and all four are cited below, because a demo attached to a prompt that EXCLUDED the term demonstrates its absence rather than the term. That sounds obvious and was got wrong here first time round — this card originally cited four negatives and nothing else, so every one of its demos was a track with no autotune in it.` },
   ev:[
+    { n:428, span:`pitch-corrected to the exact centre of its note by heavy autotune`, state:'candidate', why:`Autotune at full correction on forty copies of one voice, with vibrato forbidden so nothing can disguise the snapping. A positive use, which the card needed — most of its corpus evidence excludes the term instead.` },
     { n:23,  span:`autotune snap`, state:'candidate', why:`The definitive case — an entry built around the effect, with "the autotune snap an audible part of the timbre" and notes locking and gliding artificially.` },
     { n:90,  span:`autotune`, state:'candidate', why:`Hyperpop, with autotune and formant-shift "fused into the timbre" rather than applied over it — the effect as the instrument itself.` },
     { n:321, span:`autotune`, state:'candidate', why:`The subtle end: "a light autotune sheen on the sustained notes". If this and #23 sound alike, the term is a switch rather than the dial the card describes.` },
@@ -1721,6 +1722,7 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   res:{ verdict:'untested', model:null, date:null,
     note:`The most useful test here is the negative one. #107 explicitly asks for an unquantized human feel set against machine parts, which requires the generator to hold two timing behaviours at once — the same structural demand the rubato card makes. If everything comes back on the grid regardless, that is a limit worth knowing before writing any more rhythm cards.` },
   ev:[
+    { n:428, span:`every note quantized hard onto the grid with no drift anywhere`, state:'candidate', why:`Quantization as the subject rather than as a production default, and stated as an absolute — no drift anywhere. The card argues that zero is almost never the goal; this is the prompt that asks for zero on purpose.` },
     { n:23,  span:`quantiz`, state:'candidate', why:`"Artificial quantized swoops" describing a VOICE — quantization applied to pitch rather than to time, which is a different sense worth separating.` },
     { n:107, span:`quantiz`, state:'candidate', why:`"Human and unquantized against the electronics" — the term used by negation, and the hardest ask of the four.` },
     { n:99,  span:`quantiz`, state:'candidate', why:`Negative use: quantized drums excluded from screamo to keep the performance ragged.` },
@@ -2774,6 +2776,7 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   res:{ verdict:'untested', model:null, date:null,
     note:`Deliberately paired with the drone card so the boundary can be tested. Both hold a note; the difference is entirely whether the harmony above moves against it, which means a result here is really a result about whether the generator handles harmonic motion over a fixed bass. #255 names the requirement explicitly and is the best test on the card; #407 is closer to a drone and would show where the two terms merge.` },
   ev:[
+    { n:429, span:`a single pedal tone held underneath the entire piece`, state:'candidate', why:`One held note under a whole track while the chords above it move away and return — the definitional case, and audible precisely because nothing else in the arrangement develops either.` },
     { n:255, span:`pedal tone`, state:'candidate', why:`"An unmoving pedal tone beneath harmony that keeps changing above it" — the mechanism spelled out, and the clearest test available.` },
     { n:284, span:`pedal tone`, state:'candidate', why:`"An organ pedal tone" in a sacred-choir setting, the instrument the technique is named after.` },
     { n:407, span:`pedal tone`, state:'candidate', why:`"A low pedal tone beneath, no pulse anywhere" — the case closest to a drone, useful for finding where the two terms stop being distinct.` }
@@ -3911,6 +3914,7 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   res:{ verdict:'untested', model:null, date:null,
     note:`Testable by negation, which makes it unusually clean: the failure is a fill. #163 and #405 state the requirement outright — no fills, no breaks — so any drum roll or crash entering at a section boundary falsifies the take immediately. It is also a good probe of whether a generator can sustain a restriction over time rather than only at the start.` },
   ev:[
+    { n:429, span:`Interstellar motorik near 132 BPM`, state:'candidate', why:`Written for this card. The pulse is required to start in bar one and never change, with fills and tempo change both banned, so the test is whether relentlessness can be sustained rather than merely started.` },
     { n:405, span:`motorik`, state:'candidate', why:`"A motorik pulse that never fills and never breaks" for nine minutes — the requirement stated as an absolute, so a single fill fails it.` },
     { n:163, span:`motorik`, state:'candidate', why:`"Fills refused until the breach" — the restriction named along with the one moment it is allowed to end, which tests whether the model can hold and then release it.` },
     { n:4, span:`motorik`, state:'candidate', why:`"Metronomic motorik drums" in coldwave, the term used for coldness rather than for travel.` },
@@ -4449,6 +4453,7 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   res:{ verdict:'untested', model:null, date:null,
     note:`This card exists partly as a corrective. The standing risk with atmospheric and electronic prompts is that a generator reads calm, ambient or textural as an instruction to leave the voice out, and the resulting track is not wrong so much as empty. Asking for a wordless vocal is the sharpest available test of whether the two ideas are separable: the term explicitly requires a voice AND explicitly forbids language, so a result with either words in it or nobody singing has failed in an unambiguous, easily judged way. #115 is the hardest case on purpose, because the words come and go within a single phrase.` },
   ev:[
+    { n:425, span:`doubling the theremin in wordless open vowels`, state:'candidate', why:`Wordless with a reason rather than by omission — the voice is impersonating an instrument, and the prompt bans consonants outright so a hummed lyric would not satisfy it.` },
     { n:115, span:`wordless at the edges of phrases`, state:'candidate', why:`The boundary case: a voice that dissolves into vowels at the edges of phrases and forms words only at the centre of each section. Nothing else in the library asks for the line to be drawn this finely.` },
     { n:140, span:`wordless and swaying`, state:'candidate', why:`A choir stacked behind the choruses — the supporting use, where the wordlessness keeps it from competing with the lead.` },
     { n:159, span:`coda sung wordless and communal`, state:'candidate', why:`The structural use: the words run out and the record ends on the sound of a crowd singing a vowel. Also a false-summit build, so the coda has a lot to live up to.` },
@@ -5044,6 +5049,7 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   res:{ verdict:'untested', model:null, date:null,
     note:`The library had a phaser card and a chorus card and, until #418, no prompt anywhere that said flange — a genuine hole in the vocabulary rather than a term we chose against. The obvious test is the three-way one the myth describes: identical prompts differing only in which of the three modulation words is used. If they come back sounding alike, that is a real and useful finding about how the generator represents effects — one modulation idea with three names — and it would apply to the tremolo and vibrato cards too. #418 sets that up by naming the other two as negatives, so a phaser-like swirl is a stated failure rather than a judgement call. Listen for the sweep's character rather than its presence: metallic and hollow is a flanger, liquid and rounded is a phaser.` },
   ev:[
+    { n:427, span:`running through one slow flanger that never stops sweeping`, state:'candidate', why:`The tape-era use rather than the pedal one: the sweep runs across the whole mix at once, voice included, which is the thing a pedal on one instrument cannot do. Phaser swirl and chorus shimmer are excluded by name.` },
     { n:418, span:`built entirely around a flanger`, state:'candidate', why:`Written for this card. The sweep is asked for across the whole mix rather than on one instrument, and the two confusable neighbours — phaser swirl, chorus shimmer — are excluded by name in the negatives.` }
   ]
 },
@@ -5090,6 +5096,7 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   res:{ verdict:'untested', model:null, date:null,
     note:`The hardest thing on this page to hear and one of the easiest to demonstrate, which is an unusual combination and the reason it is rated four. Nobody detects a pre-delay in isolation; everybody hears the difference when it changes. That makes the honest test a comparison and nothing else: the same prompt asking for a huge room with the vocal close, against one asking for a huge room, and then a single question — did the voice move? A generator that treats reverb as one dial will move the singer backwards as the room grows, and that failure is the most common one in amateur mixing too, which is a point in its favour as a lesson. #416 is the near half of that pair, and it removes the usual escape routes: nothing else in the arrangement is reverberant, so a wash spread across the whole track would be plainly wrong rather than merely different.` },
   ev:[
+    { n:426, span:`the pre-delay before the reverb runs so long`, state:'candidate', why:`The far end of the range, past where a real room could go, and with the singer stopping mid-phrase so the late reply is exposed finishing alone. Nothing else in the arrangement is reverberant, so a global wash reads as wrong.` },
     { n:416, span:`built around pre-delay`, state:'candidate', why:`Written for this card. It asks for the two halves of the effect separately — the word dry and close, the room answering afterwards — and leaves silence after each line so the gap is exposed. The far half of the comparison, the same room with no gap, has not been written yet.` }
   ]
 },
@@ -5114,6 +5121,7 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   res:{ verdict:'untested', model:null, date:null,
     note:`Until #417 the corpus never used the word while describing the thing constantly — "sliding between notes", "sliding up into pitch from underneath", "notes bending downward at phrase-ends" all appear in prompts — so this card is a test of whether the technical term is worth more than the description. That is a genuinely open question and the answer might be no. The listening test is precise: is the second note's attack gone? A result that reaches the note by sliding and then re-articulates it has produced a scoop, not a portamento, and the two are not interchangeable. On a synth prompt the same question is easier to answer, because a monophonic glide either connects the notes or does not; #417 makes the vocal case as answerable by removing everything that would supply an attack for free — no percussion, no chord changing underneath, one drone and a voice.` },
   ev:[
+    { n:425, span:`carrying the entire melody in unbroken portamento`, state:'candidate', why:`Written for this card, and the sharpest case available: a theremin physically cannot articulate, so the whole melody is slide. The voice doubles it, which makes the test whether a sung line can lose its attacks as completely as an instrument that never had any.` },
     { n:417, span:`built entirely on portamento`, state:'candidate', why:`Written for this card, at the slow end where the slide is unmissable. Its negatives ban the specific near-miss the card warns about — notes re-articulated at the top of the slide, which is a scoop and not this.` }
   ]
 },
