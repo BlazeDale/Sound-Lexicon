@@ -1624,6 +1624,70 @@ Hybrid orchestral end-credits song near 76 BPM, expansive and hard-won — solo 
 screamed vocal, autotune, trap hi-hats, lo-fi bedroom production, distorted guitars, spoken-word delivery, four-on-the-floor club kick, chiptune, instrumental-only cue
 ```
 
+## Study 27 — Typewriter-shuffle country-pop (blend + 0 roots)
+
+*Generated from library entries #435–439 · 2026-08-27 — edit the `inspiration` entries in `data.js`, then run `node tools/build.mjs`.*
+
+Track-anchored rather than artist-anchored, and written to the owner's steer: the brief named one single and asked for the DELIVERY rather than the influences, so there is no blend and there are no roots — five renders of one fixed arrangement, each foregrounding a different thing the voice is doing.
+
+The fixed skeleton, present in all five: a typewriter clacking in strict time as the count-in and running on under the first verse; a chugging syncopated piano; acoustic strum with chicken-picked electric answers; a bouncing two-beat bass; crisp backbeat and handclaps; bright horn-section stabs on the chorus; major throughout with no minor turn anywhere. The voice is the other constant — high, bright, chest-dominant, syllable-dense and landing ahead of the beat, a complaint about the working day delivered cheerfully rather than bitterly.
+
+What varies is which part of the delivery carries the cut. 1 renders the whole voice in balance. 2 strips the verse band to almost nothing so the syllables do the drumming, and asks for forward facial resonance — the placement that lets a voice cut without pushing. 3 eases the shuffle a notch, writes the lines long so every one ends on a sustain, and rations the vibrato to the note-ends: fast, narrow, four or five pulses, gone before the next line. 4 makes accent and articulation the subject and gives the singer an eight-bar spoken break, because a regional accent survives in talk and not in sung melody. 5 pushes the belt above where chest voice comfortably goes until the register gives way and flips for a single syllable into head voice, the catch left in.
+
+Cut 4 doubles as a minimal pair for the terminology page's twang card: the voice is asked for a twang made by narrowing the throat, and nasal tone is excluded by name alongside the guitar sense of the same word — the first prompt in the corpus to separate the two senses instead of supplying both and letting them collide.
+
+Register and grit stay narrow on purpose, as on any track cut: every cut has to be recognisably the same singer, so the axes are pinned by fidelity rather than spread for coverage. Failure mode to watch: rendered as a polite modern country-pop vocal with a smoothed top and a rounded tone, the identity is gone — the twang, the ahead-of-the-beat patter and the break are the whole thing, and without them it is a cheerful arrangement with a stranger singing over it.
+
+### Track cut 1 · Typewriter-shuffle belt — full render (983)
+
+```
+Bright country-pop shuffle near 104 BPM, sunny and unrelenting — a typewriter clacking in strict time as the count-in and still going under the first verse, then a chugging syncopated piano, acoustic strum, chicken-picked electric answers, a bouncing two-beat bass, crisp backbeat and handclaps, and bright horn-section stabs punching every chorus. Major all the way through, no minor turn anywhere. A unique and specific vocalist: a soprano, nasal and hard-edged, belting from the chest at the top of the range where most singers would lift, packing the verses with more syllables than the bar wants and landing each one a fraction ahead of the beat, consonants clipped and used as percussion, every sustained note closing with a fast narrow flutter. Real words throughout, one voice from first line to last. A complaint about the working day sung cheerfully, the smile audible in the tone. Wide bright mixdown, the voice forward and dry. Delivery brisk, sunny and quietly mutinous.
+```
+
+```
+smooth pop crooning, low register placement, minor key, slow ballad tempo, breathy whisper, growl, heavy rock production, modern country polish, autotune, wordless treatment
+```
+
+### Track cut 2 · Typewriter-shuffle belt — patter verse (913)
+
+```
+Two-beat country-pop near 104 BPM with the words doing the drumming — the same shuffle, but the band drops to typewriter clacking, muted acoustic strum and a walking two-beat bass under every verse so nothing competes with the syllables. Piano, chicken-picked electric and horn stabs are held back for the chorus and arrive all at once. A unique and specific vocalist: a mezzo, nasal and reedy, resonating forward in the face instead of down in the body so the voice cuts straight through the arrangement while staying obviously unforced, delivering the verses as rapid conversational patter — more words than the bar has room for, every one of them landing early, the phrasing closer to rhythmic speech than to melody. Real words throughout, one voice from first line to last. Grievance rattled off good-humouredly, at speed. Dry forward capture, the band a step behind the voice. Delivery quick, dry and amused.
+```
+
+```
+round chest-placed tone, dark heavy voice, slow sustained phrasing, legato sung verses, dense arrangement under the verse, minor key, slow tempo, autotune, wordless treatment, rap delivery
+```
+
+### Track cut 3 · Typewriter-shuffle belt — flutter vibrato (798)
+
+```
+Sunlit country-pop shuffle near 96 BPM, the same song eased back a notch so the ends of the notes can be heard — typewriter clacking, chugging piano, acoustic strum, two-beat bass, handclaps and horn stabs all present but held down, with the phrase-ends left open and unaccompanied. Lines are written long, so every one of them arrives at a sustain. A unique and specific vocalist: a soprano, clear and ringing, singing dead straight through the body of each phrase and then closing it with a fast narrow flutter — a quick shallow wobble that arrives only at the note-ends, four or five pulses wide and gone again before the next line starts. Real words throughout, one voice from first line to last. Bright dry capture with the voice well forward. Delivery warm, unhurried and pleased with itself.
+```
+
+```
+constant vibrato through the whole note, wide slow wobble, straight-tone delivery throughout, operatic vibrato, melisma runs, minor key, slow ballad tempo, autotune, wordless treatment, dense arrangement
+```
+
+### Track cut 4 · Typewriter-shuffle belt — twang and diction (932)
+
+```
+Country-pop shuffle near 104 BPM with the accent and the articulation as the subject — typewriter, chugging piano, acoustic strum, two-beat bass, handclaps and horn stabs, all kept simple and set slightly back so nothing masks a consonant. One eight-bar break where the singer stops singing and simply talks over the band. A unique and specific vocalist: a high voice, clear and carrying, its brightness a hard vocal twang made by narrowing the throat above the folds — a placement that rides over the whole band while staying obviously unforced. Hard Southern Appalachian mountain vowels, diphthongs flattened right out, final g's dropped through the spoken break, and every consonant finished completely: the t at the end of a word lands, the s is cut short, nothing slurs into anything. Thick accent and razor diction at once. Real words throughout, one voice from first line to last. Delivery direct, plainspoken and unbothered.
+```
+
+```
+nasal tone, twangy guitar, Telecaster twang, spring-reverb guitar lead, slurred diction, rounded legato phrasing, neutral broadcast accent, minor key, autotune, wordless treatment
+```
+
+### Track cut 5 · Typewriter-shuffle belt — the break at the top (860)
+
+```
+Country-pop shuffle near 108 BPM pushed to the ceiling of the voice — typewriter, chugging piano, acoustic strum, two-beat bass, handclaps, and a horn section that climbs a step under each chorus so the singer has to go up with it. The last chorus sits a whole tone above the first. A unique and specific vocalist: a soprano, nasal and strained at the top, belting in full chest voice far above where chest voice comfortably goes and staying there — weight and edge carried up rather than lightened away — until the register gives way and the tone flips for a single syllable into a thin unsupported head voice, then drops straight back into the belt. The catch is left in and never smoothed. Real words throughout, one voice from first line to last. Hot bright capture, the voice louder than the band. Delivery exultant, defiant and very slightly frightening.
+```
+
+```
+head-voice lift on the high notes, smoothed register transition, light airy top, falsetto throughout, restrained dynamics, minor key, slow ballad tempo, autotune, wordless treatment, dense rock production
+```
+
 <!-- END GENERATED -->
 
 ---

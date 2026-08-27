@@ -29,7 +29,7 @@
  * Loaded as a classic <script> AFTER data.js, so LIB is already a global.
  */
 
-const LEX_VERSION = 'v25';
+const LEX_VERSION = 'v26';
 const LEX_UPDATED = '2026-08-27';
 
 /* ---------- TOP TIER: domains, not instruments ----------
@@ -958,6 +958,7 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   res:{ verdict:'untested', model:null, date:null,
     note:`The natural partner to the falsetto card: they are the two ways of going high, and they are opposites. That makes a pair unusually clean — the same prompt asking for a belted high note and a falsetto one should produce plainly different voices, and if it does not, the entire vocal-register vocabulary is in question. Like autotune, this term appears heavily as a negative too, so it can be tested in both directions with material that already exists.` },
   ev:[
+    { n:439, span:`belting in full chest voice far above where chest voice comfortably goes`, state:'candidate', why:`The card's myth written as an instruction: belting refuses to thin out, so the ask is weight and edge carried up rather than lightened away, with the light airy top and a head-voice lift both excluded by name. It sits between #27's power and #18's strain — the belt holds, and then is allowed to fail once.` },
     { n:421, span:`holding the belted peaks wide open`, state:'candidate', why:`The same prompt asks for belting on top of the melisma, which is the harder combination — sustained full-voice peaks that must not thin out while the line is also travelling.` },
     { n:27, span:`belting`, state:'candidate', why:`"Belting at full force" in hard rock — the maximal, unambiguous case.` },
     { n:18, span:`belting`, state:'candidate', why:`Belting to the point of failure, "where the voice thins and cracks" — the same technique with the strain made audible on purpose.` },
@@ -1230,6 +1231,7 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   res:{ verdict:'untested', model:null, date:null,
     note:`A rare case where the useful test is about CONTROL rather than presence. Almost any sung output will have some vibrato, so the question is whether the generator can be told when to use it — constantly, only at phrase ends, or not at all. #7 and #2 are close to a ready-made pair for exactly that, and #3 adds the suppression case. If placement can be steered, that is a strong result about vocal instructions generally; if every voice wobbles the same way regardless, that limit applies well beyond this card.` },
   ev:[
+    { n:437, span:`a quick shallow wobble that arrives only at the note-ends, four or five pulses wide`, state:'candidate', why:`The control test the card asks for, with a rate and a width attached. #2 rations vibrato to phrase-ends; this adds how fast and how narrow, writes the lines long so every one arrives at a sustain, and excludes both constant vibrato and straight-tone delivery by name — so a wobble through the held middle of a note is a stated failure rather than a judgement call.` },
     { n:420, span:`an enormous slow vibrato`, state:'candidate', why:`Written for this card. Vibrato is the only event in the prompt — arriving late in the note rather than with it, on a voice low and slow enough that a wobble cannot hide. The negatives ban straight-tone sustain outright, so its absence is a stated failure.` },
     { n:7, span:`vibrato`, state:'candidate', why:`Operatic and continuous — "even vibrato woven through every sustained note", the maximal and most conventional case.` },
     { n:2, span:`vibrato`, state:'candidate', why:`"Smooth vibrato arriving only at phrase ends" — placement specified rather than amount, which is the harder instruction.` },
@@ -2562,6 +2564,7 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   res:{ verdict:'untested', model:null, date:null,
     note:`Completes a set with falsetto and belting: three ways of going high that this page now documents separately and that listeners routinely conflate. Testing all three against one another would be the single most efficient experiment available here — if the generator produces the same voice for all three, the entire vocal-register vocabulary collapses, and if it distinguishes them, that is strong evidence it models something about voice production rather than just brightness.` },
   ev:[
+    { n:439, span:`the tone flips for a single syllable into a thin unsupported head voice`, state:'candidate', why:`The passaggio as the effect rather than the flaw. #87 hides the join and #124 makes it audible; this asks for the join to give way involuntarily for exactly one syllable and then be dropped back out of, with the catch left in and a smoothed register transition excluded by name — the sharpest available test of whether the two registers come back as different voices at all.` },
     { n:9,   span:`head voice`, state:'candidate', why:`"Breathy falsetto floating high in the head voice" — the prompt conflating the two terms exactly as the misconception describes, which makes it the most interesting item here.` },
     { n:87,  span:`head voice`, state:'candidate', why:`"Chest lifting to an easy head voice" — the join deliberately smooth, which is the harder thing to produce.` },
     { n:124, span:`head voice`, state:'candidate', why:`"Sudden octave lifts into a keening head voice" — the change made audible on purpose.` },
@@ -2994,6 +2997,7 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   res:{ verdict:'untested', model:null, date:null,
     note:`One of the more promising terms on the page, because the outcome is measurable by a listener with no musical training: write the words down while listening and see how many you get. It is also unusually clean of connotation — "diction" carries no genre with it, unlike most vocal vocabulary here, so a change in the audio is more likely to be the word doing work than the surrounding context.` },
   ev:[
+    { n:438, span:`Thick accent and razor diction at once`, state:'candidate', why:`Written for the card's own myth — that accent and diction are independent. A hard Southern Appalachian vowel set with every consonant finished completely, stated as a single simultaneous ask, plus an eight-bar spoken break so the accent has somewhere to survive. Slurred diction is excluded by name, so the words can be written down and counted.` },
     { n:4, span:`Diction`, state:'candidate', why:`"Diction precise and affectless, a voice reciting rather than singing" — precision put to a cold purpose, which separates the mechanism from the warmth it is usually assumed to carry.` },
     { n:3, span:`diction`, state:'candidate', why:`"Hard country diction, voice exposed and unsweetened" — the term paired with a genre, which is the case where it is hardest to tell whether the word or the genre did the work.` },
     { n:50, span:`diction`, state:'candidate', why:`"Crisp diction and a tight quick catch on long notes" in bluegrass, where consonant attack is part of the rhythm rather than of the meaning.` },
@@ -3021,6 +3025,7 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   res:{ verdict:'untested', model:null, date:null,
     note:`A strong minimal-pair candidate, because the word can be swapped out of a prompt without disturbing anything else in it. The failure to watch for is substitution: nasal placement and a thin, bright, high voice sound superficially similar, and a model that simply returns a thinner voice would pass a careless listen. The tell is the buzz — a reedy edge that survives even when the singer is quiet.` },
   ev:[
+    { n:436, span:`nasal and reedy, resonating forward in the face instead of down in the body`, state:'candidate', why:`The mechanism stated rather than the adjective used. The card's failure mode is substitution — a thinner, brighter voice passing for nasal placement — so this prompt names where the resonance sits and what it buys (cutting through the band while staying obviously unforced) instead of just calling the tone nasal.` },
     { n:3, span:`nasal`, state:'candidate', why:`"Reedy and nasal-forward" in a bare porch recording with nothing between the voice and the microphone, which makes it the cleanest listen available.` },
     { n:18, span:`nasal`, state:'candidate', why:`Nasality as pop-punk attitude rather than as tradition, useful for separating the timbre from the folk connotations it usually travels with.` },
     { n:11, span:`nasal`, state:'candidate', why:`Qawwali, where the placement is doing acoustic work — carrying over an ensemble — so the term is being used for its function rather than its flavour.` },
@@ -3076,6 +3081,7 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   res:{ verdict:'untested', model:null, date:null,
     note:`Best tested against the head-voice and falsetto cards rather than alone, and #63 is the rare prompt that contains the comparison inside a single take — chest snapping up into falsetto and back on every leap. If a generator can produce that flip audibly, all three terms are resolved at once. If the two registers come back sounding like the same voice at different pitches, none of them are.` },
   ev:[
+    { n:439, span:`weight and edge carried up rather than lightened away`, state:'candidate', why:`Register as fold behaviour rather than as pitch, which is exactly what the card says gets confused: the ask is chest voice taken above where chest voice is comfortable, not a low voice. Pairs with #63 and #106 as a third case where the register boundary is the event, and here the boundary is allowed to break rather than be crossed cleanly.` },
     { n:63, span:`chest voice`, state:'candidate', why:`The minimal pair inside one take: chest snapping into falsetto and back on the leaps, with the register-flip named as crisp and exposed, so the boundary is the thing being asked for.` },
     { n:106, span:`chest voice`, state:'candidate', why:`Conversational verses opening into full chest on the chorus — the register used as a dynamic device, so failure shows up as a chorus that does not thicken.` },
     { n:96, span:`chest voice`, state:'candidate', why:`Chest as the entire performance in a trance-ritual setting, with no contrast to lean on and nothing to hide a thin result.` },
@@ -5002,6 +5008,7 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   res:{ verdict:'untested', model:null, date:null,
     note:`A collision card, and the test is which sense wins when a prompt supplies both — as #16 and #45 do. The vocal sense is the one at risk, because the guitar sense is more strongly associated with the genre word "country" that surrounds it in almost every prompt here, so the plausible failure is a twangy guitar behind a voice with no twang in it at all. That failure is easy to check and worth checking, because the vocal sense carries something no other term on the page does: audibility without volume. Listen specifically for whether the voice cuts through the arrangement while remaining obviously unforced. A loud voice is not this.` },
   ev:[
+    { n:438, span:`a hard vocal twang made by narrowing the throat above the folds`, state:'candidate', why:`The minimal pair this card has been missing. Every other prompt here supplies both senses of the word and lets them collide; this one asks for the vocal sense by its mechanism, excludes nasal tone by name so the confusion the myth describes cannot pass, and excludes twangy guitar and Telecaster twang so the guitar sense cannot win by association with the surrounding country words. Listen for a voice that carries over the band while staying obviously unforced.` },
     { n:16, span:`a hard country twang on the vowels`, state:'candidate', why:`The vocal sense, stated on the vowels where it lives. The same prompt also asks for Telecaster twang, so both meanings are competing inside one instruction — which is the whole subject of this card.` },
     { n:45, span:`Telecaster twang`, state:'candidate', why:`The instrumental sense, in a prompt that ALSO carries the vocal one. Paired with #16 it shows the collision from both sides.` },
     { n:119, span:`twangy low guitar motif soaked in space`, state:'candidate', why:`Purely instrumental and far from country — cinematic downtempo, where twang is being used as atmosphere rather than as genre signalling.` },
