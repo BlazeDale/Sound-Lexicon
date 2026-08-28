@@ -29,7 +29,7 @@
  * Loaded as a classic <script> AFTER data.js, so LIB is already a global.
  */
 
-const LEX_VERSION = 'v28';
+const LEX_VERSION = 'v29';
 const LEX_UPDATED = '2026-08-28';
 
 /* ---------- TOP TIER: domains, not instruments ----------
@@ -5098,7 +5098,8 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   res:{ verdict:'untested', model:null, date:null,
     note:`Not a term to put in a prompt so much as one to listen with, and the card exists for that reason. #434 is the first prompt written to ask for it directly, and taking the card out of the absent column changes what can be tested here. The library asks for "wide stereo" a great deal and had never once asked what that width survives, which is the useful question: a generated track that sounds enormous in stereo and collapses to a thin husk in mono has been given width by disagreement rather than by content. That test costs nothing — fold any demo on this site to mono and listen for what leaves. Worth running across the entries the stereo-width card cites, since a finding there would apply to every wide prompt in the corpus at once.` },
   ev:[
-    { n:434, span:`pushed slightly out of phase with its original`, state:'candidate', why:`Written for this card, and the first prompt in the library that asks for doubling as SUBTRACTION rather than as thickening. Comb filtering is named as the texture and a mono collapse as the intended outcome, so the ask is for width that is deliberately fragile — which makes the fold-to-mono test a pass/fail rather than a matter of taste.` }
+    { n:434, span:`pushed slightly out of phase with its original`, state:'candidate', why:`Written for this card, and the first prompt in the library that asks for doubling as SUBTRACTION rather than as thickening. Comb filtering is named as the texture and a mono collapse as the intended outcome, so the ask is for width that is deliberately fragile — which makes the fold-to-mono test a pass/fail rather than a matter of taste.` },
+    { n:447, span:`out of phase`, state:'rejected', why:`The word collision, recorded so the page does not offer it. #447 says "nothing slowly falls out of phase" about two rhythmic divisions staying locked together — a rhythmic sense of the phrase with no acoustic cancellation anywhere in it. It matches the card's stems exactly, so without this line it would surface as a discovered candidate under the one card on the page with almost nothing under it, which is the worst possible place for a false example.` }
   ]
 },
 
