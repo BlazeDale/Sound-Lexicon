@@ -29,7 +29,7 @@
  * Loaded as a classic <script> AFTER data.js, so LIB is already a global.
  */
 
-const LEX_VERSION = 'v26';
+const LEX_VERSION = 'v27';
 const LEX_UPDATED = '2026-08-27';
 
 /* ---------- TOP TIER: domains, not instruments ----------
@@ -550,6 +550,7 @@ A confound to design around before trusting any result: nearly every prompt usin
   res:{ verdict:'untested', model:null, date:null,
     note:`Interesting because the term names an ORIGIN rather than a sound. A generator has no crate to dig in — whatever it makes is synthesised, so it cannot literally be a breakbeat. The real question is whether the word gets it to produce the looseness and swing that sampled drums carry, or a clean programmed pattern with a genre label attached. That difference is audible, and it is one of the few places where a term can be judged partly on feel rather than on timbre.` },
   ev:[
+    { n:440, span:`a chunky sampled breakbeat swings and drags against it`, state:'candidate', why:`Written against the card's own doubt. The break is required to swing and drag while a rigid typewriter loop runs beside it in the same bar, so looseness stops being a matter of feel and becomes a comparison inside one track — if the break comes back locked to the loop, the word bought nothing. Clean programmed drums are excluded by name.` },
     { n:39,  span:`breakbeat`, state:'candidate', why:`"Downtempo dusty breakbeat with cracking snare" — the trip-hop end, slow enough that any stiffness would show.` },
     { n:53,  span:`breakbeat`, state:'candidate', why:`A vocal explicitly "riding the breakbeat", so the rhythm has to be present enough for a delivery to lock to it.` },
     { n:113, span:`breakbeats`, state:'candidate', why:`Plural, and at drum-and-bass tempo — "crisp rolling breakbeats". The literal is recorded as it appears.` },
@@ -1177,6 +1178,7 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   res:{ verdict:'untested', model:null, date:null,
     note:`Complicated by an ambiguity in the word itself, which is worth knowing before testing. Several corpus prompts use "compressed" in a purely figurative sense — phrasing compressed into small bent figures, a chord chime compressed into downstrokes — meaning condensed rather than dynamically controlled. So a discovery list for this term will contain false positives, and any test has to use prompts where the audio sense is unmistakable. That ambiguity is itself a finding about how carefully these prompts have to be read.` },
   ev:[
+    { n:440, span:`squashed flat by compression until the room noise pumps`, state:'candidate', why:`The audio sense with no ambiguity in it, which is what the card says a test here needs. It names the overdone artefact rather than the process — the noise floor rising in the gaps and ducking after each hit — so the result can be judged on whether the room breathes rather than on whether anything sounds "tight".` },
     { n:18,  span:`compressed`, state:'candidate', why:`"Close dynamic mic, lightly compressed" — the invisible end, named in a signal chain so the audio sense is unambiguous.` },
     { n:'J1', span:`Compressed`, state:'candidate', why:`"Compressed overdriven disco bass" alongside a brutal sidechain pump, so both meanings of the device appear in one prompt. Note the capital C.` },
     { n:14,  span:`tape compression`, state:'candidate', why:`"Tape compression" names the mechanism rather than the effect — a different literal, and a chance to see whether the specific form behaves like the generic one.` },
@@ -1807,6 +1809,7 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   res:{ verdict:'untested', model:null, date:null,
     note:`A good test of whether the generator can produce something that sounds sampled rather than sung, since it has no source recording to cut up — everything it makes is generated whole. That puts it with breakbeat and room bleed among terms naming a PROCESS the model cannot literally perform. The tell to listen for is whether the vowel stays fixed as the pitch moves, which is what gives real chops their character.` },
   ev:[
+    { n:442, span:`the vowel staying fixed as the pitch climbs`, state:'candidate', why:`The card names this as the tell and no prompt in the corpus had ever asked for it. The hook is sung whole and then rebuilt from retuned syllables in the same track, so the sung passages are the control — and "pitch drifting with the chop" is excluded by name, making the giveaway a stated requirement rather than a lucky artefact.` },
     { n:23, span:`vocal chop`, state:'candidate', why:`"Pitched vocal chops" as a melodic element in modern trap — the contemporary sense of the term.` },
     { n:17, span:`chopped`, state:'candidate', why:`"Dusty chopped soul sample" in boom-bap — the original sampling sense, where chopping is about rearranging a record.` },
     { n:64, span:`chopped`, state:'candidate', why:`"Chopped vocal stabs" in phonk, sitting in a deliberately degraded mix.` },
@@ -4031,6 +4034,7 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   res:{ verdict:'untested', model:null, date:null,
     note:`One of the more likely terms to succeed, since the effect is coarse and unmistakable — but likely for a suspicious reason. Rapid repetition is easy to produce and hard to get wrong, so a positive result here would say less than a positive result on a subtler term. The stricter question is placement: three of these prompts specify section seams, and a stutter arriving in the middle of a phrase would be the sound without the sense.` },
   ev:[
+    { n:442, span:`a stutter that repeats one syllable in place while the track stops moving forward`, state:'candidate', why:`Answers the card's stricter question, which is placement: the stutter is pinned to the bar before each drop, and chopping through the middle of a phrase is excluded by name. The mechanism is stated too — the timeline held rather than a tail repeating — with "echo instead of stutter" excluded, which is the distinction the myth turns on.` },
     { n:110, span:`stutter`, state:'candidate', why:`"Chopped and stuttered at section seams" with the intended meaning stated — a sentence that cannot finish — so placement and effect are both specified.` },
     { n:'J6', span:`stutter`, state:'candidate', why:`Syllables stuttering at section seams as deliberate panic, where the edit has to feel involuntary rather than decorative.` },
     { n:228, span:`stutter`, state:'candidate', why:`Stuttered rolls inside a break rebuilt from its own transients, the technique applied to drums rather than to a voice.` },
@@ -4384,6 +4388,7 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   res:{ verdict:'untested', model:null, date:null,
     note:`The most structurally demanding term documented here, and the reason it is worth testing is that it cannot be satisfied locally. Almost everything else on this page is a texture or a gesture that can be applied anywhere in a track; a drop requires a generator to have withheld something earlier in order to release it now, which means planning across a span longer than a phrase. That makes the failure mode easy to hear and worth naming in advance: a record that is uniformly big and busy has produced drop MATERIAL without producing a drop. Listen for the empty bar, not the loud one.` },
   ev:[
+    { n:443, span:`so the chorus lands twice the size of the one before`, state:'candidate', why:`A drop with the withholding written in, which is what the card says cannot be satisfied locally: the bar before is emptied on purpose so the arrival has something to be bigger than. Also the odd case — a drop built by a live band with nothing sampled anywhere, which separates the architecture from the electronic furniture it usually arrives with.` },
     { n:87,  span:`pitched vocal-chop stabs in the drop`, state:'candidate', why:`Future bass, with six demos attached — the genre where the drop is most nakedly the point of the record.` },
     { n:91,  span:`detuned melodic-dubstep growl bass on the drop`, state:'candidate', why:`The bass named as the thing that arrives, plus "a single reese transient at the break" — the two halves of the mechanism in one prompt.` },
     { n:64,  span:`The drop works on hard dynamic contrast and tense tension-release`, state:'candidate', why:`The mechanism stated rather than the contents, in Memphis phonk. If a result here is merely loud, the card has its answer.` },
@@ -4899,6 +4904,7 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   res:{ verdict:'untested', model:null, date:null,
     note:`The failure mode is a duck rather than a cut: the arrangement dips in level and comes back, which satisfies "dynamic contrast" and misses the term entirely. So the question is binary and easy to answer — is anything still playing? #L2 is the most demanding version, because the dropout there has to leave a specific residue behind (vinyl noise and a voice) rather than leaving nothing, which means both the cut and its exception have to land. Worth noting for a later test that this term and the sidechain-compression card describe two ways of making a hole in a mix, one editorial and one automatic, and a prompt-pair would show whether the generator distinguishes them.` },
   ev:[
+    { n:443, span:`the whole band gone, nothing turned down, only the typewriter still clacking on its own`, state:'candidate', why:`The residue case, like #L2, in a completely different setting: everything cut except one mechanical loop. The card's failure mode is a duck rather than a cut, so "level dip instead of a dropout" and "gradual fade instead of a cut" are both excluded by name — the binary question the card asks becomes the thing the prompt is judged on.` },
     { n:'J6', span:`sudden full-mix dropouts like held breath`, state:'candidate', why:`Four demos, and the definitional version: the FULL mix, suddenly, as suspense. Nothing should be playing, which makes the verdict unambiguous.` },
     { n:'J9', span:`dropouts used like thrown fists`, state:'candidate', why:`The same device as aggression rather than suspense. Tests whether placement and character survive, since a fist and a held breath are the same silence used oppositely.` },
     { n:102, span:`dynamic contrast between dropout silence and full skronk`, state:'candidate', why:`No wave, where the dropout is one of only two states the track has. The cut is structural rather than decorative, so a dip in level would be plainly wrong.` },
@@ -4981,6 +4987,7 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   res:{ verdict:'untested', model:null, date:null,
     note:`Almost certainly the least testable term on this page, and worth saying so plainly. A generator does not sample; it produces audio that resembles sampled music, so the honest question is not whether it samples but whether the word buys anything — specifically, whether "sample" produces the ARTEFACTS that make sampling audible. Those are concrete and listable: a different room on that element, a hard seam at the loop point, filtered top end, bleed from instruments that are not otherwise present, and a fragment that repeats identically rather than being played again. #17 is the best test because dusty chopped soul is the case where those artefacts are most expected, and #69 the cheapest, because a siren either arrives as a foreign object or it does not.` },
   ev:[
+    { n:441, span:`the band cut down to one-shots — no players left anywhere`, state:'candidate', why:`A fifth kind, next to the card's four: not a passage, an atmosphere, a signal or a slowed record, but a whole live band dissolved into its own one-shots and retriggered as stabs. It also asks for the artefacts the card lists in place of the process, with live band performance and sustained instrumental parts both excluded by name.` },
     { n:69, span:`air-horn and siren samples`, state:'candidate', why:`Samples with no musical content — pure signals imported whole. The easiest verdict on the card: a foreign object either turns up in the track or it does not.` },
     { n:39, span:`muted-trumpet sample`, state:'candidate', why:`Trip-hop, where the sample is scenery rather than structure, and where the tell would be a trumpet sitting in a different and older space than the rest of the mix.` },
     { n:64, span:`dark eerie sample`, state:'candidate', why:`Deliberately unspecific — the prompt names a mood and not a source. Useful for finding out what the word alone conjures when nothing tells it what to lift.` },

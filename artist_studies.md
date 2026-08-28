@@ -1688,6 +1688,70 @@ Country-pop shuffle near 108 BPM pushed to the ceiling of the voice — typewrit
 head-voice lift on the high notes, smoothed register transition, light airy top, falsetto throughout, restrained dynamics, minor key, slow ballad tempo, autotune, wordless treatment, dense rock production
 ```
 
+## Study 28 — Typewriter-shuffle country-pop — big-beat merge (blend + 0 roots)
+
+*Generated from library entries #440–444 · 2026-08-27 — edit the `inspiration` entries in `data.js`, then run `node tools/build.mjs`.*
+
+A merge set rather than a study of anyone: the owner asked for the delivery cuts of study 27 crossed with the library's block-rocking big-beat vocabulary (#392), with the country instrumentation and the sweet bright voice both kept. So the singer does not change — same high nasal twang, same ahead-of-the-beat patter, same cheerfulness — and everything underneath does.
+
+Fixed across all five: the typewriter loop from study 27, now doing the hi-hat's job; a filter-swept bass riff repeating four notes; honky-tonk piano; a siren and a backwards cymbal into the drop; handclaps. What varies is how the two halves meet. 1 plays both at full strength, with a sampled break deliberately swinging and dragging against the rigid typewriter loop so the two timing behaviours are audible at once. 2 dissolves the band into one-shot stabs and lets the break carry everything. 3 turns the machine on the voice — single syllables retuned across a keyboard with the vowel held fixed as the pitch climbs, and the stutter placed on the bar before each drop rather than anywhere in the phrase. 4 is the control: nothing sampled at all, a real band playing, but built to big-beat architecture, with a total dropout that leaves only the typewriter clacking. 5 maximises the mismatch — everything clipped and pumping underneath, the voice at its sweetest and never once raised to compete.
+
+Register and grit move more here than in study 27, and that is deliberate rather than a lapse: what is held fixed is the singer's identity, not one placement, so the cuts run from an alto riding a machine, through a high belt over a live band, to a tender mezzo refusing to compete with the noise. Study 27 pinned the axes because every cut had to be the same performance; these are five different performances by the same person.
+
+The electronic half is a second hashed reference and is deliberately not attributed in the data — only the country anchor sits in the artist field, because the voice is what carries across.
+
+Failure mode to watch: a country song with a dance beat under it. Both halves have to stay recognisable and neither can be decoration. If the break comes back programmed and polite, or the voice turns deadpan to match the genre it has been dropped into, the set has collapsed into one thing and the joke is gone.
+
+### Merge cut 1 · Country big beat — full merge (940)
+
+```
+Country big beat near 128 BPM, block-rocking and cheerfully stupid — the typewriter kept on as the hi-hat loop, running rigid in strict time while a chunky sampled breakbeat swings and drags against it, squashed flat by compression until the room noise pumps. Under that a filthy filter-swept bass riff repeating four notes, honky-tonk piano chugging on the offbeats, pedal steel bending across the top, handclaps, and a siren and a backwards cymbal announcing every drop. A unique and specific vocalist: a soprano, nasal and hard-edged, singing a bright country hook straight through the noise with more syllables than the bar wants and every one of them landing early, the tone unchanged from a band record and completely unbothered by what is going on underneath it. Real words throughout, one voice from first line to last. Enormous crunchy mix, drums forward and distorted, the lead dry and centred. Delivery sunny, brisk and mutinous.
+```
+
+```
+deadpan detached vocal, low register placement, clean programmed drums, live band drum kit, orchestral arrangement, rasping delivery, minor key, slow tempo, wordless treatment, autotune
+```
+
+### Merge cut 2 · Country big beat — the break takes over (850)
+
+```
+Country big beat near 132 BPM with the band cut down to one-shots — no players left anywhere, only a banjo pluck, a steel bend, a piano chord and a fiddle scrape lifted out and retriggered as stabs over an enormous sampled breakbeat, the break itself loose and dragging where everything around it is rigid. A filter-swept bass riff repeats four notes underneath and does most of the work, and the typewriter loop is the only continuous thing left in the track. A unique and specific vocalist: an alto, nasal and reedy, riding above the whole machine with a bright country hook sung plain and unhurried, resonating forward so the voice cuts the mix while staying obviously unforced. Real words throughout, one voice from first line to last. Sampler-built and deliberately crude, everything a shade too loud. Delivery cool, dry and pleased with itself.
+```
+
+```
+live band performance, sustained instrumental parts, clean programmed drums, orchestral arrangement, breathy whisper, low register placement, minor key, slow tempo, wordless treatment, autotune
+```
+
+### Merge cut 3 · Country big beat — the voice chopped (877)
+
+```
+Country big beat near 126 BPM built out of the singer — the hook recorded once, sung sweetly and whole, then taken apart: single syllables retuned across a keyboard into a melody nobody ever performed, the vowel staying fixed as the pitch climbs, and the bar before every drop handed to a stutter that repeats one syllable in place while the track stops moving forward. Behind it a sampled breakbeat, a filter-swept bass riff, honky-tonk piano stabs and the typewriter loop. A unique and specific vocalist: a mezzo, clean and unroughened, delivering the full lines plainly and at ease wherever the voice is left intact, so the difference between the sung passages and the chopped ones is obvious inside one track. Real words throughout, one voice from first line to last. Sampler-forward mix, the chops brighter than their source. Delivery easy, unhurried and entirely sincere.
+```
+
+```
+chopping through the middle of a phrase, echo instead of stutter, whole-track vocal processing, pitch drifting with the chop, rasping delivery, low register placement, minor key, slow tempo, wordless treatment, screamed vocal
+```
+
+### Merge cut 4 · Country big beat — played live (876)
+
+```
+Country big beat near 118 BPM played by an actual band — nothing sampled anywhere, but the architecture is pure block-rocking breaks: a drummer hitting a loose swung break by hand, honky-tonk piano, telecaster, pedal steel, upright bass and handclaps, all of it arranged around the arrival rather than around the song. A siren and a backwards cymbal climb into every chorus, and the bar before it drops out completely — the whole band gone, nothing turned down, only the typewriter still clacking on its own — so the chorus lands twice the size of the one before. A unique and specific vocalist: a high voice, nasal and carrying, belting the hook wide open across the band and holding it there straight through the drop. Real words throughout, one voice from first line to last. Hot live capture, drums enormous, the voice louder than all of it. Delivery exultant and defiant.
+```
+
+```
+sampled drum loop, programmed percussion, sequenced bass, gradual fade instead of a cut, level dip instead of a dropout, breathy whisper, minor key, slow tempo, wordless treatment, autotune
+```
+
+### Merge cut 5 · Country big beat — sweetest against filthiest (844)
+
+```
+Country big beat near 130 BPM, filthy underneath and sweet on top — every instrument clipped and driven until it distorts, the sampled break squashed so hard that the room noise breathes in and out with the kick, a filter-swept bass riff grinding through four notes, honky-tonk piano hammered, sirens, and the typewriter loop crushed along with the rest. Nothing in the backing track is polite. A unique and specific vocalist: a mezzo, tender and sweet-toned, singing an unhurried country hook at conversational volume and never once raising it to compete, the tone untouched by any of the processing around it and set plainly in front of the wreckage. Real words throughout, one voice from first line to last. The contrast is the whole idea: the noisier it gets, the smaller and kinder the voice sounds. Delivery gentle, sincere and unhurried.
+```
+
+```
+belted power vocal, distorted lead vocal, processed lead vocal, rasping delivery, shouted chorus, polite clean backing track, gradual dynamics, minor key, slow tempo, wordless treatment
+```
+
 <!-- END GENERATED -->
 
 ---
