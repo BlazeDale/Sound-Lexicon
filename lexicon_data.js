@@ -29,8 +29,8 @@
  * Loaded as a classic <script> AFTER data.js, so LIB is already a global.
  */
 
-const LEX_VERSION = 'v31';
-const LEX_UPDATED = '2026-08-28';
+const LEX_VERSION = 'v32';
+const LEX_UPDATED = '2026-08-29';
 
 /* ---------- TOP TIER: domains, not instruments ----------
    `kind` splits the rail into the two families the doc argues are peers: the physical
@@ -108,14 +108,15 @@ const LEX = [
   match:['palm mut','palm-mut'],
   kinds:['technique'],
   nature:'continuous', hear:2,
-  range:`A dial, not a switch. Heel barely touching and the note still rings, just tightened. Heel pressed hard across the bridge and there is almost no pitch left, only thud. Most recorded rhythm guitar sits in between and moves within a single riff.`,
+  range:`A dial, not a switch. Heel barely touching and the note still rings, just tightened. Heel pressed hard across the bridge and there is almost no pitch left, only thud. Most recorded rhythm guitar sits in between and moves within a single riff. The range the corpus never moved along is the amplifier rather than the hand: every prompt here puts the technique on a driven guitar in a rock context, and #456 is the first to ask for it on a clean amp with nothing heavy anywhere near it.`,
   res:{ verdict:'untested', model:null, date:null,
-    note:`Likely one of the safer bets — but note what the corpus cannot tell us. All eight prompts using "palm-muted" also say "distorted", and most name a heavy genre outright. So the open question is not whether the phrase registers, but whether it registers as an articulation at all, or merely as one more cue for "heavy rock guitar". A minimal pair against an otherwise identical prompt is the only way to separate those.` },
+    note:`Likely one of the safer bets — but note what the corpus could not tell us, and note that this card had the count wrong until #456 was written. Seven prompts use the word, not eight, and only three of them actually say "distorted" — but all seven put the technique on a driven guitar inside a rock or metal arrangement, which leaves the question exactly where it was: does the phrase register as an articulation, or merely as one more cue for "heavy rock guitar"? #456 is the control. Clean amp, no distortion named anywhere, no heavy genre, no drums — if the chug survives that, the word is doing real work; if the guitar comes back ringing open, or comes back distorted uninvited, it never was.` },
   ev:[
     { n:194, span:`palm-muted`, state:'candidate', why:`The cleanest test case on the card: a short root prompt where palm-muted guitar is nearly the whole instruction, with little else competing.` },
     { n:144, span:`palm-muted`, state:'candidate', why:`The extreme end of the dial — "palm-muted churn alternating with vast sustained power chords" puts muted and unmuted side by side inside one prompt.` },
     { n:127, span:`palm-muted`, state:'candidate', why:`Palm muting used for rhythmic precision rather than heaviness, locked to a syncopated figure.` },
-    { n:18,  span:`palm-muted`, state:'candidate', why:`Pop-punk context — the same technique at a lighter distortion setting.` }
+    { n:18,  span:`palm-muted`, state:'candidate', why:`Pop-punk context — the same technique at a lighter distortion setting.` },
+    { n:456, span:`played entirely palm-muted`, state:'candidate', why:`The control this card asked for and did not have. Every other prompt on it puts the mute on a driven guitar in a rock arrangement, so nothing here could separate the articulation from the genre carrying it. This one strips the confound out: clean amp, no distortion, no drums, spoken narration over the top, and the muted guitar doing the job a kit would usually do. Two ways to fail and both are informative — an open ringing guitar means the word was never heard, and a distorted one means the word was heard as a genre.` }
   ]
 },
 
@@ -135,14 +136,15 @@ const LEX = [
   match:['brush'],
   kinds:['instrument','technique'],
   nature:'continuous', hear:2,
-  range:`From a circular sweep with no articulation at all, to "brushed-then-struck" where the brush lands like a soft stick — a phrase the sister library uses verbatim in #1.`,
+  range:`From a circular sweep with no articulation at all, to "brushed-then-struck" where the brush lands like a soft stick — a phrase the sister library uses verbatim in #1. The range that mattered more here turned out to be the genre around the kit, not the stroke: seventy-one prompts use a brush word and almost every one of them sits in a style that would have arrived brushed anyway. #455 is the first that would not.`,
   res:{ verdict:'untested', model:null, date:null,
-    note:`The best-evidenced term on this page and, awkwardly, one of the least testable as it stands: 68 corpus prompts use a brush word, and essentially all of them also name a genre that already implies brushes. The honest question is whether "brushed" adds anything that "late-night noir jazz ballad" has not already supplied. This is a term where the answer might genuinely be no.` },
+    note:`The best-evidenced term on this page and, awkwardly, one of the least testable as it was: seventy-one corpus prompts use a brush word, and essentially all of them also name a genre that already implies brushes. The honest question is whether "brushed" adds anything that "late-night noir jazz ballad" has not already supplied, and no amount of further jazz ballads can answer it. #455 puts the word somewhere it fights the genre instead of agreeing with it — a fast ska track, where the crack of the backbeat is the style's signature and everything except the drums is left hard and crisp. That is now the only prompt on the card where a brushed result cannot be explained by the genre alone.` },
   ev:[
     { n:2,  span:`brushed`, state:'candidate', why:`Brushes as the defining texture of the whole arrangement — the phrase sits in the opening clause.` },
     { n:16, span:`brushed`, state:'candidate', why:`"Brushed shuffle drums" — brushes carrying a groove rather than a ballad, which is the less obvious use.` },
     { n:1,  span:`brushed`, state:'candidate', why:`"Brushed-then-struck snare" — the range described in one phrase, inside a single prompt.` },
-    { n:12, span:`brushed`, state:'candidate', why:`"Soft brushed kit" in a gospel setting, where the brushes are supporting rather than leading.` }
+    { n:12, span:`brushed`, state:'candidate', why:`"Soft brushed kit" in a gospel setting, where the brushes are supporting rather than leading.` },
+    { n:455, span:`played with wire brushes and no sticks anywhere`, state:'candidate', why:`The control, and the reason it exists is written into the resolution note above: every other prompt here names a genre that supplies brushes for free. Ska does the opposite — the cracking backbeat is the genre — so the guitar skank, the walking bass and the horns are all held crisp and only the kit is changed. If this comes back with sticks, the word has been losing to the genre everywhere else on the card and nobody could have seen it.` }
   ]
 },
 
@@ -2540,13 +2542,14 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   match:['overtone','kargyraa','sygyt','khoomei','throat singing'],
   kinds:['technique'],
   nature:'continuous', hear:1,
-  range:`#6 is the low form — "a subharmonic kargyraa drone, an impossibly low fundamental". #74 is the high one — "a sygyt overtone whistle, a piercing flute-like harmonic forced" above the voice. Same principle, opposite ends.`,
+  range:`#6 is the low form — "a subharmonic kargyraa drone, an impossibly low fundamental". #74 is the high one — "a sygyt overtone whistle, a piercing flute-like harmonic forced" above the voice. Same principle, opposite ends. Both of those, and #422 with them, name a tradition as well as the technique, so the range that was never covered is not a pitch at all: it is how much of the work the word "overtone" was doing on its own. #457 holds the technique and removes every region, style and tradition name around it.`,
   res:{ verdict:'untested', model:null, date:null,
-    note:`Falsifiable in an unusually satisfying way: either two pitches are audible simultaneously from one voice or they are not, and no expertise is needed to tell. The likely failure is a single ordinary voice with a synth doubling above it, which would be a near miss rather than a null — and distinguishing those two outcomes is exactly the kind of listening this page is for. Directly connected to the formants card, since the mechanism is the same filtering, used deliberately.` },
+    note:`Falsifiable in an unusually satisfying way: either two pitches are audible simultaneously from one voice or they are not, and no expertise is needed to tell. The likely failure is a single ordinary voice with a synth doubling above it, which would be a near miss rather than a null — and distinguishing those two outcomes is exactly the kind of listening this page is for. Directly connected to the formants card, since the mechanism is the same filtering, used deliberately. What the card could not do until now was separate the technique from the tradition: all three earlier prompts name a region or a style alongside the word, so a correct result proved only that the model knows what Central Asian music sounds like. #457 names none of them, and its negatives close the near miss explicitly — no second singer, no synth or flute carrying the upper line, and a fundamental that must not move with the harmonic.` },
   ev:[
     { n:422, span:`it splits into audible overtones`, state:'candidate', why:`Written for this card, which had nothing else in the corpus that could ever reach it. The demand is unambiguous: one singer, two audible pitches, and the second one produced by nobody.` },
     { n:6,  span:`overtone`, state:'candidate', why:`"Central-Asian overtone singing" with a kargyraa drone — the low form, where the fundamental is the striking part.` },
-    { n:74, span:`overtone`, state:'candidate', why:`"A sygyt overtone whistle, a piercing flute-like harmonic forced" above the voice — the high form, and the clearest test of whether two pitches emerge from one source.` }
+    { n:74, span:`overtone`, state:'candidate', why:`"A sygyt overtone whistle, a piercing flute-like harmonic forced" above the voice — the high form, and the clearest test of whether two pitches emerge from one source.` },
+    { n:457, span:`built entirely on overtone singing`, state:'candidate', why:`The control. #6, #74 and #422 each name a tradition as well as the technique, which means none of them can tell us whether "overtone singing" was heard as an instruction or whether the region did the work. This one is an ambient drone over a single sustained note, with no region, tradition or style named anywhere, and the mechanism spelled out instead — one held fundamental, the mouth shaped until a second pitch separates above it, and the low note not budging while the upper line moves.` }
   ]
 },
 
@@ -2621,13 +2624,14 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   match:['string-machine','string machine'],
   kinds:['instrument'],
   nature:'continuous', hear:3,
-  range:`#81 has "warm string-machine pads" as a bed under Detroit techno. #W3 has "analog string-machine swells", where the instrument is doing the gestural work an orchestra would.`,
+  range:`#81 has "warm string-machine pads" as a bed under Detroit techno. #W3 has "analog string-machine swells", where the instrument is doing the gestural work an orchestra would. What all three share is a setting that would have produced a vintage synthesiser with or without the word — techno, synth-funk, an analog nocturne — so #458 puts the instrument in a supper club instead, where nothing else on the track is electric and the word has to carry the whole instrument by itself.`,
   res:{ verdict:'untested', model:null, date:null,
-    note:`A good test of whether a specific instrument survives inside a broad category, like the Rhodes and Wurlitzer cards. The failure to watch for here is a modern orchestral sample library — genuinely lush, genuinely strings, and completely wrong, because the whole character of a string machine is its evenness and its refusal to sound like players. If the generator produces something that breathes, it has produced the wrong instrument.` },
+    note:`A good test of whether a specific instrument survives inside a broad category, like the Rhodes and Wurlitzer cards. The failure to watch for here is a modern orchestral sample library — genuinely lush, genuinely strings, and completely wrong, because the whole character of a string machine is its evenness and its refusal to sound like players. If the generator produces something that breathes, it has produced the wrong instrument. Until #458 the card could not run that test cleanly, because every prompt on it sat inside an electronic arrangement that would have delivered a period keyboard anyway. #458 removes that help and adds a measuring stick in its place: an upright bass, a muted trumpet and a soft kit, all played by people, so the one part that does not breathe is audible against three that do.` },
   ev:[
     { n:81,  span:`string-machine`, state:'candidate', why:`"Warm string-machine pads" under Detroit techno — the instrument as a bed, where its evenness is an advantage.` },
     { n:'J4', span:`string-machine`, state:'candidate', why:`"Warm string-machine pads" inside a synth-funk arrangement with sidechain, so it has to hold up against a moving mix.` },
-    { n:'W3', span:`string-machine`, state:'candidate', why:`"Analog string-machine swells" doing gestural work an orchestra would normally do, which is where the difference should be most audible.` }
+    { n:'W3', span:`string-machine`, state:'candidate', why:`"Analog string-machine swells" doing gestural work an orchestra would normally do, which is where the difference should be most audible.` },
+    { n:458, span:`carried by a string machine`, state:'candidate', why:`The control, and the first prompt here with no electronic context to lean on. Techno, synth-funk and an analog nocturne all supply a vintage keyboard before the word is read; a lounge ballad supplies real strings instead, so a wrong answer arrives as an orchestra rather than as silence. The negatives name that failure directly — no players, no bowing, no sampled library — and the prompt spells out the mechanism the card's myth turns on: one fixed oscillator per key and a chorus circuit across the output.` }
   ]
 },
 
@@ -4417,14 +4421,15 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   match:['ghost note','ghosted','ghosting the','dead notes'],
   kinds:['technique'],
   nature:'continuous', hear:4,
-  range:`Four prompts now use the word, and the three that came first do not agree on what it means. "Ghosted ride" in noir jazz (#2) is the technique proper. "Muted funk guitar ghosting the backbeat" (#257) applies it to a guitar, which is where most listeners have heard it without knowing. And #U3's "ghosting the phrase-ends" is a vocal double trailing the lead — the other sense of the word entirely, and a useful trap.`,
+  range:`Four prompts now use the word, and the three that came first do not agree on what it means. "Ghosted ride" in noir jazz (#2) is the technique proper. "Muted funk guitar ghosting the backbeat" (#257) applies it to a guitar, which is where most listeners have heard it without knowing. And #U3's "ghosting the phrase-ends" is a vocal double trailing the lead — the other sense of the word entirely, and a useful trap. The end of the range that matters most on this card is zero, and #459 is now it: #446 with the quiet layer taken out and nothing else touched.`,
   res:{ verdict:'untested', model:null, date:null,
-    note:`Rated the hardest thing on this page to hear, and rated that way on purpose: ghost notes are BY DESIGN below the threshold at which a listener registers them as notes. That makes the ordinary test — can you hear it — the wrong question. The right one is comparative, and it needs a minimal pair: the same pattern at the same tempo with and without, judged on whether the groove leans. If a listener cannot tell the two apart, that is a finding about the generator; if they can tell them apart but cannot say why, that is the term working exactly as it does on a real record. #446 supplies the loud half of that pair inside itself — an audible layer written to be as plain as possible — so a listener has something to subtract by ear even before a matched control is written.` },
+    note:`Rated the hardest thing on this page to hear, and rated that way on purpose: ghost notes are BY DESIGN below the threshold at which a listener registers them as notes. That makes the ordinary test — can you hear it — the wrong question. The right one is comparative, and it needs a minimal pair: the same pattern at the same tempo with and without, judged on whether the groove leans. If a listener cannot tell the two apart, that is a finding about the generator; if they can tell them apart but cannot say why, that is the term working exactly as it does on a real record. That pair now exists. #446 is the half with the quiet layer and #459 is the half without it — same tempo, same live kit, same plain audible pattern of kick, backbeat and closed hat, same upright figure and sub bassline, and the same vocalist down to the wording, which is why both entries resolve to the identical point on the sister library's map. One variable is different and it is the one the card is about.` },
   ev:[
     { n:446, span:`built entirely on ghost notes`, state:'candidate', why:`Written for this card, and the first prompt in the library to ask for the technique rather than to mention the word in passing. The loud layer is pinned deliberately plain — kick, backbeat, hat, no fills — so anything that makes the groove lean has to be coming from the strokes nobody is meant to hear.` },
     { n:2,   span:`ghosted ride`, state:'candidate', why:`The technique proper, on a ride cymbal in a 1950s noir-jazz ballad — quiet enough that the whole arrangement has to be quiet for it to matter.` },
     { n:257, span:`muted funk guitar ghosting the backbeat`, state:'candidate', why:`The guitar version, in Y2K teen-pop. This is where most listeners have heard ghost notes without ever having a name for them.` },
-    { n:'U3', span:`ghosting the phrase-ends`, state:'candidate', why:`The word collision, and worth keeping: here it means a vocal double trailing the lead, not a quiet stroke. A result that comes back with a haunted-sounding voice has read the word and not the sentence.` }
+    { n:'U3', span:`ghosting the phrase-ends`, state:'candidate', why:`The word collision, and worth keeping: here it means a vocal double trailing the lead, not a quiet stroke. A result that comes back with a haunted-sounding voice has read the word and not the sentence.` },
+    { n:459, span:`ghost notes`, state:'candidate', why:`The matched control this card has been asking for, and the only piece of evidence on the page whose job is to contain none of the term. The span sits in the negatives, so the page files it as an exclusion test and does not offer it as a demonstration — which is right, because it demonstrates nothing on its own. It only means something next to #446: two takes at 88 BPM that differ in one thing, so the question stops being "can you hear ghost notes" and becomes "does this one lean and that one not". A pair that sounds identical is a finding about the generator, not about the listener.` }
   ]
 },
 
@@ -4777,7 +4782,9 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
     { n:143, span:`fills that resolve the polyrhythm`, state:'candidate', why:`The strictest use in the library. The fill has a job — landing the odd meter back on itself — so it cannot be satisfied by drum activity at the right moment.` },
     { n:89, span:`jazzy piano fills`, state:'candidate', why:`Piano rather than drums, at 174 BPM, in the gaps of a soulful vocal. The test of whether the term survives moving off the kit.` },
     { n:156, span:`stumbling fills`, state:'candidate', why:`Fills asked for as failure — deliberately broken, alongside dropped beats and cymbal chokes. Only meaningful if the correct version is understood first.` },
-    { n:32, span:`fretless bass fills`, state:'candidate', why:`The bass filling the vocal gaps in early-80s synthpop, where the arrangement is otherwise sequenced. The clearest case of a fill as the one human gesture in a machine part.` }
+    { n:32, span:`fretless bass fills`, state:'candidate', why:`The bass filling the vocal gaps in early-80s synthpop, where the arrangement is otherwise sequenced. The clearest case of a fill as the one human gesture in a machine part.` },
+    { n:446, span:`no fills anywhere`, state:'rejected', why:`A refusal in the prose rather than in the negatives, so the page's exclusion filter — which keys on the span sitting in the neg field — never saw it, and this entry had been reachable here as an ordinary example while asking for the opposite. Recorded rather than quietly dropped: the ghost-note prompt pins its loud layer deliberately plain, and "no fills anywhere" is how it does that.` },
+    { n:459, span:`no fills anywhere`, state:'rejected', why:`The same phrase, inherited word for word because #459 is the matched control for #446 and the pair has to differ in exactly one thing. Rewording it here to dodge the collision would have cost more than the collision does.` }
   ]
 },
 
