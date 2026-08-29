@@ -29,7 +29,7 @@
  * Loaded as a classic <script> AFTER data.js, so LIB is already a global.
  */
 
-const LEX_VERSION = 'v30';
+const LEX_VERSION = 'v31';
 const LEX_UPDATED = '2026-08-28';
 
 /* ---------- TOP TIER: domains, not instruments ----------
@@ -1178,6 +1178,7 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   res:{ verdict:'untested', model:null, date:null,
     note:`Complicated by an ambiguity in the word itself, which is worth knowing before testing. Several corpus prompts use "compressed" in a purely figurative sense — phrasing compressed into small bent figures, a chord chime compressed into downstrokes — meaning condensed rather than dynamically controlled. So a discovery list for this term will contain false positives, and any test has to use prompts where the audio sense is unmistakable. That ambiguity is itself a finding about how carefully these prompts have to be read.` },
   ev:[
+    { n:453, span:`no compression riding the level`, state:'rejected', why:`Negative use written into the prose rather than into the negatives, which is why the page's usual filter for that does not catch it: the word is in the style, so it reads as a positive mention. #453 refuses compression to leave a spoken voice at its natural dynamic range — the untouched end of this card's scale, and worth knowing about, but not a track anyone can hear the term in.` },
     { n:440, span:`squashed flat by compression until the room noise pumps`, state:'candidate', why:`The audio sense with no ambiguity in it, which is what the card says a test here needs. It names the overdone artefact rather than the process — the noise floor rising in the gaps and ducking after each hit — so the result can be judged on whether the room breathes rather than on whether anything sounds "tight".` },
     { n:18,  span:`compressed`, state:'candidate', why:`"Close dynamic mic, lightly compressed" — the invisible end, named in a signal chain so the audio sense is unambiguous.` },
     { n:'J1', span:`Compressed`, state:'candidate', why:`"Compressed overdriven disco bass" alongside a brutal sidechain pump, so both meanings of the device appear in one prompt. Note the capital C.` },
@@ -3115,6 +3116,7 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   res:{ verdict:'untested', model:null, date:null,
     note:`The corpus contains something rare and valuable here: a prompt written specifically to remove this ornament (#368) sitting alongside prompts asking for it. That is a purpose-built minimal pair, and it makes the term one of the more testable on the page — the question is not "is there a scoop" in the abstract but whether these two prompts differ in the way they claim to.` },
   ev:[
+    { n:454, span:`scooped out by comb filtering`, state:'rejected', why:`The word collision, recorded so the page does not offer it. #454's "scooped" is the EQ sense — a hole in the middle of a piano's frequency range left by two microphones fighting — and has nothing to do with approaching a note from below. It matches this card's stems exactly, which is how it would have arrived here.` },
     { n:368, span:`scoop`, state:'candidate', why:`The negative case built on purpose: a prompt that names the scoop precisely in order to eliminate it, so the audible test is whether notes arrive with a click instead of a slide.` },
     { n:214, span:`sliding up into`, state:'candidate', why:`"Sliding up into pitch from underneath" as the defining feature of a soul baritone, with the arrangement bare enough to hear each note onset.` },
     { n:'V3', span:`scoop`, state:'candidate', why:`Scoops named as attitude rather than as ornament, which tests whether the gesture survives being asked for as character.` },
