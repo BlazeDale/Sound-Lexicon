@@ -29,7 +29,7 @@
  * Loaded as a classic <script> AFTER data.js, so LIB is already a global.
  */
 
-const LEX_VERSION = 'v32';
+const LEX_VERSION = 'v33';
 const LEX_UPDATED = '2026-08-29';
 
 /* ---------- TOP TIER: domains, not instruments ----------
@@ -5271,6 +5271,251 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
     { n:328, span:`No overdubs, no second instrument anywhere`, state:'candidate', why:`The method refused outright. A result with any stacking in it fails plainly, which makes this the cheapest verdict on the card.` },
     { n:295, span:`one take`, state:'candidate', why:`Four demos, and the strongest form of the refusal — not merely unstacked but uncorrected, so any evidence of assembly is a failure.` },
     { n:214, span:`cut live to tape`, state:'candidate', why:`Sixties soul with a horn section and a full band, where playing together is the whole sound. The test of whether "live" produces bleed and mutual adjustment or just a room reverb.` }
+  ]
+},
+
+{
+  id:'decay-time',
+  term:`Decay time`,
+  sounds:`How long the room keeps talking after the music stops. Cut a phrase off and count: with a short decay the silence arrives almost at once, and with a long one the sound goes on thinning out for seconds, so the next chord has to push through the last one. It is the control that decides whether a record feels close and finished or permanently hung over, and you hear it in the gaps rather than in the notes.`,
+  gloss:`How long a reverb takes to fade away to nothing — conventionally the time it takes to drop sixty decibels, which is roughly the point where the tail disappears underneath everything else.`,
+  syn:[`reverb time`,`reverb tail`,`decay`,`RT60`,`tail length`,`how long the reverb rings`],
+  myth:`Long does not mean big. Decay is the length of the tail and says almost nothing about the size of the space — a tiled bathroom rings for a surprisingly long time and a huge scoring stage can be short and dead. The size of a room is settled in the first hundredth of a second, before the tail exists at all, which is what the early-reflections card is about. This is why turning the decay up makes a record wetter rather than making the room larger, and why a mix that sounds like it is standing in a cathedral rather than drowning in one is usually a long decay with the early part still audible underneath it.`,
+  known:`The first dial anyone reaches for, and the one that dates a record fastest: the enormous decays of mid-1980s pop, the near-zero decays of dry singer-songwriter records, the medium settings modern production hides behind. It also sets how fast the music is allowed to move, because a long decay forces slower chord changes and thinner arrangements — everything overlaps everything.`,
+  origin:`Only became adjustable when reverb became a machine. Echo chambers and plates each had one decay, set by the building or by a damper; digital units from the late 1970s put it on a knob, and the length of a record's room turned from a fact into a decision.`,
+  first:`1950s`, peak:[`1980s`,`1990s`],
+  exemplar:{ kind:'exemplifies', title:`Alison`, artist:`Slowdive`, year:`1993`,
+    listen:`Every guitar chord is still fading when the next one arrives, so the harmony reaches you as an overlapping wash rather than as changes. Nothing about it suggests a large building — the space is not big, it is long, and the gap between those two things is the whole card.` },
+  domains:['room','production'],
+  match:['reverb tail','long tail','decay time','reverb time'],
+  kinds:['technique'],
+  nature:'continuous', hear:3,
+  range:`From zero, where a reverb is only a colour on the front of a sound, through the fractions of a second that read as a real room, out to the ten-second settings where the tail becomes an instrument and the music has to be written around it. The corpus reaches both ends: #349 asks for the tail removed outright, and #226 and #370 ask for tails long enough to be part of the arrangement.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Among the easiest things on this page to test and one of the hardest to test usefully. A generator will almost certainly produce more reverb when told to, so the interesting question is not presence but independence: does a long tail in a small room come back as that, or as a cathedral? Every prompt here that asks for a long decay also asks for a big space, so the two have never been separated — the same confound the controls at #455-459 were written to break elsewhere, and the obvious next prompt for this card.` },
+  ev:[
+    { n:111, span:`dissolve into the reverb tail`, state:'candidate', why:`The tail used as a place for the voice to go rather than as an effect laid over it — phrases are written to end early so that there is something left to dissolve into.` },
+    { n:226, span:`long tails`, state:'candidate', why:`Decay as architecture: everything reverberant, tails long enough that the arrangement has to leave room for them, and the length named directly rather than implied by a genre.` },
+    { n:238, span:`surfacing inside the reverb tail`, state:'candidate', why:`The sharpest use in the corpus, because it asks for a second event to happen INSIDE the decay. That only makes sense if the tail has real length, so a short result is unambiguously wrong rather than merely different.` },
+    { n:370, span:`cathedral-wide with a long tail`, state:'candidate', why:`Length and size named in one clause, which is exactly the pairing the resolution note flags: good evidence that the words register, useless for separating the two variables.` },
+    { n:349, span:`no reverb tail`, state:'rejected', why:`A refusal in the style prose rather than in the negatives, so the page's exclusion filter cannot see it and it would arrive here looking like a positive mention. The prompt wants a dry unglamorous mix; recorded so the card never offers it as a demonstration of a tail.` }
+  ]
+},
+
+{
+  id:'early-reflections',
+  term:`Early reflections`,
+  sounds:`The size of a room, arriving before you have consciously heard a room at all. In the first few hundredths of a second after any sound, a handful of distinct copies come back off the nearest surfaces and land separately — too fast to count, too early to be echoes — and that little cluster is what tells you the walls are ten feet away rather than a hundred. It is why a voice recorded in a kitchen sounds like a kitchen even when there is no audible reverb on it.`,
+  gloss:`The first individual bounces off the nearest surfaces, arriving roughly five to eighty thousandths of a second after the direct sound — before the reflections have multiplied into a smooth tail.`,
+  syn:[`early reflections`,`the first bounces`,`room sound`,`ER`,`the reflections before the tail`],
+  myth:`This is where the size of a room lives, and it is not the tail. Almost everyone adjusts a reverb by its length, which is the part carrying the least information about the space: the ear works out dimensions from how long the first bounces take to arrive and how they are spaced, and it does that so fast and so automatically that you experience it as a place rather than as a sound. Remove the early part and the same reverb stops sounding like anywhere and starts sounding like an effect; keep only the early part, with no tail at all, and it still sounds like a room.`,
+  known:`The difference between a mix that sounds like it was made somewhere and one that sounds like it had reverb put on it afterwards. It is also why close-miked recordings sound like nowhere and need a room built back in, and why a convincing fake space is far harder to construct than a convincing fake tail.`,
+  origin:`Named in postwar concert-hall acoustics, where the first reflections were found to govern the sense of size and intimacy in a building; became an adjustable control when digital reverbs arrived at the end of the 1970s.`,
+  first:`1970s`, peak:[`1980s`,`2000s`],
+  exemplar:{ kind:'exemplifies', title:`A Love Supreme`, artist:`John Coltrane`, year:`1965`,
+    listen:`Before any tail is audible you already know how big the room is and roughly where the players are standing in it. Listen to the first instant of a cymbal or a piano note rather than to what follows — the walls announce themselves right there, and the rest of the note adds very little to what you have already been told.` },
+  domains:['room','production'],
+  match:['early reflection','first reflections'],
+  kinds:['technique'],
+  nature:'continuous', hear:4,
+  range:`From none at all — which is what a plate and a spring give you, and precisely why neither sounds like a place — through the tight fast cluster of a small hard room, out to the long gaps and sparse spacing of a large hall, where the first reflection can arrive late enough to be heard as its own event. That is the point where this stops being early reflections and becomes pre-delay: the same phenomenon, far enough apart to be counted.`,
+  corpus:'absent',
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Declared ahead of the corpus deliberately, and the reason is worth stating plainly: this is arguably the most load-bearing term on the room shelf and no prompt in the library has ever asked for it, because nobody writing a prompt thinks in these words. Letting that decide the syllabus would leave out the thing that actually makes a recording sound like a place. Testing it needs a pair rather than a prompt — the same arrangement in a small room and a large one with the tail length held identical — and if the two come back differing only in how wet they are, the generator has one reverb control where there should be two.` }
+},
+
+{
+  id:'chamber-reverb',
+  term:`Chamber reverb`,
+  sounds:`A room you could walk into, with the furniture still in it. Bigger and rounder than a plate and much less even — there are lumps in it, a faint boxiness, particular notes that ring on longer than their neighbours for no reason you could name. Voices sound like they are standing some distance from you in a real tiled space, and the whole record shares that space instead of each part carrying its own.`,
+  gloss:`An actual empty room, usually tiled or concrete, with a loudspeaker at one end and a microphone at the other. Sound is played into it and recorded back with the room's own character on it.`,
+  syn:[`echo chamber`,`live chamber`,`chamber`,`the stairwell`,`reverb chamber`],
+  myth:`It is not an effect, it is a place — and the famous ones were mostly accidents. A basement, a stairwell, a bathroom, a disused lift shaft. That is why chambers have personalities and why studios were bought and kept for theirs: the irregular, slightly wrong resonances an acoustician would have designed out are the exact thing that makes one chamber legendary and another useless. A plate is furniture and a spring is a part; a chamber is real estate.`,
+  known:`The house sound of the great studios of the 1950s and 1960s, and of any record made by piling everything into one shared space. A chamber sounds like a real room because it is one, which is why it outlived the arrival of plates, springs and digital units and is now imitated rather than replaced.`,
+  origin:`Built into commercial studios from the 1940s, once tape made re-recording practical; central to the crowded single-space pop production of the early 1960s and to the film scoring stages of the same period.`,
+  first:`1940s`, peak:[`1950s`,`1960s`],
+  exemplar:{ kind:'exemplifies', title:`Be My Baby`, artist:`The Ronettes`, year:`1963`,
+    listen:`Everything is in the same place at the same time, and that place has corners. The reverb is not a halo behind the voice — it is the room the whole band is standing in, uneven and a little boxy, which is what makes the record sound enormous and cramped at once.` },
+  domains:['room','production'],
+  match:['echo chamber','chamber reverb','reverb chamber'],
+  kinds:['instrument'],
+  nature:'continuous', hear:3,
+  range:`From a small hard-tiled chamber of a second or so, bright and boxy and unmistakably a bathroom, out to the large concrete rooms whose tails run several seconds and whose lumps become part of the harmony. The variable that matters is not size but irregularity — the more a chamber sounds like one specific room, the less interchangeable the records made in it become.`,
+  corpus:'absent',
+  res:{ verdict:'untested', model:null, date:null,
+    note:`The fourth member of a family this page already teaches three-quarters of, and the only one the corpus never asks for by name. That makes a clean four-way test available which none of the others could run alone: plate, spring, hall and chamber against otherwise identical prompts, judged on whether four genuinely different things come back or one generic wetness wearing four labels. The likely failure is a hall — big, smooth and even — because a chamber's whole identity is its unevenness, and smoothness is what a generator will have seen most of.` }
+},
+
+{
+  id:'polar-pattern',
+  term:`Polar pattern`,
+  sounds:`What a microphone refuses to hear. Sing into the front of one, walk round to the back, and you can vanish completely — or not change at all, depending which kind it is. On a record it shows up as how much of the room and the rest of the band came along with each part: a lot, and the track sounds like a place; almost none, and every part sounds recorded in a separate universe and assembled afterwards.`,
+  gloss:`The shape of the area a microphone listens to. Cardioid hears the front and rejects the back, omnidirectional hears everything equally, and figure-of-eight hears front and back while going completely deaf at the sides.`,
+  syn:[`pickup pattern`,`cardioid`,`omni`,`figure-of-eight`,`directional mic`,`what the mic rejects`],
+  myth:`A pattern is about rejection, not reach — none of them hears further than the others, and a cardioid is not a zoom lens. The consequence people miss is that the pattern decides whether the proximity effect exists at all: an omni has none, so a singer can move freely and the tone will not change, while a cardioid gets heavier the closer you get. Every piece of advice about microphone technique silently assumes a cardioid, and stops being true the moment somebody hands you an omni.`,
+  known:`Cardioid on nearly every close-miked vocal and every live stage, because rejection is what stops feedback and bleed. Omni when the room is wanted deliberately, and for singers who move. Figure-of-eight for two people sharing one microphone, and for the classic coincident stereo pairs.`,
+  origin:`Directional microphones arrived in the 1930s; switchable multi-pattern valve microphones in the 1940s and 1950s turned the choice into an artistic decision rather than a fixed property of whatever equipment was on hand.`,
+  first:`1930s`, peak:[`1950s`,`1960s`],
+  exemplar:{ kind:'exemplifies', title:`Live at the Apollo`, artist:`James Brown`, year:`1963`,
+    listen:`A room full of screaming people, and a vocal that stays completely intelligible on top of it. The crowd is behind the microphone and the voice is in front of it, and the pattern is the only thing keeping them apart — that separation, on a stage with no isolation of any kind, is what a directional microphone is for.` },
+  domains:['microphone'],
+  match:['cardioid','polar pattern','omnidirectional','figure-of-eight'],
+  kinds:['instrument'],
+  nature:'continuous', hear:3,
+  range:`From omni, which hears the room along with the source and has no proximity effect whatsoever, through the cardioid family trading room for rejection in increasing amounts, out to the tight hypercardioid and shotgun patterns that hear little but a narrow cone and colour anything off to the side. Figure-of-eight sits outside that line entirely: two live faces and total deafness at ninety degrees, which is a different kind of choice rather than a further step along the same one.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Thin evidence on purpose rather than by neglect: two prompts, both microphone studies, and neither written for this card. What makes them worth attaching is that they are the only place in the corpus where a pattern is named at all, and #430 goes further and BANS one — its negatives exclude omnidirectional capture, because an omni would have destroyed the proximity effect the prompt exists to demonstrate. That is the clearest statement anywhere in the library that a pattern has consequences, and it arrived as a side effect of writing about something else. A proper test would be an omni prompt: same singer, same distance, and the question of whether the low-end bloom disappears the way physics says it must.` },
+  ev:[
+    { n:415, span:`Cardioid capture`, state:'candidate', why:`The pattern named in a prompt built entirely on working the microphone. The whole entry depends on tone changing with distance, which only happens on a directional capsule — so the pattern is doing structural work here rather than decorating the sentence.` },
+    { n:430, span:`an inch from a cardioid capsule`, state:'candidate', why:`The pattern named, and then defended: this prompt's negatives exclude omnidirectional capture outright, because the near extreme it pins would not exist on an omni. The only place in the corpus where a polar pattern is treated as load-bearing.` }
+  ]
+},
+
+{
+  id:'sibilance',
+  term:`Sibilance`,
+  sounds:`The S sounds jump out in front of the voice. Every s, sh, t and z arrives as a bright hiss noticeably louder and harder than the words around it, until you stop hearing the sentence and start hearing spray. On headphones it stings. Treated too hard it goes the other way, and the singer develops a faint lisp that nobody can quite account for.`,
+  gloss:`The narrow band of high frequency, usually somewhere between five and ten kilohertz, that sibilant consonants excite far harder than anything else in a voice. A de-esser is a compressor tuned to duck only that band, and only while it is happening.`,
+  syn:[`harsh S`,`de-esser`,`de-essing`,`spitty vocal`,`sharp consonants`,`that hissy vocal`],
+  myth:`It is not too much treble, and turning the top down is the wrong fix — that dulls an entire voice to solve something which exists for a few hundredths of a second at a time. It is not the singer's fault either: sibilance is created by the recording, because a microphone an inch from the mouth hears a burst of air and high frequency that nobody standing in the room with that singer would ever hear. And a de-esser is not an equaliser. It only moves when an S happens, which is exactly why de-essing done badly sounds like a lisp instead of like a duller record.`,
+  known:`The commonest problem in close-miked modern vocal production, and the reason de-essers exist at all. It had a physical cost before digital: too much sibilance would burn a lacquer during disc cutting or saturate tape, so the fix began as a manufacturing necessity and only later became a matter of taste.`,
+  origin:`A studio problem born with close-miking and made urgent by vinyl cutting in the 1950s; the dedicated de-esser appeared as an outboard box in the 1960s and now sits on essentially every vocal chain.`,
+  first:`1950s`, peak:[`1990s`,`2010s`],
+  exemplar:{ kind:'exemplifies', title:`Tom's Diner`, artist:`Suzanne Vega`, year:`1987`,
+    listen:`One voice, no instruments, close and dry, so every consonant is exposed with nothing to hide behind. This recording became the standard test signal in audio compression research precisely because sibilance is the hardest part of a voice to reproduce — the S sounds are where a codec, a microphone or a de-esser fails first.` },
+  domains:['microphone','voice','production'],
+  match:['sibilan','de-ess'],
+  kinds:['technique'],
+  nature:'momentary', hear:2,
+  range:`From a voice with no sibilance worth mentioning, through the natural amount that close-miking creates and that most records quietly remove, to the deliberately unretouched S that a modern rap vocal keeps as part of its brightness. Past that the range doubles back on itself: over-treated is as audible as untreated, and the lisp is the tell.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`One of the few terms here whose failure would be inaudible rather than wrong. A generated vocal has whatever sibilance the model produces, and asking for more or less may simply do nothing — which would itself be a real finding, because it would mean the vocal chain is baked in and not addressable in words. The useful pair is #431 against #219: one asks for sibilance kept and untamed, the other refuses de-essing, and they arrive at the same place from opposite directions. If neither result differs from an ordinary vocal, this is a term the generator cannot hear.` },
+  ev:[
+    { n:431, span:`sibilance kept, nothing tamed after the fact`, state:'candidate', why:`The term used positively and by name, which is rare — nearly everyone asks for sibilance to be removed. Here the brightness of the consonants is the point of the vocal chain being described.` },
+    { n:371, span:`turns each sibilant into a different note`, state:'candidate', why:`Sibilance as a pitch problem rather than a tone problem: hard tuning applied to a consonant that has no pitch to find, which is one of the most recognisable artefacts of the modern vocal chain.` },
+    { n:219, span:`no smoothing or de-essing`, state:'candidate', why:`The term arriving as a refusal of the TREATMENT, which is a positive instruction about the thing itself: no de-essing means the S sounds stay. Kept because it approaches #431 from the opposite direction and should land in the same place.` },
+    { n:224, span:`no smoothing or de-essing`, state:'candidate', why:`The solo companion to #219, same clause, sparser arrangement. Useful as a check that the instruction survives when there is less around the voice to mask it.` }
+  ]
+},
+{
+  id:'power-chord',
+  term:`Power chord`,
+  sounds:`Two notes that sound like a wall. A root and the note a fifth above it, played low and loud through distortion, arriving as one enormous blunt object rather than as a chord you could pick apart. It has no mood of its own — not happy, not sad, simply large — which is why a riff built out of them sounds like force rather than like feeling.`,
+  gloss:`Just the root and the fifth, with the third left out. Usually two or three strings low on the neck, very often with the root doubled an octave above.`,
+  syn:[`fifth chord`,`five chord`,`open fifth`,`two-note chord`,`that chunky rock chord`],
+  myth:`It is not really a chord, and that is the point: with no third it is neither major nor minor, so it refuses to say anything at all about the key. That refusal is also why it survives distortion when a real chord does not. Distortion multiplies every pair of notes into extra tones nobody played, and a full major chord turns to porridge — but a root and a fifth generate harmonics that agree with the notes already sounding, so the shape stays clear at any amount of gain. The heaviness of rock guitar is a consequence of a chord being deliberately incomplete.`,
+  known:`The entire rhythm vocabulary of hard rock, punk and metal, and the reason a music built on distortion is also harmonically plain — the chord that survives the amplifier happens to be the one that withholds the most information.`,
+  origin:`Emerged with loud amplification at the end of the 1950s, when instrumental rock and roll found that a two-note shape stayed intelligible at volumes which turned full chords to mush; the default rock rhythm shape from the 1960s onward.`,
+  first:`1950s`, peak:[`1970s`,`1980s`,`1990s`],
+  exemplar:{ kind:'popularised', title:`You Really Got Me`, artist:`The Kinks`, year:`1964`,
+    listen:`The riff is two notes moved up and down the neck, and it works because it is two notes. Nothing in it tells you whether the song is major or minor — the harmony arrives from the voice, and the guitar supplies weight and nothing else.` },
+  domains:['guitar','harmony'],
+  match:['power chord','open fifth'],
+  kinds:['technique'],
+  nature:'continuous', hear:1,
+  range:`From the bare two-note shape, through the octave-doubled three-string version that most rock rhythm guitar actually plays, out to the sustained wall where the amplifier's own distortion supplies the harmony that was left out and the chord stops sounding like two notes at all. The same interval without an amplifier is a different creature entirely — open and hollow rather than heavy — which is what #243 and #284 use it for, and which makes them the most useful pair on this card.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`The interesting question is not whether the words produce heavy guitar, which they certainly will, but whether the ABSENCE registers. A power chord's defining property is a missing note, and a generator has every reason to fill it back in — the training data is full of distorted guitars playing full chords. So the test is harmonic rather than timbral: put a power-chord riff under a vocal melody that would sound wrong over a major chord, and listen for whether the guitar has quietly supplied a third that the prompt did not ask for. #243 and #284 make the other half of that test available for free, because they use the same interval with no distortion anywhere near it.` },
+  ev:[
+    { n:144, span:`vast sustained power chords`, state:'candidate', why:`The sustained end of the range, where the amplifier fills in what the chord leaves out — and set directly against palm-muted churn in the same clause, so both extremes of the shape sit inside one prompt.` },
+    { n:372, span:`downtuned power chords with the top end left bright`, state:'candidate', why:`The ordinary rock use, with one useful complication: asking for brightness on a downtuned shape works against the usual assumption that heavy means dark, so a result that comes back muddy has followed the genre rather than the words.` },
+    { n:243, span:`open fifths widening into fuller chords`, state:'candidate', why:`The same interval with no distortion anywhere near it, and the moment of widening is the card's whole point audible in one gesture — the third arriving is what turns an open fifth into a chord with an opinion.` },
+    { n:284, span:`voices sustaining in open fifths`, state:'candidate', why:`The interval sung rather than played, which is the cleanest possible separation of the harmony from the guitar. If a listener hears the same hollowness here as in a power chord, the card's claim about the missing third is confirmed without an amplifier being involved.` }
+  ]
+},
+
+{
+  id:'suspended-chord',
+  term:`Suspended chord`,
+  sounds:`A chord that will not commit. It sounds like an ordinary chord with one note pushed a step out of place — bright, open and unfinished, hanging there wanting to fall. Usually it does fall, half a beat or a bar later, and that small drop into the plain chord underneath is one of the most reliable pleasures in music. Left unresolved it turns airy and unmoored, and the song stops having an opinion about anything.`,
+  gloss:`A chord with the third replaced by the note above or below it — the fourth in a sus4, the second in a sus2. The third is what makes a chord major or minor, so taking it out removes the mood and leaves the harmony suspended.`,
+  syn:[`sus chord`,`sus4`,`sus2`,`suspension`,`hanging chord`,`that unresolved chord`],
+  myth:`It is not a wrong note or a chord played badly. The name is old and literal: in Renaissance counterpoint a suspension is a note held over from the previous chord after the harmony beneath it has already moved, so the tension comes from something staying put rather than from something changing. And a sus does not have to resolve at all — a great deal of modern writing simply leaves it hanging, which is why so much film and ambient music manages to sound open-ended without sounding sad.`,
+  known:`The opening gesture of countless rock and pop songs, because it lets a guitar hold one shape and manufacture movement by adding or lifting a single finger. Also the standard way to delay a chorus arrival without changing chord, and the ambient default of most modern worship music and film underscore.`,
+  origin:`A device of Renaissance and Baroque counterpoint, where it was a rule about voice-leading rather than a chord you could name; became a chord in its own right in twentieth-century popular music, especially on guitar, where the shapes are far easier than the theory.`,
+  first:`pre-1900`, peak:[`1960s`,`1970s`,`1990s`],
+  exemplar:{ kind:'exemplifies', title:`Free Fallin'`, artist:`Tom Petty`, year:`1989`,
+    listen:`Three chords, and the middle one is the whole song: a shape held while one finger adds the note above the third and lifts off again. The chord never changes its name and never changes its bass note — all of the movement is one note leaving and coming back.` },
+  domains:['harmony','keys','guitar'],
+  match:['suspended chord','suspension','sus4','sus2'],
+  kinds:['technique'],
+  nature:'momentary', hear:2,
+  range:`From a decoration that resolves inside a beat and is barely noticed, through the held suspension that becomes the point of the bar, out to the sus that never falls at all and leaves a whole passage without a mood. The corpus happens to cover that range unusually well: #242 resolves late on purpose, #241 leans into one and releases it a bar later, and #Q2 leaves them hanging on an organ and never resolves them at all.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`A rare case where the term is likely to be understood and the failure is likely to be one of timing rather than of harmony. The chord itself is easy; what the corpus keeps asking for is a suspension held LONGER than expected, and delay is the thing generators are worst at. So the question to listen for is not whether a sus chord appears but whether it hangs — a result where the resolution arrives on time has produced the right chord and missed the entire point. #242 is the sharpest test because it names the delay explicitly, and #Q2 the most demanding because it asks for no resolution at all.` },
+  ev:[
+    { n:242, span:`suspended chords resolving a beat later than expected`, state:'candidate', why:`The clearest statement of the term in the corpus, and it names the variable that matters: not the chord but when it falls. A result that resolves on the beat is a near miss worth being able to identify.` },
+    { n:241, span:`one suspension leaned into and released a bar later`, state:'candidate', why:`A single suspension made the harmonic event of a whole sparse arrangement, which is the best possible circumstance for hearing one — nothing else is moving.` },
+    { n:'Q2', span:`hanging organ suspensions`, state:'candidate', why:`The unresolved end of the range: suspensions used as a permanent texture rather than as tension awaiting release, which is where the card claims the mood disappears entirely.` },
+    { n:112, span:`the vocal's long suspensions`, state:'candidate', why:`The device moved onto the voice and set against a steady pulse underneath, so the suspension is heard as a singer refusing to land rather than as a chord shape on a keyboard.` }
+  ]
+},
+
+{
+  id:'borrowed-chord',
+  term:`Borrowed chord`,
+  sounds:`One chord in a bright song suddenly goes dark and something in your chest drops. Nothing else changes — same key, same tempo, the melody carries on over the top — but for one bar the ground shifts underneath and the song sounds like it means it. It is the most reliable emotional trapdoor in popular music, and it usually lasts about two seconds.`,
+  gloss:`A chord taken from the parallel key — the minor version of the key you are in, or the major version if you are in minor — dropped into an otherwise unchanged progression. The commonest by a long way is the minor four in a major song.`,
+  syn:[`modal mixture`,`mode mixture`,`minor iv`,`minor four chord`,`that sad chord in a happy song`],
+  myth:`It is not a key change, and calling it one is the mistake almost everybody makes. Nothing modulates: the song does not move to a new home, it reaches into a neighbouring one for a single chord and comes straight back, which is exactly why the effect is a pang rather than a lift. A key change relocates you and expects you to stay; a borrowed chord ambushes you and leaves you where you were. That difference is audible — after a key change everything that follows is in the new place, and after a borrowed chord the very next bar is home again.`,
+  known:`The minor four underneath the last line of a chorus, the flat six before a final cadence, and most of what people are describing when they call a song bittersweet. Ubiquitous in the Great American Songbook, in 1960s pop, and in essentially every ballad that gets called unexpectedly moving.`,
+  origin:`Standard expressive practice in nineteenth-century Romantic harmony, where mixing the parallel modes was an ordinary tool; absorbed wholesale into popular song through show tunes and jazz standards, and into rock through both.`,
+  first:`pre-1900`, peak:[`1960s`,`1990s`],
+  exemplar:{ kind:'exemplifies', title:`Creep`, artist:`Radiohead`, year:`1992`,
+    listen:`Four chords, and the fourth is borrowed. The third arrives bright and the fourth is that same chord turned minor — the song does not change key, it darkens for one bar and goes back. That single substitution is most of the reason the song is famous.` },
+  domains:['harmony'],
+  match:['borrowed chord','modal mixture','minor iv','minor four'],
+  kinds:['technique'],
+  nature:'momentary', hear:2,
+  range:`From the single minor four at the end of a chorus, so common that it barely registers as a device at all, through the flat six and flat seven that give rock its faintly modal cast, out to passages that borrow so persistently the parallel mode takes over and a listener genuinely cannot say which key the song is in. Where a piece sits on that range is the entire effect: one borrowed chord is a pang, and six of them is just a minor key.`,
+  corpus:'absent',
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Declared ahead of the corpus, and the gap it exposes is a real one: the library has a minor-key card and a key-change card and nothing in between, so the most common way a song turns dark for a moment has never once been asked for in a prompt. The test is unusually clean for a harmony term, because the failure modes are distinct and both are audible. Ask for a major-key song with a borrowed minor four under the last line of the chorus, then listen for which of three things came back: the chord, in place, resolving home — a key change, where everything afterwards has moved — or a song that is simply in a minor key throughout, which is the generator smoothing a one-bar event into a global setting.` }
+},
+
+{
+  id:'post-chorus',
+  term:`Post-chorus`,
+  sounds:`The bit after the chorus that turns out to be the bit you actually remember. The chorus finishes, and instead of going back to a verse the song hands you something else — often wordless, often a riff or a chant or a beat that drops away and comes back — and it is usually shorter, simpler and stickier than the chorus it follows. When somebody hums a song at you and it is not the chorus, this is generally what they are humming.`,
+  gloss:`A distinct section that arrives immediately after the chorus and repeats every time the chorus does, built from its own material rather than from a repeat of the chorus melody.`,
+  syn:[`post-chorus`,`the bit after the chorus`,`the hook after the hook`,`the wordless bit`,`refrain tag`],
+  myth:`It is not a second chorus and it is not the same thing as a drop. A second chorus repeats; a post-chorus is different material welded to the chorus, and it never appears without it. Nor does it have to be the loud part — the deflated post-chorus, where everything falls away instead of arriving, is now as common as the big one. Its real job is structural: it lets a song carry two hooks without either of them having to carry a lyric, which is why so many of them have no words at all.`,
+  known:`Standard architecture in pop from roughly 2010 onward, and the place a streaming-era song puts its most recognisable few seconds. Also the mechanism by which dance-influenced pop absorbed the drop without giving up verses and choruses.`,
+  origin:`Present in occasional form for decades as a tag or a coda hook, and named and formalised as writing practice in the 2010s, once pop and club structures had thoroughly merged.`,
+  first:`1990s`, peak:[`2010s`,`2020s`],
+  exemplar:{ kind:'exemplifies', title:`Blinding Lights`, artist:`The Weeknd`, year:`2019`,
+    listen:`The chorus ends and the synth figure from the introduction returns with no words on it. That wordless return is the part most people recognise in about three notes, it never appears except attached to the chorus, and it is not the chorus.` },
+  domains:['form','arrangement'],
+  match:['post-chorus','post chorus'],
+  kinds:['technique'],
+  nature:'continuous', hear:1,
+  range:`From a two-bar tag most listeners would call part of the chorus, through a full wordless hook of equal weight, out to the post-chorus that has quietly become the song's real centre and reduced the chorus to a run-up. Where the first of those stops being a chorus ending is genuinely unsettled — that is an ambiguity in the thing rather than a gap in the definition, and it is why the term arrived so late.`,
+  corpus:'absent',
+  res:{ verdict:'untested', model:null, date:null,
+    note:`Declared ahead of the corpus, and it exposes a shape of gap worth naming: the library's form vocabulary is almost entirely pre-1990s. There are cards for bridge, pre-chorus, breakdown, turnaround and vamp, and nothing for the one structural innovation of the last fifteen years of pop. The test is about architecture rather than sound, so it needs a whole song rather than a moment — ask for a post-chorus explicitly and then check whether the returning section is new material or a repeat of the chorus. A generator that produces a second chorus has heard the word and not the meaning, and that would be a finding about how form words are treated generally, not only this one.` }
+},
+
+{
+  id:'false-ending',
+  term:`False ending`,
+  sounds:`The song ends. You start to move, and it comes back. Either everything stops dead for a beat or two of real silence, or the fade goes almost all the way down before rising again — and the return is nearly always bigger than what preceded it, because the whole point is that you had stopped expecting anything at all.`,
+  gloss:`A deliberate ending — a full stop, or a fade taken nearly to nothing — placed before the real one, so the song appears to finish and then resumes.`,
+  syn:[`fake ending`,`false stop`,`fake-out ending`,`the bit where it comes back`,`double ending`],
+  myth:`It is not a mistake, not an edit that survived, and not the same thing as a hidden track. It is a written device with a specific job: an ending resets the listener's expectations completely, so whatever arrives after it lands as something new rather than as more of the same. That is why the return is so often the loudest passage on the record — it is being heard against silence instead of against everything that came before it, and silence is a much lower bar to clear.`,
+  known:`A staple of live-feeling rock records and of anything that needs a final chorus to hit harder than the previous three. Also common on comedy and novelty records, where the return is the joke, and in stadium arrangements, where the false stop is a cue for an audience to make a noise into.`,
+  origin:`Inherited from the concert stage, where stopping to draw applause and then resuming is centuries old; became a recording device once records started being arranged as performances rather than documents, through the 1960s.`,
+  first:`1960s`, peak:[`1960s`,`1970s`],
+  exemplar:{ kind:'exemplifies', title:`Suspicious Minds`, artist:`Elvis Presley`, year:`1969`,
+    listen:`The record fades almost to nothing around three and a half minutes in and then comes back up for a final stretch. The fade is not an ending being undone afterwards; it was put there so the return would land like an encore rather than like another chorus.` },
+  domains:['form'],
+  match:['false ending','fake ending','false stop'],
+  kinds:['technique'],
+  nature:'momentary', hear:1,
+  range:`From a single beat of silence before the last chorus, which barely registers as a device, through the full fade-out and return, out to the extended false ending where an entirely different piece of music arrives after the apparent finish and the listener has to decide whether the song ended or not. The corpus has exactly one of these and it sits at the mild end.`,
+  res:{ verdict:'untested', model:null, date:null,
+    note:`The most structurally demanding thing on this page and the one with the least evidence behind it, which is an awkward combination worth being honest about. A false ending requires the generator to hold a plan across the whole length of a track: stop convincingly, wait, and come back — and every part of that is a long-range decision rather than a local texture. The most likely failure is not a bad false ending but no ending at all, the section simply running on, which would say something about how far ahead the model is arranging. #212 is the only prompt available and the word sits in a list of production details rather than in the structural instruction, so it is weak evidence for a strong claim. A prompt written for this card would need the silence given a length.` },
+  ev:[
+    { n:212, span:`a false ending`, state:'candidate', why:`The corpus's only use of the term, and an incidental one — it appears in a list alongside a squalling solo and feedback left in the take, as a detail of a live-sounding rock record rather than as the structure being asked for. Attached because it is genuine and because its weakness is the point the resolution note makes.` }
   ]
 },
 
