@@ -29,8 +29,8 @@
  * Loaded as a classic <script> AFTER data.js, so LIB is already a global.
  */
 
-const LEX_VERSION = 'v33';
-const LEX_UPDATED = '2026-08-29';
+const LEX_VERSION = 'v34';
+const LEX_UPDATED = '2026-08-31';
 
 /* ---------- TOP TIER: domains, not instruments ----------
    `kind` splits the rail into the two families the doc argues are peers: the physical
@@ -5490,9 +5490,11 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
   kinds:['technique'],
   nature:'continuous', hear:1,
   range:`From a two-bar tag most listeners would call part of the chorus, through a full wordless hook of equal weight, out to the post-chorus that has quietly become the song's real centre and reduced the chorus to a run-up. Where the first of those stops being a chorus ending is genuinely unsettled — that is an ambiguity in the thing rather than a gap in the definition, and it is why the term arrived so late.`,
-  corpus:'absent',
+  ev:[
+    { n:470, span:`a post-chorus lifts the same hook a whole step higher and repeats it twice more`, state:'candidate', why:`The first prompt in the library to ask for the section by name. It also specifies the two things that separate a post-chorus from a second chorus — new material, and a fixed position welded to the chorus — so a result that simply repeats the chorus is a clean negative rather than an ambiguous one.` }
+  ],
   res:{ verdict:'untested', model:null, date:null,
-    note:`Declared ahead of the corpus, and it exposes a shape of gap worth naming: the library's form vocabulary is almost entirely pre-1990s. There are cards for bridge, pre-chorus, breakdown, turnaround and vamp, and nothing for the one structural innovation of the last fifteen years of pop. The test is about architecture rather than sound, so it needs a whole song rather than a moment — ask for a post-chorus explicitly and then check whether the returning section is new material or a repeat of the chorus. A generator that produces a second chorus has heard the word and not the meaning, and that would be a finding about how form words are treated generally, not only this one.` }
+    note:`Written ahead of the corpus and commissioned into it the same day: #470 was built as a post-grunge radio-rock prompt and the section was the reason to build it. The gap it exposed is still worth naming: the library's form vocabulary is almost entirely pre-1990s. There are cards for bridge, pre-chorus, breakdown, turnaround and vamp, and nothing for the one structural innovation of the last fifteen years of pop. The test is about architecture rather than sound, so it needs a whole song rather than a moment — ask for a post-chorus explicitly and then check whether the returning section is new material or a repeat of the chorus. A generator that produces a second chorus has heard the word and not the meaning, and that would be a finding about how form words are treated generally, not only this one. #470 is the test; it has no demos yet.` }
 },
 
 {
