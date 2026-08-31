@@ -16,17 +16,17 @@
 
 /* Version stamp — the ONLY place to bump these. Title, <meta>, masthead, and
  * footer all derive from here + LIB counts at runtime, so counts never drift. */
-const VERSION = 'v70';
-const UPDATED = '2026-08-29';
+const VERSION = 'v71';
+const UPDATED = '2026-08-31';
 
 /* ---------- MOST RECENT BATCH ----------
    Update this after each run: label + date + the entry numbers/ids
    (numbers for library entries, e.g. 133; suite ids like 'Q5' also work).
    These render as full cards in the "Most recent batch" strip up top. */
 const RECENT = {
-  label: 'Five controls for terms the corpus cannot settle',
-  date:  '2026-08-29',
-  entries: [455, 456, 457, 458, 459]
+  label: 'Valspeak round six — five genres that already talk',
+  date:  '2026-08-31',
+  entries: [460, 461, 462, 463, 464]
 };
 
 const LIB=[
@@ -935,6 +935,48 @@ And there it is. Huh. Every time?`},
 {n:457,suno:[],name:`Overtone singing, no tradition named`,fam:`ambient drone · overtone study`,cat:`acoustic`,bpm:`50`,role:`the technique asked for with nothing around it to supply it`,proc:`overtone singing with no region, tradition or style name attached · the control for #6 and #74`,aff:`A`,style:`Ambient drone piece near 50 BPM built entirely on overtone singing, over one sustained low note and nothing else — no percussion, no chords, no movement underneath at all. A single singer holds a continuous low fundamental and, without altering that note in any way, shapes the mouth until a second pitch separates out above it: a thin whistling harmonic, piercing and pure, moving in its own slow melody while the note beneath it does not budge. Two pitches at once out of one throat, the upper line produced by nobody and nothing else in the room, and the shape of the mouth is what plays it. A unique and specific vocalist: a bass, growling and unpolished, holding the fundamental dead still for bars at a time while the harmonic above it travels. Real words throughout, one voice from first line to last. Close dry capture in a small dead space, nothing added around the voice. Delivery still and patient.`,neg:`a synth doubling the harmonic above the singer, a flute or whistle carrying the upper line, a second singer, the fundamental moving with the harmonic, chords, percussion, folk instrumentation, dense arrangement, fast tempo, wordless treatment, autotune`},
 {n:458,suno:[],name:`A string machine in a supper club`,fam:`lounge · string-machine study`,cat:`acoustic`,bpm:`76`,role:`the instrument named where nothing else in the arrangement suggests one`,proc:`string machine with no synth, no disco, no period cue around it · its evenness set against live players`,aff:`B`,style:`Slow lounge ballad near 76 BPM in a small late room, with every sustained chord carried by a string machine and by nothing else. Each key of it has its own fixed oscillator with a chorus circuit across the output, so every note has exactly the same tone and the same swell and the chords bloom as one even mass. It never breathes, never changes bow direction, and no note begins any differently from any other — that stillness is the whole point, and it should be plainly audible set against the live players around it. A soft kit, an upright bass and a muted trumpet, all human and all moving. A unique and specific vocalist: a falsetto, husky and smoky, phrasing loosely behind the beat while the chords underneath refuse to move at all. Real words throughout, one voice from first line to last. Warm valve capture, wood-panelled room, nothing bright. Delivery weary and knowing.`,neg:`a real string section, orchestral strings played by people, a modern sampled string library, strings that breathe or change bow direction, vibrato on the pad, filter sweeps, envelope shaping, notes with different attacks, drum machine, fast tempo, wordless treatment, autotune`},
 {n:459,suno:[],name:`Straight-kit boom-bap`,fam:`hip-hop · live-kit boom-bap`,cat:`acoustic`,bpm:`88`,role:`the same groove with the quiet layer taken out`,proc:`every stroke at full weight · nothing below the level at which a hit registers · the matched control for #446`,aff:`F`,style:`Boom-bap near 88 BPM played by a live drummer with every stroke struck at full weight — between the backbeats the snare is silent, no chatter, no soft strokes filling the gaps, nothing at all below the level at which a hit registers as a hit. The audible layer is deliberately plain and never varies: kick, backbeat, closed hat, no fills anywhere. Nothing is added to compensate; where a quiet second pattern would sit there is simply space, and the groove has to stand on its loud hits alone. One dusty upright figure looping, a warm sub bassline, nothing else in the arrangement at all. A unique and specific vocalist: a cavernous bass, warm and round, delivering unhurried lines a little behind the beat and leaving whole bars open so the empty gaps are the only thing left in them. Real words throughout, one voice from first line to last. Close dry capture, the kit sitting loud and even. Delivery patient and low, unbothered by the space.`,neg:`ghost notes, quiet strokes between the backbeats, snare chatter, a second pattern running underneath the first, soft filling hits, quantized programmed drums, a sampled loop in place of a live kit, busy fills, dense arrangement, fast tempo, wordless treatment, autotune`},
+{n:460,suno:[],name:`Mall PA announcement read`,fam:`Valspeak across speaking genres`,cat:`lyrical`,bpm:`70`,role:`a genre whose format is an announcement, so the speech costs nothing to ask for`,proc:`mallsoft muzak bed · the vocal read as store copy rather than performed`,aff:`A`,style:`Mallsoft near 70 BPM: slow smeared muzak drifting through a shopping centre after closing — chorused electric piano, a lazy fretless bass figure, distant chimes, the whole bed soaked in wide plate and pitched slightly flat. Nothing here is sung. The vocal is read, the way store copy is read over a PA: unhurried announcements about nothing in particular, addressed to the entire building. The speech carries the Valspeak vocabulary intact and constantly — like, totally, literally, oh my god, I'm all, for sure, as if, whatever — dropped into every sentence and never once melodic. A unique and specific vocalist: a mid-register voice, smooth and unhurried, sentences trailing upward as though unfinished, each announcement landing like a question. Real words throughout, one voice from first line to last. Close dry capture on the voice against the wet room behind it. Delivery bored, pleasant, faintly hypnotised.`,neg:`sung vocal, melodic hook, belted chorus, rapping, vocal runs, autotune melody, choir stack, aggressive delivery, fast tempo, wordless treatment`,lyric:`[Announcement] (read over a PA, unhurried, never sung)
+Okay so, attention shoppers? Like, the store is totally closing?
+
+[Announcement 2] (same flat pleasant read)
+Oh my god, and the escalator is, like, broken again? As if.
+
+[Announcement 3] (trailing off, still reading)
+Whatever. Thanks for shopping with us? For sure.`},
+{n:461,suno:[],name:`Lowrider talk, home turf`,fam:`Valspeak across speaking genres`,cat:`lyrical`,bpm:`92`,role:`the register asked for on the ground it came from, over a genre that talks by default`,proc:`g-funk bed · conversational bars at speaking volume, not a written verse`,aff:`D`,style:`G-funk near 92 BPM, rolling and sunlit: a whining portamento synth lead riding high over a deep round bass, crisp swung drum machine, sparse guitar chank, handclaps on two and four. The lead raps, but barely — conversational bars delivered at ordinary speaking volume, closer to someone talking through a passenger window than to a performed verse. This is Southern California at its source, so the talk keeps the local vocabulary and leans on it hard: like, totally, literally, oh my god, I'm all, for sure, as if, whatever, threaded through every bar. A unique and specific vocalist: an alto, husky and easy, phrases ending higher than they began. Real words throughout, one voice from first line to last. Voice dry and forward over the wide bed. Delivery unbothered, amused, unhurried.`,neg:`sung chorus, melodic hook, belted vocal, autotune melody, hard aggressive flow, double-time rap, orchestral strings, distorted guitar, fast tempo, wordless treatment`,lyric:`[Verse] (talked over the beat, easy, never rapped hard)
+So I'm all, are we going? And they're like, obviously?
+
+[Verse 2] (same conversational level)
+Oh my god, the freeway is literally not moving? For sure.
+
+[Outro] (trailing, amused)
+Whatever. We're totally still going?`},
+{n:462,suno:[],name:`Recitation verse, wrong vocabulary`,fam:`Valspeak across speaking genres`,cat:`lyrical`,bpm:`76`,role:`a genre whose own convention is a fully spoken verse, filled with the wrong words on purpose`,proc:`country recitation ballad · the tradition supplies the speech, the lexicon fights the setting`,aff:`B`,style:`Country recitation ballad near 76 BPM: pedal steel, brushed kit, walking upright bass, warm and slow, in the old form where the singer stops singing partway through and simply talks a verse straight out to the listener. The convention hands the speech over for free; what fills it is deliberately wrong for the room. The spoken verses run entirely on Valspeak vocabulary — like, totally, literally, oh my god, I'm all, for sure, as if, whatever — recited plainly against the pedal steel with no irony anywhere in the delivery. A unique and specific vocalist: a baritone, weathered and frayed, talking the verses low and even, lifting at the end of every sentence. Real words throughout, one voice from first line to last. Single warm ribbon, dry and close, the room soft behind it. Delivery sincere, unhurried, utterly straight-faced.`,neg:`sung recitation, melodic verse, yodel, belted chorus, rapping, autotune, drum machine, distorted guitar, fast tempo, wordless treatment`,lyric:`[Recitation] (spoken straight to the listener, sincere, no irony)
+Well, I'm all, this is literally the saddest thing?
+
+[Recitation 2] (same plain delivery, lifting at the ends)
+And she's like, totally. And I'm like, oh my god.
+
+[Recitation 3] (quieter, still spoken)
+For sure. As if I'd ever, like, forget it?`},
+{n:463,suno:[],name:`Shout-spoken bratty punk`,fam:`Valspeak across speaking genres`,cat:`lyrical`,bpm:`168`,role:`speech as shout — call-and-response, in a genre that never wanted melody anyway`,proc:`riot-grrrl garage punk · the lead shouts the markers, the group answers them back`,aff:`G`,style:`Riot-grrrl garage punk near 168 BPM, thin and blown-out: one overdriven guitar, a treble-heavy bass, a small kit hit hard, all of it tracked live and clipping. The lead does not sing a note — every line is shouted in plain speech and a group of voices shouts the phrase straight back. The genre never wanted melody, so the speech comes free, and it spends all of it on Valspeak vocabulary: like, totally, literally, oh my god, I'm all, for sure, as if, whatever — barked out and answered in the gaps. A unique and specific vocalist: a high voice, rasping and torn, snapping each phrase upward at the end. Real words throughout, one voice from first line to last, the same lead in front of every answering shout. Room mics driven into the red. Delivery furious, bratty, gleeful.`,neg:`sung vocal, melodic chorus, harmony stack, autotune, clean production, slow tempo, guitar solo, orchestral strings, rapping, wordless treatment`,lyric:`[Verse] (shouted, plain speech, never sung)
+I'm all — DONE. (DONE!)
+Like, literally — DONE. (DONE!)
+
+[Chorus] (lead shouts, group answers)
+Oh my god! (OH MY GOD!)
+As if! (AS IF!)
+
+[Outro] (ragged, still shouting)
+Whatever. Totally whatever.`},
+{n:464,suno:[],name:`Patter talk-song, in tempo`,fam:`Valspeak across speaking genres`,cat:`lyrical`,bpm:`132`,role:`the theatre convention where the character drops out of melody and speaks in strict tempo`,proc:`pit orchestra · rhythmic speech locked to the bar rather than floating free`,aff:`E`,style:`Broadway patter number near 132 BPM: a full pit orchestra driving underneath — brass stabs, woodwind runs, walking bass, a bright snare pushing the tempo — in the old convention where the character stops singing and speaks the number instead, rhythmic speech locked hard to the bar and never floating free of it. The speech belongs to the genre; the words do not. Valspeak vocabulary carries the entire patter — like, totally, literally, oh my god, I'm all, for sure, as if, whatever — rattled off in strict time and faster with every chorus. A unique and specific vocalist: a tenor, clear and unclouded, articulating every consonant at speed and turning each line up at the end. Real words throughout, one voice from first line to last. Theatre capture, orchestra wide, the voice forward and dry. Delivery breathless, theatrical, dead serious.`,neg:`sung melody, belted show tune, vibrato, harmony stack, autotune, rapping, drum machine, slow tempo, sparse arrangement, wordless treatment`,lyric:`[Patter] (spoken in strict tempo, locked to the bar)
+So I'm all, I'm literally not doing it, and they're like, totally you are —
+
+[Patter 2] (faster, same tempo lock)
+And I'm all, oh my god, as if, for sure, whatever —
+
+[Patter 3] (fastest, breathless, still spoken)
+Like — literally — totally — not — doing — it?`},
 ];
 
 /* BEGIN GENERATED — Suno song titles · run: node tools/song_titles.mjs */
@@ -2740,5 +2782,10 @@ const TIMBRE = {
   '457': {r:1.5,g:8,rk:1,gk:1,z:'Ambient & atmospheric'},
   '458': {r:8.5,g:5,rk:1,gk:1,z:'Jazz & lounge'},
   '459': {r:1.8,g:2.5,rk:1,gk:1,z:'Hip-hop & rap'},
+  '460': {r:5,g:1.2,rk:1,gk:1,z:'Spoken & narration'},
+  '461': {r:4,g:5,rk:1,gk:1,z:'Spoken & narration'},
+  '462': {r:2.5,g:5.5,rk:1,gk:1,z:'Spoken & narration'},
+  '463': {r:7.5,g:6.8,rk:1,gk:1,z:'Spoken & narration'},
+  '464': {r:6,g:1.2,rk:1,gk:1,z:'Spoken & narration'},
 };
 /* END GENERATED TIMBRE */
