@@ -16,7 +16,7 @@
 
 /* Version stamp — the ONLY place to bump these. Title, <meta>, masthead, and
  * footer all derive from here + LIB counts at runtime, so counts never drift. */
-const VERSION = 'v71';
+const VERSION = 'v72';
 const UPDATED = '2026-08-31';
 
 /* ---------- MOST RECENT BATCH ----------
@@ -24,9 +24,9 @@ const UPDATED = '2026-08-31';
    (numbers for library entries, e.g. 133; suite ids like 'Q5' also work).
    These render as full cards in the "Most recent batch" strip up top. */
 const RECENT = {
-  label: 'Valspeak round six — five genres that already talk',
+  label: 'Stomp-clap taken apart — the assembly, not the parts',
   date:  '2026-08-31',
-  entries: [460, 461, 462, 463, 464]
+  entries: [465, 466, 467, 468, 469]
 };
 
 const LIB=[
@@ -977,6 +977,11 @@ And I'm all, oh my god, as if, for sure, whatever —
 
 [Patter 3] (fastest, breathless, still spoken)
 Like — literally — totally — not — doing — it?`},
+{n:465,suno:[],name:`Stomp-clap, every part present`,fam:`stomp-clap · assembly study`,cat:`acoustic`,bpm:`132`,role:`the complete assembly, so the other four have something to be measured against`,proc:`floor toms, boot stomps, crowd claps and a gang chant all at once · no hi-hat anywhere`,aff:`E`,style:`Arena folk anthem near 132 BPM with every part of the stomp-clap assembly present at once. The pulse is carried by open floor toms and a kick and by nothing else — there is no hi-hat and no ride anywhere in the track. Boot stomps land square on the downbeat, a room full of handclaps answers on two and four, and both are soaked in a long bright reverb so they read as a crowd rather than as players. Banjo and mandolin figures ring over an acoustic strum. Verses drop to one guitar and a close voice; the chorus detonates to full width with a mob shouting HEY in unison, untrained and slightly flat on purpose. A unique and specific vocalist: a tenor, hoarse and frayed, pushed to the top of the range and staying there — the same lead in front of every crowd shout, first line to last. Real words throughout. Delivery uplifted, ragged, festival-scaled.`,neg:`hi-hat, ride cymbal, tight dry drums, programmed drum machine, synth bass, rapping, screamed vocal, sparse quiet arrangement, slow tempo, wordless treatment`},
+{n:466,suno:[],name:`Same architecture, synth bass instead`,fam:`stomp-clap · assembly study`,cat:`acoustic`,bpm:`140`,role:`the assembly kept exactly, the folk instrumentation swapped out underneath it`,proc:`stomp-clap rhythm architecture intact · not one acoustic instrument · 808s and half-time`,aff:`G`,style:`Arena pop-rock near 140 BPM in a heavy half-time, holding the rhythm architecture of a stomp-clap anthem exactly in place while removing every acoustic instrument that usually carries it. The floor toms stay, the boot stomps stay, the crowd handclaps on two and four stay, the gang chant in the chorus stays, and there is still no hi-hat. Underneath them: a detuned synth bass, an 808 kick with a long sagging tail, and programmed drums built for a stadium PA. No banjo, no mandolin, no acoustic guitar, nothing strummed at any point. A unique and specific vocalist: a baritone-tenor, gritty and buzzing, clenched in the verses and hammering the chorus flat-out, the same lead in front of every gang shout. Real words throughout, one voice first line to last. Delivery hammering, defiant, enormous.`,neg:`acoustic guitar, banjo, mandolin, fiddle, folk instrumentation, hi-hat, ride cymbal, live jazz kit, gentle delivery, slow tempo, wordless treatment`},
+{n:467,suno:[],name:`All the parts, no assembly`,fam:`stomp-clap · assembly study`,cat:`acoustic`,bpm:`96`,role:`every component of the genre present, arranged as something else entirely`,proc:`banjo, toms, claps and group voices put into a swung string band instead of an anthem`,aff:`C`,style:`Old-time Americana string band near 96 BPM, swung and porch-loose, containing every single component an arena stomp-clap anthem is built from and assembling none of them the same way. The banjo, mandolin, floor toms, handclaps and a group of voices are all here. But the claps fall inside the shuffle rather than square on two and four, the toms roll continuously instead of pounding the downbeat, the group sings in close harmony rather than shouting in unison, and no passage anywhere builds from quiet to loud. Nothing is reverbed to crowd size — the whole thing is dry, small and close, played by five people in a room. A unique and specific vocalist: an alto, weathered and worn, phrasing loose and behind the beat. Real words throughout, one voice from first line to last. Delivery easy, companionable, unhurried.`,neg:`arena reverb, stadium production, gang shout in unison, quiet-loud dynamics, four-on-the-floor stomp, synth bass, programmed drums, anthemic chorus, fast tempo, wordless treatment`},
+{n:468,suno:[],name:`Stomp-clap with nobody shouting`,fam:`stomp-clap · assembly study`,cat:`acoustic`,bpm:`132`,role:`the assembly intact with the gang chant subtracted, to see whether the crowd was load-bearing`,proc:`toms, stomps and claps all kept · no group vocal anywhere, no chant, no answering shout`,aff:`B`,style:`Arena folk anthem near 132 BPM with every rhythmic part of the stomp-clap assembly present and untouched — open floor toms, boot stomps on the downbeat, crowd-wide handclaps on two and four, no hi-hat and no ride, and the same quiet-loud build up into an enormous chorus. What is missing is the crowd. There is no gang vocal at any point: nobody shouts, nobody answers, no unison chant, not one doubled voice in the choruses. A single voice walks into that huge arena-scaled chorus completely alone and has to fill it unaccompanied, which turns the same architecture from communal into solitary. A unique and specific vocalist: a contralto, husky and smoky, holding the chorus alone at full width. Real words throughout, one voice from first line to last. Delivery exposed, weary, resolute.`,neg:`gang vocals, group chant, shouted hey, unison crowd vocal, backing vocal stack, choir, call and response, doubled chorus vocal, hi-hat, wordless treatment`},
+{n:469,suno:[],name:`Stomps and claps, no kit`,fam:`stomp-clap · assembly study`,cat:`acoustic`,bpm:`128`,role:`the clap and the stomp isolated from the tom pattern they normally ride with`,proc:`no drum kit at all · bodies are the entire rhythm section`,aff:`E`,style:`Arena folk anthem near 128 BPM with no drum kit anywhere in it — no kick, no snare, no toms, no cymbals, not one struck drum from beginning to end. The entire rhythm section is bodies: boot stomps on the downbeat and handclaps on two and four, doubled and tripled and spread wide, with a long reverb behind them so the floor sounds like a hall full of people. Everything else the genre uses stays exactly as it is — the acoustic strum, the ringing banjo, the quiet verse opening out into a chorus at full crowd width, the mob shouting HEY in unison across it. A unique and specific vocalist: a soprano, clean and unclouded, riding over the stomps without a drum to lean on. Real words throughout, one voice in front of every crowd shout. Delivery bright, buoyant, wide open.`,neg:`drum kit, kick drum, snare, floor toms, cymbals, programmed drums, drum machine, synth bass, slow tempo, wordless treatment`},
 ];
 
 /* BEGIN GENERATED — Suno song titles · run: node tools/song_titles.mjs */
@@ -2787,5 +2792,10 @@ const TIMBRE = {
   '462': {r:2.5,g:5.5,rk:1,gk:1,z:'Spoken & narration'},
   '463': {r:7.5,g:6.8,rk:1,gk:1,z:'Spoken & narration'},
   '464': {r:6,g:1.2,rk:1,gk:1,z:'Spoken & narration'},
+  '465': {r:6,g:6.8,rk:1,gk:1,z:'Folk, country & roots'},
+  '466': {r:4.7,g:6.2,rk:1,gk:1,z:'Rock & guitar'},
+  '467': {r:4,g:5.5,rk:1,gk:1,z:'Folk, country & roots'},
+  '468': {r:3,g:5,rk:1,gk:1,z:'Folk, country & roots'},
+  '469': {r:8.5,g:1.2,rk:1,gk:1,z:'Folk, country & roots'},
 };
 /* END GENERATED TIMBRE */
