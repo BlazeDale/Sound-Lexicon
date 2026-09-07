@@ -829,7 +829,8 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
     { n:386, span:`Mellotron`, state:'candidate', why:`Names the defining fault, not just the instrument — a flute choir wowing in and out of tune as the tape stretches. The clearest statement of what the word is supposed to mean.` },
     { n:233, span:`mellotron`, state:'candidate', why:`Private-press psych, the instrument in its native habitat alongside combo organ and tremolo guitar.` },
     { n:242, span:`Mellotron`, state:'candidate', why:`"Mellotron-soft choir pads" in a lullaby — the make used as a texture word, which is the collapse risk worth testing.` },
-    { n:28,  span:`Mellotron`, state:'candidate', why:`"Faint Mellotron" buried in a dense Britpop mix, where the make is a period signal more than an audible part.` }
+    { n:28,  span:`Mellotron`, state:'candidate', why:`"Faint Mellotron" buried in a dense Britpop mix, where the make is a period signal more than an audible part.` },
+    { n:458, span:`string machine`, state:'rejected', why:`The synonym collision. This card carries "string machine" in its stems because that is what people call the sound, and #458 is the entry that breaks the equivalence: its keyboard has one fixed oscillator per key with a chorus circuit across the output — a divide-down string ensemble, the opposite of a tape strip per key. Offering it here would confirm the very confusion the synonym list records.` }
   ]
 },
 
@@ -910,7 +911,8 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
     { n:143, span:`unison`, state:'candidate', why:`"Precise unison hits" across a whole prog band in shifting meters — accuracy as the point, so any raggedness would be a clear failure.` },
     { n:157, span:`unison`, state:'candidate', why:`"Doubling its own hook in loose unison" — the opposite instruction, where imprecision is wanted.` },
     { n:71,  span:`unison`, state:'candidate', why:`Massed voices roared in unison, which is the plain crowd-of-people case most listeners would picture first.` },
-    { n:'U2', span:`unison`, state:'candidate', why:`Stacks held "deliberately out of unison" so the phrasing rubs against itself — the term used by negation, which tests whether it is understood at all.` }
+    { n:'U2', span:`unison`, state:'candidate', why:`Stacks held "deliberately out of unison" so the phrasing rubs against itself — the term used by negation, which tests whether it is understood at all.` },
+    { n:467, span:`rather than shouting in unison`, state:'rejected', why:`A refusal in the prose. #467 has every component of a stomp-clap anthem and assembles none of them the usual way — the group sings in close harmony precisely INSTEAD of in unison, so this is the counter-case, not a demonstration.` }
   ]
 },
 
@@ -1625,7 +1627,8 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
     { n:46,  span:`skank`, state:'candidate', why:`"Choppy offbeat guitar skank" in two-tone ska — fast, sharp, and the part most listeners picture first.` },
     { n:59,  span:`skank`, state:'candidate', why:`Lovers rock, slow enough that the empty downbeats are long and obvious.` },
     { n:190, span:`skank`, state:'candidate', why:`A ska-pop crossover, where the skank has to survive alongside pop arrangement conventions that fight it.` },
-    { n:10,  span:`skank`, state:'candidate', why:`"Deep and skanking" used to describe the whole track rather than the guitar part, which tests how far the word stretches.` }
+    { n:10,  span:`skank`, state:'candidate', why:`"Deep and skanking" used to describe the whole track rather than the guitar part, which tests how far the word stretches.` },
+    { n:461, span:`guitar chank`, state:'rejected', why:`The synonym collision. "chank" is in this card's stems as the reggae name for the offbeat upstroke; #461 is G-funk, where the same word means the clipped funk rhythm chord, and the prompt never places it on the offbeats only. Same word, the other lineage.` }
   ]
 },
 
@@ -3395,7 +3398,8 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
     { n:50, span:`banjo`, state:'candidate', why:`"Rolling Scruggs banjo" — the three-finger roll named specifically, so the test is whether the cascade appears rather than just a banjo timbre.` },
     { n:3, span:`banjo`, state:'candidate', why:`Clawhammer in a bare porch recording, the older style with nothing in the mix to obscure the difference in attack.` },
     { n:'H2', span:`banjo`, state:'candidate', why:`Clawhammer figures deliberately softened against a fiddle drone, which tests whether the instrument survives being asked to behave gently.` },
-    { n:60, span:`banjo`, state:'candidate', why:`A lone banjo used for menace rather than for cheer, separating the instrument from the connotation it usually carries.` }
+    { n:60, span:`banjo`, state:'candidate', why:`A lone banjo used for menace rather than for cheer, separating the instrument from the connotation it usually carries.` },
+    { n:466, span:`No banjo, no mandolin, no acoustic guitar`, state:'rejected', why:`A refusal written into the prose rather than the negatives. #466 is the electronic counterpart of the stomp-clap anthem and names the banjo only to remove it, so the word sits in the style and reads as a positive mention.` }
   ]
 },
 
@@ -3422,7 +3426,8 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
     { n:50, span:`mandolin`, state:'candidate', why:`"Mandolin chop" listed among the rhythm instruments of a bluegrass band with no drummer, where the chop has to carry the backbeat or nothing does.` },
     { n:3, span:`mandolin`, state:'candidate', why:`The same chop in a sparser 1930s field-recording setting, so the instrument is exposed and its rhythmic placement easy to follow.` },
     { n:301, span:`mandolin`, state:'candidate', why:`A one-mic bluegrass take where instruments lean toward the microphone in turn, meaning the mandolin has to be audibly present and then audibly recede.` },
-    { n:151, span:`mandolin`, state:'candidate', why:`"Occasional mandolin-thin figure" — the melodic use rather than the percussive one, and the control against the three chop prompts.` }
+    { n:151, span:`mandolin`, state:'candidate', why:`"Occasional mandolin-thin figure" — the melodic use rather than the percussive one, and the control against the three chop prompts.` },
+    { n:466, span:`No banjo, no mandolin, no acoustic guitar`, state:'rejected', why:`The same clause, matched on the other instrument it names. #466 strips every acoustic instrument out of the arrangement; the mandolin is listed only as one of the things taken away.` }
   ]
 },
 
@@ -3666,7 +3671,9 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
     { n:23, span:`hi-hat`, state:'candidate', why:`"Rapid hi-hat rolls" — the trap subdivision, where the rate itself is the genre marker and a steady tick would be plainly wrong.` },
     { n:22, span:`hi-hat`, state:'candidate', why:`Disco sizzle, which requires the pedal to open on the offbeat rather than the hat simply being struck.` },
     { n:81, span:`hi-hat`, state:'candidate', why:`"Syncopated hi-hat grid" in Detroit techno — programmed rather than played, so the placement should be exact and checkable.` },
-    { n:82, span:`hi-hat`, state:'candidate', why:`"Sparse hi-hat" in dub techno, the negative case: the instrument named in order to be mostly absent.` }
+    { n:82, span:`hi-hat`, state:'candidate', why:`"Sparse hi-hat" in dub techno, the negative case: the instrument named in order to be mostly absent.` },
+    { n:465, span:`no hi-hat and no ride anywhere in the track`, state:'rejected', why:`A refusal in the prose, not in the negatives, so the page's exclusion filter never sees it and #465 would arrive here as an ordinary hi-hat example. The stomp-clap assembly is defined by what it leaves out: floor toms and a kick carry the pulse precisely because the hat is gone.` },
+    { n:466, span:`there is still no hi-hat`, state:'rejected', why:`The same refusal, inherited on purpose: #466 keeps #465's rhythm architecture and swaps only the instruments underneath, so the missing hat has to survive the swap for the pair to differ in one thing.` }
   ]
 },
 
@@ -4784,7 +4791,8 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
     { n:156, span:`stumbling fills`, state:'candidate', why:`Fills asked for as failure — deliberately broken, alongside dropped beats and cymbal chokes. Only meaningful if the correct version is understood first.` },
     { n:32, span:`fretless bass fills`, state:'candidate', why:`The bass filling the vocal gaps in early-80s synthpop, where the arrangement is otherwise sequenced. The clearest case of a fill as the one human gesture in a machine part.` },
     { n:446, span:`no fills anywhere`, state:'rejected', why:`A refusal in the prose rather than in the negatives, so the page's exclusion filter — which keys on the span sitting in the neg field — never saw it, and this entry had been reachable here as an ordinary example while asking for the opposite. Recorded rather than quietly dropped: the ghost-note prompt pins its loud layer deliberately plain, and "no fills anywhere" is how it does that.` },
-    { n:459, span:`no fills anywhere`, state:'rejected', why:`The same phrase, inherited word for word because #459 is the matched control for #446 and the pair has to differ in exactly one thing. Rewording it here to dodge the collision would have cost more than the collision does.` }
+    { n:459, span:`no fills anywhere`, state:'rejected', why:`The same phrase, inherited word for word because #459 is the matched control for #446 and the pair has to differ in exactly one thing. Rewording it here to dodge the collision would have cost more than the collision does.` },
+    { n:462, span:`what fills it is deliberately wrong for the room`, state:'rejected', why:`The word collision, recorded so the page does not offer it. This is the verb — what fills the gap the convention opens — and has nothing to do with a burst of playing at the end of a phrase. It matches this card's stem "fills" exactly, which is how it would have arrived here.` }
   ]
 },
 
