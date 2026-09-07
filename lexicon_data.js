@@ -338,7 +338,8 @@ A confound to design around before trusting any result: nearly every prompt usin
     { n:11, span:`drone`, state:'candidate', why:`"Pumping harmonium drone" — the device in the tradition it is most identified with.` },
     { n:3,  span:`drone`, state:'candidate', why:`"Fiddle drone" in an Appalachian setting — the same device, a different continent, no genre-name collision.` },
     { n:8,  span:`drone`, state:'candidate', why:`"Feedback drone" — here the word sits inside a metal prompt, exactly where the genre-versus-device ambiguity bites.` },
-    { n:37, span:`droning`, state:'candidate', why:`"Droning organ" — inflected form, recorded as it appears.` }
+    { n:37, span:`droning`, state:'candidate', why:`"Droning organ" — inflected form, recorded as it appears.` },
+    { n:472, span:`no drone, no guitar, no drum`, state:'rejected', why:`A refusal in the prose rather than the negatives. #472 is an unaccompanied lament and names the drone only to rule it out -- the point of the entry is that there is nothing underneath the voice at all, so the one thing this card wants to hear is the one thing it does not have. Its sibling #473 holds a real harmonium drone and stays.` }
   ]
 },
 
@@ -4794,7 +4795,8 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
     { n:32, span:`fretless bass fills`, state:'candidate', why:`The bass filling the vocal gaps in early-80s synthpop, where the arrangement is otherwise sequenced. The clearest case of a fill as the one human gesture in a machine part.` },
     { n:446, span:`no fills anywhere`, state:'rejected', why:`A refusal in the prose rather than in the negatives, so the page's exclusion filter — which keys on the span sitting in the neg field — never saw it, and this entry had been reachable here as an ordinary example while asking for the opposite. Recorded rather than quietly dropped: the ghost-note prompt pins its loud layer deliberately plain, and "no fills anywhere" is how it does that.` },
     { n:459, span:`no fills anywhere`, state:'rejected', why:`The same phrase, inherited word for word because #459 is the matched control for #446 and the pair has to differ in exactly one thing. Rewording it here to dodge the collision would have cost more than the collision does.` },
-    { n:462, span:`what fills it is deliberately wrong for the room`, state:'rejected', why:`The word collision, recorded so the page does not offer it. This is the verb — what fills the gap the convention opens — and has nothing to do with a burst of playing at the end of a phrase. It matches this card's stem "fills" exactly, which is how it would have arrived here.` }
+    { n:462, span:`what fills it is deliberately wrong for the room`, state:'rejected', why:`The word collision, recorded so the page does not offer it. This is the verb — what fills the gap the convention opens — and has nothing to do with a burst of playing at the end of a phrase. It matches this card's stem "fills" exactly, which is how it would have arrived here.` },
+    { n:471, span:`leaving long gaps it never fills`, state:'rejected', why:`The verb again, and negated on top -- #471 leaves gaps in the guitar part precisely so nothing fills them. This is the third entry rejected here for the ordinary English word rather than a burst of playing at the end of a phrase, after #462 and the two that refuse fills by name. The bare stem "fills" is the cause, not any of the prompts.` }
   ]
 },
 
