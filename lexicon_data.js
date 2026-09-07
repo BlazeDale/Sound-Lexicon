@@ -1849,7 +1849,8 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
     { n:51,  span:`cathedral`, state:'candidate', why:`"Medieval monastic acoustics, raw cathedral air" behind unaccompanied chant — the acoustic completely exposed with nothing to mask it.` },
     { n:67,  span:`cathedral`, state:'candidate', why:`"Natural cathedral reverb, no processing" on a baroque aria, where the space and the music were designed for each other.` },
     { n:80,  span:`cathedral`, state:'candidate', why:`Byzantine chant in the same kind of space, useful as a consistency check on #51.` },
-    { n:137, span:`cathedral`, state:'candidate', why:`"One hymnal pad holding cathedral space" inside a darkwave arrangement — the acoustic used as a production effect rather than as a room.` }
+    { n:137, span:`cathedral`, state:'candidate', why:`"One hymnal pad holding cathedral space" inside a darkwave arrangement — the acoustic used as a production effect rather than as a room.` },
+    { n:476, span:`Music-hall cabaret singalong`, state:'rejected', why:`The word collision, and a venue rather than a reverb. This card watches for "hall " with a trailing space, which was meant to avoid hallway and halls but does nothing about a compound: "music-hall cabaret" contains it exactly. #476 is a small bright room with an upright piano and a tuba, the opposite of a long decay carrying directional information — the entry depends on a silent bar being audibly silent, which cathedral reverb would fill in. Seven entries with demos match this card on a venue or genre name rather than a space.` }
   ]
 },
 
