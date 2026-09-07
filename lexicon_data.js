@@ -912,7 +912,8 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
     { n:157, span:`unison`, state:'candidate', why:`"Doubling its own hook in loose unison" — the opposite instruction, where imprecision is wanted.` },
     { n:71,  span:`unison`, state:'candidate', why:`Massed voices roared in unison, which is the plain crowd-of-people case most listeners would picture first.` },
     { n:'U2', span:`unison`, state:'candidate', why:`Stacks held "deliberately out of unison" so the phrasing rubs against itself — the term used by negation, which tests whether it is understood at all.` },
-    { n:467, span:`rather than shouting in unison`, state:'rejected', why:`A refusal in the prose. #467 has every component of a stomp-clap anthem and assembles none of them the usual way — the group sings in close harmony precisely INSTEAD of in unison, so this is the counter-case, not a demonstration.` }
+    { n:467, span:`rather than shouting in unison`, state:'rejected', why:`A refusal in the prose. #467 has every component of a stomp-clap anthem and assembles none of them the usual way — the group sings in close harmony precisely INSTEAD of in unison, so this is the counter-case, not a demonstration.` },
+    { n:468, span:`no unison chant`, state:'rejected', why:`The third term in the same removal list. #467 is already rejected here for singing in close harmony instead of in unison; #468 gets there differently -- there are no massed voices at all to be in unison or out of it.` }
   ]
 },
 
@@ -3673,7 +3674,8 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
     { n:81, span:`hi-hat`, state:'candidate', why:`"Syncopated hi-hat grid" in Detroit techno — programmed rather than played, so the placement should be exact and checkable.` },
     { n:82, span:`hi-hat`, state:'candidate', why:`"Sparse hi-hat" in dub techno, the negative case: the instrument named in order to be mostly absent.` },
     { n:465, span:`no hi-hat and no ride anywhere in the track`, state:'rejected', why:`A refusal in the prose, not in the negatives, so the page's exclusion filter never sees it and #465 would arrive here as an ordinary hi-hat example. The stomp-clap assembly is defined by what it leaves out: floor toms and a kick carry the pulse precisely because the hat is gone.` },
-    { n:466, span:`there is still no hi-hat`, state:'rejected', why:`The same refusal, inherited on purpose: #466 keeps #465's rhythm architecture and swaps only the instruments underneath, so the missing hat has to survive the swap for the pair to differ in one thing.` }
+    { n:466, span:`there is still no hi-hat`, state:'rejected', why:`The same refusal, inherited on purpose: #466 keeps #465's rhythm architecture and swaps only the instruments underneath, so the missing hat has to survive the swap for the pair to differ in one thing.` },
+    { n:468, span:`no hi-hat and no ride`, state:'rejected', why:`Inherited from #465 word for word, because #468 is the control that changes one thing about it. The missing hat is a fixed property of the assembly across the whole set, so it turns up as a refusal on every entry in it.` }
   ]
 },
 
@@ -4956,7 +4958,8 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
     { n:71, span:`answering gang-bellow chorus`, state:'candidate', why:`The gang as a second character answering the lead. It cannot be a stack of the singer, which makes this the strictest version in the library.` },
     { n:306, span:`answered by a gang shout on every hook`, state:'candidate', why:`Timed to a repeating structural point rather than used as texture — every hook, so a result that scatters them has misread the instruction.` },
     { n:339, span:`gang shouts crashing in on the last line of each chorus`, state:'candidate', why:`Placed on one specific line. The test of whether the crowd can be aimed rather than merely summoned.` },
-    { n:'D5', span:`gang-style shout answers`, state:'candidate', why:`A record built to be joined, at stadium scale. The case where the gang is the emotional point of the arrangement rather than an accent on it.` }
+    { n:'D5', span:`gang-style shout answers`, state:'candidate', why:`A record built to be joined, at stadium scale. The case where the gang is the emotional point of the arrangement rather than an accent on it.` },
+    { n:468, span:`There is no gang vocal at any point`, state:'rejected', why:`A refusal written into the prose rather than the negatives, so the page reads it as a positive mention. #468 is the stomp-clap assembly with the crowd taken out and everything else left untouched -- this card names the exact thing it removes, which is why the entry would have arrived here looking like a demonstration of it.` }
   ]
 },
 
@@ -4984,7 +4987,8 @@ Only four prompts ask for it, and all four are cited below, because a demo attac
     { n:51, span:`a clean low monophonic chant`, state:'candidate', why:`One voice, free metre, nothing else in the arrangement. The strictest possible test of whether a reciting tone appears, since there is nowhere for a melody to hide.` },
     { n:83, span:`chanted low and forward in a hypnotic monotone`, state:'candidate', why:`The secular version over acid techno, where the grid pulls hard against the free rhythm chant depends on. The most likely place to hear the term collapse into ordinary singing.` },
     { n:62, span:`a mid-register chant-sing`, state:'candidate', why:`The deliberate halfway case — Afrobeat chant with a real tune in it. Useful for locating where the generator draws the line between chanting and singing.` },
-    { n:80, span:`chanting long microtonal phrases`, state:'candidate', why:`Byzantine cantor: ornament everywhere, and yet the reciting tone survives underneath it. Tests whether decoration and monotony can coexist as they do in the real tradition.` }
+    { n:80, span:`chanting long microtonal phrases`, state:'candidate', why:`Byzantine cantor: ornament everywhere, and yet the reciting tone survives underneath it. Tests whether decoration and monotony can coexist as they do in the real tradition.` },
+    { n:468, span:`no unison chant`, state:'rejected', why:`The same refusal clause, matched on the other term it names. #468 keeps the floor toms, the stomps and the claps and deletes only the voices, so the chant appears in the style solely as something absent.` }
   ]
 },
 
