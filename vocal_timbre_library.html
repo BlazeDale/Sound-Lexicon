@@ -600,7 +600,9 @@ window.__renderCounts=renderCounts; window.__sortCards=sortCards; window.__apply
 let qToken=0;
 document.getElementById('q').addEventListener('input',async e=>{
   const raw=e.target.value; curQ=raw.trim().toLowerCase();
-  const my=++qToken; const h=curQ?await sha256hex(norm(raw)):'';
+  // a bare 64-hex string IS a hashed artist key (that is what a shared artist link carries),
+  // so take it as the hash rather than hashing the hash
+  const my=++qToken; const h=curQ?(/^[0-9a-f]{64}$/.test(curQ)?curQ:await sha256hex(norm(raw))):'';
   if(my!==qToken) return;               // a newer keystroke superseded this one
   curQHash=h; applyFilter();
 });
@@ -782,6 +784,84 @@ foldTabs.forEach(t=>t.addEventListener('click',()=>{
   function reload(){ if(busy()) return; saveState(); location.reload(); }
   document.addEventListener('visibilitychange',()=>{ if(!document.hidden) reload(); });
   setInterval(()=>{ if(!document.hidden && Date.now()-last>IDLE_MS) reload(); },CHECK_MS);
+})();
+
+/* ---------- SHAREABLE FILTER STATE (the address bar) ----------
+   The seven filter controls write themselves into the query string, and a URL carrying
+   them puts the page back the way it was. Only non-defaults are written, so an unfiltered
+   page keeps a clean address.
+
+     ?cat=  category tab (or liked / popular)     ?gap=  demo | m | f
+     ?q=    search text                           ?aff=  affect group A–G
+     ?sort= reg | grit | bpm | likes              ?dir=  asc | desc (only when not the
+     ?artist= hashed study key                           natural default for that sort)
+
+   ARTIST NAMES NEVER TRAVEL. An artist search matches on a SHA-256 key, and it is the
+   KEY that goes in the link — a shared URL can isolate a study without carrying the name,
+   which a plaintext ?q= would put in someone's history and referer headers.
+
+   replaceState, never pushState: the URL is here to be copied, not to fill the Back
+   button with keystrokes. Runs last so an explicit link beats the file:// session
+   restore above.  */
+(function(){
+  const qb=document.getElementById('q'), sortSel=document.getElementById('sort'),
+        gapSel=document.getElementById('gaps');
+  if(!qb||!sortSel||!gapSel) return;
+  const natural=s=>s==='likes'?'desc':'asc';        // picking a sort resets direction to this
+  let canWrite=true;
+
+  function write(){
+    if(!canWrite) return;
+    const p=new URLSearchParams();
+    if(curCat!=='all') p.set('cat',curCat);
+    if(curQ){ if(ARTISTS.has(curQHash)) p.set('artist',curQHash); else p.set('q',qb.value.trim()); }
+    if(curSort!=='num') p.set('sort',curSort);
+    if(curDir!==natural(curSort)) p.set('dir',curDir);
+    if(curGap) p.set('gap',curGap);
+    if(curAff) p.set('aff',curAff);
+    const s=p.toString();
+    try{ history.replaceState(null,'',s?location.pathname+'?'+s:location.pathname); }
+    catch(e){ canWrite=false; }                     // some browsers refuse this on file://
+  }
+  let t=0; const schedule=()=>{ clearTimeout(t); t=setTimeout(write,200); };  // also outwaits the async hash
+
+  function read(){
+    const p=new URLSearchParams(location.search);
+    if(![...p.keys()].length) return;
+    // ORDER MATTERS. A category tab set to "all" is the Clear button, so it is skipped;
+    // an affect pick wipes the search box, so it has to land before the query does.
+    const cat=p.get('cat');
+    if(cat&&cat!=='all'){ const b=document.querySelector('.tab[data-cat="'+CSS.escape(cat)+'"]'); if(b) b.click(); }
+    const aff=p.get('aff');
+    if(aff){ const sp=document.querySelector('.legend span[data-aff="'+CSS.escape(aff)+'"]'); if(sp) sp.click(); }
+    const gap=p.get('gap');
+    if(gap){ gapSel.value=gap; if(gapSel.value===gap) gapSel.dispatchEvent(new Event('change')); }
+    const q=p.get('artist')||p.get('q');
+    if(q){
+      qb.value=q;
+      if(p.get('artist')) qb.title='A hashed study key — the artist name is deliberately not in the link';
+      qb.dispatchEvent(new Event('input'));
+      const pin=/^#?(\S+)$/.exec(q);                // a number search also re-lights its map pin
+      if(pin){ const g=document.querySelector('#tmap g[data-n="'+CSS.escape(pin[1])+'"]');
+               if(g){ g.classList.add('sel'); curNum=pin[1]; } }
+    }
+    const sort=p.get('sort');
+    if(sort){ sortSel.value=sort; if(sortSel.value===sort) sortSel.dispatchEvent(new Event('change')); }
+    const dir=p.get('dir');
+    if(dir==='asc'||dir==='desc'){ if(curDir!==dir) document.getElementById('sortdir').click(); }
+    // Canonicalise: anything the page could not honour (a stale category, a junk value)
+    // is dropped, so the address bar always describes what is actually on screen.
+    setTimeout(write,300);
+  }
+
+  read();
+  // added after the real handlers, so these run once the state they describe has settled
+  qb.addEventListener('input',schedule);
+  sortSel.addEventListener('change',schedule);
+  gapSel.addEventListener('change',schedule);
+  document.getElementById('sortdir').addEventListener('click',schedule);
+  document.querySelectorAll('.tab[data-cat]').forEach(b=>b.addEventListener('click',schedule));
+  document.querySelectorAll('.legend span[data-aff]').forEach(s=>s.addEventListener('click',schedule));
 })();
 </script>
 <script type="module">
