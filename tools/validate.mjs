@@ -29,9 +29,9 @@ const fail = m => fails.push(m);
 const pass = m => passes.push(m);
 
 /* ---------- load data ---------- */
-let LIB, RECENT, VERSION, UPDATED, SONG_TITLES;
+let LIB, RECENT, VERSION, UPDATED, SONG_TITLES, SONG_MODEL;
 try {
-  ({ LIB, RECENT, VERSION, UPDATED, SONG_TITLES } = loadData(process.argv[2]));
+  ({ LIB, RECENT, VERSION, UPDATED, SONG_TITLES, SONG_MODEL } = loadData(process.argv[2]));
   pass(`loaded data.js (${LIB.length} entries)`);
 } catch (e) {
   fail(`could not load data.js: ${e.message}`);
@@ -147,6 +147,22 @@ const suites = LIB.filter(v => v.cat === 'suite');
   html.includes('songTitles(v)') && html.includes('SONG_TITLES')
     ? pass(`song titles feed the card search blob`)
     : fail(`song titles not wired into the search blob in the HTML`);
+}
+
+/* ---------- 8b. demo model stamps: real songs, models Suno actually ships ---------- */
+{
+  const MODELS = ['v6', 'v6-wild', 'v6-mini'];   // the pre-v6 line is retired; unstamped means it
+  const ids = songIds(LIB);
+  const stamps = SONG_MODEL || {};
+  const orphans = Object.keys(stamps).filter(id => !ids.includes(id));
+  if (orphans.length) fail(`SONG_MODEL stamps ${orphans.length} song(s) not in LIB: ${orphans.slice(0, 5).join(', ')}`);
+  const bad = Object.entries(stamps).filter(([, m]) => !MODELS.includes(m)).map(([id, m]) => `${id}=${m}`);
+  if (bad.length) fail(`unknown model in SONG_MODEL (allowed: ${MODELS.join(', ')}): ${bad.slice(0, 5).join(', ')}`);
+  if (!orphans.length && !bad.length)
+    pass(`${Object.keys(stamps).length}/${ids.length} demo(s) model-stamped (unstamped = the retired pre-v6 line)`);
+  html.includes('SONG_MODEL') && html.includes('songModels(v)')
+    ? pass(`model stamps render on the tile and feed search`)
+    : fail(`SONG_MODEL not wired into the HTML`);
 }
 
 /* ---------- 9. artist_studies.md: labels match + generated region in sync ---------- */

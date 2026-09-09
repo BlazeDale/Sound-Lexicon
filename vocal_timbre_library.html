@@ -139,6 +139,9 @@
   .song-art:hover .song-play{background:rgba(0,0,0,.10)}
   .song-g{position:absolute;bottom:2px;right:2px;font-size:15px;font-weight:700;color:#fff;line-height:1;padding:1px 3px;border-radius:5px;background:rgba(0,0,0,.55);text-shadow:0 1px 2px #000}
   .song-g:empty{display:none}
+  /* which model made this take — unstamped tiles are pre-v6 and show nothing */
+  .song-m{font-family:var(--mono);font-size:9px;line-height:1;letter-spacing:.06em;color:var(--dim);border:1px solid var(--line);border-radius:4px;padding:2px 4px}
+  .song-m:empty{display:none}
   .song-gedit{display:none;gap:4px}
   body.editgender .song-gedit{display:flex}
   .song-ext{position:absolute;top:-6px;right:-6px;width:18px;height:18px;border-radius:50%;background:var(--panel2);border:1px solid var(--line);color:var(--amber);font-size:11px;line-height:16px;text-align:center;text-decoration:none;z-index:3}
@@ -434,15 +437,20 @@ function sunoIds(suno){
 // uuid) is scraped by tools/song_titles.mjs. They feed the search blob + tooltips.
 const songTitle=raw=>{ const u=sunoParse(raw).uuid; return (typeof SONG_TITLES!=='undefined'&&SONG_TITLES[u])||''; };
 const songTitles=v=>sunoIds(v.suno).map(songTitle).filter(Boolean);
+// Generator stamp (data.js SONG_MODEL, keyed by uuid). Absent = made before the
+// stamp existed, i.e. the retired pre-v6 line — shown blank rather than guessed.
+const songModel=raw=>{ const u=sunoParse(raw).uuid; return (typeof SONG_MODEL!=='undefined'&&SONG_MODEL[u])||''; };
+const songModels=v=>sunoIds(v.suno).map(songModel).filter(Boolean);
 function sunoTile(raw){
   const {uuid,link,art}=sunoParse(raw);
-  const t=songTitle(raw);
+  const t=songTitle(raw), m=songModel(raw);
   return `<span class="song-tile">`+
     `<button type="button" class="song-art" data-uuid="${esc(uuid)}" data-title="${esc(t)}" title="${esc(t?t+' — play in the side player':'Play in the side player')}">`+
       (art?`<img src="${esc(art)}" alt="" onerror="this.style.display='none'">`:'')+
       `<span class="song-play">▶</span>`+
       `<span class="song-g" data-gid="${esc(uuid)}"></span>`+
     `</button>`+
+    `<span class="song-m" title="${esc(m?'Generated on Suno '+m:'')}">${esc(m)}</span>`+
     `<a class="song-ext" href="${esc(link)}" target="_blank" rel="noopener" title="${esc(t?`Open “${t}” on Suno`:'Open on Suno')}">↗</a>`+
     `<span class="song-gedit">`+
       `<button type="button" class="gbtn" data-set="f" data-gid="${esc(uuid)}" title="Mark feminine">♀</button>`+
@@ -477,7 +485,7 @@ function cardHTML(v){
   // data-blob feeds substring search only (never displayed); v.artist is a hashed
   // exact-match key (SHA-256 of the name) — the plaintext name never ships. See data.js.
   const sids=sunoIds(v.suno);   // song ids on this entry (empty => no demo)
-  let h=`<div class="card" data-n="${v.n}" data-cat="${v.cat}" data-aff="${esc(v.aff||'')}" data-reg="${TQ(v).r}" data-grit="${TQ(v).g}" data-bpm="${(String(v.style||'').match(/(?:near|at) (\d+) ?BPM/i)||[])[1]||''}" data-suno="${sids.join(',')}" data-artist="${esc(v.artist||'')}" data-blob="${esc((v.name+' '+v.fam+' '+v.style+' '+(v.lyric||'')+' '+(v.seed||'')+' '+songTitles(v).join(' ')).toLowerCase())}" style="border-left-color:${border}">`;
+  let h=`<div class="card" data-n="${v.n}" data-cat="${v.cat}" data-aff="${esc(v.aff||'')}" data-reg="${TQ(v).r}" data-grit="${TQ(v).g}" data-bpm="${(String(v.style||'').match(/(?:near|at) (\d+) ?BPM/i)||[])[1]||''}" data-suno="${sids.join(',')}" data-artist="${esc(v.artist||'')}" data-blob="${esc((v.name+' '+v.fam+' '+v.style+' '+(v.lyric||'')+' '+(v.seed||'')+' '+songTitles(v).join(' ')+' '+songModels(v).join(' ')).toLowerCase())}" style="border-left-color:${border}">`;
   h+=`<span class="likewrap"><button class="like" data-like="${esc(String(v.n))}" title="Like this style" aria-label="Like this style">♡</button><span class="lcount" data-count="${esc(String(v.n))}"></span></span>`;
   h+=`<div class="top"><span class="num">#${v.n}</span><span class="name">${esc(v.name)}</span><span class="fam">${esc(v.fam)}</span></div>`;
   h+=`<div class="chips">${chips(v)}</div>`;

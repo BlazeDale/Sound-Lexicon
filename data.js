@@ -6,6 +6,8 @@
  * RECENT      : the most-recent-batch pointer (entry numbers).
  * STUDY_META  : study-level prose for promoted inspirations studies; feeds
  *               tools/build.mjs -> artist_studies.md. The page ignores it.
+ * SONG_MODEL  : which Suno model made each demo, keyed by song UUID (hand-kept;
+ *               unlisted = pre-v6, generated before the stamp existed).
  * SONG_TITLES : Suno demo song titles keyed by song UUID (generated — run
  *               node tools/song_titles.mjs after attaching demos). The page
  *               folds them into each card's search blob, so a song name finds
@@ -16,8 +18,8 @@
 
 /* Version stamp — the ONLY place to bump these. Title, <meta>, masthead, and
  * footer all derive from here + LIB counts at runtime, so counts never drift. */
-const VERSION = 'v78';
-const UPDATED = '2026-09-08';
+const VERSION = 'v79';
+const UPDATED = '2026-09-09';
 
 /* ---------- MOST RECENT BATCH ----------
    Update this after each run: label + date + the entry numbers/ids
@@ -1008,6 +1010,17 @@ Like — literally — totally — not — doing — it?`},
 {n:493,suno:[`1e85f958-b0b9-4c8a-b90d-fe8d5087662b`],name:`What surfaces when it thins`,fam:`industrial post-punk · exposure study`,cat:`acoustic`,bpm:`122`,role:`menace arriving by subtraction, not volume`,proc:`elements drop away one per verse · voice gets quieter as the room empties`,aff:`G`,style:`Industrial post-punk near 122 BPM where the arrangement keeps thinning and what surfaces underneath is worse than what covered it — a mechanical kick, a single detuned bass note struck once a bar, sheet-metal percussion and a guitar scraping high harmonics, elements dropping away one at a time across each verse until only the voice and the kick are left. A unique and specific vocalist: a bass-baritone, gravelled and hoarse, speaking more than singing and getting quieter as the room empties around it, so the menace arrives by subtraction rather than by volume. Real words throughout, one voice from first line to last. Close dry capture with nothing to hide behind, the low end tight rather than cavernous. Delivery controlled and unhurried, threat kept at conversational level — the less there is, the worse it sounds.`,neg:`lush orchestration, glossy production, ambience wash, mid-tempo, rounded tone, shouted delivery, screamed vocal, wall of distortion, everything playing at once, building by adding layers, wordless treatment`},
 {n:494,suno:[`3425db06-6f03-4332-9057-b85db181060c`],name:`The band drops out mid-line`,fam:`funk · exposure study`,cat:`acoustic`,bpm:`108`,role:`three unaccompanied holes, each one funnier`,proc:`band stops dead mid-phrase · voice carries a bar and a half alone · everyone lands together on the downbeat`,aff:`D`,style:`Tight funk near 108 BPM where the band cuts out mid-phrase and leaves the singer talking alone — clavinet, a popped bass and a drummer sitting hard in the pocket, all of them stopping dead on a beat partway through a line so one voice carries on unaccompanied for a bar and a half, finishes the thought, and the whole band lands back together on the downbeat as though nothing happened. It happens three times, in different places, and it is funnier each time. A unique and specific vocalist: an alto, smoky and controlled, timing the exposed line for maximum nerve and never rushing to fill the hole. Real words throughout, one voice from first line to last. Dry punchy close mix, band forward, the exposed voice suddenly very present. Delivery playful and unbothered, working the silence as though it planned it.`,neg:`lush orchestration, glossy production, ambience wash, mid-tempo, rounded tone, band playing through the drop-out, fills covering the silence, audience noise or laughter, ritardando into the stop, wordless treatment`}
 ];
+
+/* ---------- DEMO MODEL STAMPS ----------
+   Which Suno model generated a demo, keyed by song UUID. Hand-maintained: add a
+   line when you attach a demo. What a demo shows is a claim about ONE generator,
+   so the clip has to carry which one made it.
+   A song that is not listed here predates the stamp and came off the pre-v6 line
+   (v4.5 / v5 / v5.5). Suno retired those models on 2026-09-09, so an unstamped
+   demo can never be reproduced — only replaced. Values are the model as Suno
+   names it: v6, v6-wild, v6-mini. */
+const SONG_MODEL = {
+};
 
 /* BEGIN GENERATED — Suno song titles · run: node tools/song_titles.mjs */
 /* Suno demo song titles, keyed by song UUID — fetched from Suno, not hand-edited.
