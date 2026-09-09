@@ -149,17 +149,21 @@ const suites = LIB.filter(v => v.cat === 'suite');
     : fail(`song titles not wired into the search blob in the HTML`);
 }
 
-/* ---------- 8b. demo model stamps: real songs, models Suno actually ships ---------- */
+/* ---------- 8b. demo model stamps: every demo says which generator made it ---------- */
 {
-  const MODELS = ['v6', 'v6-wild', 'v6-mini'];   // the pre-v6 line is retired; unstamped means it
   const ids = songIds(LIB);
   const stamps = SONG_MODEL || {};
+  const missing = ids.filter(id => !stamps[id]);
   const orphans = Object.keys(stamps).filter(id => !ids.includes(id));
-  if (orphans.length) fail(`SONG_MODEL stamps ${orphans.length} song(s) not in LIB: ${orphans.slice(0, 5).join(', ')}`);
-  const bad = Object.entries(stamps).filter(([, m]) => !MODELS.includes(m)).map(([id, m]) => `${id}=${m}`);
-  if (bad.length) fail(`unknown model in SONG_MODEL (allowed: ${MODELS.join(', ')}): ${bad.slice(0, 5).join(', ')}`);
-  if (!orphans.length && !bad.length)
-    pass(`${Object.keys(stamps).length}/${ids.length} demo(s) model-stamped (unstamped = the retired pre-v6 line)`);
+  const bad = Object.entries(stamps).filter(([, m]) => !/^v[0-9.]+(-[a-z]+)?$/i.test(m)).map(([id, m]) => `${id}=${m}`);
+  if (!ids.length) pass(`no demos to stamp`);
+  else missing.length
+    ? fail(`${missing.length}/${ids.length} demo(s) missing a model stamp (the verdict would name no generator) — run: node tools/song_models.mjs${missing.length <= 5 ? ` [${missing.join(', ')}]` : ''}`)
+    : pass(`all ${ids.length} demos stamped with the model that made them (${
+        Object.entries(ids.reduce((a, id) => (a[stamps[id]] = (a[stamps[id]] || 0) + 1, a), {}))
+          .sort((x, y) => y[1] - x[1]).map(([m, n]) => `${m}: ${n}`).join(', ')})`);
+  if (orphans.length) fail(`SONG_MODEL stamps ${orphans.length} song(s) no longer in LIB — run: node tools/song_models.mjs`);
+  if (bad.length) fail(`malformed model stamp: ${bad.slice(0, 5).join(', ')}`);
   html.includes('SONG_MODEL') && html.includes('songModels(v)')
     ? pass(`model stamps render on the tile and feed search`)
     : fail(`SONG_MODEL not wired into the HTML`);

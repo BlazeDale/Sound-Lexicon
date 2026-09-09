@@ -437,8 +437,9 @@ function sunoIds(suno){
 // uuid) is scraped by tools/song_titles.mjs. They feed the search blob + tooltips.
 const songTitle=raw=>{ const u=sunoParse(raw).uuid; return (typeof SONG_TITLES!=='undefined'&&SONG_TITLES[u])||''; };
 const songTitles=v=>sunoIds(v.suno).map(songTitle).filter(Boolean);
-// Generator stamp (data.js SONG_MODEL, keyed by uuid). Absent = made before the
-// stamp existed, i.e. the retired pre-v6 line — shown blank rather than guessed.
+// Generator stamp (data.js SONG_MODEL, keyed by uuid) — scraped off Suno by
+// tools/song_models.mjs. Every demo carries one; a blank tile means the fetch
+// hasn't run for that song yet, never that the model is unknowable.
 const songModel=raw=>{ const u=sunoParse(raw).uuid; return (typeof SONG_MODEL!=='undefined'&&SONG_MODEL[u])||''; };
 const songModels=v=>sunoIds(v.suno).map(songModel).filter(Boolean);
 function sunoTile(raw){
