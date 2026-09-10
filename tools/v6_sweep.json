@@ -1923,6 +1923,120 @@
         ],
         "idea": "the night you finally stopped waiting for someone, and how unfairly beautiful the world was about it"
       }
+    },
+    "54": {
+      "status": "generated",
+      "blind_deal": "sweep-54-56",
+      "v6": {
+        "title": "Good Morning",
+        "clips": [
+          "fade7580-831b-4e8c-8931-0080a3a09810",
+          "7ae25bdd-a3be-416b-9d7a-5164b6b3cc13"
+        ],
+        "v0": "7ae25bdd-a3be-416b-9d7a-5164b6b3cc13",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "cliffside",
+          "gratitude",
+          "circle",
+          "gravity"
+        ],
+        "idea": "an old man walking the same morning loop past the spot where he nearly went over at twenty, and saying good morning to it"
+      },
+      "v6-wild": {
+        "title": "The Summer Everybody Left",
+        "clips": [
+          "3ea9785c-518a-477b-94fe-cbf1daeb7118",
+          "510de221-fbbf-42a7-8df8-f42db127da97"
+        ],
+        "v0": "510de221-fbbf-42a7-8df8-f42db127da97",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "switchyard",
+          "longing",
+          "burn",
+          "eclipse"
+        ],
+        "idea": "two kids burning a mattress in a rail yard the summer everyone else left town, and one of them still there at forty"
+      }
+    },
+    "55": {
+      "status": "generated",
+      "blind_deal": "sweep-54-56",
+      "v6": {
+        "title": "Nine Of 'Em Work",
+        "clips": [
+          "ae7c14b5-7baf-4442-90d2-e9461de85e8f",
+          "156aed9d-6d95-429c-8d38-3b61f290e154"
+        ],
+        "v0": "156aed9d-6d95-429c-8d38-3b61f290e154",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "boardwalk",
+          "defiance",
+          "confess",
+          "entropy"
+        ],
+        "idea": "whoever runs the failing arcade telling a stranger exactly how bad the books are, and refusing to be pitied for it"
+      },
+      "v6-wild": {
+        "title": "Water On Tuesday",
+        "clips": [
+          "ce4042a4-073d-45f8-872b-3368349eb4f2",
+          "b5fb8bdb-68f6-4f2a-bb46-6d7a557d8014"
+        ],
+        "v0": "b5fb8bdb-68f6-4f2a-bb46-6d7a557d8014",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "greenhouse",
+          "saudade",
+          "reach",
+          "wavelength"
+        ],
+        "idea": "still watering a plant that belonged to someone who left, with the shed radio tuned to the station the two of them used to argue about"
+      }
+    },
+    "56": {
+      "status": "generated",
+      "blind_deal": "sweep-54-56",
+      "v6": {
+        "title": "Neither Of Us Turns",
+        "clips": [
+          "cc3f230e-8633-4609-a5c8-7a1d0f8ace94",
+          "8793f689-e028-4f35-bd19-8c24ee0244a1"
+        ],
+        "v0": "8793f689-e028-4f35-bd19-8c24ee0244a1",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "train station",
+          "unease",
+          "leave",
+          "orbit"
+        ],
+        "idea": "a goodbye on a platform that has gone on too long, both people wanting it over, neither willing to be the one who turns first"
+      },
+      "v6-wild": {
+        "title": "Row Six On Sunday",
+        "clips": [
+          "9e111d5c-c5ab-462a-a110-128dce11b364",
+          "1ec519b2-7ddc-4fd3-8c9a-557a9b59b0ae"
+        ],
+        "v0": "1ec519b2-7ddc-4fd3-8c9a-557a9b59b0ae",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "orchard",
+          "devotion",
+          "unravel",
+          "event horizon"
+        ],
+        "idea": "a man still pruning trees for an estate that has already been sold, walking the rows the day before the machines arrive"
+      }
     }
   },
   "method": {
