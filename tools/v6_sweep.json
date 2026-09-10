@@ -846,6 +846,111 @@
           "dream"
         ]
       }
+    },
+    "24": {
+      "status": "generated",
+      "v6": {
+        "title": "Burn It Clean",
+        "clips": [
+          "c6bdfcb8-0d03-4c91-9d0c-9f62e0233d08",
+          "de140e62-65a6-4fbc-9f35-8c652edaa997"
+        ],
+        "v0": "de140e62-65a6-4fbc-9f35-8c652edaa997",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "overpass",
+          "bitterness",
+          "burn",
+          "entropy"
+        ]
+      },
+      "v6-wild": {
+        "title": "Code At The Bottom",
+        "clips": [
+          "d639a1eb-4ea3-4d75-bb55-3306f0cc3f0a",
+          "caf2036c-bee0-46c9-83ec-826f573f139d"
+        ],
+        "v0": "caf2036c-bee0-46c9-83ec-826f573f139d",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "quarry",
+          "dread",
+          "unravel",
+          "cipher"
+        ]
+      }
+    },
+    "25": {
+      "status": "generated",
+      "v6": {
+        "title": "Tilt-A-Whirl Baby",
+        "clips": [
+          "2822da2a-658f-4cd9-ba34-b3f672e4c2bb",
+          "ecca8e73-9d35-468d-813a-cb008774b62c"
+        ],
+        "v0": "ecca8e73-9d35-468d-813a-cb008774b62c",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "fairground",
+          "defiance",
+          "chase",
+          "mirage"
+        ]
+      },
+      "v6-wild": {
+        "title": "Second Feature",
+        "clips": [
+          "b4e96302-00b3-46d6-9768-3588feedaf88",
+          "9206ec0a-8efc-4a11-9b4c-595458456f9d"
+        ],
+        "v0": "9206ec0a-8efc-4a11-9b4c-595458456f9d",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "drive-in",
+          "anticipation",
+          "drive",
+          "frequency"
+        ]
+      }
+    },
+    "26": {
+      "status": "generated",
+      "v6": {
+        "title": "Right On Time",
+        "clips": [
+          "1598d1c4-b096-40ee-b864-5996b4f2d672",
+          "ab35dd32-6c56-4971-8f76-462f74d1b941"
+        ],
+        "v0": "ab35dd32-6c56-4971-8f76-462f74d1b941",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "train station",
+          "contentment",
+          "arrive",
+          "twilight"
+        ]
+      },
+      "v6-wild": {
+        "title": "One More Boat",
+        "clips": [
+          "25755dd2-e8a5-40ba-969a-1a2ff60663e6",
+          "96c12ae5-04fa-4dbc-b1e5-6c5ccf7b977b"
+        ],
+        "v0": "96c12ae5-04fa-4dbc-b1e5-6c5ccf7b977b",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "harbor",
+          "longing",
+          "wave",
+          "aurora"
+        ]
+      }
     }
   }
 }
