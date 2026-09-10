@@ -1582,5 +1582,73 @@
         ]
       }
     }
+  },
+  "method": {
+    "from_45": "Seeds dealt blind by tools/seed_deal.mjs before the entry style is read; idea committed from the seeds alone. Seeds are material the song passes through, never its subject. The genre summary governs only the scaffold meter/rhyme. Re-rolls allowed for absurdity only, never for genre fit, and logged."
+  },
+  "dealt": {
+    "45-47": {
+      "45": {
+        "v6": {
+          "seeds": [
+            "switchyard",
+            "bitterness",
+            "unravel",
+            "threshold"
+          ],
+          "idea": "someone taking apart, one piece at a time, the life they assembled with a person who is not coming back — and finding the last piece is a door they could have walked through years ago"
+        },
+        "v6-wild": {
+          "seeds": [
+            "chapel",
+            "grief",
+            "wait",
+            "twilight"
+          ],
+          "idea": "the long after of a death, when everyone else's mourning has a schedule and yours does not, and one hour of the day becomes the only thing that agrees with you"
+        }
+      },
+      "46": {
+        "v6": {
+          "seeds": [
+            "lighthouse",
+            "dread",
+            "reach",
+            "entropy"
+          ],
+          "idea": "a person keeping something alive that nobody needs any more, because they are afraid of who they will be the day they stop reaching for it"
+        },
+        "v6-wild": {
+          "seeds": [
+            "fairground",
+            "longing",
+            "follow",
+            "afterimage"
+          ],
+          "idea": "following a stranger through a crowd because they move like someone you lost, and wanting the mistake to last as long as possible"
+        }
+      },
+      "47": {
+        "v6": {
+          "seeds": [
+            "rooftop",
+            "defiance",
+            "lie (deceive)",
+            "limbo"
+          ],
+          "idea": "a kindness told so often and so well that it became the room two people live in, and neither will be the one to open the window"
+        },
+        "v6-wild": {
+          "seeds": [
+            "subway platform",
+            "restlessness",
+            "burn",
+            "resonance"
+          ],
+          "idea": "the state of being between two lives, and choosing to burn the one that can still be heard ringing"
+        }
+      },
+      "run_key": "sweep-45-47"
+    }
   }
 }
