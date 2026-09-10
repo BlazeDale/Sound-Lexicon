@@ -1371,6 +1371,111 @@
           "frequency"
         ]
       }
+    },
+    "39": {
+      "status": "generated",
+      "v6": {
+        "title": "Under The Ring Road",
+        "clips": [
+          "b0c9a4d0-9c68-4921-a08e-dd74c5c1d25b",
+          "c9b705c9-dd4f-4adc-a232-a55fe800d88d"
+        ],
+        "v0": "c9b705c9-dd4f-4adc-a232-a55fe800d88d",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "overpass",
+          "saudade",
+          "drift",
+          "undertow"
+        ]
+      },
+      "v6-wild": {
+        "title": "The Box On The Corner",
+        "clips": [
+          "2b7d7ccf-a8ad-45fa-ae17-2e4043488267",
+          "d1dd0aab-dc0a-4f26-8597-696e7f357b13"
+        ],
+        "v0": "d1dd0aab-dc0a-4f26-8597-696e7f357b13",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "telephone box",
+          "regret",
+          "forget",
+          "palimpsest"
+        ]
+      }
+    },
+    "40": {
+      "status": "generated",
+      "v6": {
+        "title": "The Slow Way Down The Coast",
+        "clips": [
+          "08c2cbcc-599e-469e-9673-bd456cbe3c5e",
+          "18a2a182-49fc-4861-8d83-61017df9e8eb"
+        ],
+        "v0": "18a2a182-49fc-4861-8d83-61017df9e8eb",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "harbor",
+          "contentment",
+          "drive",
+          "twilight"
+        ]
+      },
+      "v6-wild": {
+        "title": "Around The Bay",
+        "clips": [
+          "a8ed9b0e-f0f1-4a93-8bbb-6cbf48afd0e9",
+          "c3b17489-4253-46a8-9b5b-cebf64d130d1"
+        ],
+        "v0": "c3b17489-4253-46a8-9b5b-cebf64d130d1",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "pier",
+          "gratitude",
+          "return",
+          "spectrum"
+        ]
+      }
+    },
+    "41": {
+      "status": "generated",
+      "v6": {
+        "title": "Green Water",
+        "clips": [
+          "f09955b6-ec2d-401b-86b9-9966d1bbea37",
+          "08bc8029-81ba-4890-b1c1-039175483d43"
+        ],
+        "v0": "08bc8029-81ba-4890-b1c1-039175483d43",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "quarry",
+          "tenderness",
+          "drown",
+          "vertigo"
+        ]
+      },
+      "v6-wild": {
+        "title": "Slow Orbit",
+        "clips": [
+          "ad48c025-964b-4df9-859a-f01a6bc5ba2c",
+          "a558ec86-d833-4acc-8f25-55b498f38d99"
+        ],
+        "v0": "a558ec86-d833-4acc-8f25-55b498f38d99",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "reservoir",
+          "wonder",
+          "fall",
+          "orbit"
+        ]
+      }
     }
   }
 }
