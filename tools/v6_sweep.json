@@ -426,6 +426,216 @@
         ]
       },
       "status": "generated"
+    },
+    "12": {
+      "v6": {
+        "title": "Down Where The Water Is Wide",
+        "clips": [
+          "a06561ee-7439-4eec-8610-a91da0655c8d",
+          "5d5feef8-a018-43d1-9b6e-11e08acb826f"
+        ],
+        "v0": "5d5feef8-a018-43d1-9b6e-11e08acb826f",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "chapel",
+          "awe",
+          "return",
+          "undertow"
+        ]
+      },
+      "v6-wild": {
+        "title": "The Long Way Up The Hill",
+        "clips": [
+          "ddd3fa20-b4ad-47cf-8ad8-2c835d633940",
+          "58a247e0-a345-417c-80df-cdccb78a7b5f"
+        ],
+        "v0": "58a247e0-a345-417c-80df-cdccb78a7b5f",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "orchard",
+          "grief",
+          "climb",
+          "threshold"
+        ]
+      },
+      "status": "generated"
+    },
+    "13": {
+      "v6": {
+        "title": "Nothing Runs On Time",
+        "clips": [
+          "0a71a33c-fe87-4574-b141-78920406243e",
+          "af6c7879-a707-4033-a06d-cc4ce5889855"
+        ],
+        "v0": "af6c7879-a707-4033-a06d-cc4ce5889855",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "overpass",
+          "defiance",
+          "burn",
+          "entropy"
+        ]
+      },
+      "v6-wild": {
+        "title": "Switchyard Vertigo",
+        "clips": [
+          "18098960-d112-422c-ae12-3ae144f5edab",
+          "02ac27bb-29cf-4e7b-a95e-5ab1d4c565b3"
+        ],
+        "v0": "02ac27bb-29cf-4e7b-a95e-5ab1d4c565b3",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "switchyard",
+          "dread",
+          "chase",
+          "vertigo"
+        ]
+      },
+      "status": "generated"
+    },
+    "14": {
+      "v6": {
+        "title": "Greener On The Radio",
+        "clips": [
+          "c714088f-60c5-49c7-ae89-8fe687970ddc",
+          "946d85ac-4524-4a7f-8c0d-e2d4bb38d496"
+        ],
+        "v0": "946d85ac-4524-4a7f-8c0d-e2d4bb38d496",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "drive-in",
+          "envy",
+          "drive",
+          "frequency"
+        ]
+      },
+      "v6-wild": {
+        "title": "Ferris Wheel Money",
+        "clips": [
+          "4373e263-99af-4f78-bb34-2dd2f367d408",
+          "91175e2c-8ed6-47af-b485-a4286636ed7e"
+        ],
+        "v0": "91175e2c-8ed6-47af-b485-a4286636ed7e",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "fairground",
+          "anticipation",
+          "circle",
+          "parallax"
+        ]
+      },
+      "status": "generated"
+    },
+    "15": {
+      "v6": {
+        "title": "Bitter Almond",
+        "clips": [
+          "84fb8506-02a1-4e76-b8c3-45cbb28cbbe4",
+          "96de2940-48dc-4747-832c-7db2288d7183"
+        ],
+        "v0": "96de2940-48dc-4747-832c-7db2288d7183",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "cliffside",
+          "bitterness",
+          "leave",
+          "eclipse"
+        ]
+      },
+      "v6-wild": {
+        "title": "The Empty Chapel",
+        "clips": [
+          "b34f31f8-04a1-40d6-aea0-d404560c71ac",
+          "42df7097-aea8-41f9-b5b2-c78ad673fae9"
+        ],
+        "v0": "42df7097-aea8-41f9-b5b2-c78ad673fae9",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "chapel",
+          "longing",
+          "confess",
+          "apparition"
+        ]
+      },
+      "status": "generated"
+    },
+    "16": {
+      "v6": {
+        "title": "Room Twelve, No Ice",
+        "clips": [
+          "4ac08fa8-a736-43bc-a81b-d194959b0aef",
+          "66e27a57-0c4e-45c1-8f3e-46bc9c4c9a8e"
+        ],
+        "v0": "66e27a57-0c4e-45c1-8f3e-46bc9c4c9a8e",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "motel corridor",
+          "resignation",
+          "drive",
+          "half-life"
+        ]
+      },
+      "v6-wild": {
+        "title": "The Story I Tell About You",
+        "clips": [
+          "b09d8796-9284-4b5f-ac70-e91120a6d426",
+          "056a4038-085b-40c9-a7f9-2ba2b4e5388d"
+        ],
+        "v0": "056a4038-085b-40c9-a7f9-2ba2b4e5388d",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "drive-in",
+          "regret",
+          "lie",
+          "mirage"
+        ]
+      },
+      "status": "generated"
+    },
+    "17": {
+      "v6": {
+        "title": "Under The Paint",
+        "clips": [
+          "3d08a9b3-1c30-4e06-96bb-b810b1cffc10",
+          "e1f827ad-b8b2-4425-a2ef-5288ea89a6b7"
+        ],
+        "v0": "e1f827ad-b8b2-4425-a2ef-5288ea89a6b7",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "subway platform",
+          "defiance",
+          "search",
+          "palimpsest"
+        ]
+      },
+      "v6-wild": {
+        "title": "Cipher On The Roof",
+        "clips": [
+          "dc645e77-edbf-463f-85f9-0bcb4a883309",
+          "1e433137-a81d-490f-8114-ac1173327abe"
+        ],
+        "v0": "1e433137-a81d-490f-8114-ac1173327abe",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "rooftop",
+          "restlessness",
+          "climb",
+          "cipher"
+        ]
+      },
+      "status": "generated"
     }
   }
 }
