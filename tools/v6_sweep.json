@@ -1056,6 +1056,111 @@
           "resonance"
         ]
       }
+    },
+    "30": {
+      "status": "generated",
+      "v6": {
+        "title": "Paint On Paint",
+        "clips": [
+          "46e1d423-4967-4a86-92a9-27fcb0d55804",
+          "21042ddb-d76c-4bc9-bfe9-f9a4c957437e"
+        ],
+        "v0": "21042ddb-d76c-4bc9-bfe9-f9a4c957437e",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "fairground",
+          "regret",
+          "lie",
+          "palimpsest"
+        ]
+      },
+      "v6-wild": {
+        "title": "Room To Room",
+        "clips": [
+          "ab8829a7-91fc-4448-a499-7495b391090e",
+          "02b18b6f-c902-41a6-aaca-4c4fb97b7e01"
+        ],
+        "v0": "02b18b6f-c902-41a6-aaca-4c4fb97b7e01",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "motel corridor",
+          "resignation",
+          "search",
+          "cipher"
+        ]
+      }
+    },
+    "31": {
+      "status": "generated",
+      "v6": {
+        "title": "Everything Falls Toward Home",
+        "clips": [
+          "ca289a49-2b7c-497f-9b57-cbf4fc5ea199",
+          "12cd9d4a-9a93-4b79-a8d3-66a212b99593"
+        ],
+        "v0": "12cd9d4a-9a93-4b79-a8d3-66a212b99593",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "quarry",
+          "homesickness",
+          "return",
+          "gravity"
+        ]
+      },
+      "v6-wild": {
+        "title": "Against The Pull",
+        "clips": [
+          "48894025-cf3f-49c0-a819-d3ba89e698d8",
+          "12e3d8cd-7731-40fc-bd83-d0d49bc7ce70"
+        ],
+        "v0": "12e3d8cd-7731-40fc-bd83-d0d49bc7ce70",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "riverbank",
+          "defiance",
+          "climb",
+          "undertow"
+        ]
+      }
+    },
+    "32": {
+      "status": "generated",
+      "v6": {
+        "title": "The Observatory Hour",
+        "clips": [
+          "c1a38979-359a-474c-9a0e-17999e5800c4",
+          "218c3461-f6ba-4068-a4d0-fbd2ffa20ee8"
+        ],
+        "v0": "218c3461-f6ba-4068-a4d0-fbd2ffa20ee8",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "observatory",
+          "awe",
+          "wander",
+          "eclipse"
+        ]
+      },
+      "v6-wild": {
+        "title": "The Chapel At The Roundabout",
+        "clips": [
+          "e0ce08c7-21fa-455d-bc2a-39a1ad3e0555",
+          "3554c8f8-c0b0-4fa9-825f-9e017d01b4f0"
+        ],
+        "v0": "3554c8f8-c0b0-4fa9-825f-9e017d01b4f0",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "chapel",
+          "longing",
+          "circle",
+          "mirage"
+        ]
+      }
     }
   }
 }
