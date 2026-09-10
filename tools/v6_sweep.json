@@ -2294,6 +2294,69 @@
         }
       },
       "run_key": "sweep-54-56"
+    },
+    "57-59": {
+      "57": {
+        "v6": {
+          "seeds": [
+            "cliffside",
+            "unease",
+            "follow",
+            "wavelength"
+          ],
+          "idea": "walking behind a stranger on a coast path in fog, matching their pace because overtaking would feel rude, neither of you speaking"
+        },
+        "v6-wild": {
+          "seeds": [
+            "overpass",
+            "resignation",
+            "return",
+            "palimpsest"
+          ],
+          "idea": "being shown politely around your old house by the people who bought it and painted over everything"
+        }
+      },
+      "58": {
+        "v6": {
+          "seeds": [
+            "subway platform",
+            "restlessness",
+            "arrive",
+            "mirage"
+          ],
+          "idea": "the one who is early for everything, standing in the warm tunnel air, arriving somewhere and already wanting the next thing"
+        },
+        "v6-wild": {
+          "seeds": [
+            "fairground",
+            "wonder",
+            "wait",
+            "cipher"
+          ],
+          "idea": "a kid too small for the ride, waiting by the rail and working out how the mechanism does what it does"
+        }
+      },
+      "59": {
+        "v6": {
+          "seeds": [
+            "telephone box",
+            "forgiveness",
+            "lie (deceive)",
+            "frequency"
+          ],
+          "idea": "telling a dying relative from a phone box in the rain that everything turned out fine, when it did not"
+        },
+        "v6-wild": {
+          "seeds": [
+            "ferry",
+            "relief",
+            "drive",
+            "half-life"
+          ],
+          "idea": "driving onto a boat with everything you own and feeling nothing but lightness, which is frightening"
+        }
+      },
+      "run_key": "sweep-57-59"
     }
   }
 }
