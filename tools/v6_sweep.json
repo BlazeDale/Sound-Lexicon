@@ -1695,6 +1695,120 @@
         ],
         "idea": "the state of being between two lives, and choosing to burn the one that can still be heard ringing"
       }
+    },
+    "48": {
+      "status": "generated",
+      "blind_deal": "sweep-48-50",
+      "v6": {
+        "title": "Still Tuned In",
+        "clips": [
+          "4529cff4-ad50-43c2-9958-91a323044d4b",
+          "0d03b260-7555-4865-9b7e-ddc9808b39a5"
+        ],
+        "v0": "0d03b260-7555-4865-9b7e-ddc9808b39a5",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "harbor",
+          "regret",
+          "wander",
+          "frequency"
+        ],
+        "idea": "someone who took the safe option once and has walked the same circuit ever since, still tuned to a station that stopped broadcasting"
+      },
+      "v6-wild": {
+        "title": "I'll Say It At The Gate",
+        "clips": [
+          "97469db8-1fcc-474e-9108-63088ca07b47",
+          "cee950f6-8bdd-41af-9551-ef8747410e78"
+        ],
+        "v0": "cee950f6-8bdd-41af-9551-ef8747410e78",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "tarmac",
+          "defiance",
+          "confess",
+          "palimpsest"
+        ],
+        "idea": "admitting a thing at the last possible moment, in a place built for leaving, and finding the admission was written over an older one"
+      }
+    },
+    "49": {
+      "status": "generated",
+      "blind_deal": "sweep-48-50",
+      "v6": {
+        "title": "The Kind Thing",
+        "clips": [
+          "73743d79-06ce-49af-8a2e-f294a808f4ce",
+          "712c515f-4b5c-4cf9-b60d-e1d38c594657"
+        ],
+        "v0": "712c515f-4b5c-4cf9-b60d-e1d38c594657",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "stairwell",
+          "forgiveness",
+          "lie (deceive)",
+          "entropy"
+        ],
+        "idea": "forgiving someone by never telling them what you know, and watching the not-telling quietly wear you both down"
+      },
+      "v6-wild": {
+        "title": "The Boxes Remember",
+        "clips": [
+          "b79f2a1a-1e0a-497a-9ace-1475f95dbac6",
+          "23fafb5c-d1fd-4f91-994c-b02582fb9a8d"
+        ],
+        "v0": "23fafb5c-d1fd-4f91-994c-b02582fb9a8d",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "ferry",
+          "resignation",
+          "pack",
+          "half-life"
+        ],
+        "idea": "packing for a move made so many times the boxes remember it, and accepting that each leaving takes a smaller piece than the last"
+      }
+    },
+    "50": {
+      "status": "generated",
+      "blind_deal": "sweep-48-50",
+      "v6": {
+        "title": "What I Keep Under",
+        "clips": [
+          "a7aa66f7-23b9-4657-bfed-360bb37cd9d8",
+          "07cb5477-c396-4889-8bd3-6d777d32ab2f"
+        ],
+        "v0": "07cb5477-c396-4889-8bd3-6d777d32ab2f",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "reservoir",
+          "restlessness",
+          "hide",
+          "dream"
+        ],
+        "idea": "the part of yourself kept submerged because it does not fit the life you built, and the way it surfaces at night"
+      },
+      "v6-wild": {
+        "title": "Glad For You",
+        "clips": [
+          "82b01880-511f-40b5-a402-4310dbbb65bb",
+          "ffac7f42-e98c-449a-b318-1c5b3a3a7bfb"
+        ],
+        "v0": "ffac7f42-e98c-449a-b318-1c5b3a3a7bfb",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "rooftop",
+          "envy",
+          "reach",
+          "afterimage"
+        ],
+        "idea": "watching someone get the thing you wanted, being glad for them out loud and meaning it, and carrying the shape of it behind your eyes all week"
+      }
     }
   },
   "method": {
