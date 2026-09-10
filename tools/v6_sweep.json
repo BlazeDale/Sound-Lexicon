@@ -1763,6 +1763,69 @@
         }
       },
       "run_key": "sweep-45-47"
+    },
+    "48-50": {
+      "48": {
+        "v6": {
+          "seeds": [
+            "harbor",
+            "regret",
+            "wander",
+            "frequency"
+          ],
+          "idea": "someone who took the safe option once and has walked the same circuit ever since, still tuned to a station that stopped broadcasting"
+        },
+        "v6-wild": {
+          "seeds": [
+            "tarmac",
+            "defiance",
+            "confess",
+            "palimpsest"
+          ],
+          "idea": "admitting a thing at the last possible moment, in a place built for leaving, and finding the admission was written over an older one"
+        }
+      },
+      "49": {
+        "v6": {
+          "seeds": [
+            "stairwell",
+            "forgiveness",
+            "lie (deceive)",
+            "entropy"
+          ],
+          "idea": "forgiving someone by never telling them what you know, and watching the not-telling quietly wear you both down"
+        },
+        "v6-wild": {
+          "seeds": [
+            "ferry",
+            "resignation",
+            "pack",
+            "half-life"
+          ],
+          "idea": "packing for a move made so many times the boxes remember it, and accepting that each leaving takes a smaller piece than the last"
+        }
+      },
+      "50": {
+        "v6": {
+          "seeds": [
+            "reservoir",
+            "restlessness",
+            "hide",
+            "dream"
+          ],
+          "idea": "the part of yourself kept submerged because it does not fit the life you built, and the way it surfaces at night"
+        },
+        "v6-wild": {
+          "seeds": [
+            "rooftop",
+            "envy",
+            "reach",
+            "afterimage"
+          ],
+          "idea": "watching someone get the thing you wanted, being glad for them out loud and meaning it, and carrying the shape of it behind your eyes all week"
+        }
+      },
+      "run_key": "sweep-48-50"
     }
   }
 }
