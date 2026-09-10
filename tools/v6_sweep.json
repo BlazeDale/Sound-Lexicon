@@ -1940,6 +1940,69 @@
         }
       },
       "run_key": "sweep-48-50"
+    },
+    "51-53": {
+      "51": {
+        "v6": {
+          "seeds": [
+            "train station",
+            "contentment",
+            "chase",
+            "limbo"
+          ],
+          "idea": "a person who stopped chasing and cannot tell whether it is peace or surrender, and has decided not to find out"
+        },
+        "v6-wild": {
+          "seeds": [
+            "rooftop",
+            "dread",
+            "wander",
+            "palimpsest"
+          ],
+          "idea": "going back to the place where you were certain something terrible would happen, and finding the fear written over by ordinary years"
+        }
+      },
+      "52": {
+        "v6": {
+          "seeds": [
+            "drive-in",
+            "guilt",
+            "wave",
+            "apparition"
+          ],
+          "idea": "greeting someone you wronged as though nothing happened, and both of you silently agreeing to the performance"
+        },
+        "v6-wild": {
+          "seeds": [
+            "quarry",
+            "restlessness",
+            "reach",
+            "undertow"
+          ],
+          "idea": "the pull toward a thing that will cost everything, and the honest admission that the pull is the part you love"
+        }
+      },
+      "53": {
+        "v6": {
+          "seeds": [
+            "cliffside",
+            "saudade",
+            "unravel",
+            "event horizon"
+          ],
+          "idea": "missing a version of your life that never actually happened, and the slow coming-apart of the story you told to keep it"
+        },
+        "v6-wild": {
+          "seeds": [
+            "harbor",
+            "longing",
+            "let go",
+            "aurora"
+          ],
+          "idea": "the night you finally stopped waiting for someone, and how unfairly beautiful the world was about it"
+        }
+      },
+      "run_key": "sweep-51-53"
     }
   }
 }
