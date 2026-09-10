@@ -1581,6 +1581,120 @@
           "parallax"
         ]
       }
+    },
+    "45": {
+      "status": "generated",
+      "blind_deal": "sweep-45-47",
+      "v6": {
+        "title": "Takin' It Apart",
+        "clips": [
+          "28c37d75-2c89-41e3-8aed-ac209d647e7f",
+          "0acdb7a4-bf54-42c3-ae00-586bd2548ddf"
+        ],
+        "v0": "0acdb7a4-bf54-42c3-ae00-586bd2548ddf",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "switchyard",
+          "bitterness",
+          "unravel",
+          "threshold"
+        ],
+        "idea": "someone taking apart, one piece at a time, the life they assembled with a person who is not coming back — and finding the last piece is a door they could have walked through years ago"
+      },
+      "v6-wild": {
+        "title": "Everybody Else Is Finished",
+        "clips": [
+          "60cd4666-2cdc-4d46-a727-879717eef6de",
+          "ef1125d6-4958-449c-875f-79a80d79037a"
+        ],
+        "v0": "ef1125d6-4958-449c-875f-79a80d79037a",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "chapel",
+          "grief",
+          "wait",
+          "twilight"
+        ],
+        "idea": "the long after of a death, when everyone else's mourning has a schedule and yours does not, and one hour of the day becomes the only thing that agrees with you"
+      }
+    },
+    "46": {
+      "status": "generated",
+      "blind_deal": "sweep-45-47",
+      "v6": {
+        "title": "Somebody's Gotta Keep It On",
+        "clips": [
+          "88f7607a-0fdb-40dd-83a2-fbb300ce041b",
+          "dcee5e0b-3042-437b-8732-2e3cd34a9fe9"
+        ],
+        "v0": "dcee5e0b-3042-437b-8732-2e3cd34a9fe9",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "lighthouse",
+          "dread",
+          "reach",
+          "entropy"
+        ],
+        "idea": "a person keeping something alive that nobody needs any more, because they are afraid of who they will be the day they stop reaching for it"
+      },
+      "v6-wild": {
+        "title": "The Way You Walk Ain't Yours",
+        "clips": [
+          "fc93fda9-ad21-491e-b289-062bfb7851b2",
+          "acb1c3d8-525c-4654-bd1e-cfb794c5987a"
+        ],
+        "v0": "acb1c3d8-525c-4654-bd1e-cfb794c5987a",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "fairground",
+          "longing",
+          "follow",
+          "afterimage"
+        ],
+        "idea": "following a stranger through a crowd because they move like someone you lost, and wanting the mistake to last as long as possible"
+      }
+    },
+    "47": {
+      "status": "generated",
+      "blind_deal": "sweep-45-47",
+      "v6": {
+        "title": "The Kindest Lie In Town",
+        "clips": [
+          "78866bc2-142a-4268-b37a-fba397f71e65",
+          "e9b31d6a-208b-4394-8a30-6f937b184d08"
+        ],
+        "v0": "e9b31d6a-208b-4394-8a30-6f937b184d08",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "rooftop",
+          "defiance",
+          "lie (deceive)",
+          "limbo"
+        ],
+        "idea": "a kindness told so often and so well that it became the room two people live in, and neither will be the one to open the window"
+      },
+      "v6-wild": {
+        "title": "Still Ringing",
+        "clips": [
+          "02063835-3c3b-4b73-b379-e5613b6a993b",
+          "809e3557-6dd0-4f50-a3f6-4baf2333fb7a"
+        ],
+        "v0": "809e3557-6dd0-4f50-a3f6-4baf2333fb7a",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "subway platform",
+          "restlessness",
+          "burn",
+          "resonance"
+        ],
+        "idea": "the state of being between two lives, and choosing to burn the one that can still be heard ringing"
+      }
     }
   },
   "method": {
