@@ -1809,6 +1809,120 @@
         ],
         "idea": "watching someone get the thing you wanted, being glad for them out loud and meaning it, and carrying the shape of it behind your eyes all week"
       }
+    },
+    "51": {
+      "status": "generated",
+      "blind_deal": "sweep-51-53",
+      "v6": {
+        "title": "Neither Won Nor Lost",
+        "clips": [
+          "4f11e86d-7b78-4037-8e1e-1590e4b663c4",
+          "f7b857ba-f5bc-4572-9e7a-0d6e6c89c405"
+        ],
+        "v0": "f7b857ba-f5bc-4572-9e7a-0d6e6c89c405",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "train station",
+          "contentment",
+          "chase",
+          "limbo"
+        ],
+        "idea": "a person who stopped chasing and cannot tell whether it is peace or surrender, and has decided not to find out"
+      },
+      "v6-wild": {
+        "title": "The Roof Is Only A Roof",
+        "clips": [
+          "ff6a6b66-f7cd-4e20-82f3-87f81f0ca407",
+          "0611b3e0-92b4-4be7-ae40-86e72c0aea4e"
+        ],
+        "v0": "0611b3e0-92b4-4be7-ae40-86e72c0aea4e",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "rooftop",
+          "dread",
+          "wander",
+          "palimpsest"
+        ],
+        "idea": "going back to the place where you were certain something terrible would happen, and finding the fear written over by ordinary years"
+      }
+    },
+    "52": {
+      "status": "generated",
+      "blind_deal": "sweep-51-53",
+      "v6": {
+        "title": "I Waved",
+        "clips": [
+          "2b2e1b41-d9be-45f0-b083-f3f118ff47d3",
+          "492c41e2-6d25-45f8-aba8-7d6458d88abd"
+        ],
+        "v0": "492c41e2-6d25-45f8-aba8-7d6458d88abd",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "drive-in",
+          "guilt",
+          "wave",
+          "apparition"
+        ],
+        "idea": "greeting someone you wronged as though nothing happened, and both of you silently agreeing to the performance"
+      },
+      "v6-wild": {
+        "title": "I Like The Pull",
+        "clips": [
+          "9ccba029-b6b4-4f4c-821b-72ee0dfd5b8e",
+          "3390a1aa-31c5-4b75-bfbb-5043691d2910"
+        ],
+        "v0": "3390a1aa-31c5-4b75-bfbb-5043691d2910",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "quarry",
+          "restlessness",
+          "reach",
+          "undertow"
+        ],
+        "idea": "the pull toward a thing that will cost everything, and the honest admission that the pull is the part you love"
+      }
+    },
+    "53": {
+      "status": "generated",
+      "blind_deal": "sweep-51-53",
+      "v6": {
+        "title": "Never Did Happen",
+        "clips": [
+          "1d9b2d27-481a-4b40-aecf-fc89dbd91ebf",
+          "60f21437-7185-4075-826a-15034ac24b16"
+        ],
+        "v0": "60f21437-7185-4075-826a-15034ac24b16",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "cliffside",
+          "saudade",
+          "unravel",
+          "event horizon"
+        ],
+        "idea": "missing a version of your life that never actually happened, and the slow coming-apart of the story you told to keep it"
+      },
+      "v6-wild": {
+        "title": "Done Waitin'",
+        "clips": [
+          "c3eeda97-f36c-4d19-b4fc-415149b5b48a",
+          "a539c5dc-4bb5-42a0-9b90-cf09e99c78fc"
+        ],
+        "v0": "a539c5dc-4bb5-42a0-9b90-cf09e99c78fc",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "harbor",
+          "longing",
+          "let go",
+          "aurora"
+        ],
+        "idea": "the night you finally stopped waiting for someone, and how unfairly beautiful the world was about it"
+      }
     }
   },
   "method": {
