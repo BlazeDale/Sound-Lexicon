@@ -1161,6 +1161,111 @@
           "mirage"
         ]
       }
+    },
+    "33": {
+      "status": "generated",
+      "v6": {
+        "title": "Hold It Together",
+        "clips": [
+          "443696dd-65fa-45b9-ba59-f26b8ad554b8",
+          "4d0b23da-eeec-41f6-b2fc-8af653bcc67e"
+        ],
+        "v0": "4d0b23da-eeec-41f6-b2fc-8af653bcc67e",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "overpass",
+          "restlessness",
+          "unravel",
+          "vertigo"
+        ]
+      },
+      "v6-wild": {
+        "title": "Say It Out Loud",
+        "clips": [
+          "f0ffa990-d81d-45bb-b686-eac3adb12972",
+          "a704836c-98f3-44e2-af13-c482a6ada716"
+        ],
+        "v0": "a704836c-98f3-44e2-af13-c482a6ada716",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "switchyard",
+          "guilt",
+          "confess",
+          "entropy"
+        ]
+      }
+    },
+    "34": {
+      "status": "generated",
+      "v6": {
+        "title": "The Drive-In Sky",
+        "clips": [
+          "fc4b454d-0d85-4532-a5e5-a5b4a232ecd0",
+          "3df92884-3beb-40e1-9137-03fd78d09171"
+        ],
+        "v0": "3df92884-3beb-40e1-9137-03fd78d09171",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "drive-in",
+          "tenderness",
+          "wait",
+          "aurora"
+        ]
+      },
+      "v6-wild": {
+        "title": "Same Bench, Same Sea",
+        "clips": [
+          "fdf112e4-90fc-4146-8dbd-6781da891829",
+          "acfa8a4e-a1fc-497e-9785-5ca521b10843"
+        ],
+        "v0": "acfa8a4e-a1fc-497e-9785-5ca521b10843",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "boardwalk",
+          "devotion",
+          "return",
+          "twilight"
+        ]
+      }
+    },
+    "35": {
+      "status": "generated",
+      "v6": {
+        "title": "Every Nine Seconds",
+        "clips": [
+          "b0c12e4f-27b4-4620-b804-3fbb5de4c299",
+          "0970762f-6f06-4a5a-8a47-97d287e62747"
+        ],
+        "v0": "0970762f-6f06-4a5a-8a47-97d287e62747",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "lighthouse",
+          "grief",
+          "reach",
+          "threshold"
+        ]
+      },
+      "v6-wild": {
+        "title": "Let The Water Have It",
+        "clips": [
+          "fadfdb74-a069-4675-8cef-cd6671d04bdb",
+          "677a2b63-e497-4883-b21d-54050c0b6bb8"
+        ],
+        "v0": "677a2b63-e497-4883-b21d-54050c0b6bb8",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "reservoir",
+          "forgiveness",
+          "let go",
+          "gravity"
+        ]
+      }
     }
   }
 }
