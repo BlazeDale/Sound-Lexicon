@@ -20,8 +20,8 @@
 
 /* Version stamp — the ONLY place to bump these. Title, <meta>, masthead, and
  * footer all derive from here + LIB counts at runtime, so counts never drift. */
-const VERSION = 'v80';
-const UPDATED = '2026-09-09';
+const VERSION = 'v81';
+const UPDATED = '2026-09-10';
 
 /* ---------- MOST RECENT BATCH ----------
    Update this after each run: label + date + the entry numbers/ids

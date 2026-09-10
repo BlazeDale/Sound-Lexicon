@@ -305,7 +305,7 @@
       <select id="sort" title="Sort order"><option value="num">Sort: default</option><option value="likes">Sort: most liked</option><option value="reg">Sort: register</option><option value="grit">Sort: grit</option><option value="bpm">Sort: BPM</option></select>
       <button type="button" class="tab" id="sortdir" title="Ascending — click for descending">↑</button>
       <button type="button" class="tab" id="genderedit" title="Assign a vocal gender (♀/♂) to demo songs — saves live">✎ Genders</button>
-      <select id="gaps" title="Find entries missing a demo song or a gender take"><option value="">Gaps: —</option><option value="demo">Missing demo</option><option value="m">Missing ♂</option><option value="f">Missing ♀</option></select>
+      <select id="gaps" title="Find entries missing a demo song, a gender take, or a v6-generation demo"><option value="">Gaps: —</option><option value="demo">Missing demo</option><option value="m">Missing ♂</option><option value="f">Missing ♀</option><option value="v6">Missing v6 demo</option><option value="hasv6">Has v6 demo</option></select>
       <span class="hits" id="hits"></span>
     </div>
     <div id="cards"></div>
@@ -486,7 +486,7 @@ function cardHTML(v){
   // data-blob feeds substring search only (never displayed); v.artist is a hashed
   // exact-match key (SHA-256 of the name) — the plaintext name never ships. See data.js.
   const sids=sunoIds(v.suno);   // song ids on this entry (empty => no demo)
-  let h=`<div class="card" data-n="${v.n}" data-cat="${v.cat}" data-aff="${esc(v.aff||'')}" data-reg="${TQ(v).r}" data-grit="${TQ(v).g}" data-bpm="${(String(v.style||'').match(/(?:near|at) (\d+) ?BPM/i)||[])[1]||''}" data-suno="${sids.join(',')}" data-artist="${esc(v.artist||'')}" data-blob="${esc((v.name+' '+v.fam+' '+v.style+' '+(v.lyric||'')+' '+(v.seed||'')+' '+songTitles(v).join(' ')+' '+songModels(v).join(' ')).toLowerCase())}" style="border-left-color:${border}">`;
+  let h=`<div class="card" data-n="${v.n}" data-cat="${v.cat}" data-aff="${esc(v.aff||'')}" data-reg="${TQ(v).r}" data-grit="${TQ(v).g}" data-bpm="${(String(v.style||'').match(/(?:near|at) (\d+) ?BPM/i)||[])[1]||''}" data-suno="${sids.join(',')}" data-models="${songModels(v).join(',')}" data-artist="${esc(v.artist||'')}" data-blob="${esc((v.name+' '+v.fam+' '+v.style+' '+(v.lyric||'')+' '+(v.seed||'')+' '+songTitles(v).join(' ')+' '+songModels(v).join(' ')).toLowerCase())}" style="border-left-color:${border}">`;
   h+=`<span class="likewrap"><button class="like" data-like="${esc(String(v.n))}" title="Like this style" aria-label="Like this style">♡</button><span class="lcount" data-count="${esc(String(v.n))}"></span></span>`;
   h+=`<div class="top"><span class="num">#${v.n}</span><span class="name">${esc(v.name)}</span><span class="fam">${esc(v.fam)}</span></div>`;
   h+=`<div class="chips">${chips(v)}</div>`;
@@ -570,13 +570,19 @@ function applyFilter(){
     // are lettered ('V2', 'L1'), so a case-sensitive compare never matched them
     const nid=String(c.dataset.n).toLowerCase();
     const okQ=!curQ||(artistMode?c.dataset.artist===curQHash:(c.dataset.blob.includes(curQ)||('#'+nid)===curQ||nid===curQ.replace('#','')));
-    // gaps: missing a demo song, or a song exists but no ♀/♂ take is tagged yet
+    // gaps: missing a demo song, or a song exists but no ♀/♂ take is tagged yet,
+    // or the entry has (or lacks) a demo from the v6 generator line — v6 and v6-wild
+    // both stamp "v6…", so one prefix test covers the whole current line
     const sids=c.dataset.suno?c.dataset.suno.split(','):[];
+    const mods=c.dataset.models?c.dataset.models.split(','):[];
     const G=window.__songGender||{};
+    const hasV6=mods.some(m=>m.indexOf('v6')===0);
     const okGap=!curGap?true
       :curGap==='demo'?sids.length===0
       :curGap==='m'?(sids.length>0&&!sids.some(id=>G[id]==='m'))
       :curGap==='f'?(sids.length>0&&!sids.some(id=>G[id]==='f'))
+      :curGap==='v6'?!hasV6
+      :curGap==='hasv6'?hasV6
       :true;
     const okAff=!curAff||!!curNum||c.dataset.aff===curAff;   // a drilled-in number overrides the affect group (restored when it clears)
     const show=okCat&&okQ&&okGap&&okAff; c.style.display=show?'':'none'; if(show)shown++;
@@ -800,7 +806,7 @@ foldTabs.forEach(t=>t.addEventListener('click',()=>{
    them puts the page back the way it was. Only non-defaults are written, so an unfiltered
    page keeps a clean address.
 
-     ?cat=  category tab (or liked / popular)     ?gap=  demo | m | f
+     ?cat=  category tab (or liked / popular)     ?gap=  demo | m | f | v6 | hasv6
      ?q=    search text                           ?aff=  affect group A–G
      ?sort= reg | grit | bpm | likes              ?dir=  asc | desc (only when not the
      ?artist= hashed study key                           natural default for that sort)
