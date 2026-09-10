@@ -1,0 +1,221 @@
+{
+  "note": "V6 sweep ledger — one v6 take and one v6-wild take per entry, fresh lyrics each. Clip ids collected at generation time (v6 rewrites metadata.tags, so opening-matching cannot recover them). Attach one clip per generation (batch_index v0).",
+  "started": "2026-09-10",
+  "entries": {
+    "1": {
+      "v6": {
+        "title": "Ain't Leavin' First",
+        "clips": [
+          "ca441621-96ed-4750-81e8-c9c49b6b73fb",
+          "80fd4059-1cf8-4d9f-992e-c2a358e5438d"
+        ],
+        "seeds": [
+          "switchyard",
+          "defiance",
+          "wait",
+          "half-life"
+        ],
+        "v0": "80fd4059-1cf8-4d9f-992e-c2a358e5438d",
+        "badge": "V6",
+        "durations": [
+          211.88,
+          227.52
+        ],
+        "mandated8": true
+      },
+      "v6-wild": {
+        "title": "Comin' Clean In Dirty Water",
+        "clips": [
+          "8934e7f1-3bd0-4450-bc0e-d6f37b76ab80",
+          "1fef0134-66a8-4f2a-9d84-8f107c8fbfc6"
+        ],
+        "seeds": [
+          "quarry",
+          "bitterness",
+          "confess",
+          "undertow"
+        ],
+        "v0": "1fef0134-66a8-4f2a-9d84-8f107c8fbfc6",
+        "badge": "V6-WILD",
+        "durations": [
+          198.52,
+          169.4
+        ],
+        "mandated8": true
+      },
+      "status": "generated"
+    },
+    "2": {
+      "v6": {
+        "title": "The Long Way Home",
+        "clips": [
+          "4575a2a1-b73b-4412-bb08-383387a4ce44",
+          "4b3606dc-1b1f-48be-bab0-ecb7a3a42879"
+        ],
+        "seeds": [
+          "telephone box",
+          "regret",
+          "circle",
+          "parallax"
+        ],
+        "v0": "4b3606dc-1b1f-48be-bab0-ecb7a3a42879",
+        "badge": "V6",
+        "durations": [
+          238,
+          234.44
+        ],
+        "mandated8": true
+      },
+      "v6-wild": {
+        "title": "The Light Stays On",
+        "clips": [
+          "a4badef2-0db0-4a0d-86c7-57e0d39447a8",
+          "e8669a5f-0ede-46c8-b67e-30e52a910706"
+        ],
+        "seeds": [
+          "drive-in",
+          "devotion",
+          "drift",
+          "afterimage"
+        ],
+        "v0": "e8669a5f-0ede-46c8-b67e-30e52a910706",
+        "badge": "V6-WILD",
+        "durations": [
+          454.48,
+          232.96
+        ],
+        "mandated8": true
+      },
+      "status": "generated"
+    },
+    "3": {
+      "v6": {
+        "title": "Two Rows Of Trees",
+        "clips": [
+          "69b5e235-dba0-4cb6-979a-bef86a9cfb9b",
+          "ae3e9849-0d89-471c-bd69-89fcce726abe"
+        ],
+        "seeds": [
+          "orchard",
+          "homesickness",
+          "leave",
+          "threshold"
+        ],
+        "v0": "ae3e9849-0d89-471c-bd69-89fcce726abe",
+        "badge": "V6",
+        "durations": [
+          162.92,
+          171.36
+        ],
+        "mandated8": true
+      },
+      "v6-wild": {
+        "title": "Noon Went Dark",
+        "clips": [
+          "4b8e110c-24be-4c04-a087-118ee8263eae",
+          "294f21bd-2b06-4f72-9cc8-22fd84d25fd9"
+        ],
+        "seeds": [
+          "chapel",
+          "grief",
+          "climb",
+          "eclipse"
+        ],
+        "v0": "294f21bd-2b06-4f72-9cc8-22fd84d25fd9",
+        "badge": "V6-WILD",
+        "durations": [
+          187.72,
+          169.44
+        ],
+        "mandated8": true
+      },
+      "status": "generated"
+    },
+    "4": {
+      "v6": {
+        "title": "Inventory",
+        "clips": [
+          "db9d52cd-fcde-42a2-93d7-177cd08d0f31",
+          "ab588767-3e7b-4a77-8966-2e616d5e501c"
+        ],
+        "seeds": [
+          "overpass",
+          "dread",
+          "pack",
+          "cipher"
+        ],
+        "v0": "ab588767-3e7b-4a77-8966-2e616d5e501c",
+        "badge": "V6",
+        "durations": [
+          181.16,
+          191.56
+        ],
+        "mandated8": true
+      },
+      "v6-wild": {
+        "title": "Carrier Tone",
+        "clips": [
+          "c1f0395b-1183-4af2-ad96-47b2ee5e05ad",
+          "259efc8b-3293-484d-a167-67729b312090"
+        ],
+        "seeds": [
+          "subway platform",
+          "unease",
+          "follow",
+          "frequency"
+        ],
+        "v0": "259efc8b-3293-484d-a167-67729b312090",
+        "badge": "V6-WILD",
+        "durations": [
+          194.96,
+          212.08
+        ],
+        "mandated8": true
+      },
+      "status": "generated"
+    },
+    "5": {
+      "v6": {
+        "title": "Let It Burn",
+        "clips": [
+          "aabcb65e-1f95-4974-8faa-4864f8664e2d",
+          "ed76f444-3fcc-4502-8687-b22183092fc6"
+        ],
+        "seeds": [
+          "fairground",
+          "relief",
+          "burn",
+          "resonance"
+        ],
+        "v0": "ed76f444-3fcc-4502-8687-b22183092fc6",
+        "badge": "V6",
+        "durations": [
+          182.8,
+          166.4
+        ],
+        "mandated8": true
+      },
+      "v6-wild": {
+        "title": "Come On Back To The Water",
+        "clips": [
+          "35208567-8864-4a77-a277-063b5afa0411",
+          "97466b71-f78d-4ce6-815c-2a04e792f59a"
+        ],
+        "seeds": [
+          "riverbank",
+          "forgiveness",
+          "return",
+          "aurora"
+        ],
+        "v0": "97466b71-f78d-4ce6-815c-2a04e792f59a",
+        "badge": "V6-WILD",
+        "durations": [
+          138,
+          383.76
+        ],
+        "mandated8": true
+      },
+      "status": "generated"
+    }
+  }
+}
