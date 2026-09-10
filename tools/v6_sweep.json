@@ -2117,6 +2117,69 @@
         }
       },
       "run_key": "sweep-51-53"
+    },
+    "54-56": {
+      "54": {
+        "v6": {
+          "seeds": [
+            "cliffside",
+            "gratitude",
+            "circle",
+            "gravity"
+          ],
+          "idea": "an old man walking the same morning loop past the spot where he nearly went over at twenty, and saying good morning to it"
+        },
+        "v6-wild": {
+          "seeds": [
+            "switchyard",
+            "longing",
+            "burn",
+            "eclipse"
+          ],
+          "idea": "two kids burning a mattress in a rail yard the summer everyone else left town, and one of them still there at forty"
+        }
+      },
+      "55": {
+        "v6": {
+          "seeds": [
+            "boardwalk",
+            "defiance",
+            "confess",
+            "entropy"
+          ],
+          "idea": "whoever runs the failing arcade telling a stranger exactly how bad the books are, and refusing to be pitied for it"
+        },
+        "v6-wild": {
+          "seeds": [
+            "greenhouse",
+            "saudade",
+            "reach",
+            "wavelength"
+          ],
+          "idea": "still watering a plant that belonged to someone who left, with the shed radio tuned to the station the two of them used to argue about"
+        }
+      },
+      "56": {
+        "v6": {
+          "seeds": [
+            "train station",
+            "unease",
+            "leave",
+            "orbit"
+          ],
+          "idea": "a goodbye on a platform that has gone on too long, both people wanting it over, neither willing to be the one who turns first"
+        },
+        "v6-wild": {
+          "seeds": [
+            "orchard",
+            "devotion",
+            "unravel",
+            "event horizon"
+          ],
+          "idea": "a man still pruning trees for an estate that has already been sold, walking the rows the day before the machines arrive"
+        }
+      },
+      "run_key": "sweep-54-56"
     }
   }
 }
