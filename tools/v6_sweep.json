@@ -1266,6 +1266,111 @@
           "gravity"
         ]
       }
+    },
+    "36": {
+      "status": "generated",
+      "v6": {
+        "title": "River Took My Name",
+        "clips": [
+          "eb2fc778-675c-42d9-982f-4b0ce5e70801",
+          "0da1c090-28a3-4db0-9a1a-32d28f8a7bd5"
+        ],
+        "v0": "0da1c090-28a3-4db0-9a1a-32d28f8a7bd5",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "riverbank",
+          "grief",
+          "leave",
+          "undertow"
+        ]
+      },
+      "v6-wild": {
+        "title": "Half A Crop",
+        "clips": [
+          "215ef4b3-1263-40bf-b912-5c6fab35b57b",
+          "237249ca-d0e3-400b-bc8a-a53e038ea1e8"
+        ],
+        "v0": "237249ca-d0e3-400b-bc8a-a53e038ea1e8",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "orchard",
+          "resignation",
+          "wait",
+          "half-life"
+        ]
+      }
+    },
+    "37": {
+      "status": "generated",
+      "v6": {
+        "title": "Two Different Skies",
+        "clips": [
+          "bbad0053-dd07-460a-8b76-3d621a17bca3",
+          "5ae7c467-10e0-4192-95c9-5e9133f87495"
+        ],
+        "v0": "5ae7c467-10e0-4192-95c9-5e9133f87495",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "observatory",
+          "wonder",
+          "drift",
+          "parallax"
+        ]
+      },
+      "v6-wild": {
+        "title": "Glass House Of The Sun",
+        "clips": [
+          "1469b193-4fc4-44ba-b939-9106d9984ffe",
+          "254a0398-221f-4274-b98e-5a03008fb23d"
+        ],
+        "v0": "254a0398-221f-4274-b98e-5a03008fb23d",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "greenhouse",
+          "awe",
+          "circle",
+          "mirage"
+        ]
+      }
+    },
+    "38": {
+      "status": "generated",
+      "v6": {
+        "title": "Say It On The Stairs",
+        "clips": [
+          "568fc8cb-5417-4352-9142-014baf38a69b",
+          "8e97bab1-999d-4c02-b6b8-c2f97cff6c45"
+        ],
+        "v0": "8e97bab1-999d-4c02-b6b8-c2f97cff6c45",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "stairwell",
+          "dread",
+          "confess",
+          "afterimage"
+        ]
+      },
+      "v6-wild": {
+        "title": "The Last Train Is Not Coming",
+        "clips": [
+          "9aa1234f-6b01-46af-b961-16012cab9f8f",
+          "34416b27-29fb-4e72-8a1b-8f399dc45930"
+        ],
+        "v0": "34416b27-29fb-4e72-8a1b-8f399dc45930",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "subway platform",
+          "loneliness",
+          "let go",
+          "frequency"
+        ]
+      }
     }
   }
 }
