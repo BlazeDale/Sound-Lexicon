@@ -1476,6 +1476,111 @@
           "orbit"
         ]
       }
+    },
+    "42": {
+      "status": "generated",
+      "v6": {
+        "title": "All The Colours",
+        "clips": [
+          "c22ef03d-f80d-4a8a-819e-08bc69990204",
+          "c71f83fb-6be7-4841-be7f-8d4d9786cf1a"
+        ],
+        "v0": "c71f83fb-6be7-4841-be7f-8d4d9786cf1a",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "fairground",
+          "defiance",
+          "chase",
+          "spectrum"
+        ]
+      },
+      "v6-wild": {
+        "title": "Somebody Else's Summer",
+        "clips": [
+          "5e4997c6-8fc0-4557-9fbb-eb26efc40b2a",
+          "2e056c32-2280-4b31-b6f9-44a653814c03"
+        ],
+        "v0": "2e056c32-2280-4b31-b6f9-44a653814c03",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "drive-in",
+          "envy",
+          "burn",
+          "mirage"
+        ]
+      }
+    },
+    "43": {
+      "status": "generated",
+      "v6": {
+        "title": "The Cliff Road",
+        "clips": [
+          "b4160707-a898-47b7-b61c-b198fdcc6d76",
+          "1a769e8d-bbc3-4184-a67a-b9ed3a5d7d5f"
+        ],
+        "v0": "1a769e8d-bbc3-4184-a67a-b9ed3a5d7d5f",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "cliffside",
+          "homesickness",
+          "leave",
+          "threshold"
+        ]
+      },
+      "v6-wild": {
+        "title": "The Light Above The Chapel",
+        "clips": [
+          "5b948818-b4bb-4e61-8bc9-14ef4a5459f4",
+          "2ba1ce26-3105-43aa-9d69-66a80e9491cd"
+        ],
+        "v0": "2ba1ce26-3105-43aa-9d69-66a80e9491cd",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "chapel",
+          "grief",
+          "return",
+          "aurora"
+        ]
+      }
+    },
+    "44": {
+      "status": "generated",
+      "v6": {
+        "title": "Notes On A Platform",
+        "clips": [
+          "eaf64f5c-f470-49ea-be8b-86ad464f6eb9",
+          "5a6b80cb-8635-4816-b42c-3985d61f5c43"
+        ],
+        "v0": "5a6b80cb-8635-4816-b42c-3985d61f5c43",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "subway platform",
+          "restlessness",
+          "wander",
+          "cipher"
+        ]
+      },
+      "v6-wild": {
+        "title": "Six Inches To The Left",
+        "clips": [
+          "dab12a47-879e-4d09-b911-e47765da706d",
+          "0bb0a7d1-a026-4233-b370-a4f9137767c0"
+        ],
+        "v0": "0bb0a7d1-a026-4233-b370-a4f9137767c0",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "rooftop",
+          "wonder",
+          "search",
+          "parallax"
+        ]
+      }
     }
   }
 }
