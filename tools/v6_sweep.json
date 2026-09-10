@@ -2037,6 +2037,120 @@
         ],
         "idea": "a man still pruning trees for an estate that has already been sold, walking the rows the day before the machines arrive"
       }
+    },
+    "57": {
+      "status": "generated",
+      "blind_deal": "sweep-57-59",
+      "v6": {
+        "title": "Same Speed As You",
+        "clips": [
+          "dcd59a2f-890e-4478-8a7c-e1f11ede1936",
+          "41866335-2426-4d79-9d9e-f1a5af746a28"
+        ],
+        "v0": "41866335-2426-4d79-9d9e-f1a5af746a28",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "cliffside",
+          "unease",
+          "follow",
+          "wavelength"
+        ],
+        "idea": "walking behind a stranger on a coast path in fog, matching their pace because overtaking would feel rude, neither of you speaking"
+      },
+      "v6-wild": {
+        "title": "They've Done It Lovely",
+        "clips": [
+          "1ae6fd5b-d4e0-47df-a307-928f2d8e48f4",
+          "92519c8e-80f3-4aad-9526-f63d16ce2057"
+        ],
+        "v0": "92519c8e-80f3-4aad-9526-f63d16ce2057",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "overpass",
+          "resignation",
+          "return",
+          "palimpsest"
+        ],
+        "idea": "being shown politely around your old house by the people who bought it and painted over everything"
+      }
+    },
+    "58": {
+      "status": "generated",
+      "blind_deal": "sweep-57-59",
+      "v6": {
+        "title": "Early",
+        "clips": [
+          "9f8a9354-6ca3-40a1-8d7d-0d0d9b624ffb",
+          "2da49f1f-557b-4eaf-b05f-c64f7a425c40"
+        ],
+        "v0": "2da49f1f-557b-4eaf-b05f-c64f7a425c40",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "subway platform",
+          "restlessness",
+          "arrive",
+          "mirage"
+        ],
+        "idea": "the one who is early for everything, standing in the warm tunnel air, arriving somewhere and already wanting the next thing"
+      },
+      "v6-wild": {
+        "title": "Under The Bar",
+        "clips": [
+          "c320d841-4fe5-4c6d-b482-68be1fcdb4c6",
+          "bf2338ee-c2cb-4c7d-8b5a-fd77c94f6b31"
+        ],
+        "v0": "bf2338ee-c2cb-4c7d-8b5a-fd77c94f6b31",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "fairground",
+          "wonder",
+          "wait",
+          "cipher"
+        ],
+        "idea": "a kid too small for the ride, waiting by the rail and working out how the mechanism does what it does"
+      }
+    },
+    "59": {
+      "status": "generated",
+      "blind_deal": "sweep-57-59",
+      "v6": {
+        "title": "I'm Doing Fine",
+        "clips": [
+          "fab6384a-e1d7-4f36-b06d-28635b24526f",
+          "3630e166-2d79-4f23-98b3-154f35f5e695"
+        ],
+        "v0": "3630e166-2d79-4f23-98b3-154f35f5e695",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "telephone box",
+          "forgiveness",
+          "lie (deceive)",
+          "frequency"
+        ],
+        "idea": "telling a dying relative from a phone box in the rain that everything turned out fine, when it did not"
+      },
+      "v6-wild": {
+        "title": "Light",
+        "clips": [
+          "3090cd46-3c95-49ac-bffa-6e1629dcdf97",
+          "ffd92305-530d-42f5-a3c0-d79efeb32d13"
+        ],
+        "v0": "ffd92305-530d-42f5-a3c0-d79efeb32d13",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "ferry",
+          "relief",
+          "drive",
+          "half-life"
+        ],
+        "idea": "driving onto a boat with everything you own and feeling nothing but lightness, which is frightening"
+      }
     }
   },
   "method": {
