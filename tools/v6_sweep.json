@@ -636,6 +636,111 @@
         ]
       },
       "status": "generated"
+    },
+    "18": {
+      "status": "generated",
+      "v6": {
+        "title": "Everyone's Already There",
+        "clips": [
+          "71dec537-b030-4ef8-9790-a0228addad3f",
+          "6a365da5-64f3-45c9-a82b-de395a3a7a48"
+        ],
+        "v0": "6a365da5-64f3-45c9-a82b-de395a3a7a48",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "drive-in",
+          "envy",
+          "chase",
+          "vertigo"
+        ]
+      },
+      "v6-wild": {
+        "title": "Wave From The Overpass",
+        "clips": [
+          "4400ff07-6aab-47f0-8540-bd1b5397605c",
+          "b698a21d-6ac0-4b3f-8e58-c858c607c9cc"
+        ],
+        "v0": "b698a21d-6ac0-4b3f-8e58-c858c607c9cc",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "overpass",
+          "defiance",
+          "wave",
+          "limbo"
+        ]
+      }
+    },
+    "19": {
+      "status": "generated",
+      "v6": {
+        "title": "The Light That Hunts The North",
+        "clips": [
+          "623ba305-9f6d-4d64-89ee-8d0512daddf0",
+          "fa1de22e-8d9a-40c7-b1f4-bbf25312b832"
+        ],
+        "v0": "fa1de22e-8d9a-40c7-b1f4-bbf25312b832",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "cliffside",
+          "dread",
+          "climb",
+          "aurora"
+        ]
+      },
+      "v6-wild": {
+        "title": "Drowned Valley",
+        "clips": [
+          "7850db00-8be7-4820-b445-de7e38a77edc",
+          "f5127d13-7832-4c33-abe9-b973e1b14506"
+        ],
+        "v0": "f5127d13-7832-4c33-abe9-b973e1b14506",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "reservoir",
+          "grief",
+          "drown",
+          "entropy"
+        ]
+      }
+    },
+    "20": {
+      "status": "generated",
+      "v6": {
+        "title": "The Long Blue Hour",
+        "clips": [
+          "9c6450e3-14f0-4f00-845f-c2182647b150",
+          "2bfcd82f-5815-4ca8-af55-e727ef56fee1"
+        ],
+        "v0": "2bfcd82f-5815-4ca8-af55-e727ef56fee1",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "stairwell",
+          "tenderness",
+          "wait",
+          "twilight"
+        ]
+      },
+      "v6-wild": {
+        "title": "Come Back To The Roof",
+        "clips": [
+          "097df76a-af6e-4e92-a7c1-f061b6b090f1",
+          "0a45f7ff-7da8-4a13-aaa9-97ed2355a0e0"
+        ],
+        "v0": "0a45f7ff-7da8-4a13-aaa9-97ed2355a0e0",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "rooftop",
+          "devotion",
+          "return",
+          "resonance"
+        ]
+      }
     }
   }
 }
