@@ -216,6 +216,216 @@
         "mandated8": true
       },
       "status": "generated"
+    },
+    "6": {
+      "v6": {
+        "title": "Stone Is Slow",
+        "clips": [
+          "4392360b-1f4b-430d-888a-833e11f39df6",
+          "9acf7907-2a3a-4a4e-aa75-0ec75a90cdac"
+        ],
+        "v0": "9acf7907-2a3a-4a4e-aa75-0ec75a90cdac",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "cliffside",
+          "awe",
+          "wander",
+          "gravity"
+        ]
+      },
+      "v6-wild": {
+        "title": "The Drowned Road",
+        "clips": [
+          "b5f72e81-2bb0-4fb3-bea3-eeda88c0e404",
+          "b05999b4-9400-4cd3-8219-7ec5a3c2bc4f"
+        ],
+        "v0": "b05999b4-9400-4cd3-8219-7ec5a3c2bc4f",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "reservoir",
+          "loneliness",
+          "fall",
+          "orbit"
+        ]
+      },
+      "status": "generated"
+    },
+    "7": {
+      "v6": {
+        "title": "The Light Arrives Alone",
+        "clips": [
+          "9d628bc6-c800-4c22-a467-767ffe3bc697",
+          "284666ea-4ed2-4ad5-8bad-e056ac095c43"
+        ],
+        "v0": "284666ea-4ed2-4ad5-8bad-e056ac095c43",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "observatory",
+          "longing",
+          "reach",
+          "spectrum"
+        ]
+      },
+      "v6-wild": {
+        "title": "The Hour Before",
+        "clips": [
+          "a6ed6a6e-2315-468b-821c-66befa426fac",
+          "7644e10a-3f98-490e-9f5e-2e4b3f8b8805"
+        ],
+        "v0": "7644e10a-3f98-490e-9f5e-2e4b3f8b8805",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "lighthouse",
+          "anticipation",
+          "wave",
+          "mirage"
+        ]
+      },
+      "status": "generated"
+    },
+    "8": {
+      "v6": {
+        "title": "The Slow Undoing",
+        "clips": [
+          "8838e151-b4f8-4e2a-a7b7-8b69231fe732",
+          "254ae601-18ac-4c8e-b987-c0ce4b948d86"
+        ],
+        "v0": "254ae601-18ac-4c8e-b987-c0ce4b948d86",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "pier",
+          "resignation",
+          "drown",
+          "entropy"
+        ]
+      },
+      "v6-wild": {
+        "title": "Written Over",
+        "clips": [
+          "846fe7aa-260d-4e8c-9cc5-e7397dfc8550",
+          "366dd50d-a01d-4b89-9621-4418e28ccd73"
+        ],
+        "v0": "366dd50d-a01d-4b89-9621-4418e28ccd73",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "greenhouse",
+          "guilt",
+          "forget",
+          "palimpsest"
+        ]
+      },
+      "status": "generated"
+    },
+    "9": {
+      "v6": {
+        "title": "Landing Light",
+        "clips": [
+          "3528311b-833d-4c28-a1a7-059cd3d1bfc6",
+          "49145412-fd76-4d05-ba7e-f93f2351f875"
+        ],
+        "v0": "49145412-fd76-4d05-ba7e-f93f2351f875",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "stairwell",
+          "tenderness",
+          "hide",
+          "wavelength"
+        ]
+      },
+      "v6-wild": {
+        "title": "Ice Machine Light",
+        "clips": [
+          "1d92c038-8d38-4b0a-9ca2-312582d75d0d",
+          "0c80c1f3-f2f5-4b43-9db1-c4872e58fd00"
+        ],
+        "v0": "0c80c1f3-f2f5-4b43-9db1-c4872e58fd00",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "motel corridor",
+          "saudade",
+          "let go",
+          "twilight"
+        ]
+      },
+      "status": "generated"
+    },
+    "10": {
+      "v6": {
+        "title": "Slow Wheel Rolling",
+        "clips": [
+          "485339d5-7a12-421f-b7fb-8b29df894609",
+          "f45799df-691a-4264-92be-35c48999c645"
+        ],
+        "v0": "f45799df-691a-4264-92be-35c48999c645",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "boardwalk",
+          "contentment",
+          "drive",
+          "dream"
+        ]
+      },
+      "v6-wild": {
+        "title": "Ship Come In",
+        "clips": [
+          "48c5c368-95b9-4164-b6b7-dad0029b055d",
+          "940e93ca-6c9b-49fa-92b6-3805d956b6df"
+        ],
+        "v0": "940e93ca-6c9b-49fa-92b6-3805d956b6df",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "harbor",
+          "gratitude",
+          "arrive",
+          "apparition"
+        ]
+      },
+      "status": "generated"
+    },
+    "11": {
+      "v6": {
+        "title": "The Roof At Four O'Clock",
+        "clips": [
+          "c6f65417-68ab-4d70-9933-2b47a89f4be0",
+          "fc8ccb68-36e3-4b4a-9f73-129733e904ea"
+        ],
+        "v0": "fc8ccb68-36e3-4b4a-9f73-129733e904ea",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "rooftop",
+          "wonder",
+          "chase",
+          "limbo"
+        ]
+      },
+      "v6-wild": {
+        "title": "The Last Light Before The Line",
+        "clips": [
+          "186dfe7a-4e65-4628-86eb-67ac3a610817",
+          "cd59df98-0d0b-4c0a-a4fa-6123cf770393"
+        ],
+        "v0": "cd59df98-0d0b-4c0a-a4fa-6123cf770393",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "tarmac",
+          "restlessness",
+          "search",
+          "event horizon"
+        ]
+      },
+      "status": "generated"
     }
   }
 }
