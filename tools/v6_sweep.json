@@ -741,6 +741,111 @@
           "resonance"
         ]
       }
+    },
+    "21": {
+      "status": "generated",
+      "v6": {
+        "title": "Off Season",
+        "clips": [
+          "49e77497-8dbd-4ea3-9866-a718e870a36b",
+          "1c5c8562-a4cc-45f3-ada8-c00581ec1cf5"
+        ],
+        "v0": "1c5c8562-a4cc-45f3-ada8-c00581ec1cf5",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "boardwalk",
+          "homesickness",
+          "unravel",
+          "half-life"
+        ]
+      },
+      "v6-wild": {
+        "title": "Platform Four",
+        "clips": [
+          "e26152f5-58a9-4aac-8820-4b660a9d160a",
+          "7bed1aac-cfe0-43ba-a954-f13778adaac5"
+        ],
+        "v0": "7bed1aac-cfe0-43ba-a954-f13778adaac5",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "train station",
+          "guilt",
+          "hide",
+          "afterimage"
+        ]
+      }
+    },
+    "22": {
+      "status": "generated",
+      "v6": {
+        "title": "The Lights Came Up In Colour",
+        "clips": [
+          "433a426e-e5c6-4ef4-a224-c3b2c36e1417",
+          "25bb704c-4690-4e8f-a928-1b604658593d"
+        ],
+        "v0": "25bb704c-4690-4e8f-a928-1b604658593d",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "fairground",
+          "wonder",
+          "arrive",
+          "aurora"
+        ]
+      },
+      "v6-wild": {
+        "title": "Round Again",
+        "clips": [
+          "0e0c6ff9-beb7-46c5-b439-58ee4e10f0ef",
+          "4f1c3b4d-5469-4a3c-b598-7c8c7043149c"
+        ],
+        "v0": "4f1c3b4d-5469-4a3c-b598-7c8c7043149c",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "pier",
+          "gratitude",
+          "circle",
+          "spectrum"
+        ]
+      }
+    },
+    "23": {
+      "status": "generated",
+      "v6": {
+        "title": "Nobody's Floor",
+        "clips": [
+          "0efc2912-9326-409a-b912-75b974360244",
+          "bd383a7f-407d-4895-8cd3-d4adbaf7639a"
+        ],
+        "v0": "bd383a7f-407d-4895-8cd3-d4adbaf7639a",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "motel corridor",
+          "loneliness",
+          "drift",
+          "frequency"
+        ]
+      },
+      "v6-wild": {
+        "title": "Glass Room Summer",
+        "clips": [
+          "f5685998-b9aa-41d4-9af9-a72c9dfaf908",
+          "4ddbf843-a263-4328-82e9-d7160d757731"
+        ],
+        "v0": "4ddbf843-a263-4328-82e9-d7160d757731",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "greenhouse",
+          "saudade",
+          "forget",
+          "dream"
+        ]
+      }
     }
   }
 }
