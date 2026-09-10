@@ -951,6 +951,111 @@
           "aurora"
         ]
       }
+    },
+    "27": {
+      "status": "generated",
+      "v6": {
+        "title": "Higher Than The Fall",
+        "clips": [
+          "468e2e1e-d5b4-4450-a1de-d76fe0b2b305",
+          "f49a2c66-6641-46b8-9dc8-3bbd4bf0d672"
+        ],
+        "v0": "f49a2c66-6641-46b8-9dc8-3bbd4bf0d672",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "cliffside",
+          "defiance",
+          "climb",
+          "gravity"
+        ]
+      },
+      "v6-wild": {
+        "title": "Light The Whole Yard Up",
+        "clips": [
+          "3d980e81-67f3-4543-bdf6-d618196ace60",
+          "87567891-447f-47b2-b16c-e0313f124426"
+        ],
+        "v0": "87567891-447f-47b2-b16c-e0313f124426",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "switchyard",
+          "restlessness",
+          "burn",
+          "event horizon"
+        ]
+      }
+    },
+    "28": {
+      "status": "generated",
+      "v6": {
+        "title": "Nothing Happens Here",
+        "clips": [
+          "abadb283-727d-4050-92bc-5884d4c667d1",
+          "ac898d41-0231-423c-9b32-75395e62897e"
+        ],
+        "v0": "ac898d41-0231-423c-9b32-75395e62897e",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "overpass",
+          "envy",
+          "wait",
+          "limbo"
+        ]
+      },
+      "v6-wild": {
+        "title": "Out Of Season Town",
+        "clips": [
+          "7c58fcd5-97f7-43e6-aa09-4bc567d17aa4",
+          "f7e73edf-c624-4679-9ecc-93b726bd184b"
+        ],
+        "v0": "f7e73edf-c624-4679-9ecc-93b726bd184b",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "boardwalk",
+          "bitterness",
+          "leave",
+          "half-life"
+        ]
+      }
+    },
+    "29": {
+      "status": "generated",
+      "v6": {
+        "title": "Meet Me Where The Light Goes",
+        "clips": [
+          "81f25677-8935-4314-a7b1-ec66d667ca2c",
+          "a26071f2-67e0-4b91-b8aa-09f835a3799b"
+        ],
+        "v0": "a26071f2-67e0-4b91-b8aa-09f835a3799b",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "rooftop",
+          "devotion",
+          "return",
+          "twilight"
+        ]
+      },
+      "v6-wild": {
+        "title": "Hum In The Building",
+        "clips": [
+          "7378107a-e23e-4ffd-b063-8dc18812beaf",
+          "8a9222ce-b712-42cf-805c-b09b16dec7f7"
+        ],
+        "v0": "8a9222ce-b712-42cf-805c-b09b16dec7f7",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "stairwell",
+          "tenderness",
+          "drift",
+          "resonance"
+        ]
+      }
     }
   }
 }
