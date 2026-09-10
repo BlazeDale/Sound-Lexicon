@@ -1752,6 +1752,52 @@ Country big beat near 130 BPM, filthy underneath and sweet on top — every inst
 belted power vocal, distorted lead vocal, processed lead vocal, rasping delivery, shouted chorus, polite clean backing track, gradual dynamics, minor key, slow tempo, wordless treatment
 ```
 
+## Study 29 — Melodic grunge songbook — recreations (blend + 0 roots)
+
+*Generated from library entries #495–498 · 2026-09-09 — edit the `inspiration` entries in `data.js`, then run `node tools/build.mjs`.*
+
+Song-recreation set for the artist already covered by studies 12–14 (ancestry, then delivery facets) and half of study 24. Those studies asked what the band is made of and how they sing; this one asks the library to render four specific records, so the root method is dropped entirely — each entry is one song written as its own literal arrangement, beat by beat, in the manner of study 21. The four were named by the owner and share a wing: the melodic, guitar-lyrical songs rather than the fast or arena ones. What separates them is architecture, not flavour. #495 never changes tempo, only weight, and spends its last third abandoning the lyric to cycle one progression under a building improvised lead. #496 has no chorus and no build at all — the lead guitar plays from the first bar as a literal second voice and the singing is deliberately slurred to half-intelligibility, which is the signature and not a defect to correct. #497 is one dynamic step and nothing else: no drums for a whole verse, then the entire band arriving at once, and no solo anywhere. #498 is the only driven one, holding a clipped verse against a chorus that opens wide and overstays. The improvised lead-guitar break is prompted explicitly in #495, #496 and #498 and deliberately banned in #497, which has none — the standing note for this artist is that the studio solo is signature while the live jam is not, so each carries 'song-length, not a sprawling jam'. Timbre came out 4/6.8, 5/5, 2.5/2.5, 5.4/6.2 — a real spread rather than the collapse study 21 saw, because these are four different performances rather than five angles on one. Failure mode to watch: rendered with arena reverb and a crowd they all become the stadium version of this band, which is the one thing the owner has consistently steered away from.
+
+### Recreation 1 · Slow ache, the outro abandons the words (977)
+
+```
+Slow 90s alt-rock ballad near 84 BPM, aching and unhurried — a clean electric guitar arpeggiating one bright figure over a soft organ tone held far back, bass entering under the first verse, drums brushed before they are struck. The song never changes tempo, only weight: the last third abandons the lyric entirely and cycles a single chord progression while the band swells and an improvised bluesy lead guitar bends long vocal-like notes across it, song-length, not a sprawling jam. A unique and specific vocalist: a low chest-placed baritone, warm and grained, swallowed and conversational through the verses, then opening into a hoarse non-lexical cry in the upper register over the closing cycle, ad-libbed and left uncorrected. Real words until that outro, one voice from first line to last. Warm analogue capture, voice close and unglossed, room on the drums. Delivery grieving and self-possessed — composure held through the verses precisely so the ending can break it.
+```
+
+```
+programmed drums, gridded quantized timing, autotune, corrected pitch on the outro cry, belted diva runs, orchestral arrangement, key change, fade-out on the first chorus, rap delivery, trap hi-hats
+```
+
+### Recreation 2 · Lead guitar as the second voice, words half-swallowed (951)
+
+```
+Bluesy 90s alt-rock elegy near 76 BPM, warm and circling — built around an improvised lead guitar in clean-to-lightly-overdriven tone that plays continuously from the first bar, rolling double-stops and long bent notes, answering every sung line like a second voice and never dropping back into a rhythm part. Behind it a simple bass and a loose unhurried kit. There is no chorus hook and no build; the form circles, and the song ends on the guitar alone taking an extended improvised solo out to the fade. A unique and specific vocalist: a mid-register voice, smoky and loose, phrasing far behind the beat with the diction deliberately slurred — consonants swallowed, words melting into vowel so the sense arrives only in fragments. Real words are sung throughout, half-intelligible by design, one voice from first line to last. Warm analogue capture, everything slightly hazy. Delivery unguarded and inward — a voice not performing to be understood.
+```
+
+```
+crisp enunciation, spoken-word clarity, declamatory delivery, autotune, gridded quantized timing, tight radio mastering, gang chorus, big chorus lift, programmed drums, rap delivery, wordless treatment
+```
+
+### Recreation 3 · Hushed verse, the band arrives all at once (971)
+
+```
+90s alt-rock ballad near 84 BPM built entirely on one dynamic step — it opens on a single soft chorused electric guitar and a low sustained organ tone, close to whispered, with no drums at all through the whole first verse; kit, bass and a jangling second guitar then arrive together on the first chorus and the picture widens in a single move; the second verse drops back to the quiet setting; the last chorus is the widest, harmony voices doubling the lead line behind it. No solo and no tempo change — loud against quiet is the arrangement's only argument. A unique and specific vocalist: a warm baritone, round and clean, held gentle and close through the verses and opening to full supported projection on the choruses without ever roughening. Real words throughout, one voice from first line to last. Close intimate capture on the verses, wide and open on the choruses. Delivery tender and resigned — the sadness is in the plainness of the telling, never in effort.
+```
+
+```
+drums in the first verse, constant dynamic level, distorted guitar tone, screamed delivery, rasp, autotune, orchestral swell, guitar solo, programmed drums, rap delivery, wordless treatment
+```
+
+### Recreation 4 · Churning verse, the chorus opens and stays open (992)
+
+```
+Driving 90s alt-rock near 118 BPM, urgent and tightly wound — a chorused electric guitar figure churning in eighth notes from the first bar, a melodic bass moving against it rather than following the root, and a busy hi-hat-led kit pushing without ever speeding up. Verses stay clipped and held tight, a short pre-chorus lifts, then the chorus opens wide and stays there twice as long as expected. One improvised lead-guitar break after the second chorus, bluesy and bending up into the vocal register, song-length and tight rather than a sprawling jam. A unique and specific vocalist: a baritone-tenor, grained and pressed, clipped and urgent through the verses, then climbing into a strained upper register across the chorus and holding it there with the grain increasing. Real words throughout, one voice from first line to last. Cut like a band playing live in a room, guitars bleeding into the vocal microphone. Delivery driven and unresolved — narrating something the singer cannot fix.
+```
+
+```
+arena reverb, live-crowd ambience, extended jam outro, autotune, gridded quantized timing, programmed drums, glam-metal showmanship, half-time breakdown, orchestral arrangement, rap delivery, wordless treatment
+```
+
 <!-- END GENERATED -->
 
 ---
