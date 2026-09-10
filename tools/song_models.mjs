@@ -39,7 +39,10 @@ async function fetchModel(uuid, tries = 2) {
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const j = await res.json();
-      const m = String(j.major_model_version || '').trim();
+      /* `major_model_version` says plain "v6" for BOTH v6 and v6-wild — the only
+       * place the two are told apart is the row badge, so prefer it and fall back. */
+      const badge = String(j?.metadata?.model_badges?.songrow?.display_name || '').trim().toLowerCase();
+      const m = /^v[0-9.]+(-[a-z]+)?$/i.test(badge) ? badge : String(j.major_model_version || '').trim();
       return /^v[0-9.]+(-[a-z]+)?$/i.test(m) ? m : null;
     } catch (e) {
       if (i === tries - 1) { console.warn(`  ! ${uuid}: ${e.message}`); return null; }
