@@ -2834,6 +2834,96 @@
         "mandated8": true,
         "genre_slot": "fraying desperate surge"
       }
+    },
+    "100": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Secondhand Throne",
+        "clips": [
+          "8af63aea-bf45-4148-bb8a-8e5ee18bd059",
+          "afdc4cf2-6480-46c2-90a4-a3464ba10ad6"
+        ],
+        "v0": "afdc4cf2-6480-46c2-90a4-a3464ba10ad6",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "flat unbothered swagger"
+      }
+    },
+    "101": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "A Wink In My Step",
+        "clips": [
+          "b991a73d-da0f-4e17-a5da-40e5dc45591c",
+          "fdce5c59-0b24-451f-aff5-c54b02488e76"
+        ],
+        "v0": "fdce5c59-0b24-451f-aff5-c54b02488e76",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "breezy swung wink"
+      }
+    },
+    "102": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "The Quiet Dust",
+        "clips": [
+          "0bba25a4-0ba9-429e-a903-d4f42dc3b49f",
+          "4c5e1017-4a4e-473b-9ac8-d8ad34c0b8c6"
+        ],
+        "v0": "4c5e1017-4a4e-473b-9ac8-d8ad34c0b8c6",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "flat sardonic shrug"
+      }
+    },
+    "103": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Held In The Light",
+        "clips": [
+          "71e39099-c76b-4bfd-b9f6-71ac28bbdf03",
+          "f8ab7b13-83c7-47ce-adfd-2dcf27c93235"
+        ],
+        "v0": "f8ab7b13-83c7-47ce-adfd-2dcf27c93235",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "suspended devotional stillness"
+      }
+    },
+    "104": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Safe To Shatter",
+        "clips": [
+          "43e4c790-4c73-4f31-81ce-c1fde00ec324",
+          "d2dfec99-98bd-4ee9-ad9d-55d3d9ff05a0"
+        ],
+        "v0": "d2dfec99-98bd-4ee9-ad9d-55d3d9ff05a0",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "nursery-rhyme menace"
+      }
+    },
+    "105": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "The Porch Light Is On",
+        "clips": [
+          "c0d6f905-933d-4a62-a4dc-aff84c39ab51",
+          "0e3a20b0-f08b-463f-bfbf-ae3793947567"
+        ],
+        "v0": "0e3a20b0-f08b-463f-bfbf-ae3793947567",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "sunny rolling generosity"
+      }
     }
   },
   "method": {
