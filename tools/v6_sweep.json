@@ -3194,6 +3194,96 @@
         "mandated8": true,
         "genre_slot": "spent tender gravity"
       }
+    },
+    "124": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Safe In Dark",
+        "clips": [
+          "5b10b557-4071-494f-a540-040efff4ac68",
+          "5dbb79a9-dd80-4b9f-9017-5ce3b51bc942"
+        ],
+        "v0": "5dbb79a9-dd80-4b9f-9017-5ce3b51bc942",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a brooding psychedelic soul side"
+      }
+    },
+    "125": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Sparks Off The Grinding Wheel",
+        "clips": [
+          "4f2d2568-8b0c-48b7-a68a-02d768707774",
+          "08327ead-e573-4cbc-91c6-0182493e89a0"
+        ],
+        "v0": "08327ead-e573-4cbc-91c6-0182493e89a0",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a relentless northern-soul stomper"
+      }
+    },
+    "126": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Where The Deep Roots Grow",
+        "clips": [
+          "e3b89c26-9127-4a7c-ba37-4ced16f25591",
+          "9c03e074-0326-4f5d-acfa-2c96a5bfc939"
+        ],
+        "v0": "9c03e074-0326-4f5d-acfa-2c96a5bfc939",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a vast tectonic incantation (+speculative)"
+      }
+    },
+    "127": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Let The Current Go",
+        "clips": [
+          "3f99519d-1202-44a6-aced-e026618e5be6",
+          "642281b6-239b-4e11-b807-dfb705800141"
+        ],
+        "v0": "642281b6-239b-4e11-b807-dfb705800141",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a coiled polymetric prog machine"
+      }
+    },
+    "128": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Hold The Light",
+        "clips": [
+          "0f29b115-2941-417a-8611-481a2080a990",
+          "a53916c6-f5ea-4580-be39-1dc5fd4c48cf"
+        ],
+        "v0": "a53916c6-f5ea-4580-be39-1dc5fd4c48cf",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a spacious atmospheric prog swell"
+      }
+    },
+    "129": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Heavy With You",
+        "clips": [
+          "2cee4a23-979f-4d00-82f6-48a917cfeb63",
+          "d54ad246-7cb4-4736-b5ba-bca9cde87a0e"
+        ],
+        "v0": "d54ad246-7cb4-4736-b5ba-bca9cde87a0e",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a crushing patient post-metal tide"
+      }
     }
   },
   "method": {
