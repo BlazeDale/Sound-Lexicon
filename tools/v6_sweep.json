@@ -3404,6 +3404,126 @@
         "mandated8": true,
         "genre_slot": "a foundry at prayer (+spec)"
       }
+    },
+    "138": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "The Spring Will Hold",
+        "clips": [
+          "1ecd37a3-0b0e-4916-8aae-6ffac42578d0",
+          "1136dec7-09ca-4de6-a7f2-ca8865368f6f"
+        ],
+        "v0": "1136dec7-09ca-4de6-a7f2-ca8865368f6f",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "cool clockwork precision (+spec)"
+      }
+    },
+    "139": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "A Blue Chalk-Line",
+        "clips": [
+          "0b19ba05-a77a-4705-9b6e-482d3ffabfbd",
+          "d7bd2991-1ca8-466e-848d-26e8a348c8a5"
+        ],
+        "v0": "d7bd2991-1ca8-466e-848d-26e8a348c8a5",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "struck steel and concrete"
+      }
+    },
+    "140": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Smoke In The Teeth",
+        "clips": [
+          "ff0a34a7-4685-407b-ac48-058eafb07c5c",
+          "7854f8a5-a0ff-4cfa-9280-22c19c87855a"
+        ],
+        "v0": "7854f8a5-a0ff-4cfa-9280-22c19c87855a",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a smouldering revival"
+      }
+    },
+    "141": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Underneath The Heavy Wall",
+        "clips": [
+          "ceb7a5c5-31a4-40b1-8bf4-2b4fbcc7f188",
+          "21a5c4b2-69ad-4456-8c6f-fa39473363f9"
+        ],
+        "v0": "21a5c4b2-69ad-4456-8c6f-fa39473363f9",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a grave velvet processional (+spec)"
+      }
+    },
+    "142": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Warm In Snow",
+        "clips": [
+          "4622b5be-4e93-43ce-8022-afa87405a320",
+          "1ad27439-cd86-4fd6-be43-c57c6abdca2d"
+        ],
+        "v0": "1ad27439-cd86-4fd6-be43-c57c6abdca2d",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a long patient ascent"
+      }
+    },
+    "143": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "The Catch Goes Loose",
+        "clips": [
+          "0b27a1b3-0ba3-4a5e-8171-66cdafbdd08d",
+          "0c661c0d-578f-403e-886e-f82b87b033e1"
+        ],
+        "v0": "0c661c0d-578f-403e-886e-f82b87b033e1",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "an asymmetric puzzle box"
+      }
+    },
+    "144": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "The Road We Own",
+        "clips": [
+          "2dddbfd1-34f3-4d9a-8358-7c780e0bd4df",
+          "3eefd9fe-2e0c-41ed-a435-d6e30bbb5c92"
+        ],
+        "v0": "3eefd9fe-2e0c-41ed-a435-d6e30bbb5c92",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a tar-thick crawl"
+      }
+    },
+    "145": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Soft Fruit In The Steel",
+        "clips": [
+          "9f5a1a35-466b-4d20-9884-3c60ec843fc5",
+          "fc4ad809-891a-410f-8a46-d9e7a5141bf8"
+        ],
+        "v0": "fc4ad809-891a-410f-8a46-d9e7a5141bf8",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a ratcheting martial rite"
+      }
     }
   },
   "method": {
