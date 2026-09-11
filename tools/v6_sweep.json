@@ -3104,6 +3104,81 @@
         "mandated8": true,
         "genre_slot": "cold deliberate menace"
       }
+    },
+    "118": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Give The Ghost Its Rest",
+        "clips": [
+          "02e8d642-5421-44e0-a7c5-04decd6a9a98",
+          "48a4c04e-ffbe-4b37-9c7a-6229a4d4d8b8"
+        ],
+        "v0": "48a4c04e-ffbe-4b37-9c7a-6229a4d4d8b8",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "slow bodily sway"
+      }
+    },
+    "119": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "A High-Dollar Tragedy",
+        "clips": [
+          "cb8140c0-65a3-4dba-983d-51d1740257c2",
+          "1f0f6a1a-63d3-4c8d-90f1-f9483068bfcb"
+        ],
+        "v0": "1f0f6a1a-63d3-4c8d-90f1-f9483068bfcb",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "weary fatal glamour"
+      }
+    },
+    "120": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Born From The Spark",
+        "clips": [
+          "6f52c4d0-5f89-4075-9aa9-c2dc62728465",
+          "cdbfd97a-d5b3-4ecd-a04d-4fb15113f1af"
+        ],
+        "v0": "cdbfd97a-d5b3-4ecd-a04d-4fb15113f1af",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "unguarded cosmic wonder"
+      }
+    },
+    "121": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Paper And Match",
+        "clips": [
+          "cb9b29b0-78ba-48f2-9967-190eeb3278a0",
+          "5d983085-2e61-4a43-b883-2b5167558107"
+        ],
+        "v0": "5d983085-2e61-4a43-b883-2b5167558107",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "pleading radiant urgency"
+      }
+    },
+    "122": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "I Was Just A Seed",
+        "clips": [
+          "574a0879-8f47-4d16-8dc5-f891fdb364e8",
+          "f145dac0-202e-4bd4-9f0f-a38245c15eeb"
+        ],
+        "v0": "f145dac0-202e-4bd4-9f0f-a38245c15eeb",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "ferocious testifying heat"
+      }
     }
   },
   "method": {
