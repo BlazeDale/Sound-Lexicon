@@ -2414,6 +2414,81 @@
         "mandated8": true,
         "genre_slot": "martial Viking folk-metal"
       }
+    },
+    "72": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Burn Down The Vine",
+        "clips": [
+          "3f6bf51f-e86d-4194-a3f6-f219791876c9",
+          "5de1912c-8cfe-4b98-8c0d-b6a40cd1bb48"
+        ],
+        "v0": "5de1912c-8cfe-4b98-8c0d-b6a40cd1bb48",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "venomous Southern sludge"
+      }
+    },
+    "73": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "The Bitter Season",
+        "clips": [
+          "9c752589-e7a0-4cbc-a570-de2e3f7f189a",
+          "24f709d5-6e97-4102-b612-30e17950e93b"
+        ],
+        "v0": "24f709d5-6e97-4102-b612-30e17950e93b",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "cold minimal wave"
+      }
+    },
+    "74": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Stone To Foam",
+        "clips": [
+          "85a4686d-a484-4bcb-b374-48500932a592",
+          "e76499ec-2440-4b73-97cb-05f831c9a210"
+        ],
+        "v0": "e76499ec-2440-4b73-97cb-05f831c9a210",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "ceremonial Tuvan throat-singing"
+      }
+    },
+    "75": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Beautifully Undone",
+        "clips": [
+          "150be93c-9af4-4be7-8eb1-9efea5c9635b",
+          "aa9b91a6-1983-42f8-8db2-912f8acc1fb9"
+        ],
+        "v0": "aa9b91a6-1983-42f8-8db2-912f8acc1fb9",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "plush lounge exotica"
+      }
+    },
+    "76": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Blood From A Stone",
+        "clips": [
+          "1055bb20-6ac4-45cd-a3fe-adc85126c16b",
+          "e4e8a8c2-857d-4f25-829e-a982b47648cc"
+        ],
+        "v0": "e4e8a8c2-857d-4f25-829e-a982b47648cc",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "aching rubato lament"
+      }
     }
   },
   "method": {
