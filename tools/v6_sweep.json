@@ -2471,6 +2471,69 @@
         }
       },
       "run_key": "sweep-57-59"
+    },
+    "60-62": {
+      "60": {
+        "v6": {
+          "seeds": [
+            "harbor",
+            "awe",
+            "climb",
+            "frequency"
+          ],
+          "idea": "a crane driver up in the cab at first light, above the gulls, listening to the whole port talk to itself on the radio"
+        },
+        "v6-wild": {
+          "seeds": [
+            "subway platform",
+            "homesickness",
+            "leave",
+            "undertow"
+          ],
+          "idea": "hearing your grandmother tongue spoken behind you on a platform in a city where nobody speaks it, and not turning round"
+        }
+      },
+      "61": {
+        "v6": {
+          "seeds": [
+            "orchard",
+            "wonder",
+            "drive",
+            "threshold"
+          ],
+          "idea": "teaching a kid to drive at dusk down a lane where the trees close over, and the kid going quiet because it is beautiful"
+        },
+        "v6-wild": {
+          "seeds": [
+            "ferry",
+            "loneliness",
+            "search",
+            "dream"
+          ],
+          "idea": "looking for one face in every crowd for years after they died, and the ordinary morning it stops happening"
+        }
+      },
+      "62": {
+        "v6": {
+          "seeds": [
+            "train station",
+            "guilt",
+            "fall",
+            "half-life"
+          ],
+          "idea": "the brother who let go of the pram handle for a second on a hill, and what it did to the way he holds things now"
+        },
+        "v6-wild": {
+          "seeds": [
+            "drive-in",
+            "relief",
+            "forget",
+            "event horizon"
+          ],
+          "idea": "the night you notice you have forgotten the face of someone you swore you never would, and are glad"
+        }
+      },
+      "run_key": "sweep-60-62"
     }
   }
 }
