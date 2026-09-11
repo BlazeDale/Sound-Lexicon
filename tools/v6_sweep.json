@@ -3584,6 +3584,36 @@
         "mandated8": true,
         "genre_slot": "a sneering basement garage-punk rush (+blunt)"
       }
+    },
+    "150": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "All In Now",
+        "clips": [
+          "0fcc376b-79ae-4a49-a4ed-150c2ddc9c12",
+          "c85fbf3f-8a5a-400f-9ee5-2d95288a8047"
+        ],
+        "v0": "c85fbf3f-8a5a-400f-9ee5-2d95288a8047",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a heavy blues-rock riff at arena weight (+blunt, sentences-fix)"
+      }
+    },
+    "151": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Still Worth Keeping",
+        "clips": [
+          "c8c99fd8-3d4c-4b4e-808e-bd654684bf4d",
+          "67d02540-ef27-4bb1-b785-18d49258ba32"
+        ],
+        "v0": "67d02540-ef27-4bb1-b785-18d49258ba32",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a coal-country waltz told plain"
+      }
     }
   },
   "method": {
