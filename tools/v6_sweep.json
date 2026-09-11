@@ -3524,6 +3524,66 @@
         "mandated8": true,
         "genre_slot": "a ratcheting martial rite"
       }
+    },
+    "146": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "On Saturn's Rim",
+        "clips": [
+          "5f28b64c-3200-4304-82ad-e8217ffc5410",
+          "cf1bad4d-0610-421f-9afe-7feb35d29e02"
+        ],
+        "v0": "cf1bad4d-0610-421f-9afe-7feb35d29e02",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a hypnotic widening calm (+spec)"
+      }
+    },
+    "147": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Just The Rust And Us",
+        "clips": [
+          "f22e5a61-ab9a-4b81-9a38-389942eab443",
+          "aadbd6a5-711e-4d60-a0a0-13fccb188cf9"
+        ],
+        "v0": "aadbd6a5-711e-4d60-a0a0-13fccb188cf9",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a splattered resonator stomp on a back road (+blunt)"
+      }
+    },
+    "148": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Broke But Breathing",
+        "clips": [
+          "ed55d6c7-2992-4b12-8569-3b7c4aa07728",
+          "c29be9bf-b06d-47bd-b21d-ccb03ac857d3"
+        ],
+        "v0": "c29be9bf-b06d-47bd-b21d-ccb03ac857d3",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a prewar bottleneck field holler (+blunt)"
+      }
+    },
+    "149": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Sick With Love",
+        "clips": [
+          "42e21ce1-e52e-4a65-a644-624b9e20d32b",
+          "1a652aec-f27b-46da-aa28-ef9f284765d7"
+        ],
+        "v0": "1a652aec-f27b-46da-aa28-ef9f284765d7",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a sneering basement garage-punk rush (+blunt)"
+      }
     }
   },
   "method": {
