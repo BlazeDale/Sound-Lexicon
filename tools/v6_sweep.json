@@ -2924,6 +2924,96 @@
         "mandated8": true,
         "genre_slot": "sunny rolling generosity"
       }
+    },
+    "106": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "A Ruin Of A Room",
+        "clips": [
+          "fde88193-0b9a-4027-b2f7-0d87be86830a",
+          "b8456519-ebe3-4c9f-9326-a3c119e9ef0f"
+        ],
+        "v0": "b8456519-ebe3-4c9f-9326-a3c119e9ef0f",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "urgent whispered confession"
+      }
+    },
+    "107": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Still Breathing Now",
+        "clips": [
+          "a3e1bad1-58f7-4701-b624-2757b8837166",
+          "99e0b5fb-56e6-4e81-a06b-308f16a76f5a"
+        ],
+        "v0": "99e0b5fb-56e6-4e81-a06b-308f16a76f5a",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "restless veiled drifting"
+      }
+    },
+    "108": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Golden And Green",
+        "clips": [
+          "e225ff0e-3667-4557-ad79-56b5f053d68a",
+          "580e8d65-9e59-419d-ac20-2b7422f1404a"
+        ],
+        "v0": "580e8d65-9e59-419d-ac20-2b7422f1404a",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "sun-faded drowsy warmth"
+      }
+    },
+    "109": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Breathing Space",
+        "clips": [
+          "d51433e1-ce8b-4db8-879a-08c92231dba5",
+          "44115977-bf46-43eb-a97e-1b48205ecd9b"
+        ],
+        "v0": "44115977-bf46-43eb-a97e-1b48205ecd9b",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "bold open-hearted drive"
+      }
+    },
+    "110": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "The Shards Still Matter",
+        "clips": [
+          "a04f7518-22fa-495b-9b80-3814a3c3b5ca",
+          "5d49835b-22ce-4aee-b10f-d126a1519b08"
+        ],
+        "v0": "5d49835b-22ce-4aee-b10f-d126a1519b08",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "tender stammering fracture"
+      }
+    },
+    "111": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Aching To Stay",
+        "clips": [
+          "d2482c92-50b5-46fb-897b-88d6bdfd0a13",
+          "75e8a0a7-898e-442b-94c4-a63a9d401cdc"
+        ],
+        "v0": "75e8a0a7-898e-442b-94c4-a63a9d401cdc",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "half-lit nocturnal hush"
+      }
     }
   },
   "method": {
