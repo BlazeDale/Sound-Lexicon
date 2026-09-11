@@ -20,7 +20,7 @@
 
 /* Version stamp — the ONLY place to bump these. Title, <meta>, masthead, and
  * footer all derive from here + LIB counts at runtime, so counts never drift. */
-const VERSION = 'v83';
+const VERSION = 'v84';
 const UPDATED = '2026-09-11';
 
 /* ---------- MOST RECENT BATCH ----------
@@ -130,7 +130,7 @@ Drive till the tape wears thin,
 drive till the streetlights end,
 I keep the window down
 to let the cold pretend you're back again.`},
-{n:87,suno:[`14c0d273-b17c-406e-a073-99f33d9e41d1`,`93a30224-fdc3-4433-9650-69ff35a82737`,`c8a58c70-1787-43b4-b349-c15db2507adb`,`f9e4d328-da82-470b-9125-87eff91d2018`,`4127b800-c325-4723-9f60-d05472058abd`,`ff67dda7-a86c-4a81-a812-9959f46e6ad8`],name:`Future bass`,fam:`future bass`,cat:`lyrical`,bpm:`150`,role:`lead tenor + pitched chops`,proc:`chest-to-head · pitched vocal-chop drop`,aff:`C`,style:`Future bass, bright and emotional near 150 BPM halftime feel, euphoric and shimmering. The lead is a unique and specific vocalist: a bright emotive tenor, clear and open, singing full melodic verses that lift into a soaring pre-drop, warm and forward with an unforced ache, chest lifting to an easy head voice. Surging melodicism over lush harmonic movement, the track built on big hold-release and huge dynamic contrast, a push and pull between intimate verse and explosive drop. Modern bright chain, lush and wide, clean mix with room to breathe. Supersaw chord swells, pitched vocal-chop stabs in the drop, booming sub bass, halftime trap-leaning drums, glittering bell arps, white-noise risers. Contemporary festival sheen, saturated and huge. Delivery yearning, uplifted, breaking open on the drop.`,neg:`rasp, growl, belting, spoken monotone, breathy whisper, operatic tone, dark menace, harsh distortion, empty minimal space, flat affect, lo-fi rawness`,lyric:`[Verse 1] (intimate, restrained)
+{n:87,suno:[`14c0d273-b17c-406e-a073-99f33d9e41d1`,`93a30224-fdc3-4433-9650-69ff35a82737`,`c8a58c70-1787-43b4-b349-c15db2507adb`,`f9e4d328-da82-470b-9125-87eff91d2018`,`4127b800-c325-4723-9f60-d05472058abd`,`ff67dda7-a86c-4a81-a812-9959f46e6ad8`,`03d46fe5-53a3-4db5-a2bd-5242c0037403`],name:`Future bass`,fam:`future bass`,cat:`lyrical`,bpm:`150`,role:`lead tenor + pitched chops`,proc:`chest-to-head · pitched vocal-chop drop`,aff:`C`,style:`Future bass, bright and emotional near 150 BPM halftime feel, euphoric and shimmering. The lead is a unique and specific vocalist: a bright emotive tenor, clear and open, singing full melodic verses that lift into a soaring pre-drop, warm and forward with an unforced ache, chest lifting to an easy head voice. Surging melodicism over lush harmonic movement, the track built on big hold-release and huge dynamic contrast, a push and pull between intimate verse and explosive drop. Modern bright chain, lush and wide, clean mix with room to breathe. Supersaw chord swells, pitched vocal-chop stabs in the drop, booming sub bass, halftime trap-leaning drums, glittering bell arps, white-noise risers. Contemporary festival sheen, saturated and huge. Delivery yearning, uplifted, breaking open on the drop.`,neg:`rasp, growl, belting, spoken monotone, breathy whisper, operatic tone, dark menace, harsh distortion, empty minimal space, flat affect, lo-fi rawness`,lyric:`[Verse 1] (intimate, restrained)
 I held the string so long my hands forgot the sky,
 you were the weight that told me which way down.
 
@@ -142,7 +142,7 @@ Up where you can't follow,
 up past what we were,
 I'm lighter than the last thing
 that I ever heard you say.`},
-{n:88,suno:[`74e98efc-209a-45ce-b0c9-5e7f324b14ed`,`9dff3ab1-a56d-4f4a-b6aa-ed3daa757e45`],name:`Vocal / progressive trance`,fam:`vocal trance`,cat:`lyrical`,bpm:`138`,role:`soaring anthem tenor`,proc:`breakdown-to-drop · euphoric`,aff:`E`,style:`Vocal trance and progressive trance, euphoric and driving near 138 BPM, soaring and luminous. The lead is a unique and specific vocalist: a soaring emotive tenor, bright and supported, building from a hushed verse into a full open-throated anthem on the chorus, ringing and forward with controlled vibrato on the sustains, all lift. Sweeping melodicism over rich harmonic movement, the arrangement built on extended tension-release and vast dynamic contrast, a long push and pull between the breakdown and the euphoric drop. Bright wide chain, lush plate reverb, clean mix with room to breathe. Rolling trance bassline, sawtooth supersaw lead, plucked arps, four-on-the-floor kick, sidechained pads, breakdown risers. Late-1990s uplifting-trance sheen, saturated and wide. Delivery ecstatic, transcendent, soaring over the drop.`,neg:`rasp, growl, spoken monotone, breathy whisper, flat affect, dark menace, harsh distortion, autotune snap, empty minimal space, lo-fi rawness, aggressive delivery`,lyric:`[Verse 1] (hushed)
+{n:88,suno:[`74e98efc-209a-45ce-b0c9-5e7f324b14ed`,`9dff3ab1-a56d-4f4a-b6aa-ed3daa757e45`,`91766e2f-ac1d-4a93-9f7b-720bec496fd2`],name:`Vocal / progressive trance`,fam:`vocal trance`,cat:`lyrical`,bpm:`138`,role:`soaring anthem tenor`,proc:`breakdown-to-drop · euphoric`,aff:`E`,style:`Vocal trance and progressive trance, euphoric and driving near 138 BPM, soaring and luminous. The lead is a unique and specific vocalist: a soaring emotive tenor, bright and supported, building from a hushed verse into a full open-throated anthem on the chorus, ringing and forward with controlled vibrato on the sustains, all lift. Sweeping melodicism over rich harmonic movement, the arrangement built on extended tension-release and vast dynamic contrast, a long push and pull between the breakdown and the euphoric drop. Bright wide chain, lush plate reverb, clean mix with room to breathe. Rolling trance bassline, sawtooth supersaw lead, plucked arps, four-on-the-floor kick, sidechained pads, breakdown risers. Late-1990s uplifting-trance sheen, saturated and wide. Delivery ecstatic, transcendent, soaring over the drop.`,neg:`rasp, growl, spoken monotone, breathy whisper, flat affect, dark menace, harsh distortion, autotune snap, empty minimal space, lo-fi rawness, aggressive delivery`,lyric:`[Verse 1] (hushed)
 Somewhere past the strobe the walls stop keeping score,
 I lost your face an hour and a mile ago.
 
@@ -154,7 +154,7 @@ Lift me, lift me over
 where the bassline learns to pray,
 you're the last light in the ceiling
 and I'm dancing it away.`},
-{n:89,suno:[`fc482d25-266f-4bf2-b2e0-b1bfbaa55b50`,`c086f976-43da-48fc-9203-b6389ba977a8`],name:`Liquid drum and bass`,fam:`liquid DnB`,cat:`lyrical`,bpm:`174`,role:`warm soulful tenor`,proc:`smooth · gliding over the roll`,aff:`B`,style:`Liquid drum and bass, rolling and warm near 174 BPM, soulful and flowing. The lead is a unique and specific vocalist: a warm soulful tenor, smooth and breath-controlled, riding the rolling break with easy melodic phrasing and light agile runs, tender and forward with a gentle lift, gliding rather than pushing. Flowing melodicism over lush voice-leading and warm harmonic movement, the arrangement leaning on soft hold-release and rolling dynamic contrast, a smooth push and pull against the break. Warm modern chain, plush reverb, clean mix with room to breathe. Rolling break, deep warm sub bass, lush Rhodes chords, atmospheric pads, soft vocal-chop texture, jazzy piano fills. Modern liquid-DnB warmth, saturated and smooth. Delivery tender, soulful, flowing over the roll.`,neg:`rasp, growl, belting, spoken monotone, operatic tone, dark menace, harsh distortion, aggressive delivery, empty minimal space, flat affect, autotune snap`,lyric:`[Verse 1] (warm, smooth)
+{n:89,suno:[`fc482d25-266f-4bf2-b2e0-b1bfbaa55b50`,`c086f976-43da-48fc-9203-b6389ba977a8`,`d7e86e27-43a7-4196-aecb-d3c1b606854e`],name:`Liquid drum and bass`,fam:`liquid DnB`,cat:`lyrical`,bpm:`174`,role:`warm soulful tenor`,proc:`smooth · gliding over the roll`,aff:`B`,style:`Liquid drum and bass, rolling and warm near 174 BPM, soulful and flowing. The lead is a unique and specific vocalist: a warm soulful tenor, smooth and breath-controlled, riding the rolling break with easy melodic phrasing and light agile runs, tender and forward with a gentle lift, gliding rather than pushing. Flowing melodicism over lush voice-leading and warm harmonic movement, the arrangement leaning on soft hold-release and rolling dynamic contrast, a smooth push and pull against the break. Warm modern chain, plush reverb, clean mix with room to breathe. Rolling break, deep warm sub bass, lush Rhodes chords, atmospheric pads, soft vocal-chop texture, jazzy piano fills. Modern liquid-DnB warmth, saturated and smooth. Delivery tender, soulful, flowing over the roll.`,neg:`rasp, growl, belting, spoken monotone, operatic tone, dark menace, harsh distortion, aggressive delivery, empty minimal space, flat affect, autotune snap`,lyric:`[Verse 1] (warm, smooth)
 The motorway is breathing in the rain,
 the passenger seat still holds the shape of you.
 I let the wet come in to ease the strain
@@ -165,7 +165,7 @@ Roll with me, roll slow,
 we don't need where we're bound,
 you're the warmth against the window
 and I'm the long way round.`},
-{n:90,suno:[`37fa08f2-a810-4e7f-93cf-08a252c390f3`],name:`Hyperpop`,fam:`hyperpop`,cat:`lyrical`,bpm:`160`,role:`pitched-up processed lead`,proc:`hyper-tuned formant-shift · cracked break`,aff:`E`,style:`Hyperpop, frenetic and maximalist near 160 BPM, glitchy and euphoric-desperate. The lead is a unique and specific vocalist: a pitched-up processed voice, bright and hyper-tuned, the autotune and formant-shift fused into the timbre, flipping between a sugary sped-up sweetness and a cracked emotional break, intimate and confessional under the gloss. Restless melodicism over hard tension-release and violent dynamic contrast, a jittery push and pull between the sugar-rush verse and the blown-out drop. Modern maximalist chain, hyper-tuned and clipped, dense and bright. Distorted 808 bass, glitchy chopped drums, blown-out saw stabs, pitched vocal chops, bitcrushed risers, sudden dropouts. Contemporary hyperpop density, saturated and overloaded. Delivery euphoric, desperate, cracking under the sheen.`,neg:`natural unprocessed vocal, rasp, growl, operatic tone, smooth crooning, breathy whisper, warm analog restraint, slow tempo, sparse arrangement, dark menace, spoken monotone`,lyric:`[Verse 1] (pitched-up, breathless)
+{n:90,suno:[`37fa08f2-a810-4e7f-93cf-08a252c390f3`,`d100a22f-426c-4475-8930-1a6b5fce792b`],name:`Hyperpop`,fam:`hyperpop`,cat:`lyrical`,bpm:`160`,role:`pitched-up processed lead`,proc:`hyper-tuned formant-shift · cracked break`,aff:`E`,style:`Hyperpop, frenetic and maximalist near 160 BPM, glitchy and euphoric-desperate. The lead is a unique and specific vocalist: a pitched-up processed voice, bright and hyper-tuned, the autotune and formant-shift fused into the timbre, flipping between a sugary sped-up sweetness and a cracked emotional break, intimate and confessional under the gloss. Restless melodicism over hard tension-release and violent dynamic contrast, a jittery push and pull between the sugar-rush verse and the blown-out drop. Modern maximalist chain, hyper-tuned and clipped, dense and bright. Distorted 808 bass, glitchy chopped drums, blown-out saw stabs, pitched vocal chops, bitcrushed risers, sudden dropouts. Contemporary hyperpop density, saturated and overloaded. Delivery euphoric, desperate, cracking under the sheen.`,neg:`natural unprocessed vocal, rasp, growl, operatic tone, smooth crooning, breathy whisper, warm analog restraint, slow tempo, sparse arrangement, dark menace, spoken monotone`,lyric:`[Verse 1] (pitched-up, breathless)
 I typed your name so many times it autofills my grief,
 the screen glow's the only sun I let touch my face.
 
@@ -177,7 +177,7 @@ Love me in the static,
 love me in the crash,
 you're a fifteen-second heaven
 and a lifetime of the aftermath.`},
-{n:91,suno:[`947bb249-ff4b-47a8-b83d-42b1ad39318b`,`2e3692a3-0e67-48c6-8aff-b2eabb2187a9`,`f4bf9b96-05d4-402a-9c16-7e5579edf5b4`],name:`Melodic dubstep`,fam:`melodic dubstep`,cat:`lyrical`,bpm:`140`,role:`emotive tenor → cathartic drop`,proc:`chest-to-raw-head · growl-bass drop`,aff:`C`,style:`Melodic dubstep, emotive and explosive near 140 BPM halftime, cathartic and soaring. The lead is a unique and specific vocalist: an emotive tenor, warm and open, singing restrained aching verses that build into a soaring pre-drop cry, chest lifting to a raw head voice with grit on the peak, forward and unforced. Surging melodicism over rich harmonic movement, the track built on huge hold-release and violent dynamic contrast, a push and pull between intimate verse and cathartic drop. Modern wide chain, lush and heavy, clean mix with room to breathe. Supersaw chord swells, detuned melodic-dubstep growl bass on the drop, single reese transient at the break, halftime drums, piano motif, bell arps, white-noise risers. Contemporary melodic-bass sheen, saturated and huge. Delivery yearning, cathartic, breaking open on the drop.`,neg:`rasp scream, growl vocal, belting, spoken monotone, operatic tone, breathy whisper, dark menace, autotune snap, sparse arrangement, flat affect, lo-fi rawness`,lyric:`[Verse 1] (restrained, aching)
+{n:91,suno:[`947bb249-ff4b-47a8-b83d-42b1ad39318b`,`2e3692a3-0e67-48c6-8aff-b2eabb2187a9`,`f4bf9b96-05d4-402a-9c16-7e5579edf5b4`,`67cb9cbc-2196-4a10-b7d4-3c3a35bb8e4c`],name:`Melodic dubstep`,fam:`melodic dubstep`,cat:`lyrical`,bpm:`140`,role:`emotive tenor → cathartic drop`,proc:`chest-to-raw-head · growl-bass drop`,aff:`C`,style:`Melodic dubstep, emotive and explosive near 140 BPM halftime, cathartic and soaring. The lead is a unique and specific vocalist: an emotive tenor, warm and open, singing restrained aching verses that build into a soaring pre-drop cry, chest lifting to a raw head voice with grit on the peak, forward and unforced. Surging melodicism over rich harmonic movement, the track built on huge hold-release and violent dynamic contrast, a push and pull between intimate verse and cathartic drop. Modern wide chain, lush and heavy, clean mix with room to breathe. Supersaw chord swells, detuned melodic-dubstep growl bass on the drop, single reese transient at the break, halftime drums, piano motif, bell arps, white-noise risers. Contemporary melodic-bass sheen, saturated and huge. Delivery yearning, cathartic, breaking open on the drop.`,neg:`rasp scream, growl vocal, belting, spoken monotone, operatic tone, breathy whisper, dark menace, autotune snap, sparse arrangement, flat affect, lo-fi rawness`,lyric:`[Verse 1] (restrained, aching)
 The tower crane still swings above the street we never crossed,
 I count its slow arc out to keep my hands from what they've lost.
 
@@ -189,7 +189,7 @@ Fall with the weight of it,
 fall till the cables sing,
 you were the last thing holding
 and I'm the letting-go of everything.`},
-{n:92,suno:[`9908abde-bd17-40e6-849b-bc70e827a747`],name:`Electro-swing`,fam:`electro swing`,cat:`lyrical`,bpm:`110`,role:`hot playful crooner`,proc:`swung · vintage-crooner over electronic groove`,aff:`D`,style:`Electro swing, bouncing and brassy near 110 BPM, hot and playful. The lead is a unique and specific vocalist: a bright hot tenor with vintage-crooner swagger, swinging the phrasing loose and just ahead of the beat, playful and forward with a knowing wink and a jazzy lilt, full-voiced and charming over the electronic groove. Bright melodicism over rolling harmonic movement, the arrangement built on snappy tension-release and bouncing dynamic contrast, a swung push and pull against the beat. Warm vintage-modern chain, saturated and clean with room to breathe. Chopped vintage brass and clarinet samples, swung four-on-the-floor kick, upright-sample bass, wah guitar stabs, glitchy break edits, hand-claps. Contemporary electro-swing sheen, saturated and hot. Delivery debonair, playful, swinging over the groove.`,neg:`rasp, growl, belting, spoken monotone, operatic tone, breathy whisper, dark menace, harsh distortion, slow ballad, flat affect, lo-fi rawness`,lyric:`[Verse 1] (swung, playful)
+{n:92,suno:[`9908abde-bd17-40e6-849b-bc70e827a747`,`7bf13134-44ba-4c0c-b6a9-9ee7728c5f4d`],name:`Electro-swing`,fam:`electro swing`,cat:`lyrical`,bpm:`110`,role:`hot playful crooner`,proc:`swung · vintage-crooner over electronic groove`,aff:`D`,style:`Electro swing, bouncing and brassy near 110 BPM, hot and playful. The lead is a unique and specific vocalist: a bright hot tenor with vintage-crooner swagger, swinging the phrasing loose and just ahead of the beat, playful and forward with a knowing wink and a jazzy lilt, full-voiced and charming over the electronic groove. Bright melodicism over rolling harmonic movement, the arrangement built on snappy tension-release and bouncing dynamic contrast, a swung push and pull against the beat. Warm vintage-modern chain, saturated and clean with room to breathe. Chopped vintage brass and clarinet samples, swung four-on-the-floor kick, upright-sample bass, wah guitar stabs, glitchy break edits, hand-claps. Contemporary electro-swing sheen, saturated and hot. Delivery debonair, playful, swinging over the groove.`,neg:`rasp, growl, belting, spoken monotone, operatic tone, breathy whisper, dark menace, harsh distortion, slow ballad, flat affect, lo-fi rawness`,lyric:`[Verse 1] (swung, playful)
 I taught the doorman all your tells so he'd wave me through the same,
 I still tip the piano man to skip the tune that spelled your name.
 
@@ -198,7 +198,7 @@ Spin me where you left me,
 spin me one more round,
 I'll dance the empty half of you
 until the band shuts down.`},
-{n:93,suno:[`61090395-dce7-40c6-8124-9e2dc5a266b1`,`4c3242f7-9a4c-4861-8d14-f2aaaee9ce6e`],name:`Darkwave synth-pop`,fam:`darkwave · noir synth-pop`,cat:`lyrical`,bpm:`118`,role:`brooding cold baritone`,proc:`romantic-noir · restrained ache on lifts`,aff:`A`,style:`Darkwave and noir synth-pop, brooding and mid-tempo near 118 BPM, cold and romantic. The lead is a unique and specific vocalist: a brooding baritone, deep and controlled, singing melodic and low with a cold romantic detachment, forward and even with restrained ache surfacing only on the lifts, sculpted and self-possessed. Melodicism over dark harmonic movement, the arrangement built on tension-release and dynamic contrast, a push and pull between the icy verse and the aching chorus. Bright-cold analog chain, gated ambience, clean mix with room to breathe. Analog polysynth bass, Prophet-style pads, gated reverb drums, chiming FM bells, chorused synth lead, sparse guitar shimmer. 1980s darkwave sheen, saturated and cold. Delivery brooding, aching, held in cold restraint.`,neg:`rasp, growl, belting, breathy whisper, soulful melisma, bright euphoria, harsh distortion, aggressive delivery, empty minimal space, flat affect, country twang`,lyric:`[Verse 1] (low, cold, restrained)
+{n:93,suno:[`61090395-dce7-40c6-8124-9e2dc5a266b1`,`4c3242f7-9a4c-4861-8d14-f2aaaee9ce6e`,`243c0861-b988-4401-bca6-a610e927993d`],name:`Darkwave synth-pop`,fam:`darkwave · noir synth-pop`,cat:`lyrical`,bpm:`118`,role:`brooding cold baritone`,proc:`romantic-noir · restrained ache on lifts`,aff:`A`,style:`Darkwave and noir synth-pop, brooding and mid-tempo near 118 BPM, cold and romantic. The lead is a unique and specific vocalist: a brooding baritone, deep and controlled, singing melodic and low with a cold romantic detachment, forward and even with restrained ache surfacing only on the lifts, sculpted and self-possessed. Melodicism over dark harmonic movement, the arrangement built on tension-release and dynamic contrast, a push and pull between the icy verse and the aching chorus. Bright-cold analog chain, gated ambience, clean mix with room to breathe. Analog polysynth bass, Prophet-style pads, gated reverb drums, chiming FM bells, chorused synth lead, sparse guitar shimmer. 1980s darkwave sheen, saturated and cold. Delivery brooding, aching, held in cold restraint.`,neg:`rasp, growl, belting, breathy whisper, soulful melisma, bright euphoria, harsh distortion, aggressive delivery, empty minimal space, flat affect, country twang`,lyric:`[Verse 1] (low, cold, restrained)
 The elevator mirror keeps a version where you stayed,
 I ride it past my floor to watch the two of us behave.
 
@@ -207,7 +207,7 @@ Down where the light forgets me,
 down where the cables hum,
 I'm colder than the button
 that I press to not go home.`},
-{n:94,suno:[`1bb984bc-72b7-4c58-a011-e6202d2004f4`,`7972e193-d511-4833-bbd3-0a4c8d949ead`],name:`UK garage / 2-step`,fam:`UK garage · 2-step`,cat:`lyrical`,bpm:`132`,role:`smooth soulful tenor`,proc:`swung shuffle · light melisma`,aff:`B`,style:`UK garage and 2-step, shuffling and smooth near 132 BPM, warm and soulful. The lead is a unique and specific vocalist: a smooth soulful tenor, breath-controlled and agile, riding the swung 2-step shuffle with light melismatic runs and easy melodic hooks, tender and forward, gliding on the syncopation with a gentle lift. Flowing melodicism over warm voice-leading and harmonic movement, the arrangement leaning on soft hold-release and shuffling dynamic contrast, a swung push and pull against the skip. Warm modern chain, plush and clean with room to breathe. Skippy syncopated 2-step drums, deep warm sub bass, chopped soulful vocal stabs, lush Rhodes chords, organ bass wobble, string pad. Late-1990s UK-garage warmth, saturated and smooth. Delivery tender, soulful, gliding over the shuffle.`,neg:`rasp, growl, belting, spoken monotone, operatic tone, dark menace, harsh distortion, aggressive delivery, empty minimal space, flat affect, four-on-the-floor`,lyric:`[Verse 1] (smooth, swung)
+{n:94,suno:[`1bb984bc-72b7-4c58-a011-e6202d2004f4`,`7972e193-d511-4833-bbd3-0a4c8d949ead`,`43c4059e-158d-4ccc-aaff-f5b7a6021240`],name:`UK garage / 2-step`,fam:`UK garage · 2-step`,cat:`lyrical`,bpm:`132`,role:`smooth soulful tenor`,proc:`swung shuffle · light melisma`,aff:`B`,style:`UK garage and 2-step, shuffling and smooth near 132 BPM, warm and soulful. The lead is a unique and specific vocalist: a smooth soulful tenor, breath-controlled and agile, riding the swung 2-step shuffle with light melismatic runs and easy melodic hooks, tender and forward, gliding on the syncopation with a gentle lift. Flowing melodicism over warm voice-leading and harmonic movement, the arrangement leaning on soft hold-release and shuffling dynamic contrast, a swung push and pull against the skip. Warm modern chain, plush and clean with room to breathe. Skippy syncopated 2-step drums, deep warm sub bass, chopped soulful vocal stabs, lush Rhodes chords, organ bass wobble, string pad. Late-1990s UK-garage warmth, saturated and smooth. Delivery tender, soulful, gliding over the shuffle.`,neg:`rasp, growl, belting, spoken monotone, operatic tone, dark menace, harsh distortion, aggressive delivery, empty minimal space, flat affect, four-on-the-floor`,lyric:`[Verse 1] (smooth, swung)
 The night bus takes the long way and I let it, every time,
 your stop still lights the same and I still read it as a sign.
 
@@ -216,7 +216,7 @@ Ride it, ride it slower,
 past the door you're not behind,
 you're the seat I never sit in
 and the window I don't mind.`},
-{n:95,suno:[`5d1c44fd-461b-4fd9-a15c-c230f38ee50e`,`08f7e151-5b28-4c45-b1b5-3b1024a0a4d9`],name:`Nu-disco / French house`,fam:`nu-disco · French house`,cat:`lyrical`,bpm:`120`,role:`warm funky tenor + falsetto flecks`,proc:`light filter · sidechain pump`,aff:`D`,style:`Nu-disco and French house, groovy and filtered near 120 BPM, warm and euphoric. The lead is a unique and specific vocalist: a warm funky tenor gliding into easy falsetto flecks, run through a light filter sweep so the voice pumps with the groove, smooth and forward with a joyful lift, riding the four-on-the-floor with effortless soul. Bright melodicism over rolling harmonic movement, the arrangement built on filtered tension-release and pumping dynamic contrast, a groovy push and pull against the sidechain. Warm vintage-modern chain, saturated and clean with room to breathe. Filtered disco-loop chords, sidechained pumping pads, funky slap-sample bass, four-on-the-floor kick, hi-hat sizzle, string stabs, bell motif. Late-2000s French-touch sheen, saturated and warm. Delivery joyful, soulful, gliding over the groove.`,neg:`rasp, growl, belting, spoken monotone, operatic tone, dark menace, harsh distortion, aggressive delivery, sparse arrangement, flat affect, lo-fi rawness`,lyric:`[Verse 1] (funky, warm)
+{n:95,suno:[`5d1c44fd-461b-4fd9-a15c-c230f38ee50e`,`08f7e151-5b28-4c45-b1b5-3b1024a0a4d9`,`fcdcf55b-9231-4a0f-b551-d7ec62f7310a`],name:`Nu-disco / French house`,fam:`nu-disco · French house`,cat:`lyrical`,bpm:`120`,role:`warm funky tenor + falsetto flecks`,proc:`light filter · sidechain pump`,aff:`D`,style:`Nu-disco and French house, groovy and filtered near 120 BPM, warm and euphoric. The lead is a unique and specific vocalist: a warm funky tenor gliding into easy falsetto flecks, run through a light filter sweep so the voice pumps with the groove, smooth and forward with a joyful lift, riding the four-on-the-floor with effortless soul. Bright melodicism over rolling harmonic movement, the arrangement built on filtered tension-release and pumping dynamic contrast, a groovy push and pull against the sidechain. Warm vintage-modern chain, saturated and clean with room to breathe. Filtered disco-loop chords, sidechained pumping pads, funky slap-sample bass, four-on-the-floor kick, hi-hat sizzle, string stabs, bell motif. Late-2000s French-touch sheen, saturated and warm. Delivery joyful, soulful, gliding over the groove.`,neg:`rasp, growl, belting, spoken monotone, operatic tone, dark menace, harsh distortion, aggressive delivery, sparse arrangement, flat affect, lo-fi rawness`,lyric:`[Verse 1] (funky, warm)
 The record store still files you under songs I can't play loud,
 I thumb the sleeve you handed me and put it back in the crowd.
 
@@ -1304,21 +1304,30 @@ const SONG_MODEL = {
   'f9e4d328-da82-470b-9125-87eff91d2018': 'v5.5',
   '4127b800-c325-4723-9f60-d05472058abd': 'v5.5',
   'ff67dda7-a86c-4a81-a812-9959f46e6ad8': 'v5.5',
+  '03d46fe5-53a3-4db5-a2bd-5242c0037403': 'v6',
   '74e98efc-209a-45ce-b0c9-5e7f324b14ed': 'v5.5',
   '9dff3ab1-a56d-4f4a-b6aa-ed3daa757e45': 'v5.5',
+  '91766e2f-ac1d-4a93-9f7b-720bec496fd2': 'v6',
   'fc482d25-266f-4bf2-b2e0-b1bfbaa55b50': 'v5.5',
   'c086f976-43da-48fc-9203-b6389ba977a8': 'v5.5',
+  'd7e86e27-43a7-4196-aecb-d3c1b606854e': 'v6',
   '37fa08f2-a810-4e7f-93cf-08a252c390f3': 'v5.5',
+  'd100a22f-426c-4475-8930-1a6b5fce792b': 'v6',
   '947bb249-ff4b-47a8-b83d-42b1ad39318b': 'v5.5',
   '2e3692a3-0e67-48c6-8aff-b2eabb2187a9': 'v5.5',
   'f4bf9b96-05d4-402a-9c16-7e5579edf5b4': 'v5.5',
+  '67cb9cbc-2196-4a10-b7d4-3c3a35bb8e4c': 'v6',
   '9908abde-bd17-40e6-849b-bc70e827a747': 'v5.5',
+  '7bf13134-44ba-4c0c-b6a9-9ee7728c5f4d': 'v6',
   '61090395-dce7-40c6-8124-9e2dc5a266b1': 'v5.5',
   '4c3242f7-9a4c-4861-8d14-f2aaaee9ce6e': 'v5.5',
+  '243c0861-b988-4401-bca6-a610e927993d': 'v6',
   '1bb984bc-72b7-4c58-a011-e6202d2004f4': 'v5.5',
   '7972e193-d511-4833-bbd3-0a4c8d949ead': 'v5.5',
+  '43c4059e-158d-4ccc-aaff-f5b7a6021240': 'v6',
   '5d1c44fd-461b-4fd9-a15c-c230f38ee50e': 'v5.5',
   '08f7e151-5b28-4c45-b1b5-3b1024a0a4d9': 'v5.5',
+  'fcdcf55b-9231-4a0f-b551-d7ec62f7310a': 'v6',
   '012a1a63-d6f9-412b-b808-a8057168f8e9': 'v5.5',
   'b9fe7964-40e6-41e3-a4ac-208f5ea909b6': 'v5.5',
   'd5705cba-09b0-4bd6-ad8d-e64397bb6824': 'v5.5',
@@ -2592,21 +2601,30 @@ const SONG_TITLES = {
   'f9e4d328-da82-470b-9125-87eff91d2018': 'Your Name',
   '4127b800-c325-4723-9f60-d05472058abd': 'Metamorphosis',
   'ff67dda7-a86c-4a81-a812-9959f46e6ad8': 'Super Sci-Fi',
+  '03d46fe5-53a3-4db5-a2bd-5242c0037403': 'Wildly Beautifully Alive',
   '74e98efc-209a-45ce-b0c9-5e7f324b14ed': 'Out of This World',
   '9dff3ab1-a56d-4f4a-b6aa-ed3daa757e45': 'Beyond',
+  '91766e2f-ac1d-4a93-9f7b-720bec496fd2': 'A Million Burning Stars',
   'fc482d25-266f-4bf2-b2e0-b1bfbaa55b50': 'MIRAGE',
   'c086f976-43da-48fc-9203-b6389ba977a8': 'One Long Starry Moment',
+  'd7e86e27-43a7-4196-aecb-d3c1b606854e': 'Learning How To Breathe',
   '37fa08f2-a810-4e7f-93cf-08a252c390f3': 'All the Crazy',
+  'd100a22f-426c-4475-8930-1a6b5fce792b': 'Short Circuit',
   '947bb249-ff4b-47a8-b83d-42b1ad39318b': 'The Last Stand',
   '2e3692a3-0e67-48c6-8aff-b2eabb2187a9': 'What Was Won',
   'f4bf9b96-05d4-402a-9c16-7e5579edf5b4': 'Heavy Lifting',
+  '67cb9cbc-2196-4a10-b7d4-3c3a35bb8e4c': 'Lightning In A Jar',
   '9908abde-bd17-40e6-849b-bc70e827a747': 'Memory on the Moon',
+  '7bf13134-44ba-4c0c-b6a9-9ee7728c5f4d': 'Snake Eyes',
   '61090395-dce7-40c6-8124-9e2dc5a266b1': 'All Our Times Have Come',
   '4c3242f7-9a4c-4861-8d14-f2aaaee9ce6e': 'Lost in Space',
+  '243c0861-b988-4401-bca6-a610e927993d': 'Sweet Defeat',
   '1bb984bc-72b7-4c58-a011-e6202d2004f4': 'Lost in Space',
   '7972e193-d511-4833-bbd3-0a4c8d949ead': 'Buried in Your Memory',
+  '43c4059e-158d-4ccc-aaff-f5b7a6021240': 'Weightless',
   '5d1c44fd-461b-4fd9-a15c-c230f38ee50e': 'Memory Ghost',
   '08f7e151-5b28-4c45-b1b5-3b1024a0a4d9': 'Subspace Memory',
+  'fcdcf55b-9231-4a0f-b551-d7ec62f7310a': 'Prism For The Sun',
   '012a1a63-d6f9-412b-b808-a8057168f8e9': 'Comet of One Return',
   'b9fe7964-40e6-41e3-a4ac-208f5ea909b6': 'Sunken Atlas',
   'd5705cba-09b0-4bd6-ad8d-e64397bb6824': 'Warp Drive Cooling',

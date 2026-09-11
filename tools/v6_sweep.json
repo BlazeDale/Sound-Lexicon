@@ -2639,6 +2639,141 @@
         "mandated8": true,
         "genre_slot": "yearning wide-open lift"
       }
+    },
+    "87": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Wildly Beautifully Alive",
+        "clips": [
+          "2ffcbac9-b869-4841-a3ad-ba6371e3f294",
+          "03d46fe5-53a3-4db5-a2bd-5242c0037403"
+        ],
+        "v0": "03d46fe5-53a3-4db5-a2bd-5242c0037403",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "euphoric festival lift"
+      }
+    },
+    "88": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "A Million Burning Stars",
+        "clips": [
+          "76069130-f3ec-4e4d-9391-236f07ad3242",
+          "91766e2f-ac1d-4a93-9f7b-720bec496fd2"
+        ],
+        "v0": "91766e2f-ac1d-4a93-9f7b-720bec496fd2",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "luminous pulsing vastness"
+      }
+    },
+    "89": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Learning How To Breathe",
+        "clips": [
+          "924e44bc-d0e7-4e22-806c-1f1132e22518",
+          "d7e86e27-43a7-4196-aecb-d3c1b606854e"
+        ],
+        "v0": "d7e86e27-43a7-4196-aecb-d3c1b606854e",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "rolling soulful glide"
+      }
+    },
+    "90": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Short Circuit",
+        "clips": [
+          "2980ad97-6c7a-4eaa-bce3-a50d20f34397",
+          "d100a22f-426c-4475-8930-1a6b5fce792b"
+        ],
+        "v0": "d100a22f-426c-4475-8930-1a6b5fce792b",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "frenetic glitchy sugar-rush"
+      }
+    },
+    "91": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Lightning In A Jar",
+        "clips": [
+          "77933ef4-721a-42ff-8fb2-24bccac17c43",
+          "67cb9cbc-2196-4a10-b7d4-3c3a35bb8e4c"
+        ],
+        "v0": "67cb9cbc-2196-4a10-b7d4-3c3a35bb8e4c",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "aching cathartic break"
+      }
+    },
+    "92": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Snake Eyes",
+        "clips": [
+          "af596245-3008-4221-be5f-95ffc4f91e1f",
+          "7bf13134-44ba-4c0c-b6a9-9ee7728c5f4d"
+        ],
+        "v0": "7bf13134-44ba-4c0c-b6a9-9ee7728c5f4d",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "swung brassy strut"
+      }
+    },
+    "93": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Sweet Defeat",
+        "clips": [
+          "2291b351-3ba8-468f-ab8b-923070e304c0",
+          "243c0861-b988-4401-bca6-a610e927993d"
+        ],
+        "v0": "243c0861-b988-4401-bca6-a610e927993d",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "sculpted noir poise"
+      }
+    },
+    "94": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Weightless",
+        "clips": [
+          "2bdb47f7-d878-413d-a0bb-866f82333157",
+          "43c4059e-158d-4ccc-aaff-f5b7a6021240"
+        ],
+        "v0": "43c4059e-158d-4ccc-aaff-f5b7a6021240",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "shuffling tender skip"
+      }
+    },
+    "95": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Prism For The Sun",
+        "clips": [
+          "903890d2-5656-4814-a32d-cfd93be29dda",
+          "fcdcf55b-9231-4a0f-b551-d7ec62f7310a"
+        ],
+        "v0": "fcdcf55b-9231-4a0f-b551-d7ec62f7310a",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "pumping filtered joy"
+      }
     }
   },
   "method": {
