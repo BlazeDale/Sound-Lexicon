@@ -2151,6 +2151,120 @@
         ],
         "idea": "driving onto a boat with everything you own and feeling nothing but lightness, which is frightening"
       }
+    },
+    "60": {
+      "status": "generated",
+      "blind_deal": "sweep-60-62",
+      "v6": {
+        "title": "Up There",
+        "clips": [
+          "832c272f-0ab3-46f4-ba40-18101baa9f7e",
+          "ce1b90d8-6f21-43ad-ba02-2c754f336661"
+        ],
+        "v0": "ce1b90d8-6f21-43ad-ba02-2c754f336661",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "harbor",
+          "awe",
+          "climb",
+          "frequency"
+        ],
+        "idea": "a crane driver up in the cab at first light, above the gulls, listening to the whole port talk to itself on the radio"
+      },
+      "v6-wild": {
+        "title": "I Did Not Turn Round",
+        "clips": [
+          "d5f1588c-8c30-4409-b6a5-af5019e2070e",
+          "2d3c6d83-ef27-4d6d-b6d9-9e5173df65cf"
+        ],
+        "v0": "2d3c6d83-ef27-4d6d-b6d9-9e5173df65cf",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "subway platform",
+          "homesickness",
+          "leave",
+          "undertow"
+        ],
+        "idea": "hearing your grandmother tongue spoken behind you on a platform in a city where nobody speaks it, and not turning round"
+      }
+    },
+    "61": {
+      "status": "generated",
+      "blind_deal": "sweep-60-62",
+      "v6": {
+        "title": "Trees Close Over",
+        "clips": [
+          "9d305e91-5247-479b-b69a-cbc884ffcb94",
+          "557fbdc9-f7a8-4add-ac44-692e819f63d4"
+        ],
+        "v0": "557fbdc9-f7a8-4add-ac44-692e819f63d4",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "orchard",
+          "wonder",
+          "drive",
+          "threshold"
+        ],
+        "idea": "teaching a kid to drive at dusk down a lane where the trees close over, and the kid going quiet because it is beautiful"
+      },
+      "v6-wild": {
+        "title": "I Stopped Looking",
+        "clips": [
+          "0a2fb9bc-8f02-419c-832c-5fd32887d546",
+          "b561dc2c-c830-461c-ad2c-939121f8cbd9"
+        ],
+        "v0": "b561dc2c-c830-461c-ad2c-939121f8cbd9",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "ferry",
+          "loneliness",
+          "search",
+          "dream"
+        ],
+        "idea": "looking for one face in every crowd for years after they died, and the ordinary morning it stops happening"
+      }
+    },
+    "62": {
+      "status": "generated",
+      "blind_deal": "sweep-60-62",
+      "v6": {
+        "title": "Both Hands",
+        "clips": [
+          "9ffd6917-7679-4a60-9611-2cc6448fc13f",
+          "0b4e6bfb-b0bb-4857-a6c5-85381fd3026d"
+        ],
+        "v0": "0b4e6bfb-b0bb-4857-a6c5-85381fd3026d",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "train station",
+          "guilt",
+          "fall",
+          "half-life"
+        ],
+        "idea": "the brother who let go of the pram handle for a second on a hill, and what it did to the way he holds things now"
+      },
+      "v6-wild": {
+        "title": "I Couldn't See Her Face",
+        "clips": [
+          "487a4c9c-2c59-4bcf-a3ff-317e8044c2bf",
+          "64e55c20-8dc3-4127-8bc6-4c2a6a0be7ca"
+        ],
+        "v0": "64e55c20-8dc3-4127-8bc6-4c2a6a0be7ca",
+        "badge": "V6-WILD",
+        "mandated8": true,
+        "seeds": [
+          "drive-in",
+          "relief",
+          "forget",
+          "event horizon"
+        ],
+        "idea": "the night you notice you have forgotten the face of someone you swore you never would, and are glad"
+      }
     }
   },
   "method": {
