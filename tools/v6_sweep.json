@@ -3284,6 +3284,126 @@
         "mandated8": true,
         "genre_slot": "a crushing patient post-metal tide"
       }
+    },
+    "130": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "The Blind-Man's Eyes",
+        "clips": [
+          "82557995-2496-4933-b616-2936f1b795a2",
+          "fe89b487-cb05-40e0-b689-2ea6fc8b99f2"
+        ],
+        "v0": "fe89b487-cb05-40e0-b689-2ea6fc8b99f2",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a winding incense-dark modal rite"
+      }
+    },
+    "131": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "You Crossed The Void",
+        "clips": [
+          "05e87b02-c46e-4550-897e-fd469c38b06e",
+          "7a2d0ae5-e83d-4416-9a03-289104c37bb2"
+        ],
+        "v0": "7a2d0ae5-e83d-4416-9a03-289104c37bb2",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a deep cathartic melodic-techno build (+spec)"
+      }
+    },
+    "132": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Who Needs A Place To Land",
+        "clips": [
+          "2d6e5be5-f938-4543-b644-9887274a872e",
+          "92e22d11-3bc6-452c-bdb8-c7a6d4b3e035"
+        ],
+        "v0": "92e22d11-3bc6-452c-bdb8-c7a6d4b3e035",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a reckless plunging thrill (+spec)"
+      }
+    },
+    "133": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Brave Enough Now",
+        "clips": [
+          "d63097cd-fd0e-43a7-b7e1-5d4dfe27d79d",
+          "71021631-b6a5-4636-8fa9-75998173bf93"
+        ],
+        "v0": "71021631-b6a5-4636-8fa9-75998173bf93",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a hush that detonates (+spec)"
+      }
+    },
+    "134": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Unbroken At Last",
+        "clips": [
+          "150d6a15-ea7c-4c26-ad91-0338e996c7cb",
+          "8fe2d80d-6926-4232-bc16-cf6c3af0c9b4"
+        ],
+        "v0": "8fe2d80d-6926-4232-bc16-cf6c3af0c9b4",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a defiant scarred rise (+spec)"
+      }
+    },
+    "135": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Where The Light Goes",
+        "clips": [
+          "820c8ba6-c151-410e-8e18-75748819fba6",
+          "4c470411-3072-45af-b55d-a3b80f406c97"
+        ],
+        "v0": "4c470411-3072-45af-b55d-a3b80f406c97",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "an overflowing radiant surge (+spec)"
+      }
+    },
+    "136": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "The Glow Of You",
+        "clips": [
+          "056fd415-bd60-44dc-b4b1-49243a42a861",
+          "dedeb278-ca2e-4df0-8bcf-132796223125"
+        ],
+        "v0": "dedeb278-ca2e-4df0-8bcf-132796223125",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a neon-lit haunted machine-pop (+spec)"
+      }
+    },
+    "137": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Bind The Broken Crown",
+        "clips": [
+          "c9d325b9-d0da-489c-b6eb-79cb70dd2cb0",
+          "438aabb4-88cc-4b5f-aec0-343575272d0f"
+        ],
+        "v0": "438aabb4-88cc-4b5f-aec0-343575272d0f",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a foundry at prayer (+spec)"
+      }
     }
   },
   "method": {
