@@ -2324,6 +2324,51 @@
           "idea": "softly letting go"
         }
       }
+    },
+    "66": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Beautifully Torn",
+        "clips": [
+          "fa3c850c-7a38-4575-bb2d-4ff87006cb94",
+          "b2d83693-9304-41b5-a958-eefe4b5f3f49"
+        ],
+        "v0": "b2d83693-9304-41b5-a958-eefe4b5f3f49",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "ruined junkyard cabaret"
+      }
+    },
+    "67": {
+      "status": "generated",
+      "lyricist": "gemini (toolbaz; badge not captured this run)",
+      "v6": {
+        "title": "The Straw Of Grief",
+        "clips": [
+          "20590280-7143-49ea-a6dc-503128b42785",
+          "c7582c0a-fab2-47d6-a31b-3facf7d4be9b"
+        ],
+        "v0": "c7582c0a-fab2-47d6-a31b-3facf7d4be9b",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "stately baroque aria"
+      }
+    },
+    "68": {
+      "status": "generated",
+      "lyricist": "gpt-5.2",
+      "v6": {
+        "title": "Keep Your Chin Up",
+        "clips": [
+          "139cd94e-0871-470e-a1db-db3c872cb146",
+          "30ee0ee8-7a72-4a54-a79b-9414a27a0ed9"
+        ],
+        "v0": "30ee0ee8-7a72-4a54-a79b-9414a27a0ed9",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "soft bossa cool"
+      }
     }
   },
   "method": {
