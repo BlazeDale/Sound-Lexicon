@@ -2369,6 +2369,51 @@
         "mandated8": true,
         "genre_slot": "soft bossa cool"
       }
+    },
+    "69": {
+      "status": "generated",
+      "lyricist": "grok-4-fast",
+      "v6": {
+        "title": "Unbroken Spirit Rising",
+        "clips": [
+          "05d53652-5af6-41d7-9a61-e0fe402e90de",
+          "db582d42-1164-4a8f-a6d1-da291b2e4407"
+        ],
+        "v0": "db582d42-1164-4a8f-a6d1-da291b2e4407",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "hard modern dancehall"
+      }
+    },
+    "70": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Shattered Yet Free",
+        "clips": [
+          "5f2f7489-eae3-454b-9380-4bf65042fedf",
+          "9794a33b-4fc5-49be-a1f5-e849ac70631d"
+        ],
+        "v0": "9794a33b-4fc5-49be-a1f5-e849ac70631d",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "raw garage proto-punk"
+      }
+    },
+    "71": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "We Reap The Frost We Sow",
+        "clips": [
+          "50df76de-dea1-42da-a6fa-0f4f7618995e",
+          "ab9c75ee-39ea-4d11-9464-48dddac2ce84"
+        ],
+        "v0": "ab9c75ee-39ea-4d11-9464-48dddac2ce84",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "martial Viking folk-metal"
+      }
     }
   },
   "method": {
@@ -2770,5 +2815,6 @@
       },
       "run_key": "sweep-60-62"
     }
-  }
+  },
+  "lyricist_notes": "toolbaz frontier comparison 2026-09-11: gemini-3.6-flash clearly strongest (idiom-driven hooks, real call-and-response, concrete imagery). gpt-5.2 thin — 210 words, repeated end-words, inline syllable counts, appended analysis. grok-4-fast mostly ad-lib scaffolding around few real lines. claude-sonnet-4 returned EMPTY twice (button reset, counter did not advance) — appears non-functional on the free tier."
 }
