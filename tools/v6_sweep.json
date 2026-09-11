@@ -2489,6 +2489,156 @@
         "mandated8": true,
         "genre_slot": "aching rubato lament"
       }
+    },
+    "77": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Let It Pass",
+        "clips": [
+          "b66ba681-4c50-40c6-a0ec-43d58d76f8de",
+          "7c092ef3-0076-455c-a21d-6e521f047a88"
+        ],
+        "v0": "7c092ef3-0076-455c-a21d-6e521f047a88",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "austere declaimed chamber song"
+      }
+    },
+    "78": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Drowned In Light",
+        "clips": [
+          "6ef8e22b-6164-490d-8c14-f120f71fdaf1",
+          "937458f6-4ebf-4b45-bd51-70de3c2e1bc2"
+        ],
+        "v0": "937458f6-4ebf-4b45-bd51-70de3c2e1bc2",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "ecstatic microtonal tarab"
+      }
+    },
+    "79": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Decay For Decay",
+        "clips": [
+          "f445eb58-7941-4353-8b81-ce00f1628ced",
+          "9955d458-9797-4852-bcdf-89c18a3d32b6"
+        ],
+        "v0": "9955d458-9797-4852-bcdf-89c18a3d32b6",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "dislocated syrupy drift"
+      }
+    },
+    "80": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "The Bitter Dram",
+        "clips": [
+          "029c88a7-6fa4-44a6-88da-fb1e84ff46ed",
+          "b51e11bf-b5c4-4846-818e-aa70898a03e6"
+        ],
+        "v0": "b51e11bf-b5c4-4846-818e-aa70898a03e6",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "ancient modal plainchant"
+      }
+    },
+    "81": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Copper Towers",
+        "clips": [
+          "2595af0c-cf40-4002-8038-847bcbc7ab2c",
+          "e234580a-5642-4f0c-a7b7-1e64449170a9"
+        ],
+        "v0": "e234580a-5642-4f0c-a7b7-1e64449170a9",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "warm machine-soul techno"
+      }
+    },
+    "82": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Grief Made Light",
+        "clips": [
+          "dcc1ef99-862b-40ab-9437-3d2b064b7308",
+          "4313d57b-d5d5-45d7-888b-a426f1d413bb"
+        ],
+        "v0": "4313d57b-d5d5-45d7-888b-a426f1d413bb",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "cavernous hypnotic pulse"
+      }
+    },
+    "83": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Aflame Today",
+        "clips": [
+          "fac2511c-03d8-49e2-9293-6fd2fcfa7a4a",
+          "4b8df78f-5ae8-4234-b805-f4ecce3ed56d"
+        ],
+        "v0": "4b8df78f-5ae8-4234-b805-f4ecce3ed56d",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "squelching acid chant"
+      }
+    },
+    "84": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "The Meat And The Machine",
+        "clips": [
+          "0c2536ce-9554-4de8-9cf9-f5e0d17f62e9",
+          "b7a592b2-e6e2-4fce-b37b-f0cb18e5c8e3"
+        ],
+        "v0": "b7a592b2-e6e2-4fce-b37b-f0cb18e5c8e3",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "brutalist industrial pound"
+      }
+    },
+    "85": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Hollow But Whole",
+        "clips": [
+          "48ef7cfa-f7c4-464d-891a-233ae16605ea",
+          "e766e780-9bb2-4a69-81d0-656e5d91d973"
+        ],
+        "v0": "e766e780-9bb2-4a69-81d0-656e5d91d973",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "cold recited monotone"
+      }
+    },
+    "86": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "A Lifetime In A Single Day",
+        "clips": [
+          "2230b619-b5b8-4c03-aa41-11bf3d2e6a1a",
+          "42e3635a-e6b2-4d04-aae3-0686537b7007"
+        ],
+        "v0": "42e3635a-e6b2-4d04-aae3-0686537b7007",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "yearning wide-open lift"
+      }
     }
   },
   "method": {
