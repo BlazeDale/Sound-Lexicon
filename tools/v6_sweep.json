@@ -2265,12 +2265,49 @@
         ],
         "idea": "the night you notice you have forgotten the face of someone you swore you never would, and are glad"
       }
+    },
+    "63": {
+      "status": "generated",
+      "blind_deal": "sweep-63",
+      "v6": {
+        "title": "Boots Outside The Door",
+        "clips": [
+          "0f41f0a2-fec6-4fc6-ae4d-233d0fb677a2",
+          "36f1d229-e13b-4eca-a5a8-b26d2fd02539"
+        ],
+        "v0": "36f1d229-e13b-4eca-a5a8-b26d2fd02539",
+        "badge": "V6",
+        "mandated8": true,
+        "seeds": [
+          "motel corridor",
+          "homesickness",
+          "hide",
+          "spectrum"
+        ],
+        "idea": "a long-haul driver who calls home every night and cannot say he wants to come back; the yodel is what he does instead of saying it, and a stranger in the next room tells him to go home"
+      }
     }
   },
   "method": {
     "from_45": "Seeds dealt blind by tools/seed_deal.mjs before the entry style is read; idea committed from the seeds alone. Seeds are material the song passes through, never its subject. The genre summary governs only the scaffold meter/rhyme. Re-rolls allowed for absurdity only, never for genre fit, and logged."
   },
   "dealt": {
+    "63": {
+      "run_key": "sweep-63",
+      "v6": {
+        "seeds": [
+          "motel corridor",
+          "homesickness",
+          "hide",
+          "spectrum"
+        ],
+        "seeds_used": [
+          "motel corridor",
+          "homesickness"
+        ],
+        "idea": "a long-haul driver who calls home every night and cannot say he wants to come back; the yodel is what he does instead of saying it, and a stranger in the next room tells him to go home"
+      }
+    },
     "45-47": {
       "45": {
         "v6": {
