@@ -3014,6 +3014,96 @@
         "mandated8": true,
         "genre_slot": "half-lit nocturnal hush"
       }
+    },
+    "112": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Wash In The Warmth",
+        "clips": [
+          "6757eb51-f064-44b3-8beb-f289eba11bab",
+          "afdfea1d-49db-4bb3-9c3f-12e5873c8406"
+        ],
+        "v0": "afdfea1d-49db-4bb3-9c3f-12e5873c8406",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "patient widening dawn"
+      }
+    },
+    "113": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Suspended, Silent, Free",
+        "clips": [
+          "5bee12a9-c2b4-49ee-b4b6-c8cd8dfcb9b6",
+          "d1d1e79f-e71c-42c8-ba55-cb43709e0d0f"
+        ],
+        "v0": "d1d1e79f-e71c-42c8-ba55-cb43709e0d0f",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "solitary awed suspension"
+      }
+    },
+    "114": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "The Long Way Home",
+        "clips": [
+          "f023741e-e5e4-4ee9-b846-36aa87027208",
+          "641b49bd-46b3-4c51-acb1-59ada13821ce"
+        ],
+        "v0": "641b49bd-46b3-4c51-acb1-59ada13821ce",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "towering desolate reach"
+      }
+    },
+    "115": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "The Deeper I Drift",
+        "clips": [
+          "fe1c90f6-8c7d-4bd0-beec-d506e302aec8",
+          "1f07c537-8218-4232-a476-32e836a6a229"
+        ],
+        "v0": "1f07c537-8218-4232-a476-32e836a6a229",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "oceanic weightless drift"
+      }
+    },
+    "116": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Held By Starlight",
+        "clips": [
+          "06340141-f484-406b-8538-1dda03959256",
+          "417258b6-3b68-49c5-b79a-4b8f06a05cab"
+        ],
+        "v0": "417258b6-3b68-49c5-b79a-4b8f06a05cab",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "ceremonial lifted immensity"
+      }
+    },
+    "117": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Clean Hands, Cold Heart",
+        "clips": [
+          "e5b3c134-aec7-4908-9feb-37f421af9b50",
+          "40e1da96-d53b-4d10-b3cd-6444d2a6a865"
+        ],
+        "v0": "40e1da96-d53b-4d10-b3cd-6444d2a6a865",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "cold deliberate menace"
+      }
     }
   },
   "method": {
