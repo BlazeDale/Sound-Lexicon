@@ -2286,10 +2286,49 @@
         ],
         "idea": "a long-haul driver who calls home every night and cannot say he wants to come back; the yodel is what he does instead of saying it, and a stranger in the next room tells him to go home"
       }
+    },
+    "64": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash (toolbaz)",
+      "v6": {
+        "title": "Drowned In The Memory",
+        "clips": [
+          "b1d86a4d-5068-4f0d-be2c-ac574acd3957",
+          "463218e9-5eaa-4715-9c10-ee04867d227d"
+        ],
+        "v0": "463218e9-5eaa-4715-9c10-ee04867d227d",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "dark Memphis phonk",
+        "gemini_filled": {
+          "adverb": "Hauntingly",
+          "idea": "Drowned in memory"
+        }
+      }
+    },
+    "65": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash (toolbaz)",
+      "v6": {
+        "title": "Salt To The Sea",
+        "clips": [
+          "58fee109-64e8-445b-9677-371b0b293cfb",
+          "afefbf82-3037-4a2f-818e-0aa798c53deb"
+        ],
+        "v0": "afefbf82-3037-4a2f-818e-0aa798c53deb",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "sly sunny calypso",
+        "gemini_filled": {
+          "adverb": "Buoyantly",
+          "idea": "softly letting go"
+        }
+      }
     }
   },
   "method": {
-    "from_45": "Seeds dealt blind by tools/seed_deal.mjs before the entry style is read; idea committed from the seeds alone. Seeds are material the song passes through, never its subject. The genre summary governs only the scaffold meter/rhyme. Re-rolls allowed for absurdity only, never for genre fit, and logged."
+    "from_45": "Seeds dealt blind by tools/seed_deal.mjs before the entry style is read; idea committed from the seeds alone. Seeds are material the song passes through, never its subject. The genre summary governs only the scaffold meter/rhyme. Re-rolls allowed for absurdity only, never for genre fit, and logged.",
+    "from_64": "Lyrics written by Gemini-3.6-Flash via toolbaz.com/writer/ai-writing-assistant. I fill only the [3 word Genre summary] slot; Gemini populates the adverb and the 3-word idea itself. Output is cleaned before Suno: drop the meta header line, bracket production directions (parens mean SUNG per the notation rule), split \"(Direction: words)\" into [Direction] + (words), and bracket bare section labels. Counter on the site reads Activity History n/10 per window."
   },
   "dealt": {
     "63": {
