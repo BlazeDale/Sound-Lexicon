@@ -2774,6 +2774,66 @@
         "mandated8": true,
         "genre_slot": "pumping filtered joy"
       }
+    },
+    "96": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Defying The Dark",
+        "clips": [
+          "0f6d53c2-2ca6-498d-90ee-f7c7baea7b80",
+          "449f5b27-a695-40c1-a945-eda9fbefb302"
+        ],
+        "v0": "449f5b27-a695-40c1-a945-eda9fbefb302",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "wry stubborn insistence"
+      }
+    },
+    "97": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "A Heart Of Lead",
+        "clips": [
+          "aa8d08c0-dd2e-4c9b-b96f-5cc548a2f47a",
+          "8069f7d5-9b14-4360-ba33-49dba6e2f3ff"
+        ],
+        "v0": "8069f7d5-9b14-4360-ba33-49dba6e2f3ff",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "glacial tarred weight"
+      }
+    },
+    "98": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "The Willow Shade",
+        "clips": [
+          "4dbeebe2-77bd-43c7-84d2-ea45daaba344",
+          "a74c28b8-58ee-4f7a-a195-4e15e251a698"
+        ],
+        "v0": "a74c28b8-58ee-4f7a-a195-4e15e251a698",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "weary proud sway"
+      }
+    },
+    "99": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "A Beautiful Wreck",
+        "clips": [
+          "2f554df4-0395-4750-944c-2748c04a6622",
+          "4eec920c-a091-442a-8089-1006ee3e6f94"
+        ],
+        "v0": "4eec920c-a091-442a-8089-1006ee3e6f94",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "fraying desperate surge"
+      }
     }
   },
   "method": {
