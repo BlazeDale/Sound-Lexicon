@@ -3614,6 +3614,51 @@
         "mandated8": true,
         "genre_slot": "a coal-country waltz told plain"
       }
+    },
+    "152": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Bloody Well Stuck On You",
+        "clips": [
+          "f23efd12-31b3-4753-b215-0a27ca2d0255",
+          "8be09bd4-44a1-41c6-9b4b-b1aca3c36f65"
+        ],
+        "v0": "8be09bd4-44a1-41c6-9b4b-b1aca3c36f65",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a music-hall stomp with a wink (+blunt)"
+      }
+    },
+    "153": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Nobody Has To Go Alone",
+        "clips": [
+          "51f0e6a8-8484-4dcb-8a9e-25f123828f10",
+          "3203bc58-fa45-4bf7-bd9f-79827e984af3"
+        ],
+        "v0": "3203bc58-fa45-4bf7-bd9f-79827e984af3",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a playground chant sung small and kind"
+      }
+    },
+    "154": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "A Crooked Nickel",
+        "clips": [
+          "67426acb-a9f0-4de4-86a5-0eb8c1440c4f",
+          "9a563894-7c4a-4d0b-ab9b-5114e6ec1233"
+        ],
+        "v0": "9a563894-7c4a-4d0b-ab9b-5114e6ec1233",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a dust-road troubadour tall tale (+blunt)"
+      }
     }
   },
   "method": {
