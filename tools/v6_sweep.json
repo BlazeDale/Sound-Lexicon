@@ -3179,6 +3179,21 @@
         "mandated8": true,
         "genre_slot": "ferocious testifying heat"
       }
+    },
+    "123": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "A Deeper Shade Of Blue",
+        "clips": [
+          "2b4ff386-8555-4df3-8220-98f2931cc978",
+          "db2d922a-3bce-4a8e-a51c-93b2112d82a0"
+        ],
+        "v0": "db2d922a-3bce-4a8e-a51c-93b2112d82a0",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "spent tender gravity"
+      }
     }
   },
   "method": {
