@@ -3749,6 +3749,36 @@
         "mandated8": true,
         "genre_slot": "an urgent ringing jangle-drive"
       }
+    },
+    "161": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "The Floor Is Splitting Open",
+        "clips": [
+          "e70c8e8f-2ce1-4c21-a15a-7b6dcc5d4f93",
+          "6acffba8-50f2-4901-aaf8-c4bf8f50fecf"
+        ],
+        "v0": "e70c8e8f-2ce1-4c21-a15a-7b6dcc5d4f93",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a coiled underground murmur that detonates without warning"
+      }
+    },
+    "162": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "The Small Earth",
+        "clips": [
+          "e55d1eb3-581c-4776-bc93-a4731cfb508f",
+          "f74ba2b8-3847-4b40-855f-5051b509c807"
+        ],
+        "v0": "e55d1eb3-581c-4776-bc93-a4731cfb508f",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a slow circling repetition that releases rather than breaks"
+      }
     }
   },
   "method": {
