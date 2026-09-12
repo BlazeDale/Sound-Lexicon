@@ -4312,6 +4312,91 @@
       },
       "flags": "blunt",
       "edits": "none -- meta header dropped only"
+    },
+    "195": {
+      "status": "generated",
+      "lyricist": "claude-fresh-agent",
+      "flags": [
+        "spec",
+        "spare"
+      ],
+      "edits": 1,
+      "note": "echo hit \"cross the floor\" fixed in place to \"room to room\"",
+      "v6": {
+        "title": "Keep It On",
+        "clips": [
+          "24d057a3-6700-409c-b11e-3f65db4ae3f3",
+          "c8918887-ac41-4a35-b349-8d6cc79437df"
+        ],
+        "v0": "24d057a3-6700-409c-b11e-3f65db4ae3f3",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "empty planetarium at three in the morning"
+      }
+    },
+    "196": {
+      "status": "generated",
+      "lyricist": "claude-fresh-agent",
+      "flags": [
+        "spec",
+        "spare",
+        "mantra"
+      ],
+      "edits": 0,
+      "note": "echo noted domestic repeat cup x2; kept, the repeat is the mantra device",
+      "v6": {
+        "title": "Stay Till The Morning",
+        "clips": [
+          "ff73dbad-3470-464a-a747-ddc900dda55f",
+          "f091bc70-baba-4959-afed-8b4e76b592a4"
+        ],
+        "v0": "ff73dbad-3470-464a-a747-ddc900dda55f",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "cold flat, up all night watching the ceiling"
+      }
+    },
+    "197": {
+      "status": "generated",
+      "lyricist": "claude-fresh-agent",
+      "flags": [
+        "spare",
+        "mantra"
+      ],
+      "edits": 2,
+      "note": "first arm killed by API content filter; re-rolled with open-air slot after doorway convergence; kitchen x2 fixed in place incl. closing image",
+      "v6": {
+        "title": "You Waited Up",
+        "clips": [
+          "c53f1050-5710-4f92-9ba9-49f285212213",
+          "1323621f-4aad-4edd-ac25-013436e8ad41"
+        ],
+        "v0": "c53f1050-5710-4f92-9ba9-49f285212213",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "night crew on a bridge, open air, many people at work"
+      }
+    },
+    "198": {
+      "status": "generated",
+      "lyricist": "claude-fresh-agent",
+      "flags": [
+        "spare",
+        "blunt"
+      ],
+      "edits": 0,
+      "note": "re-rolled from a doorway-leaving draft with in-company slot; echo clean; blunt flag landed",
+      "v6": {
+        "title": "Coat On My Chair",
+        "clips": [
+          "38ee636a-315f-4779-832c-ecb1ff2a7752",
+          "16c09eb7-cbba-42d8-bfa7-37a1137ab89f"
+        ],
+        "v0": "38ee636a-315f-4779-832c-ecb1ff2a7752",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "long crowded table, drinking since the afternoon"
+      }
     }
   },
   "method": {
