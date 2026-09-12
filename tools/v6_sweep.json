@@ -3952,6 +3952,71 @@
         "genre_slot": "a widescreen drift through warm dust and distance"
       },
       "edits": "none -- single buried copper left standing, moderation over policing"
+    },
+    "174": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "The Only Thing I Know",
+        "clips": [
+          "b65efaa1-314e-4183-9a05-07e6f2df26f3",
+          "9b61b31c-5f73-4051-839b-2c4693b74718"
+        ],
+        "v0": "b65efaa1-314e-4183-9a05-07e6f2df26f3",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "an endless quiet that suddenly has company"
+      },
+      "edits": "2 swaps: let it blow -> let it howl (#161 chorus); lay your heavy coat down -> let the heavy coat fall (3rd lay-X-down)",
+      "note": "spec flag turned OFF -- the sci-fi vocabulary had become its own attractor across #170-173"
+    },
+    "175": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Flying On A Broken Wing",
+        "clips": [
+          "9fb93c7f-f3c5-4c9a-be39-eedc8ff59c03",
+          "4d990a01-90b5-44a0-a389-b550ff422e19"
+        ],
+        "v0": "9fb93c7f-f3c5-4c9a-be39-eedc8ff59c03",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a glittering surge that turns fear into swagger"
+      },
+      "edits": "1 swap: ay-oh vocalese -> wo-oh (#170 chorus)"
+    },
+    "176": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "That's The Winter Breaking",
+        "clips": [
+          "17b2fdeb-3006-4fc1-a631-5dcce5a966c3",
+          "04a66087-53a5-4b06-97b0-691ac34e329e"
+        ],
+        "v0": "17b2fdeb-3006-4fc1-a631-5dcce5a966c3",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a long dread that finally turns into relief"
+      },
+      "edits": "1 swap: lay your heavy coat down -> leave the dark behind us (#174)"
+    },
+    "177": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Another Night In The Yard",
+        "clips": [
+          "01a5e997-c2b4-4412-ad25-926df04d1fa2",
+          "b8bbcda6-4eda-4f66-8a74-fffd3b615cd0"
+        ],
+        "v0": "01a5e997-c2b4-4412-ad25-926df04d1fa2",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a slow ache that lifts without ever breaking"
+      },
+      "edits": "LARGER: 4-line chorus rebuilt from the song own imagery -- it carried three banked collisions at once (lay X down, have to carry it, still worth saving) and could not be fixed word by word. Verses untouched. Also screen door -> front door."
     }
   },
   "method": {
