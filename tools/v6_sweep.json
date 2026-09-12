@@ -3888,6 +3888,70 @@
         "mandated8": true,
         "genre_slot": "an easy lamplit sway that forgives"
       }
+    },
+    "170": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Holding The Sky",
+        "clips": [
+          "20ba0dbc-46a3-43d9-ba4e-f3ba00dae73c",
+          "c7504e04-2e78-433d-bbd6-0970423ef33b"
+        ],
+        "v0": "20ba0dbc-46a3-43d9-ba4e-f3ba00dae73c",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a slow hypnotic climb over a dusty pocket"
+      },
+      "edits": "none -- first draft taken whole under the listener-effect prompt"
+    },
+    "171": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Let The Gray Go",
+        "clips": [
+          "54f6ed68-1abe-476e-b15f-9863939fe545",
+          "e0a45589-243e-4f9b-9a17-c0b5419b4ccb"
+        ],
+        "v0": "54f6ed68-1abe-476e-b15f-9863939fe545",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a hushed unfolding that slowly opens into light"
+      },
+      "edits": "1 swap: first of two salts -> tide; the second salt kept, it carries the departure"
+    },
+    "172": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "The Earth Can Have My Bones",
+        "clips": [
+          "261bc013-bd34-4afd-83c4-7f2e49508bb6",
+          "d501b2ff-2f07-45a2-b272-9eadb867dde6"
+        ],
+        "v0": "261bc013-bd34-4afd-83c4-7f2e49508bb6",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a warm nodding sway that never once hurries"
+      },
+      "edits": "2 swaps: final line safe but drifting -> whole but drifting; one of two coppers -> blackened"
+    },
+    "173": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "We Are Returning",
+        "clips": [
+          "dccc57ee-5a1f-4de1-994a-09238e1bfc2a",
+          "1d9e444c-fe65-4727-aec1-d442f3fe0e0e"
+        ],
+        "v0": "dccc57ee-5a1f-4de1-994a-09238e1bfc2a",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a widescreen drift through warm dust and distance"
+      },
+      "edits": "none -- single buried copper left standing, moderation over policing"
     }
   },
   "method": {
