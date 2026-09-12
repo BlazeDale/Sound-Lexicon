@@ -4119,6 +4119,40 @@
       },
       "flags": "mantra",
       "edits": "the hammered phrase was We are safe now -- perfect technique, worst attractor in the corpus. Swapped to We are here now across all 11 repeats, and reckless and safe -> breath on my face in the chorus. Structure untouched."
+    },
+    "184": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Best-Dressed Ghosts",
+        "clips": [
+          "7e16830d-829c-4d2a-86aa-d6d466da3923",
+          "5d2bdb95-cab6-4bbb-a846-4551892642d0"
+        ],
+        "v0": "7e16830d-829c-4d2a-86aa-d6d466da3923",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a tight strut that wears its hurt lightly"
+      },
+      "flags": "none",
+      "edits": "1 swap: beaver-felt hat -> hands deeper in my pockets; the only thing pinning a boogie entry to the 1930s"
+    },
+    "185": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Cross The Floor",
+        "clips": [
+          "b0cad809-fbe4-4141-b89c-0f9f83cec026",
+          "3e24633b-d341-4472-b138-45b69218e8c5"
+        ],
+        "v0": "b0cad809-fbe4-4141-b89c-0f9f83cec026",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a dare thrown across a crowded room"
+      },
+      "flags": "mantra",
+      "edits": "2 swaps: copper wires -> amplifiers (banked attractor); closing image kitchen window/sink -> fogged-up window (domestic cluster ending a club song)"
     }
   },
   "method": {
