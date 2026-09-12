@@ -4277,6 +4277,41 @@
       "flags": "none",
       "edits": "none -- meta header dropped only",
       "note": "the comic song the brief has been short of; keys used twice as a deliberate running gag, left alone"
+    },
+    "193": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Plainly In Love",
+        "clips": [
+          "2ce16529-b945-4b48-b676-a32e3cf256ef",
+          "cd5a36df-12b8-4ff3-8b82-99c0b337b62f"
+        ],
+        "v0": "2ce16529-b945-4b48-b676-a32e3cf256ef",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a hot afternoon on a busy street, missing someone"
+      },
+      "flags": "none",
+      "edits": "none -- meta header dropped only",
+      "note": "style prose sent verbatim with skank intact per BlazeDale: when Suno auto-replaces, let it lie. No dialog fired this time."
+    },
+    "194": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "I'm Going, I'm Gone",
+        "clips": [
+          "02ee8cad-1af6-4d88-9567-8fd9c9c60258",
+          "efaad92c-087e-4b42-b115-739069816a3d"
+        ],
+        "v0": "02ee8cad-1af6-4d88-9567-8fd9c9c60258",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a kid screaming along in a car after a breakup"
+      },
+      "flags": "blunt",
+      "edits": "none -- meta header dropped only"
     }
   },
   "method": {
