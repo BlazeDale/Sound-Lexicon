@@ -4242,6 +4242,41 @@
       "flags": "blunt",
       "edits": "1 swap: let it burn down -> I am not backing down (6th let-it-X hook, now a construction tic). Structure extended with the writers own refrain and chorus lines -- first draft rendered at 68-76s, too short to show the vocal range the entry is built on.",
       "note": "PALETTE ZERO. Suno artist-filter fired on the word skank in the entry style prose and substituted styles; resent with chop instead and the full style survived."
+    },
+    "191": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Wide Damn Awake",
+        "clips": [
+          "eb5b626c-0b4a-4bf4-9078-22619957acb6",
+          "58cb5b82-4d65-4179-8f24-25ccfe8e45ea"
+        ],
+        "v0": "eb5b626c-0b4a-4bf4-9078-22619957acb6",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a sweaty all-ages show where nobody stops jumping"
+      },
+      "flags": "none",
+      "edits": "1 swap: holding your ash -> with my feet up on the dash (weakest line in the song and the only palette hit). skank->chop in the style sent to Suno."
+    },
+    "192": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "The Uncoolest Guy In This Town",
+        "clips": [
+          "948864f2-0299-4585-b233-ba92fc9705d2",
+          "17c96287-119e-4132-9f59-5d76df788dd6"
+        ],
+        "v0": "948864f2-0299-4585-b233-ba92fc9705d2",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "someone acting cool at a party and failing at it"
+      },
+      "flags": "none",
+      "edits": "none -- meta header dropped only",
+      "note": "the comic song the brief has been short of; keys used twice as a deliberate running gag, left alone"
     }
   },
   "method": {
