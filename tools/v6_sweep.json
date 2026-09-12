@@ -4017,6 +4017,74 @@
         "genre_slot": "a slow ache that lifts without ever breaking"
       },
       "edits": "LARGER: 4-line chorus rebuilt from the song own imagery -- it carried three banked collisions at once (lay X down, have to carry it, still worth saving) and could not be fixed word by word. Verses untouched. Also screen door -> front door."
+    },
+    "178": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "We Fall Up",
+        "clips": [
+          "03d929bf-6473-442b-9ae6-ba4459faf223",
+          "9f7ed7ac-6297-47d1-a85f-b4373fa15d1f"
+        ],
+        "v0": "03d929bf-6473-442b-9ae6-ba4459faf223",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a bright playful spark that answers itself"
+      },
+      "flags": "mantra",
+      "edits": "none; copper x3 and cup x2 left standing -- the song own motifs, not attractor tics"
+    },
+    "179": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Lock The Door, Drop The Key",
+        "clips": [
+          "d717f6b3-6071-4004-b3dc-5cfa04c47ff1",
+          "f66ea2fe-5856-434a-b1b1-a2575317f809"
+        ],
+        "v0": "d717f6b3-6071-4004-b3dc-5cfa04c47ff1",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a voice that walks in and takes the room"
+      },
+      "flags": "none",
+      "edits": "none"
+    },
+    "180": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Ruin My Night",
+        "clips": [
+          "48ba0316-3e60-4dc6-99fb-da7236544074",
+          "40781e36-6f85-4d65-be0d-9025bc89341e"
+        ],
+        "v0": "48ba0316-3e60-4dc6-99fb-da7236544074",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a cool sway with heartbreak hidden in the swagger"
+      },
+      "flags": "none",
+      "edits": "2 swaps: what my hands were for -> these hands dont know another thing to do (#164 chorus hook); keys -> bag (3rd keys in 4 entries)"
+    },
+    "181": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "The Street Is Gold",
+        "clips": [
+          "4d57a4b4-000e-45cb-8b7c-e4c360642809",
+          "55f293e0-2309-4fbd-ac06-4ecf2e87b851"
+        ],
+        "v0": "4d57a4b4-000e-45cb-8b7c-e4c360642809",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "an easy euphoria with a cool head"
+      },
+      "flags": "mantra",
+      "edits": "none; keys in her teeth left standing -- a different image from the dropped-keys motif"
     }
   },
   "method": {
