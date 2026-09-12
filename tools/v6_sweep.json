@@ -3779,6 +3779,36 @@
         "mandated8": true,
         "genre_slot": "a slow circling repetition that releases rather than breaks"
       }
+    },
+    "163": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "It Will Not Yield",
+        "clips": [
+          "07b3bd56-bc45-46d8-92cf-62322ac60ee8",
+          "782c8696-119c-4751-b4a4-5e967df6cef6"
+        ],
+        "v0": "07b3bd56-bc45-46d8-92cf-62322ac60ee8",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a tightening coil that never releases"
+      }
+    },
+    "164": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Caught Off Guard",
+        "clips": [
+          "5925060b-a319-40b4-94e8-6b59303bb889",
+          "41252ea2-d74e-4452-b4b5-5691d1d3f804"
+        ],
+        "v0": "5925060b-a319-40b4-94e8-6b59303bb889",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a warm unhurried sway with an ache under the harmony"
+      }
     }
   },
   "method": {
