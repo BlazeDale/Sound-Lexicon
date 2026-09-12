@@ -4153,6 +4153,24 @@
       },
       "flags": "mantra",
       "edits": "2 swaps: copper wires -> amplifiers (banked attractor); closing image kitchen window/sink -> fogged-up window (domestic cluster ending a club song)"
+    },
+    "186": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Don't Let Morning In",
+        "clips": [
+          "2ab48484-0a07-4821-b25c-62b612e9bda3",
+          "1f0dca62-abc7-43dc-9130-455d9e00d7e7"
+        ],
+        "v0": "2ab48484-0a07-4821-b25c-62b612e9bda3",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a sweaty club floor at full tilt"
+      },
+      "flags": "mantra",
+      "edits": "none",
+      "note": "first demo on the revised prompt -- world/core/row-of-things removed. Palette: 1 hit (salt) vs a 4.0-per-song baseline."
     }
   },
   "method": {
