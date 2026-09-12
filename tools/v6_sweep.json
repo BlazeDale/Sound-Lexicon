@@ -4206,6 +4206,42 @@
       "flags": "mantra",
       "edits": "2 swaps: took your keys -> took your phone (5th keys); silver earring on iron grate closing image -> paper wristband (3rd silver earring close)",
       "note": "four rolls -- every under-specified slot defaulted to rural Americana and brought the palette with it. Naming the club explicitly fixed both at once."
+    },
+    "189": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "The Edge Falls Away",
+        "clips": [
+          "81357159-bab7-46c6-9164-d926c274265a",
+          "4d72036c-aa0a-4946-8140-c48e1eb4464e"
+        ],
+        "v0": "81357159-bab7-46c6-9164-d926c274265a",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "the middle of a dancefloor with your eyes shut"
+      },
+      "flags": "mantra",
+      "edits": "2 swaps: ay-oh vocalese -> ee-oh (#170 chorus); let the world break -> let the world shake (#185 hammered hook)",
+      "note": "PALETTE ZERO -- first of the sweep. Slot named the dancefloor explicitly."
+    },
+    "190": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Riot In My Chest",
+        "clips": [
+          "774ad882-850a-4e5a-90c7-47a287fa3469",
+          "86954a67-fb56-400c-a5b4-b0a3f3d6ad61"
+        ],
+        "v0": "774ad882-850a-4e5a-90c7-47a287fa3469",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a mouthy kid bouncing off the walls with a bruised heart"
+      },
+      "flags": "blunt",
+      "edits": "1 swap: let it burn down -> I am not backing down (6th let-it-X hook, now a construction tic). Structure extended with the writers own refrain and chorus lines -- first draft rendered at 68-76s, too short to show the vocal range the entry is built on.",
+      "note": "PALETTE ZERO. Suno artist-filter fired on the word skank in the entry style prose and substituted styles; resent with chop instead and the full style survived."
     }
   },
   "method": {
