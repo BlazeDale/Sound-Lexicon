@@ -3659,6 +3659,66 @@
         "mandated8": true,
         "genre_slot": "a dust-road troubadour tall tale (+blunt)"
       }
+    },
+    "155": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "A Splash Of Dark Wine",
+        "clips": [
+          "a7b2b774-aa69-4df6-97d6-8d85a593fc83",
+          "79a51854-97c4-4e50-82e1-794b21efe84a"
+        ],
+        "v0": "a7b2b774-aa69-4df6-97d6-8d85a593fc83",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a bullring serenade at full flourish"
+      }
+    },
+    "156": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "A Hit To The Head",
+        "clips": [
+          "e46ee753-c265-4d6b-b98f-97fb56a5f938",
+          "ee76edf2-682b-44e1-82f3-8c0aadd8652e"
+        ],
+        "v0": "e46ee753-c265-4d6b-b98f-97fb56a5f938",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a limping desert skronk"
+      }
+    },
+    "157": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Bang-Bang-Tap",
+        "clips": [
+          "d7926ed4-aa59-4eef-8156-d3cb103e1d80",
+          "5be533c4-815d-4a0f-b2c7-5d7e89e2ccbe"
+        ],
+        "v0": "d7926ed4-aa59-4eef-8156-d3cb103e1d80",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a two-minute beat-group rush"
+      }
+    },
+    "158": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Ready To Burn",
+        "clips": [
+          "e91f654f-1d49-48dd-b8be-e7095bc5bcf0",
+          "96c5c068-53f6-4b09-b768-f8748afce2eb"
+        ],
+        "v0": "e91f654f-1d49-48dd-b8be-e7095bc5bcf0",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a held breath before the roar"
+      }
     }
   },
   "method": {
