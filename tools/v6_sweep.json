@@ -4171,6 +4171,41 @@
       "flags": "mantra",
       "edits": "none",
       "note": "first demo on the revised prompt -- world/core/row-of-things removed. Palette: 1 hit (salt) vs a 4.0-per-song baseline."
+    },
+    "187": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Do It Again",
+        "clips": [
+          "de431f6f-139f-4bf2-97d6-07f6d9caba2d",
+          "4ff34bff-f9da-4cae-8b17-93c68a851f91"
+        ],
+        "v0": "de431f6f-139f-4bf2-97d6-07f6d9caba2d",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a bright dancefloor flirtation with nerve behind it"
+      },
+      "flags": "none",
+      "edits": "1 swap: silver hoop earring closing image -> bent hair-clip (2nd silver earring close, after #182)"
+    },
+    "188": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Take It All",
+        "clips": [
+          "f8a912af-8486-4234-83ac-831af93a86eb",
+          "c938102b-7f2c-4273-b23e-a188bed02359"
+        ],
+        "v0": "f8a912af-8486-4234-83ac-831af93a86eb",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a packed club the moment the piano breaks open"
+      },
+      "flags": "mantra",
+      "edits": "2 swaps: took your keys -> took your phone (5th keys); silver earring on iron grate closing image -> paper wristband (3rd silver earring close)",
+      "note": "four rolls -- every under-specified slot defaulted to rural Americana and brought the palette with it. Naming the club explicitly fixed both at once."
     }
   },
   "method": {
