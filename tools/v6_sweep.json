@@ -4085,6 +4085,40 @@
       },
       "flags": "mantra",
       "edits": "none; keys in her teeth left standing -- a different image from the dropped-keys motif"
+    },
+    "182": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Dizzy For You",
+        "clips": [
+          "9d9bebd3-bf46-43c4-ad08-cd2b2ad7dae4",
+          "8651db2d-df53-4e8c-b176-b0dd65320d05"
+        ],
+        "v0": "9d9bebd3-bf46-43c4-ad08-cd2b2ad7dae4",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a bright glossy surface with a blue ache under it"
+      },
+      "flags": "none",
+      "edits": "none"
+    },
+    "183": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Fall Into Me",
+        "clips": [
+          "15b32344-cb8e-4ee4-81d5-774a534bdb74",
+          "cc2b1005-3a13-4a23-a885-2a6edee03476"
+        ],
+        "v0": "15b32344-cb8e-4ee4-81d5-774a534bdb74",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a room of strangers moving as one, late"
+      },
+      "flags": "mantra",
+      "edits": "the hammered phrase was We are safe now -- perfect technique, worst attractor in the corpus. Swapped to We are here now across all 11 repeats, and reckless and safe -> breath on my face in the chorus. Structure untouched."
     }
   },
   "method": {
