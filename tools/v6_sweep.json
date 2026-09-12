@@ -3719,6 +3719,36 @@
         "mandated8": true,
         "genre_slot": "a held breath before the roar"
       }
+    },
+    "159": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Reckless With Hope",
+        "clips": [
+          "fd1444ce-74b8-4d28-90ca-bf7fbf84842f",
+          "bee70f26-71ff-4ac3-af63-0c4b2f2b1b5a"
+        ],
+        "v0": "fd1444ce-74b8-4d28-90ca-bf7fbf84842f",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a soaring hymn-like rock ascent"
+      }
+    },
+    "160": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Ring Out, Ring On",
+        "clips": [
+          "b4f5e9de-10b5-4f2b-aa45-ddb7fe60244c",
+          "06899a98-5a41-4fee-8beb-7fd4053e9ea6"
+        ],
+        "v0": "b4f5e9de-10b5-4f2b-aa45-ddb7fe60244c",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "an urgent ringing jangle-drive"
+      }
     }
   },
   "method": {
