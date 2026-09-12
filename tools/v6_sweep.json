@@ -3825,6 +3825,69 @@
         "genre_slot": "a sunlit harmony with an ache inside"
       },
       "edits": "4 line-level swaps for cross-provider attractors (screen door, salt) and a domestic cluster (kitchen, cupboard); rhyme/meter preserved"
+    },
+    "166": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Lay Your Heavy Heart",
+        "clips": [
+          "3c84db6d-a4da-4005-b4de-52aa3ed19acd",
+          "f96862ab-f164-4fc3-9986-7be679f5491d"
+        ],
+        "v0": "3c84db6d-a4da-4005-b4de-52aa3ed19acd",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a slow blues pocket built for a long hot night"
+      },
+      "edits": "1 swap: screen door -> gate (5th appearance of the attractor)"
+    },
+    "167": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Let The Heavy World Turn",
+        "clips": [
+          "5001b878-6803-4b33-bf79-61e345d6a19c",
+          "05e806c7-2c6a-496d-8b5b-74003672922f"
+        ],
+        "v0": "5001b878-6803-4b33-bf79-61e345d6a19c",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a candlelit waltz that circles like a charm"
+      },
+      "edits": "2 swaps: salt -> frost (watch tier), one of two adjacent irons -> brass"
+    },
+    "168": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Scared But Sure",
+        "clips": [
+          "85eeb832-3665-4a63-bef8-309f3b534f97",
+          "472de62b-ce3e-4d42-8824-aa9b2f36a0d1"
+        ],
+        "v0": "85eeb832-3665-4a63-bef8-309f3b534f97",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a racing, precise, obsessive brightness"
+      },
+      "edits": "1 swap: copper wire -> live black wire (attractor in the chorus hook)"
+    },
+    "169": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Let Nobody In",
+        "clips": [
+          "b20be6a4-49bc-47a9-a87b-18e9439e7961",
+          "54c22d9c-f9e1-45b8-ab27-56fdeb404dc1"
+        ],
+        "v0": "b20be6a4-49bc-47a9-a87b-18e9439e7961",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "an easy lamplit sway that forgives"
+      }
     }
   },
   "method": {
