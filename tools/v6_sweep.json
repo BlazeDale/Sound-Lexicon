@@ -3809,6 +3809,22 @@
         "mandated8": true,
         "genre_slot": "a warm unhurried sway with an ache under the harmony"
       }
+    },
+    "165": {
+      "status": "generated",
+      "lyricist": "perchance-ai-lyrics-generator",
+      "v6": {
+        "title": "Leaning In, Leaning Out",
+        "clips": [
+          "f1db31f9-eeb3-4725-a178-5f70d96d8a6b",
+          "f92c211f-8d2d-46e0-a5b2-034ce25bda18"
+        ],
+        "v0": "f1db31f9-eeb3-4725-a178-5f70d96d8a6b",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a sunlit harmony with an ache inside"
+      },
+      "edits": "4 line-level swaps for cross-provider attractors (screen door, salt) and a domestic cluster (kitchen, cupboard); rhyme/meter preserved"
     }
   },
   "method": {
