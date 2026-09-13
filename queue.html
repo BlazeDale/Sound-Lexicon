@@ -312,9 +312,13 @@
     cannot be played here and watched for its end either. For Suno rows <b>auto</b> is
     therefore a timer over the track's known length, with the countdown kept on screen: right
     when you listen straight through, and wrong if you pause inside the frame, which is the one
-    thing it cannot see. It starts when you press play rather than when the track loads —
-    the page cannot see inside the frame, but it can see the window hand focus to it, which
-    is the moment somebody pressed something. Click the countdown to restart it by hand.<br><br>
+    thing it cannot see. It starts when you press play rather than when the track loads — the
+    page cannot read inside the frame, but it can see the window hand focus to it, which is
+    the moment somebody pressed something. Only that first press is visible: once focus is in
+    the frame, further clicks there raise no event at all — measured, not assumed — so
+    pausing cannot be detected and the countdown keeps running while Suno's does not. That is
+    the one case it gets wrong, which is why it stays on screen rather than working silently.
+    Click it to start a clean run from the top.<br><br>
     <b>Dropping into the chat.</b> A link dropped anywhere on the chat is posted as a message,
     which is how a guest suggests something. If you own the queue it is queued as well —
     suggesting a track to yourself and then pressing your own button is a step that does not
@@ -1080,18 +1084,31 @@ function paintTimer() {
    stopping it — which is the same blind spot as before and no worse, and the countdown
    stays on screen so it is visible when it is wrong. */
 let framePoked = false;
+
+/* Pause cannot be detected, and this is the measurement rather than an assumption: the
+   window blurs when focus moves INTO the frame, and that transition happens exactly once.
+   Three further clicks inside an already-focused frame produced zero blur events, zero
+   focus events, and no other signal of any kind. So the first press is observable and
+   everything after it — pause, resume, seek — is not.
+
+   A click-counting pause toggle was built and removed on the strength of that: with no
+   event for the second click it could only fire when focus happened to bounce out to the
+   page and back, and would then freeze the clock on a track that was still playing. Worse
+   than not having it. The countdown therefore runs from the first press to the end of the
+   track, and stays on screen so a pause is visibly wrong rather than quietly wrong. */
 window.addEventListener('blur', () => setTimeout(() => {
   if (document.activeElement !== frame) return;
   const r = cur >= 0 ? Q[cur] : null;
   if (!r || r.src !== 'suno' || !auto || !r.dur) return;
+  if (framePoked) return;              // only the first press is trustworthy
   framePoked = true;
   startTimer(r.dur);
-  $('#tlab').textContent = 'next in';
 }, 0));
 
 $('#timer').addEventListener('click', () => {
   if (cur >= 0 && Q[cur] && Q[cur].src === 'suno' && Q[cur].dur) {
-    startTimer(Q[cur].dur); $('#tlab').textContent = 'next in'; toast('Timer restarted');
+    framePoked = true;
+    startTimer(Q[cur].dur); toast('Timer restarted from the top');
   }
 });
 
