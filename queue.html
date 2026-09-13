@@ -237,6 +237,7 @@
   </div>
   </div>
 
+  <p class="hint" id="ytnote" hidden></p>
   <p class="hint" id="chathint" hidden></p>
 
   <footer>
@@ -1048,13 +1049,28 @@ async function ytCookieState() {
 }
 
 async function refreshYtCookieButton() {
-  const b = $('#ytcookie');
+  const b = $('#ytcookie'), note = $('#ytnote');
   if (!b) return;
   const anyYT = Q.some(r => r.src === 'yt' || r.src === 'ytpl');
   const state = await ytCookieState();
   b.hidden = !anyYT || state === 'unsupported' || state === 'granted';
   b.classList.toggle('on', state === 'granted');
   if (state === 'denied') b.title = 'Your browser refused last time — allow third-party cookies for youtube.com to change that';
+
+  /* Only Chromium browsers implement the top-level form of this request. Firefox and Safari
+     ship the frame-side requestStorageAccess() instead, which only the EMBEDDED page may
+     call — and YouTube's embed does not. So there is no button to offer there, and hiding it
+     silently would leave someone hunting for a control that was never going to appear. Say
+     what their browser can do instead. */
+  if (note) {
+    const showNote = anyYT && state === 'unsupported';
+    note.hidden = !showNote;
+    if (showNote) note.textContent =
+      'Ads in the YouTube player: this browser has no way for a page to ask that YouTube be '
+      + 'given its cookies here, so it cannot see your account. In Firefox, the shield icon in '
+      + 'the address bar turns off tracking protection for this site, which sometimes restores '
+      + 'it; otherwise open the track on YouTube.';
+  }
 }
 
 $('#ytcookie').addEventListener('click', async () => {
