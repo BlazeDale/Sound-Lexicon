@@ -29,9 +29,9 @@ const fail = m => fails.push(m);
 const pass = m => passes.push(m);
 
 /* ---------- load data ---------- */
-let LIB, RECENT, VERSION, UPDATED, SONG_TITLES, SONG_MODEL;
+let LIB, RECENT, VERSION, UPDATED, SONG_TITLES, SONG_MODEL, SONG_DUR;
 try {
-  ({ LIB, RECENT, VERSION, UPDATED, SONG_TITLES, SONG_MODEL } = loadData(process.argv[2]));
+  ({ LIB, RECENT, VERSION, UPDATED, SONG_TITLES, SONG_MODEL, SONG_DUR } = loadData(process.argv[2]));
   pass(`loaded data.js (${LIB.length} entries)`);
 } catch (e) {
   fail(`could not load data.js: ${e.message}`);
@@ -167,6 +167,21 @@ const suites = LIB.filter(v => v.cat === 'suite');
   html.includes('SONG_MODEL') && html.includes('songModels(v)')
     ? pass(`model stamps render on the tile and feed search`)
     : fail(`SONG_MODEL not wired into the HTML`);
+}
+
+/* ---------- 8c. demo durations: the queue advances on these ---------- */
+{
+  const ids = songIds(LIB);
+  const durs = (typeof SONG_DUR !== 'undefined' && SONG_DUR) || {};
+  const missing = ids.filter(id => !durs[id]);
+  const orphans = Object.keys(durs).filter(id => !ids.includes(id));
+  const bad = Object.entries(durs).filter(([, d]) => !(Number.isInteger(d) && d > 0 && d < 3600)).map(([id, d]) => `${id}=${d}`);
+  if (!ids.length) pass(`no demos to time`);
+  else missing.length
+    ? fail(`${missing.length}/${ids.length} demo(s) missing a length (queue.html cannot auto-advance them) — run: node tools/song_durations.mjs${missing.length <= 5 ? ` [${missing.join(', ')}]` : ''}`)
+    : pass(`all ${ids.length} demos carry a length (${Math.floor(ids.reduce((a, id) => a + durs[id], 0) / 3600)}h ${Math.round(ids.reduce((a, id) => a + durs[id], 0) % 3600 / 60)}m of audio)`);
+  if (orphans.length) fail(`SONG_DUR times ${orphans.length} song(s) no longer in LIB — run: node tools/song_durations.mjs`);
+  if (bad.length) fail(`implausible duration: ${bad.slice(0, 5).join(', ')}`);
 }
 
 /* ---------- 9. artist_studies.md: labels match + generated region in sync ---------- */

@@ -218,6 +218,12 @@ const $ = s => document.querySelector(s);
 const LS_Q = 'sl.queue.v1', LS_META = 'sl.queue.meta.v1', LS_PREFS = 'sl.queue.prefs.v1';
 
 const TITLES = (typeof SONG_TITLES !== 'undefined' && SONG_TITLES) || {};
+const DURS = (typeof SONG_DUR !== 'undefined' && SONG_DUR) || {};
+
+/* Artwork is derivable rather than looked up: Suno names it after the track. That is the
+   last thing a library demo needed from the network, so it now needs the network for
+   nothing at all. */
+const artOf = id => 'https://cdn2.suno.ai/image_' + id + '.jpeg';
 const bySuno = new Map();
 if (typeof LIB !== 'undefined') LIB.forEach(v => (v.suno || []).forEach(id => bySuno.set(String(id), v)));
 
@@ -260,33 +266,51 @@ function toast(msg) {
   clearTimeout(toastT); toastT = setTimeout(() => el.classList.remove('show'), 2600);
 }
 
+/* ---------- the lookup queue ----------
+   One at a time, with a breath between. Dropping five links used to fire five parallel
+   requests, and on the hosted site those go through a public text proxy which does not
+   survive that: measured 2026-09-12, five in parallel ALL timed out, which is exactly the
+   "only the first track fills in" symptom. Serial is slower in theory and far faster in
+   practice, because nothing is being retried. */
+let chain = Promise.resolve();
+const queued = fn => (chain = chain.then(fn, fn).then(r => new Promise(go => setTimeout(() => go(r), 250))));
+
 /* ---------- resolving one track ----------
-   Title and entry attribution come from data.js when the corpus knows the id, so a library
-   demo is fully labelled before any request is made. The network is asked only for what the
-   corpus cannot supply — chiefly the duration, which is what the timer runs on. */
-async function resolve(id) {
+   A library demo is answered entirely from data.js — title, entry, length and artwork —
+   so the common case costs no request and cannot fail. The network is reached only for a
+   track the corpus has never seen. */
+function localRow(id) {
   const known = bySuno.get(id);
-  const row = {
+  if (!TITLES[id] && !known) return null;
+  return {
     id,
-    title: TITLES[id] || (known ? (known.name || '') : '') || 'Loading…',
+    title: TITLES[id] || (known && known.name) || id.slice(0, 8),
     sub: known ? ('#' + known.n + ' · ' + (known.name || '')) : '',
-    ent: !!known, art: '', dur: 0, ok: false
+    ent: !!known, art: artOf(id), dur: DURS[id] || 0, ok: !!DURS[id]
   };
+}
+
+async function resolve(id) {
+  const local = localRow(id);
+  if (local && local.ok) return local;
+
   const c = metaCache[id];
-  if (c && c.dur) { Object.assign(row, c, { ok: true }); return row; }
+  if (c && c.dur) return { id, title: c.title, sub: (local && local.sub) || '', ent: !!(local && local.ent),
+                           art: c.art || artOf(id), dur: c.dur, ok: true };
+
+  const row = local || { id, title: id.slice(0, 8), sub: '', ent: false, art: artOf(id), dur: 0, ok: false };
 
   const url = 'https://studio-api.prod.suno.com/api/clip/' + id;
-  let j = null;
-  try { const r = await fetchT(url, 9000); if (r.ok) j = await r.json(); } catch (e) {}
-  if (!j) { try { const r = await fetchT(PROXY(url), 12000); if (r.ok) j = await r.json(); } catch (e) {} }
+  const j = await queued(async () => {
+    try { const r = await fetchT(url, 9000); if (r.ok) return await r.json(); } catch (e) {}
+    try { const r = await fetchT(PROXY(url), 15000); if (r.ok) return await r.json(); } catch (e) {}
+    return null;
+  });
 
-  if (!j || typeof j !== 'object') {
-    if (row.title === 'Loading…') row.title = id.slice(0, 8);
-    return row;                                   // playable, just untimed
-  }
+  if (!j || typeof j !== 'object') return row;      // playable, just untimed
+
   row.title = j.title || row.title;
-  if (row.title === 'Loading…') row.title = id.slice(0, 8);
-  row.art = typeof j.image_url === 'string' && /^https:\/\//.test(j.image_url) ? j.image_url : '';
+  if (typeof j.image_url === 'string' && /^https:\/\//.test(j.image_url)) row.art = j.image_url;
   row.dur = Math.round((j.metadata && j.metadata.duration) || 0);
   row.ok = row.dur > 0;
   if (row.ok) { metaCache[id] = { title: row.title, art: row.art, dur: row.dur }; saveMeta(); }
@@ -322,17 +346,19 @@ async function addMany(text, quiet) {
   const dupes = ids.length - fresh.length;
   if (!fresh.length) { if (!quiet) toast(ids.length ? 'Already in the queue' : 'No Suno link found there'); return 0; }
 
-  /* Placeholders first, so a long drop appears instantly and in the order it was dropped,
-     then each row is filled in as its lookup lands. */
-  fresh.forEach(id => Q.push({ id, title: 'Loading…', sub: '', ent: false, art: '', dur: 0, ok: false }));
+  /* Anything the corpus knows is filled in immediately and never touches the network, so a
+     drop of library demos is complete the instant it lands. Only genuinely foreign ids
+     become placeholders, and those resolve one at a time. */
+  fresh.forEach(id => Q.push(localRow(id) || { id, title: 'Loading…', sub: '', ent: false, art: artOf(id), dur: 0, ok: false }));
   render(); save();
 
-  await Promise.all(fresh.map(async id => {
+  const unknown = fresh.filter(id => { const r = Q.find(x => x.id === id); return r && !r.ok; });
+  for (const id of unknown) {
     const row = await resolve(id);
     const at = Q.findIndex(r => r.id === id);
     if (at >= 0) Q[at] = row;
     render(); save();
-  }));
+  }
 
   if (!quiet) toast('Added ' + fresh.length + (dupes ? ' · ' + dupes + ' already queued' : ''));
   return fresh.length;

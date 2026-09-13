@@ -26,7 +26,8 @@ export function loadData(dataPath = DATA) {
   const src = readFileSync(dataPath, 'utf8');
   return new Function(src + `\n; return {LIB, RECENT, STUDY_META, VERSION, UPDATED,
     SONG_TITLES: typeof SONG_TITLES === 'undefined' ? {} : SONG_TITLES,
-    SONG_MODEL: typeof SONG_MODEL === 'undefined' ? {} : SONG_MODEL};`)();
+    SONG_MODEL: typeof SONG_MODEL === 'undefined' ? {} : SONG_MODEL,
+    SONG_DUR: typeof SONG_DUR === 'undefined' ? {} : SONG_DUR};`)();
 }
 
 const roleRank = r => (/blend/i.test(r) ? -1 : parseInt((r.match(/\d+/) || [99])[0], 10));
