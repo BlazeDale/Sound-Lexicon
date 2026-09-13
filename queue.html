@@ -97,6 +97,9 @@
   .out:hover{color:var(--amber);border-color:var(--amber-dim)}
   .x{flex:none;border:0;background:none;color:var(--dim);font-size:16px;line-height:1;padding:4px 6px;cursor:pointer;border-radius:5px}
   .x:hover{color:var(--red);background:rgba(194,84,74,.1)}
+  .heart{flex:none;border:0;background:none;color:var(--dim);font-family:var(--mono);font-size:12px;line-height:1;
+         padding:4px 6px;cursor:pointer;border-radius:5px;white-space:nowrap}
+  .heart:hover,.heart.on{color:var(--amber)}
   .empty{color:var(--dim);font-size:13.5px;padding:22px 2px}
 
 
@@ -399,7 +402,7 @@
    page -- covers read from data.js while the code that looks them up is old. Printed
    on load and shown in the footer, so 'which build am I on' is answerable in a glance
    instead of by deduction. */
-const QUEUE_BUILD = '2026-09-13-d';
+const QUEUE_BUILD = '2026-09-13-e';
 console.log('[queue] build ' + QUEUE_BUILD);
 
 const $ = s => document.querySelector(s);
@@ -1069,6 +1072,25 @@ function rowEl(r, i) {
     const dur = document.createElement('span'); dur.className = 'dur'; dur.textContent = r.dur ? mmss(r.dur) : '';
     li.append(grip, art, meta, dur);
 
+    /* The listeners' hearts. Shared queues only: a heart is somebody on the link saying they
+       liked this one, and on a private queue there is nobody else to say it to. One row per
+       listener per track, so the count is simply how many people are under it. It stays here
+       on the page - nothing reaches Suno or YouTube. */
+    if (shared()) {
+      const likes = (SQ.likes && SQ.likes[keyOf(r)]) || {};
+      const n = Object.keys(likes).length, liked = !!(SQ.uid && likes[SQ.uid]);
+      const h = document.createElement('button');
+      h.className = 'heart' + (liked ? ' on' : '');
+      h.textContent = (liked ? '♥' : '♡') + (n ? ' ' + n : '');
+      h.title = liked ? 'You liked this - click to take it back' : 'Like this track';
+      h.addEventListener('click', ev => {
+        ev.stopPropagation();                                   // not a request to play it
+        if (!SQ.ready || !window.__net) { toast('Liking needs a connection'); return; }
+        window.__net.setLike(keyOf(r), !liked);
+      });
+      li.append(h);
+    }
+
     /* A way out on every row, whatever it plays through. For YouTube it is the fix for ads
        the embed cannot avoid in every browser; for Suno it is the way to reach the lyrics,
        the style prose and everything else the embed does not show. Same control either way,
@@ -1730,6 +1752,7 @@ window.__applyRemote = (tracks, meta) => {
   rebuildShuffle(); render();
 };
 window.__applyChat = msgs => { SQ.chat = msgs; renderChat(); };
+window.__applyLikes = v => { SQ.likes = v || {}; render(); };
 
 /* The shared position arriving. It can land before the queue's meta does, and who owns the
    queue decides how it is read, so until the owner is known it is only held on to -
@@ -2067,10 +2090,10 @@ try {
     });
   }
 
-  let stopT = null, stopM = null, stopC = null, stopPl = null;
+  let stopT = null, stopM = null, stopC = null, stopPl = null, stopLk = null;
   function listen(qid) {
     SQ.qid = qid;
-    [stopT, stopM, stopC, stopPl].forEach(f => f && f());
+    [stopT, stopM, stopC, stopPl, stopLk].forEach(f => f && f());
     present(qid);
     let tracks = [], meta = {};
     stopM = onValue(ref(db, 'queues/' + qid + '/meta'), s => { meta = s.val() || {}; window.__applyRemote(tracks, meta); });
@@ -2084,6 +2107,7 @@ try {
       window.__applyChat(Object.values(v).sort((a, b) => (a.a || 0) - (b.a || 0)).slice(-200));
     });
     stopPl = onValue(ref(db, 'queues/' + qid + '/play'), s => window.__applyPlay(s.val()));
+    stopLk = onValue(ref(db, 'queues/' + qid + '/likes'), s => window.__applyLikes(s.val()));
     el('chat').hidden = false;
     el('board').classList.add('withchat');
     setTimeout(() => window.__sizeChat && window.__sizeChat(), 0);
@@ -2170,7 +2194,7 @@ try {
       /* Same parent-path problem as create, so the children go first and the node itself is
          only a tidy-up: once meta, tracks and chat are gone the queue is gone, whether or
          not the write at the node is permitted. */
-      for (const part of ['presence', 'play', 'tracks', 'chat', 'meta']) {
+      for (const part of ['presence', 'play', 'likes', 'tracks', 'chat', 'meta']) {
         await remove(ref(db, 'queues/' + qid + '/' + part)).catch(e => console.warn('[queue] could not remove ' + part, e));
       }
       await remove(ref(db, 'queues/' + qid)).catch(() => {});
@@ -2181,6 +2205,11 @@ try {
     setCount(n) { return update(idxref(), { n: Math.max(0, Math.min(5000, n | 0)) }).catch(() => {}); },
     /* Where the queue is - playing, up next, played. Owner only, the rules enforce it. */
     setPlay(body) { return set(qref('play'), body).catch(e => console.warn('[queue] play position refused (rules not published?)', e)); },
+    /* A like is a row under this listener's own uid, so nobody can like or unlike for anyone else. */
+    setLike(k, on) {
+      const r = qref('likes/' + k + '/' + me.uid);
+      return (on ? set(r, true) : remove(r)).catch(e => console.warn('[queue] like refused (rules not published?)', e));
+    },
     say(text, who) {
       return set(push(qref('chat')), { u: me.uid, n: trim(who, 24), t: trim(text, 600), a: Date.now() })
         .catch(e => console.warn('[queue] chat refused', e));
