@@ -245,7 +245,13 @@
     therefore a timer over the track's known length, with the countdown kept on screen: right
     when you listen straight through, and wrong if you pause inside the frame, which is the one
     thing it cannot see. Click the countdown to restart it. The player itself collapses if it
-    is ever in the way.
+    is ever in the way.<br><br>
+    <b>YouTube Premium and ads.</b> An embedded player is a third-party frame, and it only
+    knows you are signed in if your browser lets YouTube's cookies through from this site.
+    Most browsers now block exactly that by default, so Premium often does not carry across
+    and ads play anyway. Nothing on this page can change it — the entitlement is not ours to
+    pass along. Allowing third-party cookies for youtube.com sometimes restores it; otherwise
+    open the track on YouTube itself.
   </footer>
 </div>
 
@@ -816,7 +822,15 @@ function ensureYT() {
 window.onYouTubeIframeAPIReady = () => {
   yt = new YT.Player('yt', {
     width: 280, height: 158,
-    playerVars: { autoplay: 1, playsinline: 1, rel: 0 },
+    /* origin is not optional in practice. The constructor turns on enablejsapi by itself but
+       does NOT add origin, and without it YouTube frequently answers a perfectly embeddable
+       video with "An error occurred. Please try again later." Passing the page's own origin
+       is what the API docs ask for whenever the JS API is in use. */
+    playerVars: {
+      autoplay: 1, playsinline: 1, rel: 0,
+      origin: location.origin,
+      widget_referrer: location.origin
+    },
     events: {
       onReady: () => {
         ytReady = true;
@@ -842,10 +856,37 @@ window.onYouTubeIframeAPIReady = () => {
         const n = nextIndex();
         if (n >= 0) playAt(n); else $('#ns').textContent = 'End of queue';
       },
-      onError: () => {
-        toast('YouTube would not play that one — skipping');
-        const n = nextIndex();
-        if (n >= 0 && n !== cur) playAt(n);
+      /* Say WHICH refusal it was, and offer the way out, rather than skipping in silence.
+         101 and 150 are the same thing — the uploader disallowed embedding — and no amount
+         of code here changes that; the track has to be opened on YouTube. */
+      onError: e => {
+        const why = {
+          2:   'YouTube rejected that video id',
+          5:   'the player could not handle that one in this browser',
+          100: 'that video is private or has been removed',
+          101: 'the uploader does not allow it to be played outside YouTube',
+          150: 'the uploader does not allow it to be played outside YouTube'
+        }[e && e.data] || 'YouTube would not play it';
+        const r = Q[cur];
+        toast('Skipping — ' + why);
+        if (r) {
+          const link = r.src === 'ytpl'
+            ? 'https://www.youtube.com/playlist?list=' + r.id
+            : 'https://www.youtube.com/watch?v=' + r.id;
+          const ns = $('#ns');
+          ns.textContent = why + ' — ';
+          const a = document.createElement('a');
+          a.href = link; a.target = '_blank'; a.rel = 'noopener';
+          a.textContent = 'open it on YouTube';
+          ns.appendChild(a);
+        }
+        /* Give the message a moment to be read before moving on, so an unattended queue
+           still carries on but a watched one does not just blink past the problem. */
+        setTimeout(() => {
+          if (cur < 0) return;
+          const n = nextIndex();
+          if (n >= 0 && n !== cur) playAt(n);
+        }, 4000);
       }
     }
   });
