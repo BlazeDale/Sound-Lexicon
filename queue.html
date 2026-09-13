@@ -152,6 +152,8 @@
   /* display:flex outranks the hidden attribute, so a private queue was showing an empty
      chat panel. Anything given a display here needs this said explicitly. */
   #chat[hidden],#nowwrap[hidden]{display:none}
+  #chat.hot{border-color:var(--amber);box-shadow:inset 0 0 0 1px var(--amber-dim)}
+  #chat.hot #msgs{opacity:.5}
   @media(min-width:1151px){
     .board.withchat #chat{position:sticky;top:22px;height:var(--chatH,62vh);min-height:320px}
     .board.withchat #msgs{max-height:none;flex:1}
@@ -290,7 +292,7 @@
   <div id="chat" hidden>
     <h3>Chat <span id="chatnote">anyone with the link can talk here</span><span class="spacer"></span></h3>
     <form class="chatin" id="chatform" autocomplete="off">
-      <input id="chatin" placeholder="Say something — paste a Suno or YouTube link to suggest a track" maxlength="600">
+      <input id="chatin" placeholder="Say something — or drop a link here to suggest a track" maxlength="600">
       <button class="primary" type="submit">Send</button>
     </form>
     <div id="msgs"></div>
@@ -312,6 +314,10 @@
     thing it cannot see. It starts when you press play rather than when the track loads —
     the page cannot see inside the frame, but it can see the window hand focus to it, which
     is the moment somebody pressed something. Click the countdown to restart it by hand.<br><br>
+    <b>Dropping into the chat.</b> A link dropped anywhere on the chat is posted as a message,
+    which is how a guest suggests something. If you own the queue it is queued as well —
+    suggesting a track to yourself and then pressing your own button is a step that does not
+    need to exist. Anything without a link in it is just posted.<br><br>
     <b>Album playlists.</b> A YouTube Music album link (its id starts
     <span style="font-family:var(--mono)">OLAK5uy_</span>) will not play here. The embedded
     player refuses to unpack one — it loads a single track and then shows its own error
@@ -1390,6 +1396,41 @@ $('#addbtn').addEventListener('click', () => {
   const v = $('#addin').value; $('#addin').value = ''; if (v.trim()) addMany(v);
 });
 $('#addin').addEventListener('keydown', e => { if (e.key === 'Enter') $('#addbtn').click(); });
+
+/* ---------- dropping onto the chat ----------
+   The whole page is already a drop target that queues what it is given, so the chat has to
+   claim its own drops before that handler sees them — hence stopPropagation on every stage,
+   including dragenter, or the dashed box up the page lights up for a drop that is not going
+   there.
+
+   A drop here posts the link as a message, which is the point: it is how somebody suggests
+   a track. For the owner it also queues it, because the owner suggesting something to
+   themselves and then pressing their own button is a step that does not need to exist. A
+   guest's drop stays a suggestion, and the message it leaves carries the add button the
+   owner can press — the same route as pasting one by hand. */
+(function () {
+  const chat = $('#chat');
+  let over = 0;
+  const swallow = e => { e.preventDefault(); e.stopPropagation(); };
+  chat.addEventListener('dragenter', e => { swallow(e); over++; chat.classList.add('hot'); });
+  chat.addEventListener('dragover', e => { swallow(e); e.dataTransfer.dropEffect = 'copy'; });
+  chat.addEventListener('dragleave', e => { e.stopPropagation(); if (--over <= 0) { over = 0; chat.classList.remove('hot'); } });
+  chat.addEventListener('drop', async e => {
+    swallow(e); over = 0; chat.classList.remove('hot');
+    const dt = e.dataTransfer;
+    const text = ((dt.getData('text/uri-list') || '') + ' ' + (dt.getData('text/plain') || '')).trim();
+    if (!text) return;
+    /* One address even when the browser hands over both flavours of the same thing. */
+    const one = [...new Set(text.split(/\s+/).filter(Boolean))].join(' ');
+    const who = needName('Pick a display name to post in the chat');
+    if (!who) return;
+    window.__net.say(one, who);
+    const { found, shares } = linksIn(one);
+    if (!found.length && !shares.length) { toast('Posted'); return; }
+    if (isOwner()) { await addMany(one); }
+    else toast('Posted as a suggestion — the owner can add it');
+  });
+})();
 
 /* ---------- drop & paste ----------
    Bound to the whole document, not just the dashed box: aiming at a target is the annoying
