@@ -441,7 +441,13 @@ const sunoIdFrom = text => {
    thrown out: it RENDERS the page, so it came back with dozens of song ids belonging to
    whatever else the site had put on screen, the right one not even first. A dead link that
    attaches a random song is worse than a dead link that says so. */
-const SHARE_PROXY = u => 'https://corsproxy.io/?url=' + encodeURIComponent(u);
+/* corsproxy.io began requiring an API key and now answers 401 to every request, which
+   had quietly broken share-link pasting here — verified 2026-09-12 against both a Suno
+   share address and a control. allorigins returns the body verbatim with a real
+   allow-origin header, which is all this needs. The reasoning above is unchanged: only a
+   plain proxy will do, and what comes back is still scanned for a canonical id and
+   nothing else. */
+const SHARE_PROXY = u => 'https://api.allorigins.win/raw?url=' + encodeURIComponent(u);
 
 /* Which id in the page is THE song is not a guess: a share page states it in its canonical
    link, and that is the only place read. The fallback — one /song/ id and no other — exists

@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Queue · Sound Lexicon</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="A private listening queue: drag Suno links in, play them in order.">
+<style>
+  :root{
+    --ink:#111419; --panel:#181c24; --panel2:#1f2530; --line:#2a313d;
+    --text:#e9e6dd; --muted:#98a0ad; --dim:#6b7280;
+    --amber:#e0a63c; --amber-dim:#8a6a2a; --teal:#1a9e75; --red:#c2544a;
+    --mono:'SF Mono','Menlo','Consolas','Liberation Mono',monospace;
+    --sans:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--ink);color:var(--text);font-family:var(--sans);line-height:1.5;min-height:100%}
+  a{color:var(--amber)}
+  .wrap{max-width:960px;margin:0 auto;padding:28px 22px 250px}
+
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--amber);margin:0 0 8px}
+  .eyebrow a{color:var(--dim);text-decoration:none}
+  .eyebrow a:hover{color:var(--amber)}
+  h1{font-size:clamp(24px,4vw,32px);letter-spacing:-.02em;margin:0 0 8px;font-weight:700}
+  .lede{color:var(--muted);font-size:14px;max-width:72ch;margin:0 0 22px;line-height:1.6}
+
+  #drop{border:1.5px dashed var(--line);border-radius:12px;padding:22px;text-align:center;color:var(--muted);
+        font-size:14px;transition:border-color .15s,background .15s,color .15s;background:var(--panel)}
+  #drop.hot{border-color:var(--amber);background:var(--panel2);color:var(--text)}
+  #drop b{color:var(--text);font-weight:600}
+  .addrow{display:flex;gap:8px;margin-top:12px}
+  .addrow input{flex:1;min-width:0;background:var(--ink);border:1px solid var(--line);border-radius:8px;color:var(--text);
+                padding:9px 11px;font-family:var(--mono);font-size:12px}
+  .addrow input:focus{outline:none;border-color:var(--amber-dim)}
+  button{background:var(--panel2);border:1px solid var(--line);color:var(--text);border-radius:8px;padding:9px 14px;
+         font-family:var(--sans);font-size:13px;cursor:pointer;transition:border-color .15s,background .15s}
+  button:hover:not(:disabled){border-color:var(--amber-dim);background:var(--panel)}
+  button:disabled{opacity:.4;cursor:default}
+  button.primary{border-color:var(--amber-dim);color:var(--amber)}
+
+  .qhead{display:flex;align-items:baseline;gap:12px;margin:26px 0 10px;flex-wrap:wrap}
+  .qhead h2{font-size:15px;margin:0;font-weight:700;letter-spacing:-.01em}
+  .qhead .count{font-family:var(--mono);font-size:11.5px;color:var(--dim)}
+  .qhead .spacer{flex:1}
+  .qhead button{padding:5px 10px;font-size:12px}
+
+  #list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+  .row{display:flex;align-items:center;gap:11px;background:var(--panel);border:1px solid var(--line);
+       border-left:3px solid transparent;border-radius:9px;padding:8px 10px;cursor:pointer;transition:border-color .12s,background .12s}
+  .row:hover{background:var(--panel2)}
+  .row.cur{border-left-color:var(--amber);background:var(--panel2)}
+  .row.drag{opacity:.35}
+  .row.over{border-top:2px solid var(--amber)}
+  .grip{color:var(--dim);cursor:grab;font-size:15px;line-height:1;padding:0 2px;flex:none;user-select:none}
+  .art{width:42px;height:42px;border-radius:6px;object-fit:cover;background:var(--panel2);flex:none}
+  .meta{flex:1;min-width:0}
+  .t{font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .sub{font-family:var(--mono);font-size:11px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px}
+  .sub .ent{color:var(--teal)}
+  .sub .warn{color:var(--amber)}
+  .dur{font-family:var(--mono);font-size:11.5px;color:var(--muted);flex:none}
+  .x{flex:none;border:0;background:none;color:var(--dim);font-size:16px;line-height:1;padding:4px 6px;cursor:pointer;border-radius:5px}
+  .x:hover{color:var(--red);background:rgba(194,84,74,.1)}
+  .empty{color:var(--dim);font-size:13.5px;padding:22px 2px}
+
+  #bar{position:fixed;left:0;right:0;bottom:0;background:rgba(24,28,36,.97);border-top:1px solid var(--line);
+       backdrop-filter:blur(8px);padding:9px 22px 11px;z-index:50}
+  #bar .mid{max-width:960px;margin:0 auto}
+  #frame{width:100%;height:82px;border:0;border-radius:8px;display:none;background:var(--panel2);margin-bottom:8px}
+  #bar .inner{display:flex;align-items:center;gap:13px}
+  #bar .now{flex:1;min-width:0}
+  #bar .nt{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  #bar .ns{font-family:var(--mono);font-size:11px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .ctrls{display:flex;align-items:center;gap:6px;flex:none}
+  .ctrls button{padding:7px 12px;font-size:14px;min-width:40px}
+  .tog{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:6px 9px!important;min-width:0!important}
+  .tog.on{color:var(--amber);border-color:var(--amber-dim)}
+
+  /* The timer, shown rather than hidden — see the note in the script. */
+  #timer{display:none;align-items:center;gap:9px;margin-bottom:7px;font-family:var(--mono);font-size:11px;color:var(--dim);cursor:pointer}
+  #timer.live{display:flex}
+  #tbar{flex:1;height:3px;border-radius:2px;background:var(--line);overflow:hidden}
+  #tfill{height:100%;width:0;background:var(--amber-dim);transition:width .5s linear}
+  #timer .lab{color:var(--muted)}
+
+  #toast{position:fixed;left:50%;transform:translateX(-50%);bottom:170px;background:var(--panel2);border:1px solid var(--line);
+         border-radius:8px;padding:9px 15px;font-size:13px;color:var(--text);z-index:60;opacity:0;pointer-events:none;transition:opacity .2s}
+  #toast.show{opacity:1}
+  footer{margin-top:34px;border-top:1px solid var(--line);padding-top:14px;font-size:12px;color:var(--dim);max-width:80ch;line-height:1.65}
+  footer b{color:var(--muted)}
+  kbd{font-family:var(--mono);font-size:11px;background:var(--panel2);border:1px solid var(--line);border-bottom-width:2px;
+      border-radius:4px;padding:1px 5px;color:var(--muted)}
+  @media(max-width:620px){
+    .wrap{padding:20px 14px 260px}
+    #bar{padding:8px 14px 10px}
+    #bar .inner{flex-wrap:wrap;gap:9px}
+    #bar .now{order:-1;flex-basis:100%}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow"><a href="index.html">Sound Lexicon</a> / Queue</p>
+  <h1>Listening queue</h1>
+  <p class="lede">
+    Drag Suno links in from the browser, or paste them anywhere on the page. The list
+    lives in this browser only — nothing is uploaded, and playback is Suno's own embedded
+    player, the same one the library pages use.
+  </p>
+
+  <div id="drop">
+    <b>Drop Suno links here</b> — or paste one anywhere on the page.<br>
+    A <span style="font-family:var(--mono);font-size:12px">/song/</span> link, an embed link, a share link, or a bare id.
+    <div class="addrow" onclick="event.stopPropagation()">
+      <input id="addin" placeholder="https://suno.com/song/…  (paste several at once, one per line)" spellcheck="false">
+      <button class="primary" id="addbtn">Add</button>
+    </div>
+  </div>
+
+  <div class="qhead">
+    <h2>Queue</h2>
+    <span class="count" id="count"></span>
+    <span class="spacer"></span>
+    <button id="shuffleall">Shuffle order</button>
+    <button id="clear">Clear</button>
+  </div>
+  <ul id="list"></ul>
+  <p class="empty" id="empty">Nothing queued yet.</p>
+
+  <footer>
+    <b>Keys:</b> <kbd>shift</kbd>+<kbd>←</kbd> <kbd>→</kbd> previous / next track.<br><br>
+    <b>About auto-advance.</b> Suno's embedded player runs in a cross-origin frame, so this
+    page cannot be told when a track ends — and their audio stream is encrypted, so it cannot
+    play the track itself and watch for the end that way either. What it does know is each
+    track's exact length. So <b>auto</b> is a timer over that length, and the countdown stays
+    on screen while it runs. It is right when you listen straight through, and it will run
+    ahead if you pause inside the player, because that is the one thing it cannot see. Click
+    the countdown to restart it.
+  </footer>
+</div>
+
+<div id="bar">
+  <div class="mid">
+    <iframe id="frame" allow="autoplay; encrypted-media" title="Suno player"></iframe>
+    <div id="timer" title="Click to restart the timer">
+      <span class="lab" id="tlab">next in</span>
+      <span id="tleft">0:00</span>
+      <span id="tbar"><span id="tfill"></span></span>
+    </div>
+    <div class="inner">
+      <div class="ctrls">
+        <button id="prev" title="Previous (shift+←)">⏮</button>
+        <button id="next" title="Next (shift+→)">⏭</button>
+      </div>
+      <div class="now">
+        <div class="nt" id="nt">Nothing playing</div>
+        <div class="ns" id="ns">Queue is empty</div>
+      </div>
+      <div class="ctrls">
+        <button class="tog" id="tauto" title="Advance automatically when the track's length has elapsed">auto</button>
+        <button class="tog" id="tshuf" title="Shuffle">shuf</button>
+        <button class="tog" id="trep" title="Repeat: off / all / one">rep off</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script src="data.js"></script>
+<script>
+/* ============================================================================
+   A private listening queue.
+
+   WHAT WAS TRIED, AND WHY THIS PLAYS THROUGH AN IFRAME ANYWAY
+   The obvious way to build a queue is an <audio> element: it fires `ended`, and everything
+   else follows. This page was written that way first, on the strength of the `media_urls`
+   field on a clip record, which points at a CloudFront address that answers range requests
+   with `access-control-allow-origin: *`. Status and headers both said "playable".
+
+   They were not enough to check. The BYTES are encrypted. Sampled across three clips and
+   both model eras, every response begins with high-entropy data and carries no container
+   header — no `ftyp`, no EBML, no `OggS`, no frame sync — while still being served as
+   `audio/mp4`. The `encoding: "1.0.0"` field sitting next to the url is Suno's own scheme,
+   and their player is what undoes it. A media element refuses the stream with
+   MEDIA_ERR_SRC_NOT_SUPPORTED, which is the correct answer.
+
+   So the hotlink protection that vocal_timbre_library.html documents has not gone away; it
+   moved up a layer. `audio_url` resolves to /api/forbidden and answers 403, cdn1 and cdn2
+   answer 403, and `media_urls` answers 206 with something that is not audio. No unencrypted
+   variant is offered: each clip lists exactly one.
+
+   THE CONSEQUENCE, STATED PLAINLY
+   Playback is Suno's embed, as on the library pages, and a cross-origin frame will not say
+   when a track finishes. Auto-advance cannot be driven by the audio.
+
+   What IS known exactly is the track's duration, from the clip record. So auto-advance is a
+   TIMER over that duration, off by default, with the countdown on screen the whole time it
+   runs. It is right in the case it is built for — listening straight through — and wrong in
+   the one case it cannot see, pausing inside the frame, because the timer keeps counting.
+   Showing the countdown is what keeps that visible instead of mysterious.
+
+   Everything around the playing is unaffected, and is most of the value: dropping links in,
+   following share links, labelling a track with the library entry that made it, ordering,
+   and keeping the list across sessions. Nothing is downloaded; only the queue persists.
+
+   THE METADATA LOOKUP
+   Durations and titles come from /api/clip/<id>, which keeps an origin allowlist: suno.com
+   and localhost are answered, github.io is not. So the lookup runs direct first (which is
+   what a local copy gets) and falls back to a text proxy (which is what the hosted copy
+   needs). corsproxy.io, which terminology.html used to name, now demands an API key and
+   answers 401 to everything, so allorigins is used instead — the same swap was made there.
+   A library demo needs neither: data.js already carries its title and its entry.
+   ============================================================================ */
+
+const $ = s => document.querySelector(s);
+const LS_Q = 'sl.queue.v1', LS_META = 'sl.queue.meta.v1', LS_PREFS = 'sl.queue.prefs.v1';
+
+const TITLES = (typeof SONG_TITLES !== 'undefined' && SONG_TITLES) || {};
+const bySuno = new Map();
+if (typeof LIB !== 'undefined') LIB.forEach(v => (v.suno || []).forEach(id => bySuno.set(String(id), v)));
+
+/* Everything that arrives — dropped, pasted or typed — is squeezed through this. It yields
+   ONLY 36 characters of hex and dashes. That narrowness is the security story: the value
+   goes on to reach an <img> src, an iframe src and a storage key, and a whitelist this tight
+   cannot carry anything else. */
+const UUID_RE = /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i;
+const SHARE_RE = /suno\.com\/s\/[A-Za-z0-9_-]{6,}/i;
+const idFrom = t => { const m = String(t || '').match(UUID_RE); return m ? m[0].toLowerCase() : ''; };
+
+const PROXY = u => 'https://api.allorigins.win/raw?url=' + encodeURIComponent(u);
+const fetchT = (u, ms) => {                      // a hung proxy must not hang the queue
+  const stop = new AbortController();
+  const t = setTimeout(() => stop.abort(), ms);
+  return fetch(u, { signal: stop.signal }).finally(() => clearTimeout(t));
+};
+
+/* ---------- state ---------- */
+let Q = [], cur = -1, shuffling = false, repeat = 'off', auto = false;
+let shufOrder = [], metaCache = {};
+
+try { Q = JSON.parse(localStorage.getItem(LS_Q) || '[]') || []; } catch (e) { Q = []; }
+try { metaCache = JSON.parse(localStorage.getItem(LS_META) || '{}') || {}; } catch (e) { metaCache = {}; }
+try {
+  const p = JSON.parse(localStorage.getItem(LS_PREFS) || '{}');
+  shuffling = !!p.shuffling; repeat = p.repeat || 'off'; auto = !!p.auto;
+} catch (e) {}
+
+const save = () => { try { localStorage.setItem(LS_Q, JSON.stringify(Q)); } catch (e) {} };
+const saveMeta = () => { try { localStorage.setItem(LS_META, JSON.stringify(metaCache)); } catch (e) {} };
+const savePrefs = () => { try { localStorage.setItem(LS_PREFS, JSON.stringify({ shuffling, repeat, auto })); } catch (e) {} };
+
+const mmss = s => (!isFinite(s) || s < 0) ? '0:00'
+  : Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0');
+
+let toastT;
+function toast(msg) {
+  const el = $('#toast'); el.textContent = msg; el.classList.add('show');
+  clearTimeout(toastT); toastT = setTimeout(() => el.classList.remove('show'), 2600);
+}
+
+/* ---------- resolving one track ----------
+   Title and entry attribution come from data.js when the corpus knows the id, so a library
+   demo is fully labelled before any request is made. The network is asked only for what the
+   corpus cannot supply — chiefly the duration, which is what the timer runs on. */
+async function resolve(id) {
+  const known = bySuno.get(id);
+  const row = {
+    id,
+    title: TITLES[id] || (known ? (known.name || '') : '') || 'Loading…',
+    sub: known ? ('#' + known.n + ' · ' + (known.name || '')) : '',
+    ent: !!known, art: '', dur: 0, ok: false
+  };
+  const c = metaCache[id];
+  if (c && c.dur) { Object.assign(row, c, { ok: true }); return row; }
+
+  const url = 'https://studio-api.prod.suno.com/api/clip/' + id;
+  let j = null;
+  try { const r = await fetchT(url, 9000); if (r.ok) j = await r.json(); } catch (e) {}
+  if (!j) { try { const r = await fetchT(PROXY(url), 12000); if (r.ok) j = await r.json(); } catch (e) {} }
+
+  if (!j || typeof j !== 'object') {
+    if (row.title === 'Loading…') row.title = id.slice(0, 8);
+    return row;                                   // playable, just untimed
+  }
+  row.title = j.title || row.title;
+  if (row.title === 'Loading…') row.title = id.slice(0, 8);
+  row.art = typeof j.image_url === 'string' && /^https:\/\//.test(j.image_url) ? j.image_url : '';
+  row.dur = Math.round((j.metadata && j.metadata.duration) || 0);
+  row.ok = row.dur > 0;
+  if (row.ok) { metaCache[id] = { title: row.title, art: row.art, dur: row.dur }; saveMeta(); }
+  return row;
+}
+
+/* ---------- adding ---------- */
+async function addMany(text, quiet) {
+  const ids = [], shares = [];
+  for (const piece of String(text || '').split(/[\s,]+/)) {
+    if (!piece) continue;
+    const id = idFrom(piece);
+    if (id) { ids.push(id); continue; }
+    if (SHARE_RE.test(piece)) shares.push(piece);
+  }
+  /* A share link carries a lookup token, not an id, and suno.com sends no CORS headers, so
+     this page cannot follow one itself. The proxy reads the landing page and ONLY its
+     canonical /song/ id is taken — the same route, and the same cost, as the library's
+     paste box, which documents the bargain at length. */
+  for (const s of shares) {
+    try {
+      const r = await fetchT(PROXY(s.startsWith('http') ? s : 'https://' + s), 12000);
+      if (!r.ok) continue;
+      const html = await r.text();
+      const canon = html.match(/rel=["']canonical["'][^>]*\/song\/([0-9a-f-]{36})|\/song\/([0-9a-f-]{36})[^>]*rel=["']canonical["']/i);
+      const got = canon ? (canon[1] || canon[2]).toLowerCase() : '';
+      if (UUID_RE.test(got)) ids.push(got);
+    } catch (e) {}
+  }
+
+  const have = new Set(Q.map(r => r.id));
+  const fresh = [...new Set(ids)].filter(i => !have.has(i));
+  const dupes = ids.length - fresh.length;
+  if (!fresh.length) { if (!quiet) toast(ids.length ? 'Already in the queue' : 'No Suno link found there'); return 0; }
+
+  /* Placeholders first, so a long drop appears instantly and in the order it was dropped,
+     then each row is filled in as its lookup lands. */
+  fresh.forEach(id => Q.push({ id, title: 'Loading…', sub: '', ent: false, art: '', dur: 0, ok: false }));
+  render(); save();
+
+  await Promise.all(fresh.map(async id => {
+    const row = await resolve(id);
+    const at = Q.findIndex(r => r.id === id);
+    if (at >= 0) Q[at] = row;
+    render(); save();
+  }));
+
+  if (!quiet) toast('Added ' + fresh.length + (dupes ? ' · ' + dupes + ' already queued' : ''));
+  return fresh.length;
+}
+
+/* ---------- rendering ---------- */
+function render() {
+  const list = $('#list');
+  $('#empty').style.display = Q.length ? 'none' : 'block';
+  $('#count').textContent = Q.length ? Q.length + (Q.length === 1 ? ' track' : ' tracks') : '';
+  $('#clear').disabled = !Q.length;
+  $('#shuffleall').disabled = Q.length < 2;
+  list.innerHTML = '';
+
+  Q.forEach((r, i) => {
+    const li = document.createElement('li');
+    li.className = 'row' + (i === cur ? ' cur' : '');
+    li.draggable = true; li.dataset.i = i;
+
+    const grip = document.createElement('span'); grip.className = 'grip'; grip.textContent = '⠿';
+    const art = document.createElement('img');
+    art.className = 'art'; art.alt = ''; art.loading = 'lazy';
+    if (r.art) art.src = r.art;
+
+    const meta = document.createElement('div'); meta.className = 'meta';
+    const t = document.createElement('div'); t.className = 't'; t.textContent = r.title || r.id.slice(0, 8);
+    const sub = document.createElement('div'); sub.className = 'sub';
+    if (r.ent) { const e = document.createElement('span'); e.className = 'ent'; e.textContent = r.sub; sub.appendChild(e); }
+    else sub.appendChild(document.createTextNode(r.id.slice(0, 8)));
+    if (!r.ok && r.title !== 'Loading…') {
+      const w = document.createElement('span'); w.className = 'warn';
+      w.textContent = '  · length unknown, will not auto-advance'; sub.appendChild(w);
+    }
+    meta.append(t, sub);
+
+    const dur = document.createElement('span'); dur.className = 'dur'; dur.textContent = r.dur ? mmss(r.dur) : '';
+    const x = document.createElement('button');
+    x.className = 'x'; x.textContent = '✕'; x.title = 'Remove';
+    x.addEventListener('click', ev => { ev.stopPropagation(); removeAt(i); });
+
+    li.append(grip, art, meta, dur, x);
+    li.addEventListener('click', () => playAt(i));
+    list.appendChild(li);
+  });
+}
+
+function removeAt(i) {
+  const wasCur = i === cur;
+  Q.splice(i, 1);
+  if (i < cur) cur--; else if (wasCur) cur = Math.min(cur, Q.length - 1);
+  rebuildShuffle();
+  if (wasCur) { if (Q.length && cur >= 0) playAt(cur); else stopAll(); }
+  render(); save();
+}
+
+/* ---------- reordering ---------- */
+let dragFrom = -1;
+$('#list').addEventListener('dragstart', e => {
+  const li = e.target.closest('.row'); if (!li) return;
+  dragFrom = +li.dataset.i; li.classList.add('drag');
+  e.dataTransfer.effectAllowed = 'move';
+  try { e.dataTransfer.setData('text/plain', 'row:' + dragFrom); } catch (err) {}
+});
+$('#list').addEventListener('dragend', () => {
+  dragFrom = -1;
+  document.querySelectorAll('.row').forEach(r => r.classList.remove('drag', 'over'));
+});
+$('#list').addEventListener('dragover', e => {
+  if (dragFrom < 0) return;                       // an external link drop belongs to the page
+  e.preventDefault(); e.dataTransfer.dropEffect = 'move';
+  const li = e.target.closest('.row'); if (!li) return;
+  document.querySelectorAll('.row').forEach(r => r.classList.remove('over'));
+  li.classList.add('over');
+});
+$('#list').addEventListener('drop', e => {
+  if (dragFrom < 0) return;
+  e.preventDefault(); e.stopPropagation();
+  const li = e.target.closest('.row'); if (!li) return;
+  const to = +li.dataset.i;
+  if (to === dragFrom) return;
+  const moving = Q[dragFrom], playing = Q[cur];
+  Q.splice(dragFrom, 1);
+  Q.splice(to, 0, moving);
+  if (playing) cur = Q.indexOf(playing);          // follow the track, not the index
+  rebuildShuffle(); render(); save();
+});
+
+/* ---------- the timer ----------
+   Started when the frame is pointed at a track, cleared whenever anything else takes over.
+   It is deliberately visible: a countdown that is wrong is obvious, where a silent one that
+   fires early would just look like a bug in the queue. */
+const frame = $('#frame');
+let tEnd = 0, tTotal = 0, tick = null;
+
+function clearTimer() {
+  if (tick) { clearInterval(tick); tick = null; }
+  tEnd = tTotal = 0;
+  $('#timer').classList.remove('live');
+}
+function startTimer(seconds) {
+  clearTimer();
+  if (!auto || !(seconds > 0)) return;
+  tTotal = seconds + 1.5;                         // a beat of slack for the frame to start
+  tEnd = Date.now() + tTotal * 1000;
+  $('#timer').classList.add('live');
+  paintTimer();
+  tick = setInterval(() => {
+    const left = (tEnd - Date.now()) / 1000;
+    if (left <= 0) {
+      clearTimer();
+      const n = nextIndex();
+      if (n >= 0) playAt(n); else { $('#ns').textContent = 'End of queue'; }
+      return;
+    }
+    paintTimer();
+  }, 500);
+}
+function paintTimer() {
+  const left = Math.max(0, (tEnd - Date.now()) / 1000);
+  $('#tleft').textContent = mmss(left);
+  $('#tfill').style.width = (tTotal ? (100 - left / tTotal * 100) : 0).toFixed(1) + '%';
+}
+$('#timer').addEventListener('click', () => {
+  if (cur >= 0 && Q[cur] && Q[cur].dur) { startTimer(Q[cur].dur); toast('Timer restarted'); }
+});
+
+/* ---------- playback ---------- */
+function stopAll() {
+  clearTimer();
+  frame.style.display = 'none'; frame.src = 'about:blank';
+  cur = -1;
+  $('#nt').textContent = 'Nothing playing';
+  $('#ns').textContent = Q.length ? 'Stopped' : 'Queue is empty';
+  render();
+}
+
+async function playAt(i) {
+  if (i < 0 || i >= Q.length) return;
+  clearTimer();
+  cur = i;
+  let r = Q[i];
+  if (!r.ok && r.title === 'Loading…') { Q[i] = r = await resolve(r.id); save(); }
+
+  frame.style.display = 'block';
+  frame.src = 'https://suno.com/embed/' + r.id;
+  $('#nt').textContent = r.title || r.id.slice(0, 8);
+  $('#ns').textContent = (r.ent ? r.sub : 'Not in the library')
+    + (r.dur ? '  ·  ' + mmss(r.dur) : '  ·  length unknown')
+    + '  ·  ' + (i + 1) + ' of ' + Q.length;
+  render();
+
+  if (auto) startTimer(r.dur);
+  /* Warm the next row's lookup while this one plays, so its length is known by the time the
+     timer needs it — the one thing that would otherwise stall an auto-advance. */
+  const n = nextIndex(true);
+  if (n >= 0 && Q[n] && !Q[n].ok) resolve(Q[n].id).then(full => {
+    const at = Q.findIndex(x => x.id === full.id);
+    if (at >= 0) { Q[at] = full; render(); save(); }
+  });
+}
+
+/* ---------- order ----------
+   Shuffle is a shuffled list of indices rather than a random pick each time, so every track
+   plays once before any repeats and `prev` still means the one you actually heard. */
+function rebuildShuffle() {
+  shufOrder = Q.map((_, i) => i);
+  for (let i = shufOrder.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shufOrder[i], shufOrder[j]] = [shufOrder[j], shufOrder[i]];
+  }
+}
+function nextIndex(peek) {
+  if (!Q.length) return -1;
+  if (repeat === 'one' && !peek) return cur;
+  if (shuffling) {
+    if (shufOrder.length !== Q.length) rebuildShuffle();
+    const at = shufOrder.indexOf(cur);
+    if (at < shufOrder.length - 1) return shufOrder[at + 1];
+    return repeat === 'all' ? shufOrder[0] : -1;
+  }
+  if (cur < Q.length - 1) return cur + 1;
+  return repeat === 'all' ? 0 : -1;
+}
+function prevIndex() {
+  if (!Q.length) return -1;
+  if (shuffling) {
+    const at = shufOrder.indexOf(cur);
+    return at > 0 ? shufOrder[at - 1] : (repeat === 'all' ? shufOrder[shufOrder.length - 1] : -1);
+  }
+  if (cur > 0) return cur - 1;
+  return repeat === 'all' ? Q.length - 1 : -1;
+}
+
+/* ---------- controls ---------- */
+$('#next').addEventListener('click', () => { const n = nextIndex(); if (n >= 0) playAt(n); else toast('End of queue'); });
+$('#prev').addEventListener('click', () => { const p = prevIndex(); if (p >= 0) playAt(p); else toast('Start of queue'); });
+$('#tauto').addEventListener('click', () => {
+  auto = !auto;
+  $('#tauto').classList.toggle('on', auto);
+  savePrefs();
+  if (auto && cur >= 0 && Q[cur]) startTimer(Q[cur].dur); else clearTimer();
+  toast(auto ? 'Auto-advance on — timed, see the note below' : 'Auto-advance off');
+});
+$('#tshuf').addEventListener('click', () => {
+  shuffling = !shuffling; rebuildShuffle();
+  $('#tshuf').classList.toggle('on', shuffling); savePrefs();
+});
+$('#trep').addEventListener('click', () => {
+  repeat = repeat === 'off' ? 'all' : repeat === 'all' ? 'one' : 'off';
+  $('#trep').textContent = 'rep ' + repeat;
+  $('#trep').classList.toggle('on', repeat !== 'off'); savePrefs();
+});
+$('#clear').addEventListener('click', () => {
+  if (Q.length > 1 && !confirm('Clear all ' + Q.length + ' tracks?')) return;
+  Q = []; stopAll(); save();
+});
+$('#shuffleall').addEventListener('click', () => {
+  const playing = Q[cur];
+  for (let i = Q.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [Q[i], Q[j]] = [Q[j], Q[i]]; }
+  if (playing) cur = Q.indexOf(playing);
+  rebuildShuffle(); render(); save(); toast('Queue shuffled');
+});
+$('#addbtn').addEventListener('click', () => {
+  const v = $('#addin').value; $('#addin').value = ''; if (v.trim()) addMany(v);
+});
+$('#addin').addEventListener('keydown', e => { if (e.key === 'Enter') $('#addbtn').click(); });
+
+/* ---------- drop & paste ----------
+   Bound to the whole document, not just the dashed box: aiming at a target is the annoying
+   part of dragging a link out of another window. */
+let hot = 0;
+document.addEventListener('dragenter', e => {
+  if (dragFrom >= 0) return;
+  e.preventDefault(); hot++; $('#drop').classList.add('hot');
+});
+document.addEventListener('dragover', e => { if (dragFrom < 0) { e.preventDefault(); e.dataTransfer.dropEffect = 'copy'; } });
+document.addEventListener('dragleave', () => { if (dragFrom < 0 && --hot <= 0) { hot = 0; $('#drop').classList.remove('hot'); } });
+document.addEventListener('drop', e => {
+  if (dragFrom >= 0) return;
+  e.preventDefault(); hot = 0; $('#drop').classList.remove('hot');
+  const dt = e.dataTransfer;
+  const text = (dt.getData('text/uri-list') || '') + '\n' + (dt.getData('text/plain') || '');
+  if (text.trim()) addMany(text);
+});
+document.addEventListener('paste', e => {
+  if (/^(INPUT|TEXTAREA)$/.test(e.target.tagName || '')) return;   // the add box keeps its own paste
+  const text = (e.clipboardData || window.clipboardData).getData('text');
+  if (text && text.trim()) { e.preventDefault(); addMany(text); }
+});
+document.addEventListener('keydown', e => {
+  if (/^(INPUT|TEXTAREA)$/.test(e.target.tagName)) return;
+  if (e.key === 'ArrowRight' && e.shiftKey) { e.preventDefault(); $('#next').click(); }
+  else if (e.key === 'ArrowLeft' && e.shiftKey) { e.preventDefault(); $('#prev').click(); }
+});
+
+/* ---------- boot ----------
+   A restored queue costs no requests: rows already carry their title and length, and
+   anything missing is resolved when it is played. */
+$('#tauto').classList.toggle('on', auto);
+$('#tshuf').classList.toggle('on', shuffling);
+$('#trep').textContent = 'rep ' + repeat;
+$('#trep').classList.toggle('on', repeat !== 'off');
+rebuildShuffle();
+render();
+if (Q.length) $('#ns').textContent = Q.length + ' queued · pick a track';
+</script>
+</body>
+</html>
