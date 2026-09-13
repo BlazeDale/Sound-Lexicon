@@ -277,7 +277,12 @@
     </section>
 
     <section class="side">
-      <div class="qhead"><h2>Already played</h2><span class="count" id="donecount"></span></div>
+      <div class="qhead">
+        <h2>Already played</h2>
+        <span class="count" id="donecount"></span>
+        <span class="spacer"></span>
+        <button id="clearheard">Reset</button>
+      </div>
       <ul id="donelist"></ul>
       <p class="empty" id="doneempty">Nothing played yet.</p>
     </section>
@@ -447,7 +452,12 @@ let shufOrder = [], metaCache = {};
    parameter is dropped from the address so a reload does not silently wipe it again. */
 const WANT_NEW = new URLSearchParams(location.search).get('new') === '1';
 if (WANT_NEW) {
-  try { localStorage.removeItem(LS_Q); } catch (e) {}
+  try {
+    localStorage.removeItem(LS_Q);
+    const all = JSON.parse(localStorage.getItem('sl.queue.heard.v1') || '{}') || {};
+    delete all.local;                      // a blank queue starts with a blank history too
+    localStorage.setItem('sl.queue.heard.v1', JSON.stringify(all));
+  } catch (e) {}
   history.replaceState(null, '', location.pathname);
 }
 try { Q = WANT_NEW ? [] : (JSON.parse(localStorage.getItem(LS_Q) || '[]') || []); } catch (e) { Q = []; }
@@ -793,20 +803,47 @@ function needName(why) {
    you played would show as "already played" having never been heard. A track is recorded
    when it is left, so the one under the player is never also sitting in the played column. */
 let heard = [];                     // NOT `history` — that shadows window.history, and the
-function recordPlayed(k) {          // ?new=1 boot path calls history.replaceState()
+                                    // ?new=1 boot path calls history.replaceState()
+
+/* Kept per queue and across reloads. The queue itself survives a refresh, so the record of
+   what you have heard from it has to as well, or every track springs back into "up next"
+   and the column is only ever true until you look away. Keyed by queue, because on a shared
+   one this is what YOU have heard, not what the queue has been through — two people on the
+   same link have different answers and neither is wrong. */
+const LS_HEARD = 'sl.queue.heard.v1';
+const heardKey = () => (SQ.qid || 'local');
+function loadHeard() {
+  try { heard = (JSON.parse(localStorage.getItem(LS_HEARD) || '{}') || {})[heardKey()] || []; }
+  catch (e) { heard = []; }
+}
+function saveHeard() {
+  try {
+    const all = JSON.parse(localStorage.getItem(LS_HEARD) || '{}') || {};
+    if (heard.length) all[heardKey()] = heard.slice(-300); else delete all[heardKey()];
+    localStorage.setItem(LS_HEARD, JSON.stringify(all));
+  } catch (e) {}
+}
+function recordPlayed(k) {
   if (!k) return;
   heard = heard.filter(x => x !== k);
   heard.push(k);
+  saveHeard();
 }
-/* The order the queue will actually continue in, which is not index order under shuffle. */
+/* What is left to hear, in the order it will play.
+   The two columns are disjoint: a track is either waiting or heard, never both. That is what
+   "up next" has to mean once the history survives a reload — otherwise everything springs
+   back into the waiting column on refresh while also sitting in the played one.
+   Order is where the current track is, then onwards, then round to anything earlier still
+   unheard — so starting in the middle of a list does not strand the top of it. */
 function upcomingIndices() {
   if (!Q.length) return [];
-  if (shuffling) {
-    if (shufOrder.length !== Q.length) rebuildShuffle();
-    const at = shufOrder.indexOf(cur);
-    return at < 0 ? shufOrder.slice() : shufOrder.slice(at + 1);
-  }
-  return Q.map((_, i) => i).filter(i => i > cur);
+  const done = new Set(heard);
+  const order = shuffling
+    ? (shufOrder.length === Q.length ? shufOrder : (rebuildShuffle(), shufOrder))
+    : Q.map((_, i) => i);
+  const at = order.indexOf(cur);
+  const seq = at < 0 ? order.slice() : order.slice(at + 1).concat(order.slice(0, at));
+  return seq.filter(i => i !== cur && !done.has(keyOf(Q[i])));
 }
 
 function render() {
@@ -1094,6 +1131,9 @@ async function playAt(i) {
   /* Record what we are leaving, not what we are starting: the track under the player should
      never also appear in the played column. */
   if (cur >= 0 && cur !== i && Q[cur]) recordPlayed(keyOf(Q[cur]));
+  /* Whatever is starting is no longer "already played" — it is playing. */
+  const startKey = Q[i] && keyOf(Q[i]);
+  if (startKey && heard.includes(startKey)) { heard = heard.filter(x => x !== startKey); saveHeard(); }
   cur = i;
   let r = Q[i];
   if (r.title === 'Loading…') { Q[i] = r = await resolve(r.id, r.src); save(); }
@@ -1161,26 +1201,33 @@ function rebuildShuffle() {
     [shufOrder[i], shufOrder[j]] = [shufOrder[j], shufOrder[i]];
   }
 }
+/* Playback follows the same list the left column shows, so what plays next is always what
+   the page said would play next. When everything has been heard, repeat:all starts the
+   whole thing again; otherwise the queue is finished until Reset. */
 function nextIndex(peek) {
   if (!Q.length) return -1;
   if (repeat === 'one' && !peek) return cur;
-  if (shuffling) {
-    if (shufOrder.length !== Q.length) rebuildShuffle();
-    const at = shufOrder.indexOf(cur);
-    if (at < shufOrder.length - 1) return shufOrder[at + 1];
-    return repeat === 'all' ? shufOrder[0] : -1;
-  }
-  if (cur < Q.length - 1) return cur + 1;
-  return repeat === 'all' ? 0 : -1;
+  const up = upcomingIndices();
+  if (up.length) return up[0];
+  if (repeat !== 'all') return -1;
+  const order = shuffling ? shufOrder : Q.map((_, i) => i);
+  const at = order.indexOf(cur);
+  return order[(at + 1) % order.length];
 }
+/* Back means the track you actually heard before this one, which is what the played column
+   is showing — not the row above in the list, which under shuffle was never where you came
+   from anyway. */
 function prevIndex() {
   if (!Q.length) return -1;
+  for (let n = heard.length - 1; n >= 0; n--) {
+    const i = Q.findIndex(r => keyOf(r) === heard[n]);
+    if (i >= 0 && i !== cur) return i;
+  }
   if (shuffling) {
     const at = shufOrder.indexOf(cur);
-    return at > 0 ? shufOrder[at - 1] : (repeat === 'all' ? shufOrder[shufOrder.length - 1] : -1);
+    return at > 0 ? shufOrder[at - 1] : -1;
   }
-  if (cur > 0) return cur - 1;
-  return repeat === 'all' ? Q.length - 1 : -1;
+  return cur > 0 ? cur - 1 : -1;
 }
 
 /* ---------- letting YouTube see you are signed in ----------
@@ -1277,6 +1324,9 @@ $('#clear').addEventListener('click', () => {
   if (shared()) { if (isOwner()) window.__net.clearTracks(); return; }
   Q = []; stopAll(); save();
 });
+$('#clearheard').addEventListener('click', () => {
+  heard = []; saveHeard(); render(); toast('Play history cleared');
+});
 $('#shuffleall').addEventListener('click', () => {
   const playing = Q[cur];
   for (let i = Q.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [Q[i], Q[j]] = [Q[j], Q[i]]; }
@@ -1325,6 +1375,7 @@ $('#tauto').classList.toggle('on', auto);
 $('#tshuf').classList.toggle('on', shuffling);
 $('#trep').textContent = 'rep ' + repeat;
 $('#trep').classList.toggle('on', repeat !== 'off');
+loadHeard();
 rebuildShuffle();
 refreshYtCookieButton();
 $('#mename').textContent = myName() || '—';
@@ -1337,6 +1388,7 @@ if (Q.length) $('#ns').textContent = Q.length + ' queued · pick a track';
 
 /* ---------- what the network layer calls back into ---------- */
 window.__applyRemote = (tracks, meta) => {
+  const firstSight = !SQ.owner;
   SQ.owner = (meta && meta.owner) || '';
   SQ.open = !!(meta && meta.open);
   SQ.title = (meta && meta.title) || 'Untitled queue';
@@ -1367,6 +1419,7 @@ window.__applyRemote = (tracks, meta) => {
   $('#chatnote').textContent = isOwner()
     ? 'you own this queue — links posted here get an add button'
     : (SQ.open ? 'anyone with the link can add tracks or talk here' : 'paste a link here to suggest it to the owner');
+  if (firstSight) loadHeard();          // this queue's own history, not the local one's
   rebuildShuffle(); render();
 };
 window.__applyChat = msgs => { SQ.chat = msgs; renderChat(); };
