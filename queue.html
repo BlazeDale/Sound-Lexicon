@@ -164,8 +164,9 @@
 
   <div id="drop">
     <b>Drop Suno or YouTube links here</b> — or paste one anywhere on the page.<br>
-    A Suno <span style="font-family:var(--mono);font-size:12px">/song/</span>, embed, share or bare id — or a
-    <span style="font-family:var(--mono);font-size:12px">youtube.com/watch</span>, <span style="font-family:var(--mono);font-size:12px">youtu.be</span> or shorts link.
+    A Suno <span style="font-family:var(--mono);font-size:12px">/song/</span>, embed, share or bare id — a
+    <span style="font-family:var(--mono);font-size:12px">youtube.com/watch</span>, <span style="font-family:var(--mono);font-size:12px">youtu.be</span> or shorts link —
+    or a YouTube (or YouTube Music) <b>playlist</b>, which joins the queue as one row and plays all the way through.
     <div class="addrow" onclick="event.stopPropagation()">
       <input id="addin" placeholder="https://suno.com/song/…  or  https://youtu.be/…  (several at once, one per line)" spellcheck="false">
       <button class="primary" id="addbtn">Add</button>
@@ -329,6 +330,19 @@ const idFrom = t => { const m = String(t || '').match(UUID_RE); return m ? m[0].
 const YT_RE = /(?:youtube\.com\/(?:watch\?(?:[^#]*&)?v=|embed\/|shorts\/|live\/)|youtu\.be\/)([A-Za-z0-9_-]{11})(?![A-Za-z0-9_-])/i;
 const ytFrom = t => { const m = String(t || '').match(YT_RE); return m ? m[1] : ''; };
 
+/* A playlist link carries no video id at all — music.youtube.com/playlist?list=OLAK5uy_…
+   is an album, and the matcher above correctly found nothing in it. Such a link becomes ONE
+   row that plays the whole list inside the player, because enumerating its videos would
+   need the Data API and a key, while playing it needs neither.
+   A /watch?v=…&list=… link keeps meaning the video: that is a specific track, not the set. */
+const YTPL_RE = /(?:youtube\.com|youtu\.be)\/[^\s]*[?&]list=([A-Za-z0-9_-]{12,})/i;
+const ytplFrom = t => {
+  const str = String(t || '');
+  if (ytFrom(str)) return '';                       // a video was named; that wins
+  const m = str.match(YTPL_RE);
+  return m ? m[1] : '';
+};
+
 /* A row is addressed by source AND id: the two id spaces are different shapes and must not
    be able to collide in the queue or in storage. */
 const keyOf = r => r.src + ':' + r.id;
@@ -421,7 +435,34 @@ async function resolveYT(id) {
   return row;
 }
 
+/* oEmbed answers for a playlist as well as a video, which is the whole reason this is
+   possible without a key: it hands back the album's name and a thumbnail. It does NOT say
+   how many videos are in it, and nothing here needs to know. */
+async function resolveYTPL(id) {
+  const row = { id, src: 'ytpl', title: 'YouTube playlist', sub: 'YouTube playlist',
+                ent: false, art: '', dur: 0, ok: true };
+  const c = metaCache['ytpl:' + id];
+  if (c && c.title) return Object.assign(row, c);
+  const j = await queued(async () => {
+    try {
+      const r = await fetchT('https://www.youtube.com/oembed?format=json&url='
+        + encodeURIComponent('https://www.youtube.com/playlist?list=' + id), 9000);
+      if (r.ok) return await r.json();
+    } catch (e) {}
+    return null;
+  });
+  if (j && j.title) {
+    row.title = j.title;
+    row.sub = 'YouTube playlist' + (j.author_name ? ' · ' + j.author_name : '');
+    if (typeof j.thumbnail_url === 'string' && /^https:\/\//.test(j.thumbnail_url)) row.art = j.thumbnail_url;
+    metaCache['ytpl:' + id] = { title: row.title, sub: row.sub, art: row.art };
+    saveMeta();
+  }
+  return row;
+}
+
 async function resolve(id, src) {
+  if (src === 'ytpl') return resolveYTPL(id);
   if (src === 'yt') return resolveYT(id);
   const local = localRow(id);
   if (local && local.ok) return local;
@@ -456,6 +497,8 @@ async function addMany(text, quiet) {
     if (!piece) continue;
     const y = ytFrom(piece);
     if (y) { found.push({ src: 'yt', id: y }); continue; }
+    const pl = ytplFrom(piece);
+    if (pl) { found.push({ src: 'ytpl', id: pl }); continue; }
     const id = idFrom(piece);
     if (id) { found.push({ src: 'suno', id }); continue; }
     if (SHARE_RE.test(piece)) shares.push(piece);
@@ -483,7 +526,7 @@ async function addMany(text, quiet) {
     seen.add(k); return true;
   });
   const dupes = found.length - fresh.length;
-  if (!fresh.length) { if (!quiet) toast(found.length ? 'Already in the queue' : 'No Suno or YouTube link found there'); return 0; }
+  if (!fresh.length) { if (!quiet) toast(found.length ? 'Already in the queue' : 'Nothing recognised — paste a Suno link, or a YouTube video or playlist link'); return 0; }
 
   /* Anything the corpus knows is filled in immediately and never touches the network, so a
      drop of library demos is complete the instant it lands. Only genuinely foreign ids
@@ -507,7 +550,8 @@ async function addMany(text, quiet) {
     f.src === 'suno' && localRow(f.id)
       ? localRow(f.id)
       : { id: f.id, src: f.src, title: 'Loading…', sub: '', ent: false,
-          art: f.src === 'yt' ? 'https://i.ytimg.com/vi/' + f.id + '/mqdefault.jpg' : artOf(f.id),
+          art: f.src === 'yt' ? 'https://i.ytimg.com/vi/' + f.id + '/mqdefault.jpg'
+             : f.src === 'ytpl' ? '' : artOf(f.id),
           dur: 0, ok: false }));
   render(); save();
 
@@ -752,12 +796,29 @@ window.onYouTubeIframeAPIReady = () => {
     width: 280, height: 158,
     playerVars: { autoplay: 1, playsinline: 1, rel: 0 },
     events: {
-      onReady: () => { ytReady = true; if (ytPending) { const v = ytPending; ytPending = null; yt.loadVideoById(v); } },
-      onStateChange: e => {
-        if (e.data === YT.PlayerState.ENDED) {
-          const n = nextIndex();
-          if (n >= 0) playAt(n); else $('#ns').textContent = 'End of queue';
+      onReady: () => {
+        ytReady = true;
+        if (ytPending) {
+          const r = ytPending; ytPending = null;
+          if (r.src === 'ytpl') yt.loadPlaylist({ list: r.id, listType: 'playlist', index: 0 });
+          else yt.loadVideoById(r.id);
         }
+      },
+      onStateChange: e => {
+        if (e.data !== YT.PlayerState.ENDED) return;
+        /* In playlist mode ENDED fires at the end of EVERY video, not just the last, so
+           advancing the queue on it blindly would skip the rest of the album. Only move on
+           once the player is genuinely at the end of what it was given. */
+        try {
+          const row = Q[cur];
+          if (row && row.src === 'ytpl') {
+            const list = yt.getPlaylist && yt.getPlaylist();
+            const at = yt.getPlaylistIndex && yt.getPlaylistIndex();
+            if (list && list.length && at > -1 && at < list.length - 1) return;   // more to come
+          }
+        } catch (err) {}
+        const n = nextIndex();
+        if (n >= 0) playAt(n); else $('#ns').textContent = 'End of queue';
       },
       onError: () => {
         toast('YouTube would not play that one — skipping');
@@ -789,15 +850,20 @@ async function playAt(i) {
 
   $('#nt').textContent = r.title || r.id;
   $('#ns').textContent = (r.ent ? r.sub : (r.sub || 'Not in the library'))
-    + (r.src === 'suno' ? (r.dur ? '  ·  ' + mmss(r.dur) : '  ·  length unknown') : '')
+    + (r.src === 'suno' ? (r.dur ? '  ·  ' + mmss(r.dur) : '  ·  length unknown')
+       : r.src === 'ytpl' ? '  ·  plays the whole playlist' : '')
     + '  ·  ' + (i + 1) + ' of ' + Q.length;
   render();
 
-  if (r.src === 'yt') {
+  if (r.src === 'yt' || r.src === 'ytpl') {
     frame.style.display = 'none'; frame.src = 'about:blank';
     $('#yt').style.display = 'block';
     ensureYT();
-    if (ytReady && yt && yt.loadVideoById) yt.loadVideoById(r.id); else ytPending = r.id;
+    const load = () => {
+      if (r.src === 'ytpl') yt.loadPlaylist({ list: r.id, listType: 'playlist', index: 0 });
+      else yt.loadVideoById(r.id);
+    };
+    if (ytReady && yt && yt.loadVideoById) load(); else ytPending = r;
   } else {
     $('#yt').style.display = 'none';
     if (ytReady && yt && yt.stopVideo) { try { yt.stopVideo(); } catch (e) {} }
@@ -1129,7 +1195,7 @@ try {
   /* A stored track is deliberately thin: what it takes to show a row and time it. Anything
      derivable from data.js is derived on arrival instead of duplicated into every queue. */
   const pack = (r, who) => ({
-    src: r.src === 'yt' ? 'yt' : 'suno',
+    src: (r.src === 'yt' || r.src === 'ytpl') ? r.src : 'suno',
     id: trim(r.id, 40),
     title: trim(r.title, 140),
     sub: trim(r.sub || '', 90),
@@ -1144,11 +1210,12 @@ try {
   function unpack(val) {
     return Object.entries(val || {})
       .map(([k, t]) => ({
-        k, src: t.src === 'yt' ? 'yt' : 'suno', id: t.id,
+        k, src: (t.src === 'yt' || t.src === 'ytpl') ? t.src : 'suno', id: t.id,
         title: t.title || t.id, sub: t.sub || '', ent: /^#\d/.test(t.sub || ''),
         art: t.src === 'yt' ? 'https://i.ytimg.com/vi/' + t.id + '/mqdefault.jpg'
+           : t.src === 'ytpl' ? ''
                             : 'https://cdn2.suno.ai/image_' + t.id + '.jpeg',
-        dur: t.dur || 0, ok: (t.dur || 0) > 0 || t.src === 'yt',
+        dur: t.dur || 0, ok: (t.dur || 0) > 0 || t.src === 'yt' || t.src === 'ytpl',
         by: t.by || '', byName: t.byName || '', ord: t.ord || 0
       }))
       .sort((a, b) => a.ord - b.ord);
