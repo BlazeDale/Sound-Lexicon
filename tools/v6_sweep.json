@@ -5409,6 +5409,118 @@
       "edits": 2,
       "prompt": "charged-objects",
       "note": "second roll. Roll 1 had the orchids-believe-its-rain opening but a chorus built on attractors (iron town, safe from the storm, leave the iron town behind us) plus a coat collar, an iron gate and a dropped key: chorus-level fault, re-rolled. Roll 2 kept, two edits drawn from the songs own meaning rather than swapped objects: below our boots three thousand floors of ancient iron became three thousand floors of strangers dream beneath us and not one can see (the secrecy the hook asks for: dont let the morning know); you drop the spray, you take my coat became you drop the spray, the orchids lean (the plants they whisper for bend toward the moment). Stage directions and the image footer stripped"
+    },
+    "245": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Paper Wings",
+        "clips": [
+          "dcd6345e-a177-4650-820c-9241556dc5f7",
+          "0d3f90b0-dcfd-4180-a0e4-59248f0969a9"
+        ],
+        "v0": "dcd6345e-a177-4650-820c-9241556dc5f7",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a grandparent and grandchild folding paper cranes at a small table by the window late on a rainy night, counting each one out loud toward a thousand"
+      },
+      "flags": [
+        "spare"
+      ],
+      "tagged": false,
+      "edits": 3,
+      "prompt": "charged-objects",
+      "note": "slot changed after two bakery rolls: a night bakery (a work room) pulled the material palette both times (salt, tin, zinc, rust clock; iron bowl, coal), a rural town asleep in a city slot, and a chorus about the only ones left in the machine. One return came back from DeepSeek-V3.1 after the site switched model on its own; discarded. Grandparent-and-cranes roll kept for give me your thumb, now press the crease and the counts under the verses. Three rewrites drawn from what a thousand cranes mean (a wish): the hook keep the dark outside the tin became let the thousand wishes in; the river swells behind the barn (rural default at a city window) became I count it softly, like a charm; one for the door became one wish more"
+    },
+    "246": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Eye To The Glass",
+        "clips": [
+          "67b2f059-8d96-4839-a049-316601247782",
+          "e7192b25-bda9-4223-8be3-d084a3c33387"
+        ],
+        "v0": "67b2f059-8d96-4839-a049-316601247782",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a night watch at a city observatory, where two tired astronomers take turns at the telescope and murmur what they see to each other until dawn"
+      },
+      "flags": [
+        "spare",
+        "spec"
+      ],
+      "tagged": false,
+      "edits": 3,
+      "prompt": "charged-objects",
+      "note": "toolbaz twice returned DeepSeek-V3.1 with the dropdown still reading Gemini (one of them for this slot); discarded, page reloaded and Gemini re-picked from the visible dropdown. Gemini roll kept (the coffee gone gray but yours for a while; you dont look at the sky, you look at my collar and fix it). Edits: the hook oh gravity, oh light echoed #241 held by gravity, so it became oh distance, oh light - the song is about old light across distance and two people closing one; The Kepler-10 is a cinder of gold became that star (Kepler-10 is not a dead star, and the name was decoration); copper cut from the dome. Stage directions naming a motor and a guitar stripped"
+    },
+    "247": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Mind My Toes",
+        "clips": [
+          "dc5ecc47-d4d9-48b4-b165-1911f6b741db",
+          "4fbfa6f7-7726-44ae-928e-94d456f01dcb"
+        ],
+        "v0": "dc5ecc47-d4d9-48b4-b165-1911f6b741db",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a parent teaching their nearly grown kid to slow-dance in a small city living room the night before the kid's wedding, both of them stepping on each other's feet and laughing"
+      },
+      "flags": [
+        "spare"
+      ],
+      "tagged": false,
+      "edits": 2,
+      "prompt": "charged-objects",
+      "note": "first roll kept (push the table to the wall, mind my toes, youre six feet tall; four socks standing where the rug was rolled). Two rewrites from the songs meaning: you leave the heavy boots behind became kick the brand-new shoes behind (tomorrows shoes, and it sets up the closing socks); the last trains whistle leaves the town - a leaving image in a city living room - became you used to ride my feet around (the parent remembering the kid small). The ironed shirt on the door stayed: it is tomorrows wedding. Stay with me stayed as the hook: it is the parents wish the night before"
+    },
+    "248": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Nowhere Left We Don't Know",
+        "clips": [
+          "2beabe34-f70e-4e48-82a9-03f63b3c201f",
+          "5f056d79-3426-4288-92fc-04006d0627b8"
+        ],
+        "v0": "2beabe34-f70e-4e48-82a9-03f63b3c201f",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "an old couple on their fiftieth anniversary sitting up past midnight on the fire escape of their apartment, reading aloud the love letters they wrote each other as teenagers"
+      },
+      "flags": [
+        "spare"
+      ],
+      "tagged": false,
+      "edits": 0,
+      "prompt": "charged-objects",
+      "note": "first roll kept whole (the ink has eaten half your name, the page is yellow like a tooth; look at that smudge, that was my thumb). No rewrites. Stage directions stripped, including a (spoken, very low) that would have fought the entrys spoken-word negative - those two lines are sung. Milk bottles and the shirt stayed: both belong to the old city morning the couple are remembering"
+    },
+    "249": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Closer Than Skin",
+        "clips": [
+          "24483b76-90c4-4997-9fdb-2499d0859e50",
+          "59ab6500-9652-43a8-8be0-f32d2e23bfc1"
+        ],
+        "v0": "24483b76-90c4-4997-9fdb-2499d0859e50",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a whole family piled into one bed in a city apartment after the power goes out on the coldest night of the year, taking turns whispering what they will wish for when the lights come back"
+      },
+      "flags": [
+        "spare",
+        "mantra"
+      ],
+      "tagged": false,
+      "edits": 0,
+      "prompt": "charged-objects",
+      "note": "second roll. Roll 1 was 49 words - a cold iron radiator rib and one repeated peach wish, no song yet. Roll 2 kept whole (dont move, youll spill the heat we saved; the window glass is growing thick white hair; I decide right now we are not going to freeze). The blue coat with the torn pocket stayed on purpose: the family is piling on everything they own, and yes, that one makes it theirs - a charged coat, not an inventory coat. Only a one-line preamble stripped"
     }
   },
   "method": {
