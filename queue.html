@@ -400,6 +400,17 @@ const PROXY = u => 'https://api.allorigins.win/raw?url=' + encodeURIComponent(u)
    that suno.com is slow to serve. Left empty the page falls back to the proxy, and failing
    that says to paste the /song/ address — nothing breaks by leaving it alone. */
 const SHARE_RESOLVER = 'https://suno-resolver.soundlexicon.workers.dev/';
+
+/* What each share link turned out to point at. A share token carries no id, so a chat
+   message holding one cannot be matched against the queue until somebody has followed it
+   once — after which this remembers, and the offer can say "already in the queue" like any
+   other link would. Kept with the rest of the cached metadata so it survives a reload. */
+let shareSeen = {};
+try { shareSeen = JSON.parse(localStorage.getItem('sl.queue.shares.v1') || '{}') || {}; } catch (e) {}
+const rememberShare = (url, id) => {
+  shareSeen[String(url)] = id;
+  try { localStorage.setItem('sl.queue.shares.v1', JSON.stringify(shareSeen)); } catch (e) {}
+};
 const fetchT = (u, ms) => {                      // a hung proxy must not hang the queue
   const stop = new AbortController();
   const t = setTimeout(() => stop.abort(), ms);
@@ -611,7 +622,7 @@ async function addMany(text, quiet) {
         got = canon ? (canon[1] || canon[2]).toLowerCase() : '';
       }
     } catch (e) { /* 'done' lands here too, having already resolved */ }
-    if (UUID_RE.test(got)) found.push({ src: 'suno', id: got, raw: sh });
+    if (UUID_RE.test(got)) { rememberShare(url, got); found.push({ src: 'suno', id: got, raw: sh }); }
     else shareFailed++;
   }
   /* A share link cannot be read by this page — suno.com sends no CORS headers — so a proxy
@@ -763,6 +774,10 @@ function render() {
   list.innerHTML = '';
 
   refreshYtCookieButton();
+  /* The offers in chat describe the queue — which link is already in it — so they go stale
+     the moment the queue changes. renderChat only ran when a MESSAGE arrived, which is why
+     a track added from chat kept showing "+ Add" instead of turning into a tick. */
+  if (shared() && !renderingChat) renderChat();
   Q.forEach((r, i) => {
     const li = document.createElement('li');
     li.className = 'row' + (i === cur ? ' cur' : '');
@@ -1295,7 +1310,10 @@ window.__applyChat = msgs => { SQ.chat = msgs; renderChat(); };
    The reason chat exists rather than a comment field: a link dropped in here is a
    suggestion, and whoever is allowed to add gets a button on it. That makes open-adding a
    convenience instead of the only way a guest can contribute anything. */
+let renderingChat = false;
 function renderChat() {
+  if (renderingChat) return;                 // render() calls this, and this calls sizeChat()
+  renderingChat = true;
   const box = $('#msgs');
   const atBottom = box.scrollHeight - box.scrollTop - box.clientHeight < 40;
   box.innerHTML = '';
@@ -1353,11 +1371,16 @@ function renderChat() {
     };
 
     for (const h of found) offer(label[h.src] || 'track', h.raw, already.has(keyOf(h)));
-    for (const sh of shares) offer('Suno track', sh, false);
+    for (const sh of shares) {
+      const url = sh.startsWith('http') ? sh : 'https://' + sh;
+      const known = shareSeen[url];
+      offer('Suno track', sh, !!known && already.has('suno:' + known));
+    }
     box.appendChild(el);
   }
   if (atBottom) box.scrollTop = box.scrollHeight;
   sizeChat();
+  renderingChat = false;
 }
 
 /* The chat column is sized from where it actually sits and how tall the player actually is,
