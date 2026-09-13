@@ -203,7 +203,12 @@ function render() {
 
 let DB = null;
 try {
-  const app = initializeApp(firebaseConfig, 'queues');
+  /* The app name must match queue.html's. Firebase keys auth persistence as
+     firebase:authUser:<apiKey>:<appName>, so a differently-named app signs in as a DIFFERENT
+     anonymous user — which is why this page once showed your own queues under Everyone and
+     never under Mine. Keeping the name as 'queue' preserves the identity that already owns
+     any queue published before this was fixed. */
+  const app = initializeApp(firebaseConfig, 'queue');
   DB = getDatabase(app);
   const auth = getAuth(app);
   const me = await new Promise((ok, bad) => {
