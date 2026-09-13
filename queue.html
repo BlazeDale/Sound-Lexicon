@@ -1048,7 +1048,29 @@ $('#list').addEventListener('drop', e => {
    Started when the frame is pointed at a track, cleared whenever anything else takes over.
    It is deliberately visible: a countdown that is wrong is obvious, where a silent one that
    fires early would just look like a bug in the queue. */
-const frame = $('#frame');
+let frame = $('#frame');
+
+/* Build the Suno frame fresh for each track rather than re-pointing a long-lived one.
+   Autoplay permission follows user activation, and swapping src on a frame that has been
+   sitting in the document since load carries that activation far less reliably than
+   creating the element inside the click itself. The embed still has to choose to start --
+   it exposes no play command and answers no message, so nothing here can compel it -- but
+   this is the arrangement that gives it permission if it does. A fresh element is also the
+   honest way to stop the previous track: the old player is removed, not asked to be quiet. */
+function showSunoFrame(id) {
+  const fresh = document.createElement('iframe');
+  fresh.id = 'frame';
+  fresh.title = 'Suno player';
+  fresh.setAttribute('allow', "autoplay 'src'; encrypted-media 'src'");
+  fresh.src = 'https://suno.com/embed/' + id;
+  frame.replaceWith(fresh);
+  frame = fresh;
+  frame.style.display = 'block';
+}
+function hideSunoFrame() {
+  frame.style.display = 'none';
+  frame.src = 'about:blank';
+}
 let tEnd = 0, tTotal = 0, tick = null;
 
 function clearTimer() {
@@ -1216,7 +1238,7 @@ window.onYouTubeIframeAPIReady = () => {
 function finishQueue() {
   clearTimer();
   if (cur >= 0 && Q[cur]) recordPlayed(keyOf(Q[cur]));
-  frame.style.display = 'none'; frame.src = 'about:blank';
+  hideSunoFrame();
   $('#yt').style.display = 'none';
   if (ytReady && yt && yt.stopVideo) { try { yt.stopVideo(); } catch (e) {} }
   cur = -1;
@@ -1227,7 +1249,7 @@ function finishQueue() {
 
 function stopAll() {
   clearTimer();
-  frame.style.display = 'none'; frame.src = 'about:blank';
+  hideSunoFrame();
   $('#yt').style.display = 'none';
   if (ytReady && yt && yt.stopVideo) { try { yt.stopVideo(); } catch (e) {} }
   cur = -1;
@@ -1257,7 +1279,7 @@ async function playAt(i) {
   render();
 
   if (r.src === 'yt' || r.src === 'ytpl') {
-    frame.style.display = 'none'; frame.src = 'about:blank';
+    hideSunoFrame();
     $('#yt').style.display = 'block';
     ensureYT();
     const load = () => {
@@ -1288,8 +1310,7 @@ async function playAt(i) {
   } else {
     $('#yt').style.display = 'none';
     if (ytReady && yt && yt.stopVideo) { try { yt.stopVideo(); } catch (e) {} }
-    frame.style.display = 'block';
-    frame.src = 'https://suno.com/embed/' + r.id;
+    showSunoFrame(r.id);
     framePoked = false;
     /* Armed, not started. The clock begins when the frame is clicked — see the blur handler
        above — so a track that sits waiting to be played does not advance past itself. */
