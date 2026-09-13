@@ -812,17 +812,31 @@ let heard = [];                     // NOT `history` — that shadows window.his
    same link have different answers and neither is wrong. */
 const LS_HEARD = 'sl.queue.heard.v1';
 const heardKey = () => (SQ.qid || 'local');
+
+/* Which key the in-memory list actually belongs to. Without this there is a window in which
+   it belongs to nothing: the page boots with an empty list under 'local', and a shared
+   queue's id only arrives once the database answers. A save landing in that window writes
+   an empty list under the queue's key — and since an empty list is stored by DELETING the
+   entry, that silently destroys the history it was meant to be keeping. So nothing is ever
+   written under a key that has not been loaded first. */
+let heardLoadedFor = null;
+
 function loadHeard() {
-  try { heard = (JSON.parse(localStorage.getItem(LS_HEARD) || '{}') || {})[heardKey()] || []; }
+  heardLoadedFor = heardKey();
+  try { heard = (JSON.parse(localStorage.getItem(LS_HEARD) || '{}') || {})[heardLoadedFor] || []; }
   catch (e) { heard = []; }
 }
 function saveHeard() {
+  if (heardLoadedFor !== heardKey()) return;      // not ours to overwrite yet
   try {
     const all = JSON.parse(localStorage.getItem(LS_HEARD) || '{}') || {};
     if (heard.length) all[heardKey()] = heard.slice(-300); else delete all[heardKey()];
     localStorage.setItem(LS_HEARD, JSON.stringify(all));
   } catch (e) {}
 }
+/* Load whenever the queue we are looking at changes, rather than only on the first remote
+   answer — which relied on a flag that a second listener could already have cleared. */
+function syncHeard() { if (heardLoadedFor !== heardKey()) loadHeard(); }
 function recordPlayed(k) {
   if (!k) return;
   heard = heard.filter(x => x !== k);
@@ -847,6 +861,7 @@ function upcomingIndices() {
 }
 
 function render() {
+  syncHeard();
   const list = $('#list'), done = $('#donelist'), nowl = $('#nowlist');
   $('#clear').disabled = !Q.length;
   $('#shuffleall').disabled = Q.length < 2;
@@ -1388,7 +1403,6 @@ if (Q.length) $('#ns').textContent = Q.length + ' queued · pick a track';
 
 /* ---------- what the network layer calls back into ---------- */
 window.__applyRemote = (tracks, meta) => {
-  const firstSight = !SQ.owner;
   SQ.owner = (meta && meta.owner) || '';
   SQ.open = !!(meta && meta.open);
   SQ.title = (meta && meta.title) || 'Untitled queue';
@@ -1419,7 +1433,7 @@ window.__applyRemote = (tracks, meta) => {
   $('#chatnote').textContent = isOwner()
     ? 'you own this queue — links posted here get an add button'
     : (SQ.open ? 'anyone with the link can add tracks or talk here' : 'paste a link here to suggest it to the owner');
-  if (firstSight) loadHeard();          // this queue's own history, not the local one's
+  syncHeard();                          // this queue's own history, not the local one's
   rebuildShuffle(); render();
 };
 window.__applyChat = msgs => { SQ.chat = msgs; renderChat(); };
