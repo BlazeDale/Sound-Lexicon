@@ -233,7 +233,14 @@ for (const b of [el('tabMine'), el('tabAll')]) {
     render();
   });
 }
-el('newq').addEventListener('click', () => { location.href = 'queue.html'; });
+/* Same blank-slate rule as the queue page: without ?new=1 this lands on whatever local
+   list that browser already had, which reads as "New queue did nothing". */
+el('newq').addEventListener('click', () => {
+  let pending = 0;
+  try { pending = (JSON.parse(localStorage.getItem('sl.queue.v1') || '[]') || []).length; } catch (e) {}
+  if (pending && !confirm('Start a new empty queue?\n\nThe ' + pending + ' track(s) in your unshared list will be cleared. Queues you have already shared are not affected.')) return;
+  location.href = 'queue.html?new=1';
+});
 </script>
 </body>
 </html>

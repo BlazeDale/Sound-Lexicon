@@ -344,7 +344,14 @@ const fetchT = (u, ms) => {                      // a hung proxy must not hang t
 let Q = [], cur = -1, shuffling = false, repeat = 'off', auto = false;
 let shufOrder = [], metaCache = {};
 
-try { Q = JSON.parse(localStorage.getItem(LS_Q) || '[]') || []; } catch (e) { Q = []; }
+/* ?new=1 means "give me a blank queue" — handled before the stored list is read, and the
+   parameter is dropped from the address so a reload does not silently wipe it again. */
+const WANT_NEW = new URLSearchParams(location.search).get('new') === '1';
+if (WANT_NEW) {
+  try { localStorage.removeItem(LS_Q); } catch (e) {}
+  history.replaceState(null, '', location.pathname);
+}
+try { Q = WANT_NEW ? [] : (JSON.parse(localStorage.getItem(LS_Q) || '[]') || []); } catch (e) { Q = []; }
 try { metaCache = JSON.parse(localStorage.getItem(LS_META) || '{}') || {}; } catch (e) { metaCache = {}; }
 try {
   const p = JSON.parse(localStorage.getItem(LS_PREFS) || '{}');
@@ -1025,7 +1032,15 @@ $('#rename').addEventListener('click', () => {
   if (n !== null) { setMyName(n); renderChat(); }
 });
 $('#openToggle').addEventListener('click', () => { if (isOwner()) window.__net.setOpen(!SQ.open); });
-$('#newq').addEventListener('click', () => { location.href = location.pathname; });
+/* "New queue" used to just navigate to local mode, which dutifully restored the saved
+   local list — so it landed you back on the same queue you were trying to leave. It now
+   asks for a blank one explicitly, and only warns when there is something to lose. */
+$('#newq').addEventListener('click', () => {
+  let pending = 0;
+  try { pending = (JSON.parse(localStorage.getItem(LS_Q) || '[]') || []).length; } catch (e) {}
+  if (pending && !confirm('Start a new empty queue?\n\nThe ' + pending + ' track(s) in your unshared list will be cleared. Queues you have already shared are not affected.')) return;
+  location.href = location.pathname + '?new=1';
+});
 $('#listedToggle').addEventListener('click', () => { if (isOwner()) window.__net.setListed(!SQ.listed); });
 $('#delq').addEventListener('click', async () => {
   if (!isOwner()) return;
@@ -1259,7 +1274,11 @@ try {
      must keep working regardless, so nothing above is allowed to be load-bearing. */
   console.warn('[queue] sharing unavailable:', e);
   const b = el('publish');
-  if (b) { b.disabled = true; b.title = 'Sharing needs a connection, and Anonymous sign-in enabled on the Firebase project'; }
+  if (b) {
+    b.disabled = true;
+    b.textContent = 'Sharing unavailable';
+    b.title = 'Sharing needs a connection, and Anonymous sign-in enabled on the Firebase project';
+  }
   const note = el('localnote');
   if (note) note.innerHTML = 'This queue is private to this browser. Sharing and chat are not switched on yet '
     + '&mdash; they need Anonymous sign-in enabled on the Firebase project, and the current rules published.';
