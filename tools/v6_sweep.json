@@ -4526,6 +4526,119 @@
       "tagged": false,
       "edits": 0,
       "note": "first roll kept; blunt flag landed in the chorus hook; dropped sound-effect directions, CHORUS labels (entry left bare), and a closing red-mitten-on-the-yellow-line couplet (small dropped object attractor)"
+    },
+    "205": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Still Breathing You",
+        "clips": [
+          "4993da69-9526-4dc8-8849-3acfa13f8134",
+          "8d2c871f-56ea-41f8-b283-07c9caa068d6"
+        ],
+        "v0": "4993da69-9526-4dc8-8849-3acfa13f8134",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a warehouse full of people stamping in time at four in the morning under strobe lights"
+      },
+      "flags": [
+        "spare",
+        "mantra",
+        "spec"
+      ],
+      "tagged": true,
+      "edits": 2,
+      "note": "first roll kept as a spare subset for the spoken-chant lead (verses 1-2, hook, mantra break; verse 3 with boots/coat dropped). Opening \"I sold the car. I kept the keys.\" near-verbatim echo of #195 fixed to \"We cross the lot in twos and threes.\"; mantra answer \"(Close the door)\" -> \"(Nothing more)\"; hook repeated after the break"
+    },
+    "206": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Sink With Me Now",
+        "clips": [
+          "be54d11b-b354-40f9-9b99-0f7970debce4",
+          "59dc22bb-83fb-4b57-8905-68adf31b24c4"
+        ],
+        "v0": "be54d11b-b354-40f9-9b99-0f7970debce4",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a crowd crashing into each other at a rave in a flooded railway tunnel"
+      },
+      "flags": [
+        "spare",
+        "spec",
+        "blunt"
+      ],
+      "tagged": true,
+      "edits": 1,
+      "note": "first roll kept; blunt and spec both landed (who the fuck do you trust / filter-lungs, mag-rail). One-word fix salt -> smoke to thin a salt/rust/iron cluster; megaphone and close-voice directions bracketed; opening sound effects and a closing boots-in-the-water image dropped"
+    },
+    "207": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Let It Fall",
+        "clips": [
+          "f599b700-70ca-4ea7-8c3d-07d332f532f6",
+          "88acdb4e-76a9-4db5-b801-e767b8235479"
+        ],
+        "v0": "f599b700-70ca-4ea7-8c3d-07d332f532f6",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a warehouse crowd throwing their arms up together as dawn breaks through the broken roof"
+      },
+      "flags": [
+        "spare",
+        "mantra",
+        "spec"
+      ],
+      "tagged": true,
+      "edits": 0,
+      "note": "wordless-lead entry: vowel-heavy spare subset only (Woah-oh hook, two build couplets, Hold me down mantra x2); verses with keys/door/coat/boot and an \"I'm not leaving you / we're going to stay\" hook line left out"
+    },
+    "208": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Keeping You Warm",
+        "clips": [
+          "bb95cfbb-c970-4012-9d30-36ec23ac7fe7",
+          "00a3b417-9435-4807-97bc-d4f461de8c61"
+        ],
+        "v0": "bb95cfbb-c970-4012-9d30-36ec23ac7fe7",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a night crowd swaying together and passing candles hand to hand under a highway overpass"
+      },
+      "flags": [
+        "mantra",
+        "spec"
+      ],
+      "tagged": false,
+      "edits": 0,
+      "note": "424-word first roll, wordy and palette-heavy (ash, titanium, steel, rusty, frost, boots, coat); for a vocoded liturgical-phrase lead took only the spec quatrain (sky-spires / three hundred winters) plus the full \"I'm keeping you warm\" mantra block; chorus and verses left out"
+    },
+    "209": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Keep Your Eyes On Mine",
+        "clips": [
+          "d64749ea-667d-4a1c-952a-68c6e81c7b23",
+          "3d19f958-8c9e-4eb6-aa4a-bb6605fae882"
+        ],
+        "v0": "d64749ea-667d-4a1c-952a-68c6e81c7b23",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a huge dark hall of dancers laughing and trading secrets, two friends dancing close together all night long and never letting the other out of sight"
+      },
+      "flags": [
+        "spare",
+        "spec"
+      ],
+      "tagged": false,
+      "edits": 1,
+      "note": "second roll: first (whisper between the drops) was a leaving song through a door with coat, boots, key, salt and a closing red glove; re-rolled with an activity slot (friends dancing close all night) and it held. One-line fix \"I kicked it under your shoe\" -> \"I kicked it out of view\" (footwear)"
     }
   },
   "method": {
