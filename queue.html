@@ -68,6 +68,9 @@
   .sub .ent{color:var(--teal)}
   .sub .warn{color:var(--amber)}
   .dur{font-family:var(--mono);font-size:11.5px;color:var(--muted);flex:none}
+  .out{flex:none;color:var(--dim);text-decoration:none;font-size:11px;font-family:var(--mono);
+       border:1px solid var(--line);border-radius:6px;padding:3px 8px;white-space:nowrap}
+  .out:hover{color:var(--amber);border-color:var(--amber-dim)}
   .x{flex:none;border:0;background:none;color:var(--dim);font-size:16px;line-height:1;padding:4px 6px;cursor:pointer;border-radius:5px}
   .x:hover{color:var(--red);background:rgba(194,84,74,.1)}
   .empty{color:var(--dim);font-size:13.5px;padding:22px 2px}
@@ -738,6 +741,22 @@ function render() {
 
     const dur = document.createElement('span'); dur.className = 'dur'; dur.textContent = r.dur ? mmss(r.dur) : '';
     li.append(grip, art, meta, dur);
+
+    /* A way out, on every YouTube row. The embed cannot be made ad-free in every browser --
+       Firefox has no mechanism a page can use to hand the player its cookies -- and where
+       that is the case the real player is one click away rather than a paragraph away. */
+    if (r.src === 'yt' || r.src === 'ytpl') {
+      const out = document.createElement('a');
+      out.className = 'out';
+      out.href = r.src === 'ytpl'
+        ? 'https://www.youtube.com/playlist?list=' + r.id
+        : 'https://www.youtube.com/watch?v=' + r.id;
+      out.target = '_blank'; out.rel = 'noopener';
+      out.textContent = 'YouTube ↗';
+      out.title = 'Open on YouTube, where your account and Premium apply';
+      out.addEventListener('click', ev => ev.stopPropagation());
+      li.append(out);
+    }
 
     /* Removing is the owner's alone on a shared queue — the same rule the server enforces,
        so the button is simply not offered rather than offered and refused. */
