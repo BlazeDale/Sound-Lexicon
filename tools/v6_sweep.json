@@ -5073,6 +5073,113 @@
       "tagged": false,
       "edits": 0,
       "note": "barely-there wordless breath note: vowel subset only (Ah, lay... ah, lo... / The world is white below, with (Under the green) answers), repeated. Left out: a We are staying here mantra and We stay lines (stay echoes across the day), and verses with mittens, salt-crust stone and copper rain"
+    },
+    "230": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "The Stone Is Warm",
+        "clips": [
+          "4c181a52-85e0-4181-b624-988a7f1d3bcb",
+          "deb7ce52-f549-4e50-9e5d-d1ecf436e080"
+        ],
+        "v0": "4c181a52-85e0-4181-b624-988a7f1d3bcb",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a candlelit crowd filling an old stone cathedral for a midnight vigil, hundreds of people holding one long note together"
+      },
+      "flags": [
+        "spare",
+        "mantra"
+      ],
+      "tagged": false,
+      "edits": 0,
+      "note": "wordless choir entry: subset only (Ah-oh, the stone is warm x4, the We let it in mantra block, then the vowel line again). Verses fell to a doorway-and-farmhouse scene (a dropped pack in the doorway, clay, soup, salt, bread, a wooden latch) and the hook carried Hold the door, hold the door; all of that left out"
+    },
+    "231": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Save It All",
+        "clips": [
+          "9837f8dc-6795-43c6-9b45-eacd4d6ca6e1",
+          "65b041cc-92d8-4c05-9c1d-bcc8de14915a"
+        ],
+        "v0": "9837f8dc-6795-43c6-9b45-eacd4d6ca6e1",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a packed record fair on a rainy Sunday, collectors elbow to elbow flipping through crates and holding records up to the light"
+      },
+      "flags": [
+        "spare"
+      ],
+      "tagged": false,
+      "edits": 1,
+      "note": "first roll kept; a patient circling rain song (if it's still worth saving, I will save it all) that suits an archivist's melancholy. One-word fix after the coat note: \"I saw a coat like yours\" -> \"I saw a hat like yours\"; needle-crackle and guitar directions dropped"
+    },
+    "232": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "You Still Owe Me Ten",
+        "clips": [
+          "28f52c2e-65b6-4df9-b558-9f1f5023a983",
+          "15eabc73-70f2-4653-a07d-891268531057"
+        ],
+        "v0": "28f52c2e-65b6-4df9-b558-9f1f5023a983",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a sweaty community centre battle night where two old best friends roast each other for laughs, trying to top every line, and the whole crowd falls about laughing and yelling for more"
+      },
+      "flags": [
+        "spare",
+        "blunt"
+      ],
+      "tagged": true,
+      "edits": 2,
+      "note": "second roll: first (battle night, rivals outdoing each other) came back as a vicious lovers' fight (packing to leave, a knife in a shoe, the same wet coat), wrong register for a playful showman. Old-friends roast slot landed: EY-OH YOU TOTAL BASTARD / YOU STILL OWE ME TEN, ending on the only brother I ever had; the packed-bag verse is comic and ties to the hook, so kept. Coat-note fixes: \"fake suede coat\" -> \"knock-off shades\", \"held your jacket\" -> \"held your hand\"; closing jacket-on-a-chair image and Crowd: labels dropped (shouted words kept)"
+    },
+    "233": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Till You Do",
+        "clips": [
+          "2f0b3ef5-80ff-45d9-b8fa-d98feb4778aa",
+          "18bf4304-d3d5-4c64-b07a-552f19b11366"
+        ],
+        "v0": "2f0b3ef5-80ff-45d9-b8fa-d98feb4778aa",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "the long queue for the ferris wheel at a small-town fair at night, couples sharing candy floss and teasing each other while the lights spin overhead"
+      },
+      "flags": [
+        "spare"
+      ],
+      "tagged": true,
+      "edits": 2,
+      "note": "second roll: first (church-basement folk night, a shy kid playing their own song) slid into a farmhouse still life of absence (a mitten on the back step, suet block, porch rail, rusted nails in a coffee tin, a coat button in the couch, the side-door latch). The ferris-wheel queue held: flirty, not a leaving song (I ain't moving till you do). Coat-note fixes: \"my coat is cold\" -> \"my nose is cold\", closing \"tucked deep in my coat\" -> \"tucked deep in my pocket\""
+    },
+    "234": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Let It Hurt",
+        "clips": [
+          "763df3ef-8b6e-4abe-a29a-7b633d3e8826",
+          "d6159514-4a59-4047-b367-5aa36b7ba002"
+        ],
+        "v0": "763df3ef-8b6e-4abe-a29a-7b633d3e8826",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a crowded city soul club on a Saturday night, couples slow dancing under a red light while the singer begs and pleads and the whole room shouts back at every line"
+      },
+      "flags": [
+        "spare"
+      ],
+      "tagged": true,
+      "edits": 3,
+      "note": "second roll: first (Saturday juke joint) fell to the rural default (porch light, red dirt on the fender, a banging screen door twice, pine needles, a fiddle) and a stay-on-through close, 116 words. Naming a CITY soul club landed the testifying plea with call-and-response (it's a terrible thing to love someone and choose it). Fixes: hook phrase swapped throughout \"let it burn\" -> \"let it hurt\" (third burn hook after #215 and #221's draft); \"you took your coat\" -> \"you took your time\"; outro stanza with a blue coat dripping on the kitchen floor by the door dropped. Crowd: labels removed, shouted responses kept in parens"
     }
   },
   "method": {
