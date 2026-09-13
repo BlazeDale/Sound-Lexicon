@@ -30,9 +30,18 @@
  * Nothing else changes: without it the pages fall back to the public proxy, and without that
  * they tell the reader to paste the /song/ address instead.
  *
+ * IT ALSO ANSWERS ?clip=<uuid>
+ * Resolving a share link only yields an id; the title and length still have to come from
+ * /api/clip, and that endpoint keeps an origin allowlist -- suno.com and localhost are
+ * answered, github.io is not -- so the hosted site was falling back to the same public proxy
+ * for the second leg and spending ~20s there. That is the delay left after the share link
+ * itself resolves in ~300ms. This does that leg too, and returns only the three fields the
+ * page uses rather than relaying the whole record.
+ *
  * WHAT IT EXPOSES
- * Only a Suno share token in, only 36 characters of hex and dashes out. It refuses any other
- * address, so it cannot be used as an open proxy for anything else.
+ * A Suno share token in, 36 characters of hex and dashes out; or a uuid in, a title, a
+ * length and an artwork address out. It refuses anything else, so it cannot be used as an
+ * open proxy, and it never relays a response body it has not narrowed first.
  */
 const UUID = /\/song\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/i;
 const SHARE = /^https:\/\/suno\.com\/s\/[A-Za-z0-9_-]{6,64}$/;
@@ -46,7 +55,33 @@ export default {
     };
     if (request.method === 'OPTIONS') return new Response(null, { headers: cors });
 
-    const want = new URL(request.url).searchParams.get('u') || '';
+    const q = new URL(request.url).searchParams;
+
+    /* Second leg: the metadata for a song id. Only the fields the page renders are passed
+       back, so this cannot become a general window onto the API. */
+    const clip = q.get('clip') || '';
+    if (clip) {
+      if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(clip)) {
+        return new Response(JSON.stringify({ error: 'expected a song uuid' }),
+          { status: 400, headers: { ...cors, 'content-type': 'application/json' } });
+      }
+      try {
+        const r = await fetch('https://studio-api.prod.suno.com/api/clip/' + clip.toLowerCase(),
+          { headers: { 'user-agent': 'Mozilla/5.0' } });
+        if (!r.ok) throw new Error(String(r.status));
+        const j = await r.json();
+        return new Response(JSON.stringify({
+          title: String(j.title || '').slice(0, 140),
+          dur: Math.round((j.metadata && j.metadata.duration) || 0),
+          art: typeof j.image_url === 'string' && j.image_url.startsWith('https://') ? j.image_url : ''
+        }), { headers: { ...cors, 'content-type': 'application/json' } });
+      } catch (e) {
+        return new Response(JSON.stringify({ error: 'could not read that song' }),
+          { status: 404, headers: { ...cors, 'content-type': 'application/json' } });
+      }
+    }
+
+    const want = q.get('u') || '';
     // Only ever a Suno share address. This is what stops it being an open proxy.
     if (!SHARE.test(want)) {
       return new Response(JSON.stringify({ error: 'expected a https://suno.com/s/<token> address' }),
