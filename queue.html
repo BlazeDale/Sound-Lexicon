@@ -256,12 +256,15 @@
     without telling this page anything, which is why such a row is marked in the list and
     offers a link out. Ordinary playlists are fine. Individual tracks from the album are fine
     too, if you would rather queue them one at a time.<br><br>
-    <b>YouTube Premium and ads.</b> An embedded player is a third-party frame, and it only
-    knows you are signed in if your browser lets YouTube's cookies through from this site.
-    Most browsers now block exactly that by default, so Premium often does not carry across
-    and ads play anyway. Nothing on this page can change it — the entitlement is not ours to
-    pass along. Allowing third-party cookies for youtube.com sometimes restores it; otherwise
-    open the track on YouTube itself.
+    <b>YouTube Premium and ads.</b> Ads in the embed are a cookie problem rather than a
+    Premium problem. The player is a third-party frame, and a browser blocking third-party
+    cookies — most now do by default — leaves YouTube unable to see that you are signed in,
+    so it serves ads to what looks like a stranger and never consults your account. The
+    <b>yt sign-in</b> button asks your browser, on your click, to let the YouTube player have
+    its own cookies here; you get a prompt and you decide. Granting it and letting the player
+    reload is what makes Premium apply. This page never sees a cookie or an identity either
+    way, and if your browser refuses, the only remaining fix is to open the track on YouTube
+    itself.
   </footer>
 </div>
 
@@ -285,6 +288,7 @@
         <div class="ns" id="ns">Queue is empty</div>
       </div>
       <div class="ctrls">
+        <button class="tog" id="ytcookie" hidden title="Ask your browser to let the YouTube player see that you are signed in">yt sign-in</button>
         <button class="tog" id="tauto" title="Advance automatically when the track's length has elapsed">auto</button>
         <button class="tog" id="tshuf" title="Shuffle">shuf</button>
         <button class="tog" id="trep" title="Repeat: off / all / one">rep off</button>
@@ -699,6 +703,7 @@ function render() {
   $('#shuffleall').disabled = Q.length < 2;
   list.innerHTML = '';
 
+  refreshYtCookieButton();
   Q.forEach((r, i) => {
     const li = document.createElement('li');
     li.className = 'row' + (i === cur ? ' cur' : '');
@@ -1018,6 +1023,61 @@ function prevIndex() {
   return repeat === 'all' ? Q.length - 1 : -1;
 }
 
+/* ---------- letting YouTube see you are signed in ----------
+   Ads in the embed are not a Premium problem, they are a COOKIE problem. The player is a
+   third-party frame, and a browser that blocks third-party cookies — which most now do by
+   default — leaves YouTube unable to tell that this viewer is signed in at all, so it
+   serves ads to what looks like a logged-out stranger. Premium is never consulted.
+
+   requestStorageAccessFor exists for exactly this: a top-level page may ask the browser, on
+   a real user gesture, to let a named embedded origin have its own cookies here. The user
+   is prompted and decides; nothing is granted quietly, and this page never sees a cookie or
+   an identity either way. If it is granted, the frame is reloaded so the player starts over
+   with a signed-in session.
+
+   It is offered rather than assumed: shown only while there is YouTube content queued and
+   the permission has not already been settled. */
+const YT_ORIGIN = 'https://www.youtube.com';
+
+async function ytCookieState() {
+  if (typeof document.requestStorageAccessFor !== 'function') return 'unsupported';
+  try {
+    const p = await navigator.permissions.query({ name: 'top-level-storage-access', requestedOrigin: YT_ORIGIN });
+    return p.state;                                  // granted | prompt | denied
+  } catch (e) { return 'unknown'; }
+}
+
+async function refreshYtCookieButton() {
+  const b = $('#ytcookie');
+  if (!b) return;
+  const anyYT = Q.some(r => r.src === 'yt' || r.src === 'ytpl');
+  const state = await ytCookieState();
+  b.hidden = !anyYT || state === 'unsupported' || state === 'granted';
+  b.classList.toggle('on', state === 'granted');
+  if (state === 'denied') b.title = 'Your browser refused last time — allow third-party cookies for youtube.com to change that';
+}
+
+$('#ytcookie').addEventListener('click', async () => {
+  try {
+    await document.requestStorageAccessFor(YT_ORIGIN);
+    toast('Granted — reloading the player so YouTube can see your account');
+    /* The frame has to start again to pick the cookies up. */
+    if (cur >= 0 && Q[cur] && (Q[cur].src === 'yt' || Q[cur].src === 'ytpl')) {
+      const at = cur;
+      try { yt && yt.destroy && yt.destroy(); } catch (e) {}
+      yt = null; ytReady = false; ytPending = null;
+      const holder = document.createElement('div');
+      holder.id = 'yt';
+      $('#frame').insertAdjacentElement('afterend', holder);
+      ensureYT();
+      setTimeout(() => playAt(at), 800);
+    }
+  } catch (e) {
+    toast('Your browser did not allow it — ads will keep playing in the embed');
+  }
+  refreshYtCookieButton();
+});
+
 /* ---------- controls ---------- */
 $('#next').addEventListener('click', () => { const n = nextIndex(); if (n >= 0) playAt(n); else toast('End of queue'); });
 $('#prev').addEventListener('click', () => { const p = prevIndex(); if (p >= 0) playAt(p); else toast('Start of queue'); });
@@ -1096,6 +1156,7 @@ $('#tshuf').classList.toggle('on', shuffling);
 $('#trep').textContent = 'rep ' + repeat;
 $('#trep').classList.toggle('on', repeat !== 'off');
 rebuildShuffle();
+refreshYtCookieButton();
 $('#mename').textContent = myName() || '—';
 renderMine();
 window.__rememberQueue = rememberQueue;
