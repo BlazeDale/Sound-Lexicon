@@ -463,7 +463,28 @@ function songIdIn(html) {
   const all = [...new Set([...html.matchAll(SONG_ID_RE)].map(m => m[1].toLowerCase()))];
   return all.length === 1 ? all[0] : '';
 }
+/* The worker this page's own comment above has been asking for, now deployed. A share link
+   is a 307 whose Location header already carries the id, so it reads one header and never
+   fetches the page — which is what the public proxies choked on: measured 2026-09-12, six
+   of them either demanded an API key or returned 522 after ~20s, because they all follow
+   the redirect and suno.com is slow to serve the body. This answers in ~300ms.
+   It accepts only suno.com/s/ addresses, so it is not an open proxy, and it returns an id
+   rather than page content, so it cannot hand back somebody else's song the way a rendering
+   reader service did when that was tried. The old proxy stays as a second string. */
+const SHARE_RESOLVER = 'https://suno-resolver.soundlexicon.workers.dev/';
+
 async function resolveShare(url) {
+  try {
+    const stop = new AbortController();
+    const timer = setTimeout(() => stop.abort(), 8000);
+    const res = await fetch(SHARE_RESOLVER + '?u=' + encodeURIComponent(url), { signal: stop.signal });
+    clearTimeout(timer);
+    if (res.ok) {
+      const j = await res.json();
+      const id = String((j && j.id) || '').toLowerCase();
+      if (UUID_RE.test(id)) return id;
+    }
+  } catch (e) { /* fall through to the proxy below */ }
   try {
     const stop = new AbortController();
     const timer = setTimeout(() => stop.abort(), 8000);   // a hung proxy must not hang the form

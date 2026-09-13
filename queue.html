@@ -399,7 +399,7 @@ const PROXY = u => 'https://api.allorigins.win/raw?url=' + encodeURIComponent(u)
    request off a redirect header, instead of a public proxy being asked to download a page
    that suno.com is slow to serve. Left empty the page falls back to the proxy, and failing
    that says to paste the /song/ address — nothing breaks by leaving it alone. */
-const SHARE_RESOLVER = '';
+const SHARE_RESOLVER = 'https://suno-resolver.soundlexicon.workers.dev/';
 const fetchT = (u, ms) => {                      // a hung proxy must not hang the queue
   const stop = new AbortController();
   const t = setTimeout(() => stop.abort(), ms);

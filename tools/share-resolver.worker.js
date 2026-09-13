@@ -18,12 +18,17 @@
  * hand back somebody else's song id the way a rendering reader service did when that was
  * tried.
  *
- * TO DEPLOY (about two minutes, free tier is ample)
- *   1. dash.cloudflare.com → Workers & Pages → Create → Worker
- *   2. Replace the contents with this file, Deploy
- *   3. Copy the worker's URL and set SHARE_RESOLVER in queue.html to it
- * Nothing else changes: without it the page falls back to the public proxy, and without that
- * it tells the reader to paste the /song/ address instead.
+ * DEPLOYED at https://suno-resolver.soundlexicon.workers.dev/ and wired into SHARE_RESOLVER
+ * in both queue.html and terminology.html. Measured on arrival: both reported share links
+ * resolved in 280-370ms with access-control-allow-origin: *, against ~20s-then-522 from the
+ * public proxies it replaces.
+ *
+ * TO REDEPLOY, or to stand up your own
+ *   1. dash.cloudflare.com → Workers & Pages → Create → Worker, name it before deploying
+ *   2. Edit code, replace the contents with this file, Deploy
+ *   3. Set SHARE_RESOLVER in both pages to the worker's URL
+ * Nothing else changes: without it the pages fall back to the public proxy, and without that
+ * they tell the reader to paste the /song/ address instead.
  *
  * WHAT IT EXPOSES
  * Only a Suno share token in, only 36 characters of hex and dashes out. It refuses any other
