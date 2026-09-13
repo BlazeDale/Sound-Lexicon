@@ -1,12 +1,20 @@
+// Sound Lexicon - Realtime Database security rules.
+//
+// TO DEPLOY: Firebase console > Realtime Database > Rules > paste this whole file > Publish.
+// ALSO REQUIRED for shared queues: Authentication > Sign-in method > Anonymous > Enable.
+// Nothing else on the site uses auth; the library's hearts stay anonymous and open.
+//
+// Comments are allowed here - firebase-tools ships database.rules.json with them - but the
+// ONLY key permitted at the top level is "rules", and inside the tree every key must be
+// either a .directive or a child name mapping to an object. There is nowhere to put a
+// string note, so the reasoning lives in comments like this one. An earlier version of this
+// file carried "_comment" and "_note" strings; those would have been refused on paste.
 {
-  "_comment_1": "Sound Lexicon — Realtime Database security rules.",
-  "_comment_2": "PASTE THIS WHOLE FILE into Firebase console > Realtime Database > Rules > Publish.",
-  "_comment_3": "Also enable Build > Authentication > Sign-in method > Anonymous. Shared queues need it; nothing else on the site does.",
-  "_comment_4": "Comments starting with _ are ignored by the rules engine, so this file is both the documentation and the thing you paste.",
-
   "rules": {
+
+    // The library's shared heart counts. World readable and writable, no auth, exactly as
+    // before this file existed: a number that only ever moves by one.
     "likes": {
-      "_note": "Unchanged from before: the library's shared heart counts, world readable and writable, no auth. A number that only ever moves by one.",
       ".read": true,
       "$id": {
         ".write": true,
@@ -14,8 +22,8 @@
       }
     },
 
+    // The vocal-gender overlay, set from the library's own editor. Unchanged.
     "song_gender": {
-      "_note": "Unchanged: the vocal-gender overlay set from the library's editor.",
       ".read": true,
       "$uuid": {
         ".write": true,
@@ -23,69 +31,15 @@
       }
     },
 
-    "queues": {
-      "_note": "Shared listening queues. A queue is public to READ by anyone holding its link — the id is the only secret, and the page says so. Writing is where the real rules live.",
-      "_note_index": "indexOn lets a signed-in user ask for every queue they own, so a published queue stays findable after losing its link or clearing localStorage.",
-      "_note_read": "The read here is deliberately NOT true. A plain read of this node would let anyone enumerate every queue on the site. It is granted only for the one query shape that asks for your own queues and nothing else, so listing your own is possible and listing everyone's is refused. Reading a single queue by id is allowed a level down, where the id is the secret.",
-      ".indexOn": ["meta/owner"],
-      ".read": "auth != null && query.orderByChild === 'meta/owner' && query.equalTo === auth.uid",
-      "$qid": {
-        ".read": true,
-        ".validate": "$qid.length >= 4 && $qid.length <= 16",
-
-        "meta": {
-          "_note": "Created once by whoever makes the queue, and thereafter only that uid may touch it. owner can never be reassigned, so ownership cannot be stolen by a later write.",
-          ".write": "(!data.exists() && newData.child('owner').val() === auth.uid) || (data.exists() && data.child('owner').val() === auth.uid)",
-          ".validate": "newData.hasChildren(['owner']) && newData.child('owner').isString()",
-          "owner":     { ".validate": "newData.isString() && newData.val().length <= 128 && (!data.exists() || data.val() === newData.val())" },
-          "ownerName": { ".validate": "newData.isString() && newData.val().length <= 24" },
-          "title":     { ".validate": "newData.isString() && newData.val().length <= 60" },
-          "open":      { ".validate": "newData.isBoolean()" },
-          "listed":    { ".validate": "newData.isBoolean()" },
-          "created":   { ".validate": "newData.isNumber()" },
-          "v":         { ".validate": "newData.isNumber()" },
-          "$other":    { ".validate": false }
-        },
-
-        "tracks": {
-          "_note": "The owner may always write. Anyone signed in may write only while meta/open is true, and even then only to ADD — see $key below, which forbids a guest deleting or editing an existing row. That is what makes 'open adding' mean adding and nothing else.",
-          ".write": "root.child('queues/' + $qid + '/meta/owner').val() === auth.uid",
-          "$key": {
-            ".write": "root.child('queues/' + $qid + '/meta/owner').val() === auth.uid || (auth != null && root.child('queues/' + $qid + '/meta/open').val() === true && !data.exists() && newData.child('by').val() === auth.uid)",
-            ".validate": "newData.hasChildren(['src','id','ord']) && newData.child('id').val().length <= 40",
-            "src":    { ".validate": "newData.isString() && (newData.val() === 'suno' || newData.val() === 'yt')" },
-            "id":     { ".validate": "newData.isString() && newData.val().length <= 40 && newData.val().matches(/^[A-Za-z0-9_-]+$/)" },
-            "title":  { ".validate": "newData.isString() && newData.val().length <= 140" },
-            "sub":    { ".validate": "newData.isString() && newData.val().length <= 90" },
-            "dur":    { ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 3600" },
-            "ord":    { ".validate": "newData.isNumber()" },
-            "by":     { ".validate": "newData.isString() && newData.val().length <= 128" },
-            "byName": { ".validate": "newData.isString() && newData.val().length <= 24" },
-            "$other": { ".validate": false }
-          }
-        },
-
-        "chat": {
-          "_note": "Open to any signed-in visitor, because chat is how a guest suggests a track when open-adding is off. A message may only be written under the author's own uid, and only the owner may delete — so nobody can edit or erase somebody else's words.",
-          ".write": "root.child('queues/' + $qid + '/meta/owner').val() === auth.uid",
-          "$key": {
-            ".write": "auth != null && (!data.exists() ? newData.child('u').val() === auth.uid : root.child('queues/' + $qid + '/meta/owner').val() === auth.uid)",
-            ".validate": "newData.hasChildren(['u','t','a'])",
-            "u":      { ".validate": "newData.isString() && newData.val() === auth.uid" },
-            "n":      { ".validate": "newData.isString() && newData.val().length <= 24" },
-            "t":      { ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 600" },
-            "a":      { ".validate": "newData.isNumber()" },
-            "$other": { ".validate": false }
-          }
-        },
-
-        "$other": { ".validate": false }
-      }
-    },
-
+    // One small public card per queue: title, author, date, track count. The browse page
+    // reads this instead of the queues themselves, so listing a hundred queues costs a
+    // hundred short records rather than a hundred full track lists - and "queues" below
+    // never has to become enumerable at all.
+    //
+    // listed=false keeps a queue off the browse page. The row still exists here, because the
+    // owner's own list is built from the same place; the page filters on it. So unlisted
+    // means unadvertised, not private, which is what the page says.
     "queue_index": {
-      "_note": "A small public card per queue: title, author name, when, how many tracks. It exists so the browse page can list queues without downloading every track of every one of them, and so the full queue node never has to become enumerable.",
-      "_note_listed": "listed=false keeps a queue out of the browse page. The row still exists here because the owner's own list is built from the same place; the browse page filters on it. Anyone determined can read this node, so unlisted means unadvertised, not private — which is what the page says.",
       ".read": true,
       ".indexOn": ["owner", "created"],
       "$qid": {
@@ -102,8 +56,77 @@
       }
     },
 
+    // The queues themselves.
+    //
+    // The read here is deliberately NOT true. Granting it would let anyone pull every queue
+    // on the site in one request. It is allowed only for the single query shape that asks
+    // for your own queues and nothing else, so listing yours works and listing everyone's is
+    // refused. Reading ONE queue is allowed a level down, where its id is the secret.
+    "queues": {
+      ".read": "auth != null && query.orderByChild === 'meta/owner' && query.equalTo === auth.uid",
+      ".indexOn": ["meta/owner"],
+      "$qid": {
+        ".read": true,
+
+        // Written once by whoever creates the queue, and thereafter only by that uid. owner
+        // can never be reassigned, so ownership cannot be taken by a later write.
+        "meta": {
+          ".write": "(!data.exists() && newData.child('owner').val() === auth.uid) || (data.exists() && data.child('owner').val() === auth.uid)",
+          ".validate": "newData.hasChildren(['owner'])",
+          "owner":     { ".validate": "newData.isString() && newData.val().length <= 128 && (!data.exists() || data.val() === newData.val())" },
+          "ownerName": { ".validate": "newData.isString() && newData.val().length <= 24" },
+          "title":     { ".validate": "newData.isString() && newData.val().length <= 60" },
+          "open":      { ".validate": "newData.isBoolean()" },
+          "listed":    { ".validate": "newData.isBoolean()" },
+          "created":   { ".validate": "newData.isNumber()" },
+          "v":         { ".validate": "newData.isNumber()" },
+          "$other":    { ".validate": false }
+        },
+
+        // The owner may always write. Anyone signed in may write only while meta/open is
+        // true, and then only to ADD: the per-key rule requires the row not to exist yet and
+        // to carry the writer's own uid. That is what makes "open adding" mean adding, and
+        // not also reordering or deleting.
+        "tracks": {
+          ".write": "root.child('queues/' + $qid + '/meta/owner').val() === auth.uid",
+          "$key": {
+            ".write": "root.child('queues/' + $qid + '/meta/owner').val() === auth.uid || (auth != null && root.child('queues/' + $qid + '/meta/open').val() === true && !data.exists() && newData.child('by').val() === auth.uid)",
+            ".validate": "newData.hasChildren(['src','id','ord'])",
+            "src":    { ".validate": "newData.isString() && (newData.val() === 'suno' || newData.val() === 'yt')" },
+            "id":     { ".validate": "newData.isString() && newData.val().length <= 40" },
+            "title":  { ".validate": "newData.isString() && newData.val().length <= 140" },
+            "sub":    { ".validate": "newData.isString() && newData.val().length <= 90" },
+            "dur":    { ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 3600" },
+            "ord":    { ".validate": "newData.isNumber()" },
+            "by":     { ".validate": "newData.isString() && newData.val().length <= 128" },
+            "byName": { ".validate": "newData.isString() && newData.val().length <= 24" },
+            "$other": { ".validate": false }
+          }
+        },
+
+        // Open to any signed-in visitor, because chat is how a guest suggests a track when
+        // the queue is locked. A message may only be created under its author's own uid, and
+        // only the owner may delete one - so nobody can edit or erase somebody else's words.
+        "chat": {
+          ".write": "root.child('queues/' + $qid + '/meta/owner').val() === auth.uid",
+          "$key": {
+            ".write": "auth != null && (!data.exists() ? newData.child('u').val() === auth.uid : root.child('queues/' + $qid + '/meta/owner').val() === auth.uid)",
+            ".validate": "newData.hasChildren(['u','t','a'])",
+            "u":      { ".validate": "newData.isString() && newData.val() === auth.uid" },
+            "n":      { ".validate": "newData.isString() && newData.val().length <= 24" },
+            "t":      { ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 600" },
+            "a":      { ".validate": "newData.isNumber()" },
+            "$other": { ".validate": false }
+          }
+        },
+
+        "$other": { ".validate": false }
+      }
+    },
+
+    // Anything not named above is closed. Without this a typo in a path would quietly
+    // become a new world-writable bucket.
     "$rest": {
-      "_note": "Anything not named above is closed. Without this a typo in a path would silently become a new world-writable bucket.",
       ".read": false,
       ".write": false
     }
