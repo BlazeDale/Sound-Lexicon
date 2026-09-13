@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Queues · Sound Lexicon</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="Every shared listening queue: yours to manage, everyone else's to browse.">
+<style>
+  :root{
+    --ink:#111419; --panel:#181c24; --panel2:#1f2530; --line:#2a313d;
+    --text:#e9e6dd; --muted:#98a0ad; --dim:#6b7280;
+    --amber:#e0a63c; --amber-dim:#8a6a2a; --teal:#1a9e75; --red:#c2544a;
+    --mono:'SF Mono','Menlo','Consolas','Liberation Mono',monospace;
+    --sans:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--ink);color:var(--text);font-family:var(--sans);line-height:1.5;min-height:100%}
+  a{color:var(--amber)}
+  .wrap{max-width:860px;margin:0 auto;padding:28px 22px 80px}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--amber);margin:0 0 8px}
+  .eyebrow a{color:var(--dim);text-decoration:none}
+  .eyebrow a:hover{color:var(--amber)}
+  h1{font-size:clamp(24px,4vw,32px);letter-spacing:-.02em;margin:0 0 8px;font-weight:700}
+  .lede{color:var(--muted);font-size:14px;max-width:72ch;margin:0 0 22px;line-height:1.6}
+
+  button{background:var(--panel2);border:1px solid var(--line);color:var(--text);border-radius:8px;padding:8px 14px;
+         font-family:var(--sans);font-size:13px;cursor:pointer;transition:border-color .15s,background .15s}
+  button:hover:not(:disabled){border-color:var(--amber-dim);background:var(--panel)}
+  button:disabled{opacity:.45;cursor:default}
+
+  .tabs{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 0 6px}
+  .tab{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;padding:7px 14px}
+  .tab.on{color:var(--amber);border-color:var(--amber-dim);background:var(--panel)}
+  .tabs .spacer{flex:1}
+  .who{font-family:var(--mono);font-size:11.5px;color:var(--dim)}
+  .who b{color:var(--teal);font-weight:600}
+
+  #list{list-style:none;margin:18px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
+  .q{display:flex;align-items:center;gap:13px;background:var(--panel);border:1px solid var(--line);
+     border-left:3px solid transparent;border-radius:10px;padding:12px 14px}
+  .q.own{border-left-color:var(--teal)}
+  .q .meta{flex:1;min-width:0}
+  .q .t{font-size:14.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .q .t a{color:var(--text);text-decoration:none}
+  .q .t a:hover{color:var(--amber)}
+  .q .s{font-family:var(--mono);font-size:11px;color:var(--dim);margin-top:2px}
+  .q .s .you{color:var(--teal)}
+  .q .s .tag{color:var(--amber)}
+  .q .acts{display:flex;gap:7px;flex:none}
+  .q .acts button{padding:6px 11px;font-size:12px}
+  .del:hover{border-color:var(--red)!important;color:var(--red)}
+  .empty{color:var(--dim);font-size:13.5px;padding:26px 2px}
+  footer{margin-top:38px;border-top:1px solid var(--line);padding-top:15px;font-size:12px;color:var(--dim);max-width:80ch;line-height:1.65}
+  footer b{color:var(--muted)}
+  #toast{position:fixed;left:50%;transform:translateX(-50%);bottom:34px;background:var(--panel2);border:1px solid var(--line);
+         border-radius:8px;padding:9px 15px;font-size:13px;color:var(--text);z-index:60;opacity:0;pointer-events:none;transition:opacity .2s}
+  #toast.show{opacity:1}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow"><a href="index.html">Sound Lexicon</a> / Queues</p>
+  <h1>Shared queues</h1>
+  <p class="lede">
+    Every listening queue anyone has published. Open one to listen, or start your own from
+    the <a href="queue.html">queue page</a>. You can delete the ones you made; you cannot
+    touch anyone else's.
+  </p>
+
+  <div class="tabs">
+    <button class="tab on" id="tabMine" data-v="mine">Mine</button>
+    <button class="tab" id="tabAll" data-v="all">Everyone</button>
+    <span class="spacer"></span>
+    <span class="who">you are <b id="mename">—</b></span>
+    <button id="newq">New queue</button>
+  </div>
+
+  <ul id="list"></ul>
+  <p class="empty" id="empty">Connecting…</p>
+
+  <footer>
+    <b>What is public here.</b> A queue that is <b>listed</b> appears on this page to anyone,
+    along with its name, its author's display name, and when it was made. Display names are
+    self-chosen and unverified. An owner can set a queue to <b>unlisted</b> on its own page,
+    which keeps it off this list — that means unadvertised, not private, since anyone holding
+    the link can still open it.<br><br>
+    <b>Who can delete.</b> Only the person who made a queue, enforced by the database rather
+    than by hiding the button. Identity is anonymous and lives in your browser: clear its site
+    data and you become someone else, and your queues would stay here with nobody able to
+    remove them.
+  </footer>
+</div>
+<div id="toast"></div>
+
+<script type="module">
+/* ============================================================================
+   The browse page for shared queues.
+
+   It reads `queue_index` rather than `queues`. That node holds one small card per queue —
+   title, author, date, count — so listing a hundred queues costs a hundred short records
+   instead of a hundred full track lists. It also means `queues` itself never has to become
+   enumerable: the full node is still read one at a time, by id.
+
+   This page makes queues discoverable, which is a deliberate reversal. Until now a queue's
+   id was its secret and nothing listed them. Browsing other people's requires giving that
+   up, so the page says plainly what becomes public, and the owner gets a listed/unlisted
+   switch so it is a choice rather than a default nobody was told about.
+   ============================================================================ */
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getDatabase, ref, onValue, remove } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBJgYjvHXL69y_7i7qG2qwBzYVUA1lCZuE",
+  authDomain: "vocal-timbre-library.firebaseapp.com",
+  databaseURL: "https://vocal-timbre-library-default-rtdb.firebaseio.com",
+  projectId: "vocal-timbre-library",
+  storageBucket: "vocal-timbre-library.firebasestorage.app",
+  messagingSenderId: "303806829007",
+  appId: "1:303806829007:web:914e3d0d5dc51e697202ba"
+};
+
+const el = i => document.getElementById(i);
+let toastT;
+function toast(m) {
+  el('toast').textContent = m; el('toast').classList.add('show');
+  clearTimeout(toastT); toastT = setTimeout(() => el('toast').classList.remove('show'), 2600);
+}
+const when = ms => {
+  if (!ms) return 'unknown date';
+  const d = new Date(ms), n = Date.now() - ms;
+  if (n < 36e5) return Math.max(1, Math.round(n / 6e4)) + 'm ago';
+  if (n < 864e5) return Math.round(n / 36e5) + 'h ago';
+  if (n < 6048e5) return Math.round(n / 864e5) + 'd ago';
+  return d.toLocaleDateString();
+};
+
+let ME = '', VIEW = 'mine', ROWS = [];
+
+function render() {
+  const list = el('list');
+  list.innerHTML = '';
+  const rows = ROWS
+    .filter(q => VIEW === 'mine' ? q.owner === ME : (q.listed !== false))
+    .sort((a, b) => (b.created || 0) - (a.created || 0));
+
+  el('empty').style.display = rows.length ? 'none' : 'block';
+  el('empty').textContent = VIEW === 'mine'
+    ? 'You have not published any queues yet.'
+    : 'Nobody has published a listed queue yet.';
+
+  for (const q of rows) {
+    const mine = q.owner === ME;
+    const li = document.createElement('li');
+    li.className = 'q' + (mine ? ' own' : '');
+
+    const meta = document.createElement('div'); meta.className = 'meta';
+    const t = document.createElement('div'); t.className = 't';
+    const a = document.createElement('a');
+    a.href = 'queue.html?q=' + encodeURIComponent(q.qid);
+    a.textContent = q.title || 'Untitled queue';
+    t.appendChild(a);
+
+    const sline = document.createElement('div'); sline.className = 's';
+    const bits = [];
+    sline.appendChild(document.createTextNode((q.ownerName || 'someone')));
+    if (mine) { const y = document.createElement('span'); y.className = 'you'; y.textContent = '  (you)'; sline.appendChild(y); }
+    bits.push(when(q.created));
+    bits.push((q.n || 0) + (q.n === 1 ? ' track' : ' tracks'));
+    sline.appendChild(document.createTextNode('  ·  ' + bits.join('  ·  ')));
+    if (q.open) { const o = document.createElement('span'); o.className = 'tag'; o.textContent = '  ·  open adding'; sline.appendChild(o); }
+    if (q.listed === false) { const u = document.createElement('span'); u.className = 'tag'; u.textContent = '  ·  unlisted'; sline.appendChild(u); }
+    meta.append(t, sline);
+
+    const acts = document.createElement('div'); acts.className = 'acts';
+    const open = document.createElement('button');
+    open.textContent = 'Open';
+    open.addEventListener('click', () => { location.href = 'queue.html?q=' + encodeURIComponent(q.qid); });
+    acts.appendChild(open);
+
+    /* Offered only to the owner, and refused by the rules for everyone else — the button is
+       the courtesy, the rule is the control. */
+    if (mine) {
+      const d = document.createElement('button');
+      d.className = 'del'; d.textContent = 'Delete';
+      d.addEventListener('click', async () => {
+        if (!confirm('Delete "' + (q.title || 'Untitled queue') + '" for everyone? This cannot be undone.')) return;
+        d.disabled = true; d.textContent = 'Deleting…';
+        try {
+          await remove(ref(DB, 'queue_index/' + q.qid));
+          await remove(ref(DB, 'queues/' + q.qid));
+          toast('Deleted');
+        } catch (e) { toast('Could not delete — ' + (e && e.code || 'refused')); d.disabled = false; d.textContent = 'Delete'; }
+      });
+      acts.appendChild(d);
+    }
+
+    li.append(meta, acts);
+    list.appendChild(li);
+  }
+}
+
+let DB = null;
+try {
+  const app = initializeApp(firebaseConfig, 'queues');
+  DB = getDatabase(app);
+  const auth = getAuth(app);
+  const me = await new Promise((ok, bad) => {
+    onAuthStateChanged(auth, u => u && ok(u));
+    signInAnonymously(auth).catch(bad);
+  });
+  ME = me.uid;
+  try { el('mename').textContent = localStorage.getItem('sl.queue.name') || 'anonymous'; } catch (e) {}
+
+  onValue(ref(DB, 'queue_index'), snap => {
+    const v = snap.val() || {};
+    ROWS = Object.entries(v).map(([qid, q]) => ({ qid, ...q }));
+    render();
+  }, err => {
+    el('empty').textContent = 'Could not read the queue list: ' + (err && err.code || 'refused');
+  });
+} catch (e) {
+  console.warn('[queues] unavailable:', e);
+  el('empty').textContent = 'Sharing is not switched on yet — this needs Anonymous sign-in enabled on the Firebase project.';
+}
+
+for (const b of [el('tabMine'), el('tabAll')]) {
+  b.addEventListener('click', () => {
+    VIEW = b.dataset.v;
+    el('tabMine').classList.toggle('on', VIEW === 'mine');
+    el('tabAll').classList.toggle('on', VIEW === 'all');
+    render();
+  });
+}
+el('newq').addEventListener('click', () => { location.href = 'queue.html'; });
+</script>
+</body>
+</html>

@@ -41,6 +41,7 @@
           "ownerName": { ".validate": "newData.isString() && newData.val().length <= 24" },
           "title":     { ".validate": "newData.isString() && newData.val().length <= 60" },
           "open":      { ".validate": "newData.isBoolean()" },
+          "listed":    { ".validate": "newData.isBoolean()" },
           "created":   { ".validate": "newData.isNumber()" },
           "v":         { ".validate": "newData.isNumber()" },
           "$other":    { ".validate": false }
@@ -79,6 +80,25 @@
         },
 
         "$other": { ".validate": false }
+      }
+    },
+
+    "queue_index": {
+      "_note": "A small public card per queue: title, author name, when, how many tracks. It exists so the browse page can list queues without downloading every track of every one of them, and so the full queue node never has to become enumerable.",
+      "_note_listed": "listed=false keeps a queue out of the browse page. The row still exists here because the owner's own list is built from the same place; the browse page filters on it. Anyone determined can read this node, so unlisted means unadvertised, not private — which is what the page says.",
+      ".read": true,
+      ".indexOn": ["owner", "created"],
+      "$qid": {
+        ".write": "(!data.exists() && newData.child('owner').val() === auth.uid) || (data.exists() && data.child('owner').val() === auth.uid) || (auth != null && root.child('queues/' + $qid + '/meta/open').val() === true && newData.child('owner').val() === data.child('owner').val())",
+        ".validate": "!newData.exists() || newData.hasChildren(['owner','title'])",
+        "owner":     { ".validate": "newData.isString() && newData.val().length <= 128 && (!data.exists() || data.val() === newData.val())" },
+        "ownerName": { ".validate": "newData.isString() && newData.val().length <= 24" },
+        "title":     { ".validate": "newData.isString() && newData.val().length <= 60" },
+        "created":   { ".validate": "newData.isNumber()" },
+        "open":      { ".validate": "newData.isBoolean()" },
+        "listed":    { ".validate": "newData.isBoolean()" },
+        "n":         { ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 5000" },
+        "$other":    { ".validate": false }
       }
     },
 

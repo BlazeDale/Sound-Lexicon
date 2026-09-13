@@ -153,7 +153,7 @@
 </head>
 <body>
 <div class="wrap">
-  <p class="eyebrow"><a href="index.html">Sound Lexicon</a> / Queue</p>
+  <p class="eyebrow"><a href="index.html">Sound Lexicon</a> / Queue · <a href="queues.html">all queues</a></p>
   <h1>Listening queue</h1>
   <p class="lede">
     Drag Suno or YouTube links in from the browser, or paste them anywhere on the page. The
@@ -180,6 +180,8 @@
     <button id="openToggle" hidden>Open adding: off</button>
     <input id="qlink" readonly hidden>
     <button id="copylink" hidden>Copy link</button>
+    <button class="tog" id="listedToggle" hidden>listed</button>
+    <button id="delq" hidden>Delete queue</button>
     <button id="newq" hidden>New queue</button>
     <button id="publish" class="primary">Share this queue</button>
   </div>
@@ -559,6 +561,14 @@ function renderMine() {
   }
 }
 
+/* "Pete · 12 Sep 2026" — author and date, which is what actually distinguishes one
+   listening session from another when you come back to them weeks later. */
+function autoName(who) {
+  const d = new Date();
+  const mon = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][d.getMonth()];
+  return ((who || 'Someone') + ' · ' + d.getDate() + ' ' + mon + ' ' + d.getFullYear()).slice(0, 60);
+}
+
 function myName() {
   try { return localStorage.getItem('sl.queue.name') || ''; } catch (e) { return ''; }
 }
@@ -928,6 +938,13 @@ window.__applyRemote = (tracks, meta) => {
   $('#empty').textContent = isOwner()
     ? 'Nothing queued yet — drop links in above.'
     : (SQ.open ? 'Nothing queued yet — anyone can add to this one.' : 'Nothing queued yet.');
+  SQ.listed = !meta || meta.listed !== false;
+  $('#listedToggle').hidden = $('#delq').hidden = !isOwner();
+  $('#listedToggle').textContent = SQ.listed ? 'listed' : 'unlisted';
+  $('#listedToggle').classList.toggle('on', SQ.listed);
+  $('#listedToggle').title = SQ.listed
+    ? 'Shown on the Queues page — click to unlist'
+    : 'Hidden from the Queues page — click to list';
   $('#openToggle').hidden = !isOwner();
   $('#openToggle').textContent = 'Open adding: ' + (SQ.open ? 'on' : 'off');
   $('#openToggle').classList.toggle('primary', SQ.open);
@@ -1004,6 +1021,14 @@ $('#rename').addEventListener('click', () => {
 });
 $('#openToggle').addEventListener('click', () => { if (isOwner()) window.__net.setOpen(!SQ.open); });
 $('#newq').addEventListener('click', () => { location.href = location.pathname; });
+$('#listedToggle').addEventListener('click', () => { if (isOwner()) window.__net.setListed(!SQ.listed); });
+$('#delq').addEventListener('click', async () => {
+  if (!isOwner()) return;
+  if (!confirm('Delete "' + SQ.title + '" for everyone? This cannot be undone.')) return;
+  await window.__net.destroy();
+  forgetQueue(SQ.qid);
+  location.href = location.pathname;
+});
 $('#qtitle').addEventListener('change', () => {
   if (!isOwner()) return;
   const t = $('#qtitle').value.trim().slice(0, 60) || 'Untitled queue';
@@ -1014,7 +1039,9 @@ $('#publish').addEventListener('click', async () => {
   if (!Q.length) { toast('Add something first'); return; }
   const who = needName('Pick a display name before sharing');
   if (!who) return;
-  const title = (prompt('Name this queue', 'Untitled queue') || '').trim().slice(0, 60) || 'Untitled queue';
+  /* Named for you, from who you are and when: with several queues in a list a prompt just
+     gets dismissed and everything ends up called the same thing. Rename in place any time. */
+  const title = autoName(who);
   $('#publish').disabled = true; $('#publish').textContent = 'Sharing…';
   try { await window.__net.publish(Q, who, title); }
   catch (e) { toast('Could not share — ' + (e && e.message || 'no connection')); $('#publish').disabled = false; $('#publish').textContent = 'Share this queue'; }
@@ -1077,6 +1104,7 @@ try {
   SQ.uid = me.uid; SQ.ready = true;
 
   const qref = k => ref(db, 'queues/' + (SQ.qid || QID) + '/' + k);
+  const idxref = () => ref(db, 'queue_index/' + (SQ.qid || QID));
 
   /* A stored track is deliberately thin: what it takes to show a row and time it. Anything
      derivable from data.js is derived on arrival instead of duplicated into every queue. */
@@ -1112,7 +1140,11 @@ try {
     [stopT, stopM, stopC].forEach(f => f && f());
     let tracks = [], meta = {};
     stopM = onValue(ref(db, 'queues/' + qid + '/meta'), s => { meta = s.val() || {}; window.__applyRemote(tracks, meta); });
-    stopT = onValue(ref(db, 'queues/' + qid + '/tracks'), s => { tracks = unpack(s.val()); window.__applyRemote(tracks, meta); });
+    stopT = onValue(ref(db, 'queues/' + qid + '/tracks'), s => {
+      tracks = unpack(s.val());
+      window.__applyRemote(tracks, meta);
+      if (meta && meta.owner === me.uid) window.__net.setCount(tracks.length);
+    });
     stopC = onValue(ref(db, 'queues/' + qid + '/chat'), s => {
       const v = s.val() || {};
       window.__applyChat(Object.values(v).sort((a, b) => (a.a || 0) - (b.a || 0)).slice(-200));
@@ -1137,11 +1169,18 @@ try {
         const t = pack(r, who); t.ord = i + 1;
         tracks[push(ref(db, 'queues/' + qid + '/tracks')).key] = t;
       });
+      const now = Date.now();
       await set(ref(db, 'queues/' + qid), {
         meta: { owner: me.uid, ownerName: trim(who, 24), title: trim(title || 'Untitled queue', 60),
-                open: false, created: serverTimestamp(), v: 1 },
+                open: false, listed: true, created: now, v: 1 },
         tracks
       });
+      /* The public card, written second on purpose: a queue that failed to create must not
+         leave an entry advertising a queue that is not there. */
+      await set(ref(db, 'queue_index/' + qid), {
+        owner: me.uid, ownerName: trim(who, 24), title: trim(title || 'Untitled queue', 60),
+        created: now, open: false, listed: true, n: rows.length
+      }).catch(e => console.warn('[queue] index write failed', e));
       history.replaceState(null, '', '?q=' + qid);
       window.__rememberQueue(qid, trim(title || 'Untitled queue', 60));
       listen(qid);
@@ -1157,8 +1196,32 @@ try {
       return update(qref('tracks'), u).catch(e => console.warn('[queue] reorder refused', e));
     },
     clearTracks() { return remove(qref('tracks')).catch(e => console.warn('[queue] clear refused', e)); },
-    setOpen(on) { return update(qref('meta'), { open: !!on }).catch(e => console.warn('[queue] toggle refused', e)); },
-    setTitle(t) { return update(qref('meta'), { title: trim(t, 60) }).catch(e => console.warn('[queue] rename refused', e)); },
+    setOpen(on) {
+      const v = !!on;
+      return Promise.all([update(qref('meta'), { open: v }), update(idxref(), { open: v })])
+        .catch(e => console.warn('[queue] toggle refused', e));
+    },
+    setTitle(t) {
+      const v = trim(t, 60);
+      return Promise.all([update(qref('meta'), { title: v }), update(idxref(), { title: v })])
+        .catch(e => console.warn('[queue] rename refused', e));
+    },
+    setListed(on) {
+      const v = !!on;
+      return Promise.all([update(qref('meta'), { listed: v }), update(idxref(), { listed: v })])
+        .catch(e => console.warn('[queue] listing refused', e));
+    },
+    /* Index first here, the mirror of create: better a card that briefly outlives its queue
+       than a queue nobody can find to delete. */
+    async destroy() {
+      const qid = SQ.qid;
+      await remove(ref(db, 'queue_index/' + qid)).catch(() => {});
+      await remove(ref(db, 'queues/' + qid)).catch(e => console.warn('[queue] delete refused', e));
+    },
+    /* The count on the browse card. Written by whoever changed the list, which is the only
+       client that knows it changed; it can lag if a tab dies mid-write, and nothing depends
+       on it being exact. */
+    setCount(n) { return update(idxref(), { n: Math.max(0, Math.min(5000, n | 0)) }).catch(() => {}); },
     say(text, who) {
       return set(push(qref('chat')), { u: me.uid, n: trim(who, 24), t: trim(text, 600), a: Date.now() })
         .catch(e => console.warn('[queue] chat refused', e));
