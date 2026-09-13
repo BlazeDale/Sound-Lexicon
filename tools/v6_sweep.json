@@ -6505,6 +6505,168 @@
       "edits": 2,
       "prompt": "charged-objects",
       "note": "first roll kept - the slot made the styles reaching literal (an arm held up for one bar of signal), and the draft stays earnest with it (I hold the sky above my head; the blue light freezes on my thumb, three thousand miles of water freeze, it skips; my shoulder aches, I will not drop; one arm up high, one bar of light, my knuckles white). Edits: my boots are buried in the frost (boots attractor) became my breath is smoking in the frost; I got your breath, I got your small (a filler noun) became I got your call. Wind, boot-crunch and stomping cues and the adverb/feeling preamble stripped"
+    },
+    "298": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Keep It Whole",
+        "clips": [
+          "0dc61ab2-098c-4eb3-b64f-f317c31cba5c",
+          "a1883682-252a-406d-baa2-9758f425c79a"
+        ],
+        "v0": "0dc61ab2-098c-4eb3-b64f-f317c31cba5c",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "someone sitting across the kitchen table from their little sister's new boyfriend, slowly peeling an orange in one long unbroken spiral and explaining, very quietly and very calmly, exactly what will happen if he ever makes her cry, never once raising their voice"
+      },
+      "flags": [],
+      "tagged": false,
+      "edits": 4,
+      "prompt": "charged-objects",
+      "note": "roll 2 (roll 1 returned a 1-word EMPTY). Coiled menace carried by one object, which is what the style wants (I like the skin to stay in one piece, it takes a very steady hand; you have a very quiet car; she thinks the world is made of glass; what you bring to her is what you keep, keep it whole; the orange naked on the table, the peel a perfect curling thread, go on, eat). Edits, meaning-first: I know which floorboards make a sound (fixture attractor) became I know the hour she comes home - the same watchfulness, pointed at her; the steam settled on the wall (inert) became you havent touched it at all, the tea going cold because he is too frightened to drink; the laundry line moving like a shadow swinging slow (a hanging image, past menace into violence) became her sweater on the line with the sleeves waving slow; the knife turned handle-first toward your chest became handle-first, to you. Thumb-on-string, whispered and blade-on-plate cues and the Deliberately preamble stripped"
+    },
+    "299": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "One For The Ghost",
+        "clips": [
+          "e79372d2-8d7d-4754-8c59-415c16967d5f",
+          "738fc84c-d2cf-4310-9050-94af7804675d"
+        ],
+        "v0": "e79372d2-8d7d-4754-8c59-415c16967d5f",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "someone lying alone in the fresh snow of an empty city park at three in the morning, on the first anniversary of losing their best friend, slowly making a snow angel exactly the way the two of them used to and then making a second one right beside it"
+      },
+      "flags": [],
+      "tagged": false,
+      "edits": 2,
+      "prompt": "charged-objects",
+      "note": "first roll kept - grief carried entirely in the act (dont brush the powder off; one for the ghost, one for the skin; heavy at the shoulders, easy at the toes, the way you taught me; I dont get up, I just scoot six inches right; I drag your wing out; two pairs of wings touching where the shoulders met). Edits, meaning-first: I brought your yellow coat became your yellow scarf - still the friends, still stiff with time, off the coat attractor; the hook I am making your angel before I go to sleep read as lying down to freeze in the snow, which the song does not mean - now where nobody will see. Adverb/feeling preamble stripped"
+    },
+    "300": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Let It Break",
+        "clips": [
+          "046332ef-4b2e-4219-a700-c772bbd59275",
+          "f8de9380-a532-4aaa-bc6a-cd2e1661cd73"
+        ],
+        "v0": "046332ef-4b2e-4219-a700-c772bbd59275",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "someone standing in their emptied apartment at two in the morning the day the divorce is final, taking the wedding china out of its box one plate at a time and smashing each one into the bathtub, laughing and crying at once, finally letting out everything they kept polite for three years"
+      },
+      "flags": [],
+      "tagged": false,
+      "edits": 2,
+      "prompt": "charged-objects",
+      "note": "first roll kept - catharsis with a charged object, which suits someone breaking open (the signature is dry; the box I bought to marry you; I didnt think a little piece of clay could wake the building up; here is to your mother, here is to the rent, here is to every second we spent trying to be good; one for the person I forgot that we are; a pile of teeth in the dark and one blue painted leaf shining in the gray). Edits, meaning-first: the tub is cold iron (palette) became the tub is where I cried - the same place, now carrying three years; twelve white plates that have never seen a steak (inert, and a steak besides) became they never even held the cake, the wedding china never used. Breath, laugh, crack, sob and scream-laugh cues stripped"
+    },
+    "301": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Silver And Small",
+        "clips": [
+          "6f02d1e4-39de-49c4-8df7-4bda96fa4562",
+          "41d6fffa-e442-4c1f-a935-5f14792b98c2"
+        ],
+        "v0": "6f02d1e4-39de-49c4-8df7-4bda96fa4562",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "someone stopped at the very top of the Ferris wheel at the summer fair with their two grandkids, telling them that this exact seat is where they proposed fifty years ago with a ring made from a soda-can pull tab, amused and offhand at first, going quiet and unguarded at the part where they almost did not ask at all, then hurried and delighted when the wheel lurches back into motion and the grandkids spot their grandmother far below waving the pull tab she still wears on a chain, talking the whole way through"
+      },
+      "flags": [],
+      "tagged": false,
+      "edits": 5,
+      "prompt": "charged-objects",
+      "note": "second slot, first roll. Slot 1 (the same pull-tab proposal told at the kitchen table on a snowed-in night) gave the rustic palette in full - grey as a greasy old pot, the furnace quit, drifts on the stoop, sugar and tin, linoleum, the porch, an aluminium ring, a bird in a lime, the deck - so the telling moved to the top of a stopped Ferris wheel, which also gives the one-mic build its lurch back into motion. Kept: fifty Julys back, seven cents and a pop-can tab; the engine died out, just like tonight; I almost kept quiet, I almost let the whole night go; silver and small, the best little piece of nothing at all. Edits, meaning-first: dont kick the bar, the rust comes off red became dont rock the seat, its older than your dad; that sharp piece of tin became that sharp little ring; right by the barn became down in the crowd; see that green coat became green hat; fifty years later and look at her head became and shes still saying yes. Clunk cue and preamble stripped; the asides to the grandkids moved out of parens (same speaker)"
+    },
+    "302": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Carry Us Home",
+        "clips": [
+          "ebac5b02-f05d-4efb-99b3-6686536c380a",
+          "ed054e39-911e-45ac-99f9-1793196981e1"
+        ],
+        "v0": "ebac5b02-f05d-4efb-99b3-6686536c380a",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "someone standing at the front of the city bus at dawn, talking to the driver who has carried them to their night-shift job every single morning for twenty years, on the driver's very last route before retiring, plain and flat about it at first, then small and honest about what those rides meant, then cracking open and half-shouting as one passenger after another starts clapping until the whole bus is on its feet, talking the whole way through"
+      },
+      "flags": [],
+      "tagged": false,
+      "edits": 4,
+      "prompt": "charged-objects",
+      "note": "first roll kept over an accidental second roll (a re-click during cooldown produced both; the second was grease, zinc, a rusted tin, wet iron, boots and a brass rail). Kept: put the brake on, Don, dont turn the key yet; the bare silver spot on the yellow handrail, twenty years of my palm holding on; when my girl was born you clicked your high beams twice; you waited five extra seconds at the curb when her mother left; blue tape on the thermos handle for ten years; you dont just turn the bus off and walk away quiet. Edits, meaning-first: the rain smells like cold iron today became the rain smells just like it did in ninety-nine; get my boots up the steps became my bad knee - twenty years of age in it; before we put a boot on it became before any of us set foot on it; the draft tail was lost when the history panel collapsed, so the close is built from its own image turned into a gift - that silver spot on the rail is yours now, Don. Diesel, stomp and clapping cues stripped, caps normalised"
+    },
+    "303": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "All Right Here",
+        "clips": [
+          "3f35f2ce-11c7-4d7e-bdb4-fa0473208a20",
+          "ea127431-486d-4796-805f-17d3ea7c11b9"
+        ],
+        "v0": "3f35f2ce-11c7-4d7e-bdb4-fa0473208a20",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "someone standing in an empty field at the edge of town at dusk beside their younger brother on the evening his new hearing implant is switched on for the first time, talking to him level and offhand while nothing seems to have changed, drifting slower and softer as sounds start reaching him one at a time, then quiet and stunned when he hears the crickets for the very first time and turns to look at them"
+      },
+      "flags": [],
+      "tagged": false,
+      "edits": 5,
+      "prompt": "charged-objects",
+      "note": "first roll kept for its core (that little plastic light behind your ear just turned to green; thinking you missed it, you aint missed the line; a thousand tiny legs singing in the ground; dont be scared of em, theyve been here the whole time, just waiting on you) - repaired off the rural default the field slot pulled. Edits, meaning-first: Old Millers barn turning grey (Miller used in #284, and a barn) became the streetlights by the highway blinking on one by one - the one-at-a-time the slot is about; Dad will fix the fence post anyway though he dont know how became Dad will learn the sign for thank you anyway - a father who never learned to sign; a gravel truck on Highway Nine became the church bell counting out to nine, a sound he has never heard; hands shoved deep into your seat (they are standing) became down in your jeans; eyes on the road became eyes on me; the ditch gone black became the field. Plainly/slower/whispering/gasp/hum cues stripped"
+    },
+    "304": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Love's Taking The Floor",
+        "clips": [
+          "72f88311-c7f5-4b33-91d0-83a58d59eba6",
+          "274dc6ec-f37d-4f3f-a3b1-b661f38cb7b7"
+        ],
+        "v0": "72f88311-c7f5-4b33-91d0-83a58d59eba6",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "someone standing on a chair in a packed roadside dance hall on a Saturday night, cheerfully telling the stranger beside them how their shy best friend has spent a whole year working up the nerve to propose to the waitress who has refilled his coffee every morning for six years, going quiet and leaning close when the room hushes and the friend walks across the floor with the ring, then shouting and laughing over the whole crowd when she says yes, talking the whole way through"
+      },
+      "flags": [],
+      "tagged": false,
+      "edits": 6,
+      "prompt": "charged-objects",
+      "note": "roll 2 (roll 1 click landed in the cooldown). Kept: six years at her corner booth, black coffee in a chipped white heavy mug, never two words but thanks and fill it up; walked crooked to work every shift so the corners of the box would not knock; she dropped the tray; she said yes, brother; her white apron soaked in spilt beer tucked into the back of his belt while he lifts her off her feet. Edits, meaning-first: the hook we aint going home no more (home/leaving attractor) became nobodys sitting down no more - the whole room up; by the jukebox light (music object) became by the pie case light; the velvet box hidden inside his boot became inside his sock (same joke, off the boots attractor); wiping the Formica (brand) while the big rigs rumbled by (trucks) became wiping that counter clean while the morning rolled on by; the band just quit became the whole room just went quiet; sing it out became everybody up. Wildly/leaning/screaming cues stripped, caps normalised"
+    },
+    "305": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "The Last Circle",
+        "clips": [
+          "57459814-ef92-4beb-9059-c880fefa7fb0",
+          "924c9c66-5b5c-46f0-ae21-4e0ca12fcb81"
+        ],
+        "v0": "57459814-ef92-4beb-9059-c880fefa7fb0",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "someone standing alone at the rim of a desert canyon at sunrise, holding their late mother's dog-eared road atlas with every town she always meant to visit circled in pencil, talking to her quietly and privately at first, steadier as the light spreads down the canyon walls, and almost matter-of-fact at the widest, brightest moment as they tell her they finally made it to the last circle on the map"
+      },
+      "flags": [
+        "spare"
+      ],
+      "tagged": false,
+      "edits": 7,
+      "prompt": "charged-objects",
+      "note": "first roll kept for its core, flat and private as the style wants (you missed Tucumcari, your loss; I didnt steal your cedar mints, I left them on the sink; we made the edge; the map is closed; now I am the one) - but the atlas pulled a road-trip vehicle cluster and it came in at 127 words. Edits, meaning-first: page forty-eight is greasy became soft (worn by her hands); the whole damn hundred miles with the headlights on high-beam became the whole last hundred miles with your window rolled down - her seat, empty; your circle right here by the pump, a stub of a branded pencil, became right here by the rim, a stub of pencil pressed down hard; the transmission singing tenor just like you said it would became the car still pulls a little left, just like you said it would; the tank is full became the sun is full (the widest brightest moment); the waters run became the light has come; the chorus repeated once to give the widest section room. Tailgate/softly/engine-hum cues stripped"
     }
   },
   "method": {
