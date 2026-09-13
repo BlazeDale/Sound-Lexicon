@@ -4397,6 +4397,135 @@
         "mandated8": true,
         "genre_slot": "long crowded table, drinking since the afternoon"
       }
+    },
+    "199": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Hold The Dark",
+        "clips": [
+          "5f2392a6-c3ad-411c-b952-6b1ce6828823",
+          "aaa73d7f-d612-47ae-aae4-48d4dcfadb9e"
+        ],
+        "v0": "5f2392a6-c3ad-411c-b952-6b1ce6828823",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a hushed crowd lying out on a hillside under a meteor shower"
+      },
+      "flags": [
+        "spec",
+        "spare",
+        "mantra"
+      ],
+      "tagged": false,
+      "edits": 0,
+      "note": "wordless-lead entry: spare subset taken (both verses + hook); dropped the \"Don't go now (I'm staying)\" mantra block (doorway attractor) and a bracketed closing image; final hook block repeated x2 from its own lines for length"
+    },
+    "200": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Drop The Stone",
+        "clips": [
+          "cf9f37b8-ad79-450d-8485-7633ae75ce86",
+          "392f547c-8fc2-4b5e-9ee8-cbb99ebd3a7c"
+        ],
+        "v0": "cf9f37b8-ad79-450d-8485-7633ae75ce86",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a big open-air gathering in broad daylight, a whole circle of friends singing together and every one of them staying for the whole song"
+      },
+      "flags": [
+        "spare"
+      ],
+      "tagged": false,
+      "edits": 1,
+      "note": "third roll: first two were rural leaving songs (gravel road/county; packed sneakers, where will you go) despite crowd slots; kept third with one-line fix \"You left your shoes by my door\" -> \"You set your bag down by the fence\" (footwear+door attractors); chorus repeated once more from its own lines for length"
+    },
+    "201": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "No More Waiting",
+        "clips": [
+          "48a2f0a4-ddb3-4907-9afe-0dd3e3311424",
+          "0b164c3e-9c3b-4750-afb0-e16dd1bacf7a"
+        ],
+        "v0": "48a2f0a4-ddb3-4907-9afe-0dd3e3311424",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a packed city street the morning the good news came, strangers hugging and singing in the crowd"
+      },
+      "flags": [
+        "spare"
+      ],
+      "tagged": false,
+      "edits": 0,
+      "note": "first roll kept; dropped meta header, a (One, two, three, four) count-in, and a trailing prose picture paragraph"
+    },
+    "202": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Pull Me Back",
+        "clips": [
+          "952d6a6e-78a2-4dc7-93e8-6c4914ea1b25",
+          "3c726355-e1f4-49de-b4af-7c3c32d4c1d5"
+        ],
+        "v0": "952d6a6e-78a2-4dc7-93e8-6c4914ea1b25",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "one person singing only for themselves on the open deck of a night ferry, a few sleeping passengers wrapped in coats around them"
+      },
+      "flags": [
+        "spare"
+      ],
+      "tagged": false,
+      "edits": 1,
+      "note": "second roll: first (night bus) had a gang singalong fighting the solo confessional entry plus a door line; kept second with one-line fix \"You left the latch upon the pin\" -> \"You left the window to the wind\" (doorway attractor); dropped a trailing prose image (salt-stained boots at an open door) and a wind sound-effect direction"
+    },
+    "203": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Stay A Little Longer",
+        "clips": [
+          "0a148764-0ca7-4305-a2b2-40a425a5414f",
+          "419c73f6-f67f-4257-9f56-190f3ffb9d49"
+        ],
+        "v0": "0a148764-0ca7-4305-a2b2-40a425a5414f",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a backyard party in the hills above the city where everyone is dancing badly and laughing, kids and old friends together in the late afternoon sun"
+      },
+      "flags": [
+        "spare"
+      ],
+      "tagged": true,
+      "edits": 1,
+      "note": "second roll: first was 98 words and a stay-or-go truck song (\"Don't you start the engine, Leo\"); kept second, a party singalong, with one-word fix shoes -> hat in the opening line (footwear attractor); directions converted to [Verse]/[Chorus]/[Bridge]/[Outro] tags, mix-narrating directions and closing paper-plate image dropped"
+    },
+    "204": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "We Don't Move Back",
+        "clips": [
+          "fafcf9e3-101d-461b-a844-a50d357c3453",
+          "e92a10ff-5e97-4ddd-9ea1-5a46b03466f4"
+        ],
+        "v0": "fafcf9e3-101d-461b-a844-a50d357c3453",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a march crowd pushing up a city avenue in the rain, thousands of people shouting together"
+      },
+      "flags": [
+        "spare",
+        "blunt"
+      ],
+      "tagged": false,
+      "edits": 0,
+      "note": "first roll kept; blunt flag landed in the chorus hook; dropped sound-effect directions, CHORUS labels (entry left bare), and a closing red-mitten-on-the-yellow-line couplet (small dropped object attractor)"
     }
   },
   "method": {
