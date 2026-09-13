@@ -4639,6 +4639,113 @@
       "tagged": false,
       "edits": 1,
       "note": "second roll: first (whisper between the drops) was a leaving song through a door with coat, boots, key, salt and a closing red glove; re-rolled with an activity slot (friends dancing close all night) and it held. One-line fix \"I kicked it under your shoe\" -> \"I kicked it out of view\" (footwear)"
+    },
+    "210": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Singing You Home",
+        "clips": [
+          "1776a5d2-7ce1-4704-805f-80e3c8045db8",
+          "728a9ad4-6d18-4502-bcfe-432e0582a52b"
+        ],
+        "v0": "1776a5d2-7ce1-4704-805f-80e3c8045db8",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a crowded room singing together for someone who isn't there anymore, arms around each other, every voice as loud as it can go"
+      },
+      "flags": [
+        "spare",
+        "blunt"
+      ],
+      "tagged": false,
+      "edits": 1,
+      "note": "fifth roll. Rolls 1-2 (packed rock club) were joyful getaway songs, wrong register for anguished testimony; rolls 3-4 (club singing a lost friend's song, fists up, crying and furious) returned EMPTY twice, likely filtered; roll 5 with a softened grief slot landed the register (God damn you for risking a beautiful life). One-line fix: opening \"You left your good boots by the back of the stove\" -> \"You left without waking a soul in the house\" (footwear + domestic). Stage directions, section labels and a \"different voice leads\" note dropped (vocalist substitution)"
+    },
+    "211": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Spin Me Till The Pavement Cracks",
+        "clips": [
+          "20655da9-f12e-45c5-9005-986645b4d592",
+          "1d857a61-5102-4083-8664-b3457550d720"
+        ],
+        "v0": "20655da9-f12e-45c5-9005-986645b4d592",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a huge summer crowd dancing and swinging each other around right in front of the stage while the band plays on and on"
+      },
+      "flags": [
+        "spare"
+      ],
+      "tagged": false,
+      "edits": 1,
+      "note": "second roll: first (crowd stomping while the band refuses to stop) was a getaway song (throw it in gear, shoes in hand, ring in the ditch); an in-place activity slot (swinging each other around in front of the stage) held. One-line fix in the hook \"Never looking back!\" -> \"Shake it off our backs!\" (leaving phrase); closing sneakers image and directions dropped; hook repeated twice at the end from its own lines for length"
+    },
+    "212": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Untouchable Tonight",
+        "clips": [
+          "f829c6e3-e653-44f9-a026-584511c14374",
+          "de1ee65d-eb6e-4a8e-8f55-7cfe9b8b3d14"
+        ],
+        "v0": "f829c6e3-e653-44f9-a026-584511c14374",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a packed basement show laughing in the faces of the cops who came to shut it down, everyone pogoing harder instead"
+      },
+      "flags": [
+        "spare",
+        "blunt"
+      ],
+      "tagged": false,
+      "edits": 2,
+      "note": "second roll: first (sweaty basement show shouting the hook) was the fourth getaway song in this family (we ain't coming back, keys, coat, boots x2, 85 mph); an in-place defiance slot (laughing at the cops, pogoing harder) held and blunt landed. Fixes: \"stuffed it in your boot\" -> \"burned it to the root\" (footwear), \"peeling kitchen wall\" -> \"peeling plaster wall\" (sink+kitchen cluster). Count-in, section labels and a (shouted) direction dropped"
+    },
+    "213": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "We Stay Put",
+        "clips": [
+          "5f809e4d-9e71-4d65-93cf-311b55269d2e",
+          "237173b6-8373-4889-87a8-314ac916febf"
+        ],
+        "v0": "5f809e4d-9e71-4d65-93cf-311b55269d2e",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a long line of neighbours passing a thermos down a picket line in the cold, singing together to keep warm"
+      },
+      "flags": [
+        "spare"
+      ],
+      "tagged": false,
+      "edits": 2,
+      "note": "first roll kept; \"we stay put\" is a picket-line hold here, not the doorway frame. Fixes: \"boots in the gravel\" -> \"feet in the gravel\" in the hook (footwear), \"where the salt got in\" -> \"where the cold got in\" (salt watch). Closing mitten image, stage directions and a \"three voices join in harmony\" note dropped (solo lead)"
+    },
+    "214": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Pull Me In",
+        "clips": [
+          "15bafd5d-4746-416e-989a-c2fc2406f98f",
+          "902f9f8a-7b43-468b-b438-d7fe10e3cef1"
+        ],
+        "v0": "15bafd5d-4746-416e-989a-c2fc2406f98f",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a crowded church hall dance on a Saturday night, couples slow dancing close while the whole room sings back to the band"
+      },
+      "flags": [
+        "spare"
+      ],
+      "tagged": false,
+      "edits": 1,
+      "note": "first roll kept; pleading slow-dance hook with call-and-response fits the soul croon. One-line fix \"Your wet boots leave a circle\" -> \"Your slow feet draw a circle\" (footwear); spoken two-coats closing image and directions dropped; \"Oh-oh, pull me in\" x4 appended from its own lines as the repeated begging outro the entry specifies"
     }
   },
   "method": {
