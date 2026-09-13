@@ -4746,6 +4746,114 @@
       "tagged": false,
       "edits": 1,
       "note": "first roll kept; pleading slow-dance hook with call-and-response fits the soul croon. One-line fix \"Your wet boots leave a circle\" -> \"Your slow feet draw a circle\" (footwear); spoken two-coats closing image and directions dropped; \"Oh-oh, pull me in\" x4 appended from its own lines as the repeated begging outro the entry specifies"
+    },
+    "215": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Never Our Turn",
+        "clips": [
+          "1ebe56bc-a621-4bb7-aff2-938fe4666780",
+          "c88e7c6a-3671-4dd4-a7f3-149978953d54"
+        ],
+        "v0": "1ebe56bc-a621-4bb7-aff2-938fe4666780",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a loud crowded bar where one old friend finally admits, over the noise, what they did to another friend years ago, while the rest of the room keeps singing"
+      },
+      "flags": [
+        "spare",
+        "blunt"
+      ],
+      "tagged": false,
+      "edits": 0,
+      "note": "second roll: first (old friends in a loud bar, one confessing) was a triumphant I'm-staying homecoming, wrong register for a guilt/betrayal track study; naming the betrayal in the slot landed it exactly (I put the sugar in your tank). Selection only: crowd gospel interjections (Washed in the blood / Glory hallelujah) dropped as a choir fighting a solo lead, Singing: label dropped, chorus repeated once more for the harder final chorus the entry specifies"
+    },
+    "216": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Almost Home",
+        "clips": [
+          "8dc16dca-4dc4-4c04-8000-32f25ee004c5",
+          "e78bb4f3-6ef3-457f-8e15-645c44d06c61"
+        ],
+        "v0": "8dc16dca-4dc4-4c04-8000-32f25ee004c5",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a night-shift crew on a loading dock at dawn, working side by side and talking low over the forklifts"
+      },
+      "flags": [
+        "spare",
+        "blunt"
+      ],
+      "tagged": false,
+      "edits": 0,
+      "note": "first roll kept; a tender work-crew song (hold on, we're almost home) with low withheld verses that suit a coiled-to-cracked delivery study. Selection only: stage directions and a closing hazard-light/paper-cups image dropped; hook repeated once more at the end so the voice has room to open"
+    },
+    "217": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Hold It Down",
+        "clips": [
+          "02fc8772-709f-46e0-8cbb-88c42f520632",
+          "662b6a98-66fe-41fa-9296-fc43dd568273"
+        ],
+        "v0": "02fc8772-709f-46e0-8cbb-88c42f520632",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a long line of people waiting at a night bus depot, trading cigarettes and slow jokes to pass the time"
+      },
+      "flags": [
+        "spare"
+      ],
+      "tagged": true,
+      "edits": 1,
+      "note": "first roll kept; weary night-depot song where they let the bus go (we didn't even wave at it), suits a drag-behind-the-beat facet. One-word fix \"coal and lye\" -> \"rain and rye\" (coal/lye/pine material cluster). Sound-effect directions, crowd-joins-in notes (solo lead) and a closing ember image dropped; verse/chorus tags added because the prose is purely timbral"
+    },
+    "218": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Keep The Circle",
+        "clips": [
+          "014fd877-89f6-4a9e-b288-3a1bceaaef10",
+          "be1af844-81b9-45e3-82b5-a8b0963568f8"
+        ],
+        "v0": "014fd877-89f6-4a9e-b288-3a1bceaaef10",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a crowded roller rink on a Friday night, kids and grown-ups skating in slow circles, one person working up the nerve to take someone's hand"
+      },
+      "flags": [
+        "spare"
+      ],
+      "tagged": false,
+      "edits": 2,
+      "note": "first roll kept; a funny, tender roller-rink crush (we aren't enemies, we aren't friends). Fixes: \"The laces drag\" -> \"The wheels hum\" (footwear), \"candy door\" -> \"candy store\" (door). Only 108 words, so the chorus was repeated twice more at the end from its own lines to give the restraint-to-rupture arc room; sound-effect notes and a closing sneaker image dropped. Titled Keep The Circle rather than the hook phrase, which is a famous song title"
+    },
+    "219": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Rack 'Em Again",
+        "clips": [
+          "8aa5ecc1-b291-4922-8631-71a38e222c30",
+          "69a1c605-436c-4eb1-9138-9693cd96d611"
+        ],
+        "v0": "8aa5ecc1-b291-4922-8631-71a38e222c30",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a smoky pool hall at closing time, the regulars sinking their last shots and trading insults like old friends"
+      },
+      "flags": [
+        "spare",
+        "blunt"
+      ],
+      "tagged": true,
+      "edits": 0,
+      "note": "first roll kept; a raw pool-hall friendship song carried on insults (you lying sack of shit / you're all I got), suits a grain-and-growl facet; blunt landed. Selection only: stage directions and a closing chalk-dust image dropped, bartender shout kept as a spoken aside, pre-chorus and chorus repeated from its own lines for length (138 words); tags added, prose is purely timbral"
     }
   },
   "method": {
