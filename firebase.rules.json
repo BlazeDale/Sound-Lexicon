@@ -25,6 +25,10 @@
 
     "queues": {
       "_note": "Shared listening queues. A queue is public to READ by anyone holding its link — the id is the only secret, and the page says so. Writing is where the real rules live.",
+      "_note_index": "indexOn lets a signed-in user ask for every queue they own, so a published queue stays findable after losing its link or clearing localStorage.",
+      "_note_read": "The read here is deliberately NOT true. A plain read of this node would let anyone enumerate every queue on the site. It is granted only for the one query shape that asks for your own queues and nothing else, so listing your own is possible and listing everyone's is refused. Reading a single queue by id is allowed a level down, where the id is the secret.",
+      ".indexOn": ["meta/owner"],
+      ".read": "auth != null && query.orderByChild === 'meta/owner' && query.equalTo === auth.uid",
       "$qid": {
         ".read": true,
         ".validate": "$qid.length >= 4 && $qid.length <= 16",
@@ -35,6 +39,7 @@
           ".validate": "newData.hasChildren(['owner']) && newData.child('owner').isString()",
           "owner":     { ".validate": "newData.isString() && newData.val().length <= 128 && (!data.exists() || data.val() === newData.val())" },
           "ownerName": { ".validate": "newData.isString() && newData.val().length <= 24" },
+          "title":     { ".validate": "newData.isString() && newData.val().length <= 60" },
           "open":      { ".validate": "newData.isBoolean()" },
           "created":   { ".validate": "newData.isNumber()" },
           "v":         { ".validate": "newData.isNumber()" },
