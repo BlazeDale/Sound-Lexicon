@@ -385,7 +385,12 @@
    ============================================================================ */
 
 const $ = s => document.querySelector(s);
-const LS_Q = 'sl.queue.v1', LS_META = 'sl.queue.meta.v1', LS_PREFS = 'sl.queue.prefs.v1';
+/* meta.v2, not v1: v1 cached cover addresses that were DERIVED from the id, and a derived
+   address does not fail when it is wrong -- Suno serves the auto-generated image there even
+   for a track whose creator replaced the cover. So a wrong picture sat in the cache looking
+   perfectly healthy, and removing a track and adding it back read the same stale entry
+   straight back out. Renaming the key is what actually retires those. */
+const LS_Q = 'sl.queue.v1', LS_META = 'sl.queue.meta.v2', LS_PREFS = 'sl.queue.prefs.v1';
 
 const TITLES = (typeof SONG_TITLES !== 'undefined' && SONG_TITLES) || {};
 const DURS = (typeof SONG_DUR !== 'undefined' && SONG_DUR) || {};
@@ -473,6 +478,7 @@ if (WANT_NEW) {
 }
 try { Q = WANT_NEW ? [] : (JSON.parse(localStorage.getItem(LS_Q) || '[]') || []); } catch (e) { Q = []; }
 try { metaCache = JSON.parse(localStorage.getItem(LS_META) || '{}') || {}; } catch (e) { metaCache = {}; }
+try { localStorage.removeItem('sl.queue.meta.v1'); } catch (e) {}   // superseded, see above
 try {
   const p = JSON.parse(localStorage.getItem(LS_PREFS) || '{}');
   shuffling = !!p.shuffling; repeat = p.repeat || 'off'; auto = !!p.auto;
@@ -583,7 +589,9 @@ async function resolve(id, src) {
 
   const c = metaCache[id];
   if (c && c.dur) return { id, src: 'suno', title: c.title, sub: (local && local.sub) || '', ent: !!(local && local.ent),
-                           art: c.art || artOf(id), dur: c.dur, ok: true };
+                           /* A library demo's cover is settled in data.js, so that wins over
+                              anything the cache happens to be holding. */
+                           art: (local && local.art) || c.art || artOf(id), dur: c.dur, ok: true };
 
   const row = local || { id, src: 'suno', title: id.slice(0, 8), sub: '', ent: false, art: artOf(id), dur: 0, ok: false };
 
