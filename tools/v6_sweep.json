@@ -5521,6 +5521,254 @@
       "edits": 0,
       "prompt": "charged-objects",
       "note": "second roll. Roll 1 was 49 words - a cold iron radiator rib and one repeated peach wish, no song yet. Roll 2 kept whole (dont move, youll spill the heat we saved; the window glass is growing thick white hair; I decide right now we are not going to freeze). The blue coat with the torn pocket stayed on purpose: the family is piling on everything they own, and yes, that one makes it theirs - a charged coat, not an inventory coat. Only a one-line preamble stripped"
+    },
+    "250": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Echo Me",
+        "clips": [
+          "d3512baa-d46b-44b3-a567-2d772f5dc751",
+          "e77f7af9-13c4-4de7-b4d3-4bf62e14f44f"
+        ],
+        "v0": "d3512baa-d46b-44b3-a567-2d772f5dc751",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a parent and a small child on their first night in a new city apartment, the rooms still empty, playing an echo game where one calls out a word and the other calls it back from another room until they fall asleep on the floor"
+      },
+      "flags": [
+        "spare"
+      ],
+      "tagged": false,
+      "edits": 3,
+      "prompt": "charged-objects",
+      "note": "third roll, slot changed twice. Window-to-window neighbours across an airshaft gave a stage script with (Window A)/(Window B) labels in every line plus boots, I am ready to go and the last train has run (leaving and transport attractors), then a 51-word sketch of ceiling, old coat and a milkmans horse. The echo-game slot kept: I call out Tall (Tall!); I sold the truck, I paid the key; my big black coat becomes our only bed - truck, key and that coat ARE the story (what was given up for the empty rooms), so they stayed. Three rewrites: cold radiator stone echoed #249s block of dead grey stone and became it sounds so big in rooms we call our own; the first of two coats (thrown down on the pine) became I lay my hand flat on the pine so I call out Mine still lands; your little boots drop off became your eyes fall shut. Closing stage picture stripped"
+    },
+    "251": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Ours To Keep",
+        "clips": [
+          "2d18c785-d8f7-486b-a4e7-bebf5fb1d3bc",
+          "167277f5-56d1-43a3-ac77-29eb7995b43b"
+        ],
+        "v0": "2d18c785-d8f7-486b-a4e7-bebf5fb1d3bc",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a block of city neighbors repainting the mural on their corner wall all night after someone defaced it, passing brushes hand to hand and refusing to stop until the sun comes up on it"
+      },
+      "flags": [],
+      "tagged": false,
+      "edits": 1,
+      "prompt": "charged-objects",
+      "note": "first roll kept (he dipped his bare hand in the yellow, drawing a brand-new line; resting her forehead against the wet wall like shes finally come home). 466 words, so cuts only: every stage direction (one addressed a microphone), rusty from the ladder rungs, and the weakest couplet (a tired streetlamp, fuel that dont need to be wired); latex became paint. Marcus dropping his hammer at the bodega door stayed - he came straight from work to help"
+    },
+    "252": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Tangle Up The Sun",
+        "clips": [
+          "f40e965d-5d8f-4f8f-9958-95db269a211c",
+          "57cfa3a0-52db-4dc2-b8ad-75b7022ef483"
+        ],
+        "v0": "f40e965d-5d8f-4f8f-9958-95db269a211c",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a crowd of kids and grown-ups on a windy city beach flying one huge homemade kite, tying new lengths onto the string again and again so it can climb higher than anything they have ever seen"
+      },
+      "flags": [],
+      "tagged": false,
+      "edits": 2,
+      "prompt": "charged-objects",
+      "note": "slot changed twice. A stairwell race to a New Years rooftop sunrise came back as fixture inventory both times (iron door rusted shut, boots; brass knob, linoleum, iron, tarpaper, fire door, plus unflagged swearing). Kite slot: two returns came from DeepSeek-V3.1 with Gemini selected (discarded); after a pause Gemini returned. Kept for im ripping the cuff right off my shirt, we need ten more feet of anything; i never knew a bunch of broken things could ever go this far; the scrap of red sleeve on a line too thin to see. Two meaning-first rewrites around a crowd holding a battered thing together: fifty heavy boots dug deep into the lakeside stones became theres fifty of us leaning back and we are heavier than stones; the harbor is a set of grey iron jaws but we found a way to escape (metal plus getaway) became the harbor wind keeps biting but the kite just holds its shape. Stage directions stripped, shouted asides kept as () second voices"
+    },
+    "253": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Game One Thousand And One",
+        "clips": [
+          "d18b0703-5aa1-4665-bfa1-99c746eda0d7",
+          "266081e4-91c4-4f6d-8c0f-3cee0c0b3486"
+        ],
+        "v0": "d18b0703-5aa1-4665-bfa1-99c746eda0d7",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "two old rival chess players on a city street corner at dawn, starting their thousandth game on the same folding table, teasing each other over every move until one of them finally admits the other is their best friend"
+      },
+      "flags": [],
+      "tagged": false,
+      "edits": 3,
+      "prompt": "charged-objects",
+      "note": "second roll. Roll 1 with the blunt clause came back as rap verses and spoken stretches soaked in swearing - rap is in this entrys negatives, a register fault, so the clause was dropped and the slot softened to teasing. Roll 2 kept (dont you touch that plastic knight unless you want to lose your thumb; I decide to let you take my rook, just to keep you in your place; two old bastards starting game one thousand and one). The kid in Portland asking them to move to the coast stayed - staying for the friend is the song. Edits: rusted joints became old joints; keeps calling on the train became keeps calling me again; the friend Leo became Sal (Leo echoed #251). Stage directions stripped, the spoken opening line sung"
+    },
+    "254": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Wildly, Deeply Loved",
+        "clips": [
+          "37cd5100-cb8d-429d-a21b-f773d702c005",
+          "a423ae7d-f1ff-4296-8943-91e4da6ef2e5"
+        ],
+        "v0": "37cd5100-cb8d-429d-a21b-f773d702c005",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a big family at a long table on a city rooftop on a summer night, retelling the same old story of how the grandparents first met, each person telling it a little differently and arguing over the details, until the grandparents themselves finally tell the true version"
+      },
+      "flags": [],
+      "tagged": false,
+      "edits": 1,
+      "prompt": "charged-objects",
+      "note": "first roll kept - the slot was chosen to mirror the style (one melody returning over different chords = one story retold differently). Kept for I was standing on the corner with a quarter for the train... so I didnt take the train and his hand covers her wrinkled knuckle and doesnt move a millimeter; the tram and train are the story itself (the train he did not take). Cuts only: the city hums like an iron boiler keg, the greasy-plates-and-oil lines that broke the outro rhyme, vinyl from the seat, section tags and speaker directions (the grandmothers retort kept as a () second voice)"
+    },
+    "255": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Say It Again",
+        "clips": [
+          "68d69232-2dd4-4d8a-8c53-a5e85ca933cf",
+          "4a5042df-44f6-49cb-82d0-bd593b316022"
+        ],
+        "v0": "68d69232-2dd4-4d8a-8c53-a5e85ca933cf",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a handful of old friends lying on a city pier late at night, letting a thick fog roll in over them until they can no longer see each other, calling out each other's names now and then just to hear who is still there"
+      },
+      "flags": [
+        "spare"
+      ],
+      "tagged": false,
+      "edits": 2,
+      "prompt": "charged-objects",
+      "note": "first roll kept (your cigarette red is the only light left, it drifts three inches to the left, that means you are reaching out your hand; the roll call of names in () as the other voices). The house key thrown off the edge stayed - theres nowhere left to go back to (Good.) is the song. Edits: dont move your boots cut to dont move; the iron pier is freezing through my coat became the pier is freezing through my back (they are lying on it). Header and a whispered stage direction stripped"
+    },
+    "256": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Look At Arthur Go",
+        "clips": [
+          "2983ed39-8393-4500-a22f-a1bcca0032c2",
+          "6333261c-fabd-476d-9ff7-8c12b9a2fdb6"
+        ],
+        "v0": "2983ed39-8393-4500-a22f-a1bcca0032c2",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a bunch of friends leaning on the rail of a crowded roller rink on a Friday night, watching the shyest kid from their class somehow glide out and win the couples skate, narrating every move to each other in total disbelief"
+      },
+      "flags": [],
+      "tagged": false,
+      "edits": 1,
+      "prompt": "charged-objects",
+      "note": "first roll kept - the slot was built for the styles bored-delighted narration of a scene it finds mildly incredible (look at Arthur, look at Arthur go; that boy was pale as a butter knife; hes good, hes actually, terrifyingly good). One rewrite: hes got the spirit of a homicide - wrong for a shy kid finally skating - became hes been practicing this in his head every night, which is what the watchers suddenly realise. Stage directions (brass rail, popcorn box, organ speaker) stripped"
+    },
+    "257": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "It's Always Been You",
+        "clips": [
+          "ceb9f280-e6f0-4feb-9646-bdb5d53bcce2",
+          "0d89629d-3a71-4249-a4eb-f4007360540e"
+        ],
+        "v0": "ceb9f280-e6f0-4feb-9646-bdb5d53bcce2",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "two best friends at a sleepover in a city apartment at three in the morning, painting each other's nails by flashlight and one of them finally confessing who they have a crush on"
+      },
+      "flags": [],
+      "tagged": false,
+      "edits": 0,
+      "prompt": "charged-objects",
+      "note": "first roll kept (the bottle is called Wildfire but it smells like gasoline; the heartbeat ticking in the cushion of your thumb; a thumbprint smudged gray into wet red polish). 420 words of clutter, so cuts only: tangled sheets and alley cigarettes, the fire-escape ladder, the radiator clanking like an old steam train with a greasy pizza box and fuzzy socks, and the Broadway sirens. Stage direction header stripped"
+    },
+    "258": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Back Row",
+        "clips": [
+          "d903441f-e7fa-43a5-8ad8-fb0559a7f5fc",
+          "edc4533d-2f01-4fd5-82ea-0780f220ffc3"
+        ],
+        "v0": "d903441f-e7fa-43a5-8ad8-fb0559a7f5fc",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a bunch of teenagers in the back row of a packed city movie theater during the worst horror movie they have ever seen, heckling the screen, throwing popcorn and narrating every stupid choice the characters make, delighted with themselves"
+      },
+      "flags": [
+        "blunt"
+      ],
+      "tagged": false,
+      "edits": 2,
+      "prompt": "charged-objects",
+      "note": "first roll kept - a heckling crush song (who runs upstairs when the front doors right there; this twenty-dollar garbage is suddenly fine; if I kiss you right now, well, the movies at fault). Edits: the red exit sign glowing like gasoline echoed #257s nail polish that smells like gasoline, so it became glowing like a church light; im way too awake for a girl to sleep became to ever sleep. Cuts: the tacky-floor couplet ending in keep us from solar, the house-lights couplet, a stage header. Blunt clause kept - swearing is how these kids talk, and this style has no rap in its negatives"
+    },
+    "259": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Do A Flip",
+        "clips": [
+          "598f77db-6c22-4a46-858f-92021cb55b01",
+          "1d37b8e3-c90f-46cc-bcff-ba74922bad53"
+        ],
+        "v0": "598f77db-6c22-4a46-858f-92021cb55b01",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a bored lifeguard sitting in a tall chair beside a rooftop hotel pool at midnight, watching the rich guests attempt one ridiculous dive after another and refusing to be impressed by any of it"
+      },
+      "flags": [
+        "spare"
+      ],
+      "tagged": false,
+      "edits": 3,
+      "prompt": "charged-objects",
+      "note": "first roll kept, the slot built for the styles unimpressed deadpan (fourteen grand for a three-day pass, and you hit the tiles like a bag of glass; do a flip, or dont; the moon doesnt care, and neither do I). Three edits clearing a material cluster: copper lights became pool lights; the gin-and-marble-door couplet cut; the heels piled by the iron gate became piled where the bouncers wait. Heavy gold stayed - it is the guests, seen with contempt. Stage directions stripped"
+    },
+    "260": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Ugliest Faces",
+        "clips": [
+          "96c11a08-069e-4579-9d95-4f33b14ae948",
+          "405e41b9-b418-4811-b544-26afc17d9625"
+        ],
+        "v0": "96c11a08-069e-4579-9d95-4f33b14ae948",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a teenager alone in a glittery photo booth on a Saturday night after being stood up, feeding in coin after coin and pulling ridiculous faces for strip after strip of photos just to make themselves laugh"
+      },
+      "flags": [],
+      "tagged": false,
+      "edits": 1,
+      "prompt": "charged-objects",
+      "note": "second roll. Roll 1 was 137 words with little of the ache this styles sweetness is supposed to cover. Roll 2 kept (you left a dark, so I filled it with light; look how pretty my ugliest faces are; the mirror wants a wet tear, but im giving it teeth). One rewrite: the coin slot grinds its teeth on my last silver plate became on the money for our date - the date that never came. Cuts: an oil-rig-spill/fever-chill couplet, a pink-bubble/frozen-snows couplet, a closing prose paragraph and stage directions"
+    },
+    "261": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "He's Gonna Call",
+        "clips": [
+          "e6c864d6-5c48-49ea-b2ba-12cd1aff0ab5",
+          "4bd818c2-357f-44ee-833e-85dbb2dd20e4"
+        ],
+        "v0": "e6c864d6-5c48-49ea-b2ba-12cd1aff0ab5",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a teenager stretched out on their bedroom floor on a Sunday night, three hours into a phone call with their best friend, recapping every single ridiculous thing that happened at their cousin's chaotic wedding that afternoon"
+      },
+      "flags": [],
+      "tagged": false,
+      "edits": 2,
+      "prompt": "charged-objects",
+      "note": "first roll kept - a phone-call monologue suits this talked-lead style (my phone is on two percent, dont you dare hang up; the text: Hey. My dress was itchy. You looked nice.; pink satin shoes stacked like a little monument). Two edits pulled toward the garden the muddy shoes come from: the cousin fell out of the limo became fell in the garden; the reception parking lot became the garden plot. Cuts: stage and guitar directions, section labels, a dry-cleaner-steam couplet, a sweat line, the ceiling fan. Swearing was not needed; the flag was not set"
     }
   },
   "method": {
