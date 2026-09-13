@@ -1060,7 +1060,7 @@ function startTimer(seconds) {
     if (left <= 0) {
       clearTimer();
       const n = nextIndex();
-      if (n >= 0) playAt(n); else { $('#ns').textContent = 'End of queue'; }
+      if (n >= 0) playAt(n); else finishQueue();
       return;
     }
     paintTimer();
@@ -1160,7 +1160,7 @@ window.onYouTubeIframeAPIReady = () => {
           }
         } catch (err) {}
         const n = nextIndex();
-        if (n >= 0) playAt(n); else $('#ns').textContent = 'End of queue';
+        if (n >= 0) playAt(n); else finishQueue();
       },
       /* Say WHICH refusal it was, and offer the way out, rather than skipping in silence.
          101 and 150 are the same thing — the uploader disallowed embedding — and no amount
@@ -1199,6 +1199,23 @@ window.onYouTubeIframeAPIReady = () => {
 };
 
 /* ---------- playback ---------- */
+/* Reaching the end has to actually STOP the thing that is playing, not merely stop
+   advancing. Pointing the frame at a track is what starts it, and leaving it pointed there
+   is what lets the last track carry on or begin again — which reads as the current song
+   repeating itself. So the frame is emptied and the track is recorded as heard, the same as
+   any other track that finished. */
+function finishQueue() {
+  clearTimer();
+  if (cur >= 0 && Q[cur]) recordPlayed(keyOf(Q[cur]));
+  frame.style.display = 'none'; frame.src = 'about:blank';
+  $('#yt').style.display = 'none';
+  if (ytReady && yt && yt.stopVideo) { try { yt.stopVideo(); } catch (e) {} }
+  cur = -1;
+  $('#nt').textContent = 'End of queue';
+  $('#ns').textContent = 'Nothing left to play';
+  render();
+}
+
 function stopAll() {
   clearTimer();
   frame.style.display = 'none'; frame.src = 'about:blank';
