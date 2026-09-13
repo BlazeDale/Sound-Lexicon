@@ -963,19 +963,28 @@ function rowEl(r, i) {
     const dur = document.createElement('span'); dur.className = 'dur'; dur.textContent = r.dur ? mmss(r.dur) : '';
     li.append(grip, art, meta, dur);
 
-    /* A way out, on every YouTube row. The embed cannot be made ad-free in every browser --
-       Firefox has no mechanism a page can use to hand the player its cookies -- and where
-       that is the case the real player is one click away rather than a paragraph away. */
-    if (r.src === 'yt' || r.src === 'ytpl') {
+    /* A way out on every row, whatever it plays through. For YouTube it is the fix for ads
+       the embed cannot avoid in every browser; for Suno it is the way to reach the lyrics,
+       the style prose and everything else the embed does not show. Same control either way,
+       because "take me to this track properly" is the same wish. */
+    {
       const out = document.createElement('a');
       out.className = 'out';
-      out.href = r.src === 'ytpl'
-        ? 'https://www.youtube.com/playlist?list=' + r.id
-        : 'https://www.youtube.com/watch?v=' + r.id;
       out.target = '_blank'; out.rel = 'noopener';
-      out.textContent = 'YouTube ↗';
-      out.title = 'Open on YouTube, where your account and Premium apply';
-      out.addEventListener('click', ev => ev.stopPropagation());
+      out.addEventListener('click', ev => ev.stopPropagation());   // not a request to play it
+      if (r.src === 'ytpl') {
+        out.href = 'https://www.youtube.com/playlist?list=' + r.id;
+        out.textContent = 'YouTube ↗';
+        out.title = 'Open the playlist on YouTube';
+      } else if (r.src === 'yt') {
+        out.href = 'https://www.youtube.com/watch?v=' + r.id;
+        out.textContent = 'YouTube ↗';
+        out.title = 'Open on YouTube, where your account and Premium apply';
+      } else {
+        out.href = 'https://suno.com/song/' + r.id;
+        out.textContent = 'Suno ↗';
+        out.title = 'Open on Suno — lyrics, style and the rest of the record';
+      }
       li.append(out);
     }
 
