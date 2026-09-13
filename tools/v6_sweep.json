@@ -5294,6 +5294,121 @@
       "edits": 3,
       "prompt": "charged-objects",
       "note": "second on the charged-objects prompt; first fire returned EMPTY once, a straight retry landed. Strong paranoid scene (forty screens go white at once, twin moons over the gashouse, a Don't go home loop). The clause did not stop the old objects on its own: fixes \"The man in the wet coat\" -> \"The man across from us\", \"drops her key\" -> \"holds her breath\", \"smells like rusted iron\" -> \"smells like a storm\"; closing picture line dropped"
+    },
+    "240": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Where You Lie",
+        "clips": [
+          "4ec0bd05-1de8-4ef3-bd43-2c92a65bcd43",
+          "400458b1-6e52-445c-a001-40d74d756255"
+        ],
+        "v0": "4ec0bd05-1de8-4ef3-bd43-2c92a65bcd43",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a slow torchlit procession of townspeople walking together through a shuttered factory town at dawn, everyone humming one long note as they go"
+      },
+      "flags": [
+        "spare",
+        "mantra",
+        "spec"
+      ],
+      "tagged": false,
+      "edits": 2,
+      "prompt": "charged-objects",
+      "note": "third on the charged-objects prompt; the clause at its best in verse 1 (I put my hand inside your empty glove / it still remembers where your knuckles bend; the tall chimney like a broken bone) but still heavy on iron x3, copper, rust and a key dropped in a well. Chant-lead subset: verse 1, the chimney couplet, the Where you lie chorus x3 and a mantra. Fixes: mantra \"I stay here\" -> \"I keep watch\" (stay echoes all day), \"where all the iron ends\" -> \"where all the rails end\"; copper-roots, key-in-the-well and red-thread lines left out"
+    },
+    "241": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Held By Gravity",
+        "clips": [
+          "ae1de663-e584-44c5-a1a8-f44be0e409e4",
+          "781f7b4c-66a3-4749-baef-6b30a3bd12ff"
+        ],
+        "v0": "ae1de663-e584-44c5-a1a8-f44be0e409e4",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a rooftop full of old friends lying close together under shared blankets, counting shooting stars and whispering until one by one they drift off to sleep"
+      },
+      "flags": [
+        "spare",
+        "spec"
+      ],
+      "tagged": false,
+      "edits": 0,
+      "prompt": "charged-objects",
+      "note": "second roll. First (crowded planetarium) slid into a space-station inventory (boots by the hatch, a heavy coat, a glove, a door, a copper belt dropped as the closing image) with a \"safe in the dark\" hook: more than two fixes needed, so re-rolled rather than patched. Rooftop sleepover held: held by gravity, a scrap of an old station burning up blue. Cuts only, no swaps: a brass-keys verse, (I am staying) lines and a closing keys-in-gravel image left out"
+    },
+    "242": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Lay Down Low",
+        "clips": [
+          "42a353dc-3d74-4259-80bd-39da74502fb7",
+          "af64d327-1b50-4529-bed2-b45a1d6f3668"
+        ],
+        "v0": "42a353dc-3d74-4259-80bd-39da74502fb7",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "an older sibling in the top bunk singing a scared little one back to sleep through a thunderstorm, making up the words as they go"
+      },
+      "flags": [
+        "spare"
+      ],
+      "tagged": false,
+      "edits": 1,
+      "prompt": "charged-objects",
+      "note": "third roll, slot changed. Roll 1 (hospital nursery at 3am) fell into the leaving attractor (looked at the door but did not walk through) plus wet-highway truck lights with no tie to the room. Roll 2 turned sardonic and swearing (stale biscotti, dont you die) with linoleum and bleach: the institution slot pulled fixture inventory, so the slot moved to a sibling in a top bunk. Roll 3 kept: the truck light on the wall and the coat on the door are the scary shapes the sibling is explaining away, so they stay (charged by the song, not decoration). One line rewritten from the songs own logic: the coat waiting to sweep with the broom became the coat hanging there sleepy, the same as you. Stage directions stripped; (Rumble... rumble...) kept as the storm voice"
+    },
+    "243": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "The Water Is Warm",
+        "clips": [
+          "9de14e4e-ae0e-47bb-8260-8812f543931e",
+          "f80c953a-2e6d-49b0-836b-126b9a131cbe"
+        ],
+        "v0": "9de14e4e-ae0e-47bb-8260-8812f543931e",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a late-night city bathhouse where strangers float in warm water under a glass roof, talking in low voices while the steam rises and the rain ticks overhead"
+      },
+      "flags": [
+        "spare",
+        "mantra"
+      ],
+      "tagged": false,
+      "edits": 2,
+      "prompt": "charged-objects",
+      "note": "first roll kept (the water doesnt care what you broke; my heel finds your ankle in the dark). Two meaning-first edits: the hook lay down echoed #242s lay down low, so it became sink down throughout, which is what both the water and the grief are doing in the song; the outro mantra still worth it had nothing setting it up, so it became the bridges own losing the weight, answered by (let it drift)/(wash it clean). The opening keys too loud on the stone stayed: the clatter is the newcomers agitation, charged rather than inventory. Section tags stripped (prose specifies form)"
+    },
+    "244": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Don't Let The Morning Know",
+        "clips": [
+          "3343b442-12cc-4f55-9403-84273cafd4f0",
+          "7c23db80-10b2-441b-8c1d-7f76edcc4e77"
+        ],
+        "v0": "3343b442-12cc-4f55-9403-84273cafd4f0",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a rooftop greenhouse in the city just before dawn, where two night-shift gardeners mist the orchids and whisper so the plants won't wake"
+      },
+      "flags": [
+        "spare",
+        "spec"
+      ],
+      "tagged": false,
+      "edits": 2,
+      "prompt": "charged-objects",
+      "note": "second roll. Roll 1 had the orchids-believe-its-rain opening but a chorus built on attractors (iron town, safe from the storm, leave the iron town behind us) plus a coat collar, an iron gate and a dropped key: chorus-level fault, re-rolled. Roll 2 kept, two edits drawn from the songs own meaning rather than swapped objects: below our boots three thousand floors of ancient iron became three thousand floors of strangers dream beneath us and not one can see (the secrecy the hook asks for: dont let the morning know); you drop the spray, you take my coat became you drop the spray, the orchids lean (the plants they whisper for bend toward the moment). Stage directions and the image footer stripped"
     }
   },
   "method": {
