@@ -20,7 +20,7 @@
 
 /* Version stamp — the ONLY place to bump these. Title, <meta>, masthead, and
  * footer all derive from here + LIB counts at runtime, so counts never drift. */
-const VERSION = 'v115';
+const VERSION = 'v116';
 const UPDATED = '2026-09-11';
 
 /* ---------- MOST RECENT BATCH ----------
@@ -6001,3 +6001,24 @@ const SONG_DUR = {
   '12e3e1da-44da-4e69-adef-f8b4a4f74bff':218,
 };
 /* END GENERATED DURATIONS */
+
+/* BEGIN GENERATED — Suno cover art · run: node tools/song_art.mjs */
+/* Cover art that does NOT follow cdn2.suno.ai/image_<uuid>.jpeg — a creator replaced it,
+ * so the id cannot be used to work the address out. Everything not listed here follows
+ * the pattern and is derived. A cover can be changed later: re-check with --all. */
+const ART_CHECKED = 1393;
+const SONG_ART = {
+  '03fd694a-1623-4ccc-b624-f5468d325ecb': 'https://cdn2.suno.ai/video_upload_6b9763b6-d937-4b17-bb50-2511eb08e159_video_upload_6b9763b6-d937-4b17-bb50-2511eb08e159_cover_snapshot_0s_1787493340_image.jpeg',
+  '085685eb-4d85-48fa-b13e-77cbb4688125': 'https://cdn2.suno.ai/video_upload_8ca36dbe-c6ac-4547-8831-90f1c19ce61f_video_upload_8ca36dbe-c6ac-4547-8831-90f1c19ce61f_cover_snapshot_0s_1782788922_image.jpeg',
+  '0e8f1284-8b83-4188-b42e-5254f646d006': 'https://cdn2.suno.ai/video_upload_13e0d1b4-8159-41cd-8ff4-abf6a30a90c8_video_upload_13e0d1b4-8159-41cd-8ff4-abf6a30a90c8_cover_snapshot_0s_1783791623_image.jpeg',
+  '1a39a4d6-640f-4c8d-8d7d-ee2fe62e5c5f': 'https://cdn2.suno.ai/video_upload_3f6941f6-b39d-417f-b5fb-e7bcef85c56e_video_upload_3f6941f6-b39d-417f-b5fb-e7bcef85c56e_cover_snapshot_0s_1787515299_image.jpeg',
+  '2e876c71-4b63-42c5-9800-59339bad2b30': 'https://cdn2.suno.ai/image_large_669192b2-b29d-4a6c-a69d-c6a79b31770a.jpeg',
+  '350439f5-2a76-4146-b9cc-da32b679ac46': 'https://cdn2.suno.ai/video_upload_a97261a2-4305-4d18-8c21-b6af5935c7a5_video_upload_a97261a2-4305-4d18-8c21-b6af5935c7a5_cover_snapshot_0s_1787543540_image.jpeg',
+  '461be6e9-575f-4f93-be50-6044ea05899d': 'https://cdn2.suno.ai/video_upload_4d71ee4d-3a46-4c64-b22c-f2d6a93e8cbb_video_upload_4d71ee4d-3a46-4c64-b22c-f2d6a93e8cbb_cover_snapshot_0s_1788894105_image.jpeg',
+  '474381d8-5169-4239-ab18-c5c307d3a54b': 'https://cdn2.suno.ai/video_upload_02af70ca-1b0b-441b-998e-7f86c710d862_video_upload_02af70ca-1b0b-441b-998e-7f86c710d862_cover_snapshot_0s_1786412254_image.jpeg',
+  '807d41aa-c19b-49c5-8de1-79e1129d9101': 'https://cdn2.suno.ai/video_upload_43b708c4-a7a3-4213-b37e-cf076cbf7110_video_upload_43b708c4-a7a3-4213-b37e-cf076cbf7110_cover_snapshot_0s_1786233726_image.jpeg',
+  '91a8b3da-acec-47c6-850e-6f866513201f': 'https://cdn2.suno.ai/video_upload_e5a5eecb-fa87-4156-893f-9de03145659f_video_upload_e5a5eecb-fa87-4156-893f-9de03145659f_cover_snapshot_0s_1787579602_image.jpeg',
+  'af76b3c4-1815-422c-9536-59ee97ce05ab': 'https://cdn2.suno.ai/video_upload_71ee4a12-dd27-4bb1-9dde-c6d5a1ba5093_video_upload_71ee4a12-dd27-4bb1-9dde-c6d5a1ba5093_cover_snapshot_0s_1787269205_image.jpeg',
+  'd35074b6-8b2b-4cef-bd07-1ea41658ad0c': 'https://cdn2.suno.ai/video_upload_a659091a-45e6-44a7-b4ab-ef89e2511a48_video_upload_a659091a-45e6-44a7-b4ab-ef89e2511a48_cover_snapshot_0s_1783892703_image.jpeg',
+};
+/* END GENERATED ART */

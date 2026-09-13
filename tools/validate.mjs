@@ -29,9 +29,9 @@ const fail = m => fails.push(m);
 const pass = m => passes.push(m);
 
 /* ---------- load data ---------- */
-let LIB, RECENT, VERSION, UPDATED, SONG_TITLES, SONG_MODEL, SONG_DUR;
+let LIB, RECENT, VERSION, UPDATED, SONG_TITLES, SONG_MODEL, SONG_DUR, SONG_ART, ART_CHECKED;
 try {
-  ({ LIB, RECENT, VERSION, UPDATED, SONG_TITLES, SONG_MODEL, SONG_DUR } = loadData(process.argv[2]));
+  ({ LIB, RECENT, VERSION, UPDATED, SONG_TITLES, SONG_MODEL, SONG_DUR, SONG_ART, ART_CHECKED } = loadData(process.argv[2]));
   pass(`loaded data.js (${LIB.length} entries)`);
 } catch (e) {
   fail(`could not load data.js: ${e.message}`);
@@ -182,6 +182,21 @@ const suites = LIB.filter(v => v.cat === 'suite');
     : pass(`all ${ids.length} demos carry a length (${Math.floor(ids.reduce((a, id) => a + durs[id], 0) / 3600)}h ${Math.round(ids.reduce((a, id) => a + durs[id], 0) % 3600 / 60)}m of audio)`);
   if (orphans.length) fail(`SONG_DUR times ${orphans.length} song(s) no longer in LIB — run: node tools/song_durations.mjs`);
   if (bad.length) fail(`implausible duration: ${bad.slice(0, 5).join(', ')}`);
+}
+
+/* ---------- 8d. cover art: the ones a creator replaced ---------- */
+{
+  const ids = songIds(LIB);
+  const art = (typeof SONG_ART !== 'undefined' && SONG_ART) || {};
+  const checked = (typeof ART_CHECKED !== 'undefined' && ART_CHECKED) || 0;
+  const orphans = Object.keys(art).filter(id => !ids.includes(id));
+  const bad = Object.entries(art).filter(([, u]) => !/^https:\/\//.test(u)).map(([id]) => id);
+  if (!ids.length) pass(`no demo covers to check`);
+  else checked < ids.length
+    ? fail(`${ids.length - checked}/${ids.length} demo(s) never checked for cover art — run: node tools/song_art.mjs`)
+    : pass(`all ${ids.length} demo covers checked (${Object.keys(art).length} replaced by their creator, the rest derived from the id)`);
+  if (orphans.length) fail(`SONG_ART holds ${orphans.length} cover(s) for songs no longer in LIB — run: node tools/song_art.mjs`);
+  if (bad.length) fail(`cover art must be an https address: ${bad.slice(0, 3).join(', ')}`);
 }
 
 /* ---------- 9. artist_studies.md: labels match + generated region in sync ---------- */

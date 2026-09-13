@@ -390,10 +390,13 @@ const LS_Q = 'sl.queue.v1', LS_META = 'sl.queue.meta.v1', LS_PREFS = 'sl.queue.p
 const TITLES = (typeof SONG_TITLES !== 'undefined' && SONG_TITLES) || {};
 const DURS = (typeof SONG_DUR !== 'undefined' && SONG_DUR) || {};
 
-/* Artwork is derivable rather than looked up: Suno names it after the track. That is the
-   last thing a library demo needed from the network, so it now needs the network for
-   nothing at all. */
-const artOf = id => 'https://cdn2.suno.ai/image_' + id + '.jpeg';
+/* Artwork is derivable for almost every track: Suno names it after the id. Almost. A
+   creator who replaces the cover gets an unrelated address -- a frame grabbed from an
+   uploaded video, say -- and deriving it then shows one picture here while Suno's own
+   player shows another. Twelve of the 1393 demos are like that, so they are listed in
+   data.js by tools/song_art.mjs and the rest are still worked out from the id. */
+const ART = (typeof SONG_ART !== 'undefined' && SONG_ART) || {};
+const artOf = id => ART[id] || ('https://cdn2.suno.ai/image_' + id + '.jpeg');
 const bySuno = new Map();
 if (typeof LIB !== 'undefined') LIB.forEach(v => (v.suno || []).forEach(id => bySuno.set(String(id), v)));
 
@@ -1766,7 +1769,7 @@ try {
         title: t.title || t.id, sub: t.sub || '', ent: /^#\d/.test(t.sub || ''),
         art: t.src === 'yt' ? 'https://i.ytimg.com/vi/' + t.id + '/mqdefault.jpg'
            : t.src === 'ytpl' ? ''
-                            : 'https://cdn2.suno.ai/image_' + t.id + '.jpeg',
+                            : artOf(t.id),        // honours a replaced cover, same as above
         dur: t.dur || 0, ok: (t.dur || 0) > 0 || t.src === 'yt' || t.src === 'ytpl',
         album: t.src === 'ytpl' && /^OLAK5uy_/i.test(String(t.id || '')),
         by: t.by || '', byName: t.byName || '', ord: t.ord || 0
