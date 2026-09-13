@@ -640,7 +640,7 @@ Just us and whoever that is? By the door?
 [Spoken] (quieter, dissolving)
 That was so fun. That was actually so fun?
 I'm gonna feel this for like, three days?`},
-{n:281,suno:[`6e868c47-86f8-450e-986d-75712c58af71`,`9b52461a-15c2-4e00-bc1d-362347d62dd8`],name:`Psytrance stranded narration`,fam:`breakdown-peak narration`,cat:`lyrical`,bpm:`145`,role:`narration stranded by the bass dropping out`,proc:`rolling triplet bass · acid squelch · reversed vocal fragments`,aff:`A`,style:`Full-on psytrance near 145 BPM under continuous spoken narration: a rolling triplet bassline and acid squelch churning beneath a voice that keeps talking through the whole track — offhand at first, then stranded and wide-eyed when the bass drops away for a long psychedelic breakdown, then laughing as it rolls back in. Never sung. The lead is a unique and specific vocalist: dry, close and conversational, sentences lifting at the ends. Behind it: sixteenth-note bass, screeching resonant leads, tribal toms, risers stacked inside risers, and the genre habit of burying half-heard spoken fragments in the mix — here those fragments are the same voice, delayed and reversed. Production psychedelic and wide behind a bone-dry lead.`,neg:`sung topline, diva vocal, four-on-the-floor house groove, orchestral strings, acoustic guitar, ballad tempo, belted chorus, warm analog softness`,lyric:`[Spoken] (offhand, rolling with the bass)
+{n:281,suno:[`6e868c47-86f8-450e-986d-75712c58af71`,`9b52461a-15c2-4e00-bc1d-362347d62dd8`,`8671af61-6482-4caa-bf4c-b514ec3f8b48`],name:`Psytrance stranded narration`,fam:`breakdown-peak narration`,cat:`lyrical`,bpm:`145`,role:`narration stranded by the bass dropping out`,proc:`rolling triplet bass · acid squelch · reversed vocal fragments`,aff:`A`,style:`Full-on psytrance near 145 BPM under continuous spoken narration: a rolling triplet bassline and acid squelch churning beneath a voice that keeps talking through the whole track — offhand at first, then stranded and wide-eyed when the bass drops away for a long psychedelic breakdown, then laughing as it rolls back in. Never sung. The lead is a unique and specific vocalist: dry, close and conversational, sentences lifting at the ends. Behind it: sixteenth-note bass, screeching resonant leads, tribal toms, risers stacked inside risers, and the genre habit of burying half-heard spoken fragments in the mix — here those fragments are the same voice, delayed and reversed. Production psychedelic and wide behind a bone-dry lead.`,neg:`sung topline, diva vocal, four-on-the-floor house groove, orchestral strings, acoustic guitar, ballad tempo, belted chorus, warm analog softness`,lyric:`[Spoken] (offhand, rolling with the bass)
 I have no idea what time it is? And I've stopped caring?
 
 [Spoken] (bass drops out — stranded, wide-eyed)
@@ -649,7 +649,7 @@ Where did the floor go? Like, where did it actually go?
 
 [Spoken] (laughing as it rolls back in)
 Okay? Okay okay okay. There it is?`},
-{n:282,suno:[`f70dfdc5-7f4c-4a35-ae27-cefd32adfcb7`,`e1cc0bbd-d311-435b-959a-3b46dab3aaa4`],name:`Orchestral-trance narration`,fam:`breakdown-peak narration`,cat:`lyrical`,bpm:`138`,role:`spoken peak carried by strings, not synths`,proc:`real string section · timpani rolls · pizzicato answers`,aff:`C`,style:`Orchestral trance near 138 BPM under continuous spoken narration: supersaws share the track with a real string section, and when the drums fall away for the breakdown it is violins and cellos that carry it rather than synths. The talking is offhand through the build, bare and unguarded across the strings, then swept up as the kick returns. Never sung. The lead is a unique and specific vocalist: close and conversational, sentences rising at the ends. Behind it: rolling sixteenth bass, a wide supersaw wall, timpani rolls beneath the sweep, pizzicato answering the speech in the gaps. The emotional peak is a spoken sentence over an orchestra. Production cinematic and enormous behind a dry, small voice.`,neg:`sung topline, vocal runs, rapping, distorted guitar, lo-fi production, sparse minimal arrangement, gravel rasp, downtempo drag`,lyric:`[Spoken] (offhand, through the build)
+{n:282,suno:[`f70dfdc5-7f4c-4a35-ae27-cefd32adfcb7`,`e1cc0bbd-d311-435b-959a-3b46dab3aaa4`,`e3f140e9-93f9-4600-8c14-d0083b8683f7`],name:`Orchestral-trance narration`,fam:`breakdown-peak narration`,cat:`lyrical`,bpm:`138`,role:`spoken peak carried by strings, not synths`,proc:`real string section · timpani rolls · pizzicato answers`,aff:`C`,style:`Orchestral trance near 138 BPM under continuous spoken narration: supersaws share the track with a real string section, and when the drums fall away for the breakdown it is violins and cellos that carry it rather than synths. The talking is offhand through the build, bare and unguarded across the strings, then swept up as the kick returns. Never sung. The lead is a unique and specific vocalist: close and conversational, sentences rising at the ends. Behind it: rolling sixteenth bass, a wide supersaw wall, timpani rolls beneath the sweep, pizzicato answering the speech in the gaps. The emotional peak is a spoken sentence over an orchestra. Production cinematic and enormous behind a dry, small voice.`,neg:`sung topline, vocal runs, rapping, distorted guitar, lo-fi production, sparse minimal arrangement, gravel rasp, downtempo drag`,lyric:`[Spoken] (offhand, through the build)
 They've got a whole string section? For this? At 2am?
 
 [Spoken] (drums gone — bare, across the strings)
@@ -658,7 +658,7 @@ Like, actually, embarrassingly beautiful?
 
 [Spoken] (swept up as the kick returns)
 Oh my god. Oh my GOD, okay—`},
-{n:283,suno:[`d3e52f24-2373-48fc-9547-24422be016bd`,`807d41aa-c19b-49c5-8de1-79e1129d9101`],name:`Post-rock crescendo narration`,fam:`breakdown-peak narration`,cat:`lyrical`,bpm:`84`,role:`trance architecture played by a band`,proc:`tremolo guitar layering · live drums entering late`,aff:`B`,style:`Post-rock crescendo near 84 BPM under continuous spoken narration, built on the same architecture as a trance breakdown but played by a band: tremolo-picked guitars layering in one at a time, live drums arriving late and building to a wall, everything climbing for minutes toward a single release. The talking runs the whole length — offhand at the start, quiet and unguarded through the hushed middle, half-shouted when the guitars finally break. Never sung. The lead is a unique and specific vocalist: close-mic-ed, dry and conversational against a vast room. Behind it: reverb-drenched guitar, bowed bass, brushed drums turning battered, one glockenspiel figure. Production huge and live, the voice always in front.`,neg:`sung vocal, four-on-the-floor kick, synth supersaws, dance production, rapping, tight pop structure, bright major-key pop chords, loud mastering`,lyric:`[Spoken] (offhand, one guitar)
+{n:283,suno:[`d3e52f24-2373-48fc-9547-24422be016bd`,`807d41aa-c19b-49c5-8de1-79e1129d9101`,`a4acfb15-a65a-4570-99b4-866b1be61e3b`],name:`Post-rock crescendo narration`,fam:`breakdown-peak narration`,cat:`lyrical`,bpm:`84`,role:`trance architecture played by a band`,proc:`tremolo guitar layering · live drums entering late`,aff:`B`,style:`Post-rock crescendo near 84 BPM under continuous spoken narration, built on the same architecture as a trance breakdown but played by a band: tremolo-picked guitars layering in one at a time, live drums arriving late and building to a wall, everything climbing for minutes toward a single release. The talking runs the whole length — offhand at the start, quiet and unguarded through the hushed middle, half-shouted when the guitars finally break. Never sung. The lead is a unique and specific vocalist: close-mic-ed, dry and conversational against a vast room. Behind it: reverb-drenched guitar, bowed bass, brushed drums turning battered, one glockenspiel figure. Production huge and live, the voice always in front.`,neg:`sung vocal, four-on-the-floor kick, synth supersaws, dance production, rapping, tight pop structure, bright major-key pop chords, loud mastering`,lyric:`[Spoken] (offhand, one guitar)
 It always starts so quiet you think nothing's happening?
 
 [Spoken] (hushed middle, unguarded)
@@ -667,7 +667,7 @@ That it was always going somewhere? And you just—
 
 [Spoken] (half-shouted as the guitars break)
 There. THERE. Oh my god, there it is?`},
-{n:284,suno:[`afe4b404-bc17-45f5-8c4e-a7ffc3cae32c`,`d07d2f91-b979-4d62-ad8a-9cfe3589640f`],name:`Sacred-choir trance narration`,fam:`breakdown-peak narration`,cat:`lyrical`,bpm:`132`,role:`plain speech inside liturgy`,proc:`wordless choir in a stone room · organ pedal · plate reverb`,aff:`E`,style:`Sacred trance near 132 BPM under continuous spoken narration: a wordless choir recorded in a stone room swells beneath the speech, and the breakdown is a cathedral rather than a drop — voices sustaining in open fifths while the drums vanish entirely. The talking stays ordinary and unbothered against it, which is the whole point: plain speech inside liturgy. Then the kick returns and the choir climbs an octave. The lead is a unique and specific vocalist: close, dry and conversational, sentences lifting at the ends. Behind it: a rolling bass, an organ pedal tone, plate reverb on everything except the lead, distant bells. Production vast and reverberant around a completely dry voice.`,neg:`sung lead, solo diva vocal, gospel melisma, distorted guitar, lo-fi production, dry small room, aggressive delivery, cluttered percussion`,lyric:`[Spoken] (ordinary, against the choir)
+{n:284,suno:[`afe4b404-bc17-45f5-8c4e-a7ffc3cae32c`,`d07d2f91-b979-4d62-ad8a-9cfe3589640f`,`7f25424f-9506-42d7-9517-9c1cfaf7fecc`],name:`Sacred-choir trance narration`,fam:`breakdown-peak narration`,cat:`lyrical`,bpm:`132`,role:`plain speech inside liturgy`,proc:`wordless choir in a stone room · organ pedal · plate reverb`,aff:`E`,style:`Sacred trance near 132 BPM under continuous spoken narration: a wordless choir recorded in a stone room swells beneath the speech, and the breakdown is a cathedral rather than a drop — voices sustaining in open fifths while the drums vanish entirely. The talking stays ordinary and unbothered against it, which is the whole point: plain speech inside liturgy. Then the kick returns and the choir climbs an octave. The lead is a unique and specific vocalist: close, dry and conversational, sentences lifting at the ends. Behind it: a rolling bass, an organ pedal tone, plate reverb on everything except the lead, distant bells. Production vast and reverberant around a completely dry voice.`,neg:`sung lead, solo diva vocal, gospel melisma, distorted guitar, lo-fi production, dry small room, aggressive delivery, cluttered percussion`,lyric:`[Spoken] (ordinary, against the choir)
 So there's like, a whole choir happening? Which is a lot?
 
 [Spoken] (drums vanish — voices in open fifths)
@@ -676,7 +676,7 @@ Everyone's just standing here? Being reverent?
 
 [Spoken] (kick returns, choir up an octave)
 Okay, no, I get it. I totally get it?`},
-{n:285,suno:[`1a28971a-2af0-49cc-8920-de947f79fda7`,`4e1f9805-bf0b-4251-8dab-7e07df75c004`],name:`Hardstyle euphoric narration`,fam:`breakdown-peak narration`,cat:`lyrical`,bpm:`150`,role:`half-shouting into the drop, audibly grinning`,proc:`reverse-bass kick · piano breakdown · silence before return`,aff:`G`,style:`Euphoric hardstyle near 150 BPM under continuous spoken narration: a distorted reverse-bass kick driving hard, then cut away entirely for a wide melodic breakdown where the talking is left almost alone with a piano, then the kick returning heavier than before. Never sung. The lead is a unique and specific vocalist: dry, close and urgent, half-shouting as the drop lands and audibly grinning. Behind it: pitched distorted kicks, screeches, a euphoric supersaw melody through the breakdown, and a long total silence immediately before the return. Everything oversized and unembarrassed. Production loud and clipped, the voice cutting through the top of it.`,neg:`sung topline, subtle restrained dynamics, jazz harmony, acoustic arrangement, downtempo, whispered delivery, lo-fi mix, orchestral realism`,lyric:`[Spoken] (shouting over the kick)
+{n:285,suno:[`1a28971a-2af0-49cc-8920-de947f79fda7`,`4e1f9805-bf0b-4251-8dab-7e07df75c004`,`5eeaee67-af55-442a-9ced-4e0129910eda`],name:`Hardstyle euphoric narration`,fam:`breakdown-peak narration`,cat:`lyrical`,bpm:`150`,role:`half-shouting into the drop, audibly grinning`,proc:`reverse-bass kick · piano breakdown · silence before return`,aff:`G`,style:`Euphoric hardstyle near 150 BPM under continuous spoken narration: a distorted reverse-bass kick driving hard, then cut away entirely for a wide melodic breakdown where the talking is left almost alone with a piano, then the kick returning heavier than before. Never sung. The lead is a unique and specific vocalist: dry, close and urgent, half-shouting as the drop lands and audibly grinning. Behind it: pitched distorted kicks, screeches, a euphoric supersaw melody through the breakdown, and a long total silence immediately before the return. Everything oversized and unembarrassed. Production loud and clipped, the voice cutting through the top of it.`,neg:`sung topline, subtle restrained dynamics, jazz harmony, acoustic arrangement, downtempo, whispered delivery, lo-fi mix, orchestral realism`,lyric:`[Spoken] (shouting over the kick)
 It's so stupid! It's so unbelievably stupid and I love it?
 
 [Spoken] (kick cuts — alone with the piano)
@@ -685,7 +685,7 @@ Oh. That's pretty. That's actually really pretty?
 [Spoken] (silence, then the drop — grinning)
 Here it comes. Here it comes here it comes—
 OH MY GOD?`},
-{n:286,suno:[`26eb9c54-5e02-47b5-a76e-688e386dcb5c`,`3dafcf9b-7906-47a4-b3b4-799b7e9ec1a8`],name:`Phase-music narration`,fam:`breakdown-peak narration`,cat:`lyrical`,bpm:`108`,role:`speech looped and phased into rhythm`,proc:`additive marimba · two patterns drifting out of sync`,aff:`A`,style:`Minimalist phase music near 108 BPM under continuous spoken narration: interlocking marimba and vibraphone figures built by addition, one note entering at a time, two identical patterns drifting slowly out of sync with each other and back again. The talking runs the whole length — flat and matter-of-fact at first, unsettled as the patterns separate, still and clear when they lock back into phase. Never sung. The lead is a unique and specific vocalist: dry, close and conversational, sentences lifting at the ends. Behind it: pulsing string chords, a bass clarinet doubling the low pattern, and short fragments of that same spoken voice looped and phased against themselves until the words dissolve into pure rhythm. Production clean and analytical, the live lead completely dry.`,neg:`sung melody, four-on-the-floor kick, distorted guitar, orchestral bombast, rubato phrasing, dense reverb wash, aggressive delivery, dance production`,lyric:`[Spoken] (flat, matter-of-fact, over the pattern)
+{n:286,suno:[`26eb9c54-5e02-47b5-a76e-688e386dcb5c`,`3dafcf9b-7906-47a4-b3b4-799b7e9ec1a8`,`885245ab-70c5-4bcf-8e39-5455b87d9887`],name:`Phase-music narration`,fam:`breakdown-peak narration`,cat:`lyrical`,bpm:`108`,role:`speech looped and phased into rhythm`,proc:`additive marimba · two patterns drifting out of sync`,aff:`A`,style:`Minimalist phase music near 108 BPM under continuous spoken narration: interlocking marimba and vibraphone figures built by addition, one note entering at a time, two identical patterns drifting slowly out of sync with each other and back again. The talking runs the whole length — flat and matter-of-fact at first, unsettled as the patterns separate, still and clear when they lock back into phase. Never sung. The lead is a unique and specific vocalist: dry, close and conversational, sentences lifting at the ends. Behind it: pulsing string chords, a bass clarinet doubling the low pattern, and short fragments of that same spoken voice looped and phased against themselves until the words dissolve into pure rhythm. Production clean and analytical, the live lead completely dry.`,neg:`sung melody, four-on-the-floor kick, distorted guitar, orchestral bombast, rubato phrasing, dense reverb wash, aggressive delivery, dance production`,lyric:`[Spoken] (flat, matter-of-fact, over the pattern)
 It's the same four notes? It's literally been the same four notes?
 
 [Spoken] (patterns drifting apart — unsettled)
@@ -694,7 +694,7 @@ Am I hearing that? Is that actually happening?
 
 [Spoken] (locked back in — still, clear)
 Oh. Okay. They found each other again?`},
-{n:287,suno:[`cf5f373b-df86-4162-a929-f14fd4c9f828`,`a94844c3-b09f-4bb7-a7e1-a16bc121e2a6`],name:`Spiritual-jazz crescendo narration`,fam:`breakdown-peak narration`,cat:`lyrical`,bpm:`96`,role:`narration riding a horn as it climbs`,proc:`modal vamp · upright bass · overblown tenor`,aff:`C`,style:`Spiritual jazz crescendo near 96 BPM under continuous spoken narration: a modal vamp on upright bass and piano, brushed drums loosening as the track goes, a tenor saxophone entering late and climbing into ecstatic overblown squalls. The talking begins offhand over the vamp, turns quiet and searching when the band thins to bass alone, then rides the horn upward as it goes. Never sung. The lead is a unique and specific vocalist: warm, close and conversational, unhurried, sentences rising at the ends. Behind it: one repeating modal figure, bowed bass drones, splash cymbals, everything played live and deliberately loose. Production roomy and analog, the voice mixed level with the band rather than above it.`,neg:`sung melody, quantized programmed drums, synth pads, dance production, tight pop structure, autotune, aggressive delivery, clinical mixing`,lyric:`[Spoken] (offhand, over the vamp)
+{n:287,suno:[`cf5f373b-df86-4162-a929-f14fd4c9f828`,`a94844c3-b09f-4bb7-a7e1-a16bc121e2a6`,`3055d54a-cff7-4451-86c9-385f835420b1`],name:`Spiritual-jazz crescendo narration`,fam:`breakdown-peak narration`,cat:`lyrical`,bpm:`96`,role:`narration riding a horn as it climbs`,proc:`modal vamp · upright bass · overblown tenor`,aff:`C`,style:`Spiritual jazz crescendo near 96 BPM under continuous spoken narration: a modal vamp on upright bass and piano, brushed drums loosening as the track goes, a tenor saxophone entering late and climbing into ecstatic overblown squalls. The talking begins offhand over the vamp, turns quiet and searching when the band thins to bass alone, then rides the horn upward as it goes. Never sung. The lead is a unique and specific vocalist: warm, close and conversational, unhurried, sentences rising at the ends. Behind it: one repeating modal figure, bowed bass drones, splash cymbals, everything played live and deliberately loose. Production roomy and analog, the voice mixed level with the band rather than above it.`,neg:`sung melody, quantized programmed drums, synth pads, dance production, tight pop structure, autotune, aggressive delivery, clinical mixing`,lyric:`[Spoken] (offhand, over the vamp)
 Nobody in here is talking? Everyone's just letting it happen?
 
 [Spoken] (band thins to bass — quiet, searching)
@@ -703,7 +703,7 @@ I think I thought it'd be obvious by now?
 
 [Spoken] (riding the horn up)
 Oh— okay, they're going. They're actually going—`},
-{n:288,suno:[`d54236e7-2fa6-49c9-86b8-d2511e607a71`,`022dd2cd-6c3a-4389-a098-d2855f865973`],name:`Gospel-swell narration`,fam:`breakdown-peak narration`,cat:`lyrical`,bpm:`84`,role:`plain personal speech against a rising choir`,proc:`Hammond organ · handclaps · tempo lifting`,aff:`E`,style:`Gospel swell near 84 BPM under continuous spoken narration: Hammond organ and piano beneath handclaps and tambourine, the tempo lifting almost imperceptibly across the track, a choir entering behind the speech and rising with each repetition until it fills everything. The talking stays plain and personal against it — offhand at the start, quieter and more honest as the organ builds, half-shouted when the choir finally opens up. The lead never sings. The lead is a unique and specific vocalist: close, warm and conversational, sentences lifting at the ends. Behind it: walking bass, snare on the backbeat, an organ swell holding under the last section. Production live and room-lit, the voice dry and forward.`,neg:`sung lead, solo melisma runs, programmed drums, synth production, dance beat, lo-fi mix, aggressive delivery, cold clinical room`,lyric:`[Spoken] (plain, against the organ)
+{n:288,suno:[`d54236e7-2fa6-49c9-86b8-d2511e607a71`,`022dd2cd-6c3a-4389-a098-d2855f865973`,`2f597cda-bcb8-40f1-a60c-fef6b501ff3d`],name:`Gospel-swell narration`,fam:`breakdown-peak narration`,cat:`lyrical`,bpm:`84`,role:`plain personal speech against a rising choir`,proc:`Hammond organ · handclaps · tempo lifting`,aff:`E`,style:`Gospel swell near 84 BPM under continuous spoken narration: Hammond organ and piano beneath handclaps and tambourine, the tempo lifting almost imperceptibly across the track, a choir entering behind the speech and rising with each repetition until it fills everything. The talking stays plain and personal against it — offhand at the start, quieter and more honest as the organ builds, half-shouted when the choir finally opens up. The lead never sings. The lead is a unique and specific vocalist: close, warm and conversational, sentences lifting at the ends. Behind it: walking bass, snare on the backbeat, an organ swell holding under the last section. Production live and room-lit, the voice dry and forward.`,neg:`sung lead, solo melisma runs, programmed drums, synth production, dance beat, lo-fi mix, aggressive delivery, cold clinical room`,lyric:`[Spoken] (plain, against the organ)
 I'm not really a church person? Everyone here knows that?
 
 [Spoken] (organ building — quieter, honest)
@@ -712,7 +712,7 @@ And I stop being clever about it?
 
 [Spoken] (half-shouted as the choir opens)
 Oh my god. Okay. OKAY—`},
-{n:289,suno:[`20f9aa1e-17fa-41e9-992f-25cc6f2b0959`,`454a12c9-17c4-4e69-ac83-2afcb94ee72f`],name:`Drone-doom crescendo narration`,fam:`breakdown-peak narration`,cat:`lyrical`,bpm:`52`,role:`a small voice dwarfed, then shouting`,proc:`one sustained chord for minutes · bowed cymbals`,aff:`G`,style:`Drone-doom crescendo near 52 BPM under continuous spoken narration: amplifier hum and a single sustained chord held for minutes before the riff finally lands, cymbals bowed rather than struck, everything vast and impossibly slow. The talking runs throughout — offhand and small against the volume, hushed through the long suspended middle, then shouting to be heard at all when the riff arrives. Never sung. The lead is a unique and specific vocalist: close-mic-ed, dry and conversational, dwarfed by the room around it. Behind it: detuned guitar through cracking amplifiers, sub-bass felt more than heard, one cymbal left decaying for half a minute. Production enormous and airless behind an intimate voice.`,neg:`fast tempo, sung melody, bright major chords, pop structure, programmed drums, thin production, cheerful delivery, dense busy arrangement`,lyric:`[Spoken] (small against the volume)
+{n:289,suno:[`20f9aa1e-17fa-41e9-992f-25cc6f2b0959`,`454a12c9-17c4-4e69-ac83-2afcb94ee72f`,`00decb63-55e0-4e73-96b2-ab153306222f`],name:`Drone-doom crescendo narration`,fam:`breakdown-peak narration`,cat:`lyrical`,bpm:`52`,role:`a small voice dwarfed, then shouting`,proc:`one sustained chord for minutes · bowed cymbals`,aff:`G`,style:`Drone-doom crescendo near 52 BPM under continuous spoken narration: amplifier hum and a single sustained chord held for minutes before the riff finally lands, cymbals bowed rather than struck, everything vast and impossibly slow. The talking runs throughout — offhand and small against the volume, hushed through the long suspended middle, then shouting to be heard at all when the riff arrives. Never sung. The lead is a unique and specific vocalist: close-mic-ed, dry and conversational, dwarfed by the room around it. Behind it: detuned guitar through cracking amplifiers, sub-bass felt more than heard, one cymbal left decaying for half a minute. Production enormous and airless behind an intimate voice.`,neg:`fast tempo, sung melody, bright major chords, pop structure, programmed drums, thin production, cheerful delivery, dense busy arrangement`,lyric:`[Spoken] (small against the volume)
 It's been one chord? For like, four minutes?
 
 [Spoken] (suspended middle, hushed)
@@ -721,7 +721,7 @@ Like we all agreed to wait? Without discussing it?
 
 [Spoken] (shouting over the riff)
 THERE— oh my god, there it is—`},
-{n:290,suno:[`99d6fc8c-9a00-4883-8d5b-5967c8242d26`,`3a7905db-e967-4b6a-8d01-ccff73d4af39`],name:`Americana slow-build narration`,fam:`breakdown-peak narration`,cat:`lyrical`,bpm:`88`,role:`band arriving one player at a time`,proc:`pedal steel bending under the speech · fiddle answers`,aff:`B`,style:`Americana slow-build near 88 BPM under continuous spoken narration: the band arriving one player at a time — acoustic guitar, then brushed drums, then bass, then pedal steel — climbing toward a single warm release near the end. The talking runs the whole way: offhand and porch-side at the start, unguarded in the middle when it thins back to one guitar, lifted and half-laughing when the full band comes in. Never sung. The lead is a unique and specific vocalist: close, warm and conversational, sentences rising at the ends. Behind it: pedal steel bending under the speech, fiddle answering in the gaps, a barroom piano low in the mix. Production live, warm and roomy, the voice right up front.`,neg:`sung melody, programmed drums, synth pads, dance production, autotune, aggressive delivery, clinical mixing, stadium rock bombast`,lyric:`[Spoken] (offhand, porch, one guitar)
+{n:290,suno:[`99d6fc8c-9a00-4883-8d5b-5967c8242d26`,`3a7905db-e967-4b6a-8d01-ccff73d4af39`,`95ab8468-9037-4c64-8e14-6cad44149229`],name:`Americana slow-build narration`,fam:`breakdown-peak narration`,cat:`lyrical`,bpm:`88`,role:`band arriving one player at a time`,proc:`pedal steel bending under the speech · fiddle answers`,aff:`B`,style:`Americana slow-build near 88 BPM under continuous spoken narration: the band arriving one player at a time — acoustic guitar, then brushed drums, then bass, then pedal steel — climbing toward a single warm release near the end. The talking runs the whole way: offhand and porch-side at the start, unguarded in the middle when it thins back to one guitar, lifted and half-laughing when the full band comes in. Never sung. The lead is a unique and specific vocalist: close, warm and conversational, sentences rising at the ends. Behind it: pedal steel bending under the speech, fiddle answering in the gaps, a barroom piano low in the mix. Production live, warm and roomy, the voice right up front.`,neg:`sung melody, programmed drums, synth pads, dance production, autotune, aggressive delivery, clinical mixing, stadium rock bombast`,lyric:`[Spoken] (offhand, porch, one guitar)
 Somebody always starts playing before anybody asks?
 
 [Spoken] (thinned back to guitar — unguarded)
@@ -730,7 +730,7 @@ And then the steel comes in and I'm just—
 
 [Spoken] (full band, half-laughing)
 Okay. Okay, that's not fair? That's genuinely not fair?`},
-{n:291,suno:[`6501f6f3-b994-4ccc-8f99-415ed442ba26`,`a849e797-7f19-44c0-b6a3-71ce264ca280`],name:`Acquired-drawl club rap — blend`,fam:`inspirations · acquired-drawl club rap`,cat:`inspiration`,artist:`f0b8b756a2e5344fb0bd0f7b5371266fb3bf2ff9fe12c044bb85dfd45180270c`,role:`Blend`,aff:`D`,style:`Club-pop rap crossover near 100 BPM, glossy and hook-first: a hard half-time rap verse wrapped in big radio production, the chorus handed off to a bright sung line. Snapping trap hats and triplet rolls, deep sliding 808s, a simple neon synth riff, handclaps, wide polished low end. A unique and specific vocalist: a low chest-placed rap lead delivered in a broad Southern American drawl — vowels stretched long and flat, final consonants dropped, syllables leaning back off the beat then snapping forward hard on the punch words, tone level and unhurried with a percussive chop on every rhyme. Not sung; pitch stays inside a narrow spoken band. The chorus answers in a light, high, airy pop tone — an obvious and deliberate contrast to the rap voice. Close modern mic, tight compression, bright and forward. Delivery cocky, teasing, self-amused: swagger played for fun rather than menace.`,neg:`sung rap verse, mumbled delivery, lo-fi tape haze, live band recording, acoustic guitar, screamed vocal, operatic tone, slow ballad tempo, jazz swing, choir layering`},
+{n:291,suno:[`6501f6f3-b994-4ccc-8f99-415ed442ba26`,`a849e797-7f19-44c0-b6a3-71ce264ca280`,`42463225-23a6-4600-93c8-0c8d93022f2a`],name:`Acquired-drawl club rap — blend`,fam:`inspirations · acquired-drawl club rap`,cat:`inspiration`,artist:`f0b8b756a2e5344fb0bd0f7b5371266fb3bf2ff9fe12c044bb85dfd45180270c`,role:`Blend`,aff:`D`,style:`Club-pop rap crossover near 100 BPM, glossy and hook-first: a hard half-time rap verse wrapped in big radio production, the chorus handed off to a bright sung line. Snapping trap hats and triplet rolls, deep sliding 808s, a simple neon synth riff, handclaps, wide polished low end. A unique and specific vocalist: a low chest-placed rap lead delivered in a broad Southern American drawl — vowels stretched long and flat, final consonants dropped, syllables leaning back off the beat then snapping forward hard on the punch words, tone level and unhurried with a percussive chop on every rhyme. Not sung; pitch stays inside a narrow spoken band. The chorus answers in a light, high, airy pop tone — an obvious and deliberate contrast to the rap voice. Close modern mic, tight compression, bright and forward. Delivery cocky, teasing, self-amused: swagger played for fun rather than menace.`,neg:`sung rap verse, mumbled delivery, lo-fi tape haze, live band recording, acoustic guitar, screamed vocal, operatic tone, slow ballad tempo, jazz swing, choir layering`},
 {n:292,suno:[`350439f5-2a76-4146-b9cc-da32b679ac46`,`5a9e48d4-3987-477a-b1e8-b200ba333248`],name:`Crunk drawl-at-source root`,fam:`inspirations · acquired-drawl club rap`,cat:`inspiration`,artist:`f0b8b756a2e5344fb0bd0f7b5371266fb3bf2ff9fe12c044bb85dfd45180270c`,role:`Root 1`,aff:`G`,style:`Southern American crunk rap isolated: the drawl at full strength. Near 72 BPM in half-time, heavy and sparse — cavernous 808 kick, rattling hi-hat triplets, one ominous minor synth line, cracking snares, huge empty space between the hits. A unique and specific vocalist: a low chest-placed rap lead in a thick regional drawl, vowels drawn out and diphthongs collapsed into a single long sound, final consonants clipped off, the flow dragging behind the beat then landing three hard syllables dead on the snare. Ad-libs doubled low and shouted into the gaps. No melody at all — pitch sits in speech range and rises only to bark. Close mic, heavy compression, low end enormous. Delivery hard, taunting and territorial: a voice daring the room to answer.`,neg:`sung hook, melodic autotune croon, fast double-time flow, bright pop production, live drums, acoustic instruments, cheerful delivery, lush reverb, orchestral strings, four-on-the-floor kick`},
 {n:293,suno:[`62a022ab-02c3-4adc-aa12-7383e9cf3650`,`7c7d9937-1cdb-41ec-99c5-8bd22085520c`,`90cfeaea-4f80-40a9-a0f2-9dae51bd7c1a`],name:`Club-bounce chant root`,fam:`inspirations · acquired-drawl club rap`,cat:`inspiration`,artist:`f0b8b756a2e5344fb0bd0f7b5371266fb3bf2ff9fe12c044bb85dfd45180270c`,role:`Root 2`,aff:`E`,style:`Dirty-South club bounce isolated: the chant that runs the floor. Near 104 BPM, bright and relentless — clattering programmed drums, rubbery bass, whistle stabs and airhorns, breakdowns where everything drops away to handclaps and voices. A unique and specific vocalist: a rap lead pitched high and forward and worked at chant volume, call-and-response against a shouted crowd answer, phrases short and repeated until repetition itself becomes the hook, consonants punched, vowels drawled wide on the held words. Half the track is the same six words returning. Roughly recorded and hot, the voice distorting slightly at the peaks, room noise left in. Delivery ecstatic and commanding — a floor being worked, not a story being told.`,neg:`sung melodic verse, slow tempo, lush production, whispered delivery, ballad structure, acoustic guitar, orchestral swell, autotune croon, ambient pads, mournful tone`},
 {n:294,suno:[`9a29d52f-681f-4ce0-abf3-7a492dfafd71`,`d8fc3206-8a10-49e9-8d9b-2d2b0dcbb008`,`5c786ca6-ab9a-4c23-9d6a-92bfc75ac87b`],name:`Euro club-pop hook root`,fam:`inspirations · acquired-drawl club rap`,cat:`inspiration`,artist:`f0b8b756a2e5344fb0bd0f7b5371266fb3bf2ff9fe12c044bb85dfd45180270c`,role:`Root 3`,aff:`C`,style:`Euro club-pop crossover isolated: the polished chorus the rap is built around. Near 126 BPM, gleaming and wide — sidechained supersaw chords, a bright plucked topline, a filtered pre-chorus lift, clean four-on-the-floor kick and a big open drop. A unique and specific vocalist: a light high sung lead, airy and forward with a soft breathy edge, phrases arcing upward and holding on one long open vowel, controlled vibrato only at the ends, sincere and unguarded where everything around it is bravado. Doubled and stacked in thirds on the hook, tuned close but never robotic. Modern pop production, glossy and loud, the voice sitting right on top. Delivery yearning and wide-eyed: the sincere counterweight, the part carrying the emotion.`,neg:`rapped verse, low chest growl, distorted vocal, lo-fi production, live band recording, slow tempo, spoken word, harsh consonants, dark minor drone, screamed delivery`},
@@ -2032,26 +2032,37 @@ const SONG_MODEL = {
   '182417fc-cb2e-4a13-9035-cbe154aa3b64': 'v6',
   '6e868c47-86f8-450e-986d-75712c58af71': 'v5.5',
   '9b52461a-15c2-4e00-bc1d-362347d62dd8': 'v5.5',
+  '8671af61-6482-4caa-bf4c-b514ec3f8b48': 'v6',
   'f70dfdc5-7f4c-4a35-ae27-cefd32adfcb7': 'v5.5',
   'e1cc0bbd-d311-435b-959a-3b46dab3aaa4': 'v5.5',
+  'e3f140e9-93f9-4600-8c14-d0083b8683f7': 'v6',
   'd3e52f24-2373-48fc-9547-24422be016bd': 'v5.5',
   '807d41aa-c19b-49c5-8de1-79e1129d9101': 'v5.5',
+  'a4acfb15-a65a-4570-99b4-866b1be61e3b': 'v6',
   'afe4b404-bc17-45f5-8c4e-a7ffc3cae32c': 'v5.5',
   'd07d2f91-b979-4d62-ad8a-9cfe3589640f': 'v5.5',
+  '7f25424f-9506-42d7-9517-9c1cfaf7fecc': 'v6',
   '1a28971a-2af0-49cc-8920-de947f79fda7': 'v5.5',
   '4e1f9805-bf0b-4251-8dab-7e07df75c004': 'v5.5',
+  '5eeaee67-af55-442a-9ced-4e0129910eda': 'v6',
   '26eb9c54-5e02-47b5-a76e-688e386dcb5c': 'v5.5',
   '3dafcf9b-7906-47a4-b3b4-799b7e9ec1a8': 'v5.5',
+  '885245ab-70c5-4bcf-8e39-5455b87d9887': 'v6',
   'cf5f373b-df86-4162-a929-f14fd4c9f828': 'v5.5',
   'a94844c3-b09f-4bb7-a7e1-a16bc121e2a6': 'v5.5',
+  '3055d54a-cff7-4451-86c9-385f835420b1': 'v6',
   'd54236e7-2fa6-49c9-86b8-d2511e607a71': 'v5.5',
   '022dd2cd-6c3a-4389-a098-d2855f865973': 'v5.5',
+  '2f597cda-bcb8-40f1-a60c-fef6b501ff3d': 'v6',
   '20f9aa1e-17fa-41e9-992f-25cc6f2b0959': 'v5.5',
   '454a12c9-17c4-4e69-ac83-2afcb94ee72f': 'v5.5',
+  '00decb63-55e0-4e73-96b2-ab153306222f': 'v6',
   '99d6fc8c-9a00-4883-8d5b-5967c8242d26': 'v5.5',
   '3a7905db-e967-4b6a-8d01-ccff73d4af39': 'v5.5',
+  '95ab8468-9037-4c64-8e14-6cad44149229': 'v6',
   '6501f6f3-b994-4ccc-8f99-415ed442ba26': 'v5.5',
   'a849e797-7f19-44c0-b6a3-71ce264ca280': 'v5.5',
+  '42463225-23a6-4600-93c8-0c8d93022f2a': 'v6',
   '350439f5-2a76-4146-b9cc-da32b679ac46': 'v5.5',
   '5a9e48d4-3987-477a-b1e8-b200ba333248': 'v5.5',
   '62a022ab-02c3-4adc-aa12-7383e9cf3650': 'v5.5',
@@ -3514,26 +3525,37 @@ const SONG_TITLES = {
   '182417fc-cb2e-4a13-9035-cbe154aa3b64': 'Glad You Stayed',
   '6e868c47-86f8-450e-986d-75712c58af71': 'Reflections',
   '9b52461a-15c2-4e00-bc1d-362347d62dd8': 'All of the People',
+  '8671af61-6482-4caa-bf4c-b514ec3f8b48': 'Look Up, Look Up',
   'f70dfdc5-7f4c-4a35-ae27-cefd32adfcb7': 'We\'re Gonna Get Through This',
   'e1cc0bbd-d311-435b-959a-3b46dab3aaa4': 'Time to Get Away',
+  'e3f140e9-93f9-4600-8c14-d0083b8683f7': 'Make The Morning Last',
   'd3e52f24-2373-48fc-9547-24422be016bd': 'Misfit Anthem',
   '807d41aa-c19b-49c5-8de1-79e1129d9101': 'The New Art',
+  'a4acfb15-a65a-4570-99b4-866b1be61e3b': 'Let The Wheels Spin',
   'afe4b404-bc17-45f5-8c4e-a7ffc3cae32c': 'Friends',
   'd07d2f91-b979-4d62-ad8a-9cfe3589640f': 'Untitled',
+  '7f25424f-9506-42d7-9517-9c1cfaf7fecc': 'That\'s The Spot',
   '1a28971a-2af0-49cc-8920-de947f79fda7': 'Bunker in the Blitz',
   '4e1f9805-bf0b-4251-8dab-7e07df75c004': 'Get Back Up',
+  '5eeaee67-af55-442a-9ced-4e0129910eda': 'Twenty-Six Miles',
   '26eb9c54-5e02-47b5-a76e-688e386dcb5c': 'How I Know',
   '3dafcf9b-7906-47a4-b3b4-799b7e9ec1a8': 'Don\'t Get Any Big Ideas',
+  '885245ab-70c5-4bcf-8e39-5455b87d9887': 'Nobody Goes Till We Say',
   'cf5f373b-df86-4162-a929-f14fd4c9f828': 'Spare a Little Kindness',
   'a94844c3-b09f-4bb7-a7e1-a16bc121e2a6': 'When the World Caves In',
+  '3055d54a-cff7-4451-86c9-385f835420b1': 'The Deep End',
   'd54236e7-2fa6-49c9-86b8-d2511e607a71': 'With Me (Without)',
   '022dd2cd-6c3a-4389-a098-d2855f865973': 'Found a Friend',
+  '2f597cda-bcb8-40f1-a60c-fef6b501ff3d': 'Change The Back',
   '20f9aa1e-17fa-41e9-992f-25cc6f2b0959': 'Burn',
   '454a12c9-17c4-4e69-ac83-2afcb94ee72f': 'Broken Backs',
+  '00decb63-55e0-4e73-96b2-ab153306222f': 'Let The Sky Go Crack',
   '99d6fc8c-9a00-4883-8d5b-5967c8242d26': 'You Made Me Like This',
   '3a7905db-e967-4b6a-8d01-ccff73d4af39': 'Standing in the Rain',
+  '95ab8468-9037-4c64-8e14-6cad44149229': 'Tell Her I Looked',
   '6501f6f3-b994-4ccc-8f99-415ed442ba26': 'Mountain',
   'a849e797-7f19-44c0-b6a3-71ce264ca280': 'Wild Blue Yonder',
+  '42463225-23a6-4600-93c8-0c8d93022f2a': 'Every Cent Mine',
   '350439f5-2a76-4146-b9cc-da32b679ac46': 'Good Riddance',
   '5a9e48d4-3987-477a-b1e8-b200ba333248': 'One Hand on My Sword',
   '62a022ab-02c3-4adc-aa12-7383e9cf3650': 'So Low We\'re On the Ceiling',
@@ -5779,26 +5801,37 @@ const SONG_DUR = {
   '182417fc-cb2e-4a13-9035-cbe154aa3b64':243,
   '6e868c47-86f8-450e-986d-75712c58af71':479,
   '9b52461a-15c2-4e00-bc1d-362347d62dd8':285,
+  '8671af61-6482-4caa-bf4c-b514ec3f8b48':256,
   'f70dfdc5-7f4c-4a35-ae27-cefd32adfcb7':99,
   'e1cc0bbd-d311-435b-959a-3b46dab3aaa4':479,
+  'e3f140e9-93f9-4600-8c14-d0083b8683f7':228,
   'd3e52f24-2373-48fc-9547-24422be016bd':479,
   '807d41aa-c19b-49c5-8de1-79e1129d9101':213,
+  'a4acfb15-a65a-4570-99b4-866b1be61e3b':268,
   'afe4b404-bc17-45f5-8c4e-a7ffc3cae32c':479,
   'd07d2f91-b979-4d62-ad8a-9cfe3589640f':197,
+  '7f25424f-9506-42d7-9517-9c1cfaf7fecc':208,
   '1a28971a-2af0-49cc-8920-de947f79fda7':187,
   '4e1f9805-bf0b-4251-8dab-7e07df75c004':166,
+  '5eeaee67-af55-442a-9ced-4e0129910eda':208,
   '26eb9c54-5e02-47b5-a76e-688e386dcb5c':190,
   '3dafcf9b-7906-47a4-b3b4-799b7e9ec1a8':159,
+  '885245ab-70c5-4bcf-8e39-5455b87d9887':180,
   'cf5f373b-df86-4162-a929-f14fd4c9f828':479,
   'a94844c3-b09f-4bb7-a7e1-a16bc121e2a6':214,
+  '3055d54a-cff7-4451-86c9-385f835420b1':231,
   'd54236e7-2fa6-49c9-86b8-d2511e607a71':178,
   '022dd2cd-6c3a-4389-a098-d2855f865973':173,
+  '2f597cda-bcb8-40f1-a60c-fef6b501ff3d':141,
   '20f9aa1e-17fa-41e9-992f-25cc6f2b0959':215,
   '454a12c9-17c4-4e69-ac83-2afcb94ee72f':184,
+  '00decb63-55e0-4e73-96b2-ab153306222f':263,
   '99d6fc8c-9a00-4883-8d5b-5967c8242d26':153,
   '3a7905db-e967-4b6a-8d01-ccff73d4af39':224,
+  '95ab8468-9037-4c64-8e14-6cad44149229':202,
   '6501f6f3-b994-4ccc-8f99-415ed442ba26':106,
   'a849e797-7f19-44c0-b6a3-71ce264ca280':305,
+  '42463225-23a6-4600-93c8-0c8d93022f2a':153,
   '350439f5-2a76-4146-b9cc-da32b679ac46':167,
   '5a9e48d4-3987-477a-b1e8-b200ba333248':134,
   '62a022ab-02c3-4adc-aa12-7383e9cf3650':142,
@@ -6252,7 +6285,7 @@ const SONG_DUR = {
 /* Cover art that does NOT follow cdn2.suno.ai/image_<uuid>.jpeg — a creator replaced it,
  * so the id cannot be used to work the address out. Everything not listed here follows
  * the pattern and is derived. A cover can be changed later: re-check with --all. */
-const ART_CHECKED = 1475;
+const ART_CHECKED = 1486;
 const SONG_ART = {
   '03fd694a-1623-4ccc-b624-f5468d325ecb': 'https://cdn2.suno.ai/video_upload_6b9763b6-d937-4b17-bb50-2511eb08e159_video_upload_6b9763b6-d937-4b17-bb50-2511eb08e159_cover_snapshot_0s_1787493340_image.jpeg',
   '085685eb-4d85-48fa-b13e-77cbb4688125': 'https://cdn2.suno.ai/video_upload_8ca36dbe-c6ac-4547-8831-90f1c19ce61f_video_upload_8ca36dbe-c6ac-4547-8831-90f1c19ce61f_cover_snapshot_0s_1782788922_image.jpeg',
