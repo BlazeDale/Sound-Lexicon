@@ -133,6 +133,23 @@
           }
         },
 
+        // Who has this queue open right now: one row per open tab, at presence/<uid>/<conn>,
+        // holding the server time it arrived. A visitor may write only under their own uid,
+        // and the database removes the row itself when that tab's connection drops
+        // (onDisconnect), so the count never needs a cleanup pass. Reads come from the
+        // queue-level .read above. Only a queue that still exists can gain rows - a tab
+        // reconnecting to a deleted queue must not resurrect its node. (.validate is skipped
+        // on deletes, so removing a row is never blocked by that check.)
+        "presence": {
+          "$uid": {
+            ".write": "auth != null && auth.uid === $uid",
+            ".validate": "newData.hasChildren()",
+            "$conn": {
+              ".validate": "newData.isNumber() && root.child('queues/' + $qid + '/meta').exists()"
+            }
+          }
+        },
+
         "$other": { ".validate": false }
       }
     },

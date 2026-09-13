@@ -161,6 +161,9 @@
   #chat h3{margin:0;padding:10px 14px;font-size:13px;border-bottom:1px solid var(--line);flex:none}
   #chat h3 span{display:block;font-family:var(--mono);font-size:10.5px;color:var(--dim);font-weight:400;
                 line-height:1.45;margin-top:3px;white-space:normal}
+  #chat h3 .here{margin-left:8px;font-family:var(--mono);font-size:10.5px;color:var(--teal);font-weight:400;white-space:nowrap}
+  #chat h3 .here::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--teal);
+                         margin-right:5px;vertical-align:1px;box-shadow:0 0 5px var(--teal)}
   #msgs{max-height:290px;overflow-y:auto;padding:10px 14px;display:flex;flex-direction:column;gap:9px;min-height:0}
   .msg{font-size:13.5px;line-height:1.5}
   .msg .hd{font-family:var(--mono);font-size:11px;color:var(--dim);margin-bottom:1px}
@@ -290,7 +293,7 @@
     </section>
 
   <div id="chat" hidden>
-    <h3>Chat <span id="chatnote">anyone with the link can talk here</span><span class="spacer"></span></h3>
+    <h3>Chat <small id="here" class="here" hidden title="People with this queue open right now, counted once per browser"></small><span id="chatnote">anyone with the link can talk here</span><span class="spacer"></span></h3>
     <form class="chatin" id="chatform" autocomplete="off">
       <input id="chatin" placeholder="Say something — or drop a link here to suggest a track" maxlength="600">
       <button class="primary" type="submit">Send</button>
@@ -394,7 +397,7 @@
    page -- covers read from data.js while the code that looks them up is old. Printed
    on load and shown in the footer, so 'which build am I on' is answerable in a glance
    instead of by deduction. */
-const QUEUE_BUILD = '2026-09-13-b';
+const QUEUE_BUILD = '2026-09-13-c';
 console.log('[queue] build ' + QUEUE_BUILD);
 
 const $ = s => document.querySelector(s);
@@ -1794,7 +1797,7 @@ $('#copylink').addEventListener('click', () => {
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import { getDatabase, ref, push, set, update, remove, onValue, serverTimestamp, get,
-         query, orderByChild, equalTo }
+         query, orderByChild, equalTo, onDisconnect }
   from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
 const firebaseConfig = {
@@ -1858,10 +1861,49 @@ try {
       .sort((a, b) => a.ord - b.ord);
   }
 
+  /* Who is here right now. Each open tab holds one row at presence/<uid>/<connection>, and
+     the SERVER deletes it when that connection drops (onDisconnect) - a closed tab, a killed
+     browser and a lost network all count as leaving, with no heartbeat or timer on this
+     side. Rows are per connection so closing a second tab does not erase the first; the
+     count is of uids, so one person with three tabs open is one visitor.
+
+     The badge stays hidden until this tab's own row is accepted. A database whose rules
+     predate presence refuses the write, and "0 here" with you standing in the room would
+     be worse than no counter at all. */
+  let stopP = null, stopConn = null, myP = null, hereOk = false;
+  function present(qid) {
+    [stopP, stopConn].forEach(f => f && f());
+    if (myP) { onDisconnect(myP).cancel().catch(() => {}); remove(myP).catch(() => {}); }
+    myP = push(ref(db, 'queues/' + qid + '/presence/' + me.uid));
+    hereOk = false;
+    let n = 0;
+    const paint = () => {
+      const h = el('here');
+      const k = Math.max(n, hereOk ? 1 : 0);
+      h.textContent = k + ' here';
+      h.hidden = !hereOk;
+    };
+    /* .info/connected fires true on every (re)connect. onDisconnect has already run by then
+       and removed the old row, so it is armed again and the row written again each time -
+       arming first, so there is never a moment the row exists with nothing to clear it. */
+    stopConn = onValue(ref(db, '.info/connected'), s => {
+      if (s.val() !== true) return;
+      onDisconnect(myP).remove()
+        .then(() => set(myP, serverTimestamp()))
+        .then(() => { hereOk = true; paint(); })
+        .catch(e => console.warn('[queue] presence refused (rules not published?)', e));
+    });
+    stopP = onValue(ref(db, 'queues/' + qid + '/presence'), s => {
+      n = Object.values(s.val() || {}).filter(v => v && typeof v === 'object').length;
+      paint();
+    });
+  }
+
   let stopT = null, stopM = null, stopC = null;
   function listen(qid) {
     SQ.qid = qid;
     [stopT, stopM, stopC].forEach(f => f && f());
+    present(qid);
     let tracks = [], meta = {};
     stopM = onValue(ref(db, 'queues/' + qid + '/meta'), s => { meta = s.val() || {}; window.__applyRemote(tracks, meta); });
     stopT = onValue(ref(db, 'queues/' + qid + '/tracks'), s => {
@@ -1958,7 +2000,7 @@ try {
       /* Same parent-path problem as create, so the children go first and the node itself is
          only a tidy-up: once meta, tracks and chat are gone the queue is gone, whether or
          not the write at the node is permitted. */
-      for (const part of ['tracks', 'chat', 'meta']) {
+      for (const part of ['presence', 'tracks', 'chat', 'meta']) {
         await remove(ref(db, 'queues/' + qid + '/' + part)).catch(e => console.warn('[queue] could not remove ' + part, e));
       }
       await remove(ref(db, 'queues/' + qid)).catch(() => {});
