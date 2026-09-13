@@ -6383,6 +6383,128 @@
       "edits": 3,
       "prompt": "charged-objects",
       "note": "roll 2. Roll 1 came back truncated - 134 words starting mid-line - and had drifted to a courtship (she loves me, ay-oh; gold shoes on her welcome mat behind a screen door). Roll 2 keeps the brag self-aware, which the style asks (Mrs. Dunn, put down your hose, you gave me an F, now look how it glows; walking like a king on everything I aint got; four dollars left - four whole dollars - I spent the whole check, I bought the whole sun). Edits, meaning-first: cousin Ray on his rusted old hood (rust) became leaning right where he always has stood - still stuck, which is why the pride is chewed; ain’t a damn thing (five times, unflagged) became ain’t a single thing; the teacher renamed from Gable. Preamble and step-off-the-stoop direction stripped"
+    },
+    "292": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Wish A Cousin Would",
+        "clips": [
+          "5c336f2f-4eed-4d7c-b294-43feca8e789d",
+          "70d02ebf-90a7-4bb1-a1bc-d19b59c4523a"
+        ],
+        "v0": "5c336f2f-4eed-4d7c-b294-43feca8e789d",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "someone sitting down at the card table at their family reunion, the undefeated spades champion three summers running, taunting the cousins, uncles and in-laws lining up to take their seat, slapping each winning card down hard and daring the next one to try"
+      },
+      "flags": [],
+      "tagged": false,
+      "edits": 4,
+      "prompt": "charged-objects",
+      "note": "second slot, first roll. Slot 1 (holding the neighbourhood court their older brother ruled) came back 103 words deep in the palette - chain-link biting the palm, rust and spit, lines left in grease, angle iron holding his ghost: a court with a fence is a fixture set. Slot 2 moves the territorial dare to a charged table. Kept: Uncle brought his good glasses; sweet tea soaking through the Ace of Spades; I aint even looked at my hand yet (poor thing); the Baltimore in-law with soft hands who laid a queen like he owned the grass, and his girl walking inside; nobody wanna sit in this chair. Edits: Uncle Raymond renamed (Cousin Ray is next door in #291); fifty dollars on the corner of the plastic made the table, since the hook slaps it on the wood; lining up along the porch rail (porch in #282 and #291) became behind the cooler; the closing stage picture (a black card under a sweating glass, an empty lawn chair) turned into two spoken lines. Idea line and swaggeringly preamble cut; ad-libs kept in parens as the style asks"
+    },
+    "293": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "We Hold Ground",
+        "clips": [
+          "5c120a07-9e49-4b10-afcb-f3ece2c8cef2",
+          "f2a83cb8-069f-4828-a763-04e87ff571f5"
+        ],
+        "v0": "5c120a07-9e49-4b10-afcb-f3ece2c8cef2",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "someone captaining their block's team in the tug-of-war at the Fourth of July street party, calling out every pull at the top of their lungs and making the whole team shout it back, the same few words again and again until the other block starts sliding across the chalk line"
+      },
+      "flags": [],
+      "tagged": false,
+      "edits": 2,
+      "prompt": "charged-objects",
+      "note": "first roll kept - built as call-and-response the way the style works a floor (the tar melting under Billys heels, Ho-la; the rope biting through the linen sleeves; they got new paint on their picket line; lean back, give em the weight; the whispered the chalk is thin, they are sliding, ready, now; one sneaker-print torn through the white chalk). Edits, meaning-first: we got the grease-traps and the overtime (grease) became the double shifts and the overtime - same us-against-new-paint line; your mother watching from the porch-step wood (a third porch in four songs) became from across the street, still the mother who froze the lemons. Every descriptive direction (a raw throat, thirty voices slamming back like a dropped tailgate, the tension snaps) and the here-is-a-song preamble stripped; crowd answers and the whisper section set in parens; caps normalised"
+    },
+    "294": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Are You The One",
+        "clips": [
+          "1681ca7c-8fc6-41ea-905a-a6dd4f6324d2",
+          "cb6fa68b-af0a-42eb-be3b-c0b05cb308c6"
+        ],
+        "v0": "1681ca7c-8fc6-41ea-905a-a6dd4f6324d2",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "someone standing at the airport arrivals gate at midnight holding a single sunflower, waiting for the person they fell in love with over two years of late-night video calls and have never once touched, watching every face come through the sliding glass and wondering which one will be the first real one"
+      },
+      "flags": [],
+      "tagged": false,
+      "edits": 5,
+      "prompt": "charged-objects",
+      "note": "first roll kept - sincere and wide-eyed as the style asks (the glass slides open and it is someone else’s dad; the yellow on this flower is the loudest thing I have had; my thumb rubbing where the screen is usually warm; looking for a pixel that has wandered far away; the flower drops). Edits, meaning-first: the hook asked is that your coat and sang the doors go wide, step outside (coat and door attractors) - now is that your walk (a body she has only seen on a screen) and the glass goes wide, I am right outside; the text (I see your boots) became (I see your sunflower) - they have spotted the narrator first, which is the turn; this hallway is miles of life and of death became two years of hallway, and three steps left; the silver and the chrome became the flower and the phone. Sing-breathlessly preamble stripped"
+    },
+    "295": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Yeah, Nah, Yeah",
+        "clips": [
+          "9c440cd9-a160-4b80-ba45-7ad60a48f5fe",
+          "1756e86b-b57b-4971-8525-eca24707e327"
+        ],
+        "v0": "9c440cd9-a160-4b80-ba45-7ad60a48f5fe",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "someone in Australia giving their mate a completely deadpan, unbothered play-by-play of the family Christmas lunch in the backyard in forty-degree heat where everything went wrong - the pavlova sliding off the table, the uncle stuck in the kids' inflatable pool, the dog eating the prawns - telling it all in the flattest voice while secretly having loved every minute"
+      },
+      "flags": [
+        "dialect"
+      ],
+      "tagged": false,
+      "edits": 3,
+      "prompt": "charged-objects",
+      "note": "first roll kept - the slot names the country and the local objects so the accent has words to live in (a kilo of king prawns off the bench, ate the tails and all, good dog; pavlova off the trestle table, passionfruit cream in the dirt; Uncle Gary wedged in the kids blue pool, split his good church shirt, didnt even get up; fly in me beer, looked at me brother, brother looked at me; yeah, nah, yeah). Edits, meaning-first: sun on the tin (palette) became sun on the pav - a callback to the dessert in the dirt; said hes gonna stay became said hes moving in (funnier, and Told him no worries lands harder); tin roof cooling off became yard cooling off. Snort, sigh, can-pop and muttered cues and the perform-flatly preamble stripped"
+    },
+    "296": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "The Big Water",
+        "clips": [
+          "e3bfd0c5-93e8-44c1-8d8f-195073cc9fb0",
+          "50ba5928-78ff-4afe-82d2-35dc79ba07be"
+        ],
+        "v0": "e3bfd0c5-93e8-44c1-8d8f-195073cc9fb0",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "someone kneeling on a dark beach at first light beside the sea-turtle nest they guarded every night all summer, watching the tiny hatchlings finally break out of the sand and scramble toward the waves one after another, overwhelmed and quietly aching as the last one reaches the water"
+      },
+      "flags": [],
+      "tagged": false,
+      "edits": 1,
+      "prompt": "charged-objects",
+      "note": "first roll kept - awe with the ache underneath, which is the style (ninety nights I kept the light away; I didnt reach, I didnt move, I let the dark tide cut the groove between your shell and me; there goes the smallest one, there goes the last; you couldnt look back if you tried; two empty knee-prints in the sand filled up with foam). Stay down is the guardians plea to hatchlings before the light is right, and turn for home is the vigil ending - both charged, both kept. Edit: the black sand shivers by my boot (boots attractor) became near my hand, which is what makes I didnt reach land. The left-behind-clean preamble stripped"
+    },
+    "297": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "You Made A Sound",
+        "clips": [
+          "b0406968-b998-4d24-8fdf-dc611f4b60b2",
+          "d9d5b179-e073-4d50-953e-eb47e39e24c8"
+        ],
+        "v0": "b0406968-b998-4d24-8fdf-dc611f4b60b2",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "someone standing on the highest hill outside their town at midnight, arm stretched as high as it will go, holding their phone up to the sky for a single bar of signal so they can hear their newborn niece across the ocean make her very first sound on a video call that keeps freezing and coming back"
+      },
+      "flags": [],
+      "tagged": false,
+      "edits": 2,
+      "prompt": "charged-objects",
+      "note": "first roll kept - the slot made the styles reaching literal (an arm held up for one bar of signal), and the draft stays earnest with it (I hold the sky above my head; the blue light freezes on my thumb, three thousand miles of water freeze, it skips; my shoulder aches, I will not drop; one arm up high, one bar of light, my knuckles white). Edits: my boots are buried in the frost (boots attractor) became my breath is smoking in the frost; I got your breath, I got your small (a filler noun) became I got your call. Wind, boot-crunch and stomping cues and the adverb/feeling preamble stripped"
     }
   },
   "method": {
