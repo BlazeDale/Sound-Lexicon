@@ -309,7 +309,9 @@
     cannot be played here and watched for its end either. For Suno rows <b>auto</b> is
     therefore a timer over the track's known length, with the countdown kept on screen: right
     when you listen straight through, and wrong if you pause inside the frame, which is the one
-    thing it cannot see. Click the countdown to restart it.<br><br>
+    thing it cannot see. It starts when you press play rather than when the track loads —
+    the page cannot see inside the frame, but it can see the window hand focus to it, which
+    is the moment somebody pressed something. Click the countdown to restart it by hand.<br><br>
     <b>Album playlists.</b> A YouTube Music album link (its id starts
     <span style="font-family:var(--mono)">OLAK5uy_</span>) will not play here. The embedded
     player refuses to unpack one — it loads a single track and then shows its own error
@@ -1022,6 +1024,7 @@ function startTimer(seconds) {
   tEnd = Date.now() + tTotal * 1000;
   $('#timer').classList.add('live');
   paintTimer();
+  $('#tlab').textContent = 'next in';
   tick = setInterval(() => {
     const left = (tEnd - Date.now()) / 1000;
     if (left <= 0) {
@@ -1038,8 +1041,32 @@ function paintTimer() {
   $('#tleft').textContent = mmss(left);
   $('#tfill').style.width = (tTotal ? (100 - left / tTotal * 100) : 0).toFixed(1) + '%';
 }
+/* ---------- starting the clock when you actually start the track ----------
+   The timer's real weakness was never the arithmetic, it was the starting gun: it began
+   when the frame was POINTED at a track, while Suno's embed does not autoplay, so it spent
+   the first stretch counting down over silence and advanced early — reliably, on every
+   track, which is why auto did not survive contact with real listening.
+
+   A cross-origin frame will not report a click inside it. But the window losing focus to
+   that frame is observable from out here: the browser blurs the page and makes the iframe
+   the active element. That is the moment somebody pressed play, so the clock starts there
+   instead. It cannot tell play from pause — pausing restarts the countdown rather than
+   stopping it — which is the same blind spot as before and no worse, and the countdown
+   stays on screen so it is visible when it is wrong. */
+let framePoked = false;
+window.addEventListener('blur', () => setTimeout(() => {
+  if (document.activeElement !== frame) return;
+  const r = cur >= 0 ? Q[cur] : null;
+  if (!r || r.src !== 'suno' || !auto || !r.dur) return;
+  framePoked = true;
+  startTimer(r.dur);
+  $('#tlab').textContent = 'next in';
+}, 0));
+
 $('#timer').addEventListener('click', () => {
-  if (cur >= 0 && Q[cur] && Q[cur].src === 'suno' && Q[cur].dur) { startTimer(Q[cur].dur); toast('Timer restarted'); }
+  if (cur >= 0 && Q[cur] && Q[cur].src === 'suno' && Q[cur].dur) {
+    startTimer(Q[cur].dur); $('#tlab').textContent = 'next in'; toast('Timer restarted');
+  }
 });
 
 /* ---------- the YouTube player ----------
@@ -1194,7 +1221,16 @@ async function playAt(i) {
     if (ytReady && yt && yt.stopVideo) { try { yt.stopVideo(); } catch (e) {} }
     frame.style.display = 'block';
     frame.src = 'https://suno.com/embed/' + r.id;
-    if (auto) startTimer(r.dur);          // only Suno needs guessing at
+    framePoked = false;
+    /* Armed, not started. The clock begins when the frame is clicked — see the blur handler
+       above — so a track that sits waiting to be played does not advance past itself. */
+    if (auto && r.dur) {
+      clearTimer();
+      $('#timer').classList.add('live');
+      $('#tlab').textContent = 'press play to start the timer';
+      $('#tleft').textContent = mmss(r.dur);
+      $('#tfill').style.width = '0%';
+    }
   }
 
   /* Warm the next row's lookup while this one plays, so its length is known by the time the
