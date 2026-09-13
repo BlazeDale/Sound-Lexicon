@@ -4854,6 +4854,113 @@
       "tagged": true,
       "edits": 0,
       "note": "first roll kept; a raw pool-hall friendship song carried on insults (you lying sack of shit / you're all I got), suits a grain-and-growl facet; blunt landed. Selection only: stage directions and a closing chalk-dust image dropped, bartender shout kept as a spoken aside, pre-chorus and chorus repeated from its own lines for length (138 words); tags added, prose is purely timbral"
+    },
+    "220": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Big Warm Hand",
+        "clips": [
+          "f3e8ff39-4537-4fc4-b34d-a8f9845159f7",
+          "03e1f696-72c2-48a0-a9e5-58a2841a0d25"
+        ],
+        "v0": "f3e8ff39-4537-4fc4-b34d-a8f9845159f7",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a crowded campsite at night, families curled up in sleeping bags under the stars, one person singing softly to a child who will not fall asleep"
+      },
+      "flags": [
+        "spare"
+      ],
+      "tagged": true,
+      "edits": 1,
+      "note": "second roll: first (late ferry cabin, singing to a sleeping child) was an emigration song, leaving the islands and never coming back, with salt three times; the ferry implied a journey, so the slot was at fault. A campsite slot with no travel held. One-word fix in the hook \"Safe on the belly of the land\" -> \"Held on the belly of the land\" (safe is the corpus attractor); directions dropped, tags added"
+    },
+    "221": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Let It Come Down",
+        "clips": [
+          "0d33fbd3-cc97-45b9-a3d0-79c890872736",
+          "1b52a3f2-7ea2-498f-aac4-3ef3c183152a"
+        ],
+        "v0": "0d33fbd3-cc97-45b9-a3d0-79c890872736",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a volunteer fire crew sitting on the tailgates at sunrise after a long night losing the old church to the flames, passing a flask around and hardly talking"
+      },
+      "flags": [
+        "spare",
+        "blunt"
+      ],
+      "tagged": false,
+      "edits": 1,
+      "note": "second roll: first (union hall after the mine-closure meeting) had the hook \"we stay put\", verbatim #213's, plus crowd shouting fighting the solo lead and a kitchen-sink close. Kept second with a hook fix \"Let it burn down\" -> \"Let it come down\" (too close to #215's \"let the damn thing burn\"; \"come down\" taken from the song's own steeple line). Directions dropped, chorus repeated twice more (147 words). Suno briefly showed a Cloudflare check after Create; it cleared on its own and the generation went through"
+    },
+    "222": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Going Anyway",
+        "clips": [
+          "66da8346-5ac2-470f-b5b5-cb3d9d6d6fa1",
+          "6db348e1-1f29-4980-b616-d2f37bd0c6e5"
+        ],
+        "v0": "66da8346-5ac2-470f-b5b5-cb3d9d6d6fa1",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a noisy city barbershop on a Saturday, the radio up, the regulars arguing about nothing and laughing at each other while they wait"
+      },
+      "flags": [
+        "spare"
+      ],
+      "tagged": true,
+      "edits": 2,
+      "note": "second roll: first (Saturday barbershop, old men telling stories) fell to the rural default (iron, pump x2, gate, a kettle boiled dry on the coal); naming it a noisy CITY shop fixed it. A courtship song, going to someone rather than leaving. Fixes after BlazeDale flagged coats: hook line \"Rain on my coat\" -> \"Rain on my face\", aside \"(He's at the door!)\" -> \"(He's in the rain!)\". Opening shop dialogue, sound effects and the Feeling/Picture footer dropped"
+    },
+    "223": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Stay Right Here",
+        "clips": [
+          "18a39522-6933-4c19-8ea7-85ddc8e13532",
+          "c6badb55-ca82-47dd-be95-a8404d648b36"
+        ],
+        "v0": "18a39522-6933-4c19-8ea7-85ddc8e13532",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a packed school gym on prom night, the whole class slow dancing under paper streamers and borrowed disco lights, one nervous kid finally working up to say something true"
+      },
+      "flags": [
+        "spare"
+      ],
+      "tagged": false,
+      "edits": 2,
+      "note": "second roll: first (school gym at the talent show) opened on a coat by a door and drifted to a milk glass, gravel, tires and a let-the-engine-turn hook, nowhere near the gym. Prom-night slow dance held. Fixes after the coat note: \"I bought this jacket\" -> \"I bought this tie\", asides \"(Don't look at the door)\" x2 -> \"(Don't look at the clock)\". Closing boots image and a (Whispered) label dropped; chorus repeated once more at the end"
+    },
+    "224": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Stay On Your Feet",
+        "clips": [
+          "e359c827-c57c-4e52-8ff6-994644a122e0",
+          "7979caeb-ee7c-4b79-a159-f2a125926fcd"
+        ],
+        "v0": "e359c827-c57c-4e52-8ff6-994644a122e0",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a sweaty boxing gym after hours, old fighters sparring and trash-talking each other between rounds"
+      },
+      "flags": [
+        "spare",
+        "blunt"
+      ],
+      "tagged": true,
+      "edits": 2,
+      "note": "first roll kept; rough, tender old sparring partners (you're too old to be this fast, but you are). Two hook fixes: \"lean on me now\" -> \"hold on to me now\" (echo of #218's chorus, same study family) and \"we got the rust\" -> \"we got the trust\" (palette word in the hook). Mouthguard/panting directions and a closing salt-stained-floor image dropped; tags added"
     }
   },
   "method": {
