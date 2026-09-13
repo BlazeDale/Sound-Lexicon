@@ -394,6 +394,12 @@ const ytplFrom = t => {
 const keyOf = r => r.src + ':' + r.id;
 
 const PROXY = u => 'https://api.allorigins.win/raw?url=' + encodeURIComponent(u);
+
+/* Set this to a deployed tools/share-resolver.worker.js and share links resolve in one
+   request off a redirect header, instead of a public proxy being asked to download a page
+   that suno.com is slow to serve. Left empty the page falls back to the proxy, and failing
+   that says to paste the /song/ address — nothing breaks by leaving it alone. */
+const SHARE_RESOLVER = '';
 const fetchT = (u, ms) => {                      // a hung proxy must not hang the queue
   const stop = new AbortController();
   const t = setTimeout(() => stop.abort(), ms);
@@ -545,31 +551,66 @@ async function resolve(id, src) {
 }
 
 /* ---------- adding ---------- */
-async function addMany(text, quiet) {
-  const found = [], shares = [];                    // found: [{src,id}]
+/* Every place that looks for a track link uses this, so they cannot disagree about what
+   counts as one. They used to: the chat looked only for video ids and Suno uuids, which
+   quietly left share links and playlist links without an add button even though the add box
+   accepted both. `raw` is kept so an offer can simply be handed back to addMany rather than
+   each caller re-deriving what it just parsed. */
+function linksIn(text) {
+  const found = [], shares = [];
   for (const piece of String(text || '').split(/[\s,]+/)) {
     if (!piece) continue;
     const y = ytFrom(piece);
-    if (y) { found.push({ src: 'yt', id: y }); continue; }
+    if (y) { found.push({ src: 'yt', id: y, raw: piece }); continue; }
     const pl = ytplFrom(piece);
-    if (pl) { found.push({ src: 'ytpl', id: pl }); continue; }
+    if (pl) { found.push({ src: 'ytpl', id: pl, raw: piece }); continue; }
     const id = idFrom(piece);
-    if (id) { found.push({ src: 'suno', id }); continue; }
+    if (id) { found.push({ src: 'suno', id, raw: piece }); continue; }
     if (SHARE_RE.test(piece)) shares.push(piece);
   }
+  return { found, shares };
+}
+
+async function addMany(text, quiet) {
+  const { found, shares } = linksIn(text);
   /* A share link carries a lookup token, not an id, and suno.com sends no CORS headers, so
      this page cannot follow one itself. The proxy reads the landing page and ONLY its
      canonical /song/ id is taken — the same route, and the same cost, as the library's
      paste box, which documents the bargain at length. */
-  for (const s of shares) {
+  let shareFailed = 0;
+  for (const sh of shares) {
+    let got = '';
+    const url = sh.startsWith('http') ? sh : 'https://' + sh;
+    /* The resolver, when there is one: one request, one header, no page. */
+    if (SHARE_RESOLVER) {
+      try {
+        const r = await fetchT(SHARE_RESOLVER + '?u=' + encodeURIComponent(url), 8000);
+        if (r.ok) { const j = await r.json(); if (j && UUID_RE.test(String(j.id || ''))) got = String(j.id).toLowerCase(); }
+      } catch (e) {}
+    }
     try {
-      const r = await fetchT(PROXY(s.startsWith('http') ? s : 'https://' + s), 12000);
-      if (!r.ok) continue;
-      const html = await r.text();
-      const canon = html.match(/rel=["']canonical["'][^>]*\/song\/([0-9a-f-]{36})|\/song\/([0-9a-f-]{36})[^>]*rel=["']canonical["']/i);
-      const got = canon ? (canon[1] || canon[2]).toLowerCase() : '';
-      if (UUID_RE.test(got)) found.push({ src: 'suno', id: got });
-    } catch (e) {}
+      if (got) throw 'done';
+      const r = await fetchT(PROXY(url), 15000);
+      if (r.ok) {
+        const html = await r.text();
+        const canon = html.match(/rel=["']canonical["'][^>]*\/song\/([0-9a-f-]{36})|\/song\/([0-9a-f-]{36})[^>]*rel=["']canonical["']/i);
+        got = canon ? (canon[1] || canon[2]).toLowerCase() : '';
+      }
+    } catch (e) { /* 'done' lands here too, having already resolved */ }
+    if (UUID_RE.test(got)) found.push({ src: 'suno', id: got, raw: sh });
+    else shareFailed++;
+  }
+  /* A share link cannot be read by this page — suno.com sends no CORS headers — so a proxy
+     has to follow it, and that route is unreliable: measured 2026-09-12, three different
+     proxies timed out on the same link, and a direct server-side fetch of the share page
+     hung as well, so it is suno.com being slow to answer robots rather than any one proxy
+     being down. Say which link failed and what works instead, rather than reporting the
+     generic "nothing recognised" and letting it look like the link was malformed. */
+  if (shareFailed && !found.length) {
+    if (!quiet) toast(shareFailed === 1
+      ? 'Could not follow that share link — open it and paste the /song/ address instead'
+      : 'Could not follow those share links — open them and paste the /song/ addresses instead');
+    return 0;
   }
 
   const have = new Set(Q.map(keyOf));
@@ -1253,26 +1294,27 @@ function renderChat() {
     const bod = document.createElement('div'); bod.className = 'bod'; bod.textContent = m.t || '';
     el.append(hd, bod);
 
-    /* Any track link in the message becomes an offer to queue it. */
-    const hits = [];
-    for (const piece of String(m.t || '').split(/[\s,]+/)) {
-      const y = ytFrom(piece); if (y) { hits.push({ src: 'yt', id: y }); continue; }
-      const u = idFrom(piece); if (u) hits.push({ src: 'suno', id: u });
-    }
+    /* Any track link in the message becomes an offer to queue it — the same set the add box
+       accepts, including share links, whose id cannot be known until the proxy has followed
+       them, and which therefore can never show an "already queued" state. */
+    const { found, shares } = linksIn(m.t);
     const already = new Set(Q.map(keyOf));
-    for (const h of hits) {
+    const label = { yt: 'YouTube track', ytpl: 'YouTube playlist', suno: 'Suno track' };
+
+    const offer = (text, raw, dup) => {
       const wrap = document.createElement('div'); wrap.className = 'lk';
-      if (already.has(keyOf(h))) {
+      if (dup) {
         const t = document.createElement('span'); t.className = 'tag'; t.textContent = '✓ already in the queue';
         wrap.append(t);
       } else if (canAdd()) {
         const b = document.createElement('button');
-        b.textContent = '+ Add ' + (h.src === 'yt' ? 'YouTube track' : 'Suno track');
+        b.textContent = '+ Add ' + text;
         b.addEventListener('click', async () => {
           b.disabled = true; b.textContent = 'Adding…';
-          const who = needName('Adding to a shared queue') || 'someone';
-          const row = (h.src === 'suno' && localRow(h.id)) || await resolve(h.id, h.src);
-          window.__net.addTrack(row, who);
+          /* Hand it straight back to addMany: it already knows how to follow a share link,
+             de-duplicate, resolve, and route through the database when the queue is shared. */
+          await addMany(raw);
+          b.textContent = '+ Add ' + text; b.disabled = false;
         });
         wrap.append(b);
       } else {
@@ -1280,7 +1322,10 @@ function renderChat() {
         wrap.append(t);
       }
       el.append(wrap);
-    }
+    };
+
+    for (const h of found) offer(label[h.src] || 'track', h.raw, already.has(keyOf(h)));
+    for (const sh of shares) offer('Suno track', sh, false);
     box.appendChild(el);
   }
   if (atBottom) box.scrollTop = box.scrollHeight;
