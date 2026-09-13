@@ -476,14 +476,14 @@ call me when you're over it.
 
 [Aside] (half-swallowed, creak on the tail)
 (He did not call me.)`},
-{n:262,suno:[`f52a8ba4-a13c-4b73-8cae-78eb8532969b`,`725b8628-8373-41ef-af42-6d64ffcd661f`],name:`Conversational mall-rap`,fam:`Valspeak talk-lead pop`,cat:`lyrical`,bpm:`88`,role:`rapped lead, spoken hook`,proc:`dusty boom-bap · warm sub · slap delay only`,aff:`A`,style:`Valspeak rapped lead over lo-fi mall-rap: conversational bars in a Southern Californian register, spoken cadence rather than sung melody so the accent stays fully intact — rising terminals at the end of nearly every bar, creak on the tails, vowels fronted and stretched, filler words kept inside the flow. Beat near 88 BPM: dusty boom-bap drums, a warm sub, one bright chopped sample looping, handclaps on two and four. No melodic hook — the chorus is the same voice talking with more room around it. Production close and dry, vocal untreated but for a short slap delay, words placed forward and legible.`,neg:`sung chorus, autotune melody, trap hi-hat rolls, aggressive delivery, orchestral swell, distorted guitar, belted vocal, dense reverb wash`,lyric:`[Verse] (rapped conversational, bars ending on a rise)
+{n:262,suno:[`f52a8ba4-a13c-4b73-8cae-78eb8532969b`,`725b8628-8373-41ef-af42-6d64ffcd661f`,`9e1efbf8-c064-4d9e-840b-b2065619d1c6`],name:`Conversational mall-rap`,fam:`Valspeak talk-lead pop`,cat:`lyrical`,bpm:`88`,role:`rapped lead, spoken hook`,proc:`dusty boom-bap · warm sub · slap delay only`,aff:`A`,style:`Valspeak rapped lead over lo-fi mall-rap: conversational bars in a Southern Californian register, spoken cadence rather than sung melody so the accent stays fully intact — rising terminals at the end of nearly every bar, creak on the tails, vowels fronted and stretched, filler words kept inside the flow. Beat near 88 BPM: dusty boom-bap drums, a warm sub, one bright chopped sample looping, handclaps on two and four. No melodic hook — the chorus is the same voice talking with more room around it. Production close and dry, vocal untreated but for a short slap delay, words placed forward and legible.`,neg:`sung chorus, autotune melody, trap hi-hat rolls, aggressive delivery, orchestral swell, distorted guitar, belted vocal, dense reverb wash`,lyric:`[Verse] (rapped conversational, bars ending on a rise)
 I said meet me by the food court at like, quarter after four?
 You showed up at like, six? With a smoothie? For yourself?
 
 [Hook] (same voice, more room, still spoken)
 That's crazy? That's actually crazy?
 Like, genuinely? Insane?`},
-{n:263,suno:[`17e9c4a5-c5ac-464c-8a65-62f338ec2020`,`eb6d98d7-8811-4bf4-bc89-44c66da548b0`],name:`Cheer-chant electro`,fam:`Valspeak talk-lead pop`,cat:`lyrical`,bpm:`150`,role:`shouted-spoken call, group answer`,proc:`synth brass stabs · stomp-clap · crowd noise`,aff:`E`,style:`Valspeak group chant over bright electro-pop near 150 BPM: the lead is shouted-spoken rather than sung, a Southern Californian mall register in cheer cadence — short clipped phrases, every line ending on a rise, tails creaking. A full group answers each call in flat unison, stomps and claps carrying the rhythm. Behind them: punchy synth brass stabs, a driving electro bassline, gated snare, whistles and crowd noise at the edges. Melody minimal by design; pitch lives in the answering group, never in the lead. Production loud, bright and forward, everything close-mic-ed and legible.`,neg:`sung lead melody, ballad tempo, orchestral strings, gravel rasp, ambient pads, jazz harmony, sparse acoustic arrangement, mumbled delivery`,lyric:`[Call] (shouted-spoken, clipped, rising)
+{n:263,suno:[`17e9c4a5-c5ac-464c-8a65-62f338ec2020`,`eb6d98d7-8811-4bf4-bc89-44c66da548b0`,`dd72505e-4f1a-4b4d-8833-d248cf6c28ca`],name:`Cheer-chant electro`,fam:`Valspeak talk-lead pop`,cat:`lyrical`,bpm:`150`,role:`shouted-spoken call, group answer`,proc:`synth brass stabs · stomp-clap · crowd noise`,aff:`E`,style:`Valspeak group chant over bright electro-pop near 150 BPM: the lead is shouted-spoken rather than sung, a Southern Californian mall register in cheer cadence — short clipped phrases, every line ending on a rise, tails creaking. A full group answers each call in flat unison, stomps and claps carrying the rhythm. Behind them: punchy synth brass stabs, a driving electro bassline, gated snare, whistles and crowd noise at the edges. Melody minimal by design; pitch lives in the answering group, never in the lead. Production loud, bright and forward, everything close-mic-ed and legible.`,neg:`sung lead melody, ballad tempo, orchestral strings, gravel rasp, ambient pads, jazz harmony, sparse acoustic arrangement, mumbled delivery`,lyric:`[Call] (shouted-spoken, clipped, rising)
 Who's got the keys? (We got the keys!)
 Who's got the car? (Not you!)
 
@@ -493,7 +493,7 @@ Totally, totally, T-O-T!
 
 [Break] (single voice, bored, creak tail)
 Do it again? From the top?`},
-{n:264,suno:[`261bc098-4eab-410e-9025-22247c1fc636`,`c1bf1d83-9e85-4b0f-b528-f48725088a18`],name:`Voice-memo bedroom drawl`,fam:`Valspeak talk-lead pop`,cat:`lyrical`,bpm:`92`,role:`half-spoken lead at conversation volume`,proc:`nylon-string loop · tape hiss · no reverb`,aff:`B`,style:`Valspeak half-spoken lead over intimate bedroom pop near 92 BPM: the vocal is talked close to the mic at conversation volume, barely singing, a Southern Californian register with rising terminals on every statement and creak collapsing the phrase ends. Vowels long and fronted, diction unguarded, filler words and false starts left in. Behind it: a soft nylon-string loop, muted electric piano, brushed lo-fi drums low in the mix, tape hiss and room tone kept. One short sung refrain floats up and dissolves back into talking. Production small and close, almost no reverb, breath and mouth noise audible throughout.`,neg:`belted chorus, stadium drums, orchestral swell, heavy distortion, dance beat, operatic tone, dense layered production, aggressive delivery`,lyric:`[Verse] (talked close to the mic, unguarded, rising)
+{n:264,suno:[`261bc098-4eab-410e-9025-22247c1fc636`,`c1bf1d83-9e85-4b0f-b528-f48725088a18`,`47d6e816-eddd-45d5-925a-e04775268f69`],name:`Voice-memo bedroom drawl`,fam:`Valspeak talk-lead pop`,cat:`lyrical`,bpm:`92`,role:`half-spoken lead at conversation volume`,proc:`nylon-string loop · tape hiss · no reverb`,aff:`B`,style:`Valspeak half-spoken lead over intimate bedroom pop near 92 BPM: the vocal is talked close to the mic at conversation volume, barely singing, a Southern Californian register with rising terminals on every statement and creak collapsing the phrase ends. Vowels long and fronted, diction unguarded, filler words and false starts left in. Behind it: a soft nylon-string loop, muted electric piano, brushed lo-fi drums low in the mix, tape hiss and room tone kept. One short sung refrain floats up and dissolves back into talking. Production small and close, almost no reverb, breath and mouth noise audible throughout.`,neg:`belted chorus, stadium drums, orchestral swell, heavy distortion, dance beat, operatic tone, dense layered production, aggressive delivery`,lyric:`[Verse] (talked close to the mic, unguarded, rising)
 Okay so, this is dumb? But I recorded this at like, 3am?
 And I'm just gonna say it and then delete it? Probably?
 
@@ -502,7 +502,7 @@ I miss you in a way I can't make cute—
 
 [Verse 2] (straight back to talking)
 Anyway? That's it? That's the whole thing?`},
-{n:265,suno:[`bb488c5a-604f-4c01-8e9a-dd9be2a2922c`,`0ef6e37c-87d5-492b-bd45-4e10152ed479`],name:`Sprechgesang synth-punk`,fam:`Valspeak talk-lead pop`,cat:`lyrical`,bpm:`164`,role:`rhythmic speech on the edge of melody`,proc:`distorted mono synth riff · crowded mids · vocal up front`,aff:`C`,style:`Valspeak talked lead over synth-punk near 164 BPM: the vocal is delivered as sprechgesang — rhythmic speech at the edge of melody, never a sustained note — in a Southern Californian mall register, statements rising at the ends, tails snapping into creak, consonants clipped and vowels fronted. Behind it: a distorted mono synth riff doubling the bass, hammering eighth-note drums, one cheap organ line cutting across the top. Group backing shouts answer each phrase. The lead sings only on the final line of the chorus and returns immediately to talking. Production loud and saturated, mids crowded, vocal pushed to the very front.`,neg:`smooth crooning, jazz chords, orchestral strings, slow ballad tempo, gospel melisma, ambient wash, polished pop sheen, growled vocals`,lyric:`[Verse] (sprechgesang, rhythmic speech, clipped)
+{n:265,suno:[`bb488c5a-604f-4c01-8e9a-dd9be2a2922c`,`0ef6e37c-87d5-492b-bd45-4e10152ed479`,`71f3cb3f-3206-4fed-b07d-7d8409e93c31`],name:`Sprechgesang synth-punk`,fam:`Valspeak talk-lead pop`,cat:`lyrical`,bpm:`164`,role:`rhythmic speech on the edge of melody`,proc:`distorted mono synth riff · crowded mids · vocal up front`,aff:`C`,style:`Valspeak talked lead over synth-punk near 164 BPM: the vocal is delivered as sprechgesang — rhythmic speech at the edge of melody, never a sustained note — in a Southern Californian mall register, statements rising at the ends, tails snapping into creak, consonants clipped and vowels fronted. Behind it: a distorted mono synth riff doubling the bass, hammering eighth-note drums, one cheap organ line cutting across the top. Group backing shouts answer each phrase. The lead sings only on the final line of the chorus and returns immediately to talking. Production loud and saturated, mids crowded, vocal pushed to the very front.`,neg:`smooth crooning, jazz chords, orchestral strings, slow ballad tempo, gospel melisma, ambient wash, polished pop sheen, growled vocals`,lyric:`[Verse] (sprechgesang, rhythmic speech, clipped)
 You want an explanation? For which part? Be specific?
 I have like, four? And none of them are flattering?
 
@@ -511,7 +511,7 @@ So? (So!) So what? (So what!)
 
 [Last line] (finally sung, held)
 I said I'm fine and I meant it—`},
-{n:266,suno:[`674ebf3c-7231-4e89-845d-588f36b34196`,`82dea1cf-0d8f-41a9-b7e0-438879a15738`],name:`Eye-dialect mall drawl`,fam:`Valspeak intonation probes`,cat:`lyrical`,bpm:`118`,role:`sung strictly to phonetic spelling`,proc:`clean synth-pop bed · voice well forward`,aff:`D`,style:`Bright synth-pop near 118 BPM sung in a heavy Southern Californian mall drawl — the lyric is deliberately spelled phonetically and must be sung exactly as written, letter for letter, every elongation included. Vowels fronted and stretched to match the spelling, consonants soft, diction lazy and unhurried. The lead is a unique and specific vocalist: ungendered, light and nasal, placed high in the face, phrases trailing upward at the ends. Behind it: warm analog pads, a bouncing synth bass, crisp programmed drums, handclaps, one glassy arpeggio. Chorus doubled an octave up. Production clean, bright and close, the voice mixed well forward so every stretched vowel is audible.`,neg:`crisp enunciation, formal diction, operatic tone, gravel rasp, orchestral strings, distorted guitar wall, slow ballad tempo, dense reverb wash`,lyric:`[Verse 1] (sing exactly as spelled, do not correct it)
+{n:266,suno:[`674ebf3c-7231-4e89-845d-588f36b34196`,`82dea1cf-0d8f-41a9-b7e0-438879a15738`,`abe45951-e9d8-4114-a6bf-e74dada58542`],name:`Eye-dialect mall drawl`,fam:`Valspeak intonation probes`,cat:`lyrical`,bpm:`118`,role:`sung strictly to phonetic spelling`,proc:`clean synth-pop bed · voice well forward`,aff:`D`,style:`Bright synth-pop near 118 BPM sung in a heavy Southern Californian mall drawl — the lyric is deliberately spelled phonetically and must be sung exactly as written, letter for letter, every elongation included. Vowels fronted and stretched to match the spelling, consonants soft, diction lazy and unhurried. The lead is a unique and specific vocalist: ungendered, light and nasal, placed high in the face, phrases trailing upward at the ends. Behind it: warm analog pads, a bouncing synth bass, crisp programmed drums, handclaps, one glassy arpeggio. Chorus doubled an octave up. Production clean, bright and close, the voice mixed well forward so every stretched vowel is audible.`,neg:`crisp enunciation, formal diction, operatic tone, gravel rasp, orchestral strings, distorted guitar wall, slow ballad tempo, dense reverb wash`,lyric:`[Verse 1] (sing exactly as spelled, do not correct it)
 Sooo I'm liiike, tow-tuh-lee ohvurr it?
 And he's liiike, naw yer nawt?
 
@@ -519,14 +519,14 @@ And he's liiike, naw yer nawt?
 Ohmuhgawd, ohmuhgawd,
 thaaat is sooo not whut I sed?
 Liiike, hel-loooo?`},
-{n:267,suno:[`d23d202b-d2aa-4e77-a23b-4632bf1468ab`,`fcb3ed7c-0f12-455e-89a6-b8f7ea8458d7`],name:`Surf-stoner coast drawl`,fam:`Valspeak intonation probes`,cat:`lyrical`,bpm:`96`,role:`broad coastal drawl, trailing upward`,proc:`reverb-drenched guitar · brushed shuffle · dry vocal`,aff:`A`,style:`Sun-bleached Southern Californian beach pop near 96 BPM, sung in a broad coastal surfer drawl: slow and unhurried, vowels melted and drawn long, consonants dropped, every sentence trailing upward as though it were never finished. The lead is a unique and specific vocalist: ungendered, warm and hazy, placed forward and faintly nasal, phrases ending higher than they began. Behind it: reverb-soaked clean guitar, a lazy shuffle on brushes, warm round bass, faint organ holding chords. Everything half-speed and salt-worn. Production wide and washed, the guitars drenched, the vocal dry and close against them.`,neg:`urgent tempo, clipped diction, aggressive delivery, distorted guitar, orchestral strings, gospel melisma, dense club production, belted chorus`,lyric:`[Verse] (drawled, unhurried, trailing up)
+{n:267,suno:[`d23d202b-d2aa-4e77-a23b-4632bf1468ab`,`fcb3ed7c-0f12-455e-89a6-b8f7ea8458d7`,`b370f01c-b2c5-4b4e-bc73-ea725d9e9225`],name:`Surf-stoner coast drawl`,fam:`Valspeak intonation probes`,cat:`lyrical`,bpm:`96`,role:`broad coastal drawl, trailing upward`,proc:`reverb-drenched guitar · brushed shuffle · dry vocal`,aff:`A`,style:`Sun-bleached Southern Californian beach pop near 96 BPM, sung in a broad coastal surfer drawl: slow and unhurried, vowels melted and drawn long, consonants dropped, every sentence trailing upward as though it were never finished. The lead is a unique and specific vocalist: ungendered, warm and hazy, placed forward and faintly nasal, phrases ending higher than they began. Behind it: reverb-soaked clean guitar, a lazy shuffle on brushes, warm round bass, faint organ holding chords. Everything half-speed and salt-worn. Production wide and washed, the guitars drenched, the vocal dry and close against them.`,neg:`urgent tempo, clipped diction, aggressive delivery, distorted guitar, orchestral strings, gospel melisma, dense club production, belted chorus`,lyric:`[Verse] (drawled, unhurried, trailing up)
 We're just gonna sit here til the tide comes in?
 Nobody's callin? Nobody's got anywhere to be?
 
 [Chorus] (melted, long vowels, ends lifting)
 Sooo whatever, man?
 Sooo totally whatever?`},
-{n:268,suno:[`7d9e6ddc-0b10-43f5-ad7d-b4c3893c71a0`,`cd666548-c45e-4c5f-9574-731168e92400`],name:`Rising-phrase bubblegum pop`,fam:`Valspeak intonation probes`,cat:`lyrical`,bpm:`128`,role:`every phrase ends higher than it starts`,proc:`chiming bells · four-on-the-floor · stacked answers`,aff:`C`,style:`Bubblegum pop near 128 BPM built entirely on rising melodic phrases: every vocal line ends higher than it begins, each phrase resolving upward onto an unresolved scale degree so that plain statements land as questions. Call-and-answer structure throughout — a short sung line, then a higher answering line. The lead is a unique and specific vocalist: ungendered, bright and light, placed high and forward with a thin sweet tone. Behind it: chiming synth bells, a bouncing bassline, four-on-the-floor kick, handclaps, sugary stacked backing on every answer. The melody never cadences downward anywhere in the song. Production bright, glossy and forward.`,neg:`descending melody, resolved cadence, deep chest belt, gravel rasp, slow ballad tempo, orchestral swell, minor-key gloom, mumbled delivery`,lyric:`[Verse] (each line ends higher than it starts)
+{n:268,suno:[`7d9e6ddc-0b10-43f5-ad7d-b4c3893c71a0`,`cd666548-c45e-4c5f-9574-731168e92400`,`649dd93c-4994-4a7f-9612-fb3995aea299`],name:`Rising-phrase bubblegum pop`,fam:`Valspeak intonation probes`,cat:`lyrical`,bpm:`128`,role:`every phrase ends higher than it starts`,proc:`chiming bells · four-on-the-floor · stacked answers`,aff:`C`,style:`Bubblegum pop near 128 BPM built entirely on rising melodic phrases: every vocal line ends higher than it begins, each phrase resolving upward onto an unresolved scale degree so that plain statements land as questions. Call-and-answer structure throughout — a short sung line, then a higher answering line. The lead is a unique and specific vocalist: ungendered, bright and light, placed high and forward with a thin sweet tone. Behind it: chiming synth bells, a bouncing bassline, four-on-the-floor kick, handclaps, sugary stacked backing on every answer. The melody never cadences downward anywhere in the song. Production bright, glossy and forward.`,neg:`descending melody, resolved cadence, deep chest belt, gravel rasp, slow ballad tempo, orchestral swell, minor-key gloom, mumbled delivery`,lyric:`[Verse] (each line ends higher than it starts)
 I was gonna call you? (call you?)
 I was gonna say the thing? (say the thing?)
 
@@ -537,14 +537,14 @@ Everything is totally—
 
 [Answer] (highest note in the song, unresolved)
 Fine?`},
-{n:269,suno:[`e62f12ab-99b4-45ab-bf7a-8a839c000859`,`474381d8-5169-4239-ab18-c5c307d3a54b`],name:`Spoken-word beat piece`,fam:`Valspeak intonation probes`,cat:`lyrical`,bpm:`84`,role:`talked throughout, never lands on a pitch`,proc:`dusty drums · electric-piano loop · vinyl crackle`,aff:`B`,style:`Spoken-word piece over a downtempo beat near 84 BPM: there is no singing anywhere in this track — the entire vocal is talked, read aloud at conversational pace like a diary entry into a microphone, never landing on a pitch. Southern Californian register, unhurried, sentences drifting upward at the ends, phrase tails softening into creak. The lead is a unique and specific vocalist: ungendered, close-mic-ed, dry and intimate. Behind the voice: dusty drums, a warm sub, one looping electric-piano figure, vinyl crackle. The music stays under the talking at all times and never competes. Production close and quiet, every consonant legible.`,neg:`sung melody, singing, belted chorus, vocal harmony stacks, autotune, rapping on the beat, orchestral swell, loud dance production`,lyric:`[Spoken] (read aloud, no singing anywhere, conversational)
+{n:269,suno:[`e62f12ab-99b4-45ab-bf7a-8a839c000859`,`474381d8-5169-4239-ab18-c5c307d3a54b`,`090542d9-5337-4012-9e30-8cc2324c1c73`],name:`Spoken-word beat piece`,fam:`Valspeak intonation probes`,cat:`lyrical`,bpm:`84`,role:`talked throughout, never lands on a pitch`,proc:`dusty drums · electric-piano loop · vinyl crackle`,aff:`B`,style:`Spoken-word piece over a downtempo beat near 84 BPM: there is no singing anywhere in this track — the entire vocal is talked, read aloud at conversational pace like a diary entry into a microphone, never landing on a pitch. Southern Californian register, unhurried, sentences drifting upward at the ends, phrase tails softening into creak. The lead is a unique and specific vocalist: ungendered, close-mic-ed, dry and intimate. Behind the voice: dusty drums, a warm sub, one looping electric-piano figure, vinyl crackle. The music stays under the talking at all times and never competes. Production close and quiet, every consonant legible.`,neg:`sung melody, singing, belted chorus, vocal harmony stacks, autotune, rapping on the beat, orchestral swell, loud dance production`,lyric:`[Spoken] (read aloud, no singing anywhere, conversational)
 Okay so. I'm just gonna talk? For a minute?
 I'm not gonna sing any of this? That's not what this is?
 
 [Spoken] (softer, tails creaking)
 He said it was fine. And I said, cool.
 And then I sat in the car for like, forty minutes?`},
-{n:270,suno:[`f9a7acfb-cad7-4558-a7f1-705d10009a7c`,`1937cd1d-5bdb-416d-9d31-8cdc18d517b4`],name:`Aside-and-interjection pop`,fam:`Valspeak intonation probes`,cat:`lyrical`,bpm:`122`,role:`sung lines ordinary, dialect only in the asides`,proc:`polished for the song · raw for the talking`,aff:`D`,style:`Glossy electro-pop near 122 BPM in which the sung lines are ordinary but every gap between them is filled with spoken interjections in a Southern Californian mall register — short talked asides, half-laughed reactions, muttered commentary, delivered casually and left deliberately unpolished against the clean singing. The sung lead is a unique and specific vocalist: ungendered, smooth and bright. The spoken asides are that same voice dropped into plain speech, unhurried, vowels stretched, ends lifting. Behind it: punchy synth bass, gated pads, crisp claps. The asides sit forward in the mix, closer and drier than the singing. Production polished for the song, raw for the talking.`,neg:`continuous singing with no speech, orchestral strings, gravel rasp, slow ballad tempo, dense reverb on the spoken parts, aggressive delivery, jazz phrasing`,lyric:`[Verse] (sung, smooth, ordinary)
+{n:270,suno:[`f9a7acfb-cad7-4558-a7f1-705d10009a7c`,`1937cd1d-5bdb-416d-9d31-8cdc18d517b4`,`fffb0351-ed83-4ce6-ab45-7f8d164c4dad`],name:`Aside-and-interjection pop`,fam:`Valspeak intonation probes`,cat:`lyrical`,bpm:`122`,role:`sung lines ordinary, dialect only in the asides`,proc:`polished for the song · raw for the talking`,aff:`D`,style:`Glossy electro-pop near 122 BPM in which the sung lines are ordinary but every gap between them is filled with spoken interjections in a Southern Californian mall register — short talked asides, half-laughed reactions, muttered commentary, delivered casually and left deliberately unpolished against the clean singing. The sung lead is a unique and specific vocalist: ungendered, smooth and bright. The spoken asides are that same voice dropped into plain speech, unhurried, vowels stretched, ends lifting. Behind it: punchy synth bass, gated pads, crisp claps. The asides sit forward in the mix, closer and drier than the singing. Production polished for the song, raw for the talking.`,neg:`continuous singing with no speech, orchestral strings, gravel rasp, slow ballad tempo, dense reverb on the spoken parts, aggressive delivery, jazz phrasing`,lyric:`[Verse] (sung, smooth, ordinary)
 I keep the porch light on for nobody—
 
 [Aside] (spoken, casual, close, rising)
@@ -555,7 +555,7 @@ Every light in this house is a question—
 
 [Aside] (muttered, half-laughed, creak on the tail)
 (That was deep? Was that deep?)`},
-{n:271,suno:[`59fe8a43-e7ee-4808-a4b0-19ae0f964522`,`082c6090-192d-4fb8-a3ad-c6ec6ddd544f`],name:`Voicemail monologue house`,fam:`Valspeak spoken-marker pop`,cat:`lyrical`,bpm:`120`,role:`entire vocal is a spoken voicemail`,proc:`filtered house bed · phone-EQ vocal · no singing`,aff:`D`,style:`Deep house near 120 BPM under a spoken voicemail: the entire vocal is one unbroken message talked into a phone, never sung, never landing on a pitch — unhurried, warm, thinking out loud, sentences drifting upward at the ends and tails softening into creak. The lead is a unique and specific vocalist: close and conversational, the voice EQ-ed slightly thin like a phone line and mixed well forward. Filler and false starts kept in. Behind it: a filtered four-on-the-floor kick, warm rolling bass, one hypnotic chord stab, brushed hats. The music never competes with the talking and has no vocal melody of its own. Production clean, spacious and patient.`,neg:`sung melody, singing, belted chorus, vocal harmony stacks, rapping, orchestral swell, aggressive delivery, dense loud production`,lyric:`[Spoken voicemail] (talked, unhurried, every sentence rising)
+{n:271,suno:[`59fe8a43-e7ee-4808-a4b0-19ae0f964522`,`082c6090-192d-4fb8-a3ad-c6ec6ddd544f`,`31e04723-e0b1-420b-bc4b-a75b570c1719`],name:`Voicemail monologue house`,fam:`Valspeak spoken-marker pop`,cat:`lyrical`,bpm:`120`,role:`entire vocal is a spoken voicemail`,proc:`filtered house bed · phone-EQ vocal · no singing`,aff:`D`,style:`Deep house near 120 BPM under a spoken voicemail: the entire vocal is one unbroken message talked into a phone, never sung, never landing on a pitch — unhurried, warm, thinking out loud, sentences drifting upward at the ends and tails softening into creak. The lead is a unique and specific vocalist: close and conversational, the voice EQ-ed slightly thin like a phone line and mixed well forward. Filler and false starts kept in. Behind it: a filtered four-on-the-floor kick, warm rolling bass, one hypnotic chord stab, brushed hats. The music never competes with the talking and has no vocal melody of its own. Production clean, spacious and patient.`,neg:`sung melody, singing, belted chorus, vocal harmony stacks, rapping, orchestral swell, aggressive delivery, dense loud production`,lyric:`[Spoken voicemail] (talked, unhurried, every sentence rising)
 Hiii, it's me? Obviously? Um, oh my god, okay so—
 You are literally not going to believe this?
 
@@ -1976,24 +1976,34 @@ const SONG_MODEL = {
   'e6c864d6-5c48-49ea-b2ba-12cd1aff0ab5': 'v6',
   'f52a8ba4-a13c-4b73-8cae-78eb8532969b': 'v5.5',
   '725b8628-8373-41ef-af42-6d64ffcd661f': 'v5.5',
+  '9e1efbf8-c064-4d9e-840b-b2065619d1c6': 'v6',
   '17e9c4a5-c5ac-464c-8a65-62f338ec2020': 'v5.5',
   'eb6d98d7-8811-4bf4-bc89-44c66da548b0': 'v5.5',
+  'dd72505e-4f1a-4b4d-8833-d248cf6c28ca': 'v6',
   '261bc098-4eab-410e-9025-22247c1fc636': 'v5.5',
   'c1bf1d83-9e85-4b0f-b528-f48725088a18': 'v5.5',
+  '47d6e816-eddd-45d5-925a-e04775268f69': 'v6',
   'bb488c5a-604f-4c01-8e9a-dd9be2a2922c': 'v5.5',
   '0ef6e37c-87d5-492b-bd45-4e10152ed479': 'v5.5',
+  '71f3cb3f-3206-4fed-b07d-7d8409e93c31': 'v6',
   '674ebf3c-7231-4e89-845d-588f36b34196': 'v5.5',
   '82dea1cf-0d8f-41a9-b7e0-438879a15738': 'v5.5',
+  'abe45951-e9d8-4114-a6bf-e74dada58542': 'v6',
   'd23d202b-d2aa-4e77-a23b-4632bf1468ab': 'v5.5',
   'fcb3ed7c-0f12-455e-89a6-b8f7ea8458d7': 'v5.5',
+  'b370f01c-b2c5-4b4e-bc73-ea725d9e9225': 'v6',
   '7d9e6ddc-0b10-43f5-ad7d-b4c3893c71a0': 'v5.5',
   'cd666548-c45e-4c5f-9574-731168e92400': 'v5.5',
+  '649dd93c-4994-4a7f-9612-fb3995aea299': 'v6',
   'e62f12ab-99b4-45ab-bf7a-8a839c000859': 'v5.5',
   '474381d8-5169-4239-ab18-c5c307d3a54b': 'v5.5',
+  '090542d9-5337-4012-9e30-8cc2324c1c73': 'v6',
   'f9a7acfb-cad7-4558-a7f1-705d10009a7c': 'v5.5',
   '1937cd1d-5bdb-416d-9d31-8cdc18d517b4': 'v5.5',
+  'fffb0351-ed83-4ce6-ab45-7f8d164c4dad': 'v6',
   '59fe8a43-e7ee-4808-a4b0-19ae0f964522': 'v5.5',
   '082c6090-192d-4fb8-a3ad-c6ec6ddd544f': 'v5.5',
+  '31e04723-e0b1-420b-bc4b-a75b570c1719': 'v6',
   'ff297ffc-7390-400d-a0b9-ee2bbde0b808': 'v5.5',
   'c9bce4cb-fec6-4e98-85dc-29f1dead2036': 'v5.5',
   '0b579967-dc95-423c-9543-6adcc6bf6fd4': 'v5.5',
@@ -3439,24 +3449,34 @@ const SONG_TITLES = {
   'e6c864d6-5c48-49ea-b2ba-12cd1aff0ab5': 'He\'s Gonna Call',
   'f52a8ba4-a13c-4b73-8cae-78eb8532969b': 'There Is No Future Without Memory',
   '725b8628-8373-41ef-af42-6d64ffcd661f': 'That’s Crazy',
+  '9e1efbf8-c064-4d9e-840b-b2065619d1c6': 'Look At Him Stand',
   '17e9c4a5-c5ac-464c-8a65-62f338ec2020': 'Takes Two',
   'eb6d98d7-8811-4bf4-bc89-44c66da548b0': 'Valley Doll',
+  'dd72505e-4f1a-4b4d-8833-d248cf6c28ca': 'Turn The Handle',
   '261bc098-4eab-410e-9025-22247c1fc636': 'Connected',
   'c1bf1d83-9e85-4b0f-b528-f48725088a18': '(That\'s What You Get) For Loving Me',
+  '47d6e816-eddd-45d5-925a-e04775268f69': 'Future Me',
   'bb488c5a-604f-4c01-8e9a-dd9be2a2922c': 'Like Us',
   '0ef6e37c-87d5-492b-bd45-4e10152ed479': 'On a Break',
+  '71f3cb3f-3206-4fed-b07d-7d8409e93c31': 'Tinfoil And Prayer',
   '674ebf3c-7231-4e89-845d-588f36b34196': 'Big Red Machine',
   '82dea1cf-0d8f-41a9-b7e0-438879a15738': 'Rite of Passage',
+  'abe45951-e9d8-4114-a6bf-e74dada58542': 'Totally Wiped Out',
   'd23d202b-d2aa-4e77-a23b-4632bf1468ab': 'Stay',
   'fcb3ed7c-0f12-455e-89a6-b8f7ea8458d7': 'Not My Job',
+  'b370f01c-b2c5-4b4e-bc73-ea725d9e9225': 'Gram\'s Eighty Today',
   '7d9e6ddc-0b10-43f5-ad7d-b4c3893c71a0': 'This Is What Makes Us Girls',
   'cd666548-c45e-4c5f-9574-731168e92400': 'Pray for My Enemies',
+  '649dd93c-4994-4a7f-9612-fb3995aea299': 'Twenty Doors More',
   'e62f12ab-99b4-45ab-bf7a-8a839c000859': 'No One Left To Burn',
   '474381d8-5169-4239-ab18-c5c307d3a54b': 'Bestie (Totally So)',
+  '090542d9-5337-4012-9e30-8cc2324c1c73': 'Let The Bottom Burn',
   'f9a7acfb-cad7-4558-a7f1-705d10009a7c': 'Better Together',
   '1937cd1d-5bdb-416d-9d31-8cdc18d517b4': 'Burn Down the House',
+  'fffb0351-ed83-4ce6-ab45-7f8d164c4dad': 'One Screw Left Over',
   '59fe8a43-e7ee-4808-a4b0-19ae0f964522': 'Little Toy World',
   '082c6090-192d-4fb8-a3ad-c6ec6ddd544f': 'Stuck',
+  '31e04723-e0b1-420b-bc4b-a75b570c1719': 'Peppermint In Your Pocket',
   'ff297ffc-7390-400d-a0b9-ee2bbde0b808': 'We\'ll Get By',
   'c9bce4cb-fec6-4e98-85dc-29f1dead2036': 'I Would Die for You',
   '0b579967-dc95-423c-9543-6adcc6bf6fd4': 'Val Girl Song',
@@ -5685,24 +5705,34 @@ const SONG_DUR = {
   'e6c864d6-5c48-49ea-b2ba-12cd1aff0ab5':250,
   'f52a8ba4-a13c-4b73-8cae-78eb8532969b':110,
   '725b8628-8373-41ef-af42-6d64ffcd661f':130,
+  '9e1efbf8-c064-4d9e-840b-b2065619d1c6':194,
   '17e9c4a5-c5ac-464c-8a65-62f338ec2020':186,
   'eb6d98d7-8811-4bf4-bc89-44c66da548b0':143,
+  'dd72505e-4f1a-4b4d-8833-d248cf6c28ca':89,
   '261bc098-4eab-410e-9025-22247c1fc636':479,
   'c1bf1d83-9e85-4b0f-b528-f48725088a18':196,
+  '47d6e816-eddd-45d5-925a-e04775268f69':178,
   'bb488c5a-604f-4c01-8e9a-dd9be2a2922c':124,
   '0ef6e37c-87d5-492b-bd45-4e10152ed479':116,
+  '71f3cb3f-3206-4fed-b07d-7d8409e93c31':150,
   '674ebf3c-7231-4e89-845d-588f36b34196':146,
   '82dea1cf-0d8f-41a9-b7e0-438879a15738':220,
+  'abe45951-e9d8-4114-a6bf-e74dada58542':122,
   'd23d202b-d2aa-4e77-a23b-4632bf1468ab':149,
   'fcb3ed7c-0f12-455e-89a6-b8f7ea8458d7':133,
+  'b370f01c-b2c5-4b4e-bc73-ea725d9e9225':188,
   '7d9e6ddc-0b10-43f5-ad7d-b4c3893c71a0':146,
   'cd666548-c45e-4c5f-9574-731168e92400':86,
+  '649dd93c-4994-4a7f-9612-fb3995aea299':96,
   'e62f12ab-99b4-45ab-bf7a-8a839c000859':143,
   '474381d8-5169-4239-ab18-c5c307d3a54b':122,
+  '090542d9-5337-4012-9e30-8cc2324c1c73':187,
   'f9a7acfb-cad7-4558-a7f1-705d10009a7c':104,
   '1937cd1d-5bdb-416d-9d31-8cdc18d517b4':131,
+  'fffb0351-ed83-4ce6-ab45-7f8d164c4dad':231,
   '59fe8a43-e7ee-4808-a4b0-19ae0f964522':207,
   '082c6090-192d-4fb8-a3ad-c6ec6ddd544f':111,
+  '31e04723-e0b1-420b-bc4b-a75b570c1719':227,
   'ff297ffc-7390-400d-a0b9-ee2bbde0b808':479,
   'c9bce4cb-fec6-4e98-85dc-29f1dead2036':171,
   '0b579967-dc95-423c-9543-6adcc6bf6fd4':223,
@@ -6195,7 +6225,7 @@ const SONG_DUR = {
 /* Cover art that does NOT follow cdn2.suno.ai/image_<uuid>.jpeg — a creator replaced it,
  * so the id cannot be used to work the address out. Everything not listed here follows
  * the pattern and is derived. A cover can be changed later: re-check with --all. */
-const ART_CHECKED = 1456;
+const ART_CHECKED = 1466;
 const SONG_ART = {
   '03fd694a-1623-4ccc-b624-f5468d325ecb': 'https://cdn2.suno.ai/video_upload_6b9763b6-d937-4b17-bb50-2511eb08e159_video_upload_6b9763b6-d937-4b17-bb50-2511eb08e159_cover_snapshot_0s_1787493340_image.jpeg',
   '085685eb-4d85-48fa-b13e-77cbb4688125': 'https://cdn2.suno.ai/video_upload_8ca36dbe-c6ac-4547-8831-90f1c19ce61f_video_upload_8ca36dbe-c6ac-4547-8831-90f1c19ce61f_cover_snapshot_0s_1782788922_image.jpeg',

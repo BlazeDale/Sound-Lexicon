@@ -5769,6 +5769,214 @@
       "edits": 2,
       "prompt": "charged-objects",
       "note": "first roll kept - a phone-call monologue suits this talked-lead style (my phone is on two percent, dont you dare hang up; the text: Hey. My dress was itchy. You looked nice.; pink satin shoes stacked like a little monument). Two edits pulled toward the garden the muddy shoes come from: the cousin fell out of the limo became fell in the garden; the reception parking lot became the garden plot. Cuts: stage and guitar directions, section labels, a dry-cleaner-steam couplet, a sweat line, the ceiling fan. Swearing was not needed; the flag was not set"
+    },
+    "262": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Look At Him Stand",
+        "clips": [
+          "9e1efbf8-c064-4d9e-840b-b2065619d1c6",
+          "afa6a46a-bece-44f7-9cf8-3b527a28497a"
+        ],
+        "v0": "9e1efbf8-c064-4d9e-840b-b2065619d1c6",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a teenager hiding behind the snack table at their older sibling's backyard graduation party, roasting every single relative to their best friend in a running whisper while secretly being proud enough to cry"
+      },
+      "flags": [
+        "blunt"
+      ],
+      "tagged": false,
+      "edits": 1,
+      "prompt": "charged-objects",
+      "note": "first roll kept - roast-as-love suits a talked rap lead (shiny shoes bought with his own tip money; the red eviction notices he hid under his mattress; im not crying, its the onion dip; the cap stuck thirty feet up an oak, swinging above all these idiot people). One edit: Aunt Brenda became Aunt Carol (Brenda appeared in #260). Brand names made generic (bug spray, boxed wine, juice box, chips). Preamble stripped"
+    },
+    "263": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Turn The Handle",
+        "clips": [
+          "dd72505e-4f1a-4b4d-8833-d248cf6c28ca",
+          "4539cfab-463e-4184-9cf9-09100f205938"
+        ],
+        "v0": "dd72505e-4f1a-4b4d-8833-d248cf6c28ca",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a crowd of little kids on a city block on the hottest day of summer, chanting a countdown together while a neighbor finally opens up the fire hydrant, then shrieking and cheering each other on through the spray"
+      },
+      "flags": [],
+      "tagged": false,
+      "edits": 2,
+      "prompt": "charged-objects",
+      "note": "first roll kept - the slot was built for cheer cadence and a group answer (a countdown, Ten! the asphalts sticking to my shoes, down to Turn the handle!; pudding-skin sky and the yellow fire-plug weeping). Edits: (Look at Leo go!) echoed both #251s Leo and #256s Look at Arthur go, so it became (Here comes Rosa, whoa!); the doubled grease became tar melting on the roof. Stage directions stripped"
+    },
+    "264": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Future Me",
+        "clips": [
+          "47d6e816-eddd-45d5-925a-e04775268f69",
+          "2e4a74c7-174a-457d-8ee8-8dde73624597"
+        ],
+        "v0": "47d6e816-eddd-45d5-925a-e04775268f69",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a college kid sitting on the floor of their dorm room at two in the morning during their very first week, recording a rambling voice memo to their future self, half laughing and half scared, while their new roommate snores across the room"
+      },
+      "flags": [
+        "spare"
+      ],
+      "tagged": false,
+      "edits": 3,
+      "prompt": "charged-objects",
+      "note": "first roll kept (my blue lanyards on the doorknob like a little snake that died; are you braver than me?). Three meaning-first edits: I hope you didnt sell the boots (unexplained) became I hope you still sound like me - the fear under a memo to your future self; sitting on the linoleum became sitting on a floor that isnt mine yet; the closing muddy white sneakers (echoing #261s muddy shoes) became ask her name written in pen across the knuckles, future me, tell me I did it - tied to the girl by the quad. Brand name made generic, recording-beep directions stripped"
+    },
+    "265": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Tinfoil And Prayer",
+        "clips": [
+          "71f3cb3f-3206-4fed-b07d-7d8409e93c31",
+          "0adda920-de8a-4546-b4e7-7562dec09fb6"
+        ],
+        "v0": "71f3cb3f-3206-4fed-b07d-7d8409e93c31",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a kid running for class president, standing on top of a cafeteria table and giving an absurdly passionate campaign speech full of impossible promises while their friends shout every promise back at them"
+      },
+      "flags": [],
+      "tagged": false,
+      "edits": 2,
+      "prompt": "charged-objects",
+      "note": "first roll kept - a speech with a crowd shouting back suits sprechgesang with group answers (gravity is cancelled on Tuesdays; a rocket ship made of tinfoil and prayer; vote for me, or the staplers get it). Edits: the gym clock as a ticking bomb with wire-cutters read badly in a school setting, so it became a thief and the kid holds the handcuffs (crowd: cuff the clock!); linoleum dropped from the hallway tile line. Stage directions stripped, crowd shouts kept as () answers"
+    },
+    "266": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Totally Wiped Out",
+        "clips": [
+          "abe45951-e9d8-4114-a6bf-e74dada58542",
+          "1f113235-79f0-49ed-8fde-50d13ad7bb94"
+        ],
+        "v0": "abe45951-e9d8-4114-a6bf-e74dada58542",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a teenager at a crowded food court table telling their friends, in total dramatic detail, about the most spectacular wipeout they just took at the ice rink in front of their crush"
+      },
+      "flags": [
+        "eye-dialect"
+      ],
+      "tagged": false,
+      "edits": 1,
+      "prompt": "charged-objects",
+      "note": "first roll kept. Because this entry is an eye-dialect probe (sung exactly as spelled), the prompt added one clause asking Gemini to spell every word the way the drawl pronounces it; ledgered as flag eye-dialect. Kept for my skates were like two evil little knives betraying my soul and my soul left my body and walked right out the door. Edits: spelling cleanup only where the phonetics had turned into nonsense (too suuuch a baddddie became toooo cuuute; spi-nuuuub-beeeed became nearly screeeeeamed; lemonade swoooort became lemonade quaaaart; the final chorus garble tidied); the brand name made generic. Stage directions stripped"
+    },
+    "267": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Gram's Eighty Today",
+        "clips": [
+          "b370f01c-b2c5-4b4e-bc73-ea725d9e9225",
+          "891957af-99e9-40a3-8698-bb5b52f342c6"
+        ],
+        "v0": "b370f01c-b2c5-4b4e-bc73-ea725d9e9225",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a teenager teaching their grandmother to ride a boogie board in the shallow waves on her eightieth birthday, the two of them falling over and laughing all afternoon while the family cheers from the sand"
+      },
+      "flags": [],
+      "tagged": false,
+      "edits": 1,
+      "prompt": "charged-objects",
+      "note": "first roll kept (the leash tugging like a puppy at your sixty-dollar board; hunting the crest of a six-inch wave; eighty years stuck to the back of your thigh; a turquoise board floating upside down in six inches of silver water). One edit: Uncle Dave became Uncle Joe (a Cousin Dave was in #262). Small logic fixes (mud in the eye became sand; the puddle became the shallows); stage directions stripped and the chant made plain sung lines rather than () voices"
+    },
+    "268": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Twenty Doors More",
+        "clips": [
+          "649dd93c-4994-4a7f-9612-fb3995aea299",
+          "cf0a72ea-b107-4ce9-82b7-1b3efa4fe18d"
+        ],
+        "v0": "649dd93c-4994-4a7f-9612-fb3995aea299",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a little kid on their very first day at a huge new city school, holding their older cousin's hand and peppering them with questions about every single thing they pass in the hallway"
+      },
+      "flags": [],
+      "tagged": false,
+      "edits": 0,
+      "prompt": "charged-objects",
+      "note": "first roll kept whole - the slot (a kid asking questions about everything) was chosen so plain statements would naturally rise into questions, which is what this style probes (is that a real bell or is it just painted?; can we go back to the sidewalk again?; is that the gym? is that where they keep all the air?). No rewrites; stage directions stripped"
+    },
+    "269": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Let The Bottom Burn",
+        "clips": [
+          "090542d9-5337-4012-9e30-8cc2324c1c73",
+          "c7cd981c-565b-48e0-b7e6-fdc16fc16295"
+        ],
+        "v0": "090542d9-5337-4012-9e30-8cc2324c1c73",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "someone sitting cross-legged on their apartment floor at dawn, reading aloud the first diary entry they have written in ten years, about the afternoon they finally made peace with their estranged sibling over a plate of burnt pancakes"
+      },
+      "flags": [
+        "spare"
+      ],
+      "tagged": false,
+      "edits": 0,
+      "prompt": "charged-objects",
+      "note": "second request - the first came back EMPTY (1 word, likely the filter); a plain retry returned 197 words. Kept whole (you took the burnt one first; the butter sat between us like a rock that took ten years to break; three dollars on the shelf for the milk I made you throw; the extra key left in the unlocked drawer - the key is the reconciliation, not inventory). No rewrites; stage directions and a closing image note stripped"
+    },
+    "270": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "One Screw Left Over",
+        "clips": [
+          "fffb0351-ed83-4ce6-ab45-7f8d164c4dad",
+          "8f5464f6-357b-481f-841e-6c407f9d9695"
+        ],
+        "v0": "fffb0351-ed83-4ce6-ab45-7f8d164c4dad",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "someone kneeling on the floor of a tiny city apartment at midnight, putting together a crib for their first baby, earnestly promising the unborn child everything in the world while muttering at the confusing instructions and the leftover screws between promises"
+      },
+      "flags": [],
+      "tagged": false,
+      "edits": 3,
+      "prompt": "charged-objects",
+      "note": "first roll kept - earnest sung promises with muttered () asides are exactly this styles sung-line-plus-interjection shape (step four was upside down, who draws an arrow like that?; I will build you a kingdom on my own two feet; one screw left over, its solid as a rock; the hex wrench rolling to the baseboard). Three meaning-first edits: the radiator sweating rust became the one lamp that we own humming in the air (a small first home, and #249 had a radiator); the cracked linoleum floor became the cold and borrowed floor; drive the iron home became push the side rail home. The yellow raincoat and a passing taxi stayed. Stage directions stripped"
+    },
+    "271": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Peppermint In Your Pocket",
+        "clips": [
+          "31e04723-e0b1-420b-bc4b-a75b570c1719",
+          "0a9cd5cb-09bb-4911-a6ed-2cd524b52447"
+        ],
+        "v0": "31e04723-e0b1-420b-bc4b-a75b570c1719",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a grandparent leaving a long, warm, rambling voicemail for their grandchild on the morning of the grandchild's first real job, wandering through every little piece of advice they can think of and forgetting to hang up"
+      },
+      "flags": [],
+      "tagged": false,
+      "edits": 3,
+      "prompt": "charged-objects",
+      "note": "first roll kept - a rambling voicemail suits a style that is one unbroken spoken message (dont you drop your toast; never trust a manager with manicured-up hands; keep a peppermint in your pocket for the three oclock dull ache; the message trailing off mid-sentence). Three edits: before you catch your train became before you start your day; the mailmans little truck sputtering up the gravel became the crows coming back, the same crows grandad is yelling at; the linoleum-grease-spot and galvanized-washtub digression cut. Stage directions stripped"
     }
   },
   "method": {
