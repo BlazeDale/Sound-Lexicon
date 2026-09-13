@@ -5180,6 +5180,120 @@
       "tagged": true,
       "edits": 3,
       "note": "second roll: first (Saturday juke joint) fell to the rural default (porch light, red dirt on the fender, a banging screen door twice, pine needles, a fiddle) and a stay-on-through close, 116 words. Naming a CITY soul club landed the testifying plea with call-and-response (it's a terrible thing to love someone and choose it). Fixes: hook phrase swapped throughout \"let it burn\" -> \"let it hurt\" (third burn hook after #215 and #221's draft); \"you took your coat\" -> \"you took your time\"; outro stanza with a blue coat dripping on the kitchen floor by the door dropped. Crowd: labels removed, shouted responses kept in parens"
+    },
+    "235": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Down We Go",
+        "clips": [
+          "a3354af0-31b1-4a72-bb40-4def57e515c8",
+          "0a99c3bc-499f-44e9-9880-c66c7cb536cb"
+        ],
+        "v0": "a3354af0-31b1-4a72-bb40-4def57e515c8",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a packed cinema at midnight during the scariest scene of the film, hundreds of strangers holding their breath in the dark and gripping each other's arms"
+      },
+      "flags": [
+        "spare"
+      ],
+      "tagged": true,
+      "edits": 2,
+      "note": "first roll kept; two lovers hiding from an intruder in a basement, a dread scene whose \"this is the part where we stay calm\" suits a calm-and-wrong murmured lead. Fixes: \"Your keys are on the floor\" -> \"Your phone is on the floor\" (keys watch), \"I'll break it with my shoe\" -> \"with my arm\" (footwear); closing porch-light image dropped; tags added"
+    },
+    "236": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Down In The Deep",
+        "clips": [
+          "2c60547f-c9dd-4bcd-aa6e-476ee63dd2d0",
+          "5975cd89-2623-4fcc-a057-ff4c724d1355"
+        ],
+        "v0": "2c60547f-c9dd-4bcd-aa6e-476ee63dd2d0",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a crowd of night-shift workers packed into the last freight elevator going down into a flooded underground city, shoulder to shoulder, nobody speaking"
+      },
+      "flags": [
+        "spare",
+        "mantra",
+        "spec"
+      ],
+      "tagged": false,
+      "edits": 1,
+      "note": "first roll kept as a subset for a near-toneless murmur: verse 1 (the cable groans, three thousand feet), two asides, and the mantra block twice. Mantra phrase swapped throughout, structure kept: \"Down in the rust\" -> \"Down in the deep\" (rust is the corpus's top palette attractor). Verse 2 with copper wire and boots in the mire left out"
+    },
+    "237": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "I Am Yours",
+        "clips": [
+          "e5c27b34-859a-4c8f-8fef-f77766dea2e2",
+          "a3f01e29-5526-4729-98c7-aedeb9423bf0"
+        ],
+        "v0": "e5c27b34-859a-4c8f-8fef-f77766dea2e2",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a vast night-shift sorting depot, hundreds of workers moving parcels along the belts in silent rhythm under humming strip lights"
+      },
+      "flags": [
+        "spare",
+        "mantra",
+        "spec"
+      ],
+      "tagged": true,
+      "edits": 1,
+      "note": "first roll kept as a subset for a flat affectless repeating voice: verses 1 and 3 (orbit line, cargo marked for Kepler-Three), the belt/night/cold/dawn vowel lines, and the I am yours mantra with (Keep it moving) intercom answers. Hold on. Hold on. hook lines dropped (verbatim #216's hook). One-word fix \"We sort the copper\" -> \"We sort the parcels\" (palette). Last entry generated on the old prompt; the charged-objects clause starts at #238"
+    },
+    "238": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Mud In The Dark",
+        "clips": [
+          "5d2c49c9-4535-4a3b-8e6c-bcf7e2a36f76",
+          "9e465436-338d-46c9-92e9-980054ead66f"
+        ],
+        "v0": "5d2c49c9-4535-4a3b-8e6c-bcf7e2a36f76",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a long chain of volunteers passing sandbags hand to hand down a flooding underground station at night, singing low together to keep the rhythm"
+      },
+      "flags": [
+        "spare",
+        "mantra"
+      ],
+      "tagged": false,
+      "edits": 1,
+      "prompt": "charged-objects",
+      "note": "FIRST ENTRY ON THE CHARGED-OBJECTS PROMPT (prompt+charged-objects). An old-prompt draft was generated first and discarded unread-into-Suno. Objects now carry the effort and dread instead of sitting as inventory: the third step down sweating, a sleeve black with station grease, we are building a wall out of dirt and our lungs. One-word fix in the repeated opening line \"sweating salt\" -> \"sweating cold\" (salt watch); wall and mud-in-the-dark refrains repeated once from their own lines (133 words)"
+    },
+    "239": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Don't Go Home",
+        "clips": [
+          "d9fccd5e-52d1-4e38-8787-b25ac78885e4",
+          "44dc20de-327f-4dce-9c92-53cab9a34095"
+        ],
+        "v0": "d9fccd5e-52d1-4e38-8787-b25ac78885e4",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a crowded night bus where every passenger's phone lights up at the same moment with the same message, people glancing at each other and saying nothing"
+      },
+      "flags": [
+        "spare",
+        "mantra",
+        "spec"
+      ],
+      "tagged": true,
+      "edits": 3,
+      "prompt": "charged-objects",
+      "note": "second on the charged-objects prompt; first fire returned EMPTY once, a straight retry landed. Strong paranoid scene (forty screens go white at once, twin moons over the gashouse, a Don't go home loop). The clause did not stop the old objects on its own: fixes \"The man in the wet coat\" -> \"The man across from us\", \"drops her key\" -> \"holds her breath\", \"smells like rusted iron\" -> \"smells like a storm\"; closing picture line dropped"
     }
   },
   "method": {
