@@ -1310,11 +1310,25 @@ function renderChat() {
         const b = document.createElement('button');
         b.textContent = '+ Add ' + text;
         b.addEventListener('click', async () => {
+          const before = Q.length;
           b.disabled = true; b.textContent = 'Adding…';
           /* Hand it straight back to addMany: it already knows how to follow a share link,
              de-duplicate, resolve, and route through the database when the queue is shared. */
           await addMany(raw);
-          b.textContent = '+ Add ' + text; b.disabled = false;
+          /* A share link that could not be followed leaves the queue unchanged. Rather than
+             restore a button that will fail again, hand over the one thing that does work:
+             the link itself, so whoever wants it can open it and paste the address back. */
+          if (Q.length === before && SHARE_RE.test(raw)) {
+            const a = document.createElement('a');
+            a.className = 'out';
+            a.href = raw.startsWith('http') ? raw : 'https://' + raw;
+            a.target = '_blank'; a.rel = 'noopener';
+            a.textContent = 'Open ↗';
+            a.title = 'Share links cannot be resolved from this page — open it and paste the /song/ address';
+            const t = document.createElement('span');
+            t.className = 'tag'; t.textContent = 'share link — could not be followed';
+            b.replaceWith(a); wrap.append(t);
+          } else { b.textContent = '+ Add ' + text; b.disabled = false; }
         });
         wrap.append(b);
       } else {
