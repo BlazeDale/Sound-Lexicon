@@ -303,6 +303,7 @@
   <p class="hint" id="chathint" hidden></p>
 
   <footer>
+    <span style="float:right;font-family:var(--mono);font-size:10.5px;color:var(--line)" id="buildstamp"></span>
     <b>Keys:</b> <kbd>shift</kbd>+<kbd>←</kbd> <kbd>→</kbd> previous / next track.<br><br>
     <b>About auto-advance.</b> It works two different ways, because the two sources differ.
     <b>YouTube</b> publishes a player API, so this page is genuinely told when a video ends and
@@ -383,6 +384,14 @@
    answers 401 to everything, so allorigins is used instead — the same swap was made there.
    A library demo needs neither: data.js already carries its title and its entry.
    ============================================================================ */
+
+/* Stamped so a stale copy can identify itself. data.js and queue.html are cached
+   separately, and a fresh data.js with a stale page looks exactly like a bug in the
+   page -- covers read from data.js while the code that looks them up is old. Printed
+   on load and shown in the footer, so 'which build am I on' is answerable in a glance
+   instead of by deduction. */
+const QUEUE_BUILD = '2026-09-13-a';
+console.log('[queue] build ' + QUEUE_BUILD);
 
 const $ = s => document.querySelector(s);
 /* meta.v2, not v1: v1 cached cover addresses that were DERIVED from the id, and a derived
