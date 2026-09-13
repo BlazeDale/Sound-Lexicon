@@ -136,6 +136,7 @@
                 padding:8px 11px;font-size:13px}
   .chatin input:focus{outline:none;border-color:var(--amber-dim)}
   .hint{font-size:12px;color:var(--dim);margin:9px 2px 0}
+  .hint b{color:var(--muted)}
   #toast{position:fixed;left:50%;transform:translateX(-50%);bottom:170px;background:var(--panel2);border:1px solid var(--line);
          border-radius:8px;padding:9px 15px;font-size:13px;color:var(--text);z-index:60;opacity:0;pointer-events:none;transition:opacity .2s}
   #toast.show{opacity:1}
@@ -185,6 +186,10 @@
     <button id="newq" hidden>New queue</button>
     <button id="publish" class="primary">Share this queue</button>
   </div>
+  <p class="hint" id="localnote">
+    This queue is private to this browser — no chat, and nobody else can see it.
+    <b>Share this queue</b> publishes it, gives you a link, and opens a chat on it.
+  </p>
   <div class="mine" id="mine" hidden><span class="lab">your queues</span></div>
 
   <div class="qhead">
@@ -1151,6 +1156,7 @@ try {
     });
     el('chat').hidden = false;
     el('livedot').hidden = false;
+    if (el('localnote')) el('localnote').hidden = true;
     el('publish').hidden = true;     // on a shared queue, 'New queue' is the way to start another
     el('qlink').value = location.origin + location.pathname + '?q=' + qid;
     el('qlink').hidden = false;
@@ -1254,6 +1260,9 @@ try {
   console.warn('[queue] sharing unavailable:', e);
   const b = el('publish');
   if (b) { b.disabled = true; b.title = 'Sharing needs a connection, and Anonymous sign-in enabled on the Firebase project'; }
+  const note = el('localnote');
+  if (note) note.innerHTML = 'This queue is private to this browser. Sharing and chat are not switched on yet '
+    + '&mdash; they need Anonymous sign-in enabled on the Firebase project, and the current rules published.';
   if (QID && el('empty')) el('empty').textContent = 'Could not reach the shared queue.';
 }
 </script>

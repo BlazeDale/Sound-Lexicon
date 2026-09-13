@@ -33,9 +33,20 @@
   .stat b{color:var(--amber);font-weight:600}
   .go{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin-top:10px;display:block}
   .badge{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;border-radius:4px;padding:2px 7px;margin-left:8px;vertical-align:middle;background:rgba(224,166,60,.14);color:var(--amber);border:1px solid var(--amber-dim)}
-  .tool{margin-top:18px;font-size:13px;color:var(--dim)}
-  .tool a{color:var(--muted);text-decoration:none;border-bottom:1px dotted var(--line)}
-  .tool a:hover{color:var(--amber);border-bottom-color:var(--amber-dim)}
+  .toolhead{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--dim);
+            margin:38px 0 12px;display:flex;align-items:center;gap:12px}
+  .toolhead::after{content:'';flex:1;height:1px;background:var(--line)}
+  .tools{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:720px){.tools{grid-template-columns:1fr}}
+  .tile{display:block;text-decoration:none;color:inherit;background:var(--panel);border:1px solid var(--line);
+        border-left:3px solid var(--teal);border-radius:12px;padding:20px 22px 18px;
+        transition:border-color .15s,transform .15s,background .15s}
+  .tile:hover{border-color:var(--teal);background:var(--panel2);transform:translateY(-2px)}
+  .tile h2{font-size:17px;margin:0 0 7px;font-weight:700;letter-spacing:-.01em}
+  .tile p{font-size:13.5px;color:var(--muted);margin:0 0 14px;line-height:1.55}
+  .tile .stat{font-family:var(--mono);font-size:11px;color:var(--dim);border-top:1px solid var(--line);padding-top:11px}
+  .tile .stat b{color:var(--teal);font-weight:600}
+  .tile .go{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-top:9px;display:block}
   footer{margin-top:46px;border-top:1px solid var(--line);padding-top:16px;font-size:12.5px;color:var(--dim);max-width:70ch}
 </style>
 </head>
@@ -75,12 +86,28 @@
     </a>
   </div>
 
-  <p class="tool">
-    Also here: a <a href="queue.html">listening queue</a> — drag Suno or YouTube links in,
-    order them, and play them back — and <a href="queues.html">the queues people have
-    shared</a>. Personal tools rather than a third library, so they sit down here instead
-    of taking a door.
-  </p>
+  <p class="toolhead">Tools</p>
+  <div class="tools">
+    <a class="tile" href="queue.html">
+      <h2>Listening queue</h2>
+      <p>
+        Drag Suno or YouTube links in, put them in order, and play them straight through.
+        Library demos name the entry that made them. Keep it to yourself, or share it.
+      </p>
+      <div class="stat" id="s3">&nbsp;</div>
+      <span class="go">Start a queue →</span>
+    </a>
+
+    <a class="tile" href="queues.html">
+      <h2>Shared queues</h2>
+      <p>
+        Queues people have published, with a chat on each one. Paste a link in the chat and
+        the owner can add it with a click. Yours are yours to delete.
+      </p>
+      <div class="stat">Anyone with the link can listen and talk</div>
+      <span class="go">Browse queues →</span>
+    </a>
+  </div>
 
   <footer>
     Free to run and open source, bar one hosted database for the shared ♥ counts.
@@ -102,6 +129,12 @@ document.getElementById('s1').innerHTML =
 
 const evc = LEX.reduce((n, c) => n + (c.ev || []).length, 0);
 const tested = LEX.filter(c => c.res.verdict !== 'untested').length;
+const secs = (typeof SONG_DUR !== 'undefined' && SONG_DUR)
+  ? Object.values(SONG_DUR).reduce((a, b) => a + b, 0) : 0;
+document.getElementById('s3').innerHTML = secs
+  ? `<b>${demos.size}</b> demos on tap · <b>${Math.floor(secs / 3600)}h ${Math.round(secs % 3600 / 60)}m</b> of audio`
+  : `<b>${demos.size}</b> demos on tap`;
+
 document.getElementById('s2').innerHTML =
   `<b>${LEX.length}</b> terms · <b>${DOMAINS.length}</b> domains · `
   + `<b>${tested}/${LEX.length}</b> verified by ear · ${LEX_VERSION} · ${LEX_UPDATED}`;
