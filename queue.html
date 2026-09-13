@@ -394,7 +394,7 @@
    page -- covers read from data.js while the code that looks them up is old. Printed
    on load and shown in the footer, so 'which build am I on' is answerable in a glance
    instead of by deduction. */
-const QUEUE_BUILD = '2026-09-13-a';
+const QUEUE_BUILD = '2026-09-13-b';
 console.log('[queue] build ' + QUEUE_BUILD);
 
 const $ = s => document.querySelector(s);
@@ -1081,7 +1081,7 @@ function clearTimer() {
 function startTimer(seconds) {
   clearTimer();
   if (!auto || !(seconds > 0)) return;
-  tTotal = seconds + 1.5;                         // a beat of slack for the frame to start
+  tTotal = seconds - 0.5;                         // was +1.5; that let ~2s of the embed's repeat play before advancing
   tEnd = Date.now() + tTotal * 1000;
   $('#timer').classList.add('live');
   paintTimer();
