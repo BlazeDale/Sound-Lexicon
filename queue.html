@@ -81,6 +81,7 @@
        border-left:3px solid transparent;border-radius:9px;padding:8px 10px;cursor:pointer;transition:border-color .12s,background .12s}
   .row:hover{background:var(--panel2)}
   .row.cur{border-left-color:var(--amber);background:var(--panel2)}
+  .row.mine{border-left-color:var(--teal)}     /* what a visitor is hearing on a detour of their own */
   .row.drag{opacity:.35}
   .row.over{border-top:2px solid var(--amber)}
   .grip{color:var(--dim);cursor:grab;font-size:15px;line-height:1;padding:0 2px;flex:none;user-select:none}
@@ -257,6 +258,7 @@
       </div>
       <div class="ctrls">
         <button class="tog" id="ytcookie" hidden title="Ask your browser to let the YouTube player see that you are signed in">yt sign-in</button>
+        <button class="tog on" id="tfollow" hidden title="Follow what the queue's owner is playing. Anything you pick yourself plays for you alone.">follow</button>
         <button class="tog" id="tauto" title="Advance automatically when the track's length has elapsed">auto</button>
         <button class="tog" id="tshuf" title="Shuffle">shuf</button>
         <button class="tog" id="trep" title="Repeat: off / all / one">rep off</button>
@@ -274,7 +276,7 @@
         <button id="clear">Clear</button>
       </div>
       <div id="nowwrap" hidden>
-        <p class="sidelab">Playing</p>
+        <p class="sidelab" id="nowlab">Playing</p>
         <ul id="nowlist"></ul>
       </div>
       <ul id="list"></ul>
@@ -397,7 +399,7 @@
    page -- covers read from data.js while the code that looks them up is old. Printed
    on load and shown in the footer, so 'which build am I on' is answerable in a glance
    instead of by deduction. */
-const QUEUE_BUILD = '2026-09-13-c';
+const QUEUE_BUILD = '2026-09-13-d';
 console.log('[queue] build ' + QUEUE_BUILD);
 
 const $ = s => document.querySelector(s);
@@ -877,7 +879,88 @@ function recordPlayed(k) {
   heard = heard.filter(x => x !== k);
   heard.push(k);
   saveHeard();
+  if (hosting()) SP.heard = heard.slice();
 }
+/* ---------- the shared position ----------
+   On a shared queue, where the queue IS - what is playing, what is up next, what has been
+   played - belongs to the queue rather than to each browser. The owner's player drives it:
+   every track they start or leave is written to queues/<qid>/play, and every visitor's three
+   columns are drawn from that. A visitor's own player follows the owner's while the owner is
+   here (the follow toggle), and is free to play anything in the list - but a visitor's picks
+   play for them alone and never move the columns.
+
+   `cur` keeps meaning what THIS browser's player has loaded. The columns read the anchor
+   instead, which on a shared queue is the owner's track. For the owner the two agree while
+   they are playing; after a reload they differ, and the queue stays where the owner left it
+   rather than springing back to the top.
+
+   Until the database answers - or, for a visitor, on a queue whose owner has not played
+   anything since this existed - SP.loaded is false and everything behaves exactly as the
+   private queue always has. */
+const SP = { loaded: false, now: '', next: [], heard: [], seen: false, raw: null };
+let following = true, pendingFollow = false, lastOwnerHere = false, applyingPlay = false;
+let colNowKey = '';
+function guest() { return shared() && !isOwner(); }
+function hosting() { return shared() && isOwner() && SP.loaded; }
+function ownerHere() { return !!(SQ.owner && SQ.presence && SQ.presence[SQ.owner]); }
+function heardList() { return guest() && SP.loaded ? SP.heard : heard; }
+function anchorIndex() {
+  if (shared() && SP.loaded) return SP.now ? Q.findIndex(r => keyOf(r) === SP.now) : -1;
+  return cur;
+}
+
+/* The owner's half: after a render, send the position if it changed. Never from a render
+   that receiving the position caused, or two of the owner's own tabs with different shuffles
+   would bounce it between them for ever. */
+let playSent = '', playT = null;
+function sendPlay() {
+  if (!hosting() || applyingPlay || !window.__net || !window.__net.setPlay) return;
+  clearTimeout(playT);
+  playT = setTimeout(() => {
+    if (!hosting()) return;
+    const body = { now: SP.now, next: upcomingIndices().slice(0, 500).map(i => keyOf(Q[i])), heard: SP.heard.slice(-300) };
+    const s = JSON.stringify(body);
+    if (s === playSent) return;
+    playSent = s;
+    body.at = Date.now();
+    window.__net.setPlay(body);
+  }, 300);
+}
+
+/* The visitor's half. Load the owner's track when it changes - if following, and only while
+   the owner is actually here. A position left behind by an owner who has gone is where the
+   queue is, not something to start playing at somebody. */
+function followOwner(changed) {
+  if (!guest() || !SP.loaded || !following || !ownerHere() || !SP.now) return;
+  const i = Q.findIndex(r => keyOf(r) === SP.now);
+  if (i < 0) { pendingFollow = true; return; }        // that row has not arrived yet
+  pendingFollow = false;
+  if (i === cur || (!changed && cur >= 0)) return;
+  playAt(i, true);
+}
+function setFollowing(on) {
+  following = !!on;
+  $('#tfollow').classList.toggle('on', following);
+}
+
+/* A track reached its end. The owner - and anyone on a private queue - moves on as always.
+   A visitor never moves the queue: following, they wait for the owner's next track; back
+   from a detour, they rejoin the owner if the owner is playing, and otherwise carry on
+   through the list on their own. */
+function advance() {
+  if (guest() && SP.loaded && ownerHere() && SP.now) {
+    const i = Q.findIndex(r => keyOf(r) === SP.now);
+    if (i >= 0) {
+      setFollowing(true);
+      if (i !== cur) playAt(i, true);
+      else $('#ns').textContent = "Waiting for the owner's next track";
+      return;
+    }
+  }
+  const n = nextIndex();
+  if (n >= 0) playAt(n); else finishQueue();
+}
+
 /* What is left to hear, in the order it will play.
    The two columns are disjoint: a track is either waiting or heard, never both. That is what
    "up next" has to mean once the history survives a reload — otherwise everything springs
@@ -886,13 +969,27 @@ function recordPlayed(k) {
    unheard — so starting in the middle of a list does not strand the top of it. */
 function upcomingIndices() {
   if (!Q.length) return [];
-  const done = new Set(heard);
+  const done = new Set(heardList());
+  const anchor = anchorIndex();
+  /* A visitor takes the order from the owner, because the owner's shuffle is a private
+     permutation nobody else could reproduce. Anything added since the owner last wrote - an
+     open queue can grow while they are away - joins the end in list order. */
+  if (guest() && SP.loaded) {
+    const out = [], seen = new Set([anchor >= 0 ? keyOf(Q[anchor]) : '']);
+    const take = k => {
+      const i = Q.findIndex(r => keyOf(r) === k);
+      if (i >= 0 && !seen.has(k) && !done.has(k)) { seen.add(k); out.push(i); }
+    };
+    SP.next.forEach(take);
+    Q.forEach(r => take(keyOf(r)));
+    return out;
+  }
   const order = shuffling
     ? (shufOrder.length === Q.length ? shufOrder : (rebuildShuffle(), shufOrder))
     : Q.map((_, i) => i);
-  const at = order.indexOf(cur);
+  const at = order.indexOf(anchor);
   const seq = at < 0 ? order.slice() : order.slice(at + 1).concat(order.slice(0, at));
-  return seq.filter(i => i !== cur && !done.has(keyOf(Q[i])));
+  return seq.filter(i => i !== anchor && !done.has(keyOf(Q[i])));
 }
 
 function render() {
@@ -909,7 +1006,12 @@ function render() {
   if (shared() && !renderingChat) renderChat();
 
   const upcoming = upcomingIndices();
-  const nowKey = cur >= 0 && Q[cur] ? keyOf(Q[cur]) : '';
+  const at = anchorIndex();
+  const nowKey = at >= 0 && Q[at] ? keyOf(Q[at]) : '';
+  colNowKey = nowKey;
+  $('#nowlab').textContent = at === cur ? 'Playing' : guest() ? "The owner's track" : 'The queue is at';
+  $('#tfollow').hidden = !(guest() && SP.loaded);
+  $('#clearheard').hidden = guest() && SP.loaded;        // a visitor cannot reset the queue's history
 
   $('#count').textContent = upcoming.length
     ? upcoming.length + (upcoming.length === 1 ? ' waiting' : ' waiting') : '';
@@ -917,7 +1019,7 @@ function render() {
   $('#empty').textContent = Q.length ? 'Nothing left to play.' : 'Nothing queued yet.';
   $('#nowwrap').hidden = !nowKey;
 
-  const playedRows = heard
+  const playedRows = heardList()
     .map(k => Q.findIndex(r => keyOf(r) === k))
     .filter(i => i >= 0 && keyOf(Q[i]) !== nowKey)
     .reverse();                                   // most recently heard at the top
@@ -925,16 +1027,17 @@ function render() {
   $('#doneempty').style.display = playedRows.length ? 'none' : 'block';
 
   const into = (i, target) => { const li = rowEl(Q[i], i); target.appendChild(li); };
-  if (nowKey) into(cur, nowl);
+  if (nowKey) into(at, nowl);
   upcoming.forEach(i => into(i, list));
   playedRows.forEach(i => into(i, done));
+  sendPlay();
 }
 
 /* One row, built once, used by all three columns. */
 function rowEl(r, i) {
   return (function () {
     const li = document.createElement('li');
-    li.className = 'row' + (i === cur ? ' cur' : '');
+    li.className = 'row' + (keyOf(r) === colNowKey ? ' cur' : i === cur ? ' mine' : '');
     li.draggable = !shared() || isOwner();          // guests cannot reorder
     li.dataset.i = i;
 
@@ -1093,8 +1196,7 @@ function startTimer(seconds) {
     const left = (tEnd - Date.now()) / 1000;
     if (left <= 0) {
       clearTimer();
-      const n = nextIndex();
-      if (n >= 0) playAt(n); else finishQueue();
+      advance();
       return;
     }
     paintTimer();
@@ -1193,8 +1295,7 @@ window.onYouTubeIframeAPIReady = () => {
             if (list && list.length && at > -1 && at < list.length - 1) return;   // more to come
           }
         } catch (err) {}
-        const n = nextIndex();
-        if (n >= 0) playAt(n); else finishQueue();
+        advance();
       },
       /* Say WHICH refusal it was, and offer the way out, rather than skipping in silence.
          101 and 150 are the same thing — the uploader disallowed embedding — and no amount
@@ -1224,6 +1325,7 @@ window.onYouTubeIframeAPIReady = () => {
            still carries on but a watched one does not just blink past the problem. */
         setTimeout(() => {
           if (cur < 0) return;
+          if (guest() && SP.loaded && following && ownerHere()) return;   // the owner's player decides what comes next
           const n = nextIndex();
           if (n >= 0 && n !== cur) playAt(n);
         }, 4000);
@@ -1241,6 +1343,8 @@ window.onYouTubeIframeAPIReady = () => {
 function finishQueue() {
   clearTimer();
   if (cur >= 0 && Q[cur]) recordPlayed(keyOf(Q[cur]));
+  else if (hosting() && SP.now) recordPlayed(SP.now);
+  if (hosting()) SP.now = '';
   hideSunoFrame();
   $('#yt').style.display = 'none';
   if (ytReady && yt && yt.stopVideo) { try { yt.stopVideo(); } catch (e) {} }
@@ -1256,20 +1360,29 @@ function stopAll() {
   $('#yt').style.display = 'none';
   if (ytReady && yt && yt.stopVideo) { try { yt.stopVideo(); } catch (e) {} }
   cur = -1;
+  if (hosting()) SP.now = '';
   $('#nt').textContent = 'Nothing playing';
   $('#ns').textContent = Q.length ? 'Stopped' : 'Queue is empty';
   render();
 }
 
-async function playAt(i) {
+async function playAt(i, fromFollow) {
   if (i < 0 || i >= Q.length) return;
   clearTimer();
+  /* A visitor choosing a track is a detour, unless the track they chose is the owner's. */
+  if (guest() && SP.loaded && !fromFollow) setFollowing(keyOf(Q[i]) === SP.now);
   /* Record what we are leaving, not what we are starting: the track under the player should
-     never also appear in the played column. */
-  if (cur >= 0 && cur !== i && Q[cur]) recordPlayed(keyOf(Q[cur]));
-  /* Whatever is starting is no longer "already played" — it is playing. */
+     never also appear in the played column. After the owner reloads nothing is under the
+     player, but the queue is still sitting on the track they left, and that is what is left. */
   const startKey = Q[i] && keyOf(Q[i]);
-  if (startKey && heard.includes(startKey)) { heard = heard.filter(x => x !== startKey); saveHeard(); }
+  const leaving = cur >= 0 && Q[cur] ? keyOf(Q[cur]) : (hosting() ? SP.now : '');
+  if (leaving && leaving !== startKey) recordPlayed(leaving);
+  /* Whatever is starting is no longer "already played" — it is playing. */
+  if (startKey && heard.includes(startKey)) {
+    heard = heard.filter(x => x !== startKey); saveHeard();
+    if (hosting()) SP.heard = heard.slice();
+  }
+  if (hosting()) SP.now = startKey;
   cur = i;
   let r = Q[i];
   if (r.title === 'Loading…') { Q[i] = r = await resolve(r.id, r.src); save(); }
@@ -1351,6 +1464,9 @@ function rebuildShuffle() {
 function nextIndex(peek) {
   if (!Q.length) return -1;
   if (repeat === 'one' && !peek) return cur;
+  /* A visitor's own way through the list is simply the row after the one they are hearing.
+     The shared up-next is the owner's plan, and stepping through it would look like moving it. */
+  if (guest() && SP.loaded) return cur + 1 < Q.length ? cur + 1 : (repeat === 'all' ? 0 : -1);
   const up = upcomingIndices();
   if (up.length) return up[0];
   if (repeat !== 'all') return -1;
@@ -1363,6 +1479,7 @@ function nextIndex(peek) {
    from anyway. */
 function prevIndex() {
   if (!Q.length) return -1;
+  if (guest() && SP.loaded) return cur > 0 ? cur - 1 : -1;
   for (let n = heard.length - 1; n >= 0; n--) {
     const i = Q.findIndex(r => keyOf(r) === heard[n]);
     if (i >= 0 && i !== cur) return i;
@@ -1447,6 +1564,12 @@ $('#ytcookie').addEventListener('click', async () => {
 /* ---------- controls ---------- */
 $('#next').addEventListener('click', () => { const n = nextIndex(); if (n >= 0) playAt(n); else toast('End of queue'); });
 $('#prev').addEventListener('click', () => { const p = prevIndex(); if (p >= 0) playAt(p); else toast('Start of queue'); });
+$('#tfollow').addEventListener('click', () => {
+  setFollowing(!following);
+  if (!following) { toast('Not following - what you play is yours alone'); return; }
+  if (ownerHere() && SP.now) { followOwner(true); toast("Following the owner"); }
+  else toast("Following - you will pick up the owner's track when they play");
+});
 $('#tauto').addEventListener('click', () => {
   auto = !auto;
   $('#tauto').classList.toggle('on', auto);
@@ -1469,7 +1592,10 @@ $('#clear').addEventListener('click', () => {
   Q = []; stopAll(); save();
 });
 $('#clearheard').addEventListener('click', () => {
-  heard = []; saveHeard(); render(); toast('Play history cleared');
+  if (guest() && SP.loaded) return;
+  heard = []; saveHeard();
+  if (hosting()) SP.heard = [];
+  render(); toast('Play history cleared');
 });
 $('#shuffleall').addEventListener('click', () => {
   const playing = Q[cur];
@@ -1567,6 +1693,7 @@ if (Q.length) $('#ns').textContent = Q.length + ' queued · pick a track';
 
 /* ---------- what the network layer calls back into ---------- */
 window.__applyRemote = (tracks, meta) => {
+  const knewOwner = !!SQ.owner;
   SQ.owner = (meta && meta.owner) || '';
   SQ.open = !!(meta && meta.open);
   SQ.title = (meta && meta.title) || 'Untitled queue';
@@ -1580,6 +1707,8 @@ window.__applyRemote = (tracks, meta) => {
   const playing = Q[cur] ? keyOf(Q[cur]) : '';
   Q = tracks;
   cur = playing ? Q.findIndex(r => keyOf(r) === playing) : -1;
+  if (!knewOwner && SQ.owner && SP.seen) window.__applyPlay(SP.raw);   // held until ownership was known
+  if (pendingFollow) followOwner(true);                                // the owner's track has arrived
   $('#empty').textContent = isOwner()
     ? 'Nothing queued yet — drop links in above.'
     : (SQ.open ? 'Nothing queued yet — anyone can add to this one.' : 'Nothing queued yet.');
@@ -1601,6 +1730,43 @@ window.__applyRemote = (tracks, meta) => {
   rebuildShuffle(); render();
 };
 window.__applyChat = msgs => { SQ.chat = msgs; renderChat(); };
+
+/* The shared position arriving. It can land before the queue's meta does, and who owns the
+   queue decides how it is read, so until the owner is known it is only held on to -
+   __applyRemote replays it the moment ownership is known. */
+window.__applyPlay = v => {
+  SP.seen = true; SP.raw = v;
+  if (!SQ.owner) return;
+  const owner = isOwner();
+  if (!v && !owner) { SP.loaded = false; render(); return; }   // nothing shared yet: a visitor keeps their own columns
+  const first = !SP.loaded, before = SP.now;
+  SP.loaded = true;
+  if (!v) {
+    /* The owner, on a queue with no stored position - just published, or from before this
+       existed. This browser's own history is the best record there is, so it seeds it. */
+    SP.now = cur >= 0 && Q[cur] ? keyOf(Q[cur]) : '';
+    syncHeard();                                            // the list for THIS queue, not the private one
+    SP.next = []; SP.heard = heard.slice();
+    render();
+    return;
+  }
+  const strs = x => (x ? Object.values(x) : []).filter(s => typeof s === 'string');
+  SP.now = typeof v.now === 'string' ? v.now : '';
+  SP.next = strs(v.next);
+  SP.heard = strs(v.heard);
+  /* Load this queue's key first, or the render below would load it over what just arrived. */
+  if (owner) { syncHeard(); heard = SP.heard.slice(); saveHeard(); }
+  applyingPlay = true;
+  try { render(); } finally { applyingPlay = false; }
+  if (!owner) followOwner(first || SP.now !== before);
+};
+
+/* Presence arriving. The owner turning up is the moment a follower picks up their track. */
+window.__presence = () => {
+  const here = ownerHere();
+  if (here && !lastOwnerHere) followOwner(true);
+  lastOwnerHere = here;
+};
 
 /* ---------- chat ----------
    The reason chat exists rather than a comment field: a link dropped in here is a
@@ -1894,15 +2060,17 @@ try {
         .catch(e => console.warn('[queue] presence refused (rules not published?)', e));
     });
     stopP = onValue(ref(db, 'queues/' + qid + '/presence'), s => {
-      n = Object.values(s.val() || {}).filter(v => v && typeof v === 'object').length;
+      SQ.presence = s.val() || {};
+      n = Object.values(SQ.presence).filter(v => v && typeof v === 'object').length;
       paint();
+      window.__presence && window.__presence();
     });
   }
 
-  let stopT = null, stopM = null, stopC = null;
+  let stopT = null, stopM = null, stopC = null, stopPl = null;
   function listen(qid) {
     SQ.qid = qid;
-    [stopT, stopM, stopC].forEach(f => f && f());
+    [stopT, stopM, stopC, stopPl].forEach(f => f && f());
     present(qid);
     let tracks = [], meta = {};
     stopM = onValue(ref(db, 'queues/' + qid + '/meta'), s => { meta = s.val() || {}; window.__applyRemote(tracks, meta); });
@@ -1915,6 +2083,7 @@ try {
       const v = s.val() || {};
       window.__applyChat(Object.values(v).sort((a, b) => (a.a || 0) - (b.a || 0)).slice(-200));
     });
+    stopPl = onValue(ref(db, 'queues/' + qid + '/play'), s => window.__applyPlay(s.val()));
     el('chat').hidden = false;
     el('board').classList.add('withchat');
     setTimeout(() => window.__sizeChat && window.__sizeChat(), 0);
@@ -1927,6 +2096,7 @@ try {
     el('chathint').hidden = false;
     el('chathint').textContent =
       'Anyone with this link can read the queue and talk in the chat. Names are self-chosen and unverified. '
+      + 'What is playing and what has been played follow the owner; anything a visitor picks plays for them alone. '
       + 'Ownership lives in this browser - clearing site data would hand it to nobody.';
   }
 
@@ -2000,7 +2170,7 @@ try {
       /* Same parent-path problem as create, so the children go first and the node itself is
          only a tidy-up: once meta, tracks and chat are gone the queue is gone, whether or
          not the write at the node is permitted. */
-      for (const part of ['presence', 'tracks', 'chat', 'meta']) {
+      for (const part of ['presence', 'play', 'tracks', 'chat', 'meta']) {
         await remove(ref(db, 'queues/' + qid + '/' + part)).catch(e => console.warn('[queue] could not remove ' + part, e));
       }
       await remove(ref(db, 'queues/' + qid)).catch(() => {});
@@ -2009,6 +2179,8 @@ try {
        client that knows it changed; it can lag if a tab dies mid-write, and nothing depends
        on it being exact. */
     setCount(n) { return update(idxref(), { n: Math.max(0, Math.min(5000, n | 0)) }).catch(() => {}); },
+    /* Where the queue is - playing, up next, played. Owner only, the rules enforce it. */
+    setPlay(body) { return set(qref('play'), body).catch(e => console.warn('[queue] play position refused (rules not published?)', e)); },
     say(text, who) {
       return set(push(qref('chat')), { u: me.uid, n: trim(who, 24), t: trim(text, 600), a: Date.now() })
         .catch(e => console.warn('[queue] chat refused', e));

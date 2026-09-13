@@ -133,6 +133,20 @@
           }
         },
 
+        // Where the queue is: the track playing, the up-next order and the played list, as
+        // track keys ("suno:<uuid>", "yt:<id>"). The owner's player writes it and everyone's
+        // columns read it, so every visitor sees the same queue; a visitor's own picks never
+        // touch it. Owner only - a visitor cannot move the queue by writing here by hand.
+        "play": {
+          ".write": "root.child('queues/' + $qid + '/meta/owner').val() === auth.uid",
+          ".validate": "newData.hasChildren(['at'])",
+          "now":   { ".validate": "newData.isString() && newData.val().length <= 60" },
+          "at":    { ".validate": "newData.isNumber()" },
+          "next":  { "$i": { ".validate": "newData.isString() && newData.val().length <= 60" } },
+          "heard": { "$i": { ".validate": "newData.isString() && newData.val().length <= 60" } },
+          "$other": { ".validate": false }
+        },
+
         // Who has this queue open right now: one row per open tab, at presence/<uid>/<conn>,
         // holding the server time it arrived. A visitor may write only under their own uid,
         // and the database removes the row itself when that tab's connection drops
