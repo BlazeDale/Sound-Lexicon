@@ -250,6 +250,12 @@
     when you listen straight through, and wrong if you pause inside the frame, which is the one
     thing it cannot see. Click the countdown to restart it. The player itself collapses if it
     is ever in the way.<br><br>
+    <b>Album playlists.</b> A YouTube Music album link (its id starts
+    <span style="font-family:var(--mono)">OLAK5uy_</span>) will not play here. The embedded
+    player refuses to unpack one — it loads a single track and then shows its own error
+    without telling this page anything, which is why such a row is marked in the list and
+    offers a link out. Ordinary playlists are fine. Individual tracks from the album are fine
+    too, if you would rather queue them one at a time.<br><br>
     <b>YouTube Premium and ads.</b> An embedded player is a third-party frame, and it only
     knows you are signed in if your browser lets YouTube's cookies through from this site.
     Most browsers now block exactly that by default, so Premium often does not carry across
@@ -470,9 +476,16 @@ async function resolveYT(id) {
 /* oEmbed answers for a playlist as well as a video, which is the whole reason this is
    possible without a key: it hands back the album's name and a thumbnail. It does NOT say
    how many videos are in it, and nothing here needs to know. */
+/* An OLAK5uy_ id is a YouTube MUSIC auto-generated album playlist, and the embedded player
+   will not enumerate one: it resolves to a single entry and then shows its own "An error
+   occurred" inside the frame, without firing onError, so the page is never told. Ordinary
+   PL... playlists work. Nothing here can change that — it is the player refusing, not us —
+   so the row says so up front and offers the way out rather than looking broken. */
+const isAlbumList = id => /^OLAK5uy_/i.test(String(id || ''));
+
 async function resolveYTPL(id) {
   const row = { id, src: 'ytpl', title: 'YouTube playlist', sub: 'YouTube playlist',
-                ent: false, art: '', dur: 0, ok: true };
+                ent: false, art: '', dur: 0, ok: true, album: isAlbumList(id) };
   const c = metaCache['ytpl:' + id];
   if (c && c.title) return Object.assign(row, c);
   const j = await queued(async () => {
@@ -486,6 +499,7 @@ async function resolveYTPL(id) {
   if (j && j.title) {
     row.title = j.title;
     row.sub = 'YouTube playlist' + (j.author_name ? ' · ' + j.author_name : '');
+    if (row.album) row.sub += ' · album — opens on YouTube';
     if (typeof j.thumbnail_url === 'string' && /^https:\/\//.test(j.thumbnail_url)) row.art = j.thumbnail_url;
     metaCache['ytpl:' + id] = { title: row.title, sub: row.sub, art: row.art };
     saveMeta();
@@ -701,6 +715,10 @@ function render() {
     const sub = document.createElement('div'); sub.className = 'sub';
     if (r.ent) { const e = document.createElement('span'); e.className = 'ent'; e.textContent = r.sub; sub.appendChild(e); }
     else sub.appendChild(document.createTextNode(r.sub || (r.src === 'yt' ? 'YouTube' : r.id.slice(0, 8))));
+    if (r.album) {
+      const w = document.createElement('span'); w.className = 'warn';
+      w.textContent = '  · will not play embedded'; sub.appendChild(w);
+    }
     if (r.src === 'suno' && !r.ok && r.title !== 'Loading…') {
       const w = document.createElement('span'); w.className = 'warn';
       w.textContent = '  · length unknown, will not auto-advance'; sub.appendChild(w);
@@ -931,6 +949,26 @@ async function playAt(i) {
       else yt.loadVideoById(r.id);
     };
     if (ytReady && yt && yt.loadVideoById) load(); else ytPending = r;
+
+    /* Verify a playlist actually unpacked. One entry or none means it did not, and the
+       player will sit there showing its own error while reporting nothing to us — this is
+       the only place the page can notice. It lives OUT here rather than inside load(),
+       because on the first play the API is not ready yet and the pending path does the
+       loading, which would skip the check entirely. */
+    if (r.src === 'ytpl') setTimeout(() => {
+      if (cur !== i || !Q[i] || Q[i].src !== 'ytpl') return;
+      let n = 0;
+      try { const l = yt && yt.getPlaylist && yt.getPlaylist(); n = l ? l.length : 0; } catch (e) {}
+      if (n > 1) return;
+      const ns = $('#ns');
+      ns.textContent = 'YouTube will not play this album in an embedded player — ';
+      const a = document.createElement('a');
+      a.href = 'https://www.youtube.com/playlist?list=' + r.id;
+      a.target = '_blank'; a.rel = 'noopener';
+      a.textContent = 'open it on YouTube';
+      ns.appendChild(a);
+      toast('That album will not play embedded — open it on YouTube');
+    }, 7000);
   } else {
     $('#yt').style.display = 'none';
     if (ytReady && yt && yt.stopVideo) { try { yt.stopVideo(); } catch (e) {} }
@@ -1301,6 +1339,7 @@ try {
            : t.src === 'ytpl' ? ''
                             : 'https://cdn2.suno.ai/image_' + t.id + '.jpeg',
         dur: t.dur || 0, ok: (t.dur || 0) > 0 || t.src === 'yt' || t.src === 'ytpl',
+        album: t.src === 'ytpl' && /^OLAK5uy_/i.test(String(t.id || '')),
         by: t.by || '', byName: t.byName || '', ord: t.ord || 0
       }))
       .sort((a, b) => a.ord - b.ord);
