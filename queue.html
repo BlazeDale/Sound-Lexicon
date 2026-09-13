@@ -1258,11 +1258,23 @@ try {
         tracks[push(ref(db, 'queues/' + qid + '/tracks')).key] = t;
       });
       const now = Date.now();
-      await set(ref(db, 'queues/' + qid), {
-        meta: { owner: me.uid, ownerName: trim(who, 24), title: trim(title || 'Untitled queue', 60),
-                open: false, listed: true, created: now, v: 1 },
-        tracks
-      });
+      const meta = { owner: me.uid, ownerName: trim(who, 24), title: trim(title || 'Untitled queue', 60),
+                     open: false, listed: true, created: now, v: 1 };
+      /* Creating the queue in one write is the right shape — a queue should exist whole or
+         not at all. But it needs a .write rule AT queues/<qid>, and permission in this
+         database comes from a rule at or above the path being written: the meta and tracks
+         rules, however correct, do not authorise a write to their parent. A deployment
+         missing that rule refuses this with PERMISSION_DENIED, so rather than demand a rules
+         update before anything can be published, fall back to writing the two children —
+         paths that are permitted either way. */
+      try {
+        await set(ref(db, 'queues/' + qid), { meta, tracks });
+      } catch (e) {
+        if (!/permission/i.test(String(e && (e.code || e.message)))) throw e;
+        console.warn('[queue] whole-node create refused; writing meta and tracks separately');
+        await set(ref(db, 'queues/' + qid + '/meta'), meta);
+        await set(ref(db, 'queues/' + qid + '/tracks'), tracks);
+      }
       /* The public card, written second on purpose: a queue that failed to create must not
          leave an entry advertising a queue that is not there. */
       await set(ref(db, 'queue_index/' + qid), {
@@ -1304,7 +1316,13 @@ try {
     async destroy() {
       const qid = SQ.qid;
       await remove(ref(db, 'queue_index/' + qid)).catch(() => {});
-      await remove(ref(db, 'queues/' + qid)).catch(e => console.warn('[queue] delete refused', e));
+      /* Same parent-path problem as create, so the children go first and the node itself is
+         only a tidy-up: once meta, tracks and chat are gone the queue is gone, whether or
+         not the write at the node is permitted. */
+      for (const part of ['tracks', 'chat', 'meta']) {
+        await remove(ref(db, 'queues/' + qid + '/' + part)).catch(e => console.warn('[queue] could not remove ' + part, e));
+      }
+      await remove(ref(db, 'queues/' + qid)).catch(() => {});
     },
     /* The count on the browse card. Written by whoever changed the list, which is the only
        client that knows it changed; it can lag if a tab dies mid-write, and nothing depends

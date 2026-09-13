@@ -68,6 +68,19 @@
       "$qid": {
         ".read": true,
 
+        // This rule is what lets a queue be CREATED and DELETED at all, and it is easy to
+        // leave out. Permission comes from a .write at or above the path being written, and
+        // a child's rule never authorises a write to its parent -- so the meta and tracks
+        // rules below, however correct, do not permit set() or remove() on the queue node
+        // itself, which is exactly what publishing and deleting do. Verified by probe: the
+        // whole-node write answered 401 while the same data written to meta and tracks/<key>
+        // answered 200.
+        //
+        // Create: the meta/owner being written must be you. After that: only the existing
+        // owner. Guests are unaffected -- their track writes are granted further down, and a
+        // deny here does not revoke a grant below it.
+        ".write": "!data.exists() ? newData.child('meta/owner').val() === auth.uid : data.child('meta/owner').val() === auth.uid",
+
         // Written once by whoever creates the queue, and thereafter only by that uid. owner
         // can never be reassigned, so ownership cannot be taken by a later write.
         "meta": {
