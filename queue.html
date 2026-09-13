@@ -534,8 +534,22 @@ async function resolve(id, src) {
   const row = local || { id, src: 'suno', title: id.slice(0, 8), sub: '', ent: false, art: artOf(id), dur: 0, ok: false };
 
   const url = 'https://studio-api.prod.suno.com/api/clip/' + id;
+  /* Direct first: /api/clip answers from localhost and from suno.com, which covers a local
+     copy. Then the worker, which is the fast path when hosted -- that endpoint keeps an
+     origin allowlist github.io is not on, and the public proxy covering the gap costs about
+     twenty seconds when it works at all, which is why a resolved share link then sat there
+     showing an 8-character id instead of its title. The proxy stays last. */
   const j = await queued(async () => {
     try { const r = await fetchT(url, 9000); if (r.ok) return await r.json(); } catch (e) {}
+    if (SHARE_RESOLVER) {
+      try {
+        const r = await fetchT(SHARE_RESOLVER + '?clip=' + encodeURIComponent(id), 9000);
+        if (r.ok) {
+          const m = await r.json();
+          if (m && !m.error) return { title: m.title, image_url: m.art, metadata: { duration: m.dur } };
+        }
+      } catch (e) {}
+    }
     try { const r = await fetchT(PROXY(url), 15000); if (r.ok) return await r.json(); } catch (e) {}
     return null;
   });
