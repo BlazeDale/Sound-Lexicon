@@ -151,6 +151,8 @@
   .msg .hd b{color:var(--teal);font-weight:600}
   .msg .hd .me{color:var(--amber)}
   .msg .bod{color:var(--text);word-break:break-word}
+  .msg .bod a{color:var(--amber);text-decoration:none;border-bottom:1px solid var(--amber-dim)}
+  .msg .bod a:hover{border-bottom-color:var(--amber)}
   .msg .lk{margin-top:5px;display:flex;gap:7px;align-items:center;flex-wrap:wrap}
   .msg .lk button{padding:4px 9px;font-size:11.5px}
   .msg .lk .tag{font-family:var(--mono);font-size:10.5px;color:var(--dim)}
@@ -1310,6 +1312,35 @@ window.__applyChat = msgs => { SQ.chat = msgs; renderChat(); };
    The reason chat exists rather than a comment field: a link dropped in here is a
    suggestion, and whoever is allowed to add gets a button on it. That makes open-adding a
    convenience instead of the only way a guest can contribute anything. */
+/* Turn the addresses in a message into real links.
+   Built out of nodes rather than a string of markup: the text is written by whoever is in
+   the chat, and it must never reach innerHTML. Every piece that is not a link goes in as a
+   text node, and a link is only made when the scheme is http or https — so javascript: and
+   data: cannot be dressed up as one. Trailing punctuation is left out of the address,
+   because "listen to https://suno.com/s/abc." should not link the full stop. */
+const URL_RE = /https?:\/\/[^\s<>"']+/gi;
+function linkify(text, into) {
+  const str = String(text || '');
+  let at = 0;
+  for (const m of str.matchAll(URL_RE)) {
+    if (m.index > at) into.appendChild(document.createTextNode(str.slice(at, m.index)));
+    let href = m[0], tail = '';
+    const trimmed = href.replace(/[.,;:!?)\]}]+$/, '');
+    if (trimmed !== href) { tail = href.slice(trimmed.length); href = trimmed; }
+    let ok = false;
+    try { const u = new URL(href); ok = u.protocol === 'https:' || u.protocol === 'http:'; } catch (e) {}
+    if (ok) {
+      const a = document.createElement('a');
+      a.href = href; a.target = '_blank'; a.rel = 'noopener noreferrer';
+      a.textContent = href;
+      into.appendChild(a);
+    } else into.appendChild(document.createTextNode(href));
+    if (tail) into.appendChild(document.createTextNode(tail));
+    at = m.index + m[0].length;
+  }
+  if (at < str.length) into.appendChild(document.createTextNode(str.slice(at)));
+}
+
 let renderingChat = false;
 function renderChat() {
   if (renderingChat) return;                 // render() calls this, and this calls sizeChat()
@@ -1323,7 +1354,8 @@ function renderChat() {
     const nm = document.createElement('b'); nm.textContent = m.n || 'someone';
     if (m.u && m.u === SQ.uid) nm.className = 'me';
     hd.append(nm, document.createTextNode('  ' + new Date(m.a || 0).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })));
-    const bod = document.createElement('div'); bod.className = 'bod'; bod.textContent = m.t || '';
+    const bod = document.createElement('div'); bod.className = 'bod';
+    linkify(m.t || '', bod);
     el.append(hd, bod);
 
     /* Any track link in the message becomes an offer to queue it — the same set the add box
