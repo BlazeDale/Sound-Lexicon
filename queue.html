@@ -170,7 +170,7 @@
   .msg .lk{margin-top:5px;display:flex;gap:7px;align-items:center;flex-wrap:wrap}
   .msg .lk button{padding:4px 9px;font-size:11.5px}
   .msg .lk .tag{font-family:var(--mono);font-size:10.5px;color:var(--dim)}
-  .chatin{display:flex;gap:8px;border-top:1px solid var(--line);padding:10px 12px}
+  .chatin{display:flex;gap:8px;border-bottom:1px solid var(--line);padding:10px 12px;flex:none}
   .chatin input{flex:1;min-width:0;background:var(--ink);border:1px solid var(--line);border-radius:8px;color:var(--text);
                 padding:8px 11px;font-size:13px}
   .chatin input:focus{outline:none;border-color:var(--amber-dim)}
@@ -289,11 +289,11 @@
 
   <div id="chat" hidden>
     <h3>Chat <span id="chatnote">anyone with the link can talk here</span><span class="spacer"></span></h3>
-    <div id="msgs"></div>
     <form class="chatin" id="chatform" autocomplete="off">
       <input id="chatin" placeholder="Say something — paste a Suno or YouTube link to suggest a track" maxlength="600">
       <button class="primary" type="submit">Send</button>
     </form>
+    <div id="msgs"></div>
   </div>
   </div>
 
@@ -1462,9 +1462,11 @@ function renderChat() {
   if (renderingChat) return;                 // render() calls this, and this calls sizeChat()
   renderingChat = true;
   const box = $('#msgs');
-  const atBottom = box.scrollHeight - box.scrollTop - box.clientHeight < 40;
+  /* Newest at the top, pushed down by what comes after — the same direction the played
+     column reads, and it puts the newest message next to the box you type in. */
+  const atTop = box.scrollTop < 40;
   box.innerHTML = '';
-  for (const m of SQ.chat) {
+  for (const m of SQ.chat.slice().reverse()) {
     const el = document.createElement('div'); el.className = 'msg';
     const hd = document.createElement('div'); hd.className = 'hd';
     const nm = document.createElement('b'); nm.textContent = m.n || 'someone';
@@ -1526,7 +1528,7 @@ function renderChat() {
     }
     box.appendChild(el);
   }
-  if (atBottom) box.scrollTop = box.scrollHeight;
+  if (atTop) box.scrollTop = 0;
   sizeChat();
   renderingChat = false;
 }
