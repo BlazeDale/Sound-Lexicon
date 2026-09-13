@@ -402,7 +402,7 @@
    page -- covers read from data.js while the code that looks them up is old. Printed
    on load and shown in the footer, so 'which build am I on' is answerable in a glance
    instead of by deduction. */
-const QUEUE_BUILD = '2026-09-13-e';
+const QUEUE_BUILD = '2026-09-13-f';
 console.log('[queue] build ' + QUEUE_BUILD);
 
 const $ = s => document.querySelector(s);
@@ -1151,6 +1151,10 @@ $('#list').addEventListener('dragend', () => {
   dragFrom = -1;
   document.querySelectorAll('.row').forEach(r => r.classList.remove('drag', 'over'));
 });
+/* Belt and braces for the same trap: a reorder dropped outside the list, or cancelled with
+   Escape, ends wherever the pointer is. Listening on the document in the capture phase
+   clears the flag however the drag ends. */
+document.addEventListener('dragend', () => { dragFrom = -1; }, true);
 $('#list').addEventListener('dragover', e => {
   if (dragFrom < 0) return;                       // an external link drop belongs to the page
   e.preventDefault(); e.dataTransfer.dropEffect = 'move';
@@ -1161,11 +1165,18 @@ $('#list').addEventListener('dragover', e => {
 $('#list').addEventListener('drop', e => {
   if (dragFrom < 0) return;
   e.preventDefault(); e.stopPropagation();
+  /* The drag is consumed HERE, not in dragend. The render below replaces the row being
+     dragged, and a detached element's dragend never reaches this list - so dragFrom stayed
+     set, and every link later dropped on the page was mistaken for a row being reordered
+     and silently ignored. That was the drop box "going dead" after a reorder. */
+  const from = dragFrom;
+  dragFrom = -1;
+  document.querySelectorAll('.row').forEach(r => r.classList.remove('drag', 'over'));
   const li = e.target.closest('.row'); if (!li) return;
   const to = +li.dataset.i;
-  if (to === dragFrom) return;
-  const moving = Q[dragFrom], playing = Q[cur];
-  Q.splice(dragFrom, 1);
+  if (to === from) return;
+  const moving = Q[from], playing = Q[cur];
+  Q.splice(from, 1);
   Q.splice(to, 0, moving);
   if (playing) cur = Q.indexOf(playing);          // follow the track, not the index
   rebuildShuffle(); render();
