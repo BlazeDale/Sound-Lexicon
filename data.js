@@ -565,7 +565,7 @@ Oh my GOD I can't even say it out loud?
 
 [Spoken] (trailing off, creak on the tail)
 Anyway call me? Or don't? Whatever?`},
-{n:272,suno:[`ff297ffc-7390-400d-a0b9-ee2bbde0b808`,`c9bce4cb-fec6-4e98-85dc-29f1dead2036`],name:`Spoken-catchphrase hook`,fam:`Valspeak spoken-marker pop`,cat:`lyrical`,bpm:`104`,role:`the hook is a spoken phrase, not a sung one`,proc:`sparse trap-pop bed · hook doubled and panned`,aff:`E`,style:`Sparse trap-pop near 104 BPM built around a spoken hook: the chorus is not sung at all but exclaimed in plain speech, the same short phrase repeated and doubled, delivered with rising astonishment and mixed loud and close. Verses are talked too, quick and low and conversational. The lead is a unique and specific vocalist: bright, placed forward, vowels stretched on the exclamations. Behind it: a spare 808 sub, finger snaps, one glassy repeating figure, long silences left around the spoken hook so it lands in the open. Melody exists only in the instrumental. Production dry and forward, the voice always the loudest thing.`,neg:`sung chorus, melodic hook, autotune melody, vocal runs, orchestral strings, distorted guitar, wall of sound, mumbled delivery`,lyric:`[Verse] (spoken, low and quick)
+{n:272,suno:[`ff297ffc-7390-400d-a0b9-ee2bbde0b808`,`c9bce4cb-fec6-4e98-85dc-29f1dead2036`,`9153ae96-9fc7-4e40-803f-25ec089d3e69`],name:`Spoken-catchphrase hook`,fam:`Valspeak spoken-marker pop`,cat:`lyrical`,bpm:`104`,role:`the hook is a spoken phrase, not a sung one`,proc:`sparse trap-pop bed · hook doubled and panned`,aff:`E`,style:`Sparse trap-pop near 104 BPM built around a spoken hook: the chorus is not sung at all but exclaimed in plain speech, the same short phrase repeated and doubled, delivered with rising astonishment and mixed loud and close. Verses are talked too, quick and low and conversational. The lead is a unique and specific vocalist: bright, placed forward, vowels stretched on the exclamations. Behind it: a spare 808 sub, finger snaps, one glassy repeating figure, long silences left around the spoken hook so it lands in the open. Melody exists only in the instrumental. Production dry and forward, the voice always the loudest thing.`,neg:`sung chorus, melodic hook, autotune melody, vocal runs, orchestral strings, distorted guitar, wall of sound, mumbled delivery`,lyric:`[Verse] (spoken, low and quick)
 She said what? She said that? To your face?
 
 [Hook] (spoken, big, repeated, rising each time)
@@ -574,7 +574,7 @@ Oh my actual GOD?
 
 [Verse 2] (spoken, faster, breathless)
 I'm literally shaking? Like, physically?`},
-{n:273,suno:[`0b579967-dc95-423c-9543-6adcc6bf6fd4`,`847bd558-918b-479c-96f7-2e211152310e`],name:`Two-voice gossip dialogue`,fam:`Valspeak spoken-marker pop`,cat:`lyrical`,bpm:`112`,role:`two spoken parts in conversation`,proc:`call-and-response speech · panned left and right`,aff:`D`,style:`Bright electro-pop near 112 BPM carried by a spoken conversation: two voices talk to each other across the track, panned left and right, trading short lines in plain speech with nothing sung anywhere. Both are the same unique and specific vocalist doubled — conversational, one delivering everything with rising astonishment and the other answering flat and bored. Overlaps, interruptions and half-laughs left in. Behind them: a bouncing synth bass, crisp claps, chirpy arpeggio, tight programmed drums. The instrumental carries all the melody. Production dry and close on both voices, everything else glossy.`,neg:`sung melody, solo lead vocal, belted chorus, vocal harmony stacks, orchestral swell, slow ballad tempo, gravel rasp, aggressive delivery`,lyric:`[Voice 1] (spoken, rising)
+{n:273,suno:[`0b579967-dc95-423c-9543-6adcc6bf6fd4`,`847bd558-918b-479c-96f7-2e211152310e`,`595221fb-08bb-4e51-90e9-8472e2f50adb`],name:`Two-voice gossip dialogue`,fam:`Valspeak spoken-marker pop`,cat:`lyrical`,bpm:`112`,role:`two spoken parts in conversation`,proc:`call-and-response speech · panned left and right`,aff:`D`,style:`Bright electro-pop near 112 BPM carried by a spoken conversation: two voices talk to each other across the track, panned left and right, trading short lines in plain speech with nothing sung anywhere. Both are the same unique and specific vocalist doubled — conversational, one delivering everything with rising astonishment and the other answering flat and bored. Overlaps, interruptions and half-laughs left in. Behind them: a bouncing synth bass, crisp claps, chirpy arpeggio, tight programmed drums. The instrumental carries all the melody. Production dry and close on both voices, everything else glossy.`,neg:`sung melody, solo lead vocal, belted chorus, vocal harmony stacks, orchestral swell, slow ballad tempo, gravel rasp, aggressive delivery`,lyric:`[Voice 1] (spoken, rising)
 So are you gonna tell her? Or am I?
 
 [Voice 2] (spoken, flat, bored)
@@ -585,7 +585,7 @@ Oh my god— / Oh my GOD—
 
 [Voice 1] (delighted, tumbling)
 Shut UP. Shut up shut up shut up?`},
-{n:274,suno:[`5e0e9472-7622-4500-a728-07058c32ce98`,`8ac2f410-ae28-4305-99f1-cc3e8856fb49`],name:`Sung verse, spoken chorus`,fam:`Valspeak spoken-marker pop`,cat:`lyrical`,bpm:`96`,role:`inverted — the chorus is the spoken part`,proc:`lush verses · dry close chorus · no reverb on speech`,aff:`B`,style:`Wistful synth-pop near 96 BPM with the structure inverted: the verses are properly sung, lush and reverberant, and then the chorus drops entirely into plain speech — close, dry, unaccompanied by any vocal melody, the most memorable part of the song delivered as talking. The lead is a unique and specific vocalist: warm and smooth when singing, and the same voice dropped into unguarded conversation for the chorus, sentences lifting at the ends. Behind it: glassy pads, a soft pulsing bass, brushed electronic drums that thin out under the spoken sections. Production wide on the verses, intimate and dead-dry on the chorus.`,neg:`sung chorus, belted climax, vocal runs on the chorus, heavy reverb on the spoken parts, orchestral swell, distorted guitar, dance drop, gravel rasp`,lyric:`[Verse] (sung, smooth, lush)
+{n:274,suno:[`5e0e9472-7622-4500-a728-07058c32ce98`,`8ac2f410-ae28-4305-99f1-cc3e8856fb49`,`e5efbbd8-f295-4b21-a7b0-15c76b9dd689`],name:`Sung verse, spoken chorus`,fam:`Valspeak spoken-marker pop`,cat:`lyrical`,bpm:`96`,role:`inverted — the chorus is the spoken part`,proc:`lush verses · dry close chorus · no reverb on speech`,aff:`B`,style:`Wistful synth-pop near 96 BPM with the structure inverted: the verses are properly sung, lush and reverberant, and then the chorus drops entirely into plain speech — close, dry, unaccompanied by any vocal melody, the most memorable part of the song delivered as talking. The lead is a unique and specific vocalist: warm and smooth when singing, and the same voice dropped into unguarded conversation for the chorus, sentences lifting at the ends. Behind it: glassy pads, a soft pulsing bass, brushed electronic drums that thin out under the spoken sections. Production wide on the verses, intimate and dead-dry on the chorus.`,neg:`sung chorus, belted climax, vocal runs on the chorus, heavy reverb on the spoken parts, orchestral swell, distorted guitar, dance drop, gravel rasp`,lyric:`[Verse] (sung, smooth, lush)
 I drove past your street again tonight—
 
 [Chorus] (fully spoken, close, dry, rising)
@@ -594,7 +594,7 @@ Like, literally what am I doing?
 
 [Verse 2] (sung again)
 The porch light did that thing it does—`},
-{n:275,suno:[`5b142825-979a-4971-b19e-f6a740110e72`,`078d836f-2e59-4327-8227-cd20c741d792`],name:`Dancefloor narration`,fam:`Valspeak spoken-marker pop`,cat:`lyrical`,bpm:`128`,role:`continuous spoken narration over a club track`,proc:`peak-time house bed · voice dry and forward`,aff:`E`,style:`Peak-time house near 128 BPM with continuous spoken narration over the top: the vocal never sings, never chants, simply talks through the entire track like someone describing the night as it happens, getting louder and more breathless as the music builds. The lead is a unique and specific vocalist: close-mic-ed, conversational, sentences rising at the ends, exclamations stretched. Behind it: a driving kick, filtered stabs, rising white-noise sweeps, a long build and a full drop under which the talking continues undiminished. All melody lives in the synths. Production loud and euphoric underneath, the voice bone-dry and right up front.`,neg:`sung vocal, diva house vocal, belted hook, vocal harmony stacks, rapping, orchestral strings, downtempo, mumbled delivery`,lyric:`[Spoken narration] (continuous, over the beat, never sung)
+{n:275,suno:[`5b142825-979a-4971-b19e-f6a740110e72`,`078d836f-2e59-4327-8227-cd20c741d792`,`8cd5a8cd-8af6-4702-bdfb-30c6cda3558d`],name:`Dancefloor narration`,fam:`Valspeak spoken-marker pop`,cat:`lyrical`,bpm:`128`,role:`continuous spoken narration over a club track`,proc:`peak-time house bed · voice dry and forward`,aff:`E`,style:`Peak-time house near 128 BPM with continuous spoken narration over the top: the vocal never sings, never chants, simply talks through the entire track like someone describing the night as it happens, getting louder and more breathless as the music builds. The lead is a unique and specific vocalist: close-mic-ed, conversational, sentences rising at the ends, exclamations stretched. Behind it: a driving kick, filtered stabs, rising white-noise sweeps, a long build and a full drop under which the talking continues undiminished. All melody lives in the synths. Production loud and euphoric underneath, the voice bone-dry and right up front.`,neg:`sung vocal, diva house vocal, belted hook, vocal harmony stacks, rapping, orchestral strings, downtempo, mumbled delivery`,lyric:`[Spoken narration] (continuous, over the beat, never sung)
 Okay so we're here? We're doing this?
 Oh my god, they played it. They actually played it?
 
@@ -603,13 +603,13 @@ I am literally going to die? Like, right here?
 
 [Spoken] (spent, laughing)
 Totally worth it? Totally, totally worth it?`},
-{n:276,suno:[`df323cc7-b7d9-4506-8244-d69302113b74`,`b348efc3-f127-4cc7-882e-7bc8f6c570e8`],name:`Getting-ready nu-disco narration`,fam:`dancefloor narration cycle`,cat:`lyrical`,bpm:`118`,role:`anticipatory narration, chorus never arrives`,proc:`filtered disco loop · chopped vocal answers`,aff:`D`,style:`Filtered nu-disco near 118 BPM under continuous spoken narration: the vocal never sings, it talks the whole way through — running late, getting ready, narrating the night before the night starts, sentences lifting at the ends. The lead is a unique and specific vocalist: close-mic-ed, warm and conversational, mixed dry and right up front. Behind it: a filtered disco loop opening slowly across the track, plucked bass, shaker and tambourine, string stabs, and chopped vocal fragments answering the talking without ever forming a melody of their own. Everything anticipatory — the track keeps promising a chorus that never arrives. Production warm, analog and wide.`,neg:`sung vocal, diva house hook, belted chorus, rapping, orchestral strings, distorted guitar, downtempo drag, mumbled delivery`,lyric:`[Spoken] (getting ready, distracted, rising)
+{n:276,suno:[`df323cc7-b7d9-4506-8244-d69302113b74`,`b348efc3-f127-4cc7-882e-7bc8f6c570e8`,`5075aa60-258e-44bd-b9ee-fac3ac82dfe9`],name:`Getting-ready nu-disco narration`,fam:`dancefloor narration cycle`,cat:`lyrical`,bpm:`118`,role:`anticipatory narration, chorus never arrives`,proc:`filtered disco loop · chopped vocal answers`,aff:`D`,style:`Filtered nu-disco near 118 BPM under continuous spoken narration: the vocal never sings, it talks the whole way through — running late, getting ready, narrating the night before the night starts, sentences lifting at the ends. The lead is a unique and specific vocalist: close-mic-ed, warm and conversational, mixed dry and right up front. Behind it: a filtered disco loop opening slowly across the track, plucked bass, shaker and tambourine, string stabs, and chopped vocal fragments answering the talking without ever forming a melody of their own. Everything anticipatory — the track keeps promising a chorus that never arrives. Production warm, analog and wide.`,neg:`sung vocal, diva house hook, belted chorus, rapping, orchestral strings, distorted guitar, downtempo drag, mumbled delivery`,lyric:`[Spoken] (getting ready, distracted, rising)
 Okay so I'm like, forty minutes late? Which is fine?
 Oh my god, do not let me forget my keys again?
 
 [Spoken] (to the mirror, appraising)
 This is fine. This is totally a look?`},
-{n:277,suno:[`96cec367-2576-4268-a6b4-166895be4909`,`ea1b53b9-74f5-464c-bd7b-efd9e7780979`],name:`Warehouse-techno narration`,fam:`dancefloor narration cycle`,cat:`lyrical`,bpm:`134`,role:`hot chatty speech over cold hardware`,proc:`acid line · dub delay throws on single words`,aff:`A`,style:`Warehouse techno near 134 BPM under continuous spoken narration: a relentless machine pulse against a voice that will not stop talking, the contrast deliberate — hot chatty speech over cold repetitive hardware. Nothing is sung at any point. The lead is a unique and specific vocalist: dry, close and conversational, mixed loud against the room. Behind it: a hammering kick, one acid line mutating slowly across the whole track, metallic percussion, hiss and room noise. Occasional dub delay throws catch a single word and repeat it into the distance while the talking continues underneath. Production cavernous behind, bone-dry in front.`,neg:`sung vocal, melodic hook, warm chords, orchestral swell, acoustic instruments, ballad tempo, belted chorus, dense vocal harmony`,lyric:`[Spoken] (flat against the machine, still rising)
+{n:277,suno:[`96cec367-2576-4268-a6b4-166895be4909`,`ea1b53b9-74f5-464c-bd7b-efd9e7780979`,`0172d161-2edc-4bdb-b87c-0b6c106863c2`],name:`Warehouse-techno narration`,fam:`dancefloor narration cycle`,cat:`lyrical`,bpm:`134`,role:`hot chatty speech over cold hardware`,proc:`acid line · dub delay throws on single words`,aff:`A`,style:`Warehouse techno near 134 BPM under continuous spoken narration: a relentless machine pulse against a voice that will not stop talking, the contrast deliberate — hot chatty speech over cold repetitive hardware. Nothing is sung at any point. The lead is a unique and specific vocalist: dry, close and conversational, mixed loud against the room. Behind it: a hammering kick, one acid line mutating slowly across the whole track, metallic percussion, hiss and room noise. Occasional dub delay throws catch a single word and repeat it into the distance while the talking continues underneath. Production cavernous behind, bone-dry in front.`,neg:`sung vocal, melodic hook, warm chords, orchestral swell, acoustic instruments, ballad tempo, belted chorus, dense vocal harmony`,lyric:`[Spoken] (flat against the machine, still rising)
 It's so loud in here I can feel it in my teeth?
 Like, in my actual teeth?
 
@@ -618,7 +618,7 @@ Whatever— whatever— whatever—
 
 [Spoken] (matter-of-fact)
 I'm not even tired? I'm literally never tired again?`},
-{n:278,suno:[`cc817d9f-790e-494f-86db-b72932abca19`,`59fb56b7-84be-4927-a212-c010c9d16b24`],name:`Trance-breakdown narration`,fam:`dancefloor narration cycle`,cat:`lyrical`,bpm:`140`,role:`the emotional peak is a spoken sentence`,proc:`supersaw wall · long sweep · hard sidechain`,aff:`C`,style:`Uplifting trance near 140 BPM under continuous spoken narration, structured entirely around one long breakdown: the talking is offhand and chatty through the build, turns quiet and unguarded when the drums fall away, then goes euphoric and half-shouted as the supersaws return. Never sung. The lead is a unique and specific vocalist: close, conversational, sentences rising at the ends. Behind it: rolling sixteenth bass, a supersaw chord wall, a long white-noise sweep, sidechain breathing hard against the kick. The emotional peak of the track is a spoken sentence rather than a melody. Production huge and wide behind a dry voice.`,neg:`sung topline, diva vocal, vocal runs, rapping, acoustic arrangement, downtempo, gravel rasp, cluttered mix`,lyric:`[Spoken] (offhand, through the build)
+{n:278,suno:[`cc817d9f-790e-494f-86db-b72932abca19`,`59fb56b7-84be-4927-a212-c010c9d16b24`,`c9b3ee14-334e-4022-bae0-82ab336819db`],name:`Trance-breakdown narration`,fam:`dancefloor narration cycle`,cat:`lyrical`,bpm:`140`,role:`the emotional peak is a spoken sentence`,proc:`supersaw wall · long sweep · hard sidechain`,aff:`C`,style:`Uplifting trance near 140 BPM under continuous spoken narration, structured entirely around one long breakdown: the talking is offhand and chatty through the build, turns quiet and unguarded when the drums fall away, then goes euphoric and half-shouted as the supersaws return. Never sung. The lead is a unique and specific vocalist: close, conversational, sentences rising at the ends. Behind it: rolling sixteenth bass, a supersaw chord wall, a long white-noise sweep, sidechain breathing hard against the kick. The emotional peak of the track is a spoken sentence rather than a melody. Production huge and wide behind a dry voice.`,neg:`sung topline, diva vocal, vocal runs, rapping, acoustic arrangement, downtempo, gravel rasp, cluttered mix`,lyric:`[Spoken] (offhand, through the build)
 They're gonna play it. I know they're gonna play it?
 
 [Spoken] (drums drop away — quiet, unguarded)
@@ -627,13 +627,13 @@ Like, at all? And then—
 
 [Spoken] (half-shouted as it returns)
 Oh my GOD. Oh my god, here it comes?`},
-{n:279,suno:[`ec04b015-f21e-41e8-9c77-51e63f998916`,`515e989e-7ebe-42c8-9550-1985ee7cf9af`],name:`Jungle rapid-fire narration`,fam:`dancefloor narration cycle`,cat:`lyrical`,bpm:`174`,role:`talking faster than it can manage`,proc:`chopped amen breaks · one Reese transient per break`,aff:`E`,style:`Jungle near 174 BPM under rapid-fire spoken narration: chopped amen breaks beneath a voice talking faster than it can quite manage, tumbling and breathless, running out of air and catching up in the gaps between phrases. Nothing is sung. The lead is a unique and specific vocalist: dry, close and urgent, mixed above the breaks. Behind it: shredded breakbeats, a deep sub-bass, ragga sirens and air-horn stabs at the edges, one Reese transient marking each structural break and never repeating. Everything adrenal and slightly too fast. Production tight and forward, drums crisp, the voice never buried.`,neg:`sung vocal, slow tempo, smooth crooning, orchestral strings, ballad phrasing, sparse ambient wash, belted chorus, lazy delivery`,lyric:`[Spoken] (rapid-fire, tumbling, out of breath)
+{n:279,suno:[`ec04b015-f21e-41e8-9c77-51e63f998916`,`515e989e-7ebe-42c8-9550-1985ee7cf9af`,`96ca9390-6c20-40e3-a858-703b26d9c613`],name:`Jungle rapid-fire narration`,fam:`dancefloor narration cycle`,cat:`lyrical`,bpm:`174`,role:`talking faster than it can manage`,proc:`chopped amen breaks · one Reese transient per break`,aff:`E`,style:`Jungle near 174 BPM under rapid-fire spoken narration: chopped amen breaks beneath a voice talking faster than it can quite manage, tumbling and breathless, running out of air and catching up in the gaps between phrases. Nothing is sung. The lead is a unique and specific vocalist: dry, close and urgent, mixed above the breaks. Behind it: shredded breakbeats, a deep sub-bass, ragga sirens and air-horn stabs at the edges, one Reese transient marking each structural break and never repeating. Everything adrenal and slightly too fast. Production tight and forward, drums crisp, the voice never buried.`,neg:`sung vocal, slow tempo, smooth crooning, orchestral strings, ballad phrasing, sparse ambient wash, belted chorus, lazy delivery`,lyric:`[Spoken] (rapid-fire, tumbling, out of breath)
 Okay okay okay so we lost everyone? Totally lost them?
 And I'm like, do we look? Or do we just—
 
 [Spoken] (faster, decided)
 No. No no no. We dance? We literally just dance?`},
-{n:280,suno:[`e64f9d47-051c-4e32-b60a-ce51e6826e80`],name:`Comedown dub-techno narration`,fam:`dancefloor narration cycle`,cat:`lyrical`,bpm:`108`,role:`tired narration with long gaps`,proc:`tape-delayed chord stabs · street noise · vinyl crackle`,aff:`B`,style:`Dub techno near 108 BPM under slow spoken narration at the end of the night: the voice is tired, quiet and unhurried, still talking but with long gaps now, sentences trailing upward and dissolving into creak. Never sung. The lead is a unique and specific vocalist: very close, almost murmured, breath audible between phrases. Behind it: chord stabs soaked in tape delay repeating away into the distance, a soft dubby sub, brushed hats, vinyl crackle and faint street noise underneath. Everything decaying — nothing arrives, the track simply thins out and ends. Production spacious and washed behind an intimate dry voice.`,neg:`sung vocal, bright uplifting chords, four-on-the-floor peak energy, belted chorus, orchestral swell, distorted guitar, busy percussion, loud mastering`,lyric:`[Spoken] (tired, long gaps, still trailing up)
+{n:280,suno:[`e64f9d47-051c-4e32-b60a-ce51e6826e80`,`182417fc-cb2e-4a13-9035-cbe154aa3b64`],name:`Comedown dub-techno narration`,fam:`dancefloor narration cycle`,cat:`lyrical`,bpm:`108`,role:`tired narration with long gaps`,proc:`tape-delayed chord stabs · street noise · vinyl crackle`,aff:`B`,style:`Dub techno near 108 BPM under slow spoken narration at the end of the night: the voice is tired, quiet and unhurried, still talking but with long gaps now, sentences trailing upward and dissolving into creak. Never sung. The lead is a unique and specific vocalist: very close, almost murmured, breath audible between phrases. Behind it: chord stabs soaked in tape delay repeating away into the distance, a soft dubby sub, brushed hats, vinyl crackle and faint street noise underneath. Everything decaying — nothing arrives, the track simply thins out and ends. Production spacious and washed behind an intimate dry voice.`,neg:`sung vocal, bright uplifting chords, four-on-the-floor peak energy, belted chorus, orchestral swell, distorted guitar, busy percussion, loud mastering`,lyric:`[Spoken] (tired, long gaps, still trailing up)
 There's like, nobody left?
 Just us and whoever that is? By the door?
 
@@ -2006,21 +2006,30 @@ const SONG_MODEL = {
   '31e04723-e0b1-420b-bc4b-a75b570c1719': 'v6',
   'ff297ffc-7390-400d-a0b9-ee2bbde0b808': 'v5.5',
   'c9bce4cb-fec6-4e98-85dc-29f1dead2036': 'v5.5',
+  '9153ae96-9fc7-4e40-803f-25ec089d3e69': 'v6',
   '0b579967-dc95-423c-9543-6adcc6bf6fd4': 'v5.5',
   '847bd558-918b-479c-96f7-2e211152310e': 'v5.5',
+  '595221fb-08bb-4e51-90e9-8472e2f50adb': 'v6',
   '5e0e9472-7622-4500-a728-07058c32ce98': 'v5.5',
   '8ac2f410-ae28-4305-99f1-cc3e8856fb49': 'v5.5',
+  'e5efbbd8-f295-4b21-a7b0-15c76b9dd689': 'v6',
   '5b142825-979a-4971-b19e-f6a740110e72': 'v5.5',
   '078d836f-2e59-4327-8227-cd20c741d792': 'v5.5',
+  '8cd5a8cd-8af6-4702-bdfb-30c6cda3558d': 'v6',
   'df323cc7-b7d9-4506-8244-d69302113b74': 'v5.5',
   'b348efc3-f127-4cc7-882e-7bc8f6c570e8': 'v5.5',
+  '5075aa60-258e-44bd-b9ee-fac3ac82dfe9': 'v6',
   '96cec367-2576-4268-a6b4-166895be4909': 'v5.5',
   'ea1b53b9-74f5-464c-bd7b-efd9e7780979': 'v5.5',
+  '0172d161-2edc-4bdb-b87c-0b6c106863c2': 'v6',
   'cc817d9f-790e-494f-86db-b72932abca19': 'v5.5',
   '59fb56b7-84be-4927-a212-c010c9d16b24': 'v5.5',
+  'c9b3ee14-334e-4022-bae0-82ab336819db': 'v6',
   'ec04b015-f21e-41e8-9c77-51e63f998916': 'v5.5',
   '515e989e-7ebe-42c8-9550-1985ee7cf9af': 'v5.5',
+  '96ca9390-6c20-40e3-a858-703b26d9c613': 'v6',
   'e64f9d47-051c-4e32-b60a-ce51e6826e80': 'v5.5',
+  '182417fc-cb2e-4a13-9035-cbe154aa3b64': 'v6',
   '6e868c47-86f8-450e-986d-75712c58af71': 'v5.5',
   '9b52461a-15c2-4e00-bc1d-362347d62dd8': 'v5.5',
   'f70dfdc5-7f4c-4a35-ae27-cefd32adfcb7': 'v5.5',
@@ -3479,21 +3488,30 @@ const SONG_TITLES = {
   '31e04723-e0b1-420b-bc4b-a75b570c1719': 'Peppermint In Your Pocket',
   'ff297ffc-7390-400d-a0b9-ee2bbde0b808': 'We\'ll Get By',
   'c9bce4cb-fec6-4e98-85dc-29f1dead2036': 'I Would Die for You',
+  '9153ae96-9fc7-4e40-803f-25ec089d3e69': 'You Landed It',
   '0b579967-dc95-423c-9543-6adcc6bf6fd4': 'Val Girl Song',
   '847bd558-918b-479c-96f7-2e211152310e': 'Is It Enough?',
+  '595221fb-08bb-4e51-90e9-8472e2f50adb': 'Less Than Before',
   '5e0e9472-7622-4500-a728-07058c32ce98': 'Daydreaming',
   '8ac2f410-ae28-4305-99f1-cc3e8856fb49': 'Fire and Ice',
+  'e5efbbd8-f295-4b21-a7b0-15c76b9dd689': 'Red Sweater',
   '5b142825-979a-4971-b19e-f6a740110e72': 'You Wouldn\'t Dare',
   '078d836f-2e59-4327-8227-cd20c741d792': 'Misery Loves Company',
+  '8cd5a8cd-8af6-4702-bdfb-30c6cda3558d': 'Keeping On Running',
   'df323cc7-b7d9-4506-8244-d69302113b74': 'Bona Fide',
   'b348efc3-f127-4cc7-882e-7bc8f6c570e8': 'To the Teeth',
+  '5075aa60-258e-44bd-b9ee-fac3ac82dfe9': 'Look At A Leaf',
   '96cec367-2576-4268-a6b4-166895be4909': 'Fire In My Heart',
   'ea1b53b9-74f5-464c-bd7b-efd9e7780979': 'These Things Will Kill You',
+  '0172d161-2edc-4bdb-b87c-0b6c106863c2': 'So The Sun Hits Her First',
   'cc817d9f-790e-494f-86db-b72932abca19': 'Speak To Me',
   '59fb56b7-84be-4927-a212-c010c9d16b24': 'Marlboro Lights',
+  'c9b3ee14-334e-4022-bae0-82ab336819db': 'Gold On The Rooftops',
   'ec04b015-f21e-41e8-9c77-51e63f998916': 'Born in Storm',
   '515e989e-7ebe-42c8-9550-1985ee7cf9af': 'In The Dark',
+  '96ca9390-6c20-40e3-a858-703b26d9c613': 'Ninety Seconds Flat',
   'e64f9d47-051c-4e32-b60a-ce51e6826e80': 'Nectar',
+  '182417fc-cb2e-4a13-9035-cbe154aa3b64': 'Glad You Stayed',
   '6e868c47-86f8-450e-986d-75712c58af71': 'Reflections',
   '9b52461a-15c2-4e00-bc1d-362347d62dd8': 'All of the People',
   'f70dfdc5-7f4c-4a35-ae27-cefd32adfcb7': 'We\'re Gonna Get Through This',
@@ -5735,21 +5753,30 @@ const SONG_DUR = {
   '31e04723-e0b1-420b-bc4b-a75b570c1719':227,
   'ff297ffc-7390-400d-a0b9-ee2bbde0b808':479,
   'c9bce4cb-fec6-4e98-85dc-29f1dead2036':171,
+  '9153ae96-9fc7-4e40-803f-25ec089d3e69':166,
   '0b579967-dc95-423c-9543-6adcc6bf6fd4':223,
   '847bd558-918b-479c-96f7-2e211152310e':127,
+  '595221fb-08bb-4e51-90e9-8472e2f50adb':222,
   '5e0e9472-7622-4500-a728-07058c32ce98':214,
   '8ac2f410-ae28-4305-99f1-cc3e8856fb49':121,
+  'e5efbbd8-f295-4b21-a7b0-15c76b9dd689':181,
   '5b142825-979a-4971-b19e-f6a740110e72':212,
   '078d836f-2e59-4327-8227-cd20c741d792':140,
+  '8cd5a8cd-8af6-4702-bdfb-30c6cda3558d':207,
   'df323cc7-b7d9-4506-8244-d69302113b74':136,
   'b348efc3-f127-4cc7-882e-7bc8f6c570e8':446,
+  '5075aa60-258e-44bd-b9ee-fac3ac82dfe9':272,
   '96cec367-2576-4268-a6b4-166895be4909':173,
   'ea1b53b9-74f5-464c-bd7b-efd9e7780979':145,
+  '0172d161-2edc-4bdb-b87c-0b6c106863c2':268,
   'cc817d9f-790e-494f-86db-b72932abca19':192,
   '59fb56b7-84be-4927-a212-c010c9d16b24':169,
+  'c9b3ee14-334e-4022-bae0-82ab336819db':198,
   'ec04b015-f21e-41e8-9c77-51e63f998916':167,
   '515e989e-7ebe-42c8-9550-1985ee7cf9af':98,
+  '96ca9390-6c20-40e3-a858-703b26d9c613':266,
   'e64f9d47-051c-4e32-b60a-ce51e6826e80':479,
+  '182417fc-cb2e-4a13-9035-cbe154aa3b64':243,
   '6e868c47-86f8-450e-986d-75712c58af71':479,
   '9b52461a-15c2-4e00-bc1d-362347d62dd8':285,
   'f70dfdc5-7f4c-4a35-ae27-cefd32adfcb7':99,
@@ -6225,7 +6252,7 @@ const SONG_DUR = {
 /* Cover art that does NOT follow cdn2.suno.ai/image_<uuid>.jpeg — a creator replaced it,
  * so the id cannot be used to work the address out. Everything not listed here follows
  * the pattern and is derived. A cover can be changed later: re-check with --all. */
-const ART_CHECKED = 1466;
+const ART_CHECKED = 1475;
 const SONG_ART = {
   '03fd694a-1623-4ccc-b624-f5468d325ecb': 'https://cdn2.suno.ai/video_upload_6b9763b6-d937-4b17-bb50-2511eb08e159_video_upload_6b9763b6-d937-4b17-bb50-2511eb08e159_cover_snapshot_0s_1787493340_image.jpeg',
   '085685eb-4d85-48fa-b13e-77cbb4688125': 'https://cdn2.suno.ai/video_upload_8ca36dbe-c6ac-4547-8831-90f1c19ce61f_video_upload_8ca36dbe-c6ac-4547-8831-90f1c19ce61f_cover_snapshot_0s_1782788922_image.jpeg',

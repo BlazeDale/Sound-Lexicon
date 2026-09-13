@@ -5977,6 +5977,190 @@
       "edits": 3,
       "prompt": "charged-objects",
       "note": "first roll kept - a rambling voicemail suits a style that is one unbroken spoken message (dont you drop your toast; never trust a manager with manicured-up hands; keep a peppermint in your pocket for the three oclock dull ache; the message trailing off mid-sentence). Three edits: before you catch your train became before you start your day; the mailmans little truck sputtering up the gravel became the crows coming back, the same crows grandad is yelling at; the linoleum-grease-spot and galvanized-washtub digression cut. Stage directions stripped"
+    },
+    "272": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "You Landed It",
+        "clips": [
+          "9153ae96-9fc7-4e40-803f-25ec089d3e69",
+          "c780f8d1-a345-4d46-b878-180aa89f6eac"
+        ],
+        "v0": "9153ae96-9fc7-4e40-803f-25ec089d3e69",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a teenager filming their little brother on a phone in an empty city parking lot at sunset, the moment he finally lands his first skateboard trick after a whole summer of scraped knees, the teenager completely losing their mind with pride"
+      },
+      "flags": [],
+      "tagged": false,
+      "edits": 3,
+      "prompt": "charged-objects",
+      "note": "first roll kept - an exclaimed catchphrase (Ohhhhh, you landed it!) is exactly this styles spoken hook (silver duct tape binding your sneaker like a broken bone; three months of throwing that board into the weeds; we got it on tape, we got it forever). Edits: look at you go became look at you fly (look at X go was #256s hook and was already cut from #263); the whole dead town became the whole dead block (a city lot); holy shit softened to oh my god (no blunt flag); a grease stain on the knee became a bruise. Brand name made generic, caps normalised, the closing camera paragraph and stage directions stripped"
+    },
+    "273": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Less Than Before",
+        "clips": [
+          "595221fb-08bb-4e51-90e9-8472e2f50adb",
+          "b5a6a6f8-19a6-41a0-83b7-8abb01b656d6"
+        ],
+        "v0": "595221fb-08bb-4e51-90e9-8472e2f50adb",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "two best friends on a city stoop on a summer evening, one of them breathlessly reporting that the grumpy old neighbor from the second floor has secretly been feeding every stray cat on the block for years, while the other friend flatly refuses to be impressed"
+      },
+      "flags": [],
+      "tagged": false,
+      "edits": 2,
+      "prompt": "charged-objects",
+      "note": "first roll kept - an astonished teller and a flat bored friend in () are exactly this two-voice spoken style (he called the gray tabby My Little Princess Marie; even the meanest wall has a door, (hes still a jerk) but less than before; a kitten washing its face on his window ledge, (dont make a big deal out of it)). Edits: threw keys at the mailman became called the cops on a birthday (keys watch-tier, and a better grump); sitting on his rusty metal grid became sitting on his window ledge. Brand-name beer made generic, section labels and stage directions stripped"
+    },
+    "274": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Red Sweater",
+        "clips": [
+          "e5efbbd8-f295-4b21-a7b0-15c76b9dd689",
+          "121033d4-e4c2-4fce-bd74-e9e2932a962c"
+        ],
+        "v0": "e5efbbd8-f295-4b21-a7b0-15c76b9dd689",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "someone alone in a city laundromat at two in the morning, daydreaming while a stranger's red sweater tumbles in the dryer right next to their own clothes, until the stranger comes back and they finally say something plain and true to them"
+      },
+      "flags": [
+        "spare"
+      ],
+      "tagged": false,
+      "edits": 2,
+      "prompt": "charged-objects",
+      "note": "first roll kept (that red sweaters been chasing my dark jeans around for an hour; I know which lightbulb is about to die; Red. Red. Red.; my place is three blocks down, and its too big; we leave the basket on the table). Edits: the change machine smelling of cold copper became old coins; you bring the wet street in on your boots became you bring the rain in on your shoulders - the cold the chorus begs them not to go back out into. A doubled door cut (the street door opens / the dryer door); stage directions stripped"
+    },
+    "275": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Keeping On Running",
+        "clips": [
+          "8cd5a8cd-8af6-4702-bdfb-30c6cda3558d",
+          "7a35a8e3-efe2-4b46-9a3c-86c49551dd04"
+        ],
+        "v0": "8cd5a8cd-8af6-4702-bdfb-30c6cda3558d",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "someone standing in a cheering crowd at the edge of a city street, narrating breathlessly and in real time to the stranger beside them as their little sister rounds the final corner of her first ever marathon, getting louder with every step she takes toward the finish"
+      },
+      "flags": [],
+      "tagged": false,
+      "edits": 1,
+      "prompt": "charged-objects",
+      "note": "first roll kept - real-time narration that grows more breathless is this styles talk-over-the-build shape (biting the inside of her cheek the way our mother does when she is winning an argument; the old man waving his cane at the bakery window; shes not stopping, shes just... keeping on running). Edits: an absolute freight train of a human being became hurricane; look at her feet go became watch her feet go (look at X go was #256s hook). A garbled character in tear it up fixed, caps normalised, stage directions stripped"
+    },
+    "276": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Look At A Leaf",
+        "clips": [
+          "5075aa60-258e-44bd-b9ee-fac3ac82dfe9",
+          "b178d26d-59d6-477f-9968-cc2fa2aef429"
+        ],
+        "v0": "5075aa60-258e-44bd-b9ee-fac3ac82dfe9",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "someone running late in their tiny city apartment getting ready for their best friend's surprise birthday party, narrating every frantic step to that very friend on speakerphone while desperately trying not to give the surprise away"
+      },
+      "flags": [],
+      "tagged": false,
+      "edits": 1,
+      "prompt": "charged-objects",
+      "note": "first roll kept - frantic getting-ready narration on the phone suits this anticipatory talked style (why is the other silver shoe under the microwave?; I am watching that documentary, the one about the sheep; look at a dog, look at a leaf, look down at your feet; the stairwell smells like garlic grease and how much I want in). One edit: the radiator that bit through my jeans became the bed frame (a radiator was already in #249 and #270, and the closing image leaned on it again). Keys in my teeth and a coat on backward stayed - comic haste, charged. A film title made generic, hyperventilating into the mic became into the phone, the closing radiator stage image stripped"
+    },
+    "277": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "So The Sun Hits Her First",
+        "clips": [
+          "0172d161-2edc-4bdb-b87c-0b6c106863c2",
+          "409e68ed-685a-421e-8322-303523f8c4c8"
+        ],
+        "v0": "0172d161-2edc-4bdb-b87c-0b6c106863c2",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a night cleaner alone in an enormous empty office tower at three in the morning, pushing a floor polisher down endless hallways while talking nonstop through a headset to their cousin about the cousin's brand-new baby and every little thing they cannot wait to teach that baby"
+      },
+      "flags": [],
+      "tagged": false,
+      "edits": 2,
+      "prompt": "charged-objects",
+      "note": "second roll, slot anchored. Roll 1 (the cleaner talking about their own life) invented quitting - a chorus of Im leaving in the morning, quitting tonight - the leaving attractor at premise level, plus copper wire and another red exit sign; re-rolled with the call fixed on the cousins new baby. Roll 2 kept (buy mangoes by the smell, not the skin; red leather shoes with squeakers so she cant ever hide when she moves; her name on a sticky note at the top of the tower, so the sun hits her first). Edits: look at her go became watch her grow (look at X go was #256s hook); fifty pounds of chrome became of machine. A doubled glass rhyme fixed, brand made generic, stage directions (linoleum among them) stripped"
+    },
+    "278": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Gold On The Rooftops",
+        "clips": [
+          "c9b3ee14-334e-4022-bae0-82ab336819db",
+          "6365f5c1-22fb-4e5b-8ed2-2f26d073f563"
+        ],
+        "v0": "c9b3ee14-334e-4022-bae0-82ab336819db",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "someone walking their grandfather slowly up the path of a city hill park before dawn to watch the sunrise over the city he spent his whole life building, chattering about nothing on the way up, going quiet and unguarded at the top, then shouting out loud when the sun finally breaks over the rooftops"
+      },
+      "flags": [],
+      "tagged": false,
+      "edits": 2,
+      "prompt": "charged-objects",
+      "note": "first roll kept - the slot was built on the styles arc (chatty climb, quiet unguarded top, shout at the sunrise) (you built every brick that were huffing and puffing past; the diner sign saying coffee and eggs to the pigeons; the whole map spread out like a dying-down kitchen fire). Edits: let the whole goddamn city know softened to the whole wide city (no blunt flag); who built this pass became who built all this. The closing stage picture (his dew-dark sleeve pointing at the water tower he helped rivet) turned into spoken closing lines; caps normalised, directions stripped"
+    },
+    "279": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Ninety Seconds Flat",
+        "clips": [
+          "96ca9390-6c20-40e3-a858-703b26d9c613",
+          "31cec492-1211-48ae-b3bc-e2b0565bb84e"
+        ],
+        "v0": "96ca9390-6c20-40e3-a858-703b26d9c613",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a teenager at the lunch table breathlessly reporting to their friends every single thing that happened in the ninety seconds after the class hamster escaped in the middle of the school assembly, tumbling over their own words faster than they can manage"
+      },
+      "flags": [],
+      "tagged": false,
+      "edits": 1,
+      "prompt": "charged-objects",
+      "note": "first roll kept - the lunch-table report runs on the styles breathlessness (the hamster hits fresh varnish and bolts; the crush who alone does not flinch, scoops it into her jacket cuff and looks straight at the narrator; the decision to ask her to homecoming; whiskers still poking out of her cuff as she walks by). The assembly band (tuba falling, trombones) and the knocked-over microphone stand are scene, not mix narration, so kept. Edit: the crush renamed from Maya (used in #255). A preamble line leaking the prompt cut; caps normalised, directions stripped"
+    },
+    "280": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Glad You Stayed",
+        "clips": [
+          "182417fc-cb2e-4a13-9035-cbe154aa3b64",
+          "5e9812bf-1ddc-4a4d-9b31-06e2dc136023"
+        ],
+        "v0": "182417fc-cb2e-4a13-9035-cbe154aa3b64",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "someone sitting on the floor of their apartment at dawn after the last party guest has finally gone home, too tired to go to bed, slowly picking confetti out of the rug and murmuring to their half-asleep partner on the couch, with long quiet gaps between every sentence"
+      },
+      "flags": [
+        "spare"
+      ],
+      "tagged": false,
+      "edits": 3,
+      "prompt": "charged-objects",
+      "note": "first roll kept - spare, gap-shaped murmuring that suits the comedown (red confetti deep in the wool; the fridge talking again; I was gonna wash the glasses, I put the soap down, I am stopping right here; the partners hand falling off the couch into my hair, dont take it back). Edits, meaning-first: the opener - a coat left on the radiator smelling of someone elses rain (two attractors, and it pointed away from the two of them) - became a paper crown still tipped on the lampshade like it is dancing, the party left mid-motion; the ice melted in a glass with a tiny hole through the lime became the glass you never finished (the partner stayed all night); let the light hit the doorway became let the sun come find us here. Stay is the songs root (glad you stayed up with me), so kept. Parenthesised directions (sighs, shhh, whispered) and ellipsis gap lines stripped"
     }
   },
   "method": {
