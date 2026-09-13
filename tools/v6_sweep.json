@@ -4961,6 +4961,118 @@
       "tagged": true,
       "edits": 2,
       "note": "first roll kept; rough, tender old sparring partners (you're too old to be this fast, but you are). Two hook fixes: \"lean on me now\" -> \"hold on to me now\" (echo of #218's chorus, same study family) and \"we got the rust\" -> \"we got the trust\" (palette word in the hook). Mouthguard/panting directions and a closing salt-stained-floor image dropped; tags added"
+    },
+    "225": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Let The Morning Wait",
+        "clips": [
+          "80348f37-1662-40cc-baf5-804458bfb7e2",
+          "aa010af7-00df-45a2-b953-9cdb3dc97984"
+        ],
+        "v0": "80348f37-1662-40cc-baf5-804458bfb7e2",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a small flat full of friends still up at four in the morning after a party, all squeezed onto one sofa and singing quietly along to an old record so they don't wake the neighbours"
+      },
+      "flags": [
+        "spare"
+      ],
+      "tagged": true,
+      "edits": 1,
+      "note": "second roll. First (friends asleep on the floor, one person still awake) was a textbook doorway song: slipping out at dawn in someone else's coat, keys by the sink, locking the door from outside, a scarf left behind. A lone waking person reads as someone about to leave. Second (everyone awake on one sofa) still resolved to a please-stay scene (a ticket to another city, keys dropped on the rug), but tender and in register for a fragile close-take, so kept. One-line fix after the coat note: \"Your coat is on the radiator\" -> \"Your hair is on my shoulder\"; crowd-joins-in directions dropped (solo lead)"
+    },
+    "226": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Still Alive Together",
+        "clips": [
+          "eb3de139-b99f-4f1a-b7f3-d2bfe9a66032",
+          "5c1e0380-a8b5-4577-b220-b502d6d9d3d6"
+        ],
+        "v0": "eb3de139-b99f-4f1a-b7f3-d2bfe9a66032",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a rooftop full of dancers with their arms around each other, watching the sun come up over the whole city after dancing all night"
+      },
+      "flags": [
+        "spare",
+        "mantra",
+        "spec"
+      ],
+      "tagged": false,
+      "edits": 0,
+      "note": "wordless-lead entry: vowel-heavy subset only (three hook lines + the Still alive together mantra block, each twice); verses with a jacket, a dangling shoe and keys thrown off the roof left out, as was a gold-in-the-cup line and a closing silver-key image"
+    },
+    "227": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Carry The Light",
+        "clips": [
+          "65679d6f-915e-4bc7-8226-56690b3bb62e",
+          "350694a4-317d-4df0-be1e-421314dba241"
+        ],
+        "v0": "65679d6f-915e-4bc7-8226-56690b3bb62e",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a festival field at five in the morning, thousands of people swaying together with their eyes closed as the first light comes up"
+      },
+      "flags": [
+        "spare",
+        "mantra",
+        "spec"
+      ],
+      "tagged": false,
+      "edits": 1,
+      "note": "wordless-lead entry: hook + mantra subset only, each twice; verses (iron in the weeds, unlaced boots x2, copper sky) and a closing empty-boots image left out. Phrase swapped throughout, structure kept (the #183 precedent): \"hold the light\" -> \"carry the light\", too close to #199's hook \"hold the dark\"; mantra answer \"(we stay)\" -> \"(carry on)\""
+    },
+    "228": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Too Fast To Die",
+        "clips": [
+          "bf1a890c-cbd3-4a30-867c-dcff68cb0e7c",
+          "9c177c41-8175-42b4-b709-331a76fe3bb6"
+        ],
+        "v0": "bf1a890c-cbd3-4a30-867c-dcff68cb0e7c",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a crowded skate park at dusk, kids trading tricks, slamming boards and shouting each other on under the floodlights"
+      },
+      "flags": [
+        "spare",
+        "spec"
+      ],
+      "tagged": true,
+      "edits": 0,
+      "note": "chopped-vocal entry: subset chosen for chopping (roll roll roll, the too-fast-to-die hook, shouted Do it again asides) plus one four-line murmur verse carrying the spec (circuit board of blue, the year is three thousand). First verse with a don't-look-back aside, a rusted-coping line, the count-in and a closing spinning-wheel image left out; tags added"
+    },
+    "229": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Under The Green",
+        "clips": [
+          "37541bdf-0579-4a4f-9401-e32661572dd5",
+          "b7b47ea4-0ba3-4abf-b9a4-3c7b9591d07e"
+        ],
+        "v0": "37541bdf-0579-4a4f-9401-e32661572dd5",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "a silent crowd standing together on a winter beach at night, watching the northern lights ripple overhead, nobody saying a word"
+      },
+      "flags": [
+        "spare",
+        "mantra",
+        "spec"
+      ],
+      "tagged": false,
+      "edits": 0,
+      "note": "barely-there wordless breath note: vowel subset only (Ah, lay... ah, lo... / The world is white below, with (Under the green) answers), repeated. Left out: a We are staying here mantra and We stay lines (stay echoes across the day), and verses with mittens, salt-crust stone and copper rain"
     }
   },
   "method": {
