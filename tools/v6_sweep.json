@@ -6959,6 +6959,40 @@
       "prompt": "genre-only-v8-manga-select",
       "adjectives": "new-age manga you creatively select (roll 1: fixed new-age manga work)",
       "note": "Roll 1 (v7 fixed \"new-age manga work\": Frieren again, straight after #318; a wanderer-comes-home song against the entry's never-left singer) went to BlazeDale; he answered with v8. Seed (inferred, never named): Yokohama Kaidashi Kikou - a quiet cafe at the end of the world, the sea risen over the old roads and streetlamps glowing under the bay, a camera keeping what the eye can't, \"Just a girl in the quiet rains\", \"A cup shared with strangers in this twilight place\". The \"you creatively select\" clause broke the top-title convergence first try, and picked something apt and unobvious. Shipped by me, no urge to reject: a song to a place, from someone who stays - \"I sweep the porch and I mend broken parts... we are home, after all\" - is the entry's own brief. Watch: coffee x1 (ad-lib) + cup x1 (bridge) = a light domestic pair, both carrying the cafe; windmill x1. Cleaning: prose preamble (salt-air / Kona coffee / open window) and the (Tuning: Taro Patch / Open G) line dropped; opening, bridge, solo, outro and final-chord directions bracketed and condensed; \"(Deep vocal resonance shifts from throat to chest)\" -> [Voice shifts from throat to chest]; section labels bracketed. Words unchanged."
+    },
+    "320": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Blood From a Stone",
+        "clips": [
+          "4354f406-7e2d-4c22-b745-ae0265426a64",
+          "1a42fd88-32fc-402f-82ab-d18ba5963388"
+        ],
+        "v0": "1a42fd88-32fc-402f-82ab-d18ba5963388",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "cold skeletal UK grime",
+        "prompt": "genre-only-v8-manga-select"
+      },
+      "v6b": {
+        "title": "Pull the Cord",
+        "clips": [
+          "8208b760-ed0a-4b4e-93aa-d27755fc09b7",
+          "b0321c04-9c29-467e-b371-cfe373bd6915"
+        ],
+        "v0": "b0321c04-9c29-467e-b371-cfe373bd6915",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "cold skeletal UK grime",
+        "prompt": "genre-only-v9-repetition"
+      },
+      "flags": [],
+      "tagged": true,
+      "edits": 0,
+      "prompt": "v8 (v6 arm) + v9 (v6b arm)",
+      "adjectives": "new-age manga you creatively select",
+      "note": "BlazeDale: ship them both - two generations attached. v6 arm = roll 1 (v8, Look Back seed): Seed (inferred, not named): Look Back (Fujimoto) - a manga artist drawing in a locked room, four-panel pages, a friend \"cut in the dark by a nameless rage\", \"I draw you alive 'cause you never really died\", the refrain \"don't look back\", a mechanical pencil click at the end. Apt and unobvious. Chorus: Ah-oh, cold bone, rain on the stone, / Breathe in the ash till I bleed on my own. / Ah-oh, slow grow, ghost in the glow, / Tracing your spine through the snow-snow-snow! / When the frame cracks open and the light comes in, / Where do I end and where d'you begin? / Ah-oh, cold bone, leave me alone, / Squeezing out blood... from a stone. Issues: \"blood from a stone\" x3 incl. the hook and the outro (the corpus's first measured stock idiom); \"Where do I end and where d'you begin\" echoes #313's \"Where does the monster end? Where do you begin?\"; chorus directed \"raw, soaring, emotive\" + a belted bridge against an entry whose neg list includes \"sung melodic chorus\" and whose delivery is confrontational; \"rain on the Mac\" (brand). Superseded by BlazeDale's v9 prompt arriving mid-run - re-rolled on v9 for comparison. || v6b arm = roll 2 (v9, Chainsaw Man seed): Seed (inferred, never named): Chainsaw Man - pull the cord, a saw buzzing in the head, devils in the alley with a contract written in ash and flame, selling off a slice to eat, \"Rev it up! Tear it out!\", the engine stalls at the end. Verse opener: Bleak street, no heat, bare feet, concrete. / Heart in a cage, but the cage don't beat. / Sell off a slice just to buy one eat, / Look in the glass, see a full defeat. / (Dead eye, don't cry, low sky, bye-bye) Chorus (sung in unison - fits \"one refrain thrown back by a crowd\"): Light goes low in the dark of the ends, / Cold in the soul, ain't no heat for the friends. / Pull on the cord till the iron bends, / Grasping at the embers where the daylight ends! Good: dense chained internal rhyme and grime slang (wasteman, allow it, the ends); repetition clearly up vs roll 1; hard, flat, confrontational verses. Watch: \"Tryna wring blood from a stone in the dark\" (1x, buried in verse 1 - stands per the buried-attractor rule); iron x3, rust x1, ash x1, stone x2. Cleaning needed if shipped: (Track Tempo:) and (Viscerally delivered) headers; label/syllable splits; the \"Engine stalls\" direction bracketed. Cleaning A: production note dropped; soaring struck from the chorus direction (neg sung melodic chorus); prompt-leak label (melodic vowel juxtaposition) dropped from the bridge; labels split. Cleaning B: tempo/delivery headers dropped; labels split; wide assonance label -> Full crowd unison. Words unchanged in both."
     }
   },
   "method": {
