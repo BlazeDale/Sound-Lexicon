@@ -6687,6 +6687,28 @@
       "edits": 0,
       "prompt": "genre-only-2026-09-14",
       "note": "first roll kept. New BlazeDale prompt (2026-09-14): only the genre slot filled, Gemini picks adverb + 3-word idea; no situation slot. Cleaning only: production directions and section labels bracketed, (Desperately) header dropped, an artist-name cadence reference stripped from the Verse 2 direction, outro label shortened."
+    },
+    "307": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Drowning on Dry Land",
+        "clips": [
+          "49e495f5-71c3-4954-9cd1-0b543190a271",
+          "6ffbc2ac-3523-4173-8ccb-b7fbec7f9ae0",
+          "1ba3d018-4ce2-4efd-b0b9-a7a9484d4b4d",
+          "d2d85d29-c64d-4219-a2b6-eeb56803e8bd"
+        ],
+        "v0": "49e495f5-71c3-4954-9cd1-0b543190a271",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "filthy downtuned groove-sludge"
+      },
+      "flags": [],
+      "tagged": false,
+      "edits": 0,
+      "prompt": "genre-only-2026-09-14",
+      "note": "first roll. I wanted to re-roll (we survive echoes #306 survived the flame; rust/dust/clay/iron/stone; 475 words against a one-line-chant vocal) and showed it; BlazeDale: I like we survive, ship it. Full draft sent bare. Cleaning: directions bracketed; the weeping guitar-solo direction dropped and melodic/clean-sludge struck from two directions (entry neg: guitar solo, melodic clean chorus). Generated TWICE by accident (browser extension disconnected mid-batch after Create had fired, then the batch was resent): identical inputs, 15:40:16 pair (v0 attached) and 15:40:55 pair."
     }
   },
   "method": {
