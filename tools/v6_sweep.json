@@ -6896,6 +6896,27 @@
       "prompt": "genre-only-v5-vector",
       "adjectives": "metaphysical (roll 1: pastoral)",
       "note": "Roll 1 (\"pastoral\": rural palette flood, gravelly belt + guitar solo against a pristine soprano) rejected by BlazeDale (\"yeah resubmit\"). Seed: Dante's Divine Comedy again - \"I lost my path inside a crowded wood\", the hill we all must climb, \"Oh, the love that moves the sun!\" (Paradiso's last line, quoted). Same book as #309 (Inferno), five entries earlier - flagged to him. Shipped by me: devotional climb, hook \"Let this cold ground turn to holy ground... I just want to be held and known\", ends repeating \"Held and known\" - suits the single-line final chorus and whistle-register close. Watch: \"Safe in a warm embrace\" (safe attractor, ad-lib), dust/gold/silver x1 each. Cleaning: \"Southern\" and \"vintage Hammond\" trimmed from the opening direction; \"Guitar Solo / Vocal Climax\" -> [Vocal Climax] (the entry's climax is the voice); section labels and directions bracketed. Words unchanged."
+    },
+    "317": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Sweetly Broken",
+        "clips": [
+          "9097b98e-add3-4966-89ad-a1af2f0472be",
+          "23511238-ce2a-42de-84e5-90fedb99fc82"
+        ],
+        "v0": "9097b98e-add3-4966-89ad-a1af2f0472be",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "hard swung new jack swing"
+      },
+      "flags": [],
+      "tagged": true,
+      "edits": 0,
+      "prompt": "genre-only-v5-vector",
+      "adjectives": "picaresque (roll 1: Renaissance)",
+      "note": "Roll 1 (Renaissance: Hamlet quoted, bitter kiss-off) rejected by BlazeDale. Roll 2 on picaresque gave TWO Don Quixote drafts (a hung run surfaced in history after reload, plus the re-fire). BlazeDale chose A, the 619-word lighter-handed one (cardboard crown, man on a mule, fortress that was a shack, queen who was a girl at the mill; hook: shout at the sky till my chest breaks open / let the giant fall / a dream that is sweetly broken) over B (759 words, tilting at windmills x2, rust x4). Cleaning: opening prose direction condensed; scream-singing direction dropped; Vocal stack / Whispered / Spoken labels bracketed with sung words kept in (); Guitar Solo dropped from the synth-hook label (entry neg rock guitars); straining direction shortened. Words unchanged."
     }
   },
   "method": {
