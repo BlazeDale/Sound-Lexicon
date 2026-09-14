@@ -6812,6 +6812,27 @@
       "prompt": "genre-only-v5-vector",
       "adjectives": "forgotten",
       "note": "Seed (inferred, never named): Attar's The Conference of the Birds - the seven valleys, the king sought abroad who is found inside, thirty steps / thirty heartbeats (si morgh = thirty birds), the mirror and the lake. \"We are the ones we sought.\" Removal clause worked again. Shipped by me, no urge to reject: the ye-le-lo refrain loops the way the entry's \"short sung refrain that repeats until it becomes part of the groove\" asks. Watch: stone x1; \"silence was the only speaker\" misses its rhyme - left as is. Cleaning: very long production paragraphs condensed into short brackets (kept their instrument content: shaker alone, log drum drop, sparse gaps, bass fades); \"Tenderly prosed\" (a prompt-word leak) and the \"designed for the listener to sing along\" / \"leaving the listener beautifully undone\" commentary dropped; \"electric piano\" -> piano (entry: piano stabs); \"(Tempo: ... 111 BPM)\" dropped. Section labels bracketed. Words unchanged."
+    },
+    "313": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Cold in the Hold",
+        "clips": [
+          "1b28dd90-15be-4ce6-a461-b9065f5bb61f",
+          "a1443f1a-5930-474a-9b9e-e54cf8dc25d2"
+        ],
+        "v0": "1b28dd90-15be-4ce6-a461-b9065f5bb61f",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "cold half-time UK drill"
+      },
+      "flags": [],
+      "tagged": false,
+      "edits": 0,
+      "prompt": "genre-only-v5-vector",
+      "adjectives": "Victorian",
+      "note": "Seed (inferred, never named): Strange Case of Dr Jekyll and Mr Hyde - fog rolling in, \"Where does the monster end? Where do you begin?\", the ghost in the host, a shadow on the wall; a Dickensian \"Waste not. Want not. Turn the screw.\" and \"mist on the heath\" around it. Shipped by me, no urge to reject: clipped flat internal rhyme suits the cold, unbothered drill delivery. Sent BARE (no section labels in the draft). Watch: iron x3, gold x1 (palette) - left as is. Cleaning: \"Reverb heavy\" struck from the opening direction (entry: no reverb on the lead); \"(Vocal filter: telephone static)\" label dropped, the line kept in () (entry: mixed close and dry); \"clack-skrr\" onomatopoeia dropped from the snare direction; all directions bracketed; (Whispered) bracketed. Words unchanged."
     }
   },
   "method": {
