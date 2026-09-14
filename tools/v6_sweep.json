@@ -6770,6 +6770,27 @@
       "prompt": "genre-only-v4-adjectives",
       "adjectives": "obscure",
       "note": "Roll 1 (v3, Frankenstein again right after #308, \"Why did you make me?\" near-echo) went to BlazeDale; he answered with the v4 prompt instead - taken as a resubmit. Anchor: Robert W. Chambers, The King in Yellow (1895) - Carcosa, pallid mask, black stars, twin suns. Gemini named the book in its prose preamble (dropped); in the lyric only Carcosa and the pallid mask surface. \"obscure\" broke the top-pick pattern first try. Shipped by me (no urge to reject): seductive/mournful exotica register fits. Watch: \"beauty is skin deep\" also in #306's verse; \"safe in the shallows\" (safe attractor) buried in a whisper - left as is. Cleaning: prose preamble and (Setting:) line dropped; section labels and directions bracketed; \"(Label: words)\" split; \"Spoken in a low, sultry, retro-filtered croon\" kept as bracket; \"Full orchestral explosion\" and \"Vocal ease and emotional surge\" labels dropped from section names; ending direction bracketed. Words unchanged."
+    },
+    "311": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "The Blank White Page",
+        "clips": [
+          "3049f58f-3e88-4f48-b725-d51dde7ef06b",
+          "e17d0b51-ab32-4ee3-bc94-094e427010b3"
+        ],
+        "v0": "3049f58f-3e88-4f48-b725-d51dde7ef06b",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "austere Korean pansori storytelling"
+      },
+      "flags": [],
+      "tagged": false,
+      "edits": 0,
+      "prompt": "genre-only-v5-vector",
+      "adjectives": "lesser-known",
+      "note": "Roll 1 (v4 \"lesser-known epic\": Epic of Sundiata named in a direction, 208 words, rust/dust/iron/stone) went to BlazeDale; he answered with v5 and \"it doesn't need to be a story, just use the literary reference as a seed more\" - taken as a resubmit. Result: no book named anywhere (the removal clause works); the seed shows only as theme - a name left out of the ledger / family scroll, the blank white page, a debt unpaid, han pooling in the cup, (A-igo!). Shipped by me, no urge to reject. Sent BARE and unpadded despite 214 words: untagged lyrics measure ~17% more song per character. Watch: rust x2 in one couplet, ash, dust (palette) - left as is. Cleaning: directions bracketed; \"(Label): words\" split; \"Eui-shim style\" fragment dropped from the opening direction; \"operatic\" struck from the lament direction; \"into the mic\" struck; \"Final belt,\" struck. Words unchanged."
     }
   },
   "method": {
