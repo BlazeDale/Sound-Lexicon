@@ -6938,6 +6938,27 @@
       "prompt": "genre-only-v7-manga",
       "adjectives": "new-age manga (fixed by BlazeDale; roll 1 Enlightenment, roll 2 apocryphal)",
       "note": "Rolls 1-2: Candide (\"tend your own garden\" as the hook, Enlightenment) and apocryphal (banned-chapter page imagery, 200 words) - both put to BlazeDale; he answered with v7. Seed (inferred, never named): Frieren - a long-lived mage who walked ten leagues with a party, left when the victory was won, didn't know \"the magic of a brief-lived man\", a hundred years of travel to learn a simple name, the blue-flower field, \"just a tiny little spell\". Subtle and the song stands on its own. Shipped by me, no urge to reject: bouncy despite the regret (\"Casting silly little magic in a quiet-ass room!\"), beatbox syllables threaded through every section. Edits (1): \"drowning in the vowel-tones\" -> \"drowning in the what-ifs\" in both choruses (prompt vocabulary leaking into the lyric - lyrics-must-not-narrate-the-mix). Watch: heavy woolen coat (coat attractor, verse 1 line 1), iron x1, copper x1. Cleaning: \"Idiom check:\" meta label dropped from verse 2; \"(Label: syllables)\" split into [Label] + (syllables); direction fragments inside ad-libs dropped (\"let the chest voice breathe\", \"let the chest unclench\", \"heavy pocket groove\", \"funky bass-mouth\", \"wet snare click\", \"tears in the delivery\"); \"soul belt\" -> \"soul voice\". Words otherwise unchanged."
+    },
+    "319": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Home, Far Away",
+        "clips": [
+          "5bb14c1b-b303-4941-8164-fe54e4019d9a",
+          "03e701b6-3e1d-4712-b469-c95bd5c30026"
+        ],
+        "v0": "5bb14c1b-b303-4941-8164-fe54e4019d9a",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "warm open-tuned Hawaiian slack-key"
+      },
+      "flags": [],
+      "tagged": true,
+      "edits": 0,
+      "prompt": "genre-only-v8-manga-select",
+      "adjectives": "new-age manga you creatively select (roll 1: fixed new-age manga work)",
+      "note": "Roll 1 (v7 fixed \"new-age manga work\": Frieren again, straight after #318; a wanderer-comes-home song against the entry's never-left singer) went to BlazeDale; he answered with v8. Seed (inferred, never named): Yokohama Kaidashi Kikou - a quiet cafe at the end of the world, the sea risen over the old roads and streetlamps glowing under the bay, a camera keeping what the eye can't, \"Just a girl in the quiet rains\", \"A cup shared with strangers in this twilight place\". The \"you creatively select\" clause broke the top-title convergence first try, and picked something apt and unobvious. Shipped by me, no urge to reject: a song to a place, from someone who stays - \"I sweep the porch and I mend broken parts... we are home, after all\" - is the entry's own brief. Watch: coffee x1 (ad-lib) + cup x1 (bridge) = a light domestic pair, both carrying the cafe; windmill x1. Cleaning: prose preamble (salt-air / Kona coffee / open window) and the (Tuning: Taro Patch / Open G) line dropped; opening, bridge, solo, outro and final-chord directions bracketed and condensed; \"(Deep vocal resonance shifts from throat to chest)\" -> [Voice shifts from throat to chest]; section labels bracketed. Words unchanged."
     }
   },
   "method": {
