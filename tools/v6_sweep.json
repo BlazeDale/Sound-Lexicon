@@ -7167,6 +7167,28 @@
       "adjectives": "random decade + region + kind of source",
       "delivery": "direct and unguarded, busking as work, played to strangers who have not stopped walking yet",
       "note": "Scorecard: length 340; three verses + refrain after each + bridge (sixth straight); delivery is the busker working passers-by - \"Keep your eyes on the gutter, keep your hands in your coat\", \"You can hurry for the trolley, you can run for the door\", \"Stop your stride! Hold your breath!\", \"(Ah... don't walk so fast...)\"; seed unnamed - a village drowned under a reservoir (\"There's a bell under water and it's trying to ring\", \"Where the carp swim the aisles\", \"a whole flooded parish humming underneath your feet\"); cleaning minimal. Shipped by me, no edits. Watch: coat x3 (hands in your coat / don't want your coat / coat-tails fly past) - all charged and about the walkers, none in the refrain, left as is but flagged; palette stone, iron x2, silver, brass, rust, dust; \"the rhythm of the chord\" (music word, figurative); \"Like a man catching sight\" refers to a passer-by, not the singer. Cleaning: \"(Strum slow, bare wire)\" -> [Strum slow, bare wire]. \"(Heel, toe, slap the wood!)\" kept in () as a shouted vocal cue. Words unchanged."
+    },
+    "329": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "You Cannot Drink This River",
+        "clips": [
+          "33efe969-bd3a-4a75-b132-a97e1ef34cce",
+          "8388a8b0-7945-4884-868f-fccef4692ae6"
+        ],
+        "v0": "33efe969-bd3a-4a75-b132-a97e1ef34cce",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "slow testifying late-60s Southern soul"
+      },
+      "flags": [],
+      "tagged": true,
+      "edits": 1,
+      "prompt": "claude-v11c",
+      "adjectives": "random decade + region + kind of source",
+      "delivery": "pleading and unyielding at once (image clause dropped per v11c)",
+      "note": "(The batch reported the browser extension disconnected but had in fact generated - the draft was already at the top of Activity History; the follow-up click landed in WAIT (18) and did not fire a second run.) Rolls 1-2 rejected by BlazeDale: r1 doorway built into the refrain + kettle/ash-cake + rural palette; r2 literalised the old delivery image into a voice trapped on a 78 record. Scorecard: length 341; structure honoured (refrain returns four times, one extra at the end); delivery pleading + unyielding without any literal scene (\"I didn't curse, and I didn't shout\", \"You can shear the hill, you can fence the sky / But you cannot drink this river dry\", \"you cannot put a padlock on a soul\"); seed unnamed - a household stripped by the tax man (silver buried in the clay, the bay and the gray taken, the herd driven off); no records, no doorway refrain. Shipped by me. Edits (1): cut the final ad-lib \"(No, you can't lyricize my pain away)\" - \"lyricize\" is the song talking about its own writing. Watch: palette in-world but heavy (hearth, clay, silver, stone, metal, ash, coal, dust, silt); winter coat x1 (charged - they want the wool from it); dough/kneading x1 each. Cleaning: none beyond the cut - section labels bracketed, answers in ()."
     }
   },
   "method": {
