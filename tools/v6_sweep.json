@@ -7014,6 +7014,27 @@
       "prompt": "genre-only-v9-repetition",
       "adjectives": "new-age manga you creatively select",
       "note": "Roll 1 (Frieren for the third time, grief register, shaky Spanish) rejected by BlazeDale (\"yeah resubmit\"). Seed: no single title identifiable - the manga FORM became the subject, the way \"apocryphal\" did on #318 roll 2: panels, ink bleeding, a broken brush, the sketch falling, \"y el capítulo acabó\", \"Cierra el tomo. Se acabó el tomo.\" Chorus: (Ooh-la-la, ah-ah) / Bajo la lluvia, la página arde, / Es tarde, muy tarde, / La historia se parte. / (Ooh-la-la, ah-ah) / Dime ¿dónde estás? / Si ya no hay más. / (¡Ey! ¡Ey!) Good: clean short Spanish couplets, a hook that repeats easily, correct Spanish this time. Issues: 147 words (the shortest draft of the sweep; sub-90s render likely even bare); mournful ending-of-a-story register against \"flirtatious and easy, quietly certain it is working\"; \"¡Dale duro al bombo! ¡Siente el fondo!\" narrates the mix. SHIPPED by BlazeDale (\"ship it\") despite the length and register flags. Cleaning: opening direction, Voz de fondo, A capella and fade directions bracketed; section labels bracketed. Words unchanged."
+    },
+    "322": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Beat Owns the Bone",
+        "clips": [
+          "94603c08-539f-49e7-a4be-b3823503fa8d",
+          "9cb5df77-2409-4516-8133-80b4da06cea5"
+        ],
+        "v0": "94603c08-539f-49e7-a4be-b3823503fa8d",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "dark broken hypnotic gqom"
+      },
+      "flags": [],
+      "tagged": false,
+      "edits": 0,
+      "prompt": "genre-only-v10-poem-event",
+      "adjectives": "reference event you creatively select (rolls 1-2: new-age manga you creatively select)",
+      "note": "Rolls 1-2 (v9 manga: blood-from-a-stone punchline x3; then a song about manga pages/ink/panels) rejected by BlazeDale; he answered with v10. Seed (inferred, never named): a city blackout - \"When the city grid died at the turn of three\", a speaker cabinet rattling alone in the coal-black, \"You can cut the power, but the beat owns the bone\". Apt for gqom (a room dancing through a power cut) and the entry's \"a room that has been dancing for hours and intends to continue\". Shipped by me, no urge to reject: the best entry-fit of the sweep's dance/chant rolls - a defiant chant, not a lament. Hook: Pound on the iron! (Kick!) / Pound on the stone! (Kick!) / You can cut the power, but the beat owns the bone. Sent BARE (no section labels; the entry's form is a held chant). Watch: iron x2, stone x1, coal x1; beat/speaker/bass talk is in-world here (the event IS a dance), so not treated as mix narration. Cleaning: \"(Label: syllables)\" split or label dropped - \"Full crowd chant\" label dropped (entry: the same voice answering an octave below; Vocalist substitution negative), \"Vocal chop\"/\"Echo\" labels dropped with words kept in (); rumble, whisper and fade labels bracketed. Words unchanged."
     }
   },
   "method": {
