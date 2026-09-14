@@ -6667,6 +6667,26 @@
       "edits": 7,
       "prompt": "charged-objects",
       "note": "first roll kept for its core, flat and private as the style wants (you missed Tucumcari, your loss; I didnt steal your cedar mints, I left them on the sink; we made the edge; the map is closed; now I am the one) - but the atlas pulled a road-trip vehicle cluster and it came in at 127 words. Edits, meaning-first: page forty-eight is greasy became soft (worn by her hands); the whole damn hundred miles with the headlights on high-beam became the whole last hundred miles with your window rolled down - her seat, empty; your circle right here by the pump, a stub of a branded pencil, became right here by the rim, a stub of pencil pressed down hard; the transmission singing tenor just like you said it would became the car still pulls a little left, just like you said it would; the tank is full became the sun is full (the widest brightest moment); the waters run became the light has come; the chorus repeated once to give the widest section room. Tailgate/softly/engine-hum cues stripped"
+    },
+    "306": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Bite the Flame",
+        "clips": [
+          "4a3be1be-962d-4bc1-9e61-cf5e62af2d97",
+          "7fef568e-657c-4585-8bfc-f65644c85692"
+        ],
+        "v0": "4a3be1be-962d-4bc1-9e61-cf5e62af2d97",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "stomping horror-groove metal"
+      },
+      "flags": [],
+      "tagged": true,
+      "edits": 0,
+      "prompt": "genre-only-2026-09-14",
+      "note": "first roll kept. New BlazeDale prompt (2026-09-14): only the genre slot filled, Gemini picks adverb + 3-word idea; no situation slot. Cleaning only: production directions and section labels bracketed, (Desperately) header dropped, an artist-name cadence reference stripped from the Verse 2 direction, outro label shortened."
     }
   },
   "method": {
