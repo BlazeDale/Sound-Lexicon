@@ -7079,6 +7079,28 @@
       "adjectives": "random decade + region + kind of source",
       "delivery": "devastated and controlled, public mourning performed correctly, which makes it worse",
       "note": "Scorecard: length 282; three verses + refrain after each + bridge (structure honoured again); delivery is the entry's brief almost verbatim - \"No tear must spill upon the wood, / We do the mourning as we should\", \"The black-ribbed shawl is pinned so straight, / To show the world we bear the weight\"; seed = house-of-mourning ritual (pennies on the eyelids, the vacant chair, a neighbor's bitter pear, the cup passed right to left), never named; cleaning minimal. Shipped by me. Edits (2): refrain \"Oy, vey der tate, the kettle hums\" -> \"the neighbors come\" (kettle = domestic attractor sitting in a hook x3; replacement from the song's own verse-1 neighbor, keeps the hums/numbs/dum rhyme family as a slant); typo \"where no is there\" -> \"where no one's there\". Watch: salt, iron x2, stone, tallow-tin, ash (palette, in-world for a cold house of mourning); cup x2 (single domestic noun, stands). Cleaning: \"(A low breath, dry as bone)\" -> [A low breath]; bridge \"(Faster, controlled, like clockwork clicking)\" -> [Controlled, like clockwork clicking] (the entry's pulse \"could turn into a dance and deliberately never does\"); (Sotto voce) bracketed."
+    },
+    "325": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Where Gravity Goes",
+        "clips": [
+          "f3240603-f4f5-4201-b907-9e39411b2ab1",
+          "e4976653-c3fc-48ae-811d-ef4ec3bb7297"
+        ],
+        "v0": "f3240603-f4f5-4201-b907-9e39411b2ab1",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "ornate bel canto opera aria"
+      },
+      "flags": [],
+      "tagged": true,
+      "edits": 0,
+      "prompt": "claude-v11b",
+      "adjectives": "random decade + region + kind of source",
+      "delivery": "brilliant and exultant, technique itself offered as the emotion",
+      "note": "Scorecard: length 292; three verses + refrain after each + bridge (third straight entry honouring the structure line); delivery exultant, not grieving (\"There is glory in losing the grip of the earth\", \"No anchor can hold me, no shadow can bind\"); seed unnamed - an early high-altitude flight (altimeter, carburetor thinning, glaciers below, a record climb past the maps); the bridge asks for a soprano trill, which is this entry's own showpiece; vowel-run refrain (Ah-li-a-oh! / Ee-la-ri-oo!) gives the fioritura material; cleaning minimal. Shipped by me, no edits. Watch: clay x3 (refrain), anvil, gold, pebble - light palette; a couple of music-word metaphors (metronome, violin string, \"climbing the scales\") - figurative, left as is. Cleaning: \"(Soprano trill: Ah-ah...)\" -> [Soprano trill] + (Ah-ah...); \"(Trill: Oh-oh...)\" -> [Trill] + (...); \"(High, sustained crescendo: Ah!)\" -> [High sustained note] + (Ah!). Words unchanged."
     }
   },
   "method": {
