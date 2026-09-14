@@ -6709,6 +6709,26 @@
       "edits": 0,
       "prompt": "genre-only-2026-09-14",
       "note": "first roll. I wanted to re-roll (we survive echoes #306 survived the flame; rust/dust/clay/iron/stone; 475 words against a one-line-chant vocal) and showed it; BlazeDale: I like we survive, ship it. Full draft sent bare. Cleaning: directions bracketed; the weeping guitar-solo direction dropped and melodic/clean-sludge struck from two directions (entry neg: guitar solo, melodic clean chorus). Generated TWICE by accident (browser extension disconnected mid-batch after Create had fired, then the batch was resent): identical inputs, 15:40:16 pair (v0 attached) and 15:40:55 pair."
+    },
+    "308": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Blood From A Stone",
+        "clips": [
+          "7374653f-6d8b-4fbd-bc39-c3a08690fc19",
+          "fe15d90e-ed51-48ee-8642-4ac212a88af0"
+        ],
+        "v0": "7374653f-6d8b-4fbd-bc39-c3a08690fc19",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "airtight mechanical industrial metal"
+      },
+      "flags": [],
+      "tagged": true,
+      "edits": 0,
+      "prompt": "genre-only-v3-literary",
+      "note": "roll 2. Roll 1 (v2 prompt, 183 words, pistons/cogs/assembly-line factory subject, rust x3) rejected by BlazeDale. Roll 2 on the new literary-anchor clause: Gemini chose Frankenstein/Prometheus, named outright in the outro whisper (not subtle). Cleaning: prose intro and (Style:) line dropped; directions bracketed; clean struck from two directions (neg clean sung topline); sob/gasp directions condensed to [Rising roar] (entry detached, clinical); Guitar Solos dropped from breakdown direction; crowd-response labels dropped, answers kept in (). Words unchanged. Watch: blood from a stone (old attractor); biting the hand echoes #306."
     }
   },
   "method": {
