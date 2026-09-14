@@ -6729,6 +6729,26 @@
       "edits": 0,
       "prompt": "genre-only-v3-literary",
       "note": "roll 2. Roll 1 (v2 prompt, 183 words, pistons/cogs/assembly-line factory subject, rust x3) rejected by BlazeDale. Roll 2 on the new literary-anchor clause: Gemini chose Frankenstein/Prometheus, named outright in the outro whisper (not subtle). Cleaning: prose intro and (Style:) line dropped; directions bracketed; clean struck from two directions (neg clean sung topline); sob/gasp directions condensed to [Rising roar] (entry detached, clinical); Guitar Solos dropped from breakdown direction; crowd-response labels dropped, answers kept in (). Words unchanged. Watch: blood from a stone (old attractor); biting the hand echoes #306."
+    },
+    "309": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Stomping My Redemption",
+        "clips": [
+          "d23a521d-1603-4b3e-bfaf-a4e4d2aaab28",
+          "947fe3d8-5b21-4b6e-bfa2-e1edb48c8d49"
+        ],
+        "v0": "d23a521d-1603-4b3e-bfaf-a4e4d2aaab28",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "greasy hot-rod psychobilly surf"
+      },
+      "flags": [],
+      "tagged": true,
+      "edits": 0,
+      "prompt": "genre-only-v3-literary",
+      "note": "Anchor: Dante's Inferno — \"Midway down this turnpike in a shadow-choked wood\", \"Leave all hope at the gate\" billboard, Beatrice in the bridge, \"coming through the dark wood\". Subtle this time, unlike #308 (Prometheus named) and roll 1 (Call me Ishmael). Roll 1 (Moby-Dick grief song, salt x4, mournful against the entry) rejected by BlazeDale. Shipped by me without asking (no urge to reject): swagger register fits. Cleaning: prose intro (\"Viscerally, the smell of burnt rubber...\") dropped; directions bracketed; \"(Label: words)\" split, labels dropped (Hiccup-yelp, Vocal engine mimicry, Whispered kept as bracket); \"Screamed:\" and \"Screaming over the engine roar\" labels dropped (entry neg: screamed vocal); \"industrial\" struck from bridge direction; solo direction shortened, \"throat-shredding\" wail label dropped, (Whhhooo-eee!) kept; final direction condensed. Words unchanged."
     }
   },
   "method": {
