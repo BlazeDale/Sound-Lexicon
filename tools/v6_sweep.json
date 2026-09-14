@@ -7057,6 +7057,28 @@
       "adjectives": "random decade + region + kind of source (rolls 1-2: v10 poem/event, claude-v11)",
       "delivery": "dignified and grieving, enormous emotion held inside a very formal shape, never once losing composure",
       "note": "(An ad interstitial swallowed the first v11b attempt: the typing and Generate click never reached the form, and the old output looked like a result. Verified the textarea by screenshot, retyped, re-fired.) Roll 1 (v10 poem: 105 words, no refrain, records imagery) and roll 2 (v11: 148 words, palette leaked from my own example list) both rejected by BlazeDale. Scorecard for v11b: length 315 (structure honoured where the word range was ignored); refrain returns exactly three times unchanged (entry spec); delivery composed and dignified; seed unnamed - a lighthouse keeper at a sea that has walked away (dried basin, anchors in sand, \"thirty fathoms reigned\"); cleaning minimal. Shipped by me. Edits (2), meaning-first, meter and rhyme kept: \"A man who guards an empty bay must not betray himself\" -> \"A soul who guards an empty bay must not betray itself\"; \"A gentleman does not complain\" -> \"A keeper does not once complain\". Reason: male persona words against the entry's weathered contralto risk pulling Suno toward a different voice (Vocalist substitution). \"He turns the wheel\" left as is. Watch: palette (copper, iron x2, rust, dust, brass, salt x2, stone, clay) - but in-world for a dried sea; coat x1 (verse 1), boot x1 (bridge). Cleaning: \"(spoken: The sea has walked away on feet of salt.)\" -> [Spoken] + (...). Nothing else needed."
+    },
+    "324": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Oy Vey Der Tate",
+        "clips": [
+          "44dca514-7052-44ee-9545-c59c92a93b0d",
+          "6dcb0e8b-06f6-4174-8c48-072b0c8116b7"
+        ],
+        "v0": "44dca514-7052-44ee-9545-c59c92a93b0d",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "ceremonial grieving klezmer"
+      },
+      "flags": [],
+      "tagged": true,
+      "edits": 2,
+      "prompt": "claude-v11b",
+      "adjectives": "random decade + region + kind of source",
+      "delivery": "devastated and controlled, public mourning performed correctly, which makes it worse",
+      "note": "Scorecard: length 282; three verses + refrain after each + bridge (structure honoured again); delivery is the entry's brief almost verbatim - \"No tear must spill upon the wood, / We do the mourning as we should\", \"The black-ribbed shawl is pinned so straight, / To show the world we bear the weight\"; seed = house-of-mourning ritual (pennies on the eyelids, the vacant chair, a neighbor's bitter pear, the cup passed right to left), never named; cleaning minimal. Shipped by me. Edits (2): refrain \"Oy, vey der tate, the kettle hums\" -> \"the neighbors come\" (kettle = domestic attractor sitting in a hook x3; replacement from the song's own verse-1 neighbor, keeps the hums/numbs/dum rhyme family as a slant); typo \"where no is there\" -> \"where no one's there\". Watch: salt, iron x2, stone, tallow-tin, ash (palette, in-world for a cold house of mourning); cup x2 (single domestic noun, stands). Cleaning: \"(A low breath, dry as bone)\" -> [A low breath]; bridge \"(Faster, controlled, like clockwork clicking)\" -> [Controlled, like clockwork clicking] (the entry's pulse \"could turn into a dance and deliberately never does\"); (Sotto voce) bracketed."
     }
   },
   "method": {
