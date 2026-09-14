@@ -6791,6 +6791,27 @@
       "prompt": "genre-only-v5-vector",
       "adjectives": "lesser-known",
       "note": "Roll 1 (v4 \"lesser-known epic\": Epic of Sundiata named in a direction, 208 words, rust/dust/iron/stone) went to BlazeDale; he answered with v5 and \"it doesn't need to be a story, just use the literary reference as a seed more\" - taken as a resubmit. Result: no book named anywhere (the removal clause works); the seed shows only as theme - a name left out of the ledger / family scroll, the blank white page, a debt unpaid, han pooling in the cup, (A-igo!). Shipped by me, no urge to reject. Sent BARE and unpadded despite 214 words: untagged lyrics measure ~17% more song per character. Watch: rust x2 in one couplet, ash, dust (palette) - left as is. Cleaning: directions bracketed; \"(Label): words\" split; \"Eui-shim style\" fragment dropped from the opening direction; \"operatic\" struck from the lament direction; \"into the mic\" struck; \"Final belt,\" struck. Words unchanged."
+    },
+    "312": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "The Gold We Found",
+        "clips": [
+          "bf1d336b-6fee-4146-a072-2f3983b3ab5d",
+          "2ceb9f31-c671-46ea-b5a9-3a743360a7da"
+        ],
+        "v0": "bf1d336b-6fee-4146-a072-2f3983b3ab5d",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "unhurried spacious log-drum amapiano"
+      },
+      "flags": [],
+      "tagged": true,
+      "edits": 0,
+      "prompt": "genre-only-v5-vector",
+      "adjectives": "forgotten",
+      "note": "Seed (inferred, never named): Attar's The Conference of the Birds - the seven valleys, the king sought abroad who is found inside, thirty steps / thirty heartbeats (si morgh = thirty birds), the mirror and the lake. \"We are the ones we sought.\" Removal clause worked again. Shipped by me, no urge to reject: the ye-le-lo refrain loops the way the entry's \"short sung refrain that repeats until it becomes part of the groove\" asks. Watch: stone x1; \"silence was the only speaker\" misses its rhyme - left as is. Cleaning: very long production paragraphs condensed into short brackets (kept their instrument content: shaker alone, log drum drop, sparse gaps, bass fades); \"Tenderly prosed\" (a prompt-word leak) and the \"designed for the listener to sing along\" / \"leaving the listener beautifully undone\" commentary dropped; \"electric piano\" -> piano (entry: piano stabs); \"(Tempo: ... 111 BPM)\" dropped. Section labels bracketed. Words unchanged."
     }
   },
   "method": {
