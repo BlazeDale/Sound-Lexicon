@@ -6854,6 +6854,27 @@
       "prompt": "genre-only-v5-vector",
       "adjectives": "epistolary",
       "note": "Seed: unsent letters - \"Some letters were never meant to find a mailbox\", ink kept in the pen, \"Never to seal the envelope again\", \"Never sent... never read\". No specific book named; the epistolary form itself became the seed. Shipped by me, no urge to reject: poised, faintly sad, rain-and-neon night mood fits the entry's lit-expressway delivery. Tagged (city pop verse-chorus grid; the draft carried labels). Watch: coffee x1 (single domestic noun, passes), vinyl x2, ash x1. Cleaning: \"Yamaha DX7\" brand dropped from the opening direction (-> electric piano); \"drum machine\" -> \"80s beat\"; \"(Vocalese:\" label dropped, line kept in (); \"reverb tail stretching into infinity\" and \"solo\" trimmed from the outro direction; closing direction -> [Fade out]; section labels and spoken direction bracketed. Words unchanged."
+    },
+    "315": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Yene Feker",
+        "clips": [
+          "ee10add1-c8cb-4abe-b48f-a5b17016a01f",
+          "649dff4b-40fa-4e89-90de-73f2f12f5c5d"
+        ],
+        "v0": "ee10add1-c8cb-4abe-b48f-a5b17016a01f",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "hazy aching Ethio-jazz tizita"
+      },
+      "flags": [],
+      "tagged": false,
+      "edits": 0,
+      "prompt": "genre-only-v5-vector",
+      "adjectives": "medieval",
+      "note": "Seed (inferred, never named): sea-parted lovers in the medieval-lament mould - parchment ink, a lover who crossed the brine, \"No, not the grave, but oceans wide and deep, / A separate shore where only shadows sleep\", the toll paid for having risked such love. Real Amharic endearments threaded through (yene feker, yene wubet). Shipped by me, no urge to reject: longing that never names its object is the entry's own brief. Sent BARE (no section labels in the draft). Watch: \"I wear your absence like a heavy coat\" (coat attractor, in a verse not a hook - stands), stone x1, dust x1. Cleaning: \"brass\" and \"draped in the heavy velvet of an Addis twilight\" trimmed from the opening direction; \"(Vocalese:\" and \"(Vocal effect: falsetto...)\" labels bracketed, sung words kept in (); \"pentatonic guitar\" -> \"the melody\" (entry has no guitar); \"6/8 Ethio-jazz\" trimmed from the swell direction; \"(Sing it slow...)\" dropped as a direction; outro label and \"Let the horn fade out\" bracketed. Words unchanged."
     }
   },
   "method": {
