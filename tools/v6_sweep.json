@@ -7035,6 +7035,28 @@
       "prompt": "genre-only-v10-poem-event",
       "adjectives": "reference event you creatively select (rolls 1-2: new-age manga you creatively select)",
       "note": "Rolls 1-2 (v9 manga: blood-from-a-stone punchline x3; then a song about manga pages/ink/panels) rejected by BlazeDale; he answered with v10. Seed (inferred, never named): a city blackout - \"When the city grid died at the turn of three\", a speaker cabinet rattling alone in the coal-black, \"You can cut the power, but the beat owns the bone\". Apt for gqom (a room dancing through a power cut) and the entry's \"a room that has been dancing for hours and intends to continue\". Shipped by me, no urge to reject: the best entry-fit of the sweep's dance/chant rolls - a defiant chant, not a lament. Hook: Pound on the iron! (Kick!) / Pound on the stone! (Kick!) / You can cut the power, but the beat owns the bone. Sent BARE (no section labels; the entry's form is a held chant). Watch: iron x2, stone x1, coal x1; beat/speaker/bass talk is in-world here (the event IS a dance), so not treated as mix narration. Cleaning: \"(Label: syllables)\" split or label dropped - \"Full crowd chant\" label dropped (entry: the same voice answering an octave below; Vocalist substitution negative), \"Vocal chop\"/\"Echo\" labels dropped with words kept in (); rumble, whisper and fade labels bracketed. Words unchanged."
+    },
+    "323": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "The Tide Is Stone",
+        "clips": [
+          "cb7772ec-ac6d-4125-bec7-b72be57773e3",
+          "58b637d2-f301-4863-bf81-37d21be1f066"
+        ],
+        "v0": "cb7772ec-ac6d-4125-bec7-b72be57773e3",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "formal Japanese enka"
+      },
+      "flags": [],
+      "tagged": true,
+      "edits": 2,
+      "prompt": "claude-v11b",
+      "adjectives": "random decade + region + kind of source (rolls 1-2: v10 poem/event, claude-v11)",
+      "delivery": "dignified and grieving, enormous emotion held inside a very formal shape, never once losing composure",
+      "note": "(An ad interstitial swallowed the first v11b attempt: the typing and Generate click never reached the form, and the old output looked like a result. Verified the textarea by screenshot, retyped, re-fired.) Roll 1 (v10 poem: 105 words, no refrain, records imagery) and roll 2 (v11: 148 words, palette leaked from my own example list) both rejected by BlazeDale. Scorecard for v11b: length 315 (structure honoured where the word range was ignored); refrain returns exactly three times unchanged (entry spec); delivery composed and dignified; seed unnamed - a lighthouse keeper at a sea that has walked away (dried basin, anchors in sand, \"thirty fathoms reigned\"); cleaning minimal. Shipped by me. Edits (2), meaning-first, meter and rhyme kept: \"A man who guards an empty bay must not betray himself\" -> \"A soul who guards an empty bay must not betray itself\"; \"A gentleman does not complain\" -> \"A keeper does not once complain\". Reason: male persona words against the entry's weathered contralto risk pulling Suno toward a different voice (Vocalist substitution). \"He turns the wheel\" left as is. Watch: palette (copper, iron x2, rust, dust, brass, salt x2, stone, clay) - but in-world for a dried sea; coat x1 (verse 1), boot x1 (bridge). Cleaning: \"(spoken: The sea has walked away on feet of salt.)\" -> [Spoken] + (...). Nothing else needed."
     }
   },
   "method": {
