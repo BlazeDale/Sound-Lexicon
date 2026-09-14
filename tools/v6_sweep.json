@@ -7101,6 +7101,28 @@
       "adjectives": "random decade + region + kind of source",
       "delivery": "brilliant and exultant, technique itself offered as the emotion",
       "note": "Scorecard: length 292; three verses + refrain after each + bridge (third straight entry honouring the structure line); delivery exultant, not grieving (\"There is glory in losing the grip of the earth\", \"No anchor can hold me, no shadow can bind\"); seed unnamed - an early high-altitude flight (altimeter, carburetor thinning, glaciers below, a record climb past the maps); the bridge asks for a soprano trill, which is this entry's own showpiece; vowel-run refrain (Ah-li-a-oh! / Ee-la-ri-oo!) gives the fioritura material; cleaning minimal. Shipped by me, no edits. Watch: clay x3 (refrain), anvil, gold, pebble - light palette; a couple of music-word metaphors (metronome, violin string, \"climbing the scales\") - figurative, left as is. Cleaning: \"(Soprano trill: Ah-ah...)\" -> [Soprano trill] + (Ah-ah...); \"(Trill: Oh-oh...)\" -> [Trill] + (...); \"(High, sustained crescendo: Ah!)\" -> [High sustained note] + (Ah!). Words unchanged."
+    },
+    "326": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Wire in the Water",
+        "clips": [
+          "5edb3f1c-0150-4be5-95b0-8783280fa162",
+          "9f720d49-0a53-4fed-9ed4-b968a6f09042"
+        ],
+        "v0": "5edb3f1c-0150-4be5-95b0-8783280fa162",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "bright unstable basement Midwest emo"
+      },
+      "flags": [],
+      "tagged": true,
+      "edits": 0,
+      "prompt": "claude-v11b",
+      "adjectives": "random decade + region + kind of source",
+      "delivery": "earnest to the point of discomfort, someone saying far too much, meaning all of it, unable to stop",
+      "note": "Scorecard: length 486 (long, but oversharing is the brief); three verses + refrain after each + bridge (fourth straight entry honouring structure); delivery is the best fit of the sweep - \"I know I talk too fast, I know I am possessed\", \"I love you so much that it feels like a crime, / I'm saying it too early for the fortieth time\", panicked spoken asides in () (\"I'm sorry, that was strange, but don't you throw me out!\"); seed unnamed - an under-ice hydrophone recording (\"If you submerge a microphone beneath three feet of black ice, / You hear ten thousand little things all dying at once\"); cleaning minimal. Shipped by me, no edits. Watch: domestic nouns in verses (freezer door, butter stick, kitchen) - never in the hook; gear similes in the hook and verse 3 (amp on an ungrounded floor, speaker cone) - figurative, flagged to BlazeDale; jacket x1, socks x1. Cleaning: \"(Shouted, breathless, falling over the beat)\" -> [Shouted, breathless, falling over the beat]. Spoken asides kept in () as a second voice. Words unchanged."
     }
   },
   "method": {
