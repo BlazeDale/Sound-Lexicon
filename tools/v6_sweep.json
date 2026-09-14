@@ -7145,6 +7145,28 @@
       "adjectives": "random decade + region + kind of source",
       "delivery": "unbowed, refusal sung as calm certainty, never as anger",
       "note": "Scorecard: length 332; three verses + refrain after each + bridge (fifth straight); delivery lands squarely - \"No loud refusal, no broken glass, / I just stand right here and I let you pass\", \"I don't raise my voice to make it real\", \"Not a drop of anger, not a turn of the key\"; seed unnamed - an artist refusing to sign over the original master recordings (\"You want the master, but you brought a slate\", \"I know where the original masters are\", \"You take the plastic and you stamp your name\"); ungendered singer (\"Just a quiet person\"); cleaning none. Shipped by me, no edits. Watch: the seed is itself about records, so needle/groove/masters/\"three beats late\" put the music medium into the lyric (same drift as #323 roll 1's vinyl) - flagged to BlazeDale; copper x2, cup x1, steel x1; \"A street-taught mind\" echoes the genre slot's \"street-schooled\". Cleaning: none needed - section labels already bracketed, vocalese in ()."
+    },
+    "328": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Bell Under Water",
+        "clips": [
+          "6651f616-0180-4981-bb50-b0992300e644",
+          "b85c89a8-4b6a-4316-807f-5566716c4e58"
+        ],
+        "v0": "6651f616-0180-4981-bb50-b0992300e644",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "bare unsheltered open-air street busking"
+      },
+      "flags": [],
+      "tagged": true,
+      "edits": 0,
+      "prompt": "claude-v11b",
+      "adjectives": "random decade + region + kind of source",
+      "delivery": "direct and unguarded, busking as work, played to strangers who have not stopped walking yet",
+      "note": "Scorecard: length 340; three verses + refrain after each + bridge (sixth straight); delivery is the busker working passers-by - \"Keep your eyes on the gutter, keep your hands in your coat\", \"You can hurry for the trolley, you can run for the door\", \"Stop your stride! Hold your breath!\", \"(Ah... don't walk so fast...)\"; seed unnamed - a village drowned under a reservoir (\"There's a bell under water and it's trying to ring\", \"Where the carp swim the aisles\", \"a whole flooded parish humming underneath your feet\"); cleaning minimal. Shipped by me, no edits. Watch: coat x3 (hands in your coat / don't want your coat / coat-tails fly past) - all charged and about the walkers, none in the refrain, left as is but flagged; palette stone, iron x2, silver, brass, rust, dust; \"the rhythm of the chord\" (music word, figurative); \"Like a man catching sight\" refers to a passer-by, not the singer. Cleaning: \"(Strum slow, bare wire)\" -> [Strum slow, bare wire]. \"(Heel, toe, slap the wood!)\" kept in () as a shouted vocal cue. Words unchanged."
     }
   },
   "method": {
