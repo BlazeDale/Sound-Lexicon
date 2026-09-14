@@ -6749,6 +6749,27 @@
       "edits": 0,
       "prompt": "genre-only-v3-literary",
       "note": "Anchor: Dante's Inferno — \"Midway down this turnpike in a shadow-choked wood\", \"Leave all hope at the gate\" billboard, Beatrice in the bridge, \"coming through the dark wood\". Subtle this time, unlike #308 (Prometheus named) and roll 1 (Call me Ishmael). Roll 1 (Moby-Dick grief song, salt x4, mournful against the entry) rejected by BlazeDale. Shipped by me without asking (no urge to reject): swagger register fits. Cleaning: prose intro (\"Viscerally, the smell of burnt rubber...\") dropped; directions bracketed; \"(Label: words)\" split, labels dropped (Hiccup-yelp, Vocal engine mimicry, Whispered kept as bracket); \"Screamed:\" and \"Screaming over the engine roar\" labels dropped (entry neg: screamed vocal); \"industrial\" struck from bridge direction; solo direction shortened, \"throat-shredding\" wail label dropped, (Whhhooo-eee!) kept; final direction condensed. Words unchanged."
+    },
+    "310": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Unmask for the Monster",
+        "clips": [
+          "2e171cbc-2584-4450-adf0-d7a9fa9d8a5c",
+          "3d230bc0-5340-4e8f-bddc-61952331b8cf"
+        ],
+        "v0": "2e171cbc-2584-4450-adf0-d7a9fa9d8a5c",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "eerie lounge-lit monster-movie exotica"
+      },
+      "flags": [],
+      "tagged": true,
+      "edits": 0,
+      "prompt": "genre-only-v4-adjectives",
+      "adjectives": "obscure",
+      "note": "Roll 1 (v3, Frankenstein again right after #308, \"Why did you make me?\" near-echo) went to BlazeDale; he answered with the v4 prompt instead - taken as a resubmit. Anchor: Robert W. Chambers, The King in Yellow (1895) - Carcosa, pallid mask, black stars, twin suns. Gemini named the book in its prose preamble (dropped); in the lyric only Carcosa and the pallid mask surface. \"obscure\" broke the top-pick pattern first try. Shipped by me (no urge to reject): seductive/mournful exotica register fits. Watch: \"beauty is skin deep\" also in #306's verse; \"safe in the shallows\" (safe attractor) buried in a whisper - left as is. Cleaning: prose preamble and (Setting:) line dropped; section labels and directions bracketed; \"(Label: words)\" split; \"Spoken in a low, sultry, retro-filtered croon\" kept as bracket; \"Full orchestral explosion\" and \"Vocal ease and emotional surge\" labels dropped from section names; ending direction bracketed. Words unchanged."
     }
   },
   "method": {
