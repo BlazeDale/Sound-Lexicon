@@ -6993,6 +6993,27 @@
       "prompt": "v8 (v6 arm) + v9 (v6b arm)",
       "adjectives": "new-age manga you creatively select",
       "note": "BlazeDale: ship them both - two generations attached. v6 arm = roll 1 (v8, Look Back seed): Seed (inferred, not named): Look Back (Fujimoto) - a manga artist drawing in a locked room, four-panel pages, a friend \"cut in the dark by a nameless rage\", \"I draw you alive 'cause you never really died\", the refrain \"don't look back\", a mechanical pencil click at the end. Apt and unobvious. Chorus: Ah-oh, cold bone, rain on the stone, / Breathe in the ash till I bleed on my own. / Ah-oh, slow grow, ghost in the glow, / Tracing your spine through the snow-snow-snow! / When the frame cracks open and the light comes in, / Where do I end and where d'you begin? / Ah-oh, cold bone, leave me alone, / Squeezing out blood... from a stone. Issues: \"blood from a stone\" x3 incl. the hook and the outro (the corpus's first measured stock idiom); \"Where do I end and where d'you begin\" echoes #313's \"Where does the monster end? Where do you begin?\"; chorus directed \"raw, soaring, emotive\" + a belted bridge against an entry whose neg list includes \"sung melodic chorus\" and whose delivery is confrontational; \"rain on the Mac\" (brand). Superseded by BlazeDale's v9 prompt arriving mid-run - re-rolled on v9 for comparison. || v6b arm = roll 2 (v9, Chainsaw Man seed): Seed (inferred, never named): Chainsaw Man - pull the cord, a saw buzzing in the head, devils in the alley with a contract written in ash and flame, selling off a slice to eat, \"Rev it up! Tear it out!\", the engine stalls at the end. Verse opener: Bleak street, no heat, bare feet, concrete. / Heart in a cage, but the cage don't beat. / Sell off a slice just to buy one eat, / Look in the glass, see a full defeat. / (Dead eye, don't cry, low sky, bye-bye) Chorus (sung in unison - fits \"one refrain thrown back by a crowd\"): Light goes low in the dark of the ends, / Cold in the soul, ain't no heat for the friends. / Pull on the cord till the iron bends, / Grasping at the embers where the daylight ends! Good: dense chained internal rhyme and grime slang (wasteman, allow it, the ends); repetition clearly up vs roll 1; hard, flat, confrontational verses. Watch: \"Tryna wring blood from a stone in the dark\" (1x, buried in verse 1 - stands per the buried-attractor rule); iron x3, rust x1, ash x1, stone x2. Cleaning needed if shipped: (Track Tempo:) and (Viscerally delivered) headers; label/syllable splits; the \"Engine stalls\" direction bracketed. Cleaning A: production note dropped; soaring struck from the chorus direction (neg sung melodic chorus); prompt-leak label (melodic vowel juxtaposition) dropped from the bridge; labels split. Cleaning B: tempo/delivery headers dropped; labels split; wide assonance label -> Full crowd unison. Words unchanged in both."
+    },
+    "321": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "La Página Arde",
+        "clips": [
+          "7bd04d7c-6ce7-4320-a690-7f1d24123b1d",
+          "1cce48bb-b567-4ea1-9390-93a1ccec939b"
+        ],
+        "v0": "7bd04d7c-6ce7-4320-a690-7f1d24123b1d",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "humid repetitive dembow reggaeton"
+      },
+      "flags": [],
+      "tagged": true,
+      "edits": 0,
+      "prompt": "genre-only-v9-repetition",
+      "adjectives": "new-age manga you creatively select",
+      "note": "Roll 1 (Frieren for the third time, grief register, shaky Spanish) rejected by BlazeDale (\"yeah resubmit\"). Seed: no single title identifiable - the manga FORM became the subject, the way \"apocryphal\" did on #318 roll 2: panels, ink bleeding, a broken brush, the sketch falling, \"y el capítulo acabó\", \"Cierra el tomo. Se acabó el tomo.\" Chorus: (Ooh-la-la, ah-ah) / Bajo la lluvia, la página arde, / Es tarde, muy tarde, / La historia se parte. / (Ooh-la-la, ah-ah) / Dime ¿dónde estás? / Si ya no hay más. / (¡Ey! ¡Ey!) Good: clean short Spanish couplets, a hook that repeats easily, correct Spanish this time. Issues: 147 words (the shortest draft of the sweep; sub-90s render likely even bare); mournful ending-of-a-story register against \"flirtatious and easy, quietly certain it is working\"; \"¡Dale duro al bombo! ¡Siente el fondo!\" narrates the mix. SHIPPED by BlazeDale (\"ship it\") despite the length and register flags. Cleaning: opening direction, Voz de fondo, A capella and fade directions bracketed; section labels bracketed. Words unchanged."
     }
   },
   "method": {
