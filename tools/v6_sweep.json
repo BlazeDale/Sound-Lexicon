@@ -6917,6 +6917,27 @@
       "prompt": "genre-only-v5-vector",
       "adjectives": "picaresque (roll 1: Renaissance)",
       "note": "Roll 1 (Renaissance: Hamlet quoted, bitter kiss-off) rejected by BlazeDale. Roll 2 on picaresque gave TWO Don Quixote drafts (a hung run surfaced in history after reload, plus the re-fire). BlazeDale chose A, the 619-word lighter-handed one (cardboard crown, man on a mule, fortress that was a shack, queen who was a girl at the mill; hook: shout at the sky till my chest breaks open / let the giant fall / a dream that is sweetly broken) over B (759 words, tilting at windmills x2, rust x4). Cleaning: opening prose direction condensed; scream-singing direction dropped; Vocal stack / Whispered / Spoken labels bracketed with sung words kept in (); Guitar Solo dropped from the synth-hook label (entry neg rock guitars); straining direction shortened. Words unchanged."
+    },
+    "318": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Standing in the Bloom",
+        "clips": [
+          "a8fee2af-1260-4811-8cce-ce6dfa2a062b",
+          "eea13ac9-b71b-41a4-9fc7-4bccc012ca29"
+        ],
+        "v0": "a8fee2af-1260-4811-8cce-ce6dfa2a062b",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "playful one-mouth beatbox boom-bap soul"
+      },
+      "flags": [],
+      "tagged": true,
+      "edits": 1,
+      "prompt": "genre-only-v7-manga",
+      "adjectives": "new-age manga (fixed by BlazeDale; roll 1 Enlightenment, roll 2 apocryphal)",
+      "note": "Rolls 1-2: Candide (\"tend your own garden\" as the hook, Enlightenment) and apocryphal (banned-chapter page imagery, 200 words) - both put to BlazeDale; he answered with v7. Seed (inferred, never named): Frieren - a long-lived mage who walked ten leagues with a party, left when the victory was won, didn't know \"the magic of a brief-lived man\", a hundred years of travel to learn a simple name, the blue-flower field, \"just a tiny little spell\". Subtle and the song stands on its own. Shipped by me, no urge to reject: bouncy despite the regret (\"Casting silly little magic in a quiet-ass room!\"), beatbox syllables threaded through every section. Edits (1): \"drowning in the vowel-tones\" -> \"drowning in the what-ifs\" in both choruses (prompt vocabulary leaking into the lyric - lyrics-must-not-narrate-the-mix). Watch: heavy woolen coat (coat attractor, verse 1 line 1), iron x1, copper x1. Cleaning: \"Idiom check:\" meta label dropped from verse 2; \"(Label: syllables)\" split into [Label] + (syllables); direction fragments inside ad-libs dropped (\"let the chest voice breathe\", \"let the chest unclench\", \"heavy pocket groove\", \"funky bass-mouth\", \"wet snare click\", \"tears in the delivery\"); \"soul belt\" -> \"soul voice\". Words otherwise unchanged."
     }
   },
   "method": {
