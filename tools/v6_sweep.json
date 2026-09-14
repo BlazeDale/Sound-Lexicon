@@ -7123,6 +7123,28 @@
       "adjectives": "random decade + region + kind of source",
       "delivery": "earnest to the point of discomfort, someone saying far too much, meaning all of it, unable to stop",
       "note": "Scorecard: length 486 (long, but oversharing is the brief); three verses + refrain after each + bridge (fourth straight entry honouring structure); delivery is the best fit of the sweep - \"I know I talk too fast, I know I am possessed\", \"I love you so much that it feels like a crime, / I'm saying it too early for the fortieth time\", panicked spoken asides in () (\"I'm sorry, that was strange, but don't you throw me out!\"); seed unnamed - an under-ice hydrophone recording (\"If you submerge a microphone beneath three feet of black ice, / You hear ten thousand little things all dying at once\"); cleaning minimal. Shipped by me, no edits. Watch: domestic nouns in verses (freezer door, butter stick, kitchen) - never in the hook; gear similes in the hook and verse 3 (amp on an ungrounded floor, speaker cone) - figurative, flagged to BlazeDale; jacket x1, socks x1. Cleaning: \"(Shouted, breathless, falling over the beat)\" -> [Shouted, breathless, falling over the beat]. Spoken asides kept in () as a second voice. Words unchanged."
+    },
+    "327": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Dry Inside",
+        "clips": [
+          "9c768826-166d-4682-9b08-b0c42ef04e74",
+          "d0902101-cd31-482f-89bd-bbe28eda0148"
+        ],
+        "v0": "9c768826-166d-4682-9b08-b0c42ef04e74",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "plainspoken defiant street-schooled pop-soul"
+      },
+      "flags": [],
+      "tagged": true,
+      "edits": 0,
+      "prompt": "claude-v11b",
+      "adjectives": "random decade + region + kind of source",
+      "delivery": "unbowed, refusal sung as calm certainty, never as anger",
+      "note": "Scorecard: length 332; three verses + refrain after each + bridge (fifth straight); delivery lands squarely - \"No loud refusal, no broken glass, / I just stand right here and I let you pass\", \"I don't raise my voice to make it real\", \"Not a drop of anger, not a turn of the key\"; seed unnamed - an artist refusing to sign over the original master recordings (\"You want the master, but you brought a slate\", \"I know where the original masters are\", \"You take the plastic and you stamp your name\"); ungendered singer (\"Just a quiet person\"); cleaning none. Shipped by me, no edits. Watch: the seed is itself about records, so needle/groove/masters/\"three beats late\" put the music medium into the lyric (same drift as #323 roll 1's vinyl) - flagged to BlazeDale; copper x2, cup x1, steel x1; \"A street-taught mind\" echoes the genre slot's \"street-schooled\". Cleaning: none needed - section labels already bracketed, vocalese in ()."
     }
   },
   "method": {
