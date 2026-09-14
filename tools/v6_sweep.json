@@ -6875,6 +6875,27 @@
       "prompt": "genre-only-v5-vector",
       "adjectives": "medieval",
       "note": "Seed (inferred, never named): sea-parted lovers in the medieval-lament mould - parchment ink, a lover who crossed the brine, \"No, not the grave, but oceans wide and deep, / A separate shore where only shadows sleep\", the toll paid for having risked such love. Real Amharic endearments threaded through (yene feker, yene wubet). Shipped by me, no urge to reject: longing that never names its object is the entry's own brief. Sent BARE (no section labels in the draft). Watch: \"I wear your absence like a heavy coat\" (coat attractor, in a verse not a hook - stands), stone x1, dust x1. Cleaning: \"brass\" and \"draped in the heavy velvet of an Addis twilight\" trimmed from the opening direction; \"(Vocalese:\" and \"(Vocal effect: falsetto...)\" labels bracketed, sung words kept in (); \"pentatonic guitar\" -> \"the melody\" (entry has no guitar); \"6/8 Ethio-jazz\" trimmed from the swell direction; \"(Sing it slow...)\" dropped as a direction; outro label and \"Let the horn fade out\" bracketed. Words unchanged."
+    },
+    "316": {
+      "status": "generated",
+      "lyricist": "gemini-3.6-flash",
+      "v6": {
+        "title": "Held and Known",
+        "clips": [
+          "7b7fde00-43d0-40f7-9150-71daf513c006",
+          "607c0a8e-0330-4ddb-8549-f0b6e70dc50d"
+        ],
+        "v0": "7b7fde00-43d0-40f7-9150-71daf513c006",
+        "badge": "V6",
+        "mandated8": true,
+        "genre_slot": "patient gospel-rooted R&B ballad"
+      },
+      "flags": [],
+      "tagged": true,
+      "edits": 0,
+      "prompt": "genre-only-v5-vector",
+      "adjectives": "metaphysical (roll 1: pastoral)",
+      "note": "Roll 1 (\"pastoral\": rural palette flood, gravelly belt + guitar solo against a pristine soprano) rejected by BlazeDale (\"yeah resubmit\"). Seed: Dante's Divine Comedy again - \"I lost my path inside a crowded wood\", the hill we all must climb, \"Oh, the love that moves the sun!\" (Paradiso's last line, quoted). Same book as #309 (Inferno), five entries earlier - flagged to him. Shipped by me: devotional climb, hook \"Let this cold ground turn to holy ground... I just want to be held and known\", ends repeating \"Held and known\" - suits the single-line final chorus and whistle-register close. Watch: \"Safe in a warm embrace\" (safe attractor, ad-lib), dust/gold/silver x1 each. Cleaning: \"Southern\" and \"vintage Hammond\" trimmed from the opening direction; \"Guitar Solo / Vocal Climax\" -> [Vocal Climax] (the entry's climax is the voice); section labels and directions bracketed. Words unchanged."
     }
   },
   "method": {
