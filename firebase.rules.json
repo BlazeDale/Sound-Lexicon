@@ -105,7 +105,7 @@
           "$key": {
             ".write": "root.child('queues/' + $qid + '/meta/owner').val() === auth.uid || (auth != null && root.child('queues/' + $qid + '/meta/open').val() === true && !data.exists() && newData.child('by').val() === auth.uid)",
             ".validate": "newData.hasChildren(['src','id','ord'])",
-            "src":    { ".validate": "newData.isString() && newData.val().matches(/^(suno|yt|ytpl|sp|spl)$/)" },
+            "src":    { ".validate": "newData.isString() && (newData.val() === 'suno' || newData.val() === 'yt' || newData.val() === 'ytpl' || newData.val() === 'sp' || newData.val() === 'spl')" },
             "id":     { ".validate": "newData.isString() && newData.val().length <= 40" },
             "title":  { ".validate": "newData.isString() && newData.val().length <= 140" },
             "sub":    { ".validate": "newData.isString() && newData.val().length <= 90" },
