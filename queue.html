@@ -113,6 +113,11 @@
      on videos that are perfectly embeddable. 356x200 is the smallest 16:9 box that clears
      it. Collapsing the bar is the way to reclaim the space, not shrinking this. */
   #yt{width:356px;height:200px;border:0;border-radius:8px;display:none;background:#000;margin:0 auto}
+  /* The Spotify controller REPLACES the element it is handed with its own iframe, so the
+     thing that gets shown and hidden has to be a wrapper around it rather than the element
+     itself -- hiding #sp would be hiding something that no longer exists. */
+  #spwrap{display:none;max-width:520px;margin:0 auto}
+  #spwrap iframe{display:block;width:100%;border:0;border-radius:12px}
 
 
   .ctrls{display:flex;align-items:center;gap:6px;flex:none}
@@ -205,18 +210,21 @@
   <p class="eyebrow"><a href="index.html">Sound Lexicon</a> / Queue · <a href="queues.html">all queues</a></p>
   <h1>Listening queue</h1>
   <p class="lede">
-    Drag Suno or YouTube links in from the browser, or paste them anywhere on the page. The
+    Drag Suno, YouTube or Spotify links in from the browser, or paste them anywhere on the page. The
     list lives in this browser only — nothing is uploaded. Playback is each source's own
     embedded player, so a mixed queue is fine.
   </p>
 
   <div id="drop">
-    <b>Drop Suno or YouTube links here</b> — or paste one anywhere on the page.<br>
+    <b>Drop Suno, YouTube or Spotify links here</b> — or paste one anywhere on the page.<br>
     A Suno <span style="font-family:var(--mono);font-size:12px">/song/</span>, embed, share or bare id — a
     <span style="font-family:var(--mono);font-size:12px">youtube.com/watch</span>, <span style="font-family:var(--mono);font-size:12px">youtu.be</span> or shorts link —
-    or a YouTube (or YouTube Music) <b>playlist</b>, which joins the queue as one row and plays all the way through.
+    an <span style="font-family:var(--mono);font-size:12px">open.spotify.com/track/</span> link or a
+    <span style="font-family:var(--mono);font-size:12px">spotify:track:</span> uri —
+    or a YouTube (or YouTube Music) <b>playlist</b>, or a Spotify <b>album or playlist</b>, each of which
+    joins the queue as one row and plays all the way through.
     <div class="addrow" onclick="event.stopPropagation()">
-      <input id="addin" placeholder="https://suno.com/song/…  or  https://youtu.be/…  (several at once, one per line)" spellcheck="false">
+      <input id="addin" placeholder="https://suno.com/song/…  ·  https://youtu.be/…  ·  https://open.spotify.com/track/…  (several at once, one per line)" spellcheck="false">
       <button class="primary" id="addbtn">Add</button>
     </div>
   </div>
@@ -245,6 +253,7 @@
   <div id="player">
     <iframe id="frame" allow="autoplay; encrypted-media" title="Suno player"></iframe>
     <div id="yt"></div>
+    <div id="spwrap"><div id="sp"></div></div>
     <div id="timer" title="Click to restart the timer">
       <span class="lab" id="tlab">next in</span>
       <span id="tleft">0:00</span>
@@ -313,9 +322,9 @@
   <footer>
     <span style="float:right;font-family:var(--mono);font-size:10.5px;color:var(--line)" id="buildstamp"></span>
     <b>Keys:</b> <kbd>shift</kbd>+<kbd>←</kbd> <kbd>→</kbd> previous / next track.<br><br>
-    <b>About auto-advance.</b> It works two different ways, because the two sources differ.
-    <b>YouTube</b> publishes a player API, so this page is genuinely told when a video ends and
-    advances on that — exact, and it respects a pause. <b>Suno's</b> embed is a plain
+    <b>About auto-advance.</b> It works two different ways, because the sources differ.
+    <b>YouTube</b> and <b>Spotify</b> publish player APIs, so this page is genuinely told when a
+    track ends and advances on that — exact, and it respects a pause. <b>Suno's</b> embed is a plain
     cross-origin frame that reports nothing, and their audio stream is encrypted, so the track
     cannot be played here and watched for its end either. For Suno rows <b>auto</b> is
     therefore a timer over the track's known length, with the countdown kept on screen: right
@@ -327,6 +336,21 @@
     pausing cannot be detected and the countdown keeps running while Suno's does not. That is
     the one case it gets wrong, which is why it stays on screen rather than working silently.
     Click it to start a clean run from the top.<br><br>
+    <b>Spotify, and the thirty-second problem.</b> A Spotify row plays in Spotify's own embed,
+    which hands this page the playhead — so the queue moves on at the real end of the track,
+    the same as YouTube. What the embed plays, though, depends on who it thinks you are: signed
+    in to <b>Premium</b> in this browser it plays the whole track; otherwise it plays a
+    thirty-second preview and stops, and the queue moves on after thirty seconds because the
+    track did, as far as anything here can see. It is the same third-party-cookie mechanism as
+    the YouTube ads below — the player is a frame from another site, and a browser blocking its
+    cookies leaves Spotify unable to see your session. A row's length is the honest tell: a
+    track showing 0:30 is a preview. Nothing here can log you in, and the way out is the same
+    as ever, the <b>Spotify ↗</b> link on the row.<br><br>
+    <b>Spotify albums and playlists.</b> They play, and they play all the way through, but the
+    embed reports only where it is in the CURRENT track — never which track of the list that
+    is. So the end of the last one is indistinguishable from the end of any other, and such a
+    row does not advance the queue by itself; it says so in the list. Press next when you are
+    done with it. Individual tracks are exact.<br><br>
     <b>Dropping into the chat.</b> A link dropped anywhere on the chat is posted as a message,
     which is how a guest suggests something. If you own the queue it is queued as well —
     suggesting a track to yourself and then pressing your own button is a step that does not
@@ -402,7 +426,7 @@
    page -- covers read from data.js while the code that looks them up is old. Printed
    on load and shown in the footer, so 'which build am I on' is answerable in a glance
    instead of by deduction. */
-const QUEUE_BUILD = '2026-09-13-f';
+const QUEUE_BUILD = '2026-09-15-a';
 console.log('[queue] build ' + QUEUE_BUILD);
 
 const $ = s => document.querySelector(s);
@@ -453,7 +477,27 @@ const ytplFrom = t => {
   return m ? m[1] : '';
 };
 
-/* A row is addressed by source AND id: the two id spaces are different shapes and must not
+/* Spotify ids are 22 characters of base62, and the same shape is used for a track, an
+   episode, an album and a playlist — the KIND lives in the path, not in the id, and the
+   embed address needs it. So a Spotify row carries `kind/id` as its id ("track/4cOd…"),
+   which keeps one field, stays inside the 40 characters a shared queue stores, and cannot
+   be confused with a uuid or a YouTube id. Everything that builds a url from it re-checks
+   it against SP_PATH first: the value reaches an iframe src, so the whitelist is what makes
+   it safe, exactly as the uuid rule above does.
+   `intl-de/track/…` is Spotify's localised address for the same track, and `spotify:track:…`
+   is what the desktop app copies — both are the same link and both are accepted. */
+const SP_PATH  = /^(track|episode|album|playlist)\/[A-Za-z0-9]{22}$/;
+const SP_RE    = /(?:open\.spotify\.com\/(?:intl-[a-z-]{2,7}\/)?|spotify:)(track|episode|album|playlist)[/:]([A-Za-z0-9]{22})(?![A-Za-z0-9])/i;
+const spFrom = t => {
+  const m = String(t || '').match(SP_RE);
+  return m ? m[1].toLowerCase() + '/' + m[2] : '';
+};
+/* An album or a playlist is a SET: one row that plays the whole thing, like a YouTube
+   playlist. A track or a podcast episode is one thing. */
+const spIsSet = id => /^(album|playlist)\//.test(String(id || ''));
+const isSP = r => !!r && (r.src === 'sp' || r.src === 'spl');
+
+/* A row is addressed by source AND id: the id spaces are different shapes and must not
    be able to collide in the queue or in storage. */
 const keyOf = r => r.src + ':' + r.id;
 
@@ -602,9 +646,45 @@ async function resolveYTPL(id) {
   return row;
 }
 
+/* Spotify's oEmbed is public and sends `access-control-allow-origin: *`, so a title and a
+   cover cost one request and no key — the same bargain YouTube's offers. What it does NOT
+   carry is the artist or the length: those live behind the Web API, which wants a client
+   secret and a server to keep it in, and neither is worth having for a row caption. The
+   length is not needed anyway — the player reports it once the track starts, and that is
+   also the one number that distinguishes a full track from a thirty-second preview, so
+   waiting for it says more than guessing it would. The artist is simply absent, which is
+   why a Spotify row reads as its title and the word Spotify. */
+async function resolveSP(id) {
+  const set = spIsSet(id);
+  const kind = id.split('/')[0];
+  const row = { id, src: set ? 'spl' : 'sp',
+                title: kind.charAt(0).toUpperCase() + kind.slice(1),
+                sub: 'Spotify', ent: false, art: '', dur: 0, ok: true };
+  if (!SP_PATH.test(id)) { row.ok = false; return row; }
+  const c = metaCache['sp:' + id];
+  if (c && c.title) return Object.assign(row, { title: c.title, sub: c.sub || row.sub, art: c.art || '', dur: c.dur || 0 });
+  const j = await queued(async () => {
+    try {
+      const r = await fetchT('https://open.spotify.com/oembed?url='
+        + encodeURIComponent('https://open.spotify.com/' + id), 9000);
+      if (r.ok) return await r.json();
+    } catch (e) {}
+    return null;
+  });
+  if (j && j.title) {
+    row.title = j.title;
+    row.sub = 'Spotify' + (set ? ' · ' + kind : kind === 'episode' ? ' · podcast' : '');
+    if (typeof j.thumbnail_url === 'string' && /^https:\/\//.test(j.thumbnail_url)) row.art = j.thumbnail_url;
+    metaCache['sp:' + id] = { title: row.title, sub: row.sub, art: row.art };
+    saveMeta();
+  }
+  return row;
+}
+
 async function resolve(id, src) {
   if (src === 'ytpl') return resolveYTPL(id);
   if (src === 'yt') return resolveYT(id);
+  if (src === 'sp' || src === 'spl') return resolveSP(id);
   const local = localRow(id);
   if (local && local.ok) return local;
 
@@ -661,6 +741,8 @@ function linksIn(text) {
     if (y) { found.push({ src: 'yt', id: y, raw: piece }); continue; }
     const pl = ytplFrom(piece);
     if (pl) { found.push({ src: 'ytpl', id: pl, raw: piece }); continue; }
+    const s = spFrom(piece);
+    if (s) { found.push({ src: spIsSet(s) ? 'spl' : 'sp', id: s, raw: piece }); continue; }
     const id = idFrom(piece);
     if (id) { found.push({ src: 'suno', id, raw: piece }); continue; }
     if (SHARE_RE.test(piece)) shares.push(piece);
@@ -718,7 +800,7 @@ async function addMany(text, quiet) {
     seen.add(k); return true;
   });
   const dupes = found.length - fresh.length;
-  if (!fresh.length) { if (!quiet) toast(found.length ? 'Already in the queue' : 'Nothing recognised — paste a Suno link, or a YouTube video or playlist link'); return 0; }
+  if (!fresh.length) { if (!quiet) toast(found.length ? 'Already in the queue' : 'Nothing recognised — paste a Suno link, a YouTube video or playlist, or a Spotify track, album or playlist'); return 0; }
 
   /* Anything the corpus knows is filled in immediately and never touches the network, so a
      drop of library demos is complete the instant it lands. Only genuinely foreign ids
@@ -742,8 +824,11 @@ async function addMany(text, quiet) {
     f.src === 'suno' && localRow(f.id)
       ? localRow(f.id)
       : { id: f.id, src: f.src, title: 'Loading…', sub: '', ent: false,
+          /* Suno names a cover after the id and YouTube after the video, so those are known
+             before anything is asked. Spotify's cover address is a hash of its own and has
+             to be fetched, which is why a Spotify row starts blank. */
           art: f.src === 'yt' ? 'https://i.ytimg.com/vi/' + f.id + '/mqdefault.jpg'
-             : f.src === 'ytpl' ? '' : artOf(f.id),
+             : (f.src === 'ytpl' || f.src === 'sp' || f.src === 'spl') ? '' : artOf(f.id),
           dur: 0, ok: false }));
   render(); save();
 
@@ -1053,10 +1138,18 @@ function rowEl(r, i) {
     const t = document.createElement('div'); t.className = 't'; t.textContent = r.title || r.id.slice(0, 8);
     const sub = document.createElement('div'); sub.className = 'sub';
     if (r.ent) { const e = document.createElement('span'); e.className = 'ent'; e.textContent = r.sub; sub.appendChild(e); }
-    else sub.appendChild(document.createTextNode(r.sub || (r.src === 'yt' ? 'YouTube' : r.id.slice(0, 8))));
+    else sub.appendChild(document.createTextNode(
+      r.sub || (r.src === 'yt' ? 'YouTube' : isSP(r) ? 'Spotify' : r.id.slice(0, 8))));
     if (r.album) {
       const w = document.createElement('span'); w.className = 'warn';
       w.textContent = '  · will not play embedded'; sub.appendChild(w);
+    }
+    /* The embed says where it is in the current track and never which track of the set that
+       is, so the end of the last one cannot be told from the end of any other. Saying so on
+       the row is the difference between a known limit and a queue that mysteriously stops. */
+    if (r.src === 'spl') {
+      const w = document.createElement('span'); w.className = 'warn';
+      w.textContent = '  · plays through — press next when done'; sub.appendChild(w);
     }
     if (r.src === 'suno' && !r.ok && r.title !== 'Loading…') {
       const w = document.createElement('span'); w.className = 'warn';
@@ -1108,6 +1201,10 @@ function rowEl(r, i) {
         out.href = 'https://www.youtube.com/watch?v=' + r.id;
         out.textContent = 'YouTube ↗';
         out.title = 'Open on YouTube, where your account and Premium apply';
+      } else if (isSP(r)) {
+        out.href = SP_PATH.test(r.id) ? 'https://open.spotify.com/' + r.id : 'https://open.spotify.com/';
+        out.textContent = 'Spotify ↗';
+        out.title = 'Open on Spotify, where your account and Premium apply — and the whole track plays';
       } else {
         out.href = 'https://suno.com/song/' + r.id;
         out.textContent = 'Suno ↗';
@@ -1367,6 +1464,101 @@ window.onYouTubeIframeAPIReady = () => {
   });
 };
 
+/* ---------- the Spotify player ----------
+   Loaded lazily, like YouTube's, and for the same reason: a session that never queues a
+   Spotify link never fetches it.
+
+   Spotify publishes an iframe API — a controller you hand a uri and then listen to — and
+   its playback_update carries the position and the duration of what is playing. That is
+   enough to advance on the real end of a track rather than on a timer, so a Spotify row
+   behaves like a YouTube one and not like a Suno one.
+
+   TWO THINGS IT DOES NOT SAY, both of which are written on the page rather than guessed at.
+   It does not say which track of an album or playlist is playing, so the end of the last
+   one is indistinguishable from the end of the third; a set row therefore plays through and
+   leaves the queue where it is. And it does not say whether you are being served the track
+   or the thirty-second preview Spotify gives a listener it cannot see a Premium session
+   for — but the duration it reports does, which is why the length that arrives with the
+   first tick goes onto the row. A row reading 0:30 is a preview.
+
+   The controller REPLACES the element it is given, which is why #sp sits inside #spwrap and
+   the wrapper is what gets shown and hidden. */
+let spAPI = null, sp = null, spReady = false, spPending = null, spEnded = false;
+
+const spURI = r => SP_PATH.test(r.id) ? 'spotify:' + r.id.replace('/', ':') : '';
+const spHeight = r => (r && r.src === 'spl') ? 380 : 152;
+
+function ensureSPApi() {
+  if (spAPI || document.getElementById('spapi')) return;
+  const tag = document.createElement('script');
+  tag.id = 'spapi'; tag.src = 'https://open.spotify.com/embed/iframe-api/v1';
+  document.head.appendChild(tag);
+}
+window.onSpotifyIframeApiReady = api => {
+  spAPI = api;
+  if (spPending) { const r = spPending; spPending = null; spMake(r); }
+};
+
+/* The controller is created around the first track rather than empty: createController
+   takes the uri it is to start with, and there is no honest placeholder to give it. */
+function spMake(r) {
+  const holder = document.getElementById('sp');
+  if (!holder || !spAPI) { spPending = r; return; }
+  spPending = null;                    // this one is being built; a later pick re-fills it
+  spAPI.createController(holder, { uri: spURI(r), width: '100%', height: spHeight(r) }, ctrl => {
+    sp = ctrl; spReady = true;
+    ctrl.addListener('ready', () => spKick());
+    ctrl.addListener('playback_update', e => spTick(e && e.data));
+    if (spPending) { const p = spPending; spPending = null; spLoad(p); }
+  });
+}
+
+/* Autoplay is asked for, not assumed. Pressing a row is a user gesture and the embed
+   usually starts on it; an advance at the end of a track is not, and a browser may refuse,
+   in which case the player sits there waiting for a click — visibly, and no worse than
+   Suno's frame, which cannot be started from out here at all. */
+function spKick() {
+  if (!sp || !sp.play) return;
+  try { sp.play(); } catch (e) {}
+}
+function spLoad(r) {
+  spEnded = false;
+  if (!spReady || !sp) { spPending = r; ensureSPApi(); if (spAPI) spMake(r); return; }
+  const f = $('#spwrap').querySelector('iframe');
+  if (f) f.style.height = spHeight(r) + 'px';
+  try { sp.loadUri(spURI(r)); } catch (e) {}
+  setTimeout(spKick, 400);
+}
+function hideSpotify() {
+  $('#spwrap').style.display = 'none';
+  if (sp && sp.pause) { try { sp.pause(); } catch (e) {} }
+}
+
+function spTick(d) {
+  if (!d) return;
+  const r = cur >= 0 ? Q[cur] : null;
+  if (!isSP(r)) return;
+  /* The length nothing else could supply: oEmbed does not carry one. Only a real track is
+     recorded — a preview is exactly thirty seconds, which is the player's limit rather than
+     the track's, and caching that would put a wrong length on the row for good. */
+  const secs = Math.round((d.duration || 0) / 1000);
+  if (r.src === 'sp' && secs > 40 && r.dur !== secs) {
+    r.dur = secs;
+    metaCache['sp:' + r.id] = Object.assign({}, metaCache['sp:' + r.id] || {}, { dur: secs });
+    saveMeta();
+    if (!shared()) save();
+    render();
+  }
+  /* A set plays through on its own and the queue waits for you; only a single track ends in
+     a way this can see. YouTube advances on its real end regardless of the auto toggle —
+     that switch governs Suno's timer — and this matches it. */
+  if (spEnded || r.src !== 'sp') return;
+  if (d.duration > 0 && d.position > 0 && d.position >= d.duration - 800) {
+    spEnded = true;
+    advance();
+  }
+}
+
 /* ---------- playback ---------- */
 /* Reaching the end has to actually STOP the thing that is playing, not merely stop
    advancing. Pointing the frame at a track is what starts it, and leaving it pointed there
@@ -1381,6 +1573,7 @@ function finishQueue() {
   hideSunoFrame();
   $('#yt').style.display = 'none';
   if (ytReady && yt && yt.stopVideo) { try { yt.stopVideo(); } catch (e) {} }
+  hideSpotify();
   cur = -1;
   $('#nt').textContent = 'End of queue';
   $('#ns').textContent = 'Nothing left to play';
@@ -1392,6 +1585,7 @@ function stopAll() {
   hideSunoFrame();
   $('#yt').style.display = 'none';
   if (ytReady && yt && yt.stopVideo) { try { yt.stopVideo(); } catch (e) {} }
+  hideSpotify();
   cur = -1;
   if (hosting()) SP.now = '';
   $('#nt').textContent = 'Nothing playing';
@@ -1423,12 +1617,15 @@ async function playAt(i, fromFollow) {
   $('#nt').textContent = r.title || r.id;
   $('#ns').textContent = (r.ent ? r.sub : (r.sub || 'Not in the library'))
     + (r.src === 'suno' ? (r.dur ? '  ·  ' + mmss(r.dur) : '  ·  length unknown')
-       : r.src === 'ytpl' ? '  ·  plays the whole playlist' : '')
+       : r.src === 'ytpl' ? '  ·  plays the whole playlist'
+       : r.src === 'spl' ? '  ·  plays through — press next when done'
+       : r.src === 'sp' && r.dur ? '  ·  ' + mmss(r.dur) : '')
     + '  ·  ' + (i + 1) + ' of ' + Q.length;
   render();
 
   if (r.src === 'yt' || r.src === 'ytpl') {
     hideSunoFrame();
+    hideSpotify();
     $('#yt').style.display = 'block';
     ensureYT();
     const load = () => {
@@ -1456,9 +1653,25 @@ async function playAt(i, fromFollow) {
       ns.appendChild(a);
       toast('That album will not play embedded — open it on YouTube');
     }, 7000);
+  } else if (isSP(r)) {
+    /* The id came off a link once and is checked again here, because from here it becomes
+       part of a url inside someone else's player — and on a shared queue it arrived over
+       the network, where nothing this page wrote is guaranteed. */
+    hideSunoFrame();
+    $('#yt').style.display = 'none';
+    if (ytReady && yt && yt.stopVideo) { try { yt.stopVideo(); } catch (e) {} }
+    if (!SP_PATH.test(r.id)) {
+      $('#ns').textContent = 'That Spotify link is not one this page can play';
+      toast('That Spotify link is not one this page can play');
+    } else {
+      $('#spwrap').style.display = 'block';
+      ensureSPApi();
+      spLoad(r);
+    }
   } else {
     $('#yt').style.display = 'none';
     if (ytReady && yt && yt.stopVideo) { try { yt.stopVideo(); } catch (e) {} }
+    hideSpotify();
     showSunoFrame(r.id);
     framePoked = false;
     /* Armed, not started. The clock begins when the frame is clicked — see the blur handler
@@ -1859,7 +2072,8 @@ function renderChat() {
        them, and which therefore can never show an "already queued" state. */
     const { found, shares } = linksIn(m.t);
     const already = new Set(Q.map(keyOf));
-    const label = { yt: 'YouTube track', ytpl: 'YouTube playlist', suno: 'Suno track' };
+    const label = { yt: 'YouTube track', ytpl: 'YouTube playlist', suno: 'Suno track',
+                    sp: 'Spotify track' };
 
     const offer = (text, raw, dup) => {
       const wrap = document.createElement('div'); wrap.className = 'lk';
@@ -1898,7 +2112,11 @@ function renderChat() {
       el.append(wrap);
     };
 
-    for (const h of found) offer(label[h.src] || 'track', h.raw, already.has(keyOf(h)));
+    /* A Spotify set is an album or a playlist and the id says which, so the button can say
+       which rather than picking one of the two and being wrong half the time. */
+    for (const h of found) offer(
+      h.src === 'spl' ? 'Spotify ' + String(h.id).split('/')[0] : (label[h.src] || 'track'),
+      h.raw, already.has(keyOf(h)));
     for (const sh of shares) {
       const url = sh.startsWith('http') ? sh : 'https://' + sh;
       const known = shareSeen[url];
@@ -2033,28 +2251,41 @@ try {
 
   /* A stored track is deliberately thin: what it takes to show a row and time it. Anything
      derivable from data.js is derived on arrival instead of duplicated into every queue. */
-  const pack = (r, who) => ({
-    src: (r.src === 'yt' || r.src === 'ytpl') ? r.src : 'suno',
-    id: trim(r.id, 40),
-    title: trim(r.title, 140),
-    sub: trim(r.sub || '', 90),
-    dur: Math.max(0, Math.min(3600, Math.round(r.dur || 0))),
-    ord: Date.now() + Math.random(),
-    by: me.uid,
-    byName: trim(who || '', 24)
-  });
+  const KNOWN_SRC = ['yt', 'ytpl', 'sp', 'spl'];
+  const pack = (r, who) => {
+    const t = {
+      src: KNOWN_SRC.includes(r.src) ? r.src : 'suno',
+      id: trim(r.id, 40),
+      title: trim(r.title, 140),
+      sub: trim(r.sub || '', 90),
+      dur: Math.max(0, Math.min(3600, Math.round(r.dur || 0))),
+      ord: Date.now() + Math.random(),
+      by: me.uid,
+      byName: trim(who || '', 24)
+    };
+    /* The one cover that cannot be derived. Suno names its artwork after the id and YouTube
+       after the video, so those cost nothing to work out at the other end; Spotify's is a
+       hash of its own, and a guest who has never resolved the track has no way to reach it.
+       So it rides along for Spotify rows only, rather than being stored for every row. */
+    if (r.src === 'sp' || r.src === 'spl') t.art = trim(r.art || '', 200);
+    return t;
+  };
 
   /* Rows arrive keyed and unordered; order is the ord field, and the key rides along as k
      so a later remove or reorder knows which row it is talking about. */
   function unpack(val) {
     return Object.entries(val || {})
       .map(([k, t]) => ({
-        k, src: (t.src === 'yt' || t.src === 'ytpl') ? t.src : 'suno', id: t.id,
+        k, src: KNOWN_SRC.includes(t.src) ? t.src : 'suno', id: t.id,
         title: t.title || t.id, sub: t.sub || '', ent: /^#\d/.test(t.sub || ''),
         art: t.src === 'yt' ? 'https://i.ytimg.com/vi/' + t.id + '/mqdefault.jpg'
            : t.src === 'ytpl' ? ''
+           /* Arrived over the network and goes into an img src, so it is checked here the
+              same way a cover from Suno's own api is. */
+           : (t.src === 'sp' || t.src === 'spl') ? (/^https:\/\//.test(t.art || '') ? t.art : '')
                             : artOf(t.id),        // honours a replaced cover, same as above
-        dur: t.dur || 0, ok: (t.dur || 0) > 0 || t.src === 'yt' || t.src === 'ytpl',
+        dur: t.dur || 0,
+        ok: (t.dur || 0) > 0 || t.src === 'yt' || t.src === 'ytpl' || t.src === 'sp' || t.src === 'spl',
         album: t.src === 'ytpl' && /^OLAK5uy_/i.test(String(t.id || '')),
         by: t.by || '', byName: t.byName || '', ord: t.ord || 0
       }))
@@ -2173,7 +2404,16 @@ try {
       try { await navigator.clipboard.writeText(location.href); } catch (e) {}
       return qid;
     },
-    addTrack(row, who) { return set(push(qref('tracks')), pack(row, who)).catch(e => console.warn('[queue] add refused', e)); },
+    /* A refusal here used to be silent, which reads as "the add button did nothing". It
+       has one likely cause: a database whose rules predate the page — a Spotify row written
+       against rules that only know suno/yt/ytpl is rejected on validation, and nothing else
+       about the queue looks wrong. Say so rather than making it a deduction. */
+    addTrack(row, who) {
+      return set(push(qref('tracks')), pack(row, who)).catch(e => {
+        console.warn('[queue] add refused', e);
+        toast('The database refused that track — its rules may predate this page (see firebase.rules.json)');
+      });
+    },
     removeTrack(k) { return k ? remove(qref('tracks/' + k)).catch(e => console.warn('[queue] remove refused', e)) : null; },
     /* Rewrites only the ord fields, so a reorder never disturbs anyone else's rows. */
     reorder(rows) {

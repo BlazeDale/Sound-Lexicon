@@ -105,10 +105,15 @@
           "$key": {
             ".write": "root.child('queues/' + $qid + '/meta/owner').val() === auth.uid || (auth != null && root.child('queues/' + $qid + '/meta/open').val() === true && !data.exists() && newData.child('by').val() === auth.uid)",
             ".validate": "newData.hasChildren(['src','id','ord'])",
-            "src":    { ".validate": "newData.isString() && (newData.val() === 'suno' || newData.val() === 'yt' || newData.val() === 'ytpl')" },
+            "src":    { ".validate": "newData.isString() && newData.val().matches(/^(suno|yt|ytpl|sp|spl)$/)" },
             "id":     { ".validate": "newData.isString() && newData.val().length <= 40" },
             "title":  { ".validate": "newData.isString() && newData.val().length <= 140" },
             "sub":    { ".validate": "newData.isString() && newData.val().length <= 90" },
+            // Spotify rows only. Every other source names its cover after the id, so the
+            // address is worked out at the other end rather than stored; Spotify's is a hash
+            // and a guest who has never resolved the track cannot reach it any other way.
+            // https only, because it is read straight into an img src.
+            "art":    { ".validate": "newData.isString() && newData.val().length <= 200 && (newData.val() === '' || newData.val().beginsWith('https://'))" },
             "dur":    { ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 3600" },
             "ord":    { ".validate": "newData.isNumber()" },
             "by":     { ".validate": "newData.isString() && newData.val().length <= 128" },
