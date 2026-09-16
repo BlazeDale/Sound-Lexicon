@@ -28,7 +28,7 @@
           border-radius:12px;padding:14px 16px 12px}
 
   /* ---------- theatre ----------
-     One toggle, and whichever player is showing grows into it. The three embeds want
+     The first step past normal, and whichever player is showing grows into it. The three embeds want
      different things from the extra room: YouTube wants the frame's own shape, so it takes
      the width and derives its height from it; Spotify swaps layout on height alone — under
      about 300px it draws the compact strip and above it the full card with the cover — so
@@ -39,6 +39,32 @@
   #player.big #frame{height:232px}
   #player.big #yt{width:100%;height:auto;aspect-ratio:16/9}
   #player.big #spwrap{max-width:100%}
+
+  /* ---------- full window ----------
+     One step past theatre: the player leaves the flow and covers the browser window. The
+     window, not the screen — this is deliberately NOT requestFullscreen(). That API takes
+     the whole display and puts the browser's own overlay in charge of leaving, which would
+     mean two escape routes with different rules; keeping it a page that happens to fill the
+     window leaves the transport, the timer, the keys and Escape all answerable from here.
+     The playing embed becomes the one flex child that grows, so it takes whatever is left
+     once the timer and the transport have had their line, and the two that are not playing
+     are display:none and cost nothing. YouTube keeps its shape: given the height, it derives
+     the width, until a narrow window makes that width impossible and max-width clamps it —
+     at which point the frame is taller than 16/9 and YouTube letterboxes inside it, which is
+     its own business and it does it well. Spotify's frame is sized in PIXELS by its
+     controller, on the element itself, so the stylesheet has to say !important to be heard
+     over that inline height; the pixel value is untouched and takes over again the moment
+     this class comes off. */
+  html.maxed{overflow:hidden}
+  #player.max{position:fixed;inset:0;z-index:55;max-width:none;margin:0;border:0;border-radius:0;
+              background:var(--ink);display:flex;flex-direction:column;padding:12px 16px 10px}
+  #player.max #frame{flex:1;min-height:0;height:auto;width:min(100%,1000px);align-self:center}
+  #player.max #yt{flex:1;min-height:0;width:auto;height:auto;max-width:100%;aspect-ratio:16/9;align-self:center}
+  #player.max #spwrap{flex:1;min-height:0;width:min(100%,1000px);max-width:none;align-self:center}
+  #player.max #spwrap iframe{width:100%!important;height:100%!important}
+  /* Only reachable with nothing playing, when no child grows: the transport drops to the
+     foot of the window rather than stranding itself under the title at the top. */
+  #player.max .transport{margin-top:auto}
   #player .transport{display:flex;align-items:center;gap:13px;margin-top:10px}
   #player .now{flex:1;min-width:0;text-align:left}
   #player .nt{font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -282,6 +308,8 @@
              not among auto/shuf/rep — which are also, at 620px with the yt button showing,
              already as many words as that row can hold. -->
         <button id="tbig" title="Theatre size — a bigger player (t)">&#9974;</button>
+        <!-- The title is rewritten by applySize(): it names what the next press does, since
+             a ring of three has no state a single glyph could report. -->
       </div>
       <div class="now">
         <div class="nt" id="nt">Nothing playing</div>
@@ -338,7 +366,8 @@
 
   <footer>
     <span style="float:right;font-family:var(--mono);font-size:10.5px;color:var(--line)" id="buildstamp"></span>
-    <b>Keys:</b> <kbd>shift</kbd>+<kbd>←</kbd> <kbd>→</kbd> previous / next track · <kbd>t</kbd> theatre size.<br><br>
+    <b>Keys:</b> <kbd>shift</kbd>+<kbd>←</kbd> <kbd>→</kbd> previous / next track · <kbd>t</kbd> player size —
+    normal, theatre, full window, round again · <kbd>esc</kbd> out of full window.<br><br>
     <b>About auto-advance.</b> It works two different ways, because the sources differ.
     <b>YouTube</b> and <b>Spotify</b> publish player APIs, so this page is genuinely told when a
     track ends and advances on that — exact, and it respects a pause. <b>Suno's</b> embed is a plain
@@ -552,7 +581,11 @@ const fetchT = (u, ms) => {                      // a hung proxy must not hang t
 };
 
 /* ---------- state ---------- */
-let Q = [], cur = -1, shuffling = false, repeat = 'off', auto = false, theatre = false;
+/* The player's size is one of three steps rather than a flag: normal, theatre, full window.
+   It cycles in that order and wraps, which is why the button's title says what the NEXT
+   press does rather than naming the state you are in. */
+const SIZES = ['normal', 'big', 'max'];
+let Q = [], cur = -1, shuffling = false, repeat = 'off', auto = false, psize = 'normal';
 let shufOrder = [], metaCache = {};
 
 /* ?new=1 means "give me a blank queue" — handled before the stored list is read, and the
@@ -572,12 +605,18 @@ try { metaCache = JSON.parse(localStorage.getItem(LS_META) || '{}') || {}; } cat
 try { localStorage.removeItem('sl.queue.meta.v1'); } catch (e) {}   // superseded, see above
 try {
   const p = JSON.parse(localStorage.getItem(LS_PREFS) || '{}');
-  shuffling = !!p.shuffling; repeat = p.repeat || 'off'; auto = !!p.auto; theatre = !!p.theatre;
+  shuffling = !!p.shuffling; repeat = p.repeat || 'off'; auto = !!p.auto;
+  /* `theatre` is what this was before there was a third step, and a browser that has been
+     here before still has it stored. A stored full window is not restored: arriving at a
+     page that has covered itself over, with no memory of asking for it, is a worse first
+     second than one extra keypress. */
+  psize = SIZES.includes(p.size) ? p.size : (p.theatre ? 'big' : 'normal');
+  if (psize === 'max') psize = 'big';
 } catch (e) {}
 
 const save = () => { try { localStorage.setItem(LS_Q, JSON.stringify(Q)); } catch (e) {} };
 const saveMeta = () => { try { localStorage.setItem(LS_META, JSON.stringify(metaCache)); } catch (e) {} };
-const savePrefs = () => { try { localStorage.setItem(LS_PREFS, JSON.stringify({ shuffling, repeat, auto, theatre })); } catch (e) {} };
+const savePrefs = () => { try { localStorage.setItem(LS_PREFS, JSON.stringify({ shuffling, repeat, auto, size: psize })); } catch (e) {} };
 
 const mmss = s => (!isFinite(s) || s < 0) ? '0:00'
   : Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0');
@@ -1537,7 +1576,9 @@ const spURI = r => SP_PATH.test(r.id) ? 'spotify:' + r.id.replace('/', ':') : ''
 /* Spotify picks its layout off the height alone: the compact strip below about 300px, the
    full card with the cover above it. So theatre is not a scale factor here, it is the step
    across that threshold. A set needs more again, because the card carries a track list. */
-const spHeight = r => (r && r.src === 'spl') ? (theatre ? 600 : 380) : (theatre ? 352 : 152);
+/* Full window is not a third number here: the stylesheet overrides the height outright in
+   that mode, so what this returns is what the frame goes back to on the way out. */
+const spHeight = r => (r && r.src === 'spl') ? (psize !== 'normal' ? 600 : 380) : (psize !== 'normal' ? 352 : 152);
 
 function ensureSPApi() {
   if (spAPI || document.getElementById('spapi')) return;
@@ -1821,18 +1862,28 @@ $('#tfollow').addEventListener('click', () => {
   if (ownerHere() && SP.now) { followOwner(true); toast("Following the owner"); }
   else toast("Following - you will pick up the owner's track when they play");
 });
-/* ---------- theatre ----------
-   The player grows; the page does not otherwise change. Two of the three embeds take their
-   new size from the stylesheet alone, but Spotify's is sized in pixels by its controller,
-   so the live frame has to be told — and told now rather than at the next track, or the
-   toggle would look like it had done nothing to what is playing. */
-function applyTheatre() {
-  $('#player').classList.toggle('big', theatre);
-  $('#tbig').classList.toggle('on', theatre);
+/* ---------- player size ----------
+   Normal, theatre, full window; the same button and the same key walk the three in a ring.
+   Two of the three embeds take their new size from the stylesheet alone, but Spotify's is
+   sized in pixels by its controller, so the live frame has to be told — and told now rather
+   than at the next track, or the toggle would look like it had done nothing to what is
+   playing. */
+const SIZE_NEXT = { normal: 'Theatre size — a bigger player (t)',
+                    big:    'Full window — the player covers the page (t)',
+                    max:    'Back to the page (t, or escape)' };
+function applySize() {
+  const p = $('#player');
+  p.classList.toggle('big', psize !== 'normal');   // full window keeps theatre's proportions
+  p.classList.toggle('max', psize === 'max');
+  document.documentElement.classList.toggle('maxed', psize === 'max');
+  const b = $('#tbig');
+  b.classList.toggle('on', psize !== 'normal');
+  b.title = SIZE_NEXT[psize];
   const f = $('#spwrap').querySelector('iframe');
   if (f) f.style.height = spHeight(isSP(Q[cur]) ? Q[cur] : null) + 'px';
 }
-$('#tbig').addEventListener('click', () => { theatre = !theatre; savePrefs(); applyTheatre(); });
+function setSize(next) { psize = next; savePrefs(); applySize(); }
+$('#tbig').addEventListener('click', () => setSize(SIZES[(SIZES.indexOf(psize) + 1) % SIZES.length]));
 
 $('#tauto').addEventListener('click', () => {
   auto = !auto;
@@ -1940,6 +1991,11 @@ document.addEventListener('keydown', e => {
   else if ((e.key === 't' || e.key === 'T') && !e.ctrlKey && !e.metaKey && !e.altKey) {
     e.preventDefault(); $('#tbig').click();
   }
+  /* Escape is the key everybody tries against something covering the window, and it lands
+     where a third press of t would: on the page, not in theatre — one way out with one
+     destination beats two exits that disagree. Left alone in the other two sizes, where
+     nothing is covered and the key belongs to the browser. */
+  else if (e.key === 'Escape' && psize === 'max') { e.preventDefault(); setSize('normal'); }
 });
 
 /* ---------- boot ----------
@@ -1947,7 +2003,7 @@ document.addEventListener('keydown', e => {
    anything missing is resolved when it is played. */
 $('#tauto').classList.toggle('on', auto);
 $('#tshuf').classList.toggle('on', shuffling);
-applyTheatre();
+applySize();
 $('#trep').textContent = 'rep ' + repeat;
 $('#trep').classList.toggle('on', repeat !== 'off');
 loadHeard();
