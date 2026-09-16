@@ -186,7 +186,10 @@
   <div class="pbody">
     <div class="phead"><span id="pnow">Nothing playing</span><span class="likewrap plikewrap" id="plikewrap" hidden><button class="like" id="plike" data-like="" title="Like this style" aria-label="Like this style">♡</button><span class="lcount" id="plikecount" data-count=""></span></span><button type="button" id="prand" title="Play a random demo from the current filter, and jump to it">🎲 Random</button></div>
     <div id="pempty">▶ any demo, or hit Random</div>
-    <iframe id="pframe" src="about:blank" allow="autoplay; encrypted-media" title="Suno player" style="display:none"></iframe>
+    <!-- credentialless: signed in to suno.com, a normal third-party frame is bounced to an
+         auth handshake that answers 503 and the player never loads. An empty cookie jar makes
+         the embed treat this as an ordinary listener. Measured 2026-09-15; see queue.html. -->
+    <iframe id="pframe" credentialless src="about:blank" allow="autoplay; encrypted-media" title="Suno player" style="display:none"></iframe>
   </div>
   <button type="button" id="ptab" title="Show / hide the player">♪</button>
 </div>

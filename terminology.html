@@ -361,7 +361,9 @@
         <span class="lcount" id="plikecount" data-lc=""></span>
       </span>
     </div>
-    <iframe id="pframe" allow="autoplay" title="Demo player"></iframe>
+    <!-- credentialless: see the note in queue.html — signed in to suno.com, a normal frame is
+         bounced to an auth handshake that 503s and the embed never loads. -->
+    <iframe id="pframe" credentialless allow="autoplay" title="Demo player"></iframe>
   </div>
   <button class="ptab" id="ptab" type="button" title="Show/hide the player">♪</button>
 </div>

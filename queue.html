@@ -452,7 +452,7 @@
    page -- covers read from data.js while the code that looks them up is old. Printed
    on load and shown in the footer, so 'which build am I on' is answerable in a glance
    instead of by deduction. */
-const QUEUE_BUILD = '2026-09-15-e';
+const QUEUE_BUILD = '2026-09-15-f';
 console.log('[queue] build ' + QUEUE_BUILD);
 
 const $ = s => document.querySelector(s);
@@ -1319,10 +1319,33 @@ let frame = $('#frame');
    it exposes no play command and answers no message, so nothing here can compel it -- but
    this is the arrangement that gives it permission if it does. A fresh element is also the
    honest way to stop the previous track: the old player is removed, not asked to be quiet. */
+/* ---------- why the Suno frame is credentialless ----------
+   Measured 2026-09-15, on the live site, in a browser signed in to suno.com: the embed did
+   not load at all. Not a slow load and not the player's own error — a failed document, the
+   browser's grey broken-page box, deterministically, every time.
+
+   The network says why. The frame requests /embed/<id>, and suno.com bounces it to
+   auth.suno.com/v1/client/handshake?…&__clerk_hs_reason=session-token-but-no-client-uat,
+   which answers 503. That reason is the whole story: their auth sees a session token
+   arriving WITHOUT the companion cookie that should accompany it, decides the session needs
+   repairing, and sends the frame off to repair it — and the repair is what fails. The cookie
+   is missing because this is a third-party frame and the browser only shows it part of the
+   jar. A signed-out visitor never gets into that state; being signed in is what breaks it,
+   which is why it hits whoever made the music and nobody else.
+
+   `credentialless` loads the frame in an ephemeral, empty cookie jar, so Suno sees an
+   ordinary anonymous listener, attempts no handshake, and serves the player: /embed/<id>
+   answered 200 and the card rendered, repeatedly, where the same url in a normal frame had
+   failed. Nothing is lost — the embed has no signed-in behaviour worth having — and a
+   browser that does not implement the attribute simply ignores it and is no worse off than
+   before. The attribute is set before src on purpose: like sandbox, it only applies to a
+   navigation that has not started yet. */
 function showSunoFrame(id) {
   const fresh = document.createElement('iframe');
   fresh.id = 'frame';
   fresh.title = 'Suno player';
+  fresh.credentialless = true;
+  fresh.setAttribute('credentialless', '');        // for a browser reading the attribute
   fresh.setAttribute('allow', "autoplay 'src'; encrypted-media 'src'");
   fresh.src = 'https://suno.com/embed/' + id;
   frame.replaceWith(fresh);
