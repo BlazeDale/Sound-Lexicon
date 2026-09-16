@@ -58,8 +58,15 @@
   html.maxed{overflow:hidden}
   #player.max{position:fixed;inset:0;z-index:55;max-width:none;margin:0;border:0;border-radius:0;
               background:var(--ink);display:flex;flex-direction:column;padding:12px 16px 10px}
-  #player.max #frame{flex:1;min-height:0;height:auto;width:min(100%,1000px);align-self:center}
+  /* Suno's card does not grow with the box it is given — measured: the same cover, title and
+     bar at 1000x1165 as at 1060x232, floating in a field of gradient. So this one is capped
+     near its natural height and centred instead, which is the difference between a bigger
+     player and a poster of a small one. The auto margin above it pairs with the transport's
+     to hold it in the middle of what is left. */
+  #player.max #frame{flex:0 1 340px;min-height:0;width:min(100%,1100px);align-self:center;margin-top:auto}
   #player.max #yt{flex:1;min-height:0;width:auto;height:auto;max-width:100%;aspect-ratio:16/9;align-self:center}
+  /* Spotify, by contrast, is the embed that reads its own height and lays itself out to it,
+     so it is left to take the room. */
   #player.max #spwrap{flex:1;min-height:0;width:min(100%,1000px);max-width:none;align-self:center}
   #player.max #spwrap iframe{width:100%!important;height:100%!important}
   /* Only reachable with nothing playing, when no child grows: the transport drops to the
