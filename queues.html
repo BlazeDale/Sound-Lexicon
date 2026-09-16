@@ -47,6 +47,28 @@
   .q .s{font-family:var(--mono);font-size:11px;color:var(--dim);margin-top:2px}
   .q .s .you{color:var(--teal)}
   .q .s .tag{color:var(--amber)}
+  /* ---------- who is in the room ----------
+     Three states, told by colour as well as by the word, because a dot alone is a quiz.
+     Teal and alive: the owner has the queue open. Amber: somebody is in there but the owner
+     is not, which is worth distinguishing — the queue will not move while they are away,
+     since only the owner's player drives it. Grey: nobody. The pulse is the one piece of
+     motion on this page, so it says "now" without anything else having to. */
+  .pres{font-family:var(--mono);font-size:11px;color:var(--dim);display:flex;align-items:center;
+        gap:7px;flex:none;white-space:nowrap}
+  .pres .dot{width:7px;height:7px;border-radius:50%;background:var(--line);flex:none}
+  .pres.live{color:var(--teal)}
+  .pres.live .dot{background:var(--teal);animation:pulse 2.4s ease-in-out infinite}
+  .pres.away{color:var(--amber)}
+  .pres.away .dot{background:var(--amber)}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(26,158,117,.5)}50%{box-shadow:0 0 0 5px rgba(26,158,117,0)}}
+  @media(prefers-reduced-motion:reduce){.pres.live .dot{animation:none}}
+  /* On a phone the row has no width for a title, a state and two buttons side by side, so it
+     wraps rather than dropping the state — which is the part you came to the page to see. */
+  @media(max-width:560px){
+    .q{flex-wrap:wrap}
+    .q .meta{min-width:100%}
+  }
+
   .q .acts{display:flex;gap:7px;flex:none}
   .q .acts button{padding:6px 11px;font-size:12px}
   .del:hover{border-color:var(--red)!important;color:var(--red)}
@@ -85,6 +107,15 @@
     self-chosen and unverified. An owner can set a queue to <b>unlisted</b> on its own page,
     which keeps it off this list — that means unadvertised, not private, since anyone holding
     the link can still open it.<br><br>
+    <b>Live, and who is counted.</b> A queue reads <b>live</b> while its owner has it open in a
+    browser somewhere, and the number beside it is how many people have it open — one person
+    with three tabs is one person, and nobody is named. Having a queue open is what publishes
+    this; the database holds one row per open tab and deletes it itself the moment that tab
+    closes or the connection drops, so leaving needs no button and there is nothing to forget
+    to switch off. A backgrounded tab is still a tab, so <b>live</b> means open, not
+    necessarily listening. <b>Owner away</b> means somebody is in there without them: a shared
+    queue only advances while its owner's player is running, so it is waiting rather than
+    playing.<br><br>
     <b>Who can delete.</b> Only the person who made a queue, enforced by the database rather
     than by hiding the button. Identity is anonymous and lives in your browser: clear its site
     data and you become someone else, and your queues would stay here with nobody able to
@@ -138,12 +169,53 @@ const when = ms => {
 
 let ME = '', VIEW = 'mine', ROWS = [];
 
+/* ---------- live, from the queues themselves ----------
+   The index card cannot answer this. Presence lives at queues/<qid>/presence/<uid>/<conn>,
+   written by each open tab of the queue page and removed by the SERVER when that connection
+   drops, so it is already the truth about who is in a room — this page just has to look. It
+   reads each queue's presence node directly, which the rules allow at queues/<qid> (the id
+   is the key, and this page is holding it); no rule change, and nothing new to write.
+
+   One listener per queue on screen, and only for the queues on screen: switching tabs drops
+   the ones that left. They are tiny nodes and there are a handful of queues, but that is the
+   thing to revisit first if this list ever runs to hundreds — this is where it would be felt.
+
+   `owner` is a state of its own rather than part of the count, because only the owner's
+   player moves a shared queue: two guests in a room whose owner has gone are waiting, not
+   listening, and the page should not call that live. */
+const PRES = {};                    // qid -> { here: n, owner: bool }
+const PSUB = new Map();             // qid -> unsubscribe
+let repaintT;
+const repaint = () => { clearTimeout(repaintT); repaintT = setTimeout(render, 60); };
+
+function syncPresence(rows) {
+  if (!DB) return;
+  const want = new Set(rows.map(q => q.qid));
+  for (const [qid, off] of [...PSUB]) {
+    if (!want.has(qid)) { off(); PSUB.delete(qid); delete PRES[qid]; }
+  }
+  for (const q of rows) {
+    if (PSUB.has(q.qid)) continue;
+    /* Debounced repaint rather than a direct render(): the first snapshots arrive one per
+       queue, and each one calling render() would rebuild the whole list once per queue —
+       and render() is what asks for these listeners in the first place. */
+    PSUB.set(q.qid, onValue(ref(DB, 'queues/' + q.qid + '/presence'), s => {
+      const v = s.val() || {};
+      const uids = Object.keys(v).filter(u => v[u] && typeof v[u] === 'object' && Object.keys(v[u]).length);
+      PRES[q.qid] = { here: uids.length, owner: uids.includes(q.owner) };
+      repaint();
+    }, () => { delete PRES[q.qid]; repaint(); }));   // refused or offline: say nothing, not "empty"
+  }
+}
+
 function render() {
   const list = el('list');
   list.innerHTML = '';
   const rows = ROWS
     .filter(q => VIEW === 'mine' ? q.owner === ME : (q.listed !== false))
     .sort((a, b) => (b.created || 0) - (a.created || 0));
+
+  syncPresence(rows);
 
   el('empty').style.display = rows.length ? 'none' : 'block';
   el('empty').textContent = VIEW === 'mine'
@@ -173,6 +245,23 @@ function render() {
     if (q.listed === false) { const u = document.createElement('span'); u.className = 'tag'; u.textContent = '  ·  unlisted'; sline.appendChild(u); }
     meta.append(t, sline);
 
+    /* Nothing is claimed before the answer arrives: an unread queue shows no state at all
+       rather than flashing "offline" at a room that turns out to be full. */
+    const p = PRES[q.qid];
+    const pres = document.createElement('span');
+    const here = p ? p.here : 0, live = !!(p && p.owner);
+    pres.className = 'pres' + (live ? ' live' : here ? ' away' : '');
+    pres.hidden = !p;
+    const dot = document.createElement('i'); dot.className = 'dot';
+    const count = here + ' here';          // the queue page's own badge reads the same way
+    pres.append(dot, document.createTextNode(
+      live ? 'live  ·  ' + count : here ? 'owner away  ·  ' + count : 'offline'));
+    pres.title = live
+      ? 'The owner has this queue open now, so it is playing and moving'
+      : here
+        ? 'Somebody is in this queue, but the owner is not — a shared queue only advances while its owner is here'
+        : 'Nobody has this queue open';
+
     const acts = document.createElement('div'); acts.className = 'acts';
     const open = document.createElement('button');
     open.textContent = 'Open';
@@ -196,7 +285,7 @@ function render() {
       acts.appendChild(d);
     }
 
-    li.append(meta, acts);
+    li.append(meta, pres, acts);
     list.appendChild(li);
   }
 }
