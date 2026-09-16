@@ -288,7 +288,7 @@
         <div class="ns" id="ns">Queue is empty</div>
       </div>
       <div class="ctrls">
-        <button class="tog" id="ytcookie" hidden title="Ask your browser to let the YouTube player see that you are signed in">yt sign-in</button>
+        <button class="tog" id="signin" hidden title="Ask your browser to let the player see that you are signed in">sign-in</button>
         <button class="tog on" id="tfollow" hidden title="Follow what the queue's owner is playing. Anything you pick yourself plays for you alone.">follow</button>
         <button class="tog" id="tauto" title="Advance automatically when the track's length has elapsed">auto</button>
         <button class="tog" id="tshuf" title="Shuffle">shuf</button>
@@ -335,7 +335,7 @@
   </div>
   </div>
 
-  <p class="hint" id="ytnote" hidden></p>
+  <p class="hint" id="embednote" hidden></p>
   <p class="hint" id="chathint" hidden></p>
 
   <footer>
@@ -363,8 +363,15 @@
     track did, as far as anything here can see. It is the same third-party-cookie mechanism as
     the YouTube ads below — the player is a frame from another site, and a browser blocking its
     cookies leaves Spotify unable to see your session. A row's length is the honest tell: a
-    track showing 0:30 is a preview. Nothing here can log you in, and the way out is the same
-    as ever, the <b>Spotify ↗</b> link on the row.<br><br>
+    track showing 0:30 is a preview.<br>
+    Three things have to be true for the whole track, and they fail in this order. You have to
+    be <b>logged in to Spotify in this browser</b> — the desktop app does not count, it is a
+    different session and the frame cannot see it. The account has to be <b>Premium</b>;
+    Spotify gives a free listener previews in an embed whatever this page does. And the frame
+    has to be allowed its cookies here, which is what the <b>sign-in</b> button by the
+    transport asks for. That button is the permission, never the account: it cannot log you in,
+    and on a free account it changes nothing. If all three cannot be true, the
+    <b>Spotify ↗</b> link on the row is the way out.<br><br>
     <b>Spotify albums and playlists.</b> They play, and they play all the way through, but the
     embed reports only where it is in the CURRENT track — never which track of the list that
     is. So the end of the last one is indistinguishable from the end of any other, and such a
@@ -384,11 +391,11 @@
     Premium problem. The player is a third-party frame, and a browser blocking third-party
     cookies — most now do by default — leaves YouTube unable to see that you are signed in,
     so it serves ads to what looks like a stranger and never consults your account. The
-    <b>yt sign-in</b> button asks your browser, on your click, to let the YouTube player have
-    its own cookies here; you get a prompt and you decide. Granting it and letting the player
-    reload is what makes Premium apply. This page never sees a cookie or an identity either
-    way, and if your browser refuses, the only remaining fix is to open the track on YouTube
-    itself.
+    <b>sign-in</b> button asks your browser, on your click, to let the player have its own
+    cookies here; you get a prompt and you decide. Granting it and letting the player reload is
+    what makes Premium apply. It is one button for both embeds — it names whichever one it is
+    about, the one playing first — and this page never sees a cookie or an identity either way.
+    If your browser refuses, the only remaining fix is to open the track on YouTube itself.
   </footer>
 </div>
 
@@ -445,7 +452,7 @@
    page -- covers read from data.js while the code that looks them up is old. Printed
    on load and shown in the footer, so 'which build am I on' is answerable in a glance
    instead of by deduction. */
-const QUEUE_BUILD = '2026-09-15-c';
+const QUEUE_BUILD = '2026-09-15-e';
 console.log('[queue] build ' + QUEUE_BUILD);
 
 const $ = s => document.querySelector(s);
@@ -1106,7 +1113,7 @@ function render() {
   $('#shuffleall').disabled = Q.length < 2;
   list.innerHTML = ''; done.innerHTML = ''; nowl.innerHTML = '';
 
-  refreshYtCookieButton();
+  refreshSigninButton();
   /* The offers in chat describe the queue — which link is already in it — so they go stale
      the moment the queue changes. renderChat only ran when a MESSAGE arrived, which is why
      a track added from chat kept showing "+ Add" instead of turning into a tick. */
@@ -1759,11 +1766,13 @@ function prevIndex() {
   return cur > 0 ? cur - 1 : -1;
 }
 
-/* ---------- letting YouTube see you are signed in ----------
-   Ads in the embed are not a Premium problem, they are a COOKIE problem. The player is a
-   third-party frame, and a browser that blocks third-party cookies — which most now do by
-   default — leaves YouTube unable to tell that this viewer is signed in at all, so it
-   serves ads to what looks like a logged-out stranger. Premium is never consulted.
+/* ---------- letting an embed see that you are signed in ----------
+   Two of the three players change what they give you depending on whether they can tell who
+   you are, and in both cases the obstacle is the same one. The player is a THIRD-PARTY
+   FRAME. A browser that blocks third-party cookies — which most now do by default — leaves
+   the embedded site unable to tell that this viewer is signed in at all, so it serves what
+   it serves a stranger. YouTube serves ads and never consults Premium. Spotify serves a
+   thirty-second preview instead of the track, for the same reason and with the same cure.
 
    requestStorageAccessFor exists for exactly this: a top-level page may ask the browser, on
    a real user gesture, to let a named embedded origin have its own cookies here. The user
@@ -1771,62 +1780,120 @@ function prevIndex() {
    an identity either way. If it is granted, the frame is reloaded so the player starts over
    with a signed-in session.
 
-   It is offered rather than assumed: shown only while there is YouTube content queued and
-   the permission has not already been settled. */
-const YT_ORIGIN = 'https://www.youtube.com';
+   What it cannot do is sign you in. If you are not logged in to that site in this browser,
+   or the account is not the tier the feature needs — Spotify's whole-track playback is
+   Premium only — the grant changes nothing, because there is no session for the frame to
+   find. The button is the permission, not the account.
 
-async function ytCookieState() {
+   It is offered rather than assumed: shown only while that source is actually in the queue
+   and the permission has not already been settled, and it names which site it is about
+   rather than being a mystery switch. One button, whichever embed needs it — the one
+   playing first, since that is the one you are listening to. */
+const EMBEDS = [
+  { origin: 'https://www.youtube.com', site: 'YouTube', label: 'yt sign-in',
+    queued: r => r.src === 'yt' || r.src === 'ytpl',
+    gain:   'so YouTube can see your account and stop serving ads',
+    lost:   'ads will keep playing in the embed' },
+  { origin: 'https://open.spotify.com', site: 'Spotify', label: 'spotify sign-in',
+    queued: r => isSP(r),
+    gain:   'so Spotify can see your session — whole tracks need Premium',
+    lost:   'the player will keep serving thirty-second previews' }
+];
+
+async function embedCookieState(origin) {
   if (typeof document.requestStorageAccessFor !== 'function') return 'unsupported';
   try {
-    const p = await navigator.permissions.query({ name: 'top-level-storage-access', requestedOrigin: YT_ORIGIN });
+    const p = await navigator.permissions.query({ name: 'top-level-storage-access', requestedOrigin: origin });
     return p.state;                                  // granted | prompt | denied
   } catch (e) { return 'unknown'; }
 }
 
-async function refreshYtCookieButton() {
-  const b = $('#ytcookie'), note = $('#ytnote');
+let signinTarget = null;
+async function refreshSigninButton() {
+  const b = $('#signin'), note = $('#embednote');
   if (!b) return;
-  const anyYT = Q.some(r => r.src === 'yt' || r.src === 'ytpl');
-  const state = await ytCookieState();
-  b.hidden = !anyYT || state === 'unsupported' || state === 'granted';
-  b.classList.toggle('on', state === 'granted');
-  if (state === 'denied') b.title = 'Your browser refused last time — allow third-party cookies for youtube.com to change that';
+  /* Whatever is playing is what the button should be about; failing that, whatever is in
+     the queue and still unasked. */
+  const here = EMBEDS.filter(e => Q.some(r => e.queued(r)));
+  const playing = cur >= 0 && Q[cur] ? EMBEDS.find(e => e.queued(Q[cur])) : null;
+  const order = playing && here.includes(playing) ? [playing].concat(here.filter(e => e !== playing)) : here;
+
+  let target = null, unsupported = false, denied = false;
+  for (const e of order) {
+    const st = await embedCookieState(e.origin);
+    if (st === 'unsupported') { unsupported = true; break; }
+    if (st !== 'granted') { target = e; denied = st === 'denied'; break; }
+  }
+  signinTarget = target;
+  b.hidden = !target;
+  if (target) {
+    b.textContent = target.label;
+    b.title = denied
+      ? 'Your browser refused last time — allow third-party cookies for this site to change that'
+      : 'Ask your browser to let the ' + target.site + ' player see that you are signed in';
+  }
 
   /* Only Chromium browsers implement the top-level form of this request. Firefox and Safari
      ship the frame-side requestStorageAccess() instead, which only the EMBEDDED page may
-     call — and YouTube's embed does not. So there is no button to offer there, and hiding it
+     call — and neither embed does. So there is no button to offer there, and hiding it
      silently would leave someone hunting for a control that was never going to appear. Say
      what their browser can do instead. */
   if (note) {
-    const showNote = anyYT && state === 'unsupported';
-    note.hidden = !showNote;
-    if (showNote) note.textContent =
-      'Ads in the YouTube player: this browser has no way for a page to ask that YouTube be '
-      + 'given its cookies here, so it cannot see your account. In Firefox, the shield icon in '
-      + 'the address bar turns off tracking protection for this site, which sometimes restores '
-      + 'it; otherwise open the track on YouTube.';
+    note.hidden = !(here.length && unsupported);
+    if (!note.hidden) note.textContent =
+      'Ads in the YouTube player, and previews instead of tracks in the Spotify one: this '
+      + 'browser has no way for a page to ask that those players be given their cookies here, '
+      + 'so neither can see your account. In Firefox, the shield icon in the address bar turns '
+      + 'off tracking protection for this site, which sometimes restores it; otherwise open the '
+      + 'track on YouTube or Spotify itself.';
   }
 }
 
-$('#ytcookie').addEventListener('click', async () => {
-  try {
-    await document.requestStorageAccessFor(YT_ORIGIN);
-    toast('Granted — reloading the player so YouTube can see your account');
-    /* The frame has to start again to pick the cookies up. */
-    if (cur >= 0 && Q[cur] && (Q[cur].src === 'yt' || Q[cur].src === 'ytpl')) {
-      const at = cur;
-      try { yt && yt.destroy && yt.destroy(); } catch (e) {}
-      yt = null; ytReady = false; ytPending = null;
-      const holder = document.createElement('div');
-      holder.id = 'yt';
-      $('#frame').insertAdjacentElement('afterend', holder);
-      ensureYT();
-      setTimeout(() => playAt(at), 800);
-    }
-  } catch (e) {
-    toast('Your browser did not allow it — ads will keep playing in the embed');
+/* A granted permission only reaches a player that starts again, so the one that is playing
+   is rebuilt from scratch. Both APIs hand back a frame in place of the element they were
+   given, which is why each puts a fresh holder back before reloading. */
+function reloadCurrentPlayer() {
+  if (cur < 0 || !Q[cur]) return;
+  const at = cur, r = Q[at];
+  if (r.src === 'yt' || r.src === 'ytpl') {
+    try { yt && yt.destroy && yt.destroy(); } catch (e) {}
+    yt = null; ytReady = false; ytPending = null;
+    /* Two things this got wrong before, both invisible until the button was actually
+       pressed. A fresh holder was inserted without clearing the old one, so the document
+       ended up with several elements answering to #yt and the page talked to whichever came
+       first while an older frame carried on playing underneath. And ensureYT() returns early
+       once its script tag exists — which it does by now — so the callback that builds the
+       player was never going to fire a second time, and nothing was rebuilt at all. The API
+       is already here, so the player is constructed directly. */
+    document.querySelectorAll('#yt').forEach(el => el.remove());
+    const holder = document.createElement('div');
+    holder.id = 'yt';
+    $('#frame').insertAdjacentElement('afterend', holder);
+    if (window.YT && window.YT.Player) window.onYouTubeIframeAPIReady(); else ensureYT();
+    setTimeout(() => playAt(at), 800);
+  } else if (isSP(r)) {
+    try { sp && sp.destroy && sp.destroy(); } catch (e) {}
+    sp = null; spReady = false; spPending = null;
+    const wrap = $('#spwrap');
+    wrap.innerHTML = '';
+    const holder = document.createElement('div');
+    holder.id = 'sp';
+    wrap.appendChild(holder);
+    setTimeout(() => playAt(at), 400);
   }
-  refreshYtCookieButton();
+}
+
+$('#signin').addEventListener('click', async () => {
+  const t = signinTarget;
+  if (!t) return;
+  try {
+    await document.requestStorageAccessFor(t.origin);
+    toast('Granted — reloading the player ' + t.gain);
+    reloadCurrentPlayer();
+  } catch (e) {
+    toast('Your browser did not allow it — ' + t.lost);
+  }
+  refreshSigninButton();
 });
 
 /* ---------- controls ---------- */
@@ -1969,7 +2036,7 @@ $('#trep').textContent = 'rep ' + repeat;
 $('#trep').classList.toggle('on', repeat !== 'off');
 loadHeard();
 rebuildShuffle();
-refreshYtCookieButton();
+refreshSigninButton();
 $('#mename').textContent = myName() || '—';
 renderMine();
 window.__rememberQueue = rememberQueue;
