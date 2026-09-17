@@ -1,5 +1,5 @@
 {
-  "note": "V6 sweep ledger — one v6 take and one v6-wild take per entry, fresh lyrics each. Clip ids collected at generation time (v6 rewrites metadata.tags, so opening-matching cannot recover them). Attach one clip per generation (batch_index v0).",
+  "note": "V6 sweep ledger — one v6 take and one v6-wild take per entry, fresh lyrics each. Clip ids collected at generation time (v6 rewrites metadata.tags, so opening-matching cannot recover them). Attach one clip per generation (batch_index v0) — several DIFFERENT songs may hang off one entry, but never two takes of the same song. A second song on the same entry is ledgered under a \"-b\" lane (\"v6-b\"), which is NOT \"v6-wild\": wild names a generation mode, -b just means a second song. batch_index lives on the CLIP object in v6, not in metadata, where it used to be looked for.",
   "started": "2026-09-10",
   "entries": {
     "1": {
@@ -7189,6 +7189,47 @@
       "adjectives": "random decade + region + kind of source",
       "delivery": "pleading and unyielding at once (image clause dropped per v11c)",
       "note": "(The batch reported the browser extension disconnected but had in fact generated - the draft was already at the top of Activity History; the follow-up click landed in WAIT (18) and did not fire a second run.) Rolls 1-2 rejected by BlazeDale: r1 doorway built into the refrain + kettle/ash-cake + rural palette; r2 literalised the old delivery image into a voice trapped on a 78 record. Scorecard: length 341; structure honoured (refrain returns four times, one extra at the end); delivery pleading + unyielding without any literal scene (\"I didn't curse, and I didn't shout\", \"You can shear the hill, you can fence the sky / But you cannot drink this river dry\", \"you cannot put a padlock on a soul\"); seed unnamed - a household stripped by the tax man (silver buried in the clay, the bay and the gray taken, the herd driven off); no records, no doorway refrain. Shipped by me. Edits (1): cut the final ad-lib \"(No, you can't lyricize my pain away)\" - \"lyricize\" is the song talking about its own writing. Watch: palette in-world but heavy (hearth, clay, silver, stone, metal, ash, coal, dust, silt); winter coat x1 (charged - they want the wool from it); dough/kneading x1 each. Cleaning: none beyond the cut - section labels bracketed, answers in ()."
+    },
+    "330": {
+      "status": "generated",
+      "lyricist": "suno-cowrite (v6) | suno-describe on claude-v11c (v6-b)",
+      "v6": {
+        "title": "Dry Snare, Open Heart",
+        "clips": [
+          "4893b330-52e6-4557-b337-32bf5e27dd66",
+          "17a24ac3-be20-40ab-84f0-1c0622d16eca"
+        ],
+        "v0": "17a24ac3-be20-40ab-84f0-1c0622d16eca",
+        "badge": "V6",
+        "durations": [
+          64.6,
+          222.24
+        ],
+        "mandated8": true,
+        "genre_slot": "late-2000s British retro-soul pop"
+      },
+      "v6-b": {
+        "title": "Quietly Alive",
+        "clips": [
+          "f65702ae-8c07-4100-a1b1-4b2cd0a75562",
+          "5a3396cb-71e2-4d8f-885c-8f1e671c37be"
+        ],
+        "v0": "5a3396cb-71e2-4d8f-885c-8f1e671c37be",
+        "badge": "V6",
+        "durations": [
+          225,
+          237.56
+        ],
+        "mandated8": true,
+        "genre_slot": "late-2000s British retro-soul pop"
+      },
+      "flags": [],
+      "tagged": true,
+      "edits": 0,
+      "prompt": "claude-v11c (v6-b only; the v6 take used Suno's own cowriter with no brief of ours)",
+      "adjectives": "random decade + region + kind of source",
+      "delivery": "plainly, closer to reported speech than poetry, bruised and unapologetic, stated as fact rather than performed",
+      "note": "Four Gemini rolls on 14 Sep were rejected; roll 5 never fired before the sweep paused. Resumed 17 Sep on Suno's own rebuilt UI. THE DELIVERY FIX: earlier rolls only copied the entry's \"Delivery...\" sentence, so the prompt asked for poetry on the one entry whose prose says \"sung in real words, plainly, the lyric closer to reported speech than poetry\". Pulling delivery from the WHOLE vocalist paragraph fixed it on the first roll. Two songs kept, both v6/chirp-hawk: BlazeDale's \"Dry Snare, Open Heart\" (Suno's own cowriter) and \"Quietly Alive\" (our v11c brief pasted into the new \"Describe your song\" field, Lyrics box left empty). Quietly Alive: 407 words, three verses + refrain after each + bridge + closing refrain, refrain \"Ah, ah, I'm quietly alive\", delivery plain and factual throughout (\"Not healed, not clean, not made brand new\"), hidden story surfaces only in the bridge as a winter train. ROUTE CAVEAT: Describe-mode does NOT preserve our style prose — 912 chars in, metadata.tags came back 363/381, and Suno prepended a 448-char style paragraph of its own to the lyrics with \";Verse 1\" labels instead of \"[Verse 1]\". The song is driven by Suno's ~40%-length paraphrase, not the entry. A direct API create preserved tags byte-identical when last measured, so that is the route if the prose must go in whole. WATCH: coat in verse 1 of all three #330 takes (my cowrite \"coat wet\", his \"borrowed coat\", Quietly Alive \"hands in my coat\") — something in this brief summons it; also \"a needle hit and it pulled me down\", the music-medium drift first flagged at #327. UI: the cowriter is back as a labelled field and its old 240-char paste cap is GONE (1144 chars went in inline, no reference chip)."
     }
   },
   "method": {
