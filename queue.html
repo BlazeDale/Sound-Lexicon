@@ -1464,11 +1464,17 @@ function dropIntoPlayed(from, onto) {
 function dropIntoNext(from, onto) {
   const k = keyOf(Q[from]);
   if (heard.includes(k)) setHeard(heard.filter(x => x !== k));
-  const to = onto >= 0 ? onto : Q.length - 1;
-  if (to !== from) {
+  if (onto !== from) {
     const moving = Q[from], playing = Q[cur];
+    /* The target is held as the ROW, not the index, and looked up again after the move has
+       been taken out. Splicing back in at the old index landed it one place too low whenever
+       it was dragged downwards — everything above the target had shifted up by one — so the
+       amber line, which is drawn on TOP of the row it will land above, was telling the truth
+       going up and lying going down. */
+    const target = onto >= 0 ? Q[onto] : null;
     Q.splice(from, 1);
-    Q.splice(to, 0, moving);
+    const at = target ? Q.indexOf(target) : Q.length;
+    Q.splice(at < 0 ? Q.length : at, 0, moving);
     if (playing) cur = Q.indexOf(playing);        // follow the track, not the index
     rebuildShuffle();
     if (shared()) { if (isOwner()) window.__net.reorder(Q); } else save();
