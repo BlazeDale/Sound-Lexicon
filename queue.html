@@ -881,6 +881,66 @@ async function resolve(id, src) {
   return row;
 }
 
+/* ---------- rows that arrived before their length existed ----------
+   A clip added to the queue while Suno is still generating it has NO duration:
+   /api/clip answers without metadata.duration until the take completes, so resolve()
+   returns dur 0 and ok false. Auto-advance for a Suno row is a timer over that duration
+   — the embed reports nothing — so no length means the queue reaches that row and stops
+   there for good. Nothing ever asked a second time, and about two minutes later the
+   answer was sitting there for free.
+
+   So ask again. Only Suno rows, only ones still missing a length, and only while any
+   exist. The backoff starts at 15s and eases out, because a generation takes roughly two
+   minutes and there is no event to wait on — polling is the only instrument available.
+   It gives up after ATTEMPTS tries (about five minutes of cover, comfortably past a
+   generation) so a clip that is deleted, private or simply never going to finish does not
+   leave a timer running for the rest of the session.
+
+   metaCache is not a factor: an entry only lands there once a length was known, so a row
+   without one has nothing to hit and every retry is a real request. */
+const RETRY_FIRST = 15000, RETRY_CAP = 120000, RETRY_ATTEMPTS = 6;
+let retryT = null, retryEvery = RETRY_FIRST;
+const untimedRows = () => Q.filter(r => r.src === 'suno' && !r.dur && (r.tries || 0) < RETRY_ATTEMPTS);
+
+function scheduleUntimed() {
+  if (retryT || !untimedRows().length) return;
+  retryT = setTimeout(refreshUntimed, retryEvery);
+}
+
+async function refreshUntimed() {
+  retryT = null;
+  const rows = untimedRows();
+  if (!rows.length) { retryEvery = RETRY_FIRST; return; }
+  let changed = false;
+  /* Four at a time: resolve() already funnels through the shared request queue, and a long
+     queue of unfinished clips should not become a burst against studio-api. */
+  for (const r of rows.slice(0, 4)) {
+    r.tries = (r.tries || 0) + 1;
+    let got = null;
+    try { got = await resolve(r.id, 'suno'); } catch (e) {}
+    if (!got || !(got.dur > 0)) continue;
+    const wasCurrent = cur >= 0 && Q[cur] === r;
+    r.dur = got.dur;
+    r.ok = true;
+    if (got.title && got.title !== r.id.slice(0, 8)) r.title = got.title;
+    if (got.art) r.art = got.art;
+    changed = true;
+    /* Write it back so every visitor gets it, not just whoever happened to be watching
+       when it landed. Owner only — the rules refuse a guest writing an existing row, and
+       a guest correcting the shared queue is not their call anyway. */
+    if (hosting() && r.k && window.__net && window.__net.setDur) window.__net.setDur(r.k, got.dur);
+    /* The row that is on screen right now is the one this was all for. If it has not been
+       started yet, arm it as usual; if it has, the clock cannot be started honestly from
+       here — we do not know how far in they are — so offer it and let them start it. */
+    if (wasCurrent) {
+      armSunoTimer(r, framePoked ? 'length known now — click to start the timer' : undefined);
+    }
+  }
+  if (changed) render();
+  retryEvery = Math.min(Math.round(retryEvery * 1.5), RETRY_CAP);
+  scheduleUntimed();
+}
+
 /* ---------- adding ---------- */
 /* Every place that looks for a track link uses this, so they cannot disagree about what
    counts as one. They used to: the chat looked only for video ids and Suno uuids, which
@@ -1329,7 +1389,12 @@ function upcomingIndices() {
   return seq.filter(i => i !== anchor && !done.has(keyOf(Q[i])));
 }
 
+/* Every path that can put a row on screen ends in render(), which makes it the one place
+   that reliably knows the queue changed — cheaper and harder to forget than calling the
+   scheduler from each of add, remote-apply, reorder and remove. It is a no-op when nothing
+   is untimed, and it will not stack timers. */
 function render() {
+  scheduleUntimed();
   syncHeard();
   const list = $('#list'), done = $('#donelist'), nowl = $('#nowlist');
   $('#clear').disabled = !Q.length;
@@ -1410,9 +1475,16 @@ function rowEl(r, i) {
       const w = document.createElement('span'); w.className = 'warn';
       w.textContent = '  · plays through — press next when done'; sub.appendChild(w);
     }
-    if (r.src === 'suno' && !r.ok && r.title !== 'Loading…') {
+    /* Three states, not two. A clip that is still generating has no length YET, and saying
+       it will not auto-advance would be wrong — it will, once the take finishes and
+       refreshUntimed picks the length up. Only after the retries are spent is the old
+       flat warning the honest one. */
+    if (r.src === 'suno' && !r.ok && !r.dur && r.title !== 'Loading…') {
       const w = document.createElement('span'); w.className = 'warn';
-      w.textContent = '  · length unknown, will not auto-advance'; sub.appendChild(w);
+      w.textContent = (r.tries || 0) >= RETRY_ATTEMPTS
+        ? '  · length unknown, will not auto-advance'
+        : '  · still generating — length will arrive, then auto works';
+      sub.appendChild(w);
     }
     meta.append(t, sub);
 
@@ -1715,6 +1787,21 @@ function startTimer(seconds) {
     }
     paintTimer();
   }, 500);
+}
+/* Armed, not started. The clock begins when the frame is clicked — see the blur handler
+   below — so a track that sits waiting to be played does not advance past itself.
+
+   Split out of playAt because a second caller needs it: a row whose length only arrived
+   after it was already on screen (see refreshUntimed). `label` is what that caller uses to
+   say so, since "press play to start the timer" is a lie to somebody who pressed play
+   several minutes ago. */
+function armSunoTimer(r, label) {
+  if (!auto || !r || r.src !== 'suno' || !r.dur) return;
+  clearTimer();
+  $('#timer').classList.add('live');
+  $('#tlab').textContent = label || 'press play to start the timer';
+  $('#tleft').textContent = mmss(r.dur);
+  $('#tfill').style.width = '0%';
 }
 function paintTimer() {
   const left = Math.max(0, (tEnd - Date.now()) / 1000);
@@ -2080,15 +2167,7 @@ async function playAt(i, fromFollow) {
     hideSpotify();
     showSunoFrame(r.id);
     framePoked = false;
-    /* Armed, not started. The clock begins when the frame is clicked — see the blur handler
-       above — so a track that sits waiting to be played does not advance past itself. */
-    if (auto && r.dur) {
-      clearTimer();
-      $('#timer').classList.add('live');
-      $('#tlab').textContent = 'press play to start the timer';
-      $('#tleft').textContent = mmss(r.dur);
-      $('#tfill').style.width = '0%';
-    }
+    armSunoTimer(r);
   }
 
   /* A new track is a new playhead, and the old one is wrong the instant this runs. The
@@ -2859,6 +2938,17 @@ try {
       });
     },
     removeTrack(k) { return k ? remove(qref('tracks/' + k)).catch(e => console.warn('[queue] remove refused', e)) : null; },
+    /* A length that only existed after the row did. Written by the OWNER alone: the rules
+       let a guest CREATE a track row while open-adding is on, never rewrite one, so a guest
+       calling this would simply be refused - and a visitor correcting the shared queue is
+       not their business in any case. The clamp matches the rule's own 0..3600 validate, so
+       a nonsense duration is rejected here rather than bounced by the database. */
+    setDur(k, dur) {
+      const v = Math.max(0, Math.min(3600, Math.round(dur || 0)));
+      if (!k || !v) return Promise.resolve();
+      return update(qref('tracks/' + k), { dur: v })
+        .catch(e => console.warn('[queue] length update refused', e));
+    },
     /* Rewrites only the ord fields, so a reorder never disturbs anyone else's rows. */
     reorder(rows) {
       const u = {};
