@@ -140,6 +140,14 @@
   .row.mine{border-left-color:var(--teal)}     /* what a visitor is hearing on a detour of their own */
   .row.drag{opacity:.35}
   .row.over{border-top:2px solid var(--amber)}
+  /* ---------- the columns as drop targets ----------
+     A row can be dragged between "up next" and "already played" as well as within either, so
+     both columns say they are targets for as long as a drag is in the air — from the moment
+     it starts, rather than waiting for the pointer to arrive, which is what makes the other
+     column look like somewhere you are allowed to go. The one under the pointer warms up. */
+  .board.dragging .side{outline:1.5px dashed var(--line);outline-offset:9px;border-radius:12px}
+  .board.dragging .side.over{outline-color:var(--amber-dim)}
+  .board.dragging .row{cursor:grabbing}
   .grip{color:var(--dim);cursor:grab;font-size:15px;line-height:1;padding:0 2px;flex:none;user-select:none}
   .art{width:42px;height:42px;border-radius:6px;object-fit:cover;background:var(--panel2);flex:none}
   .meta{flex:1;min-width:0}
@@ -348,7 +356,10 @@
   </div>
 
   <div class="board" id="board">
-    <section class="side">
+    <!-- Both columns are drop targets: a row can be dragged between them, not only within
+         one. The whole section is the zone rather than the <ul> inside it, so a column with
+         nothing in it is still somewhere you can drop. -->
+    <section class="side" id="zonenext">
       <div class="qhead">
         <h2>Up next</h2>
         <span class="count" id="count"></span>
@@ -364,7 +375,7 @@
       <p class="empty" id="empty">Nothing queued yet.</p>
     </section>
 
-    <section class="side">
+    <section class="side" id="zonedone">
       <div class="qhead">
         <h2>Already played</h2>
         <span class="count" id="donecount"></span>
@@ -391,6 +402,14 @@
     <span style="float:right;font-family:var(--mono);font-size:10.5px;color:var(--line)" id="buildstamp"></span>
     <b>Keys:</b> <kbd>shift</kbd>+<kbd>←</kbd> <kbd>→</kbd> previous / next track · <kbd>t</kbd> player size —
     normal, theatre, full window, round again · <kbd>esc</kbd> out of full window.<br><br>
+    <b>Moving tracks between the columns.</b> A row drags within <b>Up next</b> to reorder the
+    queue, and now also across to <b>Already played</b> and back. Dragged into the played
+    column it is recorded as heard without being played — the way to skip something for good
+    without deleting it. Dragged out of it, it is struck from that record and goes back into
+    the queue at the point you drop it, which is how you queue something again. Dropping onto
+    a row puts it in that row's place; dropping on the space past the last row puts it last.
+    Neither direction touches the player: what is playing keeps playing. Only the owner of a
+    shared queue can do this, because the history it writes belongs to the queue.<br><br>
     <b>About auto-advance.</b> It works two different ways, because the sources differ.
     <b>YouTube</b> and <b>Spotify</b> publish player APIs, so this page is genuinely told when a
     track ends and advances on that — exact, and it respects a pause. <b>Suno's</b> embed is a plain
@@ -1339,49 +1358,123 @@ function removeAt(i) {
   render(); save();
 }
 
-/* ---------- reordering ---------- */
+/* ---------- reordering, and moving between the columns ----------
+   Inside "up next" a drag reorders the queue, as it always has. Between the columns it
+   changes something else entirely: whether the track counts as heard. The played column is
+   not a place in the list, it is the HISTORY — `heard`, a list of track keys — so a row
+   dropped into it is recorded as played, and a row dragged out of it is struck from that
+   record and put back in the queue where you let go. Neither touches the player: this is
+   bookkeeping about what you have listened to, not a playback command.
+
+   One rule for where it lands, in both columns, because two rules would be a coin toss:
+   dropped ON a row it takes that row's place and pushes it down; dropped on the empty space
+   past the rows it goes last. In the played column "last" is the bottom, which is the oldest,
+   that column running most recent first.
+
+   A drop into the played column leaves Q alone. Where a track sits in the queue is not what
+   that column shows, so reordering the queue behind it would be a change with nothing on
+   screen to explain it. A drop into "up next" does move it in Q, because there the position
+   is the whole point — with the usual caveat that shuffle is its own order, so a row dropped
+   into a shuffled queue lands where the shuffle puts it rather than where you let go.
+
+   Visitors never had a drag to begin with (rows are only draggable for the owner) and the
+   drop is refused again here, because a shared queue's history is the owner's to write. */
 let dragFrom = -1;
-$('#list').addEventListener('dragstart', e => {
-  const li = e.target.closest('.row'); if (!li) return;
-  dragFrom = +li.dataset.i; li.classList.add('drag');
-  e.dataTransfer.effectAllowed = 'move';
-  try { e.dataTransfer.setData('text/plain', 'row:' + dragFrom); } catch (err) {}
-});
-$('#list').addEventListener('dragend', () => {
+const zoneOf = col => $(col === 'done' ? '#zonedone' : '#zonenext');
+const listOf = col => $(col === 'done' ? '#donelist' : '#list');
+
+function endDrag() {
   dragFrom = -1;
+  $('#board').classList.remove('dragging');
   document.querySelectorAll('.row').forEach(r => r.classList.remove('drag', 'over'));
-});
-/* Belt and braces for the same trap: a reorder dropped outside the list, or cancelled with
-   Escape, ends wherever the pointer is. Listening on the document in the capture phase
-   clears the flag however the drag ends. */
-document.addEventListener('dragend', () => { dragFrom = -1; }, true);
-$('#list').addEventListener('dragover', e => {
-  if (dragFrom < 0) return;                       // an external link drop belongs to the page
-  e.preventDefault(); e.dataTransfer.dropEffect = 'move';
-  const li = e.target.closest('.row'); if (!li) return;
-  document.querySelectorAll('.row').forEach(r => r.classList.remove('over'));
-  li.classList.add('over');
-});
-$('#list').addEventListener('drop', e => {
-  if (dragFrom < 0) return;
-  e.preventDefault(); e.stopPropagation();
-  /* The drag is consumed HERE, not in dragend. The render below replaces the row being
-     dragged, and a detached element's dragend never reaches this list - so dragFrom stayed
-     set, and every link later dropped on the page was mistaken for a row being reordered
-     and silently ignored. That was the drop box "going dead" after a reorder. */
-  const from = dragFrom;
-  dragFrom = -1;
-  document.querySelectorAll('.row').forEach(r => r.classList.remove('drag', 'over'));
-  const li = e.target.closest('.row'); if (!li) return;
-  const to = +li.dataset.i;
-  if (to === from) return;
-  const moving = Q[from], playing = Q[cur];
-  Q.splice(from, 1);
-  Q.splice(to, 0, moving);
-  if (playing) cur = Q.indexOf(playing);          // follow the track, not the index
-  rebuildShuffle(); render();
-  if (shared()) { if (isOwner()) window.__net.reorder(Q); } else save();
-});
+  document.querySelectorAll('.side').forEach(s => s.classList.remove('over'));
+}
+/* Belt and braces: a drag dropped outside either column, or cancelled with Escape, ends
+   wherever the pointer is. Listening on the document in the capture phase clears the flag
+   however the drag ends. */
+document.addEventListener('dragend', endDrag, true);
+
+/* The row under the pointer, but only if it belongs to the column being dropped on — the
+   playing row lives in the same section as "up next" and is not a position in it. */
+const targetIndex = (e, col) => {
+  const li = e.target.closest('.row');
+  return li && listOf(col).contains(li) ? +li.dataset.i : -1;
+};
+
+function wireZone(col) {
+  const zone = zoneOf(col);
+  zone.addEventListener('dragstart', e => {
+    const li = e.target.closest('.row');
+    /* Nothing starts a drag from the playing row: it is in the queue and in the player at
+       once, and dropping it into the played column would file it under "heard" while the
+       column that draws it filters the playing track out — a move that looks like nothing
+       happening. */
+    if (!li || guest() || !listOf(col).contains(li)) { e.preventDefault(); return; }
+    dragFrom = +li.dataset.i;
+    li.classList.add('drag');
+    $('#board').classList.add('dragging');         // both columns light up, not just this one
+    e.dataTransfer.effectAllowed = 'move';
+    try { e.dataTransfer.setData('text/plain', 'row:' + dragFrom); } catch (err) {}
+  });
+  zone.addEventListener('dragover', e => {
+    if (dragFrom < 0) return;                      // an external link drop belongs to the page
+    e.preventDefault(); e.dataTransfer.dropEffect = 'move';
+    document.querySelectorAll('.side').forEach(s => s.classList.toggle('over', s === zone));
+    document.querySelectorAll('.row').forEach(r => r.classList.remove('over'));
+    const li = e.target.closest('.row');
+    if (li && listOf(col).contains(li)) li.classList.add('over');
+  });
+  zone.addEventListener('drop', e => {
+    if (dragFrom < 0) return;
+    e.preventDefault(); e.stopPropagation();
+    /* The drag is consumed HERE, not in dragend. The render below replaces the row being
+       dragged, and a detached element's dragend never reaches this list - so dragFrom stayed
+       set, and every link later dropped on the page was mistaken for a row being reordered
+       and silently ignored. That was the drop box "going dead" after a reorder. */
+    const from = dragFrom;
+    endDrag();
+    if (guest() || !Q[from]) return;
+    const onto = targetIndex(e, col);
+    if (col === 'done') dropIntoPlayed(from, onto); else dropIntoNext(from, onto);
+  });
+}
+['next', 'done'].forEach(wireZone);
+
+function setHeard(next) {
+  heard = next;
+  saveHeard();
+  if (hosting()) SP.heard = heard.slice();
+}
+
+/* Into the played column: a change to the history and nothing else. */
+function dropIntoPlayed(from, onto) {
+  const k = keyOf(Q[from]);
+  const t = onto >= 0 && Q[onto] ? keyOf(Q[onto]) : '';
+  if (t === k) return;
+  const next = heard.filter(x => x !== k);
+  const at = t ? next.indexOf(t) : -1;
+  /* Just after the row it was dropped on, because this list is reversed on the way to the
+     screen: later in `heard` is higher up the column. */
+  if (at >= 0) next.splice(at + 1, 0, k); else next.unshift(k);
+  setHeard(next);
+  render();
+}
+
+/* Into up next: struck from the history if it was in it, then moved in the queue. */
+function dropIntoNext(from, onto) {
+  const k = keyOf(Q[from]);
+  if (heard.includes(k)) setHeard(heard.filter(x => x !== k));
+  const to = onto >= 0 ? onto : Q.length - 1;
+  if (to !== from) {
+    const moving = Q[from], playing = Q[cur];
+    Q.splice(from, 1);
+    Q.splice(to, 0, moving);
+    if (playing) cur = Q.indexOf(playing);        // follow the track, not the index
+    rebuildShuffle();
+    if (shared()) { if (isOwner()) window.__net.reorder(Q); } else save();
+  }
+  render();
+}
 
 /* ---------- the timer ----------
    Started when the frame is pointed at a track, cleared whenever anything else takes over.
