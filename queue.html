@@ -11,15 +11,22 @@
     --ink:#111419; --panel:#181c24; --panel2:#1f2530; --line:#2a313d;
     --text:#e9e6dd; --muted:#98a0ad; --dim:#6b7280;
     --amber:#e0a63c; --amber-dim:#8a6a2a; --teal:#1a9e75; --red:#c2544a;
-    /* Where a row's way out GOES, in that service's own colour. YouTube's red and Spotify's
-       green are their brand hues pulled back from full strength — #FF0000 and #1DB954 are
-       mixed for white pages and glare on a panel this dark — and Suno's is bone, because
-       Suno's own site is monochrome and inventing a colour for it would be the wrong answer.
+    /* Where a row's way out GOES, in that service's own colour. All three are their brand
+       hues pulled back from full strength: #FF0000 and #1DB954 are mixed for white pages and
+       glare on a panel this dark. Suno is the orange of its app icon — the monochrome of
+       suno.com is what the site wears, but the icon is what anyone actually pictures.
+
+       Which is why the red is a red and not the salmon it started as. Orange and salmon are
+       neighbours, and these two chips sit on adjacent rows all the time in a mixed queue; the
+       label disambiguates them but the colour should not need it to. The orange is kept deep
+       and saturated for the same reason at the other end — a lighter one drifts towards
+       --amber, which on this page means attention: a warning, a liked heart.
+
        Each has a resting tone near --dim in weight, so a column of these stays as quiet as
        the one grey chip it replaces; the full hue is for the pointer. */
-    --yt:#ff5c52;  --yt-dim:#8f4a45; --yt-line:#3c2a29; --yt-wash:rgba(255,92,82,.09);
+    --yt:#f4433c;  --yt-dim:#96403c; --yt-line:#3a2523; --yt-wash:rgba(244,67,60,.10);
     --sp:#1ed760;  --sp-dim:#3d7d5c; --sp-line:#22352b; --sp-wash:rgba(30,215,96,.09);
-    --su:#f1eee5;  --su-dim:#8a857c; --su-line:#39362f; --su-wash:rgba(241,238,229,.07);
+    --su:#f9722a;  --su-dim:#9c5f33; --su-line:#3a2a1e; --su-wash:rgba(249,114,42,.10);
     --mono:'SF Mono','Menlo','Consolas','Liberation Mono',monospace;
     --sans:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
   }
