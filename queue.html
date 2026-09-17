@@ -2327,13 +2327,17 @@ window.__applyRemote = (tracks, meta) => {
   $('#empty').textContent = isOwner()
     ? 'Nothing queued yet — drop links in above.'
     : (SQ.open ? 'Nothing queued yet — anyone can add to this one.' : 'Nothing queued yet.');
-  SQ.listed = !meta || meta.listed !== false;
+  /* Fail CLOSED, and note which way round: absent reads as unlisted, because meta arrives a
+     moment after the page does and a toggle that says "listed" for that moment is a promise in
+     the wrong direction. Queues published before this change wrote listed explicitly either
+     way, so nothing already out there is misread. */
+  SQ.listed = !!(meta && meta.listed === true);
   $('#listedToggle').hidden = $('#delq').hidden = !isOwner();
   $('#listedToggle').textContent = SQ.listed ? 'listed' : 'unlisted';
   $('#listedToggle').classList.toggle('on', SQ.listed);
   $('#listedToggle').title = SQ.listed
-    ? 'Shown on the Queues page — click to unlist'
-    : 'Hidden from the Queues page — click to list';
+    ? 'On the public Queues page: its name, its author and its link are visible to anyone — click to unlist'
+    : 'Published nowhere — only people you send the link to can reach it. Click to list it publicly.';
   $('#openToggle').hidden = !isOwner();
   $('#openToggle').textContent = 'Open adding: ' + (SQ.open ? 'on' : 'off');
   $('#openToggle').classList.toggle('primary', SQ.open);
@@ -2713,8 +2717,26 @@ try {
     SQ.qid = qid;
     [stopT, stopM, stopC, stopPl, stopLk, stopHd].forEach(f => f && f());
     present(qid);
-    let tracks = [], meta = {};
-    stopM = onValue(ref(db, 'queues/' + qid + '/meta'), s => { meta = s.val() || {}; window.__applyRemote(tracks, meta); });
+    let tracks = [], meta = {}, swept = false;
+    stopM = onValue(ref(db, 'queues/' + qid + '/meta'), s => {
+      meta = s.val() || {};
+      window.__applyRemote(tracks, meta);
+      /* Queues unlisted under the old scheme kept their index row and merely flagged it
+         listed:false, so their ids stayed in a world-readable node and only the browse page's
+         filter hid them. The owner is the one client the rules let remove that row, and this is
+         the moment they are here holding the id. Once per load, and silent: a queue with no row
+         to remove is the ordinary case, not a fault. */
+      if (!swept && meta.owner === me.uid && meta.listed !== true) {
+        swept = true;
+        /* Read before removing. A delete here is authorised by the row's EXISTING owner, so
+           removing a row that is not there is not a quiet no-op - it is a refused write, and
+           every load of every unlisted queue would make one. Unlisted is now the common case,
+           so look first: one small read, and nothing to explain in the console. */
+        get(ref(db, 'queue_index/' + qid)).then(s2 => {
+          if (s2.exists()) return remove(ref(db, 'queue_index/' + qid));
+        }).catch(() => {});
+      }
+    });
     stopT = onValue(ref(db, 'queues/' + qid + '/tracks'), s => {
       tracks = unpack(s.val());
       window.__applyRemote(tracks, meta);
@@ -2738,7 +2760,9 @@ try {
     el('copylink').hidden = false;
     el('chathint').hidden = false;
     el('chathint').textContent =
-      'Anyone with this link can read the queue and talk in the chat. Names are self-chosen and unverified. '
+      'Anyone with this link can read the queue and talk in the chat, so the link is the whole of the secret. '
+      + 'A queue starts unlisted - published nowhere, reachable only by a link its owner sent - and its owner can '
+      + 'list it on the Queues page, which shows it to anyone. Names are self-chosen and unverified. '
       + 'What is playing and what has been played follow the owner; anything a visitor picks plays for them alone. '
       + 'Ownership lives in this browser - clearing site data would hand it to nobody.';
   }
@@ -2752,8 +2776,11 @@ try {
         tracks[push(ref(db, 'queues/' + qid + '/tracks')).key] = t;
       });
       const now = Date.now();
+      /* Unlisted to begin with. Sharing means "this now has a link I can send", not "this is
+         on a public board" — so the board is something an owner opts into from the toggle,
+         with the page saying what that exposes, rather than a side effect of pressing Share. */
       const meta = { owner: me.uid, ownerName: trim(who, 24), title: trim(title || 'Untitled queue', 60),
-                     open: false, listed: true, created: now, v: 1 };
+                     open: false, listed: false, created: now, v: 1 };
       /* Creating the queue in one write is the right shape — a queue should exist whole or
          not at all. But it needs a .write rule AT queues/<qid>, and permission in this
          database comes from a rule at or above the path being written: the meta and tracks
@@ -2769,12 +2796,11 @@ try {
         await set(ref(db, 'queues/' + qid + '/meta'), meta);
         await set(ref(db, 'queues/' + qid + '/tracks'), tracks);
       }
-      /* The public card, written second on purpose: a queue that failed to create must not
-         leave an entry advertising a queue that is not there. */
-      await set(ref(db, 'queue_index/' + qid), {
-        owner: me.uid, ownerName: trim(who, 24), title: trim(title || 'Untitled queue', 60),
-        created: now, open: false, listed: true, n: rows.length
-      }).catch(e => console.warn('[queue] index write failed', e));
+      /* No public card, on purpose. queue_index is world-readable — that is what makes the
+         browse page possible at all — so a row in it publishes this queue's ID to everyone,
+         and the id is the whole of the secret: anyone holding it can read the queue and its
+         chat. A card is written when the owner LISTS the queue, and removed when they unlist
+         it; see setListed. */
       history.replaceState(null, '', '?q=' + qid);
       window.__rememberQueue(qid, trim(title || 'Untitled queue', 60));
       listen(qid);
@@ -2799,20 +2825,42 @@ try {
       return update(qref('tracks'), u).catch(e => console.warn('[queue] reorder refused', e));
     },
     clearTracks() { return remove(qref('tracks')).catch(e => console.warn('[queue] clear refused', e)); },
+    /* meta is the truth about a queue; the index card is a copy kept only while it is listed.
+       So each of these writes meta unconditionally and touches the card only when there is a
+       card — an update() against a path that does not exist would CREATE a row holding just
+       that one field, which these rules refuse (the $qid validate wants owner and title) and
+       which would put the id back into the public index if they ever did not. */
     setOpen(on) {
       const v = !!on;
-      return Promise.all([update(qref('meta'), { open: v }), update(idxref(), { open: v })])
+      return Promise.all([update(qref('meta'), { open: v }), SQ.listed ? update(idxref(), { open: v }) : null])
         .catch(e => console.warn('[queue] toggle refused', e));
     },
     setTitle(t) {
       const v = trim(t, 60);
-      return Promise.all([update(qref('meta'), { title: v }), update(idxref(), { title: v })])
+      return Promise.all([update(qref('meta'), { title: v }), SQ.listed ? update(idxref(), { title: v }) : null])
         .catch(e => console.warn('[queue] rename refused', e));
     },
-    setListed(on) {
+    /* Listing WRITES the card; unlisting REMOVES it. The row's existence is the listing, which
+       is what lets "unlisted" mean the id is published nowhere. A flag inside a row would not:
+       the browse page reads the whole of queue_index, so listed:false is a note asking it not
+       to look, and every visitor's browser has already downloaded the id by the time it reads
+       the note.
+
+       The card is built from meta rather than from this page's state, so it can never end up
+       advertising something other than the queue it points at. */
+    async setListed(on) {
       const v = !!on;
-      return Promise.all([update(qref('meta'), { listed: v }), update(idxref(), { listed: v })])
-        .catch(e => console.warn('[queue] listing refused', e));
+      try {
+        await update(qref('meta'), { listed: v });
+        if (!v) { await remove(idxref()); return; }
+        const m = (await get(qref('meta'))).val() || {};
+        const n = (await get(qref('tracks'))).size || 0;
+        await set(idxref(), {
+          owner: m.owner || me.uid, ownerName: trim(m.ownerName || '', 24),
+          title: trim(m.title || 'Untitled queue', 60),
+          created: m.created || Date.now(), open: !!m.open, listed: true, n
+        });
+      } catch (e) { console.warn('[queue] listing refused', e); }
     },
     /* Index first here, the mirror of create: better a card that briefly outlives its queue
        than a queue nobody can find to delete. */
@@ -2830,7 +2878,10 @@ try {
     /* The count on the browse card. Written by whoever changed the list, which is the only
        client that knows it changed; it can lag if a tab dies mid-write, and nothing depends
        on it being exact. */
-    setCount(n) { return update(idxref(), { n: Math.max(0, Math.min(5000, n | 0)) }).catch(() => {}); },
+    setCount(n) {
+      if (!SQ.listed) return Promise.resolve();          // unlisted: there is no card to count into
+      return update(idxref(), { n: Math.max(0, Math.min(5000, n | 0)) }).catch(() => {});
+    },
     /* Where the queue is - playing, up next, played. Owner only, the rules enforce it. */
     setPlay(body) { return set(qref('play'), body).catch(e => console.warn('[queue] play position refused (rules not published?)', e)); },
     /* Where the TRACK is: the owner's playhead. `at` is stamped by the server rather than by

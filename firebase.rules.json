@@ -31,14 +31,24 @@
       }
     },
 
-    // One small public card per queue: title, author, date, track count. The browse page
-    // reads this instead of the queues themselves, so listing a hundred queues costs a
-    // hundred short records rather than a hundred full track lists - and "queues" below
+    // One small public card per queue: title, author, date, track count. The browse page reads
+    // this instead of the queues themselves for everyone ELSE's queues, so listing a hundred
+    // costs a hundred short records rather than a hundred full track lists - and "queues" below
     // never has to become enumerable at all.
     //
-    // listed=false keeps a queue off the browse page. The row still exists here, because the
-    // owner's own list is built from the same place; the page filters on it. So unlisted
-    // means unadvertised, not private, which is what the page says.
+    // This node is world-readable, which is what makes a browse page possible at all - and it
+    // means a row here PUBLISHES its queue's id. An id is the whole of the secret: queues/$qid
+    // below grants .read to anyone holding one, so the row is not a pointer to a public queue,
+    // it is what makes the queue public.
+    //
+    // So an UNLISTED queue has no row here, rather than a row flagged listed:false. The flag
+    // approach put every id into a node every visitor downloads and asked the page not to look
+    // - which hid queues from the list while handing out their addresses. The row's existence
+    // is the listing; queue.html writes the card when the owner lists, removes it when they
+    // unlist, and sweeps away any old listed:false row when its owner next opens the queue.
+    //
+    // The consequence is that the owner's own list cannot be built from here any more. It uses
+    // the owner query on "queues" instead - which is exactly what the .read down there is for.
     "queue_index": {
       ".read": true,
       ".indexOn": ["owner", "created"],

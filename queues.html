@@ -103,10 +103,14 @@
 
   <footer>
     <b>What is public here.</b> A queue that is <b>listed</b> appears on this page to anyone,
-    along with its name, its author's display name, and when it was made. Display names are
-    self-chosen and unverified. An owner can set a queue to <b>unlisted</b> on its own page,
-    which keeps it off this list — that means unadvertised, not private, since anyone holding
-    the link can still open it.<br><br>
+    along with its name, its author's display name, when it was made — and its link, which is
+    the whole of the secret: anyone holding it can open the queue and read its chat. Display
+    names are self-chosen and unverified.<br><br>
+    <b>New queues are unlisted.</b> Sharing a queue gives it a link; it is not on this page
+    until its owner lists it, from the switch on the queue's own page. An unlisted queue is
+    published nowhere — it has no entry in the public list at all, not a hidden one — so the
+    only way in is a link somebody sent you. Unlisting a listed queue removes its entry, and
+    the link goes on working for anyone who already has it.<br><br>
     <b>Live, and who is counted.</b> A queue reads <b>live</b> while its owner has it open in a
     browser somewhere, and the number beside it is how many people have it open — one person
     with three tabs is one person, and nobody is named. Having a queue open is what publishes
@@ -128,19 +132,25 @@
 /* ============================================================================
    The browse page for shared queues.
 
-   It reads `queue_index` rather than `queues`. That node holds one small card per queue —
-   title, author, date, count — so listing a hundred queues costs a hundred short records
-   instead of a hundred full track lists. It also means `queues` itself never has to become
-   enumerable: the full node is still read one at a time, by id.
+   Everyone else's queues come from `queue_index`, not from `queues`. That node holds one
+   small card per queue — title, author, date, count — so listing a hundred queues costs a
+   hundred short records instead of a hundred full track lists. It also means `queues` itself
+   never has to become enumerable: the full node is still read one at a time, by id.
 
-   This page makes queues discoverable, which is a deliberate reversal. Until now a queue's
-   id was its secret and nothing listed them. Browsing other people's requires giving that
-   up, so the page says plainly what becomes public, and the owner gets a listed/unlisted
-   switch so it is a choice rather than a default nobody was told about.
+   This page makes queues discoverable, which is a deliberate reversal — and the reversal is
+   opt-in. A queue's id IS its secret: `queues/<qid>` is world-readable once you hold the id,
+   so publishing the id publishes the queue and its chat. queue_index is world-readable, which
+   means a row in it is exactly that publication. So an unlisted queue has no row here at all,
+   rather than a row flagged listed:false that this page politely skips — a flag would still
+   have handed the id to every browser that loaded this page. New queues start unlisted, and
+   listing is a switch on the queue's own page.
+
+   The price is that "Mine" cannot be a filter over this node any more; see loadMine.
    ============================================================================ */
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import { getDatabase, ref, onValue, remove } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+import { getDatabase, ref, onValue, remove, get, query, orderByChild, equalTo }
+  from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBJgYjvHXL69y_7i7qG2qwBzYVUA1lCZuE",
@@ -167,7 +177,41 @@ const when = ms => {
   return d.toLocaleDateString();
 };
 
-let ME = '', VIEW = 'mine', ROWS = [];
+let ME = '', VIEW = 'mine', ROWS = [], MINE = [];
+
+/* ---------- "Mine", which the public index can no longer answer ----------
+   An unlisted queue has no row in queue_index — that is the whole of what unlisting means —
+   so your own list cannot be a filter over that node. It comes instead from the one query the
+   rules allow against `queues` itself: order by meta/owner, equal to your own uid. Reading the
+   whole of `queues` stays refused, so this enumerates yours and nobody else's, and it needs no
+   rule that is not already published.
+
+   A one-shot get() rather than onValue, which is the trade being made here: these are FULL
+   queues — tracks, chat, playhead and all — and the playhead of a queue that is playing is
+   rewritten every few seconds, so a live listener would re-download your own track lists on
+   every tick to keep a management list fresh. It is re-read on the events that can change it
+   instead: arriving, switching to this tab, and deleting. */
+async function loadMine() {
+  if (!DB || !ME) return;
+  try {
+    const snap = await get(query(ref(DB, 'queues'), orderByChild('meta/owner'), equalTo(ME)));
+    const v = snap.val() || {};
+    MINE = Object.entries(v).map(([qid, q]) => {
+      const m = (q && q.meta) || {};
+      return {
+        qid, owner: m.owner, ownerName: m.ownerName, title: m.title, created: m.created,
+        open: m.open, listed: m.listed === true,
+        /* Counted from the queue rather than read from the card, so it is right even for a
+           queue that has no card. */
+        n: Object.keys((q && q.tracks) || {}).length
+      };
+    });
+  } catch (e) {
+    console.warn('[queues] own list refused', e);
+    MINE = [];
+  }
+  if (VIEW === 'mine') render();
+}
 
 /* ---------- live, from the queues themselves ----------
    The index card cannot answer this. Presence lives at queues/<qid>/presence/<uid>/<conn>,
@@ -211,16 +255,19 @@ function syncPresence(rows) {
 function render() {
   const list = el('list');
   list.innerHTML = '';
-  const rows = ROWS
-    .filter(q => VIEW === 'mine' ? q.owner === ME : (q.listed !== false))
+  /* Two sources, not two filters over one. "Mine" is the owner query, which is the only read
+     that can see your unlisted queues; "Everyone" is the public index. The listed check stays
+     on the public side for rows written before unlisting meant removing the card — the queue
+     page sweeps those away as their owners visit them, and until then this hides them. */
+  const rows = (VIEW === 'mine' ? MINE : ROWS.filter(q => q.listed !== false))
     .sort((a, b) => (b.created || 0) - (a.created || 0));
 
   syncPresence(rows);
 
   el('empty').style.display = rows.length ? 'none' : 'block';
   el('empty').textContent = VIEW === 'mine'
-    ? 'You have not published any queues yet.'
-    : 'Nobody has published a listed queue yet.';
+    ? 'You have not shared any queues yet.'
+    : 'Nobody has listed a queue yet. Queues are unlisted until their owner lists them, so this page is empty rather than hiding anything.';
 
   for (const q of rows) {
     const mine = q.owner === ME;
@@ -242,7 +289,9 @@ function render() {
     bits.push((q.n || 0) + (q.n === 1 ? ' track' : ' tracks'));
     sline.appendChild(document.createTextNode('  ·  ' + bits.join('  ·  ')));
     if (q.open) { const o = document.createElement('span'); o.className = 'tag'; o.textContent = '  ·  open adding'; sline.appendChild(o); }
-    if (q.listed === false) { const u = document.createElement('span'); u.className = 'tag'; u.textContent = '  ·  unlisted'; sline.appendChild(u); }
+    /* Only ever seen on the Mine tab now, where it is the useful half of the pair: nothing on
+       the Everyone tab can be unlisted, because an unlisted queue is not in the node it reads. */
+    if (q.listed !== true) { const u = document.createElement('span'); u.className = 'tag'; u.textContent = '  ·  unlisted'; sline.appendChild(u); }
     meta.append(t, sline);
 
     /* Nothing is claimed before the answer arrives: an unread queue shows no state at all
@@ -277,9 +326,19 @@ function render() {
         if (!confirm('Delete "' + (q.title || 'Untitled queue') + '" for everyone? This cannot be undone.')) return;
         d.disabled = true; d.textContent = 'Deleting…';
         try {
-          await remove(ref(DB, 'queue_index/' + q.qid));
+          /* Tolerated, not awaited for success: an unlisted queue has no card, and removing
+             a row that does not exist is REFUSED rather than ignored (the rule grants the
+             delete to the row's existing owner, and there is no row to own). Letting that
+             throw here would have meant an unlisted queue could not be deleted at all. The
+             queue's own removal below is the one that has to succeed, and it answers to the
+             same ownership check - so a card that somehow survives is an orphan nobody can
+             reach, not a queue that quietly stayed alive. */
+          await remove(ref(DB, 'queue_index/' + q.qid)).catch(() => {});
           await remove(ref(DB, 'queues/' + q.qid));
           toast('Deleted');
+          /* The index listener repaints a LISTED queue away by itself; an unlisted one is not
+             in that node, so nothing would fire and the row would sit there looking alive. */
+          loadMine();
         } catch (e) { toast('Could not delete — ' + (e && e.code || 'refused')); d.disabled = false; d.textContent = 'Delete'; }
       });
       acts.appendChild(d);
@@ -307,6 +366,8 @@ try {
   ME = me.uid;
   try { el('mename').textContent = localStorage.getItem('sl.queue.name') || 'anonymous'; } catch (e) {}
 
+  loadMine();
+
   onValue(ref(DB, 'queue_index'), snap => {
     const v = snap.val() || {};
     ROWS = Object.entries(v).map(([qid, q]) => ({ qid, ...q }));
@@ -325,6 +386,7 @@ for (const b of [el('tabMine'), el('tabAll')]) {
     el('tabMine').classList.toggle('on', VIEW === 'mine');
     el('tabAll').classList.toggle('on', VIEW === 'all');
     render();
+    if (VIEW === 'mine') loadMine();     // render first, so the tab switches now and refreshes when it can
   });
 }
 /* Same blank-slate rule as the queue page: without ?new=1 this lands on whatever local
