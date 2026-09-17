@@ -24,17 +24,20 @@
      the flow is what lets the board below it split in two without the page having to
      reserve a strip of itself for a bar that is always there whether or not anything is
      playing. */
+  /* 620px was the old small player, which was also the default and is no longer offered: the
+     rule stays because .big overrides the width alone and everything else here — the panel,
+     the border, the padding — is the player at any size. */
   #player{max-width:620px;margin:22px auto 0;background:var(--panel);border:1px solid var(--line);
           border-radius:12px;padding:14px 16px 12px}
 
   /* ---------- theatre ----------
-     The first step past normal, and whichever player is showing grows into it. The three embeds want
-     different things from the extra room: YouTube wants the frame's own shape, so it takes
+     The smaller of the two sizes, and the one the page opens at. The three embeds want
+     different things from the room: YouTube wants the frame's own shape, so it takes
      the width and derives its height from it; Spotify swaps layout on height alone — under
      about 300px it draws the compact strip and above it the full card with the cover — so
      it is given the height that buys the card; Suno's embed simply draws bigger.
-     The page keeps its columns underneath either way: theatre widens the player, it does
-     not take the screen. */
+     The page keeps its columns underneath: theatre widens the player, it does not take the
+     screen. That is what full window is for. */
   #player.big{max-width:min(1060px,100%)}
   #player.big #frame{height:232px}
   #player.big #yt{width:100%;height:auto;aspect-ratio:16/9}
@@ -336,11 +339,10 @@
         <button id="prev" title="Previous (shift+left)">&#9198;</button>
         <button id="next" title="Next (shift+right)">&#9197;</button>
         <!-- A size control rather than a playback mode, so it sits with the transport and
-             not among auto/shuf/rep — which are also, at 620px with the yt button showing,
-             already as many words as that row can hold. -->
-        <button id="tbig" title="Theatre size — a bigger player (t)">&#9974;</button>
-        <!-- The title is rewritten by applySize(): it names what the next press does, since
-             a ring of three has no state a single glyph could report. -->
+             not among auto/shuf/rep. -->
+        <button id="tbig" title="Full window — the player covers the page (t)">&#9974;</button>
+        <!-- The title is rewritten by applySize(): it names what the next press does. It is
+             lit only in full window, so the glyph alone never has to report the state. -->
       </div>
       <div class="now">
         <div class="nt" id="nt">Nothing playing</div>
@@ -401,7 +403,7 @@
   <footer>
     <span style="float:right;font-family:var(--mono);font-size:10.5px;color:var(--line)" id="buildstamp"></span>
     <b>Keys:</b> <kbd>shift</kbd>+<kbd>←</kbd> <kbd>→</kbd> previous / next track · <kbd>t</kbd> player size —
-    normal, theatre, full window, round again · <kbd>esc</kbd> out of full window.<br><br>
+    theatre or full window · <kbd>esc</kbd> out of full window.<br><br>
     <b>Moving tracks between the columns.</b> A row drags within <b>Up next</b> to reorder the
     queue, and now also across to <b>Already played</b> and back. Dragged into the played
     column it is recorded as heard without being played — the way to skip something for good
@@ -623,11 +625,13 @@ const fetchT = (u, ms) => {                      // a hung proxy must not hang t
 };
 
 /* ---------- state ---------- */
-/* The player's size is one of three steps rather than a flag: normal, theatre, full window.
-   It cycles in that order and wraps, which is why the button's title says what the NEXT
-   press does rather than naming the state you are in. */
-const SIZES = ['normal', 'big', 'max'];
-let Q = [], cur = -1, shuffling = false, repeat = 'off', auto = false, psize = 'normal';
+/* The player has two sizes: theatre and full window. It had a third, smaller one, which was
+   the default and is now gone — nobody chose 620px of player on purpose, and a size you pass
+   through on the way somewhere else is a step, not a choice. Theatre is the floor. The two
+   still cycle rather than toggle, so the button's title says what the NEXT press does rather
+   than naming the state you are in. */
+const SIZES = ['big', 'max'];
+let Q = [], cur = -1, shuffling = false, repeat = 'off', auto = false, psize = 'big';
 let shufOrder = [], metaCache = {};
 
 /* ?new=1 means "give me a blank queue" — handled before the stored list is read, and the
@@ -648,12 +652,12 @@ try { localStorage.removeItem('sl.queue.meta.v1'); } catch (e) {}   // supersede
 try {
   const p = JSON.parse(localStorage.getItem(LS_PREFS) || '{}');
   shuffling = !!p.shuffling; repeat = p.repeat || 'off'; auto = !!p.auto;
-  /* `theatre` is what this was before there was a third step, and a browser that has been
-     here before still has it stored. A stored full window is not restored: arriving at a
-     page that has covered itself over, with no memory of asking for it, is a worse first
-     second than one extra keypress. */
-  psize = SIZES.includes(p.size) ? p.size : (p.theatre ? 'big' : 'normal');
-  if (psize === 'max') psize = 'big';
+  /* The size is not restored, and nothing stored is read back into it. Of the two that are
+     left, theatre is the smaller and everything lands there: the old `theatre` boolean and
+     the `normal` of the three-size version have nowhere smaller to go, and a stored full
+     window is deliberately not reinstated — arriving at a page that has covered itself over,
+     with no memory of asking for it, is a worse first second than one keypress. It is still
+     WRITTEN, so a size worth remembering would only have to be read. */
 } catch (e) {}
 
 const save = () => { try { localStorage.setItem(LS_Q, JSON.stringify(Q)); } catch (e) {} };
@@ -1712,11 +1716,11 @@ let spAPI = null, sp = null, spReady = false, spPending = null, spEnded = false;
 
 const spURI = r => SP_PATH.test(r.id) ? 'spotify:' + r.id.replace('/', ':') : '';
 /* Spotify picks its layout off the height alone: the compact strip below about 300px, the
-   full card with the cover above it. So theatre is not a scale factor here, it is the step
-   across that threshold. A set needs more again, because the card carries a track list. */
-/* Full window is not a third number here: the stylesheet overrides the height outright in
-   that mode, so what this returns is what the frame goes back to on the way out. */
-const spHeight = r => (r && r.src === 'spl') ? (psize !== 'normal' ? 600 : 380) : (psize !== 'normal' ? 352 : 152);
+   full card with the cover above it. Theatre clears that threshold, which is what the 352 is
+   for — the compact strip was the old small player's doing and went with it. A set needs more
+   again, because the card carries a track list. Full window is not a third number: the
+   stylesheet overrides the height outright there, so this is what the frame comes back to. */
+const spHeight = r => (r && r.src === 'spl') ? 600 : 352;
 
 function ensureSPApi() {
   if (spAPI || document.getElementById('spapi')) return;
@@ -2001,21 +2005,21 @@ $('#tfollow').addEventListener('click', () => {
   else toast("Following - you will pick up the owner's track when they play");
 });
 /* ---------- player size ----------
-   Normal, theatre, full window; the same button and the same key walk the three in a ring.
-   Two of the three embeds take their new size from the stylesheet alone, but Spotify's is
-   sized in pixels by its controller, so the live frame has to be told — and told now rather
-   than at the next track, or the toggle would look like it had done nothing to what is
-   playing. */
-const SIZE_NEXT = { normal: 'Theatre size — a bigger player (t)',
-                    big:    'Full window — the player covers the page (t)',
-                    max:    'Back to the page (t, or escape)' };
+   Theatre and full window; the same button and the same key walk the two. Two of the three
+   embeds take their new size from the stylesheet alone, but Spotify's is sized in pixels by
+   its controller, so the live frame has to be told — and told now rather than at the next
+   track, or the toggle would look like it had done nothing to what is playing. */
+const SIZE_NEXT = { big: 'Full window — the player covers the page (t)',
+                    max: 'Back to theatre size (t, or escape)' };
 function applySize() {
   const p = $('#player');
-  p.classList.toggle('big', psize !== 'normal');   // full window keeps theatre's proportions
+  p.classList.add('big');                          // the floor now, and full window builds on it
   p.classList.toggle('max', psize === 'max');
   document.documentElement.classList.toggle('maxed', psize === 'max');
   const b = $('#tbig');
-  b.classList.toggle('on', psize !== 'normal');
+  /* Lit for full window only. It used to mean "bigger than normal", which with theatre as
+     the floor would be always, and a light that is always on says nothing. */
+  b.classList.toggle('on', psize === 'max');
   b.title = SIZE_NEXT[psize];
   const f = $('#spwrap').querySelector('iframe');
   if (f) f.style.height = spHeight(isSP(Q[cur]) ? Q[cur] : null) + 'px';
@@ -2129,11 +2133,10 @@ document.addEventListener('keydown', e => {
   else if ((e.key === 't' || e.key === 'T') && !e.ctrlKey && !e.metaKey && !e.altKey) {
     e.preventDefault(); $('#tbig').click();
   }
-  /* Escape is the key everybody tries against something covering the window, and it lands
-     where a third press of t would: on the page, not in theatre — one way out with one
-     destination beats two exits that disagree. Left alone in the other two sizes, where
-     nothing is covered and the key belongs to the browser. */
-  else if (e.key === 'Escape' && psize === 'max') { e.preventDefault(); setSize('normal'); }
+  /* Escape is the key everybody tries against something covering the window, and with two
+     sizes it lands exactly where another press of t would: back in theatre. Left alone
+     there, where nothing is covered and the key belongs to the browser. */
+  else if (e.key === 'Escape' && psize === 'max') { e.preventDefault(); setSize('big'); }
 });
 
 /* ---------- boot ----------
