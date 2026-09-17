@@ -70,11 +70,19 @@ export default {
           { headers: { 'user-agent': 'Mozilla/5.0' } });
         if (!r.ok) throw new Error(String(r.status));
         const j = await r.json();
+        const dur = Math.round((j.metadata && j.metadata.duration) || 0);
+        /* A clip that is still GENERATING has no duration yet, and the 24h cache-control
+           above would pin that zero in every browser that asked - which is exactly what
+           happened: a queue row added mid-generation kept re-asking, kept being handed the
+           cached zero, and could never auto-advance even hours after the take finished.
+           A length is immutable once it exists, so cache that hard; a zero is a provisional
+           answer about a song still being made, so cache nothing. */
         return new Response(JSON.stringify({
           title: String(j.title || '').slice(0, 140),
-          dur: Math.round((j.metadata && j.metadata.duration) || 0),
+          dur,
           art: typeof j.image_url === 'string' && j.image_url.startsWith('https://') ? j.image_url : ''
-        }), { headers: { ...cors, 'content-type': 'application/json' } });
+        }), { headers: { ...cors, 'content-type': 'application/json',
+                         'cache-control': dur ? 'public, max-age=86400' : 'no-store' } });
       } catch (e) {
         return new Response(JSON.stringify({ error: 'could not read that song' }),
           { status: 404, headers: { ...cors, 'content-type': 'application/json' } });

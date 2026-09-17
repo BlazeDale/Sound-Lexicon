@@ -661,10 +661,15 @@ const rememberShare = (url, id) => {
   shareSeen[String(url)] = id;
   try { localStorage.setItem('sl.queue.shares.v1', JSON.stringify(shareSeen)); } catch (e) {}
 };
-const fetchT = (u, ms) => {                      // a hung proxy must not hang the queue
+/* `fresh` skips the HTTP cache. Only the re-ask for a missing length uses it: everything
+   else WANTS the cache, and a queue of thirty rows re-fetching every cover on every load
+   would be worse than the problem. See refreshUntimed. */
+const fetchT = (u, ms, fresh) => {               // a hung proxy must not hang the queue
   const stop = new AbortController();
   const t = setTimeout(() => stop.abort(), ms);
-  return fetch(u, { signal: stop.signal }).finally(() => clearTimeout(t));
+  const opt = { signal: stop.signal };
+  if (fresh) opt.cache = 'no-store';
+  return fetch(u, opt).finally(() => clearTimeout(t));
 };
 
 /* ---------- state ---------- */
@@ -835,14 +840,14 @@ async function resolveSP(id) {
   return row;
 }
 
-async function resolve(id, src) {
+async function resolve(id, src, fresh) {
   if (src === 'ytpl') return resolveYTPL(id);
   if (src === 'yt') return resolveYT(id);
   if (src === 'sp' || src === 'spl') return resolveSP(id);
   const local = localRow(id);
   if (local && local.ok) return local;
 
-  const c = metaCache[id];
+  const c = fresh ? null : metaCache[id];
   if (c && c.dur) return { id, src: 'suno', title: c.title, sub: (local && local.sub) || '', ent: !!(local && local.ent),
                            /* A library demo's cover is settled in data.js, so that wins over
                               anything the cache happens to be holding. */
@@ -857,17 +862,24 @@ async function resolve(id, src) {
      twenty seconds when it works at all, which is why a resolved share link then sat there
      showing an 8-character id instead of its title. The proxy stays last. */
   const j = await queued(async () => {
-    try { const r = await fetchT(url, 9000); if (r.ok) return await r.json(); } catch (e) {}
+    try { const r = await fetchT(url, 9000, fresh); if (r.ok) return await r.json(); } catch (e) {}
     if (SHARE_RESOLVER) {
       try {
-        const r = await fetchT(SHARE_RESOLVER + '?clip=' + encodeURIComponent(id), 9000);
+        /* The cache-buster is not belt-and-braces with `fresh` - it is the half that works
+           TODAY. The worker used to send max-age=86400 on every answer including the zero
+           it gives for a song still being generated, so every browser that asked once holds
+           that zero for a day; no-store only governs the request this page makes, while a
+           distinct URL is what steps around an entry already sitting in the cache. The
+           worker has been fixed too, but this keeps the poisoned caches working. */
+        const r = await fetchT(SHARE_RESOLVER + '?clip=' + encodeURIComponent(id)
+          + (fresh ? '&_=' + Date.now() : ''), 9000, fresh);
         if (r.ok) {
           const m = await r.json();
           if (m && !m.error) return { title: m.title, image_url: m.art, metadata: { duration: m.dur } };
         }
       } catch (e) {}
     }
-    try { const r = await fetchT(PROXY(url), 15000); if (r.ok) return await r.json(); } catch (e) {}
+    try { const r = await fetchT(PROXY(url), 15000, fresh); if (r.ok) return await r.json(); } catch (e) {}
     return null;
   });
 
@@ -917,7 +929,7 @@ async function refreshUntimed() {
   for (const r of rows.slice(0, 4)) {
     r.tries = (r.tries || 0) + 1;
     let got = null;
-    try { got = await resolve(r.id, 'suno'); } catch (e) {}
+    try { got = await resolve(r.id, 'suno', true); } catch (e) {} // fresh: see fetchT
     if (!got || !(got.dur > 0)) continue;
     const wasCurrent = cur >= 0 && Q[cur] === r;
     r.dur = got.dur;
