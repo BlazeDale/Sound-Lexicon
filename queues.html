@@ -252,6 +252,35 @@ function syncPresence(rows) {
   }
 }
 
+/* ---------- clearing out the old scheme's rows ----------
+   Unlisting used to mean writing listed:false into the index row and letting this page filter
+   on it. The row stayed, so the id stayed in a node every visitor downloads - the queue was
+   off the list while its address was still being handed out. Unlisting now removes the row,
+   but the rows written before that are still there, and only their owner may delete one.
+
+   This page is where that gets done, rather than the queue page: it already holds the whole
+   index and already knows which rows are yours, so the cleanup costs no reads at all and
+   needs nobody to remember to go and open anything. The queue page keeps a backstop for a
+   queue reached by its link.
+
+   The test is the ROW, not the queue's meta. The new scheme never writes listed:false - it
+   writes no row - so a row carrying that flag is provably from the old one. Reading meta
+   instead would mean deleting a listed queue's card if its meta had somehow lost the field,
+   which is a silent unlisting, and a silent delete on page load is not the place to be
+   guessing. Attempted once per id: removing the row re-fires this listener, and the removal
+   is what makes it gone rather than a flag this page then has to keep ignoring. */
+const SWEPT = new Set();
+function sweepStale() {
+  if (!DB || !ME) return;
+  for (const q of ROWS) {
+    if (q.owner !== ME || q.listed !== false || SWEPT.has(q.qid)) continue;
+    SWEPT.add(q.qid);
+    remove(ref(DB, 'queue_index/' + q.qid))
+      .then(() => console.info('[queues] removed a stale index row for ' + q.qid + ' - it was unlisted but still published its id'))
+      .catch(e => console.warn('[queues] could not remove the stale index row for ' + q.qid, e));
+  }
+}
+
 function render() {
   const list = el('list');
   list.innerHTML = '';
@@ -372,6 +401,7 @@ try {
     const v = snap.val() || {};
     ROWS = Object.entries(v).map(([qid, q]) => ({ qid, ...q }));
     render();
+    sweepStale();
   }, err => {
     el('empty').textContent = 'Could not read the queue list: ' + (err && err.code || 'refused');
   });

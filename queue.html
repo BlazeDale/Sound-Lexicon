@@ -2758,17 +2758,23 @@ try {
       window.__applyRemote(tracks, meta);
       /* Queues unlisted under the old scheme kept their index row and merely flagged it
          listed:false, so their ids stayed in a world-readable node and only the browse page's
-         filter hid them. The owner is the one client the rules let remove that row, and this is
-         the moment they are here holding the id. Once per load, and silent: a queue with no row
-         to remove is the ordinary case, not a fault. */
+         filter hid them. The owner is the one client the rules let remove that row.
+
+         This is the BACKSTOP, not the cleanup: it only reaches a queue you happen to open, and
+         the queues that need it are the unlisted ones you have least reason to visit. The
+         browse page does the actual sweep, over every row at once — see sweepStale there. This
+         stays because it costs one read and catches a queue reached by its link. */
       if (!swept && meta.owner === me.uid && meta.listed !== true) {
         swept = true;
-        /* Read before removing. A delete here is authorised by the row's EXISTING owner, so
-           removing a row that is not there is not a quiet no-op - it is a refused write, and
-           every load of every unlisted queue would make one. Unlisted is now the common case,
-           so look first: one small read, and nothing to explain in the console. */
+        /* Read before removing, for two reasons. A delete here is authorised by the row's
+           EXISTING owner, so removing a row that is not there is not a quiet no-op - it is a
+           refused write, and every load of every unlisted queue would make one. And the row
+           is what says whether it is stale: the new scheme never writes listed:false, it
+           writes no row, so that flag is proof rather than inference. Testing meta instead
+           would delete a LISTED queue's card if its meta had somehow lost the field. */
         get(ref(db, 'queue_index/' + qid)).then(s2 => {
-          if (s2.exists()) return remove(ref(db, 'queue_index/' + qid));
+          const row = s2.exists() ? s2.val() : null;
+          if (row && row.listed === false) return remove(ref(db, 'queue_index/' + qid));
         }).catch(() => {});
       }
     });
