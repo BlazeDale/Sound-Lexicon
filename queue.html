@@ -11,6 +11,15 @@
     --ink:#111419; --panel:#181c24; --panel2:#1f2530; --line:#2a313d;
     --text:#e9e6dd; --muted:#98a0ad; --dim:#6b7280;
     --amber:#e0a63c; --amber-dim:#8a6a2a; --teal:#1a9e75; --red:#c2544a;
+    /* Where a row's way out GOES, in that service's own colour. YouTube's red and Spotify's
+       green are their brand hues pulled back from full strength — #FF0000 and #1DB954 are
+       mixed for white pages and glare on a panel this dark — and Suno's is bone, because
+       Suno's own site is monochrome and inventing a colour for it would be the wrong answer.
+       Each has a resting tone near --dim in weight, so a column of these stays as quiet as
+       the one grey chip it replaces; the full hue is for the pointer. */
+    --yt:#ff5c52;  --yt-dim:#8f4a45; --yt-line:#3c2a29; --yt-wash:rgba(255,92,82,.09);
+    --sp:#1ed760;  --sp-dim:#3d7d5c; --sp-line:#22352b; --sp-wash:rgba(30,215,96,.09);
+    --su:#f1eee5;  --su-dim:#8a857c; --su-line:#39362f; --su-wash:rgba(241,238,229,.07);
     --mono:'SF Mono','Menlo','Consolas','Liberation Mono',monospace;
     --sans:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
   }
@@ -166,8 +175,21 @@
   .by b{color:var(--teal);font-weight:600}
   .dur{font-family:var(--mono);font-size:11.5px;color:var(--muted);flex:none}
   .out{flex:none;color:var(--dim);text-decoration:none;font-size:11px;font-family:var(--mono);
-       border:1px solid var(--line);border-radius:6px;padding:3px 8px;white-space:nowrap}
+       border:1px solid var(--line);border-radius:6px;padding:3px 8px;white-space:nowrap;
+       transition:color .12s ease,border-color .12s ease,background-color .12s ease}
   .out:hover{color:var(--amber);border-color:var(--amber-dim)}
+  /* The same chip in three liveries. Resting: the source's colour at the weight the grey was,
+     so the queue reads as one column and not as three brands competing down the page. Hover
+     or keyboard focus: the hue fills in, the border follows it, and a wash of the same colour
+     comes up behind — which is also what makes it obvious that the chip is the thing under
+     the pointer, on a row that is itself clickable. */
+  .out.yt{color:var(--yt-dim);border-color:var(--yt-line)}
+  .out.yt:hover,.out.yt:focus-visible{color:var(--yt);border-color:var(--yt-dim);background:var(--yt-wash)}
+  .out.sp{color:var(--sp-dim);border-color:var(--sp-line)}
+  .out.sp:hover,.out.sp:focus-visible{color:var(--sp);border-color:var(--sp-dim);background:var(--sp-wash)}
+  .out.su{color:var(--su-dim);border-color:var(--su-line)}
+  .out.su:hover,.out.su:focus-visible{color:var(--su);border-color:var(--su-dim);background:var(--su-wash)}
+  @media(prefers-reduced-motion:reduce){.out{transition:none}}
   .x{flex:none;border:0;background:none;color:var(--dim);font-size:16px;line-height:1;padding:4px 6px;cursor:pointer;border-radius:5px}
   .x:hover{color:var(--red);background:rgba(194,84,74,.1)}
   .heart{flex:none;border:0;background:none;color:var(--dim);font-family:var(--mono);font-size:12px;line-height:1;
@@ -1436,22 +1458,28 @@ function rowEl(r, i) {
        because "take me to this track properly" is the same wish. */
     {
       const out = document.createElement('a');
-      out.className = 'out';
       out.target = '_blank'; out.rel = 'noopener';
       out.addEventListener('click', ev => ev.stopPropagation());   // not a request to play it
+      /* The class is the livery — see .out.yt / .out.sp / .out.su. It is set alongside the
+         href rather than derived afterwards, so a source that ever grows a fourth branch
+         cannot end up wearing another one's colour. */
       if (r.src === 'ytpl') {
+        out.className = 'out yt';
         out.href = 'https://www.youtube.com/playlist?list=' + r.id;
         out.textContent = 'YouTube ↗';
         out.title = 'Open the playlist on YouTube';
       } else if (r.src === 'yt') {
+        out.className = 'out yt';
         out.href = 'https://www.youtube.com/watch?v=' + r.id;
         out.textContent = 'YouTube ↗';
         out.title = 'Open on YouTube, where your account and Premium apply';
       } else if (isSP(r)) {
+        out.className = 'out sp';
         out.href = SP_PATH.test(r.id) ? 'https://open.spotify.com/' + r.id : 'https://open.spotify.com/';
         out.textContent = 'Spotify ↗';
         out.title = 'Open on Spotify, where your account and Premium apply — and the whole track plays';
       } else {
+        out.className = 'out su';
         out.href = 'https://suno.com/song/' + r.id;
         out.textContent = 'Suno ↗';
         out.title = 'Open on Suno — lyrics, style and the rest of the record';
@@ -2467,7 +2495,7 @@ function renderChat() {
              the link itself, so whoever wants it can open it and paste the address back. */
           if (Q.length === before && SHARE_RE.test(raw)) {
             const a = document.createElement('a');
-            a.className = 'out';
+            a.className = 'out su';            // SHARE_RE only ever matches suno.com/s/
             a.href = raw.startsWith('http') ? raw : 'https://' + raw;
             a.target = '_blank'; a.rel = 'noopener';
             a.textContent = 'Open ↗';
