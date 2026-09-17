@@ -404,6 +404,20 @@
     <span style="float:right;font-family:var(--mono);font-size:10.5px;color:var(--line)" id="buildstamp"></span>
     <b>Keys:</b> <kbd>shift</kbd>+<kbd>←</kbd> <kbd>→</kbd> previous / next track · <kbd>t</kbd> player size —
     theatre or full window · <kbd>esc</kbd> out of full window.<br><br>
+    <b>Listening together.</b> On a shared queue, <b>follow</b> keeps a visitor on the owner's
+    track — and now at the owner's <i>position</i> in it, for the two sources that allow it.
+    <b>YouTube</b> and <b>Spotify</b> both publish a player API with a seek and a position, so
+    the owner's playhead is written to the queue whenever it changes and every follower is held
+    within a couple of seconds of it, starting, pausing and jumping when the owner does. The
+    position carried is "this second, at that moment", not a stream of ticks, so a visitor
+    arriving mid-track works out where to be rather than waiting to be told, and both ends use
+    the database's clock so nobody's own is trusted.<br>
+    <b>Suno cannot do this</b>, and the page does not pretend otherwise. Its embed publishes no
+    player API, answers no message, and cannot even be started from outside — which is why the
+    countdown next to it is a timer rather than a playhead. A Suno row still follows to the same
+    track; where you are inside it is yours. On Spotify the thirty-second rule still applies: a
+    preview cannot follow a playhead past 0:30. Picking any row yourself steps out of following,
+    which is also how you take back the pause button.<br><br>
     <b>Moving tracks between the columns.</b> A row drags within <b>Up next</b> to reorder the
     queue, and now also across to <b>Already played</b> and back. Dragged into the played
     column it is recorded as heard without being played — the way to skip something for good
@@ -1096,7 +1110,7 @@ function recordPlayed(k) {
    Until the database answers - or, for a visitor, on a queue whose owner has not played
    anything since this existed - SP.loaded is false and everything behaves exactly as the
    private queue always has. */
-const SP = { loaded: false, now: '', next: [], heard: [], seen: false, raw: null };
+const SP = { loaded: false, now: '', next: [], heard: [], seen: false, raw: null, head: null };
 let following = true, pendingFollow = false, lastOwnerHere = false, applyingPlay = false;
 let colNowKey = '';
 function guest() { return shared() && !isOwner(); }
@@ -1125,6 +1139,101 @@ function sendPlay() {
     window.__net.setPlay(body);
   }, 300);
 }
+
+/* ---------- the playhead: same second, not merely the same track ----------
+   Following used to mean "load what the owner loaded", and then both players ran on their
+   own clocks from wherever each happened to start. This carries the position as well, so a
+   visitor sits where the owner sits.
+
+   It works for two of the three sources and cannot be made to work for the third, which is
+   worth stating plainly rather than half-doing:
+
+     YouTube    getCurrentTime / seekTo / playVideo / pauseVideo, and a state event on every
+                start, pause and seek. Complete control, and the only source that reports its
+                own end honestly, so this is as exact as the two ends' buffering allows.
+     Spotify    the embed controller answers seek() and play(), and playback_update carries
+                the position on every tick, which is both halves of the same deal. The catch
+                is the thirty-second one: a preview cannot follow a playhead past 0:30, and
+                no amount of code changes that — see the note about Premium below.
+     Suno       nothing. The embed exposes no player API, answers no message, and cannot even
+                be STARTED from out here, which is why the timer over there is a countdown
+                rather than a playhead. A Suno row still follows to the same track; the second
+                it is at is theirs alone, and the page says so instead of pretending.
+
+   The shape is a position and the moment it was true — "t seconds, at server time at, and
+   playing" — rather than a stream of ticks. A visitor works the current position out from
+   those three, so the database is written on events and a slow heartbeat between them, not
+   many times a second, and a visitor who arrives mid-track computes their way in with no
+   catch-up traffic at all. Clock skew is taken out by the server's own offset, both ends
+   applying the same correction; see the .info/serverTimeOffset listener. */
+const serverNow = () => Date.now() + (window.__skew || 0);
+
+/* What this browser's player is doing, for the two that will say. */
+function localHead() {
+  const r = cur >= 0 ? Q[cur] : null;
+  if (!r) return null;
+  if (r.src === 'yt' || r.src === 'ytpl') {
+    if (!yt || !ytReady || !yt.getCurrentTime) return null;
+    const st = yt.getPlayerState ? yt.getPlayerState() : -1;
+    return { t: +yt.getCurrentTime() || 0, playing: st === 1 || st === 3 };   // playing or buffering
+  }
+  if (isSP(r)) return spHead;                     // kept up to date by playback_update
+  return null;                                    // Suno, which tells this page nothing
+}
+
+/* The owner writes it: at once when something happened, and otherwise about every seven
+   seconds, which is only a correction — the arithmetic at the other end covers the gap. */
+let headSig = '', headAt = 0;
+function publishHead(now, override) {
+  if (!hosting() || !window.__net || !window.__net.setHead) return;
+  const r = cur >= 0 ? Q[cur] : null, h = r ? (override || localHead()) : null;
+  if (!h) {                                       // nothing playing, or a Suno row
+    /* Cleared only by a tab that had published something. An owner with a second tab open
+       and nothing playing in it would otherwise keep deleting the playhead of the tab that
+       is actually playing — the same shape of problem as two of the owner's tabs bouncing
+       the shared position between them, and cheaper to refuse than to referee. */
+    if (headSig && headSig !== '-') { headSig = '-'; headAt = 0; window.__net.clearHead(); }
+    return;
+  }
+  const sig = keyOf(r) + '|' + (h.playing ? 1 : 0);
+  const t = Date.now();
+  if (!now && sig === headSig && t - headAt < 7000) return;
+  headSig = sig; headAt = t;
+  window.__net.setHead({ k: keyOf(r), t: Math.max(0, Math.round(h.t * 10) / 10), playing: !!h.playing });
+}
+setInterval(() => publishHead(false), 2500);
+
+/* The visitor reads it. `driving` marks the moment or so after this code has moved the
+   player itself, so its own commands are not mistaken for the listener doing something. */
+let driving = 0;
+window.__applyHead = v => { SP.head = v || null; mirrorHead(); };
+
+function mirrorHead() {
+  if (!guest() || !SP.loaded || !following || !ownerHere()) return;
+  const h = SP.head, r = cur >= 0 ? Q[cur] : null;
+  if (!h || !r || !h.at || h.k !== keyOf(r)) return;      // a different track is followOwner's job
+  const want = Math.max(0, h.t + (h.playing ? (serverNow() - h.at) / 1000 : 0));
+  const drive = fn => { driving = Date.now() + 1200; try { fn(); } catch (e) {} };
+
+  if (r.src === 'yt' || r.src === 'ytpl') {
+    if (!yt || !ytReady || !yt.getCurrentTime) return;
+    const at = +yt.getCurrentTime() || 0;
+    const st = yt.getPlayerState ? yt.getPlayerState() : -1;
+    /* Two seconds of slack. Tighter and every buffering hiccup becomes a jump; looser and
+       you are listening to a different part of the song. */
+    if (Math.abs(at - want) > 2) drive(() => yt.seekTo(want, true));
+    if (h.playing && st !== 1 && st !== 3) drive(() => yt.playVideo());
+    if (!h.playing && st === 1) drive(() => yt.pauseVideo());
+  } else if (isSP(r)) {
+    if (!sp || !spReady) return;
+    if (Math.abs((spHead ? spHead.t : 0) - want) > 2 && sp.seek) drive(() => sp.seek(want));
+    if (h.playing && spHead && !spHead.playing && sp.play) drive(() => sp.play());
+    if (!h.playing && spHead && spHead.playing && sp.pause) drive(() => sp.pause());
+  }
+}
+/* A visitor's own correction beat. The owner's writes arrive as they happen, but drift is
+   gradual and needs looking at rather than waiting for. */
+setInterval(mirrorHead, 3000);
 
 /* The visitor's half. Load the owner's track when it changes - if following, and only while
    the owner is actually here. A position left behind by an owner who has gone is where the
@@ -1209,6 +1318,17 @@ function render() {
   colNowKey = nowKey;
   $('#nowlab').textContent = at === cur ? 'Playing' : guest() ? "The owner's track" : 'The queue is at';
   $('#tfollow').hidden = !(guest() && SP.loaded);
+  /* What following will actually do here, which depends on the source: two of the three can
+     be held at the owner's second and one cannot. It belongs on the control rather than in a
+     toast, because it is a property of the track under the player and changes with it. */
+  if (guest() && SP.loaded) {
+    const fr = at >= 0 ? Q[at] : null;
+    $('#tfollow').title = !fr
+      ? "Follow what the queue's owner is playing"
+      : (fr.src === 'yt' || fr.src === 'ytpl' || isSP(fr))
+        ? "Following: the owner's track, and your player held at their position. Pick a row yourself to step out."
+        : "Following the owner's track. Suno's embed cannot be told where to play from, so the position in the track is yours alone.";
+  }
   $('#clearheard').hidden = guest() && SP.loaded;        // a visitor cannot reset the queue's history
 
   $('#count').textContent = upcoming.length
@@ -1642,6 +1762,12 @@ window.onYouTubeIframeAPIReady = () => {
         }
       },
       onStateChange: e => {
+        /* Every state change is a playhead event: started, paused, and — since a seek goes
+           through buffering and back to playing — moved. Published at once, because this is
+           exactly what a visitor cannot work out for themselves. Not while this player is
+           being driven BY a playhead, or the owner's tab would echo a visitor's correction
+           back at them. */
+        if (hosting() && Date.now() > driving) publishHead(true);
         if (e.data !== YT.PlayerState.ENDED) return;
         /* In playlist mode ENDED fires at the end of EVERY video, not just the last, so
            advancing the queue on it blindly would skip the rest of the album. Only move on
@@ -1713,6 +1839,9 @@ window.onYouTubeIframeAPIReady = () => {
    The controller REPLACES the element it is given, which is why #sp sits inside #spwrap and
    the wrapper is what gets shown and hidden. */
 let spAPI = null, sp = null, spReady = false, spPending = null, spEnded = false;
+/* Where Spotify says it is, kept from the last playback_update: this API only reports, it
+   will not be asked, so the answer has to be remembered rather than fetched. */
+let spHead = null;
 
 const spURI = r => SP_PATH.test(r.id) ? 'spotify:' + r.id.replace('/', ':') : '';
 /* Spotify picks its layout off the height alone: the compact strip below about 300px, the
@@ -1772,6 +1901,14 @@ function spTick(d) {
   if (!d) return;
   const r = cur >= 0 ? Q[cur] : null;
   if (!isSP(r)) return;
+  /* The playhead, from the only report this embed makes. A jump means somebody dragged the
+     scrubber: nothing announces a seek, but a position that did not get there by the clock
+     is one, and that is worth telling the room at once rather than at the next heartbeat. */
+  const was = spHead;
+  const t = Math.max(0, (d.position || 0) / 1000), playing = !d.isPaused;
+  const jumped = was && Math.abs(t - was.t) > 2.5;
+  spHead = { t, playing };
+  if (hosting() && Date.now() > driving && (jumped || !was || was.playing !== playing)) publishHead(true);
   /* The length nothing else could supply: oEmbed does not carry one. Only a real track is
      recorded — a preview is exactly thirty seconds, which is the player's limit rather than
      the track's, and caching that would put a wrong length on the row for good. */
@@ -1917,6 +2054,18 @@ async function playAt(i, fromFollow) {
       $('#tleft').textContent = mmss(r.dur);
       $('#tfill').style.width = '0%';
     }
+  }
+
+  /* A new track is a new playhead, and the old one is wrong the instant this runs. The
+     position is stated as zero rather than read from the player, because at this moment the
+     player is still holding the PREVIOUS track's time — asking it would publish the new key
+     with the old song's position, and send every visitor seeking to a place this track may
+     not even have. The heartbeat corrects it to wherever this one really starts, seconds
+     later. A Suno row passes nothing, and publishHead clears the node instead. */
+  if (hosting()) {
+    spHead = isSP(r) ? { t: 0, playing: false } : null;
+    headSig = '';
+    publishHead(true, (isSP(r) || r.src === 'yt' || r.src === 'ytpl') ? { t: 0, playing: true } : null);
   }
 
   /* Warm the next row's lookup while this one plays, so its length is known by the time the
@@ -2552,10 +2701,17 @@ try {
     });
   }
 
-  let stopT = null, stopM = null, stopC = null, stopPl = null, stopLk = null;
+  /* The database's clock, not this one's. A playhead is "t seconds at moment at", and a
+     visitor turns that into a position by subtracting one from the other — so a browser whose
+     clock is a minute fast would sit a minute ahead of the owner for ever. RTDB publishes the
+     difference between this machine and the server, which both ends apply, so only the server
+     clock is ever consulted and the two agree even when neither is right. */
+  onValue(ref(db, '.info/serverTimeOffset'), s => { window.__skew = +s.val() || 0; });
+
+  let stopT = null, stopM = null, stopC = null, stopPl = null, stopLk = null, stopHd = null;
   function listen(qid) {
     SQ.qid = qid;
-    [stopT, stopM, stopC, stopPl, stopLk].forEach(f => f && f());
+    [stopT, stopM, stopC, stopPl, stopLk, stopHd].forEach(f => f && f());
     present(qid);
     let tracks = [], meta = {};
     stopM = onValue(ref(db, 'queues/' + qid + '/meta'), s => { meta = s.val() || {}; window.__applyRemote(tracks, meta); });
@@ -2570,6 +2726,7 @@ try {
     });
     stopPl = onValue(ref(db, 'queues/' + qid + '/play'), s => window.__applyPlay(s.val()));
     stopLk = onValue(ref(db, 'queues/' + qid + '/likes'), s => window.__applyLikes(s.val()));
+    stopHd = onValue(ref(db, 'queues/' + qid + '/head'), s => window.__applyHead(s.val()));
     el('chat').hidden = false;
     el('board').classList.add('withchat');
     setTimeout(() => window.__sizeChat && window.__sizeChat(), 0);
@@ -2665,7 +2822,7 @@ try {
       /* Same parent-path problem as create, so the children go first and the node itself is
          only a tidy-up: once meta, tracks and chat are gone the queue is gone, whether or
          not the write at the node is permitted. */
-      for (const part of ['presence', 'play', 'likes', 'tracks', 'chat', 'meta']) {
+      for (const part of ['presence', 'play', 'head', 'likes', 'tracks', 'chat', 'meta']) {
         await remove(ref(db, 'queues/' + qid + '/' + part)).catch(e => console.warn('[queue] could not remove ' + part, e));
       }
       await remove(ref(db, 'queues/' + qid)).catch(() => {});
@@ -2676,6 +2833,13 @@ try {
     setCount(n) { return update(idxref(), { n: Math.max(0, Math.min(5000, n | 0)) }).catch(() => {}); },
     /* Where the queue is - playing, up next, played. Owner only, the rules enforce it. */
     setPlay(body) { return set(qref('play'), body).catch(e => console.warn('[queue] play position refused (rules not published?)', e)); },
+    /* Where the TRACK is: the owner's playhead. `at` is stamped by the server rather than by
+       this machine, so a visitor's arithmetic never inherits the owner's clock either. */
+    setHead(body) {
+      return set(qref('head'), Object.assign({ at: serverTimestamp() }, body))
+        .catch(e => console.warn('[queue] playhead refused (rules not published?)', e));
+    },
+    clearHead() { return remove(qref('head')).catch(() => {}); },
     /* A like is a row under this listener's own uid, so nobody can like or unlike for anyone else. */
     setLike(k, on) {
       const r = qref('likes/' + k + '/' + me.uid);

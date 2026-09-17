@@ -152,6 +152,26 @@
           "$other": { ".validate": false }
         },
 
+        // The owner's PLAYHEAD, so a visitor's player can sit at the same second rather than
+        // merely on the same track. `t` is where the track was at server time `at`, and
+        // `playing` says whether it has been running since. A visitor works out the position
+        // for themselves from those three, which is why this is written on events - start,
+        // pause, seek, track change - and once every several seconds in between, rather than
+        // on a tick. Owner only: a visitor mirroring a playhead must never be able to move it.
+        //
+        // Separate from "play" on purpose. That node is the columns, and every write of it
+        // re-renders three lists on every visitor; a playhead changes far more often and has
+        // nothing to say about the lists.
+        "head": {
+          ".write": "root.child('queues/' + $qid + '/meta/owner').val() === auth.uid",
+          ".validate": "!newData.exists() || newData.hasChildren(['k','t','at'])",
+          "k":       { ".validate": "newData.isString() && newData.val().length <= 60" },
+          "t":       { ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 36000" },
+          "at":      { ".validate": "newData.isNumber()" },
+          "playing": { ".validate": "newData.isBoolean()" },
+          "$other":  { ".validate": false }
+        },
+
         // The listeners' hearts: likes/<track key>/<uid> = true. Anyone signed in may add or
         // take back their own like, and only their own; the count is how many uids sit under
         // a track. Removing is a delete, which .validate never blocks.
