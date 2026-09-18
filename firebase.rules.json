@@ -101,6 +101,10 @@
           "title":     { ".validate": "newData.isString() && newData.val().length <= 60" },
           "open":      { ".validate": "newData.isBoolean()" },
           "listed":    { ".validate": "newData.isBoolean()" },
+          // Which platforms a GUEST may add from. Absent means allowed - see the tracks rule.
+          "allowSuno": { ".validate": "newData.isBoolean()" },
+          "allowYt":   { ".validate": "newData.isBoolean()" },
+          "allowSp":   { ".validate": "newData.isBoolean()" },
           "created":   { ".validate": "newData.isNumber()" },
           "v":         { ".validate": "newData.isNumber()" },
           "$other":    { ".validate": false }
@@ -110,10 +114,19 @@
         // true, and then only to ADD: the per-key rule requires the row not to exist yet and
         // to carry the writer's own uid. That is what makes "open adding" mean adding, and
         // not also reordering or deleting.
+        //
+        // A guest add must ALSO clear the source gate. meta/allowSuno, allowYt and allowSp
+        // let an owner shut a platform off for guests - a room that wants Suno only, or one
+        // where nobody has Premium so Spotify rows are thirty-second previews for everybody.
+        // Absent means allowed, so every queue that existed before this keeps working and an
+        // owner opts INTO restricting rather than out of it. The gate is deliberately not
+        // applied to the owner's own branch: shutting a source off is a rule for the room,
+        // not a promise to oneself. Checked here rather than in the page, because a button
+        // the page hides is a courtesy and this is the control.
         "tracks": {
           ".write": "root.child('queues/' + $qid + '/meta/owner').val() === auth.uid",
           "$key": {
-            ".write": "root.child('queues/' + $qid + '/meta/owner').val() === auth.uid || (auth != null && root.child('queues/' + $qid + '/meta/open').val() === true && !data.exists() && newData.child('by').val() === auth.uid)",
+            ".write": "root.child('queues/' + $qid + '/meta/owner').val() === auth.uid || ((auth != null && root.child('queues/' + $qid + '/meta/open').val() === true && !data.exists() && newData.child('by').val() === auth.uid) && (newData.child('src').val() === 'suno' ? root.child('queues/' + $qid + '/meta/allowSuno').val() !== false : (newData.child('src').val() === 'yt' || newData.child('src').val() === 'ytpl') ? root.child('queues/' + $qid + '/meta/allowYt').val() !== false : root.child('queues/' + $qid + '/meta/allowSp').val() !== false))",
             ".validate": "newData.hasChildren(['src','id','ord'])",
             "src":    { ".validate": "newData.isString() && (newData.val() === 'suno' || newData.val() === 'yt' || newData.val() === 'ytpl' || newData.val() === 'sp' || newData.val() === 'spl')" },
             "id":     { ".validate": "newData.isString() && newData.val().length <= 40" },

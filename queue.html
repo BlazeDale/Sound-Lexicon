@@ -340,6 +340,13 @@
     <span class="spacer"></span>
     <span id="livedot" class="live" hidden>live</span>
     <button id="openToggle" hidden>Open adding: off</button>
+    <!-- Which platforms guests may add from. Owner only, and only meaningful while open
+         adding is on, which is what the title on each one says. -->
+    <span id="srcgate" hidden>
+      <button class="tog" id="gSuno">Suno</button>
+      <button class="tog" id="gYt">YouTube</button>
+      <button class="tog" id="gSp">Spotify</button>
+    </span>
     <input id="qlink" readonly hidden>
     <button id="copylink" hidden>Copy link</button>
     <button class="tog" id="listedToggle" hidden>listed</button>
@@ -433,6 +440,14 @@
     <span style="float:right;font-family:var(--mono);font-size:10.5px;color:var(--line)" id="buildstamp"></span>
     <b>Keys:</b> <kbd>shift</kbd>+<kbd>←</kbd> <kbd>→</kbd> previous / next track · <kbd>t</kbd> player size —
     theatre or full window · <kbd>esc</kbd> out of full window.<br><br>
+    <b>Which sources guests may use.</b> An owner can switch <b>Suno</b>, <b>YouTube</b> or
+    <b>Spotify</b> off for everyone else, from the three buttons beside <b>Open adding</b>. It
+    is a rule about the room rather than a promise to yourself — the owner can still add from
+    any source — and it only bites while open adding is on, since guests cannot add at all
+    otherwise. A blocked link posted in the chat says which source is off rather than quietly
+    offering nothing. Like open-adding, this is enforced by the database and not by hiding the
+    button: a guest who calls the API by hand is refused just the same. A queue that has never
+    been restricted allows all three, which is what every queue made before this does.<br><br>
     <b>Listening together.</b> On a shared queue, <b>follow</b> keeps a visitor on the owner's
     track — and now at the owner's <i>position</i> in it, for the two sources that allow it.
     <b>YouTube</b> and <b>Spotify</b> both publish a player API with a seek and a position, so
@@ -1020,7 +1035,7 @@ async function addMany(text, quiet) {
 
   const have = new Set(Q.map(keyOf));
   const seen = new Set();
-  const fresh = found.filter(f => {
+  let fresh = found.filter(f => {
     const k = keyOf(f);
     if (have.has(k) || seen.has(k)) return false;
     seen.add(k); return true;
@@ -1036,6 +1051,16 @@ async function addMany(text, quiet) {
      same order. */
   if (shared()) {
     if (!canAdd()) { if (!quiet) toast('This queue is not open for additions — paste it in the chat instead'); return 0; }
+    /* Sorted before the name prompt, so a guest whose links are all blocked is told why
+       rather than being asked to pick a display name for nothing. The database would refuse
+       these anyway; saying so here is the difference between a rule and a silence. */
+    const blocked = fresh.filter(f => !canAddSrc(f.src));
+    fresh = fresh.filter(f => canAddSrc(f.src));
+    if (blocked.length && !quiet) {
+      const names = [...new Set(blocked.map(f => PLAT_NAME[PLAT[f.src]] || 'that source'))];
+      toast(names.join(' and ') + (names.length > 1 ? ' are' : ' is') + ' switched off in this queue');
+    }
+    if (!fresh.length) return 0;
     const who = needName('Adding to a shared queue');
     if (!who) return 0;
     for (const f of fresh) {
@@ -1086,9 +1111,18 @@ async function addMany(text, quiet) {
    Guests can always SUGGEST, because chat is open to everyone and any link in a message
    gets an add button for whoever is allowed to press it. Open-adding is therefore a
    convenience, not the only road in. */
-const SQ = { qid: '', uid: '', owner: '', open: false, name: '', ready: false, chat: [] };
+const SQ = { qid: '', uid: '', owner: '', open: false, name: '', ready: false, chat: [],
+             /* Which platforms a GUEST may add from. All three default true, so a queue that
+                has never been restricted behaves exactly as it always did. */
+             allow: { suno: true, yt: true, sp: true } };
 const isOwner = () => !!SQ.qid && !!SQ.uid && SQ.uid === SQ.owner;
 const canAdd  = () => !SQ.qid || isOwner() || SQ.open;
+/* Five src codes, three platforms: a listener thinks "no YouTube", not "no yt and no ytpl". */
+const PLAT = { suno: 'suno', yt: 'yt', ytpl: 'yt', sp: 'sp', spl: 'sp' };
+const PLAT_NAME = { suno: 'Suno', yt: 'YouTube', sp: 'Spotify' };
+/* The owner is never gated: shutting a source off is a rule for the room, not a promise to
+   oneself, and the database agrees — the gate lives only on the guest branch of the rule. */
+const canAddSrc = src => !SQ.qid || isOwner() || (SQ.open && SQ.allow[PLAT[src] || 'suno'] !== false);
 const shared  = () => !!SQ.qid;
 
 /* ---------- the queues you own ----------
@@ -2467,10 +2501,27 @@ window.__applyRemote = (tracks, meta) => {
   $('#openToggle').hidden = !isOwner();
   $('#openToggle').textContent = 'Open adding: ' + (SQ.open ? 'on' : 'off');
   $('#openToggle').classList.toggle('primary', SQ.open);
+  /* Absent reads as allowed, which is what keeps every queue made before this unchanged. */
+  SQ.allow = { suno: !meta || meta.allowSuno !== false,
+               yt:   !meta || meta.allowYt   !== false,
+               sp:   !meta || meta.allowSp   !== false };
+  $('#srcgate').hidden = !isOwner();
+  for (const [p, id] of [['suno', '#gSuno'], ['yt', '#gYt'], ['sp', '#gSp']]) {
+    const on = SQ.allow[p];
+    $(id).classList.toggle('on', on);
+    $(id).title = (on ? PLAT_NAME[p] + ' links are allowed from guests' : PLAT_NAME[p] + ' links are refused from guests')
+      + (SQ.open ? '' : ' — no effect while open adding is off')
+      + '. You can always add them yourself.';
+  }
   $('#clear').hidden = $('#shuffleall').hidden = !isOwner();
   $('#chatnote').textContent = isOwner()
     ? 'you own this queue — links posted here get an add button'
-    : (SQ.open ? 'anyone with the link can add tracks or talk here' : 'paste a link here to suggest it to the owner');
+    : (SQ.open
+        ? 'anyone with the link can add tracks or talk here'
+          + (['suno', 'yt', 'sp'].some(p => !SQ.allow[p])
+              ? ' — ' + ['suno', 'yt', 'sp'].filter(p => !SQ.allow[p]).map(p => PLAT_NAME[p]).join(' and ') + ' off'
+              : '')
+        : 'paste a link here to suggest it to the owner');
   syncHeard();                          // this queue's own history, not the local one's
   rebuildShuffle(); render();
 };
@@ -2574,10 +2625,17 @@ function renderChat() {
     const label = { yt: 'YouTube track', ytpl: 'YouTube playlist', suno: 'Suno track',
                     sp: 'Spotify track' };
 
-    const offer = (text, raw, dup) => {
+    /* `src` rides along because the offer has to answer the source gate as well as the
+       open-adding one, and only the caller knows which platform a given link came from. */
+    const offer = (text, raw, dup, src) => {
       const wrap = document.createElement('div'); wrap.className = 'lk';
       if (dup) {
         const t = document.createElement('span'); t.className = 'tag'; t.textContent = '✓ already in the queue';
+        wrap.append(t);
+      } else if (canAdd() && !canAddSrc(src)) {
+        /* Say which, rather than offering nothing and letting it read as a broken link. */
+        const t = document.createElement('span'); t.className = 'tag';
+        t.textContent = (PLAT_NAME[PLAT[src]] || 'That source') + ' is switched off in this queue';
         wrap.append(t);
       } else if (canAdd()) {
         const b = document.createElement('button');
@@ -2615,11 +2673,11 @@ function renderChat() {
        which rather than picking one of the two and being wrong half the time. */
     for (const h of found) offer(
       h.src === 'spl' ? 'Spotify ' + String(h.id).split('/')[0] : (label[h.src] || 'track'),
-      h.raw, already.has(keyOf(h)));
+      h.raw, already.has(keyOf(h)), h.src);
     for (const sh of shares) {
       const url = sh.startsWith('http') ? sh : 'https://' + sh;
       const known = shareSeen[url];
-      offer('Suno track', sh, !!known && already.has('suno:' + known));
+      offer('Suno track', sh, !!known && already.has('suno:' + known), 'suno');
     }
     box.appendChild(el);
   }
@@ -2654,6 +2712,9 @@ $('#rename').addEventListener('click', () => {
   if (n !== null) { setMyName(n); renderChat(); }
 });
 $('#openToggle').addEventListener('click', () => { if (isOwner()) window.__net.setOpen(!SQ.open); });
+for (const [p, id] of [['suno', '#gSuno'], ['yt', '#gYt'], ['sp', '#gSp']]) {
+  $(id).addEventListener('click', () => { if (isOwner()) window.__net.setAllow(p, !SQ.allow[p]); });
+}
 /* "New queue" used to just navigate to local mode, which dutifully restored the saved
    local list — so it landed you back on the same queue you were trying to leave. It now
    asks for a blank one explicitly, and only warns when there is something to lose. */
@@ -2977,6 +3038,14 @@ try {
       const v = !!on;
       return Promise.all([update(qref('meta'), { open: v }), SQ.listed ? update(idxref(), { open: v }) : null])
         .catch(e => console.warn('[queue] toggle refused', e));
+    },
+    /* Which platforms guests may add from. meta only — the browse card says nothing about it,
+       because it is a rule inside the room rather than something to advertise from outside. */
+    setAllow(plat, on) {
+      const key = { suno: 'allowSuno', yt: 'allowYt', sp: 'allowSp' }[plat];
+      if (!key) return Promise.resolve();
+      return update(qref('meta'), { [key]: !!on })
+        .catch(e => console.warn('[queue] source toggle refused', e));
     },
     setTitle(t) {
       const v = trim(t, 60);
