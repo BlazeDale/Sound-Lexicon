@@ -292,6 +292,11 @@
   .chatin input{flex:1;min-width:0;background:var(--ink);border:1px solid var(--line);border-radius:8px;color:var(--text);
                 padding:8px 11px;font-size:13px}
   .chatin input:focus{outline:none;border-color:var(--amber-dim)}
+  /* A mention is a name, so it reads as one: same weight as the speaker's name in the
+     header. Yours is filled in as well, because the one thing you want from a wall of chat
+     is to see that somebody was talking to you. */
+  .mention{color:var(--teal);font-weight:600}
+  .mention.me{color:var(--ink);background:var(--amber);border-radius:4px;padding:0 4px}
   .hint{font-size:12px;color:var(--dim);margin:9px 2px 0}
   .hint b{color:var(--muted)}
   #toast{position:fixed;left:50%;transform:translateX(-50%);bottom:34px;background:var(--panel2);border:1px solid var(--line);
@@ -510,6 +515,16 @@
     which is how a guest suggests something. If you own the queue it is queued as well —
     suggesting a track to yourself and then pressing your own button is a step that does not
     need to exist. Anything without a link in it is just posted.<br><br>
+    <b>Talking to someone in particular.</b> Type <b>@</b> and press <b>Tab</b> to complete a
+    name; Tab again cycles through the matches and Shift+Tab goes back the other way. A bare
+    <b>@</b> then Tab offers everyone, which is how you find out who is here — there is no
+    member list, because the database knows who is present but not what they call themselves.
+    The names offered are everyone who has left one in this room: whoever has spoken, whoever
+    queued a track, and the owner, most recent first. Names may contain spaces, so
+    <span style="font-family:var(--mono)">@ann m</span> completes to <b>@Ann Marie</b>, and a
+    mention of the longer name is never mistaken for the shorter one. A mention of you is
+    highlighted where everyone else's is merely coloured. Nothing is verified and nothing is
+    notified — a name is a label, exactly as it is everywhere else here.<br><br>
     <b>Album playlists.</b> A YouTube Music album link (its id starts
     <span style="font-family:var(--mono)">OLAK5uy_</span>) will not play here. The embedded
     player refuses to unpack one — it loads a single track and then shows its own error
@@ -2472,6 +2487,7 @@ window.__applyRemote = (tracks, meta) => {
   SQ.owner = (meta && meta.owner) || '';
   SQ.open = !!(meta && meta.open);
   SQ.title = (meta && meta.title) || 'Untitled queue';
+  SQ.ownerName = (meta && meta.ownerName) || '';
   const ti = $('#qtitle');
   if (ti.hidden !== false) ti.hidden = false;
   if (document.activeElement !== ti) ti.value = SQ.title;
@@ -2576,11 +2592,80 @@ window.__presence = () => {
    data: cannot be dressed up as one. Trailing punctuation is left out of the address,
    because "listen to https://suno.com/s/abc." should not link the full stop. */
 const URL_RE = /https?:\/\/[^\s<>"']+/gi;
+/* ---------- @mentions ----------
+   Who can be mentioned is not a question the database answers: presence is keyed by uid and
+   holds no names, and giving it names would mean another rules deploy for something the page
+   can already work out. So the roster is everyone who has actually left a name in this room
+   — whoever has spoken, whoever queued a track, and the owner — newest first, so the person
+   who just said something is the first Tab lands on.
+
+   `withMe` is the difference between the two callers, and it matters. Tab completion leaves
+   YOUR name out — nobody needs to complete their way to themselves — but the renderer must
+   put it back, because seeing that somebody was talking to you is the entire point of the
+   feature, and a name the roster does not contain is a name the highlighter cannot find.
+
+   Names are free text up to 24 characters and may contain spaces, which is why a mention
+   token runs from the @ to the caret rather than stopping at the first space, and why the
+   renderer matches the LONGEST known name at each @ rather than a word. "@ann" must not
+   swallow the highlight belonging to "@ann marie". */
+function chatNames(withMe) {
+  const mine = (myName() || '').toLowerCase();
+  const seen = new Map();                        // lowercased -> as last written
+  const add = n => {
+    const v = String(n || '').trim();
+    if (!v || (!withMe && v.toLowerCase() === mine)) return;
+    if (!seen.has(v.toLowerCase())) seen.set(v.toLowerCase(), v);
+  };
+  for (let i = SQ.chat.length - 1; i >= 0; i--) add(SQ.chat[i].n);
+  add(SQ.ownerName);
+  for (const r of Q) add(r.byName);
+  if (withMe) add(myName());
+  return [...seen.values()];
+}
+
+/* The longest known name sitting at str[i+1...], or null. Case-insensitive, because nobody
+   capitalises the same way twice, and the message keeps whatever the writer typed. */
+function mentionAt(str, i, names) {
+  let best = null;
+  for (const n of names) {
+    if (str.substr(i + 1, n.length).toLowerCase() !== n.toLowerCase()) continue;
+    if (!best || n.length > best.length) best = n;
+  }
+  return best;
+}
+
+/* Text that is not a link still has to be scanned for mentions, which is why linkify hands
+   its plain stretches here rather than straight to a text node. */
+function addText(str, into, names) {
+  if (!names.length || str.indexOf('@') < 0) { into.appendChild(document.createTextNode(str)); return; }
+  const mine = (myName() || '').toLowerCase();
+  let at = 0;
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] !== '@') continue;
+    /* An @ in the middle of a word is an address or a handle, not a mention of someone. */
+    if (i > 0 && /[A-Za-z0-9]/.test(str[i - 1])) continue;
+    const hit = mentionAt(str, i, names);
+    if (!hit) continue;
+    if (i > at) into.appendChild(document.createTextNode(str.slice(at, i)));
+    const sp = document.createElement('span');
+    sp.className = 'mention' + (hit.toLowerCase() === mine ? ' me' : '');
+    sp.textContent = str.substr(i, hit.length + 1);      // the @ and the name as written
+    into.appendChild(sp);
+    at = i + hit.length + 1;
+    i = at - 1;
+  }
+  if (at < str.length) into.appendChild(document.createTextNode(str.slice(at)));
+}
+
+/* The roster is settled once per repaint by renderChat and read here, rather than rebuilt
+   for every message: it is the same answer for all of them, and a full chat is 200 of them. */
+let NAMES = [];
 function linkify(text, into) {
   const str = String(text || '');
+  const names = NAMES;
   let at = 0;
   for (const m of str.matchAll(URL_RE)) {
-    if (m.index > at) into.appendChild(document.createTextNode(str.slice(at, m.index)));
+    if (m.index > at) addText(str.slice(at, m.index), into, names);
     let href = m[0], tail = '';
     const trimmed = href.replace(/[.,;:!?)\]}]+$/, '');
     if (trimmed !== href) { tail = href.slice(trimmed.length); href = trimmed; }
@@ -2595,7 +2680,7 @@ function linkify(text, into) {
     if (tail) into.appendChild(document.createTextNode(tail));
     at = m.index + m[0].length;
   }
-  if (at < str.length) into.appendChild(document.createTextNode(str.slice(at)));
+  if (at < str.length) addText(str.slice(at), into, names);
 }
 
 let renderingChat = false;
@@ -2603,6 +2688,7 @@ function renderChat() {
   if (renderingChat) return;                 // render() calls this, and this calls sizeChat()
   renderingChat = true;
   const box = $('#msgs');
+  NAMES = chatNames(true);            // the renderer needs your own name; see chatNames
   /* Newest at the top, pushed down by what comes after — the same direction the played
      column reads, and it puts the newest message next to the box you type in. */
   const atTop = box.scrollTop < 40;
@@ -2698,8 +2784,64 @@ window.addEventListener('resize', sizeChat);
 window.addEventListener('scroll', sizeChat, { passive: true });
 window.__sizeChat = sizeChat;
 
+/* ---------- Tab completion ----------
+   Tab cycles, Shift+Tab cycles back, and a bare "@" offers everyone — which is the whole
+   discovery mechanism, since there is no member list to read. The token is everything from
+   the @ to the caret, spaces included, so a two-word name completes from "@ann m".
+
+   `tabCycle` remembers what was just inserted so a second Tab replaces it instead of
+   completing the completion. It is abandoned the moment the field stops looking exactly as
+   this left it, which covers typing, clicking elsewhere in the line, and sending. */
+let tabCycle = null;
+
+function mentionToken(el) {
+  const v = el.value, c = el.selectionStart;
+  if (c !== el.selectionEnd) return null;                 // a selection is not a prefix
+  for (let i = c - 1; i >= 0; i--) {
+    if (v[i] === '@') {
+      if (i > 0 && /[A-Za-z0-9]/.test(v[i - 1])) return null;
+      return { at: i, prefix: v.slice(i + 1, c) };
+    }
+    if (v[i] === '\n') return null;
+  }
+  return null;
+}
+
+$('#chatin').addEventListener('keydown', e => {
+  if (e.key !== 'Tab') { tabCycle = null; return; }
+  const el = e.target;
+  let matches, i, at, from;
+  /* Still sitting on what the last Tab inserted? Then this one means "no, the next name",
+     and what it replaces is that insertion — hence `from` being the remembered caret
+     rather than the live one. */
+  if (tabCycle && el.value === tabCycle.value && el.selectionStart === tabCycle.caret) {
+    ({ matches, at } = tabCycle);
+    from = tabCycle.caret;
+    i = (tabCycle.i + (e.shiftKey ? -1 : 1) + matches.length) % matches.length;
+  } else {
+    const tok = mentionToken(el);
+    if (!tok) { tabCycle = null; return; }                // no @ before the caret: let Tab be Tab
+    const p = tok.prefix.toLowerCase();
+    matches = chatNames().filter(n => n.toLowerCase().startsWith(p));
+    if (!matches.length) { tabCycle = null; return; }
+    at = tok.at;
+    from = el.selectionStart;
+    i = e.shiftKey ? matches.length - 1 : 0;
+  }
+  e.preventDefault();
+  const tail = el.value.slice(from);
+  const head = el.value.slice(0, at);
+  const ins = '@' + matches[i] + ' ';
+  el.value = head + ins + tail;
+  const caret = at + ins.length;
+  el.setSelectionRange(caret, caret);
+  tabCycle = { value: el.value, caret, at, matches, i };
+});
+$('#chatin').addEventListener('blur', () => { tabCycle = null; });
+
 $('#chatform').addEventListener('submit', e => {
   e.preventDefault();
+  tabCycle = null;
   const t = $('#chatin').value.trim();
   if (!t) return;
   const who = needName('Pick a display name to chat');
