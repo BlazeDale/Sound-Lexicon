@@ -7380,6 +7380,156 @@
       "prompt": "claude-v12 (BlazeDale 2026-09-17 revision) via Describe",
       "compelling_term": "weightless",
       "note": "350 words, the shortest and the only one that opens on a scene rather than on the singer's arrival ('At the edge of the dusk, I was holding my breath / By the station clock'). sing x4, door x1, salt x1. Best fit of the six to a spare brief."
+    },
+    "337": {
+      "status": "generated",
+      "lyricist": "suno-describe (v6)",
+      "v6": {
+        "title": "Blackout Lullaby",
+        "clips": [
+          "9292c539-faa2-4d1e-b396-bf322fdb5fb5",
+          "dc31b5c1-bf2d-4c90-882e-801f1765daab"
+        ],
+        "v0": "9292c539-faa2-4d1e-b396-bf322fdb5fb5",
+        "badge": "V6",
+        "durations": [
+          255,
+          225.96
+        ],
+        "mandated8": true,
+        "genre_slot": "loose sun-bleached backyard punk-reggae"
+      },
+      "flags": [],
+      "tagged": true,
+      "edits": 0,
+      "prompt": "claude-v12 (BlazeDale 2026-09-17 revision) via Describe",
+      "compelling_term": "hedonistic",
+      "note": "485 words. Opens on a scene, not on the singer arriving ('The night the wires went dead in the heat') — one of only two in the twelve that does. Music words light: chord x1, bass x2, sing x9. salt x1."
+    },
+    "338": {
+      "status": "generated",
+      "lyricist": "suno-describe (v6)",
+      "v6": {
+        "title": "Blackout Psalms",
+        "clips": [
+          "7ffafe7c-8e3a-411a-8355-fb86937fa723",
+          "8daded72-6ec8-4de6-af9e-ae06cf9c0b64"
+        ],
+        "v0": "7ffafe7c-8e3a-411a-8355-fb86937fa723",
+        "badge": "V6",
+        "durations": [
+          282.76,
+          299.96
+        ],
+        "mandated8": true,
+        "genre_slot": "deep unhurried seventies Kingston roots dub"
+      },
+      "flags": [],
+      "tagged": true,
+      "edits": 0,
+      "prompt": "claude-v12 (BlazeDale 2026-09-17 revision) via Describe",
+      "compelling_term": "meditative",
+      "note": "382 words. Devotional register matches the entry's 'devotional weight at walking pace'. Music words present but in-world for a dub track (bass x3, drum, tune, song x3). door x1, shoes x1."
+    },
+    "339": {
+      "status": "generated",
+      "lyricist": "suno-describe (v6)",
+      "v6": {
+        "title": "Tape Burn Riot",
+        "clips": [
+          "c8fba7c7-910a-4b82-b20d-3696cbaaea3b",
+          "61a3e051-7bcb-4e47-8047-f300ef94ddf4"
+        ],
+        "v0": "c8fba7c7-910a-4b82-b20d-3696cbaaea3b",
+        "badge": "V6",
+        "durations": [
+          159.92,
+          204.32
+        ],
+        "mandated8": true,
+        "genre_slot": "fast unlovely early-80s Southern Californian hardcore punk"
+      },
+      "flags": [],
+      "tagged": true,
+      "edits": 0,
+      "prompt": "claude-v12 (BlazeDale 2026-09-17 revision) via Describe",
+      "compelling_term": "bratty",
+      "note": "375 words, 2:40 — the shortest take of the twelve, which is right for the brief ('songs over before they settle'). Title is a tape-medium word. boots x1, speaker x1, kick x1."
+    },
+    "340": {
+      "status": "generated",
+      "lyricist": "suno-describe (v6)",
+      "v6": {
+        "title": "Back in Tune",
+        "clips": [
+          "b26425fc-1e0d-4c47-89be-838080a3e97b",
+          "4e241bcc-de48-427e-a992-0d16ed9c1957"
+        ],
+        "v0": "b26425fc-1e0d-4c47-89be-838080a3e97b",
+        "badge": "V6",
+        "durations": [
+          150,
+          176.36
+        ],
+        "mandated8": true,
+        "genre_slot": "springy boastful mid-80s dancehall toasting"
+      },
+      "flags": [],
+      "tagged": true,
+      "edits": 0,
+      "prompt": "claude-v12 (BlazeDale 2026-09-17 revision) via Describe",
+      "compelling_term": "quick-witted",
+      "note": "REJECT CANDIDATE, shipped and flagged rather than re-rolled. 378 words and the song is ABOUT the sound system: tune x27 (it is the refrain), riddim x3, plus record, needle, bass x2, kick, drum. This is the mix-narration rule broken as completely as it can be, and it is the route doing it — the Styles box for this entry is nothing but riddim/soundsystem vocabulary and the same model reads that box and writes the words. If any of the twelve gets re-fired, this one first."
+    },
+    "341": {
+      "status": "generated",
+      "lyricist": "suno-describe (v6)",
+      "v6": {
+        "title": "County Fair Glow",
+        "clips": [
+          "89883b85-1da6-4f0c-8f64-ca21799ee8c9",
+          "ace4912d-92f7-4aa8-ba5c-330746239ea9"
+        ],
+        "v0": "89883b85-1da6-4f0c-8f64-ca21799ee8c9",
+        "badge": "V6",
+        "durations": [
+          246.44,
+          247.16
+        ],
+        "mandated8": true,
+        "genre_slot": "warm late back-porch acoustic blues singalong"
+      },
+      "flags": [],
+      "tagged": true,
+      "edits": 0,
+      "prompt": "claude-v12 (BlazeDale 2026-09-17 revision) via Describe",
+      "compelling_term": "wistful",
+      "note": "388 words. Cleanest of the six on music words (note x3, sing x4, nothing else) and the crowd has an activity — a county fair — which is the shape the toolbaz-era slots used to hold off the doorway. door x1 only. Opens 'I came to the fair with a pocket of rain'."
+    },
+    "343": {
+      "status": "generated",
+      "lyricist": "suno-describe (v6)",
+      "v6": {
+        "title": "Ferry Song",
+        "clips": [
+          "202eec41-3229-4464-974a-30a304765cce",
+          "7a573540-a7d0-4fc9-93ce-fde936fbc3d2"
+        ],
+        "v0": "202eec41-3229-4464-974a-30a304765cce",
+        "badge": "V6",
+        "durations": [
+          287.6,
+          347.88
+        ],
+        "mandated8": true,
+        "genre_slot": "dreamlike then enormous keening Irish alt-rock"
+      },
+      "flags": [],
+      "tagged": true,
+      "edits": 0,
+      "prompt": "claude-v12 (BlazeDale 2026-09-17 revision) via Describe",
+      "compelling_term": "unembarrassed",
+      "note": "588 words, the longest of the twelve. No instrument words at all, but sing x18 — the singing-about-singing tic in its purest form. Opens 'I came in quietly, quietly, through the rain at the station gate / With a coat...' — the 'I came in' opener AND the coat in the first two lines. coat x1, key x1, salt x1."
     }
   },
   "method": {
@@ -7783,5 +7933,5 @@
       "run_key": "sweep-60-62"
     }
   },
-  "lyricist_notes": "toolbaz frontier comparison 2026-09-11: gemini-3.6-flash clearly strongest (idiom-driven hooks, real call-and-response, concrete imagery). gpt-5.2 thin — 210 words, repeated end-words, inline syllable counts, appended analysis. grok-4-fast mostly ad-lib scaffolding around few real lines. claude-sonnet-4 returned EMPTY twice (button reset, counter did not advance) — appears non-functional on the free tier. | DESCRIBE-ROUTE TICS, counted across #331-336 (2026-09-18, first six on this route): (a) FOUR of six open with 'I came in ...' (#332 cold, #333 softly, #334 tired, #335 quiet) — a new attractor, not one of the three already measured, and #332-336 being five cuts of one song only partly explains it since the wording is near-identical; (b) FOUR of six are titled 'After the ___' (Sirens, Drop, Lights Went Out, Ashes); (c) music vocabulary in the lyric on three of six, which the toolbaz and cowrite routes structurally could not produce. Re-measure at the next six before treating any of these as settled."
+  "lyricist_notes": "toolbaz frontier comparison 2026-09-11: gemini-3.6-flash clearly strongest (idiom-driven hooks, real call-and-response, concrete imagery). gpt-5.2 thin — 210 words, repeated end-words, inline syllable counts, appended analysis. grok-4-fast mostly ad-lib scaffolding around few real lines. claude-sonnet-4 returned EMPTY twice (button reset, counter did not advance) — appears non-functional on the free tier. | DESCRIBE-ROUTE TICS, counted across #331-336 (2026-09-18, first six on this route): (a) FOUR of six open with 'I came in ...' (#332 cold, #333 softly, #334 tired, #335 quiet) — a new attractor, not one of the three already measured, and #332-336 being five cuts of one song only partly explains it since the wording is near-identical; (b) FOUR of six are titled 'After the ___' (Sirens, Drop, Lights Went Out, Ashes); (c) music vocabulary in the lyric on three of six, which the toolbaz and cowrite routes structurally could not produce. Re-measure at the next six before treating any of these as settled. | Re-measured on #337-343, the second six: the 'I came in' opener held at 2 of 6 (#341 'I came to the fair', #343 'I came in quietly'), so 5 of 12 overall — it is real but not universal, and the two entries that opened on a scene instead (#337, #338) are the two whose style prose opens on a scene rather than on a voice. Music-word leak got WORSE, not better: #340 is a song about a sound system (tune x27), #343 sings about singing (sing x18). Across 12 takes the leak tracks how much instrument vocabulary the entry's own style prose carries, which is the mechanism, not a coincidence."
 }
