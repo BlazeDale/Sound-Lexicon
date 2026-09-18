@@ -253,6 +253,18 @@
   .det .negs{margin:9px 0 0;font-family:var(--mono);font-size:11px;line-height:1.55;color:var(--dim)}
   .det .negs b{color:var(--muted);font-weight:600}
   .det .note{margin:0;font-family:var(--mono);font-size:11.5px;color:var(--dim)}
+  /* The heading and its copy button share a line, so the button costs no height at all —
+     the panel is the same size with it as without. Same chip the library page uses, down to
+     the COPY/COPIED swap, because it does the same job and should not look like a new idea. */
+  .det .dethead{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+  .det .dethead h4{margin:0}
+  .copy{flex:none;font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;
+        background:transparent;border:1px solid var(--line);color:var(--dim);border-radius:5px;
+        padding:2px 8px;cursor:pointer;transition:color .12s ease,border-color .12s ease}
+  .copy:hover,.copy:focus-visible{border-color:var(--amber);color:var(--amber)}
+  .copy.done{border-color:var(--teal);color:var(--teal)}
+  .det .negs .copy{margin-left:8px;vertical-align:1px}
+  @media(prefers-reduced-motion:reduce){.copy{transition:none}}
   @media(prefers-reduced-motion:reduce){.info{transition:none}}
 
 
@@ -684,7 +696,7 @@
    page -- covers read from data.js while the code that looks them up is old. Printed
    on load and shown in the footer, so 'which build am I on' is answerable in a glance
    instead of by deduction. */
-const QUEUE_BUILD = '2026-09-18-c';
+const QUEUE_BUILD = '2026-09-18-d';
 console.log('[queue] build ' + QUEUE_BUILD);
 
 const $ = s => document.querySelector(s);
@@ -976,6 +988,42 @@ async function resolveSP(id) {
     saveMeta();
   }
   return row;
+}
+
+/* The eight negatives the library appends at copy time. This is the FIFTH place the list
+   lives — validate.mjs holds the source of truth and now checks this copy against it, so the
+   two cannot drift apart quietly the way the older hand-kept copies could. Written out rather
+   than derived because data.js deliberately keeps them OUT of every entry's neg field. */
+const MANDATED_8 = 'Harmonic stagnation, Dynamic flattening, Quantized sterility, Structural monotony, '
+                 + 'Predictability, Vocal identity drift, Vocalist substitution, Soundtubes';
+
+/* One button, wherever a block of text is worth taking away. Clipboard first, and a hidden
+   textarea when that is refused — which is what happens on a page served over plain http or
+   in a browser that withholds the API, and silently doing nothing there would look like a
+   broken button rather than a blocked one. */
+function copyChip(getText, title) {
+  const b = document.createElement('button');
+  b.className = 'copy'; b.type = 'button'; b.textContent = 'copy';
+  b.title = title || 'Copy to the clipboard';
+  b.addEventListener('click', ev => {
+    ev.stopPropagation();                       // not a request to play the track
+    const txt = getText();
+    const done = () => {
+      b.textContent = 'copied'; b.classList.add('done');
+      setTimeout(() => { b.textContent = 'copy'; b.classList.remove('done'); }, 1200);
+    };
+    const fallback = () => {
+      const ta = document.createElement('textarea');
+      ta.value = txt; ta.style.position = 'fixed'; ta.style.opacity = 0;
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(txt).then(done).catch(() => { fallback(); done(); });
+    } else { fallback(); done(); }
+  });
+  return b;
 }
 
 /* ---------- the style prose for one track ----------
@@ -1803,6 +1851,7 @@ function rowEl(r, i) {
         const known = bySuno.get(r.id);
         const draw = d => {
           det.textContent = '';
+          const head = document.createElement('div'); head.className = 'dethead';
           const h = document.createElement('h4');
           /* Naming the source is the point of the heading. Our prose and Suno's restatement
              of it are different documents and a reader should never have to guess which one
@@ -1810,7 +1859,11 @@ function rowEl(r, i) {
           h.textContent = d.kind === 'lib'
             ? ('library prose' + (d.fam ? ' · ' + d.fam : ''))
             : 'style, as Suno stored it';
-          det.append(h);
+          head.append(h);
+          /* Only when there is prose to take. A copy button over "Suno did not answer" would
+             copy the apology. */
+          if (d.style) head.append(copyChip(() => d.style, 'Copy the style prose'));
+          det.append(head);
           if (d.style) {
             const pp = document.createElement('p'); pp.textContent = d.style; det.append(pp);
           } else {
@@ -1822,6 +1875,11 @@ function rowEl(r, i) {
             const ng = document.createElement('div'); ng.className = 'negs';
             const b = document.createElement('b'); b.textContent = 'against: ';
             ng.append(b, document.createTextNode(d.neg));
+            /* What this copies is the entry's negatives PLUS the eight mandated ones, which is
+               what the library page's own button hands over and what actually belongs in Suno's
+               Exclude box. The line on screen stays as stored, because the eight are the same
+               every time and printing them on every row would be noise. */
+            ng.append(copyChip(() => d.neg + ', ' + MANDATED_8, 'Copy the negatives, with the 8 mandated appended'));
             det.append(ng);
           }
         };

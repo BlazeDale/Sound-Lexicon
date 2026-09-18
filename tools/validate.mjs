@@ -38,6 +38,10 @@ try {
   report();
 }
 const html = readFileSync(HTML, 'utf8');
+/* The queue page carries its own copy of the mandated negatives (its style panel hands them
+   to the clipboard), so it is read here to be checked against the list above. Missing is not
+   an error — the check simply skips a page that is not there. */
+const queueHtml = (() => { try { return readFileSync(new URL('../queue.html', import.meta.url), 'utf8'); } catch (e) { return ''; } })();
 const numbered = LIB.filter(v => typeof v.n === 'number');
 const suites = LIB.filter(v => v.cat === 'suite');
 
@@ -102,6 +106,20 @@ const suites = LIB.filter(v => v.cat === 'suite');
     if (hit.length) baked.push(`#${v.n} (${hit.join('/')})`);
   }
   baked.length ? fail(`mandated negatives already in neg field (appended at copy time — remove): ${baked.join(', ')}`) : pass(`neg fields exclude the ${MANDATED.length} mandated negatives`);
+
+  /* The list is written out by hand in every page that hands it to Suno, and a page is not
+     wrong in any visible way when its copy drifts — the negatives simply stop being applied.
+     So check every copy against this one rather than trusting that they were kept in step. */
+  const carriers = [['vocal_timbre_library.html', html], ['queue.html', queueHtml]];
+  const drifted = [];
+  for (const [name, src] of carriers) {
+    if (!src) continue;
+    const missing = MANDATED.filter(m => !src.includes(m));
+    if (missing.length) drifted.push(`${name} (missing ${missing.join(', ')})`);
+  }
+  drifted.length
+    ? fail(`a page's copy of the mandated negatives has drifted: ${drifted.join('; ')}`)
+    : pass(`every page's copy of the ${MANDATED.length} mandated negatives matches`);
 }
 
 /* ---------- 6. version stamp + masthead derives at runtime ---------- */
