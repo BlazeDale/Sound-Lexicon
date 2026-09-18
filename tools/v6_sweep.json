@@ -7530,12 +7530,178 @@
       "prompt": "claude-v12 (BlazeDale 2026-09-17 revision) via Describe",
       "compelling_term": "unembarrassed",
       "note": "588 words, the longest of the twelve. ZERO instrument or production words — the earlier 'sing x18' flag was a bad metric, since 'sing' is near-universal in lyrics and names nothing about the recording. Opens 'I came in quietly, quietly, through the rain at the station gate / With a coat...' — the 'I came in' opener and the coat in the first two lines, which is the real watch item on this one. coat x1, key x1, salt x1."
+    },
+    "344": {
+      "status": "generated",
+      "lyricist": "suno-describe (v6)",
+      "v6": {
+        "title": "Basement Blackout",
+        "clips": [
+          "1d34bf61-a9df-4563-bd48-25df2bdf107d",
+          "b2ca5637-483d-4760-b413-fa12a6b8afbf"
+        ],
+        "v0": "1d34bf61-a9df-4563-bd48-25df2bdf107d",
+        "badge": "V6",
+        "durations": [
+          271.4,
+          262.8
+        ],
+        "mandated8": true,
+        "genre_slot": "surging unpolished Pacific-Northwest heavy alt-rock"
+      },
+      "flags": [],
+      "tagged": true,
+      "edits": 0,
+      "prompt": "claude-v12 (BlazeDale 2026-09-17 revision) via Describe",
+      "compelling_term": "unguarded",
+      "note": "538 words. No structural or session lines anywhere. Opens 'We came in wet from the rain-slick street' — the 'came in' opener, but first person plural, which is a different room from the solitary arrivals of #331-343. Title carries 'Blackout', see the tic note."
+    },
+    "345": {
+      "status": "generated",
+      "lyricist": "suno-describe (v6)",
+      "v6": {
+        "title": "Wrong Foot Chorus",
+        "clips": [
+          "4bedd73a-3dec-4e98-97d7-d6b4b5fabcab",
+          "3c7d3c43-7b8b-4e32-93d6-dc5aede4c2bd"
+        ],
+        "v0": "4bedd73a-3dec-4e98-97d7-d6b4b5fabcab",
+        "badge": "V6",
+        "durations": [
+          261.6,
+          251.96
+        ],
+        "mandated8": true,
+        "genre_slot": "cold sardonic drop-tuned odd-metre heavy alt-rock"
+      },
+      "flags": [],
+      "tagged": true,
+      "edits": 0,
+      "prompt": "claude-v12 (BlazeDale 2026-09-17 revision) via Describe",
+      "compelling_term": "wrong-footed",
+      "note": "425 words. WATCH: opens 'I came in late with my coat half-on' — the came-in opener and the coat in the same line, exactly as #343 did. That pairing is now the most reliable tic on this route. Title is a music word and it came from my own compelling term ('wrong-footed'), which is worth knowing: the term leaks into the title. SECOND SONG, unintended: a Create click that appeared not to have fired had in fact fired, and my retry sent the same payload again. Both takes kept — 'Seven Knives' is the better of the two and opens on a scene rather than on an arrival ('At midnight on the platform, the notice board just laughed'), which is the first time this route has done that from a voice-first style prose. Ledgered in the v6-b lane per the sweep's own rule.",
+      "v6b": {
+        "title": "Seven Knives",
+        "clips": [
+          "b1a09c22-ece1-45b8-9545-351a985b01c5",
+          "6678f567-6eba-4985-ba65-55d5c2a8ed9e"
+        ],
+        "v0": "b1a09c22-ece1-45b8-9545-351a985b01c5",
+        "badge": "V6",
+        "durations": [
+          311.16,
+          304.88
+        ],
+        "mandated8": true,
+        "genre_slot": "cold sardonic drop-tuned odd-metre heavy alt-rock"
+      }
+    },
+    "346": {
+      "status": "generated",
+      "lyricist": "suno-describe (v6)",
+      "v6": {
+        "title": "Coming Home Again",
+        "clips": [
+          "4dadf020-c098-4e0e-a265-ca71dc4301e6",
+          "2b811b17-6bd9-4cf5-85c3-f245b287588d"
+        ],
+        "v0": "4dadf020-c098-4e0e-a265-ca71dc4301e6",
+        "badge": "V6",
+        "durations": [
+          278,
+          272.32
+        ],
+        "mandated8": true,
+        "genre_slot": "mournful patient slow heavy alt-rock dirge"
+      },
+      "flags": [],
+      "tagged": true,
+      "edits": 0,
+      "prompt": "claude-v12 (BlazeDale 2026-09-17 revision) via Describe",
+      "compelling_term": "worn-out",
+      "note": "469 words. Opens 'I walked the long way in the rain' — an arrival, but not the stock phrasing. No structural lines."
+    },
+    "347": {
+      "status": "generated",
+      "lyricist": "suno-describe (v6)",
+      "v6": {
+        "title": "Ash in My Mouth",
+        "clips": [
+          "498e202d-f60d-495c-a619-acdaf5a544a3",
+          "f3c6fe73-3af6-4976-8733-081b388b81d8"
+        ],
+        "v0": "498e202d-f60d-495c-a619-acdaf5a544a3",
+        "badge": "V6",
+        "durations": [
+          206,
+          223.96
+        ],
+        "mandated8": true,
+        "genre_slot": "fast ragged furious heavy alt-rock"
+      },
+      "flags": [],
+      "tagged": true,
+      "edits": 0,
+      "prompt": "claude-v12 (BlazeDale 2026-09-17 revision) via Describe",
+      "compelling_term": "wrecked",
+      "note": "424 words, 3:26. Opens 'I stood in the glare of the stage-divide' — a stage, which is scene rather than session talk, and the shortest take is the right shape for a brief that says songs end before they settle."
+    },
+    "348": {
+      "status": "generated",
+      "lyricist": "suno-describe (v6)",
+      "v6": {
+        "title": "Blackout Psalm",
+        "clips": [
+          "6d0a0ffa-dd72-48dc-9b99-088e559612bb",
+          "2780251b-2f93-4679-8725-6b4cd8db5f54"
+        ],
+        "v0": "6d0a0ffa-dd72-48dc-9b99-088e559612bb",
+        "badge": "V6",
+        "durations": [
+          322.8,
+          null
+        ],
+        "mandated8": true,
+        "genre_slot": "wide unsettled psychedelic heavy alt-rock"
+      },
+      "flags": [],
+      "tagged": true,
+      "edits": 0,
+      "prompt": "claude-v12 (BlazeDale 2026-09-17 revision) via Describe",
+      "compelling_term": "eerie",
+      "note": "351 words over 5:23 — the sparsest words-per-minute of the sweep so far, which suits an entry whose first half floats with no downbeat. Opens 'I was there when the bright went thin'. Title is nearly identical to #338's 'Blackout Psalms'."
+    },
+    "349": {
+      "status": "generated",
+      "lyricist": "suno-describe (v6)",
+      "v6": {
+        "title": "Sour Light",
+        "clips": [
+          "ff51be89-b604-4c26-9688-366d9967b64a",
+          "cb8007d7-6d25-458e-9921-adf5b599e9fc"
+        ],
+        "v0": "ff51be89-b604-4c26-9688-366d9967b64a",
+        "badge": "V6",
+        "durations": [
+          null,
+          278.4
+        ],
+        "mandated8": true,
+        "genre_slot": "numb airless braided-harmony sludge"
+      },
+      "flags": [],
+      "tagged": true,
+      "edits": 0,
+      "prompt": "claude-v12 (BlazeDale 2026-09-17 revision) via Describe",
+      "compelling_term": "sour",
+      "note": "413 words. First Create attempt vanished from the workspace without producing a clip — no toast, no error; a second click on the same payload worked. Opens 'I kept the light on low for a year and a day', which is the withheld register the entry asks for."
     }
   },
   "method": {
     "from_45": "Seeds dealt blind by tools/seed_deal.mjs before the entry style is read; idea committed from the seeds alone. Seeds are material the song passes through, never its subject. The genre summary governs only the scaffold meter/rhyme. Re-rolls allowed for absurdity only, never for genre fit, and logged.",
     "from_64": "Lyrics written by Gemini-3.6-Flash via toolbaz.com/writer/ai-writing-assistant. I fill only the [3 word Genre summary] slot; Gemini populates the adverb and the 3-word idea itself. Output is cleaned before Suno: drop the meta header line, bracket production directions (parens mean SUNG per the notation rule), split \"(Direction: words)\" into [Direction] + (words), and bracket bare section labels. Counter on the site reads Activity History n/10 per window.",
-    "from_331": "Suno's own lyric generation on the rebuilt create page: the current lyric prompt (see the current-lyric-prompt note, BlazeDale's 2026-09-17 revision) pasted whole into the \"Describe your song\" field, Lyrics box left EMPTY, entry style in Styles, entry neg + the 8 mandated in Exclude styles. I fill only [INSERT genre] and [INSERT compelling term]; the two remaining [INSERT] slots are left literal for Suno to fill, as the prompt intends. ROUTE COST, re-measured here and unchanged from #330: Describe mode rewrites the style prose — 866-931 char styles came back as 314-404 char paraphrases in metadata.tags — so the demo is driven by roughly a 40%-length restatement of the entry, not by the entry. ROUTE SIDE EFFECT, new here: the model that writes the lyric can also see the style box, and music vocabulary leaks into the words (see the #332/#333/#334 notes). On the toolbaz and cowrite routes the lyricist was sent an empty style and this could not happen."
+    "from_331": "Suno's own lyric generation on the rebuilt create page: the current lyric prompt (see the current-lyric-prompt note, BlazeDale's 2026-09-17 revision) pasted whole into the \"Describe your song\" field, Lyrics box left EMPTY, entry style in Styles, entry neg + the 8 mandated in Exclude styles. I fill only [INSERT genre] and [INSERT compelling term]; the two remaining [INSERT] slots are left literal for Suno to fill, as the prompt intends. ROUTE COST, re-measured here and unchanged from #330: Describe mode rewrites the style prose — 866-931 char styles came back as 314-404 char paraphrases in metadata.tags — so the demo is driven by roughly a 40%-length restatement of the entry, not by the entry. ROUTE SIDE EFFECT, new here: the model that writes the lyric can also see the style box, and music vocabulary leaks into the words (see the #332/#333/#334 notes). On the toolbaz and cowrite routes the lyricist was sent an empty style and this could not happen.",
+    "from_344": "UI GOTCHA, found the hard way on #344-349: clicking Create immediately after the three form_input calls silently does nothing — no toast, no disabled button, the payload just never fires. Two entries were lost to this before it was spotted, and one retry produced a duplicate song because the click that looked dead had in fact landed. Wait ~3 seconds after setting the fields, click once, then CONFIRM two new rows appeared before touching the form again. A generation can also vanish after submitting (#349's first attempt), so confirm rather than assume."
   },
   "dealt": {
     "63": {
@@ -7933,5 +8099,5 @@
       "run_key": "sweep-60-62"
     }
   },
-  "lyricist_notes": "toolbaz frontier comparison 2026-09-11: gemini-3.6-flash clearly strongest (idiom-driven hooks, real call-and-response, concrete imagery). gpt-5.2 thin — 210 words, repeated end-words, inline syllable counts, appended analysis. grok-4-fast mostly ad-lib scaffolding around few real lines. claude-sonnet-4 returned EMPTY twice (button reset, counter did not advance) — appears non-functional on the free tier. | DESCRIBE-ROUTE TICS, counted across #331-343 and then CORRECTED by BlazeDale (2026-09-18). What survives: FIVE of twelve open 'I came in ...' (#332 cold, #333 softly, #334 tired, #335 quiet, #343 quietly) — a new attractor, and the takes that open on a scene instead are the ones whose style prose opens on a scene rather than on a voice; and six of twelve carry a recording-medium word in the TITLE (Needle in the Dark, Tape Burn Riot, Back in Tune, plus four 'After the ___'). What does NOT survive: my music-word count. I flagged instrument vocabulary in the lyric as a route defect and it is mostly genre doing its job — dancehall toasts the sound system, a gig song names the kick drum, and 'sing' is not a production word at all. Read LINES, not word counts, and only flag a line that describes the song's own form or session from outside it ('by the second verse'). One such line in twelve songs."
+  "lyricist_notes": "toolbaz frontier comparison 2026-09-11: gemini-3.6-flash clearly strongest (idiom-driven hooks, real call-and-response, concrete imagery). gpt-5.2 thin — 210 words, repeated end-words, inline syllable counts, appended analysis. grok-4-fast mostly ad-lib scaffolding around few real lines. claude-sonnet-4 returned EMPTY twice (button reset, counter did not advance) — appears non-functional on the free tier. | DESCRIBE-ROUTE TICS, counted across #331-343 and then CORRECTED by BlazeDale (2026-09-18). What survives: FIVE of twelve open 'I came in ...' (#332 cold, #333 softly, #334 tired, #335 quiet, #343 quietly) — a new attractor, and the takes that open on a scene instead are the ones whose style prose opens on a scene rather than on a voice; and six of twelve carry a recording-medium word in the TITLE (Needle in the Dark, Tape Burn Riot, Back in Tune, plus four 'After the ___'). What does NOT survive: my music-word count. I flagged instrument vocabulary in the lyric as a route defect and it is mostly genre doing its job — dancehall toasts the sound system, a gig song names the kick drum, and 'sing' is not a production word at all. Read LINES, not word counts, and only flag a line that describes the song's own form or session from outside it ('by the second verse'). One such line in twelve songs. | #344-349 (third six, plus an accidental second song on #345): ZERO structural or session lines across all seven, checked by reading lines rather than counting words — the corrected test from earlier today holds up and this route passes it. The came-in opener is down to 2 of 7, but #345 repeated #343's exact pairing of 'came in' plus a coat in line one. The title attractor has changed shape and is now the strongest tic in the sweep: FOUR of nineteen songs are titled with 'Blackout' (#337 Blackout Lullaby, #338 Blackout Psalms, #344 Basement Blackout, #348 Blackout Psalm), and #345's title came straight out of my own compelling term. Worth varying the term deliberately and re-counting."
 }
