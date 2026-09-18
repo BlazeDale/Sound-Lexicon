@@ -35,7 +35,7 @@
  * /api/clip, and that endpoint keeps an origin allowlist -- suno.com and localhost are
  * answered, github.io is not -- so the hosted site was falling back to the same public proxy
  * for the second leg and spending ~20s there. That is the delay left after the share link
- * itself resolves in ~300ms. This does that leg too, and returns only the three fields the
+ * itself resolves in ~300ms. This does that leg too, and returns only the four fields the
  * page uses rather than relaying the whole record.
  *
  * WHAT IT EXPOSES
