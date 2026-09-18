@@ -157,6 +157,10 @@
   .row:hover{background:var(--panel2)}
   .row.cur{border-left-color:var(--amber);background:var(--panel2)}
   .row.mine{border-left-color:var(--teal)}     /* what a visitor is hearing on a detour of their own */
+  /* Lit from the chat: an inset ring rather than a border or a background, so it can sit on
+     top of .cur and .mine without either of them losing the colour that means something. */
+  .row.lit{background:var(--panel2);box-shadow:inset 0 0 0 1px var(--teal)}
+  #donelist .row.lit{opacity:1}
   .row.drag{opacity:.35}
   .row.over{border-top:2px solid var(--amber)}
   /* ---------- the columns as drop targets ----------
@@ -528,7 +532,12 @@
     the same icon mean the same thing on every screen. Messages sent while nothing was playing
     carry none, as do any sent before this existed. A Spotify track nobody here has loaded
     shows no icon rather than a broken one, because Spotify's cover address is a hash and
-    cannot be worked out from the link.<br><br>
+    cannot be worked out from the link.<br>
+    <b>Hover</b> the cover to ring the row it belongs to, and <b>click</b> it to scroll that
+    row into view — useful when the queue is long enough that the row is nowhere near the
+    message. It finds the row by the track rather than by where it sat, so a queue reordered
+    since the message was written still lights the right one. A track that has left the queue
+    has nothing to point at, and its cover says so rather than pretending.<br><br>
     <b>Talking to someone in particular.</b> Type <b>@</b> and press <b>Tab</b> to complete a
     name; Tab again cycles through the matches and Shift+Tab goes back the other way. A bare
     <b>@</b> then Tab offers everyone, which is how you find out who is here — there is no
@@ -1527,6 +1536,10 @@ function rowEl(r, i) {
     li.className = 'row' + (keyOf(r) === colNowKey ? ' cur' : i === cur ? ' mine' : '');
     li.draggable = !shared() || isOwner();          // guests cannot reorder
     li.dataset.i = i;
+    /* The index is a position and changes under reordering; the key is the track itself,
+       which is what a chat message froze. Both, because dragging needs the first and the
+       now-playing icon needs the second. */
+    li.dataset.k = keyOf(r);
 
     const grip = document.createElement('span'); grip.className = 'grip'; grip.textContent = '⠿';
     const art = document.createElement('img');
@@ -2637,9 +2650,30 @@ function nowPlayingIcon(key) {
   img.alt = '';
   img.loading = 'lazy';
   const where = { suno: 'Suno', yt: 'YouTube', ytpl: 'YouTube', sp: 'Spotify', spl: 'Spotify' }[src] || '';
-  img.title = 'Playing when this was said: ' + (title || 'a ' + (where || 'track') + ' track');
+  const named = title || 'a ' + (where || 'track') + ' track';
   /* A cover address that 404s would otherwise leave a broken-image glyph mid-sentence. */
   img.addEventListener('error', () => img.remove());
+
+  /* Point at the row it is talking about. renderChat runs from render(), so this is
+     re-decided whenever the queue changes and cannot go stale against a removed track.
+     Highlighting is by KEY rather than position, because the row may well have been dragged
+     somewhere else since the message was written. */
+  const inQueue = Q.some(r => keyOf(r) === key);
+  if (!inQueue) {
+    img.title = 'Playing when this was said: ' + named + ' — no longer in the queue';
+    return img;
+  }
+  img.title = 'Playing when this was said: ' + named + ' — hover to find it, click to scroll to it';
+  img.style.cursor = 'pointer';
+  const rows = () => document.querySelectorAll('.row[data-k="' + (window.CSS && CSS.escape ? CSS.escape(key) : key) + '"]');
+  img.addEventListener('mouseenter', () => rows().forEach(el => el.classList.add('lit')));
+  img.addEventListener('mouseleave', () => rows().forEach(el => el.classList.remove('lit')));
+  img.addEventListener('click', () => {
+    const el = rows()[0];
+    if (!el) return;
+    const still = matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+    el.scrollIntoView({ block: 'nearest', behavior: still });
+  });
   return img;
 }
 
