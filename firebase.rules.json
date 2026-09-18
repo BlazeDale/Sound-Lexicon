@@ -155,6 +155,12 @@
             ".validate": "newData.hasChildren(['u','t','a'])",
             "u":      { ".validate": "newData.isString() && newData.val() === auth.uid" },
             "n":      { ".validate": "newData.isString() && newData.val().length <= 24" },
+            // What was in the OWNER's player when this was said, as a track key
+            // ("suno:<uuid>", "yt:<id>"). Stamped by the sender at write time and never
+            // touched again - the playhead moves on, and a message is a record of the moment
+            // it was sent. Optional: messages written before this existed simply have none,
+            // and a message sent while nothing was playing has none either.
+            "k":      { ".validate": "newData.isString() && newData.val().length <= 60" },
             "t":      { ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 600" },
             "a":      { ".validate": "newData.isNumber()" },
             "$other": { ".validate": false }

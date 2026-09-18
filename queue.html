@@ -281,6 +281,12 @@
   .msg{font-size:13.5px;line-height:1.5}
   .msg .hd{font-family:var(--mono);font-size:11px;color:var(--dim);margin-bottom:1px}
   .msg .hd b{color:var(--teal);font-weight:600}
+  /* What was playing when this was said. Small and quiet — it is context, not content, and
+     there is one on nearly every line, so anything louder would read as a column of covers
+     with some chat lost between them. */
+  .msg .hd .np{width:14px;height:14px;border-radius:3px;object-fit:cover;vertical-align:-3px;
+               margin-right:5px;opacity:.75;background:var(--panel2)}
+  .msg .hd .np:hover{opacity:1}
   .msg .hd .me{color:var(--amber)}
   .msg .bod{color:var(--text);word-break:break-word}
   .msg .bod a{color:var(--amber);text-decoration:none;border-bottom:1px solid var(--amber-dim)}
@@ -515,6 +521,14 @@
     which is how a guest suggests something. If you own the queue it is queued as well —
     suggesting a track to yourself and then pressing your own button is a step that does not
     need to exist. Anything without a link in it is just posted.<br><br>
+    <b>What was playing.</b> A message carries a small cover of whatever was in the
+    <b>owner's</b> player when it was sent, so a remark months later still says which track it
+    was about. It is stamped at the moment of sending and never revisited — the playhead moves
+    on, the message does not — and it is the owner's player for everybody, which is what makes
+    the same icon mean the same thing on every screen. Messages sent while nothing was playing
+    carry none, as do any sent before this existed. A Spotify track nobody here has loaded
+    shows no icon rather than a broken one, because Spotify's cover address is a hash and
+    cannot be worked out from the link.<br><br>
     <b>Talking to someone in particular.</b> Type <b>@</b> and press <b>Tab</b> to complete a
     name; Tab again cycles through the matches and Shift+Tab goes back the other way. A bare
     <b>@</b> then Tab offers everyone, which is how you find out who is here — there is no
@@ -2592,6 +2606,43 @@ window.__presence = () => {
    data: cannot be dressed up as one. Trailing punctuation is left out of the address,
    because "listen to https://suno.com/s/abc." should not link the full stop. */
 const URL_RE = /https?:\/\/[^\s<>"']+/gi;
+/* ---------- what was playing when it was said ----------
+   The key is frozen into the message at send time, so by the time anyone reads it the track
+   may be long gone from the queue. Three places to look, in order of how much they know:
+   the row if it is still queued, the meta cache if it was ever resolved, and failing both
+   the id itself — Suno names its artwork after the id and YouTube after the video, so those
+   two can always be drawn even for a track nobody here has ever loaded. Spotify's cover is a
+   hash of its own and cannot be derived, so a Spotify row nobody resolved shows no icon
+   rather than a broken one. */
+function nowPlayingIcon(key) {
+  if (!key || typeof key !== 'string') return null;
+  const i = key.indexOf(':');
+  if (i < 0) return null;
+  const src = key.slice(0, i), id = key.slice(i + 1);
+  if (!id) return null;
+
+  const row = Q.find(r => keyOf(r) === key);
+  const cached = metaCache[id];
+  let art = (row && row.art) || (cached && cached.art) || '';
+  const title = (row && row.title) || (cached && cached.title) || '';
+  if (!art) {
+    if (src === 'suno') art = artOf(id);
+    else if (src === 'yt') art = 'https://i.ytimg.com/vi/' + id + '/mqdefault.jpg';
+  }
+  if (!art) return null;
+
+  const img = document.createElement('img');
+  img.className = 'np';
+  img.src = art;
+  img.alt = '';
+  img.loading = 'lazy';
+  const where = { suno: 'Suno', yt: 'YouTube', ytpl: 'YouTube', sp: 'Spotify', spl: 'Spotify' }[src] || '';
+  img.title = 'Playing when this was said: ' + (title || 'a ' + (where || 'track') + ' track');
+  /* A cover address that 404s would otherwise leave a broken-image glyph mid-sentence. */
+  img.addEventListener('error', () => img.remove());
+  return img;
+}
+
 /* ---------- @mentions ----------
    Who can be mentioned is not a question the database answers: presence is keyed by uid and
    holds no names, and giving it names would mean another rules deploy for something the page
@@ -2698,6 +2749,8 @@ function renderChat() {
     const hd = document.createElement('div'); hd.className = 'hd';
     const nm = document.createElement('b'); nm.textContent = m.n || 'someone';
     if (m.u && m.u === SQ.uid) nm.className = 'me';
+    const np = nowPlayingIcon(m.k);
+    if (np) hd.append(np);
     hd.append(nm, document.createTextNode('  ' + new Date(m.a || 0).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })));
     const bod = document.createElement('div'); bod.className = 'bod';
     linkify(m.t || '', bod);
@@ -3079,7 +3132,7 @@ try {
     });
     stopC = onValue(ref(db, 'queues/' + qid + '/chat'), s => {
       const v = s.val() || {};
-      window.__applyChat(Object.values(v).sort((a, b) => (a.a || 0) - (b.a || 0)).slice(-200));
+      window.__applyChat(Object.values(v).sort((a, b) => (a.a || 0) - (b.a || 0)).slice(-200));   // rows pass through whole, `k` included
     });
     stopPl = onValue(ref(db, 'queues/' + qid + '/play'), s => window.__applyPlay(s.val()));
     stopLk = onValue(ref(db, 'queues/' + qid + '/likes'), s => window.__applyLikes(s.val()));
@@ -3250,9 +3303,24 @@ try {
       const r = qref('likes/' + k + '/' + me.uid);
       return (on ? set(r, true) : remove(r)).catch(e => console.warn('[queue] like refused (rules not published?)', e));
     },
+    /* The track key is stamped HERE rather than read back later, because "what was playing"
+       is a fact about the moment the message was sent and the owner's player will have moved
+       on by the time anyone reads it. SP.now is the shared position for everyone — the owner
+       writes it, guests read it — so it is the owner's player either way, which is what makes
+       the icon mean the same thing on every screen.
+
+       The retry matters: `k` is a new field and the chat rule refuses children it does not
+       know about, so against a database whose rules predate this every message would be
+       rejected and the chat would simply stop working. Sending again without the stamp costs
+       one failed write and keeps the room talking until the rules are published. */
     say(text, who) {
-      return set(push(qref('chat')), { u: me.uid, n: trim(who, 24), t: trim(text, 600), a: Date.now() })
-        .catch(e => console.warn('[queue] chat refused', e));
+      const row = { u: me.uid, n: trim(who, 24), t: trim(text, 600), a: Date.now() };
+      const k = (typeof SP !== 'undefined' && SP.now) ? String(SP.now).slice(0, 60) : '';
+      if (!k) return set(push(qref('chat')), row).catch(e => console.warn('[queue] chat refused', e));
+      return set(push(qref('chat')), Object.assign({ k }, row)).catch(() => {
+        console.warn('[queue] chat refused with a now-playing stamp; rules may predate it — resending without');
+        return set(push(qref('chat')), row).catch(e => console.warn('[queue] chat refused', e));
+      });
     },
     renameMe(n) { if (SQ.qid && SQ.uid === SQ.owner) update(qref('meta'), { ownerName: trim(n, 24) }).catch(() => {}); }
   };
