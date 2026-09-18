@@ -102,6 +102,10 @@
           "open":      { ".validate": "newData.isBoolean()" },
           "listed":    { ".validate": "newData.isBoolean()" },
           // Which platforms a GUEST may add from. Absent means allowed - see the tracks rule.
+          // A YouTube id for the owner's stream, shown beside the player. Eleven characters
+          // in practice; the cap is loose because only the page ever writes it and the page
+          // only ever writes what its own parser returned.
+          "live":      { ".validate": "newData.isString() && newData.val().length <= 16" },
           "allowSuno": { ".validate": "newData.isBoolean()" },
           "allowYt":   { ".validate": "newData.isBoolean()" },
           "allowSp":   { ".validate": "newData.isBoolean()" },

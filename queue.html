@@ -43,8 +43,31 @@
   /* 620px was the old small player, which was also the default and is no longer offered: the
      rule stays because .big overrides the width alone and everything else here — the panel,
      the border, the padding — is the player at any size. */
-  #player{max-width:620px;margin:22px auto 0;background:var(--panel);border:1px solid var(--line);
+  /* The player and the stream sit side by side, and wrap rather than squeeze when the
+     window cannot hold both — 356px is a floor, not a preference (see #ytlive). The stage
+     owns the centring that #player used to do for itself. */
+  #stage{display:flex;align-items:flex-start;justify-content:center;gap:14px;
+         margin:22px auto 0;flex-wrap:wrap}
+  #player{max-width:620px;margin:0;background:var(--panel);border:1px solid var(--line);
           border-radius:12px;padding:14px 16px 12px}
+  /* Full window takes the player out of the flow entirely (position:fixed), so the stream
+     would otherwise sit behind it doing nothing. Hidden on the pane alone: display:none on
+     the stage would take the fixed player with it. */
+  html.maxed #stream{display:none}
+  #stream{flex:none;width:378px;background:var(--panel);border:1px solid var(--line);
+          border-radius:12px;padding:10px 10px 8px}
+  /* 356x200 is the smallest 16:9 box that still clears YouTube's rule that an embedded
+     player be at least 200x200. "As small as allowable" is this, exactly — going narrower
+     would drop the height below 200 and put the embed outside YouTube's terms. */
+  #stream #ytlive{width:356px;height:200px;border:0;border-radius:8px;display:block;background:#000}
+  #stream .sbar{display:flex;gap:6px;align-items:center;margin-top:8px}
+  #stream .sbar input{flex:1;min-width:0;background:var(--ink);border:1px solid var(--line);
+                      border-radius:7px;color:var(--text);padding:6px 8px;font-size:11.5px;
+                      font-family:var(--mono)}
+  #stream .sbar input:focus{outline:none;border-color:var(--amber-dim)}
+  #stream .slab{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;
+                text-transform:uppercase;color:var(--dim);margin-bottom:7px;display:block}
+  #stream .slab b{color:var(--red)}
 
   /* ---------- theatre ----------
      The smaller of the two sizes, and the one the page opens at. The three embeds want
@@ -376,6 +399,20 @@
   <div class="mine" id="mine" hidden><span class="lab">your queues</span></div>
 
   <!-- The player sits in the flow, under the queue's name, with the board beneath it. -->
+  <div id="stage">
+  <!-- The owner's stream, beside the music rather than instead of it. Its own plain iframe
+       and not a second IFrame-API player: this one needs no seeking, no position and no
+       auto-advance, and a second API instance beside the queue's would be machinery for
+       nothing. -->
+  <aside id="stream" hidden>
+    <span class="slab"><b>&#9679;</b> STREAM</span>
+    <iframe id="ytlive" title="Live stream" allow="encrypted-media; fullscreen"
+            allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    <div class="sbar">
+      <input id="streamin" hidden placeholder="paste a youtube live link" spellcheck="false">
+      <button id="streamclear" hidden title="Take the stream down for everyone">clear</button>
+    </div>
+  </aside>
   <div id="player">
     <iframe id="frame" allow="autoplay; encrypted-media" title="Suno player"></iframe>
     <div id="yt"></div>
@@ -407,6 +444,7 @@
       </div>
     </div>
   </div>
+  </div><!-- /#stage -->
 
   <div class="board" id="board">
     <!-- Both columns are drop targets: a row can be dragged between them, not only within
@@ -525,6 +563,15 @@
     which is how a guest suggests something. If you own the queue it is queued as well —
     suggesting a track to yourself and then pressing your own button is a step that does not
     need to exist. Anything without a link in it is just posted.<br><br>
+    <b>A stream beside the music.</b> Paste a YouTube <b>live</b> link into the small player
+    to the left and the room can watch while it listens. It is not a queue row: it never plays
+    in turn, never advances, and nothing syncs to it — the queue is a list of tracks, this is
+    a window. On a shared queue the owner sets it and everyone sees the same one; on a private
+    list it is yours and stays in this browser. Either way it is still there when you come
+    back. It is 356×200, which is the smallest 16:9 box that still clears YouTube's rule that
+    an embedded player be at least 200 by 200 — any narrower and the height would fall below
+    the floor. It does not start on its own, so it never talks over the track you are playing;
+    <b>clear</b> takes it down for everyone.<br><br>
     <b>What was playing.</b> A message carries a small cover of whatever was in the
     <b>owner's</b> player when it was sent, so a remark months later still says which track it
     was about. It is stamped at the moment of sending and never revisited — the playhead moves
@@ -2515,6 +2562,8 @@ window.__applyRemote = (tracks, meta) => {
   SQ.open = !!(meta && meta.open);
   SQ.title = (meta && meta.title) || 'Untitled queue';
   SQ.ownerName = (meta && meta.ownerName) || '';
+  liveId = (meta && typeof meta.live === 'string') ? meta.live : '';
+  paintStream();
   const ti = $('#qtitle');
   if (ti.hidden !== false) ti.hidden = false;
   if (document.activeElement !== ti) ti.value = SQ.title;
@@ -2675,6 +2724,54 @@ function nowPlayingIcon(key) {
     el.scrollIntoView({ block: 'nearest', behavior: still });
   });
   return img;
+}
+
+/* ---------- the stream beside the player ----------
+   A live YouTube link the owner can put up so the room can watch while it listens. It is
+   deliberately NOT part of the queue: it never plays in turn, never advances, and nothing
+   syncs to it. The queue is a list of tracks; this is a window.
+
+   Where it lives depends on the queue. A shared one keeps it in meta, so everyone in the
+   room sees the same stream and it is still there tomorrow; a private one keeps it in this
+   browser, which is all "still there tomorrow" can mean when nobody else can see the list
+   at all. Either way it survives a reload, which is the "multiple sessions" part.
+
+   Only the owner sets it on a shared queue — a stream is the room's, and the same rule that
+   governs what plays should govern what is shown. On your own private queue you are the
+   owner by definition. */
+const LS_LIVE = 'sl.queue.live.v1';
+let liveId = '';
+
+function loadLocalLive() { try { return localStorage.getItem(LS_LIVE) || ''; } catch (e) { return ''; } }
+function saveLocalLive(v) { try { v ? localStorage.setItem(LS_LIVE, v) : localStorage.removeItem(LS_LIVE); } catch (e) {} }
+
+/* The src is only ever rewritten when the id actually changes: assigning the same address
+   again reloads the iframe, which would restart the stream under anyone watching it every
+   time the queue repainted. */
+function paintStream() {
+  const canSet = !shared() || isOwner();
+  const box = $('#stream'), fr = $('#ytlive');
+  box.hidden = !liveId && !canSet;
+  if (box.hidden) { if (fr.src) fr.removeAttribute('src'); return; }
+  const want = liveId ? 'https://www.youtube.com/embed/' + liveId : '';
+  if (want) { if (fr.src !== want) fr.src = want; } else if (fr.src) fr.removeAttribute('src');
+  fr.style.display = liveId ? 'block' : 'none';
+  $('#streamin').hidden = !canSet;
+  $('#streamclear').hidden = !canSet || !liveId;
+  $('#streamin').placeholder = liveId ? 'replace the live link' : 'paste a youtube live link';
+  $('#streamin').title = shared()
+    ? 'Everyone in this queue sees this stream'
+    : 'Kept in this browser with your private list';
+}
+
+function setStream(raw) {
+  const id = ytFrom(raw);
+  if (raw && !id) { toast('That is not a YouTube link'); return; }
+  liveId = id;
+  if (shared()) { if (isOwner() && window.__net && window.__net.setLive) window.__net.setLive(id); }
+  else saveLocalLive(id);
+  paintStream();
+  toast(id ? 'Stream is up' : 'Stream cleared');
 }
 
 /* ---------- @mentions ----------
@@ -2925,6 +3022,26 @@ $('#chatin').addEventListener('keydown', e => {
   tabCycle = { value: el.value, caret, at, matches, i };
 });
 $('#chatin').addEventListener('blur', () => { tabCycle = null; });
+
+/* A private queue has no meta to read it from, so it comes out of this browser. A shared one
+   overwrites this the moment its meta arrives, which is correct: the room's stream wins over
+   whatever this browser was last showing on a list of its own.
+
+   The ?q= is read here rather than borrowed from the module's QID: that constant lives in a
+   different script, and reaching for it from this one threw at top level - which does not
+   just lose this line, it abandons the REST of this script, so every handler below silently
+   never bound. shared() cannot answer yet either, since SQ.qid is not filled until the
+   database connects. */
+if (!new URLSearchParams(location.search).get('q')) liveId = loadLocalLive();
+paintStream();
+
+$('#streamin').addEventListener('keydown', e => {
+  if (e.key !== 'Enter') return;
+  e.preventDefault();
+  setStream(e.target.value.trim());
+  e.target.value = '';
+});
+$('#streamclear').addEventListener('click', () => setStream(''));
 
 $('#chatform').addEventListener('submit', e => {
   e.preventDefault();
@@ -3270,6 +3387,12 @@ try {
     },
     /* Which platforms guests may add from. meta only — the browse card says nothing about it,
        because it is a rule inside the room rather than something to advertise from outside. */
+    /* The stream address, in meta with the rest of the room's settings. Owner only, like
+       every other meta write — the rules enforce it, this just does not offer it. */
+    setLive(id) {
+      return update(qref('meta'), { live: String(id || '').slice(0, 16) })
+        .catch(e => console.warn('[queue] stream link refused', e));
+    },
     setAllow(plat, on) {
       const key = { suno: 'allowSuno', yt: 'allowYt', sp: 'allowSp' }[plat];
       if (!key) return Promise.resolve();
