@@ -40,8 +40,11 @@
  *
  * WHAT IT EXPOSES
  * A Suno share token in, 36 characters of hex and dashes out; or a uuid in, a title, a
- * length and an artwork address out. It refuses anything else, so it cannot be used as an
- * open proxy, and it never relays a response body it has not narrowed first.
+ * length, an artwork address and the stored style prose out. It refuses anything else, so it
+ * cannot be used as an open proxy, and it never relays a response body it has not narrowed
+ * first. Note what is deliberately NOT relayed though the record carries it: the lyrics and
+ * the description the song was generated from. Suno serves both to anyone holding an id,
+ * even for a clip marked private; this worker is ours, and it does not have to help.
  */
 const UUID = /\/song\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/i;
 const SHARE = /^https:\/\/suno\.com\/s\/[A-Za-z0-9_-]{6,64}$/;
@@ -77,10 +80,18 @@ export default {
            cached zero, and could never auto-advance even hours after the take finished.
            A length is immutable once it exists, so cache that hard; a zero is a provisional
            answer about a song still being made, so cache nothing. */
+        /* The style prose, for the queue's style disclosure. It rides along in the record
+           this already has, so passing it on costs nothing and spares the page a second
+           round trip through the public proxy - which is the slow, flaky path and the one
+           it would otherwise fall back to. Capped because a style box holds 1000 characters
+           and a worker answer should not be open-ended. Only what Suno STORED: a library
+           demo's own prose is in data.js and the page prefers that, so this is for tracks
+           the library does not know. */
         return new Response(JSON.stringify({
           title: String(j.title || '').slice(0, 140),
           dur,
-          art: typeof j.image_url === 'string' && j.image_url.startsWith('https://') ? j.image_url : ''
+          art: typeof j.image_url === 'string' && j.image_url.startsWith('https://') ? j.image_url : '',
+          tags: String((j.metadata && j.metadata.tags) || '').slice(0, 1200)
         }), { headers: { ...cors, 'content-type': 'application/json',
                          'cache-control': dur ? 'public, max-age=86400' : 'no-store' } });
       } catch (e) {

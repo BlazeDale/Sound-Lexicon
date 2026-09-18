@@ -231,6 +231,30 @@
   .heart:hover,.heart.on{color:var(--amber)}
   .empty{color:var(--dim);font-size:13.5px;padding:22px 2px}
 
+  /* ---------- the style behind a track ----------
+     A row says what a track IS (#331 · Piano-anthem build root) but never what it was made
+     from, and the prose is the whole artifact this library exists to keep. The Suno embed
+     does not show it and cannot be asked to, so the out-link was the only way to it — which
+     means leaving the queue to read one paragraph.
+
+     A disclosure instead, closed by default: the queue stays a queue, and the prose is one
+     tap away on the rows that have any. Only Suno rows get the control, because a YouTube or
+     Spotify row has no equivalent to show. */
+  .info{flex:none;border:1px solid var(--line);background:none;color:var(--dim);cursor:pointer;
+        font-family:var(--mono);font-size:11px;line-height:1;padding:4px 7px;border-radius:6px;
+        transition:color .12s ease,border-color .12s ease}
+  .info:hover,.info:focus-visible{color:var(--teal);border-color:var(--teal)}
+  .row.open{flex-wrap:wrap}
+  .det{flex-basis:100%;width:100%;margin:9px 0 2px;padding:10px 12px;border-radius:8px;
+       background:var(--ink);border:1px solid var(--line);cursor:default}
+  .det h4{margin:0 0 6px;font-family:var(--mono);font-size:10.5px;font-weight:600;
+          letter-spacing:.04em;text-transform:uppercase;color:var(--teal)}
+  .det p{margin:0;font-size:12.5px;line-height:1.62;color:var(--text);white-space:pre-wrap}
+  .det .negs{margin:9px 0 0;font-family:var(--mono);font-size:11px;line-height:1.55;color:var(--dim)}
+  .det .negs b{color:var(--muted);font-weight:600}
+  .det .note{margin:0;font-family:var(--mono);font-size:11.5px;color:var(--dim)}
+  @media(prefers-reduced-motion:reduce){.info{transition:none}}
+
 
   /* 120px is what the other players in this repo give Suno's embed; at 82 its own
      transport sat right on the edge and read as though our bar were covering it. */
@@ -668,7 +692,7 @@
    page -- covers read from data.js while the code that looks them up is old. Printed
    on load and shown in the footer, so 'which build am I on' is answerable in a glance
    instead of by deduction. */
-const QUEUE_BUILD = '2026-09-15-f';
+const QUEUE_BUILD = '2026-09-18-a';
 console.log('[queue] build ' + QUEUE_BUILD);
 
 const $ = s => document.querySelector(s);
@@ -962,6 +986,45 @@ async function resolveSP(id) {
   return row;
 }
 
+/* ---------- the style prose for one track ----------
+   Two sources, and the local one is not merely faster — it is BETTER. A library demo's entry
+   carries the prose we actually wrote; what Suno stores is its own restatement of it, and on
+   the Describe route that restatement measured 314-404 characters against an 866-character
+   original. So a row that data.js knows never asks the network at all, and never shows the
+   paraphrase in place of the thing it paraphrases.
+
+   Anything else — a link somebody dropped in — has no local answer, so it asks Suno, once,
+   on the first expand rather than for every row on render. `metadata.tags` rides along in the
+   clip record the page already fetches for a length, so resolve() banks it on the way past
+   and this usually finds it waiting. */
+async function styleOf(id) {
+  const known = bySuno.get(id);
+  if (known) return { kind: 'lib', fam: known.fam || '', style: known.style || '', neg: known.neg || '' };
+
+  const c = metaCache[id];
+  if (c && typeof c.tags === 'string') return { kind: 'suno', style: c.tags };
+
+  const url = 'https://studio-api.prod.suno.com/api/clip/' + id;
+  const j = await queued(async () => {
+    try { const r = await fetchT(url, 9000); if (r.ok) return await r.json(); } catch (e) {}
+    /* The worker is the fast path when hosted and it answers a trimmed record; it only
+       carries tags once the deployed copy includes them, so this reads the field and
+       tolerates its absence rather than assuming either way. */
+    if (SHARE_RESOLVER) {
+      try {
+        const r = await fetchT(SHARE_RESOLVER + '?clip=' + encodeURIComponent(id), 9000);
+        if (r.ok) { const m = await r.json(); if (m && !m.error && typeof m.tags === 'string') return { metadata: { tags: m.tags } }; }
+      } catch (e) {}
+    }
+    try { const r = await fetchT(PROXY(url), 15000); if (r.ok) return await r.json(); } catch (e) {}
+    return null;
+  });
+
+  const tags = j && j.metadata && typeof j.metadata.tags === 'string' ? j.metadata.tags : '';
+  if (tags) { metaCache[id] = Object.assign({}, metaCache[id], { tags }); saveMeta(); }
+  return { kind: 'suno', style: tags };
+}
+
 async function resolve(id, src, fresh) {
   if (src === 'ytpl') return resolveYTPL(id);
   if (src === 'yt') return resolveYT(id);
@@ -1011,7 +1074,10 @@ async function resolve(id, src, fresh) {
   if (typeof j.image_url === 'string' && /^https:\/\//.test(j.image_url)) row.art = j.image_url;
   row.dur = Math.round((j.metadata && j.metadata.duration) || 0);
   row.ok = row.dur > 0;
-  if (row.ok) { metaCache[id] = { title: row.title, art: row.art, dur: row.dur }; saveMeta(); }
+  /* The style prose is in this same record. Keeping it costs nothing here and saves the
+     round trip later, when somebody expands the row and wants it immediately. */
+  const tags = j.metadata && typeof j.metadata.tags === 'string' ? j.metadata.tags : '';
+  if (row.ok) { metaCache[id] = { title: row.title, art: row.art, dur: row.dur, tags }; saveMeta(); }
   return row;
 }
 
@@ -1717,6 +1783,74 @@ function rowEl(r, i) {
         window.__net.setLike(keyOf(r), !liked);
       });
       li.append(h);
+    }
+
+    /* ---------- the style, in place ----------
+       Suno rows only: the other two sources have nothing of the kind behind them. The button
+       toggles, the panel is built on first open and then kept, and both stop the click from
+       reaching the row — expanding a track is not a request to play it.
+
+       A library row needs no network and must not show a spinner for prose that is already
+       in memory, so it is drawn synchronously. A foreign row says it is asking, then says
+       plainly if the answer never came; a proxy that times out should read as an answer of
+       its own rather than as an empty box. */
+    if (r.src === 'suno') {
+      const info = document.createElement('button');
+      info.className = 'info';
+      info.type = 'button';
+      info.textContent = 'style';
+      info.title = 'Show the style prose behind this track';
+      info.setAttribute('aria-expanded', 'false');
+      let det = null;
+      info.addEventListener('click', async ev => {
+        ev.stopPropagation();
+        if (det) {                                  // built already: just fold it away or back
+          const open = det.hidden;
+          det.hidden = !open;
+          li.classList.toggle('open', open);
+          info.setAttribute('aria-expanded', String(open));
+          return;
+        }
+        det = document.createElement('div');
+        det.className = 'det';
+        det.addEventListener('click', e2 => e2.stopPropagation());
+        li.append(det);
+        li.classList.add('open');
+        info.setAttribute('aria-expanded', 'true');
+
+        const known = bySuno.get(r.id);
+        const draw = d => {
+          det.textContent = '';
+          const h = document.createElement('h4');
+          /* Naming the source is the point of the heading. Our prose and Suno's restatement
+             of it are different documents and a reader should never have to guess which one
+             they are looking at. */
+          h.textContent = d.kind === 'lib'
+            ? ('library prose' + (d.fam ? ' · ' + d.fam : ''))
+            : 'style, as Suno stored it';
+          det.append(h);
+          if (d.style) {
+            const pp = document.createElement('p'); pp.textContent = d.style; det.append(pp);
+          } else {
+            const n = document.createElement('p'); n.className = 'note';
+            n.textContent = 'Suno did not answer — try again, or open the track on Suno.';
+            det.append(n);
+          }
+          if (d.neg) {
+            const ng = document.createElement('div'); ng.className = 'negs';
+            const b = document.createElement('b'); b.textContent = 'against: ';
+            ng.append(b, document.createTextNode(d.neg));
+            det.append(ng);
+          }
+        };
+
+        if (known) { draw({ kind: 'lib', fam: known.fam || '', style: known.style || '', neg: known.neg || '' }); return; }
+        const wait = document.createElement('p'); wait.className = 'note';
+        wait.textContent = 'Reading the style from Suno…';
+        det.append(wait);
+        draw(await styleOf(r.id));
+      });
+      li.append(info);
     }
 
     /* A way out on every row, whatever it plays through. For YouTube it is the fix for ads
