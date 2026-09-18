@@ -692,7 +692,7 @@
    page -- covers read from data.js while the code that looks them up is old. Printed
    on load and shown in the footer, so 'which build am I on' is answerable in a glance
    instead of by deduction. */
-const QUEUE_BUILD = '2026-09-18-a';
+const QUEUE_BUILD = '2026-09-18-b';
 console.log('[queue] build ' + QUEUE_BUILD);
 
 const $ = s => document.querySelector(s);
@@ -1001,8 +1001,13 @@ async function styleOf(id) {
   const known = bySuno.get(id);
   if (known) return { kind: 'lib', fam: known.fam || '', style: known.style || '', neg: known.neg || '' };
 
+  /* TRUTHY, not `typeof === 'string'`. An empty string is a string, and the first version of
+     this treated one as a cached answer -- so a row that had banked no prose reported "Suno
+     did not answer" for ever and never asked again. Same shape as the cover bug this file
+     already carries a note about: a wrong value that does not fail is worse than a missing
+     one, because nothing ever retries it. Absent now means unknown, and unknown asks. */
   const c = metaCache[id];
-  if (c && typeof c.tags === 'string') return { kind: 'suno', style: c.tags };
+  if (c && c.tags) return { kind: 'suno', style: c.tags };
 
   const url = 'https://studio-api.prod.suno.com/api/clip/' + id;
   const j = await queued(async () => {
@@ -1060,7 +1065,9 @@ async function resolve(id, src, fresh) {
           + (fresh ? '&_=' + Date.now() : ''), 9000, fresh);
         if (r.ok) {
           const m = await r.json();
-          if (m && !m.error) return { title: m.title, image_url: m.art, metadata: { duration: m.dur } };
+          /* tags too, now that the worker sends them. Without this the worker path banked an
+             empty style on every hosted row it resolved, which is what broke the disclosure. */
+          if (m && !m.error) return { title: m.title, image_url: m.art, metadata: { duration: m.dur, tags: m.tags } };
         }
       } catch (e) {}
     }
@@ -1076,8 +1083,15 @@ async function resolve(id, src, fresh) {
   row.ok = row.dur > 0;
   /* The style prose is in this same record. Keeping it costs nothing here and saves the
      round trip later, when somebody expands the row and wants it immediately. */
-  const tags = j.metadata && typeof j.metadata.tags === 'string' ? j.metadata.tags : '';
-  if (row.ok) { metaCache[id] = { title: row.title, art: row.art, dur: row.dur, tags }; saveMeta(); }
+  const tags = (j.metadata && typeof j.metadata.tags === 'string' && j.metadata.tags) || '';
+  /* The key is written only when there is something to write. An entry with no `tags` reads
+     as "nobody has looked yet"; storing an empty one would read as "looked, found nothing"
+     and close the door on a row whose prose was simply on a path that had not run. */
+  if (row.ok) {
+    const e = { title: row.title, art: row.art, dur: row.dur };
+    if (tags) e.tags = tags; else if (metaCache[id] && metaCache[id].tags) e.tags = metaCache[id].tags;
+    metaCache[id] = e; saveMeta();
+  }
   return row;
 }
 
