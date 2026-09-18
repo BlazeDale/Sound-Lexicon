@@ -296,12 +296,6 @@
   .share button{padding:6px 11px;font-size:12.5px}
   .share .live{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal)}
   .share .live::before{content:'●';margin-right:5px}
-  .mine{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin:10px 0 0;font-size:12.5px;color:var(--dim)}
-  .mine .lab{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase}
-  .chip{display:inline-flex;align-items:center;gap:6px;background:var(--panel2);border:1px solid var(--line);
-        border-radius:20px;padding:4px 11px;color:var(--muted);text-decoration:none;font-size:12.5px}
-  .chip:hover{border-color:var(--amber-dim);color:var(--text)}
-  .chip.here{border-color:var(--amber);color:var(--amber)}
   #qtitle{font-size:15px;font-weight:700;color:var(--text);background:none;border:0;border-bottom:1px dashed transparent;
           padding:2px 0;min-width:120px;font-family:var(--sans)}
   #qtitle:not([readonly]){cursor:text}
@@ -420,8 +414,6 @@
     This queue is private to this browser — no chat, and nobody else can see it.
     <b>Share this queue</b> publishes it, gives you a link, and opens a chat on it.
   </p>
-  <div class="mine" id="mine" hidden><span class="lab">your queues</span></div>
-
   <!-- The player sits in the flow, under the queue's name, with the board beneath it. -->
   <div id="stage">
   <!-- The owner's stream, beside the music rather than instead of it. Its own plain iframe
@@ -692,7 +684,7 @@
    page -- covers read from data.js while the code that looks them up is old. Printed
    on load and shown in the footer, so 'which build am I on' is answerable in a glance
    instead of by deduction. */
-const QUEUE_BUILD = '2026-09-18-b';
+const QUEUE_BUILD = '2026-09-18-c';
 console.log('[queue] build ' + QUEUE_BUILD);
 
 const $ = s => document.querySelector(s);
@@ -1342,34 +1334,10 @@ const PLAT_NAME = { suno: 'Suno', yt: 'YouTube', sp: 'Spotify' };
 const canAddSrc = src => !SQ.qid || isOwner() || (SQ.open && SQ.allow[PLAT[src] || 'suno'] !== false);
 const shared  = () => !!SQ.qid;
 
-/* ---------- the queues you own ----------
-   Nothing limits how many queues a uid may own — publish mints a fresh id every time. What
-   was missing was any way to FIND them again: the page only ever knew the one in the url,
-   so a published queue whose link you lost was owned and unreachable. This keeps a local
-   index, and the module also asks the database for everything this uid owns, so the list
-   survives losing localStorage as long as the identity survives. */
-const LS_MINE = 'sl.queue.mine.v1';
-function myQueues() { try { return JSON.parse(localStorage.getItem(LS_MINE) || '{}') || {}; } catch (e) { return {}; } }
-function rememberQueue(qid, title) {
-  const m = myQueues();
-  m[qid] = { t: title || (m[qid] && m[qid].t) || 'Untitled queue', at: Date.now() };
-  try { localStorage.setItem(LS_MINE, JSON.stringify(m)); } catch (e) {}
-  renderMine();
-}
-function forgetQueue(qid) { const m = myQueues(); delete m[qid]; try { localStorage.setItem(LS_MINE, JSON.stringify(m)); } catch (e) {} renderMine(); }
-function renderMine() {
-  const m = myQueues(), box = $('#mine');
-  const ids = Object.keys(m).sort((a, b) => (m[b].at || 0) - (m[a].at || 0));
-  box.querySelectorAll('.chip').forEach(c => c.remove());
-  box.hidden = !ids.length;
-  for (const qid of ids) {
-    const a = document.createElement('a');
-    a.className = 'chip' + (qid === SQ.qid ? ' here' : '');
-    a.href = '?q=' + qid;
-    a.textContent = m[qid].t || qid;
-    box.appendChild(a);
-  }
-}
+/* The strip of "your queues" chips was removed on request 2026-09-18, and with it the local
+   index and the owner query that fed it — a list nobody renders is a localStorage key and a
+   database round trip kept for nothing. Finding a queue you own again is queues.html's job,
+   and it asks the database directly rather than reading anything this page wrote. */
 
 /* "Pete · 12 Sep 2026" — author and date, which is what actually distinguishes one
    listening session from another when you come back to them weeks later. */
@@ -2749,9 +2717,6 @@ $('#trep').classList.toggle('on', repeat !== 'off');
 loadHeard();
 rebuildShuffle();
 $('#mename').textContent = myName() || '—';
-renderMine();
-window.__rememberQueue = rememberQueue;
-window.__forgetQueue = forgetQueue;
 if (new URLSearchParams(location.search).get('q')) { Q = []; $('#empty').textContent = 'Loading the shared queue…'; }
 render();
 if (Q.length) $('#ns').textContent = Q.length + ' queued · pick a track';
@@ -2771,7 +2736,6 @@ window.__applyRemote = (tracks, meta) => {
   ti.readOnly = !isOwner();
   ti.title = isOwner() ? 'Click to rename this queue' : '';
   $('#newq').hidden = false;
-  if (isOwner()) rememberQueue(SQ.qid, SQ.title); else renderMine();
   const playing = Q[cur] ? keyOf(Q[cur]) : '';
   Q = tracks;
   cur = playing ? Q.findIndex(r => keyOf(r) === playing) : -1;
@@ -3276,14 +3240,13 @@ $('#delq').addEventListener('click', async () => {
   if (!isOwner()) return;
   if (!confirm('Delete "' + SQ.title + '" for everyone? This cannot be undone.')) return;
   await window.__net.destroy();
-  forgetQueue(SQ.qid);
   location.href = location.pathname;
 });
 $('#qtitle').addEventListener('change', () => {
   if (!isOwner()) return;
   const t = $('#qtitle').value.trim().slice(0, 60) || 'Untitled queue';
   $('#qtitle').value = t;
-  window.__net.setTitle(t); rememberQueue(SQ.qid, t);
+  window.__net.setTitle(t);
 });
 $('#publish').addEventListener('click', async () => {
   if (!Q.length) { toast('Add something first'); return; }
@@ -3321,8 +3284,7 @@ $('#copylink').addEventListener('click', () => {
    ============================================================================ */
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import { getDatabase, ref, push, set, update, remove, onValue, serverTimestamp, get,
-         query, orderByChild, equalTo, onDisconnect }
+import { getDatabase, ref, push, set, update, remove, onValue, serverTimestamp, get, onDisconnect }
   from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
 const firebaseConfig = {
@@ -3547,7 +3509,6 @@ try {
          chat. A card is written when the owner LISTS the queue, and removed when they unlist
          it; see setListed. */
       history.replaceState(null, '', '?q=' + qid);
-      window.__rememberQueue(qid, trim(title || 'Untitled queue', 60));
       listen(qid);
       try { await navigator.clipboard.writeText(location.href); } catch (e) {}
       return qid;
@@ -3695,18 +3656,6 @@ try {
     },
     renameMe(n) { if (SQ.qid && SQ.uid === SQ.owner) update(qref('meta'), { ownerName: trim(n, 24) }).catch(() => {}); }
   };
-
-  /* Ask the database for everything this identity owns. The local index is a convenience;
-     this is what makes a published queue findable again after clearing site data — as long
-     as the anonymous identity itself survived, which is the same condition as still owning
-     it at all. */
-  try {
-    const mineSnap = await get(query(ref(db, 'queues'), orderByChild('meta/owner'), equalTo(me.uid)));
-    const all = mineSnap.val() || {};
-    for (const [qid, q] of Object.entries(all)) {
-      window.__rememberQueue(qid, (q && q.meta && q.meta.title) || 'Untitled queue');
-    }
-  } catch (e) { console.warn('[queue] could not list owned queues (is .indexOn set?)', e); }
 
   if (QID && /^[a-z0-9]{4,16}$/.test(QID)) {
     const snap = await get(ref(db, 'queues/' + QID + '/meta'));
