@@ -689,6 +689,28 @@ const DURS = (typeof SONG_DUR !== 'undefined' && SONG_DUR) || {};
    data.js by tools/song_art.mjs and the rest are still worked out from the id. */
 const ART = (typeof SONG_ART !== 'undefined' && SONG_ART) || {};
 const artOf = id => ART[id] || ('https://cdn2.suno.ai/image_' + id + '.jpeg');
+/* A cover address must be https before it reaches an img src, and the database caps a stored
+   one at 200 characters - a replaced cover's address runs to about 160, so the cap is real
+   but not usually reached. Anything longer is dropped rather than risking a rejected write:
+   the rules validate the whole row, so one over-long cover would refuse the track. */
+const okArt = u => typeof u === 'string' && /^https:\/\//.test(u) && u.length <= 200;
+/* Suno names a cover after the clip id — UNLESS the creator replaced it, and then the address
+   is unrelated and cannot be worked out from anything we hold. Three sources know better than
+   the guess, in this order:
+     ART            the library's own answer, checked against Suno by tools/song_art.mjs and
+                    authoritative for a demo; it beats a stored address that may be older.
+     stored         what was written onto the queue row when the track was added. This is the
+                    only one a GUEST can benefit from, which is why it is worth storing.
+     metaCache      what this browser learned resolving it once.
+   and only then the derived guess. Getting this wrong is not subtle: the row shows one cover
+   and Suno's own embed shows another, side by side. */
+function sunoArt(id, stored) {
+  if (ART[id]) return ART[id];
+  if (okArt(stored)) return stored;
+  const c = metaCache[id];
+  if (c && okArt(c.art)) return c.art;
+  return artOf(id);
+}
 const bySuno = new Map();
 if (typeof LIB !== 'undefined') LIB.forEach(v => (v.suno || []).forEach(id => bySuno.set(String(id), v)));
 
@@ -991,6 +1013,36 @@ async function resolve(id, src, fresh) {
   row.ok = row.dur > 0;
   if (row.ok) { metaCache[id] = { title: row.title, art: row.art, dur: row.dur }; saveMeta(); }
   return row;
+}
+
+/* ---------- covers that were guessed before anyone knew better ----------
+   Rows added before covers were stored carry none, so every visitor derives the address from
+   the id - which is simply wrong for a clip whose creator replaced its artwork. The owner can
+   put that right for everyone: resolve the track, and if the answer is not the derived
+   address, write it onto the row.
+
+   Owner only and once per row, for the same reason as the length repair: the rules refuse a
+   guest rewriting an existing row, and a visitor correcting the shared queue is not their
+   call. Library demos are skipped - ART already holds the checked answer for those, and it is
+   better than anything a lookup would return. */
+const artFixed = new Set();
+async function repairArt() {
+  if (!hosting() || !window.__net || !window.__net.setArt) return;
+  for (const r of Q.slice(0, 40)) {
+    if (r.src !== 'suno' || !r.k || artFixed.has(r.k) || ART[r.id]) continue;
+    artFixed.add(r.k);
+    const derivedNow = 'https://cdn2.suno.ai/image_' + r.id + '.jpeg';
+    let art = (metaCache[r.id] || {}).art || '';
+    if (!okArt(art)) {
+      let got = null;
+      try { got = await resolve(r.id, 'suno'); } catch (e) {}
+      art = got && got.art ? got.art : '';
+    }
+    if (!okArt(art) || art === derivedNow) continue;
+    r.art = art;
+    window.__net.setArt(r.k, art);
+    render();
+  }
 }
 
 /* ---------- rows that arrived before their length existed ----------
@@ -1526,6 +1578,7 @@ function upcomingIndices() {
    is untimed, and it will not stack timers. */
 function render() {
   scheduleUntimed();
+  repairArt();
   syncHeard();
   const list = $('#list'), done = $('#donelist'), nowl = $('#nowlist');
   $('#clear').disabled = !Q.length;
@@ -3169,11 +3222,16 @@ try {
       by: me.uid,
       byName: trim(who || '', 24)
     };
-    /* The one cover that cannot be derived. Suno names its artwork after the id and YouTube
-       after the video, so those cost nothing to work out at the other end; Spotify's is a
-       hash of its own, and a guest who has never resolved the track has no way to reach it.
-       So it rides along for Spotify rows only, rather than being stored for every row. */
+    /* Covers that cannot be worked out at the other end ride along; the rest are derived
+       there and cost nothing to store. Spotify's is always a hash of its own. Suno's is
+       normally the clip id - but a creator can REPLACE it, and then the address is unrelated
+       to the id and a guest who never resolved the track has no way to reach it, so the row
+       would show the derived guess while Suno's own embed shows the real one. Stored only
+       when it is not the derived address, so the ordinary row stays as thin as it was. */
     if (r.src === 'sp' || r.src === 'spl') t.art = trim(r.art || '', 200);
+    else if (r.src === 'suno' && okArt(r.art) && r.art !== 'https://cdn2.suno.ai/image_' + r.id + '.jpeg') {
+      t.art = r.art;
+    }
     return t;
   };
 
@@ -3189,7 +3247,7 @@ try {
            /* Arrived over the network and goes into an img src, so it is checked here the
               same way a cover from Suno's own api is. */
            : (t.src === 'sp' || t.src === 'spl') ? (/^https:\/\//.test(t.art || '') ? t.art : '')
-                            : artOf(t.id),        // honours a replaced cover, same as above
+                            : sunoArt(t.id, t.art),   // a replaced cover cannot be derived
         dur: t.dur || 0,
         ok: (t.dur || 0) > 0 || t.src === 'yt' || t.src === 'ytpl' || t.src === 'sp' || t.src === 'spl',
         album: t.src === 'ytpl' && /^OLAK5uy_/i.test(String(t.id || '')),
@@ -3362,6 +3420,14 @@ try {
        calling this would simply be refused - and a visitor correcting the shared queue is
        not their business in any case. The clamp matches the rule's own 0..3600 validate, so
        a nonsense duration is rejected here rather than bounced by the database. */
+    /* A cover the row could not have derived. Owner only, like every other rewrite of an
+       existing row, and capped to what the rules will accept so a long address is dropped
+       rather than refusing the whole write. */
+    setArt(k, art) {
+      if (!k || !art || art.length > 200) return Promise.resolve();
+      return update(qref('tracks/' + k), { art })
+        .catch(e => console.warn('[queue] cover update refused', e));
+    },
     setDur(k, dur) {
       const v = Math.max(0, Math.min(3600, Math.round(dur || 0)));
       if (!k || !v) return Promise.resolve();
