@@ -7279,7 +7279,7 @@
       "edits": 0,
       "prompt": "claude-v12 (BlazeDale 2026-09-17 revision) via Describe",
       "compelling_term": "raw",
-      "note": "570 words, the longest of the six. WATCH — this is the clearest case of the route's own failure mode: the lyric is ABOUT being at a gig. 'Neon on the marquee', 'You hit that first note', 'the kick drum came in and it called my name', sing x9, song x2, and the title itself is record-medium drift (the needle), the same drift first flagged at #327 and again at #330. The lyrics-must-not-narrate-the-mix rule is broken outright. Cause is structural, not bad luck: on this route one model reads the Styles box and writes the words."
+      "note": "570 words, the longest of the first six. The lyric is set at a gig — 'You hit that first note, and the room went still', 'the kick drum came in and it called my name' — which is a scene the singer is standing in, not the song describing its own production. Left as is. Title is record-medium ('Needle'), the one thing here worth a glance."
     },
     "333": {
       "status": "generated",
@@ -7329,7 +7329,7 @@
       "edits": 0,
       "prompt": "claude-v12 (BlazeDale 2026-09-17 revision) via Describe",
       "compelling_term": "relentless",
-      "note": "563 words, the longest take of the six at 5:08. WATCH: the densest music-word leak — chord, verse, kick, piano, guitar, bass, hymn, song x3, sing x9. coat x1. Opens 'I came in tired, I came in torn, I came in late to the light'."
+      "note": "563 words, the longest take of the twelve at 5:08. The only genuinely structural line in all twelve is here: 'By the second verse, the walls were a wave' — that names the song's own form from outside it, which is the thing the mix-narration rule is actually about. The rest are similes and belong ('the guitar was a blade made of weather and want', 'I saw the truth in a terrible chord'). coat x1. Opens 'I came in tired, I came in torn'."
     },
     "335": {
       "status": "generated",
@@ -7479,7 +7479,7 @@
       "edits": 0,
       "prompt": "claude-v12 (BlazeDale 2026-09-17 revision) via Describe",
       "compelling_term": "quick-witted",
-      "note": "REJECT CANDIDATE, shipped and flagged rather than re-rolled. 378 words and the song is ABOUT the sound system: tune x27 (it is the refrain), riddim x3, plus record, needle, bass x2, kick, drum. This is the mix-narration rule broken as completely as it can be, and it is the route doing it — the Styles box for this entry is nothing but riddim/soundsystem vocabulary and the same model reads that box and writes the words. If any of the twelve gets re-fired, this one first."
+      "note": "378 words, 2:30. KEEP — and the earlier note on this entry, which called it a reject candidate for 'tune x27', was wrong. Toasting is a tradition ABOUT the sound system: 'the bass stay black', 'from the first small kick to the sweet bass boom', 'let the riddim croon', and 'Back in tune' as the refrain is the deejay doing the genre's own job. BlazeDale's counter-example is Super Bass, whose hook is the low end named out loud. Counting the word was the mistake, not the word being there."
     },
     "341": {
       "status": "generated",
@@ -7529,7 +7529,7 @@
       "edits": 0,
       "prompt": "claude-v12 (BlazeDale 2026-09-17 revision) via Describe",
       "compelling_term": "unembarrassed",
-      "note": "588 words, the longest of the twelve. No instrument words at all, but sing x18 — the singing-about-singing tic in its purest form. Opens 'I came in quietly, quietly, through the rain at the station gate / With a coat...' — the 'I came in' opener AND the coat in the first two lines. coat x1, key x1, salt x1."
+      "note": "588 words, the longest of the twelve. ZERO instrument or production words — the earlier 'sing x18' flag was a bad metric, since 'sing' is near-universal in lyrics and names nothing about the recording. Opens 'I came in quietly, quietly, through the rain at the station gate / With a coat...' — the 'I came in' opener and the coat in the first two lines, which is the real watch item on this one. coat x1, key x1, salt x1."
     }
   },
   "method": {
@@ -7933,5 +7933,5 @@
       "run_key": "sweep-60-62"
     }
   },
-  "lyricist_notes": "toolbaz frontier comparison 2026-09-11: gemini-3.6-flash clearly strongest (idiom-driven hooks, real call-and-response, concrete imagery). gpt-5.2 thin — 210 words, repeated end-words, inline syllable counts, appended analysis. grok-4-fast mostly ad-lib scaffolding around few real lines. claude-sonnet-4 returned EMPTY twice (button reset, counter did not advance) — appears non-functional on the free tier. | DESCRIBE-ROUTE TICS, counted across #331-336 (2026-09-18, first six on this route): (a) FOUR of six open with 'I came in ...' (#332 cold, #333 softly, #334 tired, #335 quiet) — a new attractor, not one of the three already measured, and #332-336 being five cuts of one song only partly explains it since the wording is near-identical; (b) FOUR of six are titled 'After the ___' (Sirens, Drop, Lights Went Out, Ashes); (c) music vocabulary in the lyric on three of six, which the toolbaz and cowrite routes structurally could not produce. Re-measure at the next six before treating any of these as settled. | Re-measured on #337-343, the second six: the 'I came in' opener held at 2 of 6 (#341 'I came to the fair', #343 'I came in quietly'), so 5 of 12 overall — it is real but not universal, and the two entries that opened on a scene instead (#337, #338) are the two whose style prose opens on a scene rather than on a voice. Music-word leak got WORSE, not better: #340 is a song about a sound system (tune x27), #343 sings about singing (sing x18). Across 12 takes the leak tracks how much instrument vocabulary the entry's own style prose carries, which is the mechanism, not a coincidence."
+  "lyricist_notes": "toolbaz frontier comparison 2026-09-11: gemini-3.6-flash clearly strongest (idiom-driven hooks, real call-and-response, concrete imagery). gpt-5.2 thin — 210 words, repeated end-words, inline syllable counts, appended analysis. grok-4-fast mostly ad-lib scaffolding around few real lines. claude-sonnet-4 returned EMPTY twice (button reset, counter did not advance) — appears non-functional on the free tier. | DESCRIBE-ROUTE TICS, counted across #331-343 and then CORRECTED by BlazeDale (2026-09-18). What survives: FIVE of twelve open 'I came in ...' (#332 cold, #333 softly, #334 tired, #335 quiet, #343 quietly) — a new attractor, and the takes that open on a scene instead are the ones whose style prose opens on a scene rather than on a voice; and six of twelve carry a recording-medium word in the TITLE (Needle in the Dark, Tape Burn Riot, Back in Tune, plus four 'After the ___'). What does NOT survive: my music-word count. I flagged instrument vocabulary in the lyric as a route defect and it is mostly genre doing its job — dancehall toasts the sound system, a gig song names the kick drum, and 'sing' is not a production word at all. Read LINES, not word counts, and only flag a line that describes the song's own form or session from outside it ('by the second verse'). One such line in twelve songs."
 }
