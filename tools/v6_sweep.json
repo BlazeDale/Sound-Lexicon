@@ -7230,11 +7230,162 @@
       "adjectives": "random decade + region + kind of source",
       "delivery": "plainly, closer to reported speech than poetry, bruised and unapologetic, stated as fact rather than performed",
       "note": "Four Gemini rolls on 14 Sep were rejected; roll 5 never fired before the sweep paused. Resumed 17 Sep on Suno's own rebuilt UI. THE DELIVERY FIX: earlier rolls only copied the entry's \"Delivery...\" sentence, so the prompt asked for poetry on the one entry whose prose says \"sung in real words, plainly, the lyric closer to reported speech than poetry\". Pulling delivery from the WHOLE vocalist paragraph fixed it on the first roll. Two songs kept, both v6/chirp-hawk: BlazeDale's \"Dry Snare, Open Heart\" (Suno's own cowriter) and \"Quietly Alive\" (our v11c brief pasted into the new \"Describe your song\" field, Lyrics box left empty). Quietly Alive: 407 words, three verses + refrain after each + bridge + closing refrain, refrain \"Ah, ah, I'm quietly alive\", delivery plain and factual throughout (\"Not healed, not clean, not made brand new\"), hidden story surfaces only in the bridge as a winter train. ROUTE CAVEAT: Describe-mode does NOT preserve our style prose — 912 chars in, metadata.tags came back 363/381, and Suno prepended a 448-char style paragraph of its own to the lyrics with \";Verse 1\" labels instead of \"[Verse 1]\". The song is driven by Suno's ~40%-length paraphrase, not the entry. A direct API create preserved tags byte-identical when last measured, so that is the route if the prose must go in whole. WATCH: coat in verse 1 of all three #330 takes (my cowrite \"coat wet\", his \"borrowed coat\", Quietly Alive \"hands in my coat\") — something in this brief summons it; also \"a needle hit and it pulled me down\", the music-medium drift first flagged at #327. UI: the cowriter is back as a labelled field and its old 240-char paste cap is GONE (1144 chars went in inline, no reference chip)."
+    },
+    "331": {
+      "status": "generated",
+      "lyricist": "suno-describe (v6)",
+      "v6": {
+        "title": "After the Sirens",
+        "clips": [
+          "2f56816f-7355-4d48-af13-19ce50dc7600",
+          "0c341809-78c0-42dc-a62c-8665dd1247c5"
+        ],
+        "v0": "2f56816f-7355-4d48-af13-19ce50dc7600",
+        "badge": "V6",
+        "durations": [
+          257.48,
+          null
+        ],
+        "mandated8": true,
+        "genre_slot": "patient widescreen contemporary piano-anthem pop-soul"
+      },
+      "flags": [],
+      "tagged": true,
+      "edits": 0,
+      "prompt": "claude-v12 (BlazeDale 2026-09-17 revision) via Describe",
+      "compelling_term": "devastating",
+      "note": "First entry of the Describe route as the standing method. 421 words, 61 lines, [Verse]/[Pre-Chorus]/[Chorus] labels emitted by Suno unasked (bracketed, not the ';Verse 1' form seen at #330). Refrain present and singable ('Oh, I sing, I sing for the afterglow'). WATCH, and it is the whole measured attractor set in one place: verse 1 is 'I kept your coat by the door', verse 2 'The kettle cried in the morning' and 'I stood still in the hallway' — coat + door + kettle + hallway, the exact cluster BlazeDale rejected at #329 roll 1. None of it is in the refrain, so it is shipped and flagged rather than re-rolled, but the doorway fix that worked on the toolbaz route (give the crowd an activity) has no lever on this route: the prompt has no slot for the scene. Style paraphrased 866 -> 404 chars."
+    },
+    "332": {
+      "status": "generated",
+      "lyricist": "suno-describe (v6)",
+      "v6": {
+        "title": "Needle in the Dark",
+        "clips": [
+          "d32dee3c-9414-49ce-9fe1-d5ead6482143",
+          "75f721af-d566-4eb9-a699-dbb137976362"
+        ],
+        "v0": "d32dee3c-9414-49ce-9fe1-d5ead6482143",
+        "badge": "V6",
+        "durations": [
+          266.44,
+          292.32
+        ],
+        "mandated8": true,
+        "genre_slot": "close pleading cinematic alt-pop balladry"
+      },
+      "flags": [],
+      "tagged": true,
+      "edits": 0,
+      "prompt": "claude-v12 (BlazeDale 2026-09-17 revision) via Describe",
+      "compelling_term": "raw",
+      "note": "570 words, the longest of the six. WATCH — this is the clearest case of the route's own failure mode: the lyric is ABOUT being at a gig. 'Neon on the marquee', 'You hit that first note', 'the kick drum came in and it called my name', sing x9, song x2, and the title itself is record-medium drift (the needle), the same drift first flagged at #327 and again at #330. The lyrics-must-not-narrate-the-mix rule is broken outright. Cause is structural, not bad luck: on this route one model reads the Styles box and writes the words."
+    },
+    "333": {
+      "status": "generated",
+      "lyricist": "suno-describe (v6)",
+      "v6": {
+        "title": "After the Drop",
+        "clips": [
+          "d7bfb398-cafc-4c51-89c9-d701b677201c",
+          "2fc32a48-4165-4352-bf8c-786e0db76258"
+        ],
+        "v0": "d7bfb398-cafc-4c51-89c9-d701b677201c",
+        "badge": "V6",
+        "durations": [
+          277.24,
+          236.64
+        ],
+        "mandated8": true,
+        "genre_slot": "stark confessional close-mic alt-pop"
+      },
+      "flags": [],
+      "tagged": true,
+      "edits": 0,
+      "prompt": "claude-v12 (BlazeDale 2026-09-17 revision) via Describe",
+      "compelling_term": "unguarded",
+      "note": "513 words. Same leak as #332, milder: needle x1, amp x1, song x3, sing x7, and the title is a production term. Opens 'I came in softly, came in late' — see the opening tic below. shoes x1. Style paraphrased from 909 chars."
+    },
+    "334": {
+      "status": "generated",
+      "lyricist": "suno-describe (v6)",
+      "v6": {
+        "title": "Alive in the Static",
+        "clips": [
+          "01b07582-b268-4808-9a3f-c122d944ac3b",
+          "1a237246-8d9d-4966-b7de-90ecb0fedbd7"
+        ],
+        "v0": "01b07582-b268-4808-9a3f-c122d944ac3b",
+        "badge": "V6",
+        "durations": [
+          308,
+          283.2
+        ],
+        "mandated8": true,
+        "genre_slot": "flooded hoarse alt-rock balladry"
+      },
+      "flags": [],
+      "tagged": true,
+      "edits": 0,
+      "prompt": "claude-v12 (BlazeDale 2026-09-17 revision) via Describe",
+      "compelling_term": "relentless",
+      "note": "563 words, the longest take of the six at 5:08. WATCH: the densest music-word leak — chord, verse, kick, piano, guitar, bass, hymn, song x3, sing x9. coat x1. Opens 'I came in tired, I came in torn, I came in late to the light'."
+    },
+    "335": {
+      "status": "generated",
+      "lyricist": "suno-describe (v6)",
+      "v6": {
+        "title": "After the Lights Went Out",
+        "clips": [
+          "d2486dd1-c812-44d3-9a83-a5d03bf73d47",
+          "e232a6d0-3c14-482c-9e29-06e5e7d9cfae"
+        ],
+        "v0": "d2486dd1-c812-44d3-9a83-a5d03bf73d47",
+        "badge": "V6",
+        "durations": [
+          248,
+          248.4
+        ],
+        "mandated8": true,
+        "genre_slot": "grave piano-led cinematic pop balladry"
+      },
+      "flags": [],
+      "tagged": true,
+      "edits": 0,
+      "prompt": "claude-v12 (BlazeDale 2026-09-17 revision) via Describe",
+      "compelling_term": "monumental",
+      "note": "445 words. The cleanest of the six on the mix-narration count — sing x1, choir x1, nothing else — and no wardrobe or doorway words at all. Opens 'I came in quiet, I came in tired'."
+    },
+    "336": {
+      "status": "generated",
+      "lyricist": "suno-describe (v6)",
+      "v6": {
+        "title": "After the Ashes",
+        "clips": [
+          "34350568-c75b-462e-b700-a26ec6b1ed91",
+          "3979babb-b90b-465a-8c32-9fd40689a98d"
+        ],
+        "v0": "34350568-c75b-462e-b700-a26ec6b1ed91",
+        "badge": "V6",
+        "durations": [
+          237.2,
+          268.4
+        ],
+        "mandated8": true,
+        "genre_slot": "weightless breathy ambient-folk balladry"
+      },
+      "flags": [],
+      "tagged": true,
+      "edits": 0,
+      "prompt": "claude-v12 (BlazeDale 2026-09-17 revision) via Describe",
+      "compelling_term": "weightless",
+      "note": "350 words, the shortest and the only one that opens on a scene rather than on the singer's arrival ('At the edge of the dusk, I was holding my breath / By the station clock'). sing x4, door x1, salt x1. Best fit of the six to a spare brief."
     }
   },
   "method": {
     "from_45": "Seeds dealt blind by tools/seed_deal.mjs before the entry style is read; idea committed from the seeds alone. Seeds are material the song passes through, never its subject. The genre summary governs only the scaffold meter/rhyme. Re-rolls allowed for absurdity only, never for genre fit, and logged.",
-    "from_64": "Lyrics written by Gemini-3.6-Flash via toolbaz.com/writer/ai-writing-assistant. I fill only the [3 word Genre summary] slot; Gemini populates the adverb and the 3-word idea itself. Output is cleaned before Suno: drop the meta header line, bracket production directions (parens mean SUNG per the notation rule), split \"(Direction: words)\" into [Direction] + (words), and bracket bare section labels. Counter on the site reads Activity History n/10 per window."
+    "from_64": "Lyrics written by Gemini-3.6-Flash via toolbaz.com/writer/ai-writing-assistant. I fill only the [3 word Genre summary] slot; Gemini populates the adverb and the 3-word idea itself. Output is cleaned before Suno: drop the meta header line, bracket production directions (parens mean SUNG per the notation rule), split \"(Direction: words)\" into [Direction] + (words), and bracket bare section labels. Counter on the site reads Activity History n/10 per window.",
+    "from_331": "Suno's own lyric generation on the rebuilt create page: the current lyric prompt (see the current-lyric-prompt note, BlazeDale's 2026-09-17 revision) pasted whole into the \"Describe your song\" field, Lyrics box left EMPTY, entry style in Styles, entry neg + the 8 mandated in Exclude styles. I fill only [INSERT genre] and [INSERT compelling term]; the two remaining [INSERT] slots are left literal for Suno to fill, as the prompt intends. ROUTE COST, re-measured here and unchanged from #330: Describe mode rewrites the style prose — 866-931 char styles came back as 314-404 char paraphrases in metadata.tags — so the demo is driven by roughly a 40%-length restatement of the entry, not by the entry. ROUTE SIDE EFFECT, new here: the model that writes the lyric can also see the style box, and music vocabulary leaks into the words (see the #332/#333/#334 notes). On the toolbaz and cowrite routes the lyricist was sent an empty style and this could not happen."
   },
   "dealt": {
     "63": {
@@ -7632,5 +7783,5 @@
       "run_key": "sweep-60-62"
     }
   },
-  "lyricist_notes": "toolbaz frontier comparison 2026-09-11: gemini-3.6-flash clearly strongest (idiom-driven hooks, real call-and-response, concrete imagery). gpt-5.2 thin — 210 words, repeated end-words, inline syllable counts, appended analysis. grok-4-fast mostly ad-lib scaffolding around few real lines. claude-sonnet-4 returned EMPTY twice (button reset, counter did not advance) — appears non-functional on the free tier."
+  "lyricist_notes": "toolbaz frontier comparison 2026-09-11: gemini-3.6-flash clearly strongest (idiom-driven hooks, real call-and-response, concrete imagery). gpt-5.2 thin — 210 words, repeated end-words, inline syllable counts, appended analysis. grok-4-fast mostly ad-lib scaffolding around few real lines. claude-sonnet-4 returned EMPTY twice (button reset, counter did not advance) — appears non-functional on the free tier. | DESCRIBE-ROUTE TICS, counted across #331-336 (2026-09-18, first six on this route): (a) FOUR of six open with 'I came in ...' (#332 cold, #333 softly, #334 tired, #335 quiet) — a new attractor, not one of the three already measured, and #332-336 being five cuts of one song only partly explains it since the wording is near-identical; (b) FOUR of six are titled 'After the ___' (Sirens, Drop, Lights Went Out, Ashes); (c) music vocabulary in the lyric on three of six, which the toolbaz and cowrite routes structurally could not produce. Re-measure at the next six before treating any of these as settled."
 }
