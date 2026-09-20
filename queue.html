@@ -263,7 +263,9 @@
   .qhead button{padding:5px 10px;font-size:12px}
 
   #list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
-  .row{display:flex;align-items:center;gap:11px;background:var(--panel);border:1px solid var(--line);
+  /* flex-wrap, so the controls can drop to a line of their own rather than squeezing the
+     title. Nothing wraps while there is room; see .ctl and .meta below. */
+  .row{display:flex;flex-wrap:wrap;align-items:center;gap:11px;background:var(--panel);border:1px solid var(--line);
        border-left:3px solid transparent;border-radius:9px;padding:8px 10px;cursor:pointer;transition:border-color .12s,background .12s}
   .row:hover{background:var(--panel2)}
   .row.cur{border-left-color:var(--amber);background:var(--panel2)}
@@ -284,7 +286,9 @@
   .board.dragging .row{cursor:grabbing}
   .grip{color:var(--dim);cursor:grab;font-size:15px;line-height:1;padding:0 2px;flex:none;user-select:none}
   .art{width:42px;height:42px;border-radius:6px;object-fit:cover;background:var(--panel2);flex:none}
-  .meta{flex:1;min-width:0}
+  /* A basis rather than a bare flex:1. Above it the title takes whatever the row has left,
+     exactly as before; below it the row wraps instead of ellipsising the title away. */
+  .meta{flex:1 1 200px;min-width:0}
   .t{font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .sub{font-family:var(--mono);font-size:11px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px}
   .sub .ent{color:var(--teal)}
@@ -295,7 +299,17 @@
   .by{font-family:var(--mono);font-size:10.5px;color:var(--dim);white-space:nowrap;overflow:hidden;
       text-overflow:ellipsis;margin-top:2px}
   .by b{color:var(--teal);font-weight:600}
-  .dur{font-family:var(--mono);font-size:11.5px;color:var(--muted);flex:none}
+  /* ---------- where the length lives, and why the controls travel together ----------
+     The length used to sit in the row as its own flex:none column, which meant the title
+     and the "added by" line ellipsised at its left edge — the row had visible space and the
+     text was the only thing yielding. It is information, not a control, so it moved into
+     the subtitle line where it costs nothing and reads with the rest of what a row says.
+
+     Everything that IS a control — heart, style, out-link, remove — now travels in one .ctl
+     box pushed right. With the row wrapping, that box drops to a line of its own the moment
+     the title would have to give way, instead of the title shrinking to an ellipsis. */
+  .dur{color:var(--muted)}
+  .ctl{display:flex;align-items:center;gap:8px;flex:none;margin-left:auto}
   .out{flex:none;color:var(--dim);text-decoration:none;font-size:11px;font-family:var(--mono);
        border:1px solid var(--line);border-radius:6px;padding:3px 8px;white-space:nowrap;
        transition:color .12s ease,border-color .12s ease,background-color .12s ease}
@@ -1944,8 +1958,14 @@ function rowEl(r, i) {
       meta.appendChild(by);
     }
 
-    const dur = document.createElement('span'); dur.className = 'dur'; dur.textContent = r.dur ? mmss(r.dur) : '';
-    li.append(grip, art, meta, dur);
+    /* The length reads at the head of the subtitle line rather than as a column of its own,
+       so the title and the name have the row's whole width to play with. See .dur above. */
+    if (r.dur) {
+      const dur = document.createElement('span'); dur.className = 'dur'; dur.textContent = mmss(r.dur);
+      sub.prepend(dur, ' · ');
+    }
+    const ctl = document.createElement('div'); ctl.className = 'ctl';
+    li.append(grip, art, meta, ctl);
 
     /* The listeners' hearts. Shared queues only: a heart is somebody on the link saying they
        liked this one, and on a private queue there is nobody else to say it to. One row per
@@ -1963,7 +1983,7 @@ function rowEl(r, i) {
         if (!SQ.ready || !window.__net) { toast('Liking needs a connection'); return; }
         window.__net.setLike(keyOf(r), !liked);
       });
-      li.append(h);
+      ctl.append(h);
     }
 
     /* ---------- the style, in place ----------
@@ -2041,7 +2061,7 @@ function rowEl(r, i) {
         det.append(wait);
         draw(await styleOf(r.id));
       });
-      li.append(info);
+      ctl.append(info);
     }
 
     /* A way out on every row, whatever it plays through. For YouTube it is the fix for ads
@@ -2076,7 +2096,7 @@ function rowEl(r, i) {
         out.textContent = 'Suno ↗';
         out.title = 'Open on Suno — lyrics, style and the rest of the record';
       }
-      li.append(out);
+      ctl.append(out);
     }
 
     /* Removing is the owner's alone on a shared queue — the same rule the server enforces,
@@ -2085,7 +2105,7 @@ function rowEl(r, i) {
       const x = document.createElement('button');
       x.className = 'x'; x.textContent = '✕'; x.title = 'Remove';
       x.addEventListener('click', ev => { ev.stopPropagation(); removeAt(i); });
-      li.append(x);
+      ctl.append(x);
     }
     li.addEventListener('click', () => playAt(i));
     return li;
