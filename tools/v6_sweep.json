@@ -7510,16 +7510,16 @@
    "status": "generated",
    "lyricist": "qwen3:30b local (ollama 0.34.2, temp 0.9)",
    "v6": {
-    "title": "Hear Unafraid",
+    "title": "I Am The Door",
     "clips": [
-     "4ede1f79-7d90-4845-8cbd-e243ffcfd89f",
-     "671f2414-d5eb-42e5-88d1-e3a7bbc42f57"
+     "7daca1dd-8dec-42f1-bffd-d0a7739b9239",
+     "f0d38c15-a9f1-4969-8240-d944d169bf57"
     ],
-    "v0": "4ede1f79-7d90-4845-8cbd-e243ffcfd89f",
+    "v0": "7daca1dd-8dec-42f1-bffd-d0a7739b9239",
     "badge": "V6",
     "durations": [
-     168,
-     null
+     68,
+     74
     ],
     "mandated8": true,
     "genre_slot": "unison Highland war-pipe clan chant"
@@ -7527,13 +7527,13 @@
    "flags": [],
    "tagged": true,
    "edits": 0,
-   "prompt": "claude-v12 + [INSERT meter] and [INSERT structure] slots; lyric written locally and pasted into Custom mode",
+   "prompt": "claude-v12 + [INSERT meter]/[INSERT structure] slots + 'person with lived experience'",
    "compelling_term": "implacable",
    "meter_slot": "lines of four to six words",
    "structure_slot": "four verses of six lines, every line answered by a chanted vocable refrain, and a last verse shouted",
    "adverb_slot": "implacably",
    "idea_slot": "unafraid together",
-   "note": "151 words, 4.08 words/line."
+   "note": "99 words, 3.81 words/line. Lyric written on the 'person with lived experience' wording (BlazeDale's fix for songs-about-songs), which measured a ~75% drop in music vocabulary against 'music-enthusiast' over three A/B entries. SUPERSEDES the first take (4ede1f79-7d90-4845-8cbd-e243ffcfd89f, 671f2414-d5eb-42e5-88d1-e3a7bbc42f57), which went out with mojibake: clip.exe had read the UTF-8 payload in the OEM codepage, so every curly quote and em dash reached Suno as ΓÇÖ / ΓÇö - in the style prose as well as the lyric. WEAK: both takes run ~1:10 — the 90-word lyric is too little for a pipe-corps chant, and the short-line meter band is what shrank it. The superseded take, still attached, runs 2:48."
   },
   "343": {
    "status": "generated",
@@ -7729,16 +7729,16 @@
    "status": "generated",
    "lyricist": "qwen3:30b local (ollama 0.34.2, temp 0.9)",
    "v6": {
-    "title": "Souring Static",
+    "title": "Sour Milk in My Teeth",
     "clips": [
-     "88395e59-49a9-42de-ac0c-5f5e157d6503",
-     "dada7719-58bc-4d2c-89b2-c312c3dca32c"
+     "c18ca560-8654-4b06-bbee-7d2378b967d3",
+     "3606beb2-adb7-44e0-ac67-f45a54500867"
     ],
-    "v0": "88395e59-49a9-42de-ac0c-5f5e157d6503",
+    "v0": "c18ca560-8654-4b06-bbee-7d2378b967d3",
     "badge": "V6",
     "durations": [
-     178,
-     168
+     186,
+     162
     ],
     "mandated8": true,
     "genre_slot": "coiled queasy snake-riff heavy alt-rock swagger"
@@ -7746,13 +7746,13 @@
    "flags": [],
    "tagged": true,
    "edits": 0,
-   "prompt": "claude-v12 + [INSERT meter] and [INSERT structure] slots; lyric written locally and pasted into Custom mode",
+   "prompt": "claude-v12 + [INSERT meter]/[INSERT structure] slots + 'person with lived experience'",
    "compelling_term": "queasy",
    "meter_slot": "lines of six to eight words",
    "structure_slot": "verse of eight lines, chorus of six, again, then a bridge and a last chorus",
    "adverb_slot": "sardonically",
    "idea_slot": "smiling while lying",
-   "note": "90 words, 4.50 words/line."
+   "note": "152 words, 7.24 words/line. Lyric written on the 'person with lived experience' wording (BlazeDale's fix for songs-about-songs), which measured a ~75% drop in music vocabulary against 'music-enthusiast' over three A/B entries. SUPERSEDES the first take (88395e59-49a9-42de-ac0c-5f5e157d6503, dada7719-58bc-4d2c-89b2-c312c3dca32c), which went out with mojibake: clip.exe had read the UTF-8 payload in the OEM codepage, so every curly quote and em dash reached Suno as ΓÇÖ / ΓÇö - in the style prose as well as the lyric. A second Create click produced a duplicate pair (46047766-adf5-4e4a-ae65-8749bc7eb80f, 4f9000ac-38a9-4492-b45f-14c470dd5381); the first click had fired and the workspace list was simply slow to render. Wait 20s before deciding a click missed."
   },
   "351": {
    "status": "generated",
@@ -7985,6 +7985,35 @@
    "adverb_slot": "rowdily",
    "idea_slot": "many as one",
    "note": "271 words, 5.89 words/line."
+  },
+  "359": {
+   "status": "generated",
+   "lyricist": "qwen3:30b local (ollama 0.34.2, temp 0.9)",
+   "v6": {
+    "title": "I Am The Storm",
+    "clips": [
+     "55b95353-fd19-47e5-a720-26562b12dee2",
+     "cb18ffdb-f254-46a0-841a-bd37d8e63366"
+    ],
+    "v0": "55b95353-fd19-47e5-a720-26562b12dee2",
+    "badge": "V6",
+    "durations": [
+     196,
+     193
+    ],
+    "mandated8": true,
+    "genre_slot": "glossy dramatic Balkan turbo-folk pop"
+   },
+   "flags": [],
+   "tagged": true,
+   "edits": 0,
+   "prompt": "claude-v12 + [INSERT meter]/[INSERT structure] slots + 'person with lived experience'",
+   "compelling_term": "unashamed",
+   "meter_slot": "lines of six to eight words",
+   "structure_slot": "verse of eight lines, chorus of eight, again, a bridge, then a final chorus lifted a key",
+   "adverb_slot": "flamboyantly",
+   "idea_slot": "daring them to look",
+   "note": "195 words, 6.50 words/line. Lyric written on the 'person with lived experience' wording (BlazeDale's fix for songs-about-songs), which measured a ~75% drop in music vocabulary against 'music-enthusiast' over three A/B entries. A second Create click produced a duplicate pair (c176ab14-b02c-4efa-94f7-85d1bf7b3465, 53422346-fe2c-4958-9a56-abf7d202be41); the first click had fired and the workspace list was simply slow to render. Wait 20s before deciding a click missed."
   }
  },
  "method": {
