@@ -8073,7 +8073,7 @@
    "adverb_slot": "breathlessly",
    "idea_slot": "wanted all at once",
    "world_slot": "everyone is allotted a fixed number of minutes to be looked at in their whole life",
-   "note": "230 words, 5.00 words/line."
+   "note": "230 words, 5.00 words/line. LYRIC SHEET REPAIRED on Suno after generation: this take was fired through execCommand('insertText'), which collapses every newline, so the words reached Suno as one run-on paragraph. Both clips' displayed lyrics were re-entered with their line and section breaks via 'Edit displayed lyrics' (a plain textarea, so a native value setter works). The AUDIO still comes from the run-on submission - Suno had no section boundaries to phrase against - so re-fire if a take sounds unsectioned."
   },
   "362": {
    "status": "generated",
@@ -8103,7 +8103,7 @@
    "adverb_slot": "hopefully",
    "idea_slot": "seeing it first",
    "world_slot": "a country appears only to people who have never seen it drawn on a map",
-   "note": "207 words, 5.45 words/line. Four sibling clips titled the same (a28ff91b, f4d16540, 220087b7, 684d7f8d) are DISCARDED: a fill bug left this entry's lyric in the editor while #363 and #364 fired, so those two pairs carry the Lumara words over the wrong style prose. Identified by reading the style paraphrase on each row, not by order."
+   "note": "207 words, 5.45 words/line. Four sibling clips titled the same (a28ff91b, f4d16540, 220087b7, 684d7f8d) are DISCARDED: a fill bug left this entry's lyric in the editor while #363 and #364 fired, so those two pairs carry the Lumara words over the wrong style prose. Identified by reading the style paraphrase on each row, not by order. LYRIC SHEET REPAIRED on Suno after generation: this take was fired through execCommand('insertText'), which collapses every newline, so the words reached Suno as one run-on paragraph. Both clips' displayed lyrics were re-entered with their line and section breaks via 'Edit displayed lyrics' (a plain textarea, so a native value setter works). The AUDIO still comes from the run-on submission - Suno had no section boundaries to phrase against - so re-fire if a take sounds unsectioned."
   },
   "363": {
    "status": "generated",
@@ -8133,7 +8133,7 @@
    "adverb_slot": "courteously",
    "idea_slot": "welcomed to your own ruin",
    "world_slot": "a host may not harm a guest until the guest has finished speaking",
-   "note": "226 words, 7.29 words/line. First roll used an avant-garde structure and came back as the VICTIM speaking, which contradicts a style prose that says the villain narrates their own victory; re-rolled on a normal structure and the host-welcoming-a-guest register arrived."
+   "note": "226 words, 7.29 words/line. First roll used an avant-garde structure and came back as the VICTIM speaking, which contradicts a style prose that says the villain narrates their own victory; re-rolled on a normal structure and the host-welcoming-a-guest register arrived. LYRIC SHEET REPAIRED on Suno after generation: this take was fired through execCommand('insertText'), which collapses every newline, so the words reached Suno as one run-on paragraph. Both clips' displayed lyrics were re-entered with their line and section breaks via 'Edit displayed lyrics' (a plain textarea, so a native value setter works). The AUDIO still comes from the run-on submission - Suno had no section boundaries to phrase against - so re-fire if a take sounds unsectioned."
   },
   "364": {
    "status": "generated",
@@ -8163,7 +8163,7 @@
    "adverb_slot": "ruefully",
    "idea_slot": "glad anyway",
    "world_slot": "everyone is told the date of their death on the morning they turn twelve",
-   "note": "316 words, 8.78 words/line."
+   "note": "316 words, 8.78 words/line. LYRIC SHEET REPAIRED on Suno after generation: this take was fired through execCommand('insertText'), which collapses every newline, so the words reached Suno as one run-on paragraph. Both clips' displayed lyrics were re-entered with their line and section breaks via 'Edit displayed lyrics' (a plain textarea, so a native value setter works). The AUDIO still comes from the run-on submission - Suno had no section boundaries to phrase against - so re-fire if a take sounds unsectioned."
   },
   "365": {
    "status": "generated",
@@ -8193,7 +8193,7 @@
    "adverb_slot": "fearfully",
    "idea_slot": "keep quiet, keep still",
    "world_slot": "the dark repeats back whatever you last said, in your own voice, one minute later",
-   "note": "286 words, 4.69 words/line. Three worlds were tried. \"Anything said out loud becomes true for one minute\" summoned a rescue twice running - a child, a crash, then a forgotten birthday - so the premise was changed rather than re-rolled into: \"the dark repeats back whatever you last said, in your own voice, one minute later\". One edit, a child swapped for anyone. An experimental structure gave prose-poem paragraphs on this entry; a normal structure gave the spare whispered lines the cue wants."
+   "note": "286 words, 4.69 words/line. Three worlds were tried. \"Anything said out loud becomes true for one minute\" summoned a rescue twice running - a child, a crash, then a forgotten birthday - so the premise was changed rather than re-rolled into: \"the dark repeats back whatever you last said, in your own voice, one minute later\". One edit, a child swapped for anyone. An experimental structure gave prose-poem paragraphs on this entry; a normal structure gave the spare whispered lines the cue wants. LYRIC SHEET REPAIRED on Suno after generation: this take was fired through execCommand('insertText'), which collapses every newline, so the words reached Suno as one run-on paragraph. Both clips' displayed lyrics were re-entered with their line and section breaks via 'Edit displayed lyrics' (a plain textarea, so a native value setter works). The AUDIO still comes from the run-on submission - Suno had no section boundaries to phrase against - so re-fire if a take sounds unsectioned."
   }
  },
  "method": {
