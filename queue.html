@@ -107,16 +107,30 @@
   #vcov:hover #vcovfs,#vcovfs:focus-visible{opacity:1}
   #vcovfs:hover{color:var(--amber);border-color:var(--amber)}
   @media(prefers-reduced-motion:reduce){#vcovfs{transition:none}}
-  /* Full screen: the panel IS the video. The border, the label and the rounding are chrome
-     for a 194px box and have no business on a wall-sized one. Contain rather than cover, so
-     a portrait clip on a landscape screen is pillarboxed instead of having its top and bottom
-     cut off — cropping is a reasonable price for a thumbnail and not for the main event. */
-  #vcov:fullscreen{width:100%;height:100%;padding:0;border:0;border-radius:0;background:#000;
-                   display:flex;align-items:center;justify-content:center}
-  #vcov:fullscreen .slab{display:none}
-  #vcov:fullscreen .vbox{width:100%;height:100%;cursor:zoom-out}
-  #vcov:fullscreen video{width:100%;height:100%;aspect-ratio:auto;object-fit:contain;
-                         border-radius:0}
+  /* ---------- the cover, full window ----------
+     The move the player makes, not the one the browser offers: a page that fills the window,
+     deliberately NOT requestFullscreen. The objection is the one written out at #player.max —
+     that API takes the whole display and puts the browser's own overlay in charge of leaving,
+     which is a second way out under rules this page does not set. Staying a page buys
+     something here beyond consistency: the keys still belong to the document, so shift+arrow
+     walks the queue with the cover up, and if the next track has a cover of its own the
+     window simply keeps it.
+     Full window is also where the panel stops being a panel. The border, the label and the
+     rounding are chrome for a 194px box and have no business on a wall-sized one, and the fit
+     changes with them — contain rather than cover, so a portrait clip on a landscape window
+     is pillarboxed instead of losing its head and its feet. Cropping is a fair price for a
+     thumbnail and the wrong one for the main event. */
+  html.vmaxed{overflow:hidden}
+  #vcov.max{position:fixed;inset:0;z-index:56;width:auto;max-width:none;padding:0;border:0;
+            border-radius:0;background:var(--ink);display:flex;align-items:center;
+            justify-content:center}
+  #vcov.max .slab{display:none}
+  #vcov.max .vbox{width:100%;height:100%;cursor:zoom-out}
+  #vcov.max video{width:100%;height:100%;aspect-ratio:auto;object-fit:contain;border-radius:0}
+  /* Lit, and no longer dimmed: in full window this button is the way back, and the one thing
+     on screen that should not have to be hunted for. */
+  #vcov.max #vcovfs{opacity:1}
+  #vcovfs.on{color:var(--amber);border-color:var(--amber-dim)}
 
   /* ---------- theatre ----------
      The smaller of the two sizes, and the one the page opens at. The three embeds want
@@ -499,7 +513,7 @@
     <div class="vbox">
       <video id="vcovv" muted loop playsinline preload="auto" disablepictureinpicture
              tabindex="-1" aria-hidden="true"></video>
-      <button id="vcovfs" title="Full screen (f)">&#9974;</button>
+      <button id="vcovfs" title="Full window — the cover covers the page (f)">&#9974;</button>
     </div>
   </div>
   <div id="player">
@@ -581,7 +595,7 @@
   <footer>
     <span style="float:right;font-family:var(--mono);font-size:10.5px;color:var(--line)" id="buildstamp"></span>
     <b>Keys:</b> <kbd>shift</kbd>+<kbd>←</kbd> <kbd>→</kbd> previous / next track · <kbd>t</kbd> player size —
-    theatre or full window · <kbd>f</kbd> a moving cover full screen, when there is one ·
+    theatre or full window · <kbd>f</kbd> a moving cover full window, when there is one ·
     <kbd>esc</kbd> out of either.<br><br>
     <b>Which sources guests may use.</b> An owner can switch <b>Suno</b>, <b>YouTube</b> or
     <b>Spotify</b> off for everyone else, from the three buttons beside <b>Open adding</b>. It
@@ -669,15 +683,19 @@
     between the stream and the player, silent and on a loop, and the player shifts right to
     make room. Eleven of the library's demos have one; everything else leaves the panel off
     and the player back in the middle, so there is nothing to switch on and nothing to turn
-    off. Press <b>&#9974;</b> on the picture — or the picture itself, or <b>f</b> — for full
-    screen. The song carries on, because the sound was never in this panel; escape comes back.
-    <br>
+    off. Press <b>&#9974;</b> on the picture — or the picture itself, or <b>f</b> — and the
+    cover takes the window, the same way <b>t</b> does it for the player: the browser window
+    and not the screen, so this is still a page and escape is still the page's own way out.
+    The song carries on, because the sound was never in this panel, and the keys carry on with
+    it — <b>shift</b>+<b>←</b> <b>→</b> walks the queue from here, and a track whose cover
+    also moves simply keeps the window. The two never share it: sending one full window puts
+    the other back.<br>
     It is a loop beside the music, not a video of it. The clip runs five or ten seconds
     against a track of three minutes, so it cannot be in step with anything and does not
     pretend to be: it starts when the track loads and repeats until the track ends. Pausing
     inside Suno's player does not pause it, for exactly the reason the countdown keeps running
     — nothing out here can see inside that frame. A browser asked to keep motion down gets the
-    still instead, and the clip runs only if you send it full screen.<br><br>
+    still instead, and the clip runs only if you send it full window.<br><br>
     <b>What was playing.</b> A message carries a small cover of whatever was in the
     <b>owner's</b> player when it was sent, so a remark months later still says which track it
     was about. It is stamped at the moment of sending and never revisited — the playhead moves
@@ -774,7 +792,7 @@
    page -- covers read from data.js while the code that looks them up is old. Printed
    on load and shown in the footer, so 'which build am I on' is answerable in a glance
    instead of by deduction. */
-const QUEUE_BUILD = '2026-09-19-a';
+const QUEUE_BUILD = '2026-09-19-b';
 console.log('[queue] build ' + QUEUE_BUILD);
 
 const $ = s => document.querySelector(s);
@@ -2532,7 +2550,7 @@ function spTick(d) {
    on even if it could. So it starts when the track loads and repeats until the track leaves,
    which is the whole of what a looping cover is.
    Reduced motion gets the still and no loop. The panel is still worth showing — it is the
-   cover, and a cover is what it looks like stopped — and full screen is a request for the
+   cover, and a cover is what it looks like stopped — and full window is a request for the
    motion, so that starts it. */
 const VCOV_STILL = window.matchMedia
   && matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -2541,6 +2559,10 @@ const vcovPlay = () => { const p = vcovv.play(); if (p && p.catch) p.catch(() =>
 function hideVideoCover() {
   if (vcov.hidden) return;
   vcov.hidden = true;
+  /* A track with no cover has to take the window back down with it, or skipping from a cover
+     to an ordinary track would leave the page scroll-locked behind a panel that is not there
+     — the failure looks like a frozen page and reads like nothing at all. */
+  setVcovMax(false);
   try { vcovv.pause(); } catch (e) {}
   /* removeAttribute, not src='' — an empty src resolves against the PAGE's own address, which
      the browser then dutifully fetches and fails on, for nothing. */
@@ -2565,25 +2587,31 @@ function showVideoCover(r) {
    be — which reads as a broken page rather than an absent video. Better to have no panel. */
 vcovv.addEventListener('error', hideVideoCover);
 
-/* requestFullscreen here, where the player deliberately refuses it (see the note by #player.max).
-   The objection there was two ways out under different rules: the player owns a transport, a
-   timer, keys and escape, and handing the browser its own overlay on top of all that is one
-   escape route too many. This has no controls to strand — the browser's way out is the only
-   way out, which is the case the API was written for. The WRAPPER goes full screen rather
-   than the <video>, so the button that got you there is still the button that gets you back.
-   The song plays throughout: the sound is in Suno's frame, which is still in the document and
-   merely not being painted. */
-function vcovFull() {
-  if (vcov.hidden) return;
-  if (document.fullscreenElement) { try { document.exitFullscreen(); } catch (e) {} return; }
-  const go = vcov.requestFullscreen || vcov.webkitRequestFullscreen;
-  if (go) { try { go.call(vcov); } catch (e) {} }
-  /* iOS Safari gives an element no full screen at all and a <video> its own. That one draws
-     Apple's controls over a clip with nothing to control, which is the lesser of the two
-     evils against no full screen on a phone. */
-  else if (vcovv.webkitEnterFullscreen) { try { vcovv.webkitEnterFullscreen(); } catch (e) {} }
-  vcovPlay();
+/* ---------- the cover, full window ----------
+   The player's own move rather than the browser's, for the reason set out at #player.max and
+   repeated in the stylesheet above: this covers the WINDOW, and stays a page while it does
+   it. The song plays throughout — the sound is in Suno's frame, which is still in the
+   document and merely not being painted.
+   The two full windows are one room and only one thing can be in it, so each shows the other
+   out. Nothing here is remembered across a reload: like the player's size, it is a thing you
+   did to this moment rather than a setting, and arriving at a page that has already covered
+   itself over explains nothing about how to get out. */
+let vmax = false;
+const VCOV_NEXT = { on: 'Back to the panel (f, or escape)',
+                    off: 'Full window — the cover covers the page (f)' };
+function setVcovMax(on) {
+  vmax = !!on && !vcov.hidden;
+  vcov.classList.toggle('max', vmax);
+  document.documentElement.classList.toggle('vmaxed', vmax);
+  const b = $('#vcovfs');
+  b.classList.toggle('on', vmax);
+  b.title = VCOV_NEXT[vmax ? 'on' : 'off'];
+  if (vmax && psize === 'max') setSize('big');   // see above: one room
+  /* Full window is a request for the motion as much as for the size, which is the whole of
+     what a browser asked to keep motion down is still willing to give. */
+  if (vmax) vcovPlay();
 }
+function vcovFull() { if (!vcov.hidden) setVcovMax(!vmax); }
 $('#vcovfs').addEventListener('click', e => { e.stopPropagation(); vcovFull(); });
 vcov.querySelector('.vbox').addEventListener('click', vcovFull);
 
@@ -2827,6 +2855,10 @@ function applySize() {
      the floor would be always, and a light that is always on says nothing. */
   b.classList.toggle('on', psize === 'max');
   b.title = SIZE_NEXT[psize];
+  /* The other half of "one room": the player taking the window shows the cover out, the same
+     way the cover shows the player out. This cannot loop — setVcovMax only calls back here
+     when it is switching itself ON. */
+  if (psize === 'max' && vmax) setVcovMax(false);
   const f = $('#spwrap').querySelector('iframe');
   if (f) f.style.height = spHeight(isSP(Q[cur]) ? Q[cur] : null) + 'px';
 }
@@ -2946,9 +2978,12 @@ document.addEventListener('keydown', e => {
            && !vcov.hidden) {
     e.preventDefault(); vcovFull();
   }
-  /* Escape is the key everybody tries against something covering the window, and with two
-     sizes it lands exactly where another press of t would: back in theatre. Left alone
-     there, where nothing is covered and the key belongs to the browser. */
+  /* Escape is the key everybody tries against something covering the window, and whichever of
+     the two is covering it, the key lands exactly where another press of that thing's own
+     letter would. The cover is asked about first because it is the one on top when both have
+     been used — though they show each other out, so in practice only one ever answers. Left
+     alone when nothing is covered, where the key belongs to the browser. */
+  else if (e.key === 'Escape' && vmax) { e.preventDefault(); setVcovMax(false); }
   else if (e.key === 'Escape' && psize === 'max') { e.preventDefault(); setSize('big'); }
 });
 
