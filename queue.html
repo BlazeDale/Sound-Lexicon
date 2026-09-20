@@ -43,9 +43,11 @@
   /* 620px was the old small player, which was also the default and is no longer offered: the
      rule stays because .big overrides the width alone and everything else here — the panel,
      the border, the padding — is the player at any size. */
-  /* The player and the stream sit side by side, and wrap rather than squeeze when the
-     window cannot hold both — 356px is a floor, not a preference (see #ytlive). The stage
-     owns the centring that #player used to do for itself. */
+  /* The stream, the video cover and the player sit side by side in that order, and wrap
+     rather than squeeze when the window cannot hold them — 356px is a floor, not a
+     preference (see #ytlive). The stage owns the centring that #player used to do for
+     itself, which is what lets the middle panel appear and disappear without anything
+     having to be told: a track with no video leaves the player centred on its own. */
   #stage{display:flex;align-items:flex-start;justify-content:center;gap:14px;
          margin:22px auto 0;flex-wrap:wrap}
   #player{max-width:620px;margin:0;background:var(--panel);border:1px solid var(--line);
@@ -53,7 +55,7 @@
   /* Full window takes the player out of the flow entirely (position:fixed), so the stream
      would otherwise sit behind it doing nothing. Hidden on the pane alone: display:none on
      the stage would take the fixed player with it. */
-  html.maxed #stream{display:none}
+  html.maxed #stream,html.maxed #vcov{display:none}
   #stream{flex:none;width:378px;background:var(--panel);border:1px solid var(--line);
           border-radius:12px;padding:10px 10px 8px}
   /* 356x200 is the smallest 16:9 box that still clears YouTube's rule that an embedded
@@ -65,9 +67,56 @@
                       border-radius:7px;color:var(--text);padding:6px 8px;font-size:11.5px;
                       font-family:var(--mono)}
   #stream .sbar input:focus{outline:none;border-color:var(--amber-dim)}
-  #stream .slab{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;
+  #stream .slab,#vcov .slab{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;
                 text-transform:uppercase;color:var(--dim);margin-bottom:7px;display:block}
   #stream .slab b{color:var(--red)}
+
+  /* ---------- the cover that moves ----------
+     A handful of tracks have a video where the rest have a picture, and it plays here rather
+     than in the player: the player is Suno's own frame and draws its own card, so there is no
+     painting inside it and nothing to paint behind it either — the card is opaque. Beside it
+     is the only place left, and the middle of the stage is the one that does not look like an
+     afterthought.
+     Both shapes Suno produces — 592x896 and 720x1090 — are 2:3 to within a rounding error, so
+     one aspect-ratio serves both and object-fit covers anything that turns out not to be.
+     The width is the measurement that matters, and 194 is where it starts: the picture inside
+     is about 174 across — a loop you notice rather than one you study, which is what full
+     screen is for.
+     It is also the panel that gives way, and the way it gives is the basis rather than the
+     shrink. flex-shrink is no help here and it is worth saying why: a wrapping flex container
+     breaks its lines on the flex BASIS and only then shrinks what landed on each line, so an
+     item declared 194 wide takes 194 with it into that decision however willing to shrink it
+     says it is. Declaring the floor as the basis and growing back up to 194 is what actually
+     talks to the line breaker. The stream is a fixed 378 and the player hardly compresses at
+     all, so without this the cover would simply move the point where flex-wrap starts
+     stacking them — from a window of about 1040 to one of about 1250, and dropping the player
+     below two side panels for the sake of a thumbnail is the wrong trade at any width. It is
+     the only panel here that grows, so the leftover room is all its own up to the cap. */
+  #vcov{flex:1 1 112px;max-width:194px;background:var(--panel);border:1px solid var(--line);
+        border-radius:12px;padding:10px 10px 8px}
+  #vcov .vbox{position:relative;line-height:0;cursor:zoom-in}
+  #vcov video{width:100%;aspect-ratio:592/896;object-fit:cover;display:block;
+              border-radius:8px;background:#000}
+  /* On the picture rather than beside it: there is no other control here for it to sit with,
+     and a bar beneath a 174px video would be a bar beneath a postage stamp. Dimmed rather
+     than hidden, because hover is not a thing a touch screen has. */
+  #vcovfs{position:absolute;right:6px;bottom:6px;font-family:var(--mono);font-size:12px;
+          line-height:1;padding:4px 7px;min-width:0;background:rgba(17,20,25,.72);
+          border:1px solid var(--line);color:var(--muted);border-radius:6px;cursor:pointer;
+          opacity:.55;transition:opacity .12s ease,color .12s ease,border-color .12s ease}
+  #vcov:hover #vcovfs,#vcovfs:focus-visible{opacity:1}
+  #vcovfs:hover{color:var(--amber);border-color:var(--amber)}
+  @media(prefers-reduced-motion:reduce){#vcovfs{transition:none}}
+  /* Full screen: the panel IS the video. The border, the label and the rounding are chrome
+     for a 194px box and have no business on a wall-sized one. Contain rather than cover, so
+     a portrait clip on a landscape screen is pillarboxed instead of having its top and bottom
+     cut off — cropping is a reasonable price for a thumbnail and not for the main event. */
+  #vcov:fullscreen{width:100%;height:100%;padding:0;border:0;border-radius:0;background:#000;
+                   display:flex;align-items:center;justify-content:center}
+  #vcov:fullscreen .slab{display:none}
+  #vcov:fullscreen .vbox{width:100%;height:100%;cursor:zoom-out}
+  #vcov:fullscreen video{width:100%;height:100%;aspect-ratio:auto;object-fit:contain;
+                         border-radius:0}
 
   /* ---------- theatre ----------
      The smaller of the two sizes, and the one the page opens at. The three embeds want
@@ -441,6 +490,18 @@
       <button id="streamclear" hidden title="Take the stream down for everyone">clear</button>
     </div>
   </aside>
+  <!-- The moving cover, between the stream and the player. It is not a player and has no
+       transport: there is nothing here to control but its size, and the one button says so.
+       aria-hidden because it is decoration for a track the player has already named — a
+       screen reader announcing a silent loop would be announcing the artwork twice. -->
+  <div id="vcov" hidden>
+    <span class="slab">COVER</span>
+    <div class="vbox">
+      <video id="vcovv" muted loop playsinline preload="auto" disablepictureinpicture
+             tabindex="-1" aria-hidden="true"></video>
+      <button id="vcovfs" title="Full screen (f)">&#9974;</button>
+    </div>
+  </div>
   <div id="player">
     <iframe id="frame" allow="autoplay; encrypted-media" title="Suno player"></iframe>
     <div id="yt"></div>
@@ -520,7 +581,8 @@
   <footer>
     <span style="float:right;font-family:var(--mono);font-size:10.5px;color:var(--line)" id="buildstamp"></span>
     <b>Keys:</b> <kbd>shift</kbd>+<kbd>←</kbd> <kbd>→</kbd> previous / next track · <kbd>t</kbd> player size —
-    theatre or full window · <kbd>esc</kbd> out of full window.<br><br>
+    theatre or full window · <kbd>f</kbd> a moving cover full screen, when there is one ·
+    <kbd>esc</kbd> out of either.<br><br>
     <b>Which sources guests may use.</b> An owner can switch <b>Suno</b>, <b>YouTube</b> or
     <b>Spotify</b> off for everyone else, from the three buttons beside <b>Open adding</b>. It
     is a rule about the room rather than a promise to yourself — the owner can still add from
@@ -600,6 +662,22 @@
     an embedded player be at least 200 by 200 — any narrower and the height would fall below
     the floor. It does not start on its own, so it never talks over the track you are playing;
     <b>clear</b> takes it down for everyone.<br><br>
+    <b>Covers that move.</b> A few tracks have a video where the rest have a picture — the
+    creator replaced the cover with an uploaded clip, and Suno kept both halves of it: the
+    video, and a snapshot of its first frame, which is the still you see on the row and
+    everywhere else on this page. When one of those plays, the clip appears in its own panel
+    between the stream and the player, silent and on a loop, and the player shifts right to
+    make room. Eleven of the library's demos have one; everything else leaves the panel off
+    and the player back in the middle, so there is nothing to switch on and nothing to turn
+    off. Press <b>&#9974;</b> on the picture — or the picture itself, or <b>f</b> — for full
+    screen. The song carries on, because the sound was never in this panel; escape comes back.
+    <br>
+    It is a loop beside the music, not a video of it. The clip runs five or ten seconds
+    against a track of three minutes, so it cannot be in step with anything and does not
+    pretend to be: it starts when the track loads and repeats until the track ends. Pausing
+    inside Suno's player does not pause it, for exactly the reason the countdown keeps running
+    — nothing out here can see inside that frame. A browser asked to keep motion down gets the
+    still instead, and the clip runs only if you send it full screen.<br><br>
     <b>What was playing.</b> A message carries a small cover of whatever was in the
     <b>owner's</b> player when it was sent, so a remark months later still says which track it
     was about. It is stamped at the moment of sending and never revisited — the playhead moves
@@ -696,7 +774,7 @@
    page -- covers read from data.js while the code that looks them up is old. Printed
    on load and shown in the footer, so 'which build am I on' is answerable in a glance
    instead of by deduction. */
-const QUEUE_BUILD = '2026-09-18-d';
+const QUEUE_BUILD = '2026-09-19-a';
 console.log('[queue] build ' + QUEUE_BUILD);
 
 const $ = s => document.querySelector(s);
@@ -739,6 +817,31 @@ function sunoArt(id, stored) {
   if (c && okArt(c.art)) return c.art;
   return artOf(id);
 }
+
+/* ---------- the video behind a replaced cover ----------
+   A replaced cover is sometimes an uploaded VIDEO, and Suno keeps both halves of it: the mp4,
+   and a snapshot of its first frame. The snapshot is the jpeg every other part of this page
+   shows, and its name carries the upload's id TWICE —
+     video_upload_<u>_video_upload_<u>_cover_snapshot_0s_<stamp>_image.jpeg
+   which is the same id the mp4 is named after. So the video's address is a rewrite of a cover
+   already in hand and costs nothing to learn: eleven of the twelve replaced covers in data.js
+   are videos, and all eleven answer 200 video/mp4 from cdn1 — measured, 2026-09-19.
+   Only the uuid is taken from the string and the host is written here rather than read, so a
+   cover arriving over the network on a shared queue cannot steer this anywhere. Same bargain
+   the id whitelist below makes, and made for the same reason: the result reaches a src.
+   The clip record states it outright as well, in video_cover_url, which is how a pasted track
+   that is no demo of ours can have one. That answer is kept in metaCache beside the title —
+   NOT on the queue row, whose shape the database rules validate field by field. */
+const VCOV_RE = /\/video_upload_([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})_video_upload_\1_cover_snapshot_/;
+const VCOV_OK = u => typeof u === 'string'
+  && /^https:\/\/cdn1\.suno\.ai\/video_upload_[0-9a-f-]{36}_processed_video\.mp4$/.test(u);
+function videoCover(id, art) {
+  const m = VCOV_RE.exec(String(art || ''));
+  if (m) return 'https://cdn1.suno.ai/video_upload_' + m[1] + '_processed_video.mp4';
+  const c = metaCache[id];
+  return (c && VCOV_OK(c.vid)) ? c.vid : '';
+}
+
 const bySuno = new Map();
 if (typeof LIB !== 'undefined') LIB.forEach(v => (v.suno || []).forEach(id => bySuno.set(String(id), v)));
 
@@ -1127,9 +1230,14 @@ async function resolve(id, src, fresh) {
   /* The key is written only when there is something to write. An entry with no `tags` reads
      as "nobody has looked yet"; storing an empty one would read as "looked, found nothing"
      and close the door on a row whose prose was simply on a path that had not run. */
+  /* The moving cover, stated rather than derived. It is banked here and nowhere else: this is
+     the one call that ever sees the field, and a track played from the cache would otherwise
+     have to ask again for something that does not change. */
+  const vid = j.video_cover_url;
   if (row.ok) {
     const e = { title: row.title, art: row.art, dur: row.dur };
     if (tags) e.tags = tags; else if (metaCache[id] && metaCache[id].tags) e.tags = metaCache[id].tags;
+    if (VCOV_OK(vid)) e.vid = vid; else if (metaCache[id] && metaCache[id].vid) e.vid = metaCache[id].vid;
     metaCache[id] = e; saveMeta();
   }
   return row;
@@ -2414,6 +2522,71 @@ function spTick(d) {
   }
 }
 
+/* ---------- the video cover, playing ----------
+   Silent by construction: Suno's processed_video carries no audio stream at all, so `muted`
+   is here for the PERMISSION rather than the sound — it is what lets a clip start without a
+   gesture, on every browser including the ones on phones.
+   It is never in step with the song and could not be. The clip runs five or ten seconds
+   against a track of three minutes; the page cannot read the playhead inside Suno's frame,
+   the way it cannot read anything else in there; and the two have no moment they could agree
+   on even if it could. So it starts when the track loads and repeats until the track leaves,
+   which is the whole of what a looping cover is.
+   Reduced motion gets the still and no loop. The panel is still worth showing — it is the
+   cover, and a cover is what it looks like stopped — and full screen is a request for the
+   motion, so that starts it. */
+const VCOV_STILL = window.matchMedia
+  && matchMedia('(prefers-reduced-motion: reduce)').matches;
+const vcov = $('#vcov'), vcovv = $('#vcovv');
+const vcovPlay = () => { const p = vcovv.play(); if (p && p.catch) p.catch(() => {}); };
+function hideVideoCover() {
+  if (vcov.hidden) return;
+  vcov.hidden = true;
+  try { vcovv.pause(); } catch (e) {}
+  /* removeAttribute, not src='' — an empty src resolves against the PAGE's own address, which
+     the browser then dutifully fetches and fails on, for nothing. */
+  vcovv.removeAttribute('src');
+  vcovv.load();
+}
+function showVideoCover(r) {
+  const art = r && r.src === 'suno' ? sunoArt(r.id, r.art) : '';
+  const url = art ? videoCover(r.id, art) : '';
+  if (!url) return hideVideoCover();
+  if (vcovv.getAttribute('src') !== url) {
+    /* The poster is frame zero of this very clip — that is what the still IS — so nothing
+       flashes while the mp4 arrives and nothing jumps when it starts. */
+    vcovv.poster = art;
+    vcovv.src = url;
+    vcovv.load();
+  }
+  vcov.hidden = false;
+  if (!VCOV_STILL) vcovPlay();
+}
+/* A 404, or a codec the browser will not take, leaves a black rectangle where a cover should
+   be — which reads as a broken page rather than an absent video. Better to have no panel. */
+vcovv.addEventListener('error', hideVideoCover);
+
+/* requestFullscreen here, where the player deliberately refuses it (see the note by #player.max).
+   The objection there was two ways out under different rules: the player owns a transport, a
+   timer, keys and escape, and handing the browser its own overlay on top of all that is one
+   escape route too many. This has no controls to strand — the browser's way out is the only
+   way out, which is the case the API was written for. The WRAPPER goes full screen rather
+   than the <video>, so the button that got you there is still the button that gets you back.
+   The song plays throughout: the sound is in Suno's frame, which is still in the document and
+   merely not being painted. */
+function vcovFull() {
+  if (vcov.hidden) return;
+  if (document.fullscreenElement) { try { document.exitFullscreen(); } catch (e) {} return; }
+  const go = vcov.requestFullscreen || vcov.webkitRequestFullscreen;
+  if (go) { try { go.call(vcov); } catch (e) {} }
+  /* iOS Safari gives an element no full screen at all and a <video> its own. That one draws
+     Apple's controls over a clip with nothing to control, which is the lesser of the two
+     evils against no full screen on a phone. */
+  else if (vcovv.webkitEnterFullscreen) { try { vcovv.webkitEnterFullscreen(); } catch (e) {} }
+  vcovPlay();
+}
+$('#vcovfs').addEventListener('click', e => { e.stopPropagation(); vcovFull(); });
+vcov.querySelector('.vbox').addEventListener('click', vcovFull);
+
 /* ---------- playback ---------- */
 /* Reaching the end has to actually STOP the thing that is playing, not merely stop
    advancing. Pointing the frame at a track is what starts it, and leaving it pointed there
@@ -2426,6 +2599,7 @@ function finishQueue() {
   else if (hosting() && SP.now) recordPlayed(SP.now);
   if (hosting()) SP.now = '';
   hideSunoFrame();
+  hideVideoCover();
   $('#yt').style.display = 'none';
   if (ytReady && yt && yt.stopVideo) { try { yt.stopVideo(); } catch (e) {} }
   hideSpotify();
@@ -2438,6 +2612,7 @@ function finishQueue() {
 function stopAll() {
   clearTimer();
   hideSunoFrame();
+  hideVideoCover();
   $('#yt').style.display = 'none';
   if (ytReady && yt && yt.stopVideo) { try { yt.stopVideo(); } catch (e) {} }
   hideSpotify();
@@ -2477,6 +2652,12 @@ async function playAt(i, fromFollow) {
        : r.src === 'sp' && r.dur ? '  ·  ' + mmss(r.dur) : '')
     + '  ·  ' + (i + 1) + ' of ' + Q.length;
   render();
+
+  /* One call for all four branches below rather than one inside each: everything that is not
+     a Suno track with a moving cover wants the panel gone, and that is what it answers with.
+     It sits above the branches for the same reason the title does — it describes the track,
+     not the player that happens to be taking it. */
+  showVideoCover(r);
 
   if (r.src === 'yt' || r.src === 'ytpl') {
     hideSunoFrame();
@@ -2757,6 +2938,13 @@ document.addEventListener('keydown', e => {
      into a field has already returned above. Modified presses are left to the browser. */
   else if ((e.key === 't' || e.key === 'T') && !e.ctrlKey && !e.metaKey && !e.altKey) {
     e.preventDefault(); $('#tbig').click();
+  }
+  /* Only while there is a moving cover to send. Unbound the rest of the time rather than
+     bound to nothing — a key that answers on eleven tracks and swallows itself on the other
+     thirteen hundred would be worse than one the browser still gets. */
+  else if ((e.key === 'f' || e.key === 'F') && !e.ctrlKey && !e.metaKey && !e.altKey
+           && !vcov.hidden) {
+    e.preventDefault(); vcovFull();
   }
   /* Escape is the key everybody tries against something covering the window, and with two
      sizes it lands exactly where another press of t would: back in theatre. Left alone
