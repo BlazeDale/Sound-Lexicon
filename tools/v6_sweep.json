@@ -8044,6 +8044,156 @@
    "idea_slot": "holding on longer",
    "world_slot": "two people who love each other are permitted to meet once every seven years",
    "note": "231 words, 7.00 words/line. FIRST USE of the world preface (BlazeDale, 2026-09-20). The rule became the whole situation without any science-fiction furniture — no devices, no era, just two people counting to seven — which is what the premise is for: it hands the song a constraint to feel rather than a plot to narrate. Music words 11, and all of them ordinary singing vocabulary (sing, refrain, beats), none naming the recording. Watch: moon and rain-on-glass both turn up, which are the oldest bedrock attractors in the corpus."
+  },
+  "361": {
+   "status": "generated",
+   "lyricist": "qwen3:30b local (ollama 0.34.2, temp 0.9)",
+   "v6": {
+    "title": "You're the Whole Damn Light",
+    "clips": [
+     "35bbfbb8-e26f-4072-b088-d5b4d02f5db5",
+     "1e957d6d-41a9-4399-bb37-aca36a623d92"
+    ],
+    "v0": "35bbfbb8-e26f-4072-b088-d5b4d02f5db5",
+    "badge": "V6",
+    "durations": [
+     126,
+     null
+    ],
+    "mandated8": true,
+    "genre_slot": "maximal hard-cut idol-group pop"
+   },
+   "flags": [],
+   "tagged": true,
+   "edits": 0,
+   "prompt": "claude-v13: world preface + person with lived experience + adjective meter + form-category structure",
+   "compelling_term": "relentless",
+   "meter_slot": "hyper",
+   "structure_slot": "a dubstep structure",
+   "adverb_slot": "breathlessly",
+   "idea_slot": "wanted all at once",
+   "world_slot": "everyone is allotted a fixed number of minutes to be looked at in their whole life",
+   "note": "230 words, 5.00 words/line."
+  },
+  "362": {
+   "status": "generated",
+   "lyricist": "qwen3:30b local (ollama 0.34.2, temp 0.9)",
+   "v6": {
+    "title": "The Unmapable Land",
+    "clips": [
+     "bef815c6-58ec-4461-8878-0146870c3921",
+     "8c53a610-0080-4062-9dbe-51c422dbe327"
+    ],
+    "v0": "bef815c6-58ec-4461-8878-0146870c3921",
+    "badge": "V6",
+    "durations": [
+     253,
+     null
+    ],
+    "mandated8": true,
+    "genre_slot": "wide-eyed questing high-fantasy orchestral theme"
+   },
+   "flags": [],
+   "tagged": false,
+   "edits": 0,
+   "prompt": "claude-v13: world preface + person with lived experience + adjective meter + form-category structure",
+   "compelling_term": "wide-eyed",
+   "meter_slot": "slow",
+   "structure_slot": "a normal structure, with every single line in an invented archaic tongue of long open vowels - no English words anywhere, only invented syllables",
+   "adverb_slot": "hopefully",
+   "idea_slot": "seeing it first",
+   "world_slot": "a country appears only to people who have never seen it drawn on a map",
+   "note": "207 words, 5.45 words/line. Four sibling clips titled the same (a28ff91b, f4d16540, 220087b7, 684d7f8d) are DISCARDED: a fill bug left this entry's lyric in the editor while #363 and #364 fired, so those two pairs carry the Lumara words over the wrong style prose. Identified by reading the style paraphrase on each row, not by order."
+  },
+  "363": {
+   "status": "generated",
+   "lyricist": "qwen3:30b local (ollama 0.34.2, temp 0.9)",
+   "v6": {
+    "title": "I Am Your Ruin",
+    "clips": [
+     "b26f7a19-a840-49db-b893-4846a4c6c85b",
+     "35cbee64-f8e3-42e1-8559-b97391a6de3c"
+    ],
+    "v0": "b26f7a19-a840-49db-b893-4846a4c6c85b",
+    "badge": "V6",
+    "durations": [
+     172,
+     null
+    ],
+    "mandated8": true,
+    "genre_slot": "theatrical infernal boss-fight aria"
+   },
+   "flags": [],
+   "tagged": false,
+   "edits": 0,
+   "prompt": "claude-v13: world preface + person with lived experience + adjective meter + form-category structure",
+   "compelling_term": "monstrous",
+   "meter_slot": "fast",
+   "structure_slot": "a normal structure",
+   "adverb_slot": "courteously",
+   "idea_slot": "welcomed to your own ruin",
+   "world_slot": "a host may not harm a guest until the guest has finished speaking",
+   "note": "226 words, 7.29 words/line. First roll used an avant-garde structure and came back as the VICTIM speaking, which contradicts a style prose that says the villain narrates their own victory; re-rolled on a normal structure and the host-welcoming-a-guest register arrived."
+  },
+  "364": {
+   "status": "generated",
+   "lyricist": "qwen3:30b local (ollama 0.34.2, temp 0.9)",
+   "v6": {
+    "title": "The Sky Forgot to Fall",
+    "clips": [
+     "33cef730-1953-4583-8588-6037bfa78a06",
+     "eefec7eb-527e-4916-9bdd-b9c621fc9b93"
+    ],
+    "v0": "33cef730-1953-4583-8588-6037bfa78a06",
+    "badge": "V6",
+    "durations": [
+     202,
+     null
+    ],
+    "mandated8": true,
+    "genre_slot": "warm slightly drunken tavern folk singalong"
+   },
+   "flags": [],
+   "tagged": true,
+   "edits": 0,
+   "prompt": "claude-v13: world preface + person with lived experience + adjective meter + form-category structure",
+   "compelling_term": "generous",
+   "meter_slot": "fast",
+   "structure_slot": "a normal structure",
+   "adverb_slot": "ruefully",
+   "idea_slot": "glad anyway",
+   "world_slot": "everyone is told the date of their death on the morning they turn twelve",
+   "note": "316 words, 8.78 words/line."
+  },
+  "365": {
+   "status": "generated",
+   "lyricist": "qwen3:30b local (ollama 0.34.2, temp 0.9)",
+   "v6": {
+    "title": "Keep Still",
+    "clips": [
+     "40d6891c-19b8-439c-8637-3357e6907c3f",
+     "1af80e76-34b2-4865-9b94-db0a12ed23a3"
+    ],
+    "v0": "40d6891c-19b8-439c-8637-3357e6907c3f",
+    "badge": "V6",
+    "durations": [
+     267,
+     null
+    ],
+    "mandated8": true,
+    "genre_slot": "airless dark-ambient horror cue with no fixed pulse"
+   },
+   "flags": [],
+   "tagged": false,
+   "edits": 1,
+   "prompt": "claude-v13: world preface + person with lived experience + adjective meter + form-category structure",
+   "compelling_term": "frightened",
+   "meter_slot": "slow",
+   "structure_slot": "a normal structure",
+   "adverb_slot": "fearfully",
+   "idea_slot": "keep quiet, keep still",
+   "world_slot": "the dark repeats back whatever you last said, in your own voice, one minute later",
+   "note": "286 words, 4.69 words/line. Three worlds were tried. \"Anything said out loud becomes true for one minute\" summoned a rescue twice running - a child, a crash, then a forgotten birthday - so the premise was changed rather than re-rolled into: \"the dark repeats back whatever you last said, in your own voice, one minute later\". One edit, a child swapped for anyone. An experimental structure gave prose-poem paragraphs on this entry; a normal structure gave the spare whispered lines the cue wants."
   }
  },
  "method": {
@@ -8051,7 +8201,8 @@
   "from_64": "Lyrics written by Gemini-3.6-Flash via toolbaz.com/writer/ai-writing-assistant. I fill only the [3 word Genre summary] slot; Gemini populates the adverb and the 3-word idea itself. Output is cleaned before Suno: drop the meta header line, bracket production directions (parens mean SUNG per the notation rule), split \"(Direction: words)\" into [Direction] + (words), and bracket bare section labels. Counter on the site reads Activity History n/10 per window.",
   "from_331": "Suno's own lyric generation on the rebuilt create page: the current lyric prompt (see the current-lyric-prompt note, BlazeDale's 2026-09-17 revision) pasted whole into the \"Describe your song\" field, Lyrics box left EMPTY, entry style in Styles, entry neg + the 8 mandated in Exclude styles. I fill only [INSERT genre] and [INSERT compelling term]; the two remaining [INSERT] slots are left literal for Suno to fill, as the prompt intends. ROUTE COST, re-measured here and unchanged from #330: Describe mode rewrites the style prose — 866-931 char styles came back as 314-404 char paraphrases in metadata.tags — so the demo is driven by roughly a 40%-length restatement of the entry, not by the entry. ROUTE SIDE EFFECT, new here: the model that writes the lyric can also see the style box, and music vocabulary leaks into the words (see the #332/#333/#334 notes). On the toolbaz and cowrite routes the lyricist was sent an empty style and this could not happen.",
   "from_344": "UI GOTCHA, found the hard way on #344-349: clicking Create immediately after the three form_input calls silently does nothing — no toast, no disabled button, the payload just never fires. Two entries were lost to this before it was spotted, and one retry produced a duplicate song because the click that looked dead had in fact landed. Wait ~3 seconds after setting the fields, click once, then CONFIRM two new rows appeared before touching the form again. A generation can also vanish after submitting (#349's first attempt), so confirm rather than assume.",
-  "from_350": "Slot-play run. The lyric prompt gains two slots — [INSERT meter], filled with a words-per-line band, and [INSERT structure], filled with a section plan carrying line counts — and the adverb/idea slots are filled rather than left literal. The lyric is written by qwen3:30b on a local ollama, cleaned (markdown stripped, production directions moved from () to [] per the notation rule, trailing model commentary dropped) and pasted into Suno Custom mode with the entry style in Styles and entry neg + the 8 mandated in Exclude styles. Suno writes no words on this route."
+  "from_350": "Slot-play run. The lyric prompt gains two slots — [INSERT meter], filled with a words-per-line band, and [INSERT structure], filled with a section plan carrying line counts — and the adverb/idea slots are filled rather than left literal. The lyric is written by qwen3:30b on a local ollama, cleaned (markdown stripped, production directions moved from () to [] per the notation rule, trailing model commentary dropped) and pasted into Suno Custom mode with the entry style in Styles and entry neg + the 8 mandated in Exclude styles. Suno writes no words on this route.",
+  "from_361": "BlazeDale's slot vocabulary, adopted after measurement: [INSERT meter] takes a bare speed word (slow / fast / hyper) and [INSERT structure] takes a form CATEGORY (a normal / experimental / avant-garde / dubstep structure) rather than the explicit word-bands and section lists used at #342-#360. Measured on one entry, seven runs: slow 11.61 words a line, fast 7.78, hyper 6.69 - a clean gradient, where compound adjectives (loping mid-paced, brisk clipped) had moved nothing. The dubstep category emitted a real Breakdown section and the longest take; normal gave the tightest."
  },
  "dealt": {
   "63": {
