@@ -48,8 +48,16 @@
      preference (see #ytlive). The stage owns the centring that #player used to do for
      itself, which is what lets the middle panel appear and disappear without anything
      having to be told: a track with no video leaves the player centred on its own. */
-  #stage{display:flex;align-items:flex-start;justify-content:center;gap:14px;
+  /* stretch, so the cover can line its top and bottom up with the player's rather than
+     landing a few pixels short of them — the two are a pair and read as one object when
+     their edges agree. Whichever of them is naturally taller sets the line and the other
+     grows to meet it, which is the only arrangement that stays true when the player's own
+     height moves: the timer appears and the panel is 18px taller for as long as it is there.
+     The stream is pinned back to the top, where it has always sat, because it is not part of
+     that pair — stretching it would only add empty panel below the paste box. */
+  #stage{display:flex;align-items:stretch;justify-content:center;gap:14px;
          margin:22px auto 0;flex-wrap:wrap}
+  #stream{align-self:flex-start}
   #player{max-width:620px;margin:0;background:var(--panel);border:1px solid var(--line);
           border-radius:12px;padding:14px 16px 12px}
   /* Full window takes the player out of the flow entirely (position:fixed), so the stream
@@ -93,10 +101,27 @@
      below two side panels for the sake of a thumbnail is the wrong trade at any width. It is
      the only panel here that grows, so the leftover room is all its own up to the cap. */
   #vcov{flex:1 1 112px;max-width:194px;background:var(--panel);border:1px solid var(--line);
-        border-radius:12px;padding:10px 10px 8px}
-  #vcov .vbox{position:relative;line-height:0;cursor:zoom-in}
-  #vcov video{width:100%;aspect-ratio:592/896;object-fit:cover;display:block;
+        border-radius:12px;padding:10px 10px 8px;display:flex;flex-direction:column}
+  /* Saying display at all is what makes this line necessary: the browser hides a [hidden]
+     element with a rule of its own, and an id outranks it. Without this the panel goes on
+     holding its place in the stage as an empty box, and the player stops returning to the
+     middle on a track with no cover — which is the one thing the layout was supposed to do
+     by itself. */
+  #vcov[hidden]{display:none}
+  /* The picture takes whatever the stretch handed down, after the label has had its line.
+     aspect-ratio is the BASE and not the answer: it gives the box a height of its own for the
+     case where the panel is alone on a wrapped line and there is nothing to stretch against,
+     and flex-grow overrides it the rest of the time. Without a base the box would be asked
+     for a height that resolves to a percentage of itself, and collapse to nothing. Growing
+     past 2:3 is what object-fit:cover is for. */
+  #vcov .vbox{flex:1 1 auto;min-height:0;aspect-ratio:592/896;position:relative;line-height:0;
+              cursor:zoom-in}
+  #vcov video{width:100%;height:100%;object-fit:cover;display:block;
               border-radius:8px;background:#000}
+  /* Under the picture rather than over it: the label names what is above it, the way a
+     caption does, and the panel's top edge is then the picture's own — which is the edge
+     being lined up with the player's. */
+  #vcov .slab{margin:7px 0 0}
   /* On the picture rather than beside it: there is no other control here for it to sit with,
      and a bar beneath a 174px video would be a bar beneath a postage stamp. Dimmed rather
      than hidden, because hover is not a thing a touch screen has. */
@@ -125,7 +150,7 @@
             border-radius:0;background:var(--ink);display:flex;align-items:center;
             justify-content:center}
   #vcov.max .slab{display:none}
-  #vcov.max .vbox{width:100%;height:100%;cursor:zoom-out}
+  #vcov.max .vbox{width:100%;height:100%;aspect-ratio:auto;cursor:zoom-out}
   #vcov.max video{width:100%;height:100%;aspect-ratio:auto;object-fit:contain;border-radius:0}
   /* Lit, and no longer dimmed: in full window this button is the way back, and the one thing
      on screen that should not have to be hunted for. */
@@ -509,12 +534,12 @@
        aria-hidden because it is decoration for a track the player has already named — a
        screen reader announcing a silent loop would be announcing the artwork twice. -->
   <div id="vcov" hidden>
-    <span class="slab">COVER</span>
     <div class="vbox">
       <video id="vcovv" muted loop playsinline preload="auto" disablepictureinpicture
              tabindex="-1" aria-hidden="true"></video>
       <button id="vcovfs" title="Full window — the cover covers the page (f)">&#9974;</button>
     </div>
+    <span class="slab">COVER</span>
   </div>
   <div id="player">
     <iframe id="frame" allow="autoplay; encrypted-media" title="Suno player"></iframe>
@@ -792,7 +817,7 @@
    page -- covers read from data.js while the code that looks them up is old. Printed
    on load and shown in the footer, so 'which build am I on' is answerable in a glance
    instead of by deduction. */
-const QUEUE_BUILD = '2026-09-19-b';
+const QUEUE_BUILD = '2026-09-19-c';
 console.log('[queue] build ' + QUEUE_BUILD);
 
 const $ = s => document.querySelector(s);
