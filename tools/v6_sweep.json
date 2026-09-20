@@ -8014,6 +8014,36 @@
    "adverb_slot": "flamboyantly",
    "idea_slot": "daring them to look",
    "note": "195 words, 6.50 words/line. Lyric written on the 'person with lived experience' wording (BlazeDale's fix for songs-about-songs), which measured a ~75% drop in music vocabulary against 'music-enthusiast' over three A/B entries. A second Create click produced a duplicate pair (c176ab14-b02c-4efa-94f7-85d1bf7b3465, 53422346-fe2c-4958-9a56-abf7d202be41); the first click had fired and the workspace list was simply slow to render. Wait 20s before deciding a click missed."
+  },
+  "360": {
+   "status": "generated",
+   "lyricist": "qwen3:30b local (ollama 0.34.2, temp 0.9)",
+   "v6": {
+    "title": "Seven Years",
+    "clips": [
+     "f2bb8c6e-42b4-47f3-a8b4-f60cb73c6a8b",
+     "0e39ccce-742e-4bba-856f-438013af29f5"
+    ],
+    "v0": "f2bb8c6e-42b4-47f3-a8b4-f60cb73c6a8b",
+    "badge": "V6",
+    "durations": [
+     234,
+     243
+    ],
+    "mandated8": true,
+    "genre_slot": "soaring devotional birit power ballad"
+   },
+   "flags": [],
+   "tagged": true,
+   "edits": 0,
+   "prompt": "claude-v12 + meter/structure slots + 'person with lived experience', PREFACED with 'In a world where [INSERT distinct parallel world]'",
+   "compelling_term": "devotional",
+   "meter_slot": "lines of seven to nine words",
+   "structure_slot": "verse of eight lines, pre-chorus of four, chorus of eight, again, then a bridge and a final chorus lifted a key",
+   "adverb_slot": "achingly",
+   "idea_slot": "holding on longer",
+   "world_slot": "two people who love each other are permitted to meet once every seven years",
+   "note": "231 words, 7.00 words/line. FIRST USE of the world preface (BlazeDale, 2026-09-20). The rule became the whole situation without any science-fiction furniture — no devices, no era, just two people counting to seven — which is what the premise is for: it hands the song a constraint to feel rather than a plot to narrate. Music words 11, and all of them ordinary singing vocabulary (sing, refrain, beats), none naming the recording. Watch: moon and rain-on-glass both turn up, which are the oldest bedrock attractors in the corpus."
   }
  },
  "method": {
