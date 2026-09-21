@@ -237,9 +237,48 @@ const hearts = (() => {
   try { return new Set(JSON.parse(localStorage.getItem(HKEY) || '[]')); }
   catch (e) { return new Set(); }
 })();
+
+/* ---------- hearts go to the database, not just this browser ----------
+   They started in localStorage, which was wrong for a reason I did not think of: a heart is a
+   message to whoever is working on the next round, and a message nobody else can read is not
+   one. Hearted in Firefox, invisible to a session driving Chrome — the state was stranded in
+   the browser that set it.
+
+   They live in `likes/<clipId>` as 0 or 1. That node is the site's world-readable, world-
+   writable heart counter, keyed by id with no auth — and this IS a heart, so it is the same
+   thing rather than a squat on an unrelated node. Library entry ids are short, clip ids are
+   uuids, so the two cannot collide. If per-person hearts are ever wanted, that needs its own
+   owner-scoped node and a rules change in the console; one listener does not need it yet.
+
+   Everything already in localStorage is pushed up on first load, so hearts set before this
+   existed are not lost. localStorage stays as the offline mirror. */
+const DB_ROOT = 'https://vocal-timbre-library-default-rtdb.firebaseio.com';
+
 const saveHearts = () => {
   try { localStorage.setItem(HKEY, JSON.stringify([...hearts])); } catch (e) {}
 };
+
+async function pushHeart(id, on) {
+  try {
+    await fetch(`${DB_ROOT}/likes/${encodeURIComponent(id)}.json`,
+      { method: 'PUT', body: JSON.stringify(on ? 1 : 0) });
+  } catch (e) { /* offline: localStorage still holds it, and the next load pushes it */ }
+}
+
+async function syncHearts() {
+  const ids = [...new Set(SESSIONS.flatMap(s => s.runs.flatMap(r => r.songs.flatMap(takesOf))))];
+  const local = new Set(hearts);
+  await Promise.all(ids.map(async id => {
+    try {
+      const r = await fetch(`${DB_ROOT}/likes/${encodeURIComponent(id)}.json`);
+      if (!r.ok) return;
+      if (await r.json()) hearts.add(id);
+    } catch (e) {}
+  }));
+  // anything hearted here before the database existed goes up now
+  await Promise.all([...local].filter(id => ids.includes(id)).map(id => pushHeart(id, true)));
+  saveHearts();
+}
 
 /* ---------- hearts set in a listening queue ----------
    A take can be hearted in two places: here, and on the row in whichever shared queue it was
@@ -381,8 +420,10 @@ function songEl(s, ord) {
   h.title = 'Keep this take';
   h.addEventListener('click', ev => {
     ev.stopPropagation();
-    if (hearts.has(s.id)) hearts.delete(s.id); else hearts.add(s.id);
+    const on = !hearts.has(s.id);
+    if (on) hearts.add(s.id); else hearts.delete(s.id);
     saveHearts();
+    pushHeart(s.id, on);
     h.className = 'heart' + (hearts.has(s.id) ? ' on' : '');
     h.textContent = hearts.has(s.id) ? '♥' : '♡';
     if (filter) render();
@@ -538,7 +579,7 @@ document.getElementById('collapse').addEventListener('click', () => {
     return;
   }
   render();
-  loadQueueHearts().then(render);
+  Promise.all([loadQueueHearts(), syncHearts()]).then(render);
   startPolling();
 })();
 </script>
