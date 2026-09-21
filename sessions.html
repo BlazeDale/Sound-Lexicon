@@ -9,7 +9,7 @@
   :root{
     --ink:#111419; --panel:#181c24; --panel2:#1f2530; --line:#2a313d;
     --text:#e9e6dd; --muted:#98a0ad; --dim:#6b7280;
-    --amber:#e0a63c; --amber-dim:#8a6a2a; --teal:#1a9e75; --rose:#d03b3b;
+    --amber:#e0a63c; --amber-dim:#8a6a2a; --teal:#1a9e75; --rose:#d03b3b; --violet:#8a7fe0;
     --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
   }
   *{box-sizing:border-box}
@@ -40,6 +40,16 @@
         border-radius:5px;cursor:pointer;font-family:var(--mono)}
   .play:hover{color:var(--amber)}
   .song.playing{box-shadow:inset 0 0 0 1px var(--amber-dim)}
+  /* ---------- unplayed ----------
+     Suno keeps no play count on a private song — only a published one carries plays — so this
+     is OUR record: a take counts as played once it has been started in the sidebar here. The
+     mark is a left edge rather than a badge, so a column of unheard takes is visible at a
+     glance without adding another glyph to a row that already has several. */
+  .song.unplayed{border-left:2px solid var(--violet)}
+  .song.unplayed .play{color:var(--violet)}
+  .song.unplayed .tt::after{content:'new';font-family:var(--mono);font-size:9px;letter-spacing:.08em;
+        text-transform:uppercase;color:var(--violet);margin-left:8px;vertical-align:1px}
+  .fresh{font-family:var(--mono);font-size:10.5px;color:var(--violet);margin-left:8px}
   .song.playing .play{color:var(--amber)}
   @media(max-width:900px){
     .layout{display:block}
@@ -133,6 +143,7 @@
   <div class="bar">
     <button class="chip" id="f-heart">♥ hearted — here or in the queue</button>
     <button class="chip" id="f-suno">★ liked on Suno</button>
+    <button class="chip" id="f-new">unplayed only</button>
     <button class="chip" id="expand">Expand all songs</button>
     <button class="chip" id="collapse">Collapse all</button>
     <span class="count" id="count"></span>
@@ -165,11 +176,42 @@
    cannot go quietly stale beats one that is fast and occasionally lying. */
 let SESSIONS = [];
 
+let logText = '';
+
 async function loadLog() {
   const r = await fetch('sessions_data.js', { cache: 'reload' });
   const text = await r.text();
+  if (text === logText) return false;                 // byte-identical: nothing to redraw
+  logText = text;
   SESSIONS = (new Function(text + '; return SESSIONS;'))();
+  return true;
 }
+
+/* ---------- picking up new takes without a reload ----------
+   Songs land in the log while this page is open — a round is fired, the log is pushed, and the
+   page should show it. It polls the file rather than being pushed to, because the log is a
+   static file on Pages and a socket for three songs an hour would be absurd. A poll that finds
+   the same bytes does nothing at all, so the common case costs one conditional GET.
+
+   Nothing on screen is disturbed: the player lives outside the list and is never re-rendered,
+   hearts and open rows are read back from storage, and anything new arrives already marked
+   unplayed. Polling stops while the tab is hidden and catches up when it comes back. */
+const POLL_MS = 45000;
+let pollTimer = null;
+
+async function poll() {
+  try {
+    if (await loadLog()) { render(); loadQueueHearts().then(render); }
+  } catch (e) { /* offline or mid-deploy — the next tick tries again */ }
+}
+function startPolling() {
+  stopPolling();
+  pollTimer = setInterval(poll, POLL_MS);
+}
+function stopPolling() { if (pollTimer) clearInterval(pollTimer); pollTimer = null; }
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) stopPolling(); else { poll(); startPolling(); }
+});
 
 /* ---------- hearts ----------
    Kept in this browser, not in the database. A heart here is a private note to self about a
@@ -210,6 +252,19 @@ async function loadQueueHearts() {
     } catch (e) { /* offline, or the queue is gone — the page is still useful without them */ }
   }));
 }
+
+/* ---------- played / unplayed ----------
+   Suno exposes no play count for a private clip — checked the song page, the library row and
+   three API shapes; the counts on a published track exist only because it is published. So
+   "played" here means started in this page's player, which is a thing the page actually knows
+   and can be honest about. Anything never started reads as unplayed, which is exactly the
+   state worth seeing when new takes land in a log you are working through. */
+const PKEY = 'sl.session.played.v1';
+const played = (() => {
+  try { return new Set(JSON.parse(localStorage.getItem(PKEY) || '[]')); }
+  catch (e) { return new Set(); }
+})();
+const savePlayed = () => { try { localStorage.setItem(PKEY, JSON.stringify([...played])); } catch (e) {} };
 
 const OKEY = 'sl.session.open.v1';                 // which songs were left open
 const opened = (() => {
@@ -255,6 +310,9 @@ function play(s, which) {
   document.getElementById('t2').className = 'ptab' + (which === 2 ? ' on' : '');
   document.getElementById('t2').style.display = s.alt ? '' : 'none';
   mountFrame(id);
+  if (!played.has(s.id)) { played.add(s.id); savePlayed(); }
+  const node = document.querySelector('.song[data-id="' + s.id + '"]');
+  if (node) node.classList.remove('unplayed');
   document.querySelectorAll('.song.playing').forEach(n => n.classList.remove('playing'));
   const row = document.querySelector('.song[data-id="' + s.id + '"]');
   if (row) row.classList.add('playing');
@@ -267,7 +325,8 @@ let filter = null;                                  // null | 'heart' | 'suno'
 
 function songEl(s, ord) {
   const wrap = el('div', 'song' + (opened.has(s.id) ? ' open' : '')
-                       + (nowPlaying && nowPlaying.id === s.id ? ' playing' : ''));
+                       + (nowPlaying && nowPlaying.id === s.id ? ' playing' : '')
+                       + (played.has(s.id) ? '' : ' unplayed'));
   wrap.dataset.id = s.id;
   const row = el('div', 'row');
 
@@ -353,7 +412,8 @@ function render() {
   SESSIONS.forEach((ses, si) => {
     const keep = r => r.songs.filter(s =>
       filter === 'heart' ? (hearts.has(s.id) || queueHearts.has(s.id) || (s.alt && queueHearts.has(s.alt))) :
-      filter === 'suno' ? s.sunoLiked : true);
+      filter === 'suno' ? s.sunoLiked :
+      filter === 'new' ? !played.has(s.id) : true);
 
     const runs = ses.runs.map(r => ({ r, songs: keep(r) })).filter(x => x.songs.length);
     ses.runs.forEach(r => { total += r.songs.length; });
@@ -392,10 +452,14 @@ function render() {
     list.append(sec);
   });
 
+  const unheard = SESSIONS.reduce((a, ses) =>
+    a + ses.runs.reduce((b, r) => b + r.songs.filter(x => !played.has(x.id)).length, 0), 0);
   document.getElementById('count').textContent =
-    filter ? shown + ' of ' + total + ' songs' : total + ' songs';
+    (filter ? shown + ' of ' + total + ' songs' : total + ' songs')
+    + (unheard ? ' · ' + unheard + ' unplayed' : '');
   if (!shown) list.append(el('p', 'empty', filter === 'heart'
     ? 'Nothing hearted yet — tap the ♡ here, or heart a row in the listening queue.'
+    : filter === 'new' ? 'Everything here has been played at least once.'
     : 'Nothing marked as liked on Suno yet.'));
 }
 
@@ -403,10 +467,12 @@ function setFilter(next) {
   filter = filter === next ? null : next;
   document.getElementById('f-heart').className = 'chip' + (filter === 'heart' ? ' on' : '');
   document.getElementById('f-suno').className = 'chip' + (filter === 'suno' ? ' on' : '');
+  document.getElementById('f-new').className = 'chip' + (filter === 'new' ? ' on' : '');
   render();
 }
 document.getElementById('f-heart').addEventListener('click', () => setFilter('heart'));
 document.getElementById('f-suno').addEventListener('click', () => setFilter('suno'));
+document.getElementById('f-new').addEventListener('click', () => setFilter('new'));
 document.getElementById('expand').addEventListener('click', () => {
   SESSIONS.forEach(s => s.runs.forEach(r => r.songs.forEach(x => opened.add(x.id))));
   saveOpen(); render();
@@ -427,6 +493,7 @@ document.getElementById('collapse').addEventListener('click', () => {
   }
   render();
   loadQueueHearts().then(render);
+  startPolling();
 })();
 </script>
 </body>
