@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Session · Sound Lexicon</title>
+<meta name="description" content="A log of working sittings — what was made, in the order it was made, and why each round differed from the one before it.">
+<style>
+  :root{
+    --ink:#111419; --panel:#181c24; --panel2:#1f2530; --line:#2a313d;
+    --text:#e9e6dd; --muted:#98a0ad; --dim:#6b7280;
+    --amber:#e0a63c; --amber-dim:#8a6a2a; --teal:#1a9e75; --rose:#d03b3b; --violet:#8a7fe0;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ink);color:var(--text);
+       font:15px/1.6 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+  .wrap{max-width:1180px;margin:0 auto;padding:26px 16px 80px}
+  .layout{display:flex;gap:20px;align-items:flex-start}
+  .main{flex:1 1 auto;min-width:0}
+
+  /* ---------- the player ----------
+     A sticky column rather than a bar at the bottom: reviewing a session means reading a
+     lyric while the take plays, and a sidebar keeps both on screen at once. Below the
+     breakpoint there is no room for two columns, so it becomes the bar it would have been. */
+  .side{position:sticky;top:18px;width:340px;flex:0 0 340px}
+  .player{border:1px solid var(--line);border-radius:11px;background:var(--panel);padding:12px;display:none}
+  .player.on{display:block}
+  .pnow{font-weight:600;font-size:14px;margin:0 0 2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .pnow a{color:var(--text);text-decoration:none;border-bottom:1px dotted var(--line)}
+  .pnow a:hover{color:var(--amber);border-bottom-color:var(--amber-dim)}
+  /* The queue gives every row a way out to the source; the player should too — the embed shows
+     none of the lyric, the style or anything else the record actually carries. */
+  .pout{display:block;margin:9px 0 0;text-align:center;font-family:var(--mono);font-size:10.5px;
+        color:var(--dim);text-decoration:none;border:1px solid var(--line);border-radius:6px;padding:5px 0}
+  .pout:hover{color:var(--amber);border-color:var(--amber-dim)}
+  .pmeta{font-family:var(--mono);font-size:10.5px;color:var(--dim);margin:0 0 9px;
+         white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  #frame{width:100%;height:120px;border:0;border-radius:8px;background:var(--panel2);display:block}
+  .phint{font-family:var(--mono);font-size:10px;color:var(--dim);margin:9px 0 0;line-height:1.5}
+  /* ---------- the play tiles ----------
+     The same control the library uses on a card: the take's own cover art with a ▶ over it,
+     ringed amber while it is the one loaded. Two of them on the row replace the take tabs that
+     used to live under the player — the choice belongs next to the song, not next to the
+     speaker, and the artwork makes the two takes tellable apart at a glance. */
+  .tiles{display:flex;gap:10px;flex:none;margin-left:6px}
+  .tile-wrap{position:relative;flex:none}
+  /* Same badge the library hangs off a demo tile: the out-link rides the artwork's corner
+     rather than sitting in the row as its own word. */
+  .ext{position:absolute;top:-5px;right:-5px;width:16px;height:16px;border-radius:50%;
+       background:var(--panel2);border:1px solid var(--line);color:var(--amber);
+       font-size:10px;line-height:14px;text-align:center;text-decoration:none;z-index:3}
+  .ext:hover{border-color:var(--amber);background:var(--panel)}
+  .lk{position:absolute;top:-5px;left:-5px;width:16px;height:16px;border-radius:50%;
+      background:var(--panel2);border:1px solid var(--teal);color:var(--teal);
+      font-size:9px;line-height:14px;text-align:center;z-index:3}
+  .tile-btn{position:relative;width:38px;height:38px;border-radius:7px;overflow:hidden;
+            border:1px solid var(--line);background:var(--panel);padding:0;cursor:pointer;flex:none}
+  .tile-btn img{width:100%;height:100%;object-fit:cover;display:block}
+  .tile-btn .ov{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+                background:rgba(0,0,0,.34);color:#fff;font-size:12px;text-shadow:0 1px 3px rgba(0,0,0,.7)}
+  .tile-btn:hover{border-color:var(--amber)}
+  .tile-btn.playing{border-color:var(--amber);box-shadow:0 0 0 2px var(--amber),0 0 12px rgba(224,166,60,.35)}
+  .tile-btn .n{position:absolute;right:2px;bottom:1px;font-family:var(--mono);font-size:8.5px;
+               color:#fff;text-shadow:0 1px 2px #000}
+  .song.playing{box-shadow:inset 0 0 0 1px var(--amber-dim)}
+  /* ---------- unplayed ----------
+     Suno keeps no play count on a private song — only a published one carries plays — so this
+     is OUR record: a take counts as played once it has been started in the sidebar here. The
+     mark is a left edge rather than a badge, so a column of unheard takes is visible at a
+     glance without adding another glyph to a row that already has several. */
+  .song.unplayed{border-left:2px solid var(--violet)}
+  .tile-btn.unheard{border-color:var(--violet)}
+  .tile-btn.unheard .n{color:var(--violet)}
+  .song.unplayed .tt::after{content:'new';font-family:var(--mono);font-size:9px;letter-spacing:.08em;
+        text-transform:uppercase;color:var(--violet);margin-left:8px;vertical-align:1px}
+  .fresh{font-family:var(--mono);font-size:10.5px;color:var(--violet);margin-left:8px}
+  .song.playing .play{color:var(--amber)}
+  @media(max-width:900px){
+    .layout{display:block}
+    .side{position:fixed;left:0;right:0;bottom:0;top:auto;width:auto;flex:none;z-index:20;padding:8px}
+    .player{box-shadow:0 -8px 24px rgba(0,0,0,.45)}
+  }
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--amber);margin:0 0 8px}
+  .eyebrow a{color:var(--amber);text-decoration:none;border-bottom:1px dotted var(--amber-dim)}
+  .eyebrow a:hover{border-bottom-style:solid}
+  h1{margin:0 0 6px;font-size:27px;letter-spacing:-.01em}
+  .sub{color:var(--muted);margin:0 0 20px;max-width:70ch}
+
+  .bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 20px}
+  .chip{font-family:var(--mono);font-size:11.5px;color:var(--dim);background:none;
+        border:1px solid var(--line);border-radius:999px;padding:5px 11px;cursor:pointer;
+        transition:color .12s,border-color .12s,background-color .12s}
+  .chip:hover{color:var(--text)}
+  .chip.on{color:var(--amber);border-color:var(--amber-dim);background:rgba(224,166,60,.08)}
+  .count{font-family:var(--mono);font-size:11.5px;color:var(--dim);margin-left:auto}
+
+  /* ---------- a session ---------- */
+  .session{border:1px solid var(--line);border-radius:11px;background:var(--panel);margin:0 0 18px;overflow:hidden}
+  .shead{display:flex;align-items:baseline;gap:11px;padding:14px 16px;cursor:pointer}
+  .shead:hover{background:var(--panel2)}
+  .caret{font-family:var(--mono);color:var(--dim);flex:none;transition:transform .14s}
+  .session.open .caret{transform:rotate(90deg)}
+  .sdate{font-family:var(--mono);font-size:11.5px;color:var(--amber);flex:none}
+  .stitle{font-weight:600}
+  .smeta{font-family:var(--mono);font-size:11px;color:var(--dim);margin-left:auto;flex:none}
+  .sbody{display:none;padding:0 16px 8px}
+  .session.open .sbody{display:block}
+  .snote{color:var(--muted);font-size:13.5px;margin:0 0 16px;max-width:78ch}
+
+  /* ---------- a run ---------- */
+  .run{margin:0 0 18px;border-left:2px solid var(--line);padding-left:14px}
+  .rlabel{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--teal);margin:0 0 4px}
+  .rnote{color:var(--muted);font-size:13px;margin:0 0 10px;max-width:78ch}
+
+  /* ---------- a song ---------- */
+  .song{border:1px solid var(--line);border-radius:9px;background:var(--panel2);margin:0 0 7px}
+  .row{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:9px 11px;cursor:pointer}
+  .row:hover{background:#242b37}
+  .ord{font-family:var(--mono);font-size:11px;color:var(--dim);flex:none;min-width:2.1em}
+  .tt{font-weight:600;font-size:14px;min-width:0;flex:1 1 180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .tag{font-family:var(--mono);font-size:10.5px;color:var(--dim);border:1px solid var(--line);
+       border-radius:5px;padding:2px 6px;white-space:nowrap;flex:none}
+  .tag.base{color:var(--amber);border-color:var(--amber-dim)}
+  .ctl{display:flex;align-items:center;gap:8px;flex:none;margin-left:auto}
+  .dur{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+  .heart{border:0;background:none;color:var(--dim);font-family:var(--mono);font-size:13px;
+         line-height:1;padding:4px 6px;border-radius:5px;cursor:pointer}
+  .heart:hover,.heart.on{color:var(--amber)}
+  .star{font-family:var(--mono);font-size:11px;color:var(--dim)}
+  .star.on{color:var(--teal)}
+  .qheart{font-family:var(--mono);font-size:12.5px;color:var(--rose);line-height:1;padding:0 2px}
+  .out{font-family:var(--mono);font-size:10.5px;color:var(--dim);text-decoration:none;
+       border:1px solid var(--line);border-radius:6px;padding:3px 7px;white-space:nowrap}
+  .out:hover{color:var(--amber);border-color:var(--amber-dim)}
+
+  .det{display:none;padding:2px 13px 13px;border-top:1px solid var(--line)}
+  .song.open .det{display:block}
+  .det h4{margin:13px 0 5px;font-family:var(--mono);font-size:10px;font-weight:600;
+          letter-spacing:.09em;text-transform:uppercase;color:var(--teal)}
+  .det p{margin:0;font-size:13px;line-height:1.62;color:var(--text)}
+  .det .prose{color:var(--muted);font-size:12.5px;line-height:1.6}
+  .slots{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0 0}
+  .slot{font-family:var(--mono);font-size:10.5px;color:var(--muted);background:var(--ink);
+        border:1px solid var(--line);border-radius:5px;padding:3px 7px}
+  .lyric{white-space:pre-wrap;font-family:var(--mono);font-size:12px;line-height:1.72;
+         color:var(--text);background:var(--ink);border:1px solid var(--line);
+         border-radius:7px;padding:11px 13px;margin:0;max-height:460px;overflow:auto}
+  .empty{color:var(--dim);font-size:13.5px;padding:26px 2px}
+
+  @media(max-width:560px){
+    .smeta{display:none}
+    .ctl{margin-left:0;width:100%;justify-content:flex-end}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow"><a href="index.html">Sound Lexicon</a> / <a href="sessions.html">Sessions</a> / <span id="crumb">…</span></p>
+  <h1 id="h1">Session</h1>
+  <p class="sub" id="sub">Loading…</p>
+
+  <div class="bar">
+    <button class="chip" id="f-heart">♥ kept — hearted here or liked on Suno</button>
+    <button class="chip" id="f-new">unplayed only</button>
+    <button class="chip" id="expand">Expand all songs</button>
+    <button class="chip" id="collapse">Collapse all</button>
+    <span class="count" id="count"></span>
+  </div>
+
+  <div class="layout">
+    <div class="main"><div id="list"></div></div>
+
+    <aside class="side">
+      <div class="player" id="player">
+        <p class="pnow"><a id="pnow" href="#" target="_blank" rel="noopener"></a></p>
+        <p class="pmeta" id="pmeta"></p>
+        <iframe id="frame" title="Suno player" allow="autoplay; encrypted-media"></iframe>
+        <a class="pout" id="pout" href="#" target="_blank" rel="noopener">Open on Suno ↗</a>
+        <p class="phint">The embed starts itself when it is ready. Nothing here can press its play.</p>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<script>
+/* ---------- the log, fetched rather than <script src>'d ----------
+   A plain script tag let the page and its data cache independently, and they did: the page
+   was new, the log was the copy from before the queue ids were added, and the hearts simply
+   did not appear. Nothing in the page could tell. Fetching it with cache:'reload' means the
+   log is always the deployed one, and the stamp under the title says which — a page that
+   cannot go quietly stale beats one that is fast and occasionally lying. */
+let SESSIONS = [];
+
+let logText = '';
+
+const WANT = new URLSearchParams(location.search).get('id');
+
+async function loadLog() {
+  const r = await fetch('sessions_data.js', { cache: 'reload' });
+  const text = await r.text();
+  if (text === logText) return false;                 // byte-identical: nothing to redraw
+  logText = text;
+  const all = (new Function(text + '; return SESSIONS;'))();
+  /* One sitting per page. Without an id the newest is the sensible default — a bare link to
+     this page should still land somewhere useful rather than on an error. */
+  const one = WANT ? all.find(s => s.id === WANT) : all[0];
+  SESSIONS = one ? [one] : [];
+  if (one) {
+    document.title = one.title + ' · Sound Lexicon';
+    document.getElementById('crumb').textContent = one.date;
+    document.getElementById('h1').textContent = one.title;
+    document.getElementById('sub').textContent = one.note || '';
+  }
+  return true;
+}
+
+/* ---------- picking up new takes without a reload ----------
+   Songs land in the log while this page is open — a round is fired, the log is pushed, and the
+   page should show it. It polls the file rather than being pushed to, because the log is a
+   static file on Pages and a socket for three songs an hour would be absurd. A poll that finds
+   the same bytes does nothing at all, so the common case costs one conditional GET.
+
+   Nothing on screen is disturbed: the player lives outside the list and is never re-rendered,
+   hearts and open rows are read back from storage, and anything new arrives already marked
+   unplayed. Polling stops while the tab is hidden and catches up when it comes back. */
+const POLL_MS = 45000;
+let pollTimer = null;
+
+async function poll() {
+  try {
+    if (await loadLog()) { render(); loadQueueHearts().then(render); }
+  } catch (e) { /* offline or mid-deploy — the next tick tries again */ }
+}
+function startPolling() {
+  stopPolling();
+  pollTimer = setInterval(poll, POLL_MS);
+}
+function stopPolling() { if (pollTimer) clearInterval(pollTimer); pollTimer = null; }
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) stopPolling(); else { poll(); startPolling(); }
+});
+
+/* ---------- hearts ----------
+   Kept in this browser, not in the database. A heart here is a private note to self about a
+   take, and the page has no sign-in to hang a per-person flag on; the library's shared ♥ is a
+   COUNT, which is the wrong shape for "did I like this one". If these ever need to follow him
+   between machines, the move is a small owner-only node in the RTDB, not a count. */
+const HKEY = 'sl.session.hearts.v1';
+const hearts = (() => {
+  try { return new Set(JSON.parse(localStorage.getItem(HKEY) || '[]')); }
+  catch (e) { return new Set(); }
+})();
+
+/* ---------- hearts go to the database, not just this browser ----------
+   They started in localStorage, which was wrong for a reason I did not think of: a heart is a
+   message to whoever is working on the next round, and a message nobody else can read is not
+   one. Hearted in Firefox, invisible to a session driving Chrome — the state was stranded in
+   the browser that set it.
+
+   They live in `likes/<clipId>` as 0 or 1. That node is the site's world-readable, world-
+   writable heart counter, keyed by id with no auth — and this IS a heart, so it is the same
+   thing rather than a squat on an unrelated node. Library entry ids are short, clip ids are
+   uuids, so the two cannot collide. If per-person hearts are ever wanted, that needs its own
+   owner-scoped node and a rules change in the console; one listener does not need it yet.
+
+   Everything already in localStorage is pushed up on first load, so hearts set before this
+   existed are not lost. localStorage stays as the offline mirror. */
+const DB_ROOT = 'https://vocal-timbre-library-default-rtdb.firebaseio.com';
+
+const saveHearts = () => {
+  try { localStorage.setItem(HKEY, JSON.stringify([...hearts])); } catch (e) {}
+};
+
+async function pushHeart(id, on) {
+  try {
+    await fetch(`${DB_ROOT}/likes/${encodeURIComponent(id)}.json`,
+      { method: 'PUT', body: JSON.stringify(on ? 1 : 0) });
+  } catch (e) { /* offline: localStorage still holds it, and the next load pushes it */ }
+}
+
+async function syncHearts() {
+  const ids = [...new Set(SESSIONS.flatMap(s => s.runs.flatMap(r => r.songs.flatMap(takesOf))))];
+  const local = new Set(hearts);
+  await Promise.all(ids.map(async id => {
+    try {
+      const r = await fetch(`${DB_ROOT}/likes/${encodeURIComponent(id)}.json`);
+      if (!r.ok) return;
+      if (await r.json()) hearts.add(id);
+    } catch (e) {}
+  }));
+  // anything hearted here before the database existed goes up now
+  await Promise.all([...local].filter(id => ids.includes(id)).map(id => pushHeart(id, true)));
+  saveHearts();
+}
+
+/* ---------- hearts set in a listening queue ----------
+   A take can be hearted in two places: here, and on the row in whichever shared queue it was
+   dropped into. The queue's are the ones set while actually listening, so they matter more —
+   and they live in the database rather than in this browser. Every queue node is world-readable
+   to anyone holding its id (queues/$qid has .read true), so this is a plain fetch with no auth
+   and no SDK. Keys there are prefixed by source: "suno:<uuid>".
+
+   They are shown, not merged: a queue heart is a fact about the database and cannot be undone
+   from this page, so it reads as its own mark and the local ♥ still toggles independently. */
+const DB = 'https://vocal-timbre-library-default-rtdb.firebaseio.com';
+const queueHearts = new Set();
+
+async function loadQueueHearts() {
+  const ids = [...new Set(SESSIONS.flatMap(s => s.queues || []))];
+  await Promise.all(ids.map(async qid => {
+    try {
+      const r = await fetch(`${DB}/queues/${encodeURIComponent(qid)}/likes.json`);
+      if (!r.ok) return;
+      const likes = await r.json();
+      Object.entries(likes || {}).forEach(([key, who]) => {
+        if (who && Object.keys(who).length) queueHearts.add(key.replace(/^suno:/, ''));
+      });
+    } catch (e) { /* offline, or the queue is gone — the page is still useful without them */ }
+  }));
+}
+
+/* ---------- played / unplayed ----------
+   Suno exposes no play count for a private clip — checked the song page, the library row and
+   three API shapes; the counts on a published track exist only because it is published. So
+   "played" here means started in this page's player, which is a thing the page actually knows
+   and can be honest about.
+
+   Keyed by CLIP, not by song: a generation makes two takes and hearing one says nothing about
+   the other, which is exactly the complaint — from the player there was no telling whether the
+   unheard one was take 1 or take 2. A row now reads unplayed only while BOTH are unheard, and
+   each tile carries its own mark. Old entries keyed by song id still work: a song's id IS its
+   first take's clip id, so they read as "take 1 heard" and nothing is lost. */
+const PKEY = 'sl.session.played.v1';
+const played = (() => {
+  try { return new Set(JSON.parse(localStorage.getItem(PKEY) || '[]')); }
+  catch (e) { return new Set(); }
+})();
+const savePlayed = () => { try { localStorage.setItem(PKEY, JSON.stringify([...played])); } catch (e) {} };
+
+const OKEY = 'sl.session.open.v1';                 // which songs were left open
+const opened = (() => {
+  try { return new Set(JSON.parse(localStorage.getItem(OKEY) || '[]')); }
+  catch (e) { return new Set(); }
+})();
+const saveOpen = () => { try { localStorage.setItem(OKEY, JSON.stringify([...opened])); } catch (e) {} };
+
+const mmss = s => s == null ? '' : Math.floor(s / 60) + ':' + String(Math.round(s % 60)).padStart(2, '0');
+const el = (tag, cls, txt) => { const n = document.createElement(tag); if (cls) n.className = cls; if (txt != null) n.textContent = txt; return n; };
+
+
+/* ---------- the player ----------
+   The frame is built fresh inside the click rather than re-pointed, because autoplay
+   permission follows user activation and a long-lived element carries it far less reliably.
+   `credentialless` is not optional: signed in to suno.com, a normal third-party frame sends a
+   session token without its companion cookie, Suno tries to repair the session, the repair
+   503s and the embed never loads. An empty cookie jar makes it an ordinary anonymous listener.
+   The attribute is set before src, like sandbox — it only applies to a navigation that has not
+   started. See the same note in queue.html, where this was measured. */
+let nowPlaying = null;                              // the song object, not an index
+let playingClip = null;                             // the take actually loaded, so the right tile rings
+
+function mountFrame(id) {
+  const old = document.getElementById('frame');
+  const fresh = document.createElement('iframe');
+  fresh.id = 'frame';
+  fresh.title = 'Suno player';
+  fresh.credentialless = true;
+  fresh.setAttribute('credentialless', '');
+  fresh.setAttribute('allow', "autoplay 'src'; encrypted-media 'src'");
+  fresh.src = 'https://suno.com/embed/' + id;
+  old.replaceWith(fresh);
+}
+
+function play(s, which) {
+  nowPlaying = s;
+  const id = which === 2 && s.alt ? s.alt : s.id;
+  playingClip = id;
+  document.getElementById('player').classList.add('on');
+  const now = document.getElementById('pnow');
+  now.textContent = s.title;
+  now.href = 'https://suno.com/song/' + id;
+  now.title = 'Open “' + s.title + '” on Suno';
+  const pout = document.getElementById('pout');
+  pout.href = 'https://suno.com/song/' + id;
+  pout.textContent = 'Open take ' + which + ' on Suno ↗';
+  document.getElementById('pmeta').textContent =
+    [s.v, s.tag, mmss(s.dur)].filter(Boolean).join(' · ');
+  const likedHere = (s.liked || []).includes(id);
+  document.getElementById('pmeta').textContent +=
+    (s.alt ? ' · take ' + which : '') + (likedHere ? ' · ★ liked on Suno' : '');
+  mountFrame(id);
+  if (!played.has(id)) { played.add(id); savePlayed(); }
+  const node = document.querySelector('.song[data-id="' + s.id + '"]');
+  if (node) {
+    node.classList.remove('unplayed');
+    const t = node.querySelectorAll('.tile-btn')[which === 2 && s.alt ? 1 : 0];
+    if (t) t.classList.remove('unheard');
+  }
+  document.querySelectorAll('.song.playing').forEach(n => n.classList.remove('playing'));
+  document.querySelectorAll('.tile-btn.playing').forEach(n => n.classList.remove('playing'));
+  const row = document.querySelector('.song[data-id="' + s.id + '"]');
+  if (row) {
+    row.classList.add('playing');
+    const tile = row.querySelectorAll('.tile-btn')[which === 2 && s.alt ? 1 : 0];
+    if (tile) tile.classList.add('playing');
+  }
+}
+
+
+const takesOf = s => [s.id, ...(s.alt ? [s.alt] : [])];
+
+let filter = null;                                  // null | 'heart' | 'suno' | 'new'
+
+function songEl(s, ord) {
+  const wrap = el('div', 'song' + (opened.has(s.id) ? ' open' : '')
+                       + (nowPlaying && nowPlaying.id === s.id ? ' playing' : '')
+                       + (takesOf(s).some(c => played.has(c)) ? '' : ' unplayed'));
+  wrap.dataset.id = s.id;
+  const row = el('div', 'row');
+
+
+  row.append(el('span', 'ord', String(ord).padStart(2, '0')));
+  row.append(el('span', 'tt', s.title));
+  if (s.tag) row.append(el('span', 'tag' + (/BASE/.test(s.tag) ? ' base' : ''), s.tag));
+
+  const ctl = el('div', 'ctl');
+  ctl.append(el('span', 'dur', mmss(s.dur)));
+
+
+  if (queueHearts.has(s.id) || (s.alt && queueHearts.has(s.alt))) {
+    const q = el('span', 'qheart', '♥');
+    q.title = queueHearts.has(s.id)
+      ? 'Hearted in the listening queue'
+      : 'Hearted in the listening queue — the second take';
+    ctl.append(q);
+  }
+
+  const h = el('button', 'heart' + (hearts.has(s.id) ? ' on' : ''), hearts.has(s.id) ? '♥' : '♡');
+  h.title = 'Keep this take';
+  h.addEventListener('click', ev => {
+    ev.stopPropagation();
+    const on = !hearts.has(s.id);
+    if (on) hearts.add(s.id); else hearts.delete(s.id);
+    saveHearts();
+    pushHeart(s.id, on);
+    h.className = 'heart' + (hearts.has(s.id) ? ' on' : '');
+    h.textContent = hearts.has(s.id) ? '♥' : '♡';
+    if (filter) render();
+  });
+  ctl.append(h);
+
+  const liked = new Set(s.liked || []);
+
+  /* The tiles sit last in the cluster, so they are the closest thing on the row to the player
+     they load — the shortest travel between choosing a take and watching it come up. */
+  const tiles = el('div', 'tiles');
+  takesOf(s).forEach((cid, i) => {
+    const n = i + 1;
+    const b = el('button', 'tile-btn' + (playingClip === cid ? ' playing' : '')
+                           + (played.has(cid) ? '' : ' unheard'));
+    b.title = 'Take ' + n + ' — play in the sidebar';
+    const img = document.createElement('img');
+    img.src = 'https://cdn2.suno.ai/image_' + cid + '.jpeg';
+    img.alt = '';
+    img.onerror = () => { img.style.display = 'none'; };
+    b.append(img, el('span', 'ov', '▶'), el('span', 'n', String(n)));
+    b.addEventListener('click', ev => { ev.stopPropagation(); play(s, n); });
+
+    const wrap = el('span', 'tile-wrap');
+    wrap.append(b);
+
+    const ext = el('a', 'ext', '↗');
+    ext.href = 'https://suno.com/song/' + cid;
+    ext.target = '_blank'; ext.rel = 'noopener';
+    ext.title = 'Open take ' + n + ' on Suno';
+    ext.addEventListener('click', ev => ev.stopPropagation());
+    wrap.append(ext);
+
+    if (liked.has(cid)) {
+      const star = el('span', 'lk', '★');
+      star.title = 'Take ' + n + ' is liked on Suno';
+      wrap.append(star);
+    }
+    tiles.append(wrap);
+  });
+  ctl.append(tiles);
+  row.append(ctl);
+
+  /* ---------- the detail, built once and kept ---------- */
+  const det = el('div', 'det');
+  if (s.world) { det.append(el('h4', null, 'In a world where')); det.append(el('p', null, s.world)); }
+  const slots = el('div', 'slots');
+  if (s.meter) slots.append(el('span', 'slot', 'meter · ' + s.meter));
+  if (s.structure) slots.append(el('span', 'slot', 'structure · ' + s.structure));
+  if (slots.children.length) { det.append(el('h4', null, 'Slots')); det.append(slots); }
+  if (s.style) { det.append(el('h4', null, 'Style')); det.append(el('p', 'prose', s.style)); }
+  if (s.exclude) { det.append(el('h4', null, 'Excluded')); det.append(el('p', 'prose', s.exclude)); }
+  if (s.lyric) { det.append(el('h4', null, 'Lyric as submitted')); det.append(el('pre', 'lyric', s.lyric)); }
+
+  row.addEventListener('click', () => {
+    wrap.classList.toggle('open');
+    if (wrap.classList.contains('open')) opened.add(s.id); else opened.delete(s.id);
+    saveOpen();
+  });
+
+  wrap.append(row, det);
+  return wrap;
+}
+
+function render() {
+  const list = document.getElementById('list');
+  list.textContent = '';
+  let shown = 0, total = 0;
+
+  SESSIONS.forEach((ses, si) => {
+    const keep = r => r.songs.filter(s =>
+      /* One question, not two: is this one worth coming back to? A heart set here, a heart set
+         on a queue row, and a like given on Suno are three ways of saying the same thing, and
+         splitting them made you check twice to answer once. */
+      filter === 'heart' ? (takesOf(s).some(c => hearts.has(c) || queueHearts.has(c))
+                            || (s.liked || []).length) :
+      filter === 'new' ? !takesOf(s).some(c => played.has(c)) : true);
+
+    const runs = ses.runs.map(r => ({ r, songs: keep(r) })).filter(x => x.songs.length);
+    ses.runs.forEach(r => { total += r.songs.length; });
+    runs.forEach(x => { shown += x.songs.length; });
+    if (!runs.length) return;
+
+    const sec = el('div', 'session open');
+    const body = el('div', 'sbody');
+
+    let ord = 0;
+    ses.runs.forEach(r => {
+      const hit = runs.find(x => x.r === r);
+      const songs = hit ? hit.songs : [];
+      r.songs.forEach(() => {});                       // ordinals count every song, filtered or not
+      const run = el('div', 'run');
+      run.append(el('p', 'rlabel', r.label));
+      if (r.note) run.append(el('p', 'rnote', r.note));
+      r.songs.forEach(s => {
+        ord++;
+        if (songs.includes(s)) run.append(songEl(s, ord));
+      });
+      if (songs.length) body.append(run);
+    });
+
+    sec.append(body);
+    list.append(sec);
+  });
+
+  const takes = SESSIONS.reduce((a, ses) =>
+    a + ses.runs.reduce((b, r) => b + r.songs.reduce((c, x) => c + takesOf(x).length, 0), 0), 0);
+  const unheard = SESSIONS.reduce((a, ses) =>
+    a + ses.runs.reduce((b, r) => b + r.songs.reduce((c, x) =>
+      c + takesOf(x).filter(t => !played.has(t)).length, 0), 0), 0);
+  document.getElementById('count').textContent =
+    (filter ? shown + ' of ' + total + ' songs' : total + ' songs')
+    + ' · ' + (unheard ? unheard + ' of ' + takes + ' takes unplayed' : 'all ' + takes + ' takes played');
+  if (!shown) list.append(el('p', 'empty', filter === 'heart'
+    ? 'Nothing kept yet — tap the ♡ here, heart a row in the queue, or like a take on Suno.'
+    : 'Everything here has been played at least once.'));
+}
+
+function setFilter(next) {
+  filter = filter === next ? null : next;
+  document.getElementById('f-heart').className = 'chip' + (filter === 'heart' ? ' on' : '');
+  document.getElementById('f-new').className = 'chip' + (filter === 'new' ? ' on' : '');
+  render();
+}
+document.getElementById('f-heart').addEventListener('click', () => setFilter('heart'));
+document.getElementById('f-new').addEventListener('click', () => setFilter('new'));
+document.getElementById('expand').addEventListener('click', () => {
+  SESSIONS.forEach(s => s.runs.forEach(r => r.songs.forEach(x => opened.add(x.id))));
+  saveOpen(); render();
+});
+document.getElementById('collapse').addEventListener('click', () => {
+  opened.clear(); saveOpen(); render();
+});
+
+/* The log has to be in hand before anything can be drawn, so that await is real; the queue
+   hearts fold in afterwards rather than holding up the first paint. */
+(async () => {
+  try {
+    await loadLog();
+  } catch (e) {
+    document.getElementById('list').append(
+      el('p', 'empty', 'Could not load the session log. Reload, or check sessions_data.js is deployed.'));
+    return;
+  }
+  render();
+  Promise.all([loadQueueHearts(), syncHearts()]).then(render);
+  startPolling();
+})();
+</script>
+</body>
+</html>
