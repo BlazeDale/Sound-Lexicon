@@ -159,8 +159,7 @@
   </p>
 
   <div class="bar">
-    <button class="chip" id="f-heart">♥ hearted — here or in the queue</button>
-    <button class="chip" id="f-suno">★ liked on Suno</button>
+    <button class="chip" id="f-heart">♥ kept — hearted here or liked on Suno</button>
     <button class="chip" id="f-new">unplayed only</button>
     <button class="chip" id="expand">Expand all songs</button>
     <button class="chip" id="collapse">Collapse all</button>
@@ -495,8 +494,11 @@ function render() {
 
   SESSIONS.forEach((ses, si) => {
     const keep = r => r.songs.filter(s =>
-      filter === 'heart' ? (hearts.has(s.id) || queueHearts.has(s.id) || (s.alt && queueHearts.has(s.alt))) :
-      filter === 'suno' ? (s.liked || []).length :
+      /* One question, not two: is this one worth coming back to? A heart set here, a heart set
+         on a queue row, and a like given on Suno are three ways of saying the same thing, and
+         splitting them made you check twice to answer once. */
+      filter === 'heart' ? (takesOf(s).some(c => hearts.has(c) || queueHearts.has(c))
+                            || (s.liked || []).length) :
       filter === 'new' ? !takesOf(s).some(c => played.has(c)) : true);
 
     const runs = ses.runs.map(r => ({ r, songs: keep(r) })).filter(x => x.songs.length);
@@ -545,20 +547,17 @@ function render() {
     (filter ? shown + ' of ' + total + ' songs' : total + ' songs')
     + ' · ' + (unheard ? unheard + ' of ' + takes + ' takes unplayed' : 'all ' + takes + ' takes played');
   if (!shown) list.append(el('p', 'empty', filter === 'heart'
-    ? 'Nothing hearted yet — tap the ♡ here, or heart a row in the listening queue.'
-    : filter === 'new' ? 'Everything here has been played at least once.'
-    : 'Nothing marked as liked on Suno yet.'));
+    ? 'Nothing kept yet — tap the ♡ here, heart a row in the queue, or like a take on Suno.'
+    : 'Everything here has been played at least once.'));
 }
 
 function setFilter(next) {
   filter = filter === next ? null : next;
   document.getElementById('f-heart').className = 'chip' + (filter === 'heart' ? ' on' : '');
-  document.getElementById('f-suno').className = 'chip' + (filter === 'suno' ? ' on' : '');
   document.getElementById('f-new').className = 'chip' + (filter === 'new' ? ' on' : '');
   render();
 }
 document.getElementById('f-heart').addEventListener('click', () => setFilter('heart'));
-document.getElementById('f-suno').addEventListener('click', () => setFilter('suno'));
 document.getElementById('f-new').addEventListener('click', () => setFilter('new'));
 document.getElementById('expand').addEventListener('click', () => {
   SESSIONS.forEach(s => s.runs.forEach(r => r.songs.forEach(x => opened.add(x.id))));
