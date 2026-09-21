@@ -42,6 +42,24 @@
   .go{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
       color:var(--amber);margin-top:10px;display:block}
   .empty{color:var(--dim);font-size:13.5px;padding:26px 2px}
+
+  .new{border:1px dashed var(--line);border-radius:12px;padding:16px 18px;margin:22px 0 0}
+  .nhead{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+         color:var(--dim);margin:0 0 11px}
+  .new input,.new textarea{width:100%;background:var(--ink);color:var(--text);border:1px solid var(--line);
+        border-radius:7px;padding:9px 11px;font:inherit;font-size:13.5px;margin:0 0 8px}
+  .new textarea{min-height:56px;resize:vertical}
+  .new input:focus,.new textarea:focus{outline:none;border-color:var(--amber-dim)}
+  .nrow{display:flex;align-items:center;gap:11px}
+  .new button{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+        color:var(--amber);background:none;border:1px solid var(--amber-dim);border-radius:7px;
+        padding:7px 15px;cursor:pointer}
+  .new button:hover{background:rgba(224,166,60,.08)}
+  .nstat{font-family:var(--mono);font-size:10.5px;color:var(--dim)}
+  .draft{border-left-color:var(--teal)}
+  .draft .cdate{color:var(--teal)}
+  .pend{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+        color:var(--teal);border:1px solid var(--teal);border-radius:5px;padding:2px 7px;margin-left:8px}
 </style>
 </head>
 <body>
@@ -55,6 +73,22 @@
   </p>
 
   <div id="list"><p class="empty">Loading…</p></div>
+
+  <!-- ---------- starting one ----------
+       A sitting usually begins with a track to work off, so the form asks for exactly that: a
+       name and the Suno link that is its BASE. The page cannot reach suno.com to read the clip,
+       and cannot write to the repo, so this records the intent — title, date, base — and the
+       log is filled in from it when the session is actually built. -->
+  <div class="new">
+    <p class="nhead">Start a session</p>
+    <input id="n-title" type="text" maxlength="120" placeholder="What is this sitting about?">
+    <input id="n-base" type="text" maxlength="200" placeholder="Suno link for the BASE track (optional)">
+    <textarea id="n-note" maxlength="800" placeholder="What you are trying to get at (optional)"></textarea>
+    <div class="nrow">
+      <button id="n-go">Create</button>
+      <span class="nstat" id="n-stat"></span>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -144,6 +178,73 @@ function render(sessions, kept) {
   });
 }
 
+/* ---------- drafts ----------
+   A session started here exists in the database before it exists in the log. It is shown with
+   the real ones, marked pending, so an intention does not vanish between opening it and the
+   work actually happening. */
+async function loadDrafts() {
+  try {
+    const r = await fetch(`${DB_ROOT}/session_drafts.json`);
+    if (!r.ok) return [];
+    const d = await r.json() || {};
+    return Object.entries(d).map(([id, v]) => ({ id, ...v }))
+      .sort((a, b) => (b.created || 0) - (a.created || 0));
+  } catch (e) { return []; }
+}
+
+function renderDrafts(drafts, logged) {
+  const have = new Set(logged.map(s => s.id));
+  const list = document.getElementById('list');
+  drafts.filter(d => !have.has(d.id)).forEach(d => {
+    const card = el('div', 'card draft');
+    const head = el('div', 'chead');
+    head.append(el('span', 'cdate', d.date || ''));
+    head.append(el('span', 'ctitle', d.title || 'Untitled session'));
+    head.append(el('span', 'pend', 'not started'));
+    card.append(head);
+    if (d.note) card.append(el('p', 'cnote', d.note));
+    if (d.baseUrl) {
+      const a = el('a', 'cnote');
+      a.href = d.baseUrl; a.target = '_blank'; a.rel = 'noopener';
+      a.style.color = 'var(--teal)';
+      a.textContent = 'BASE · ' + d.baseUrl;
+      card.append(a);
+    }
+    list.prepend(card);
+  });
+}
+
+document.getElementById('n-go').addEventListener('click', async () => {
+  const title = document.getElementById('n-title').value.trim();
+  const stat = document.getElementById('n-stat');
+  if (!title) { stat.textContent = 'give it a name first'; return; }
+  const baseUrl = document.getElementById('n-base').value.trim();
+  const m = baseUrl.match(/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/);
+  const today = new Date().toISOString().slice(0, 10);
+  const id = today + '-' + title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40);
+  const body = { title, date: today, created: Date.now() };
+  const note = document.getElementById('n-note').value.trim();
+  if (note) body.note = note;
+  if (baseUrl) body.baseUrl = baseUrl;
+  if (m) body.baseId = m[1];
+  stat.textContent = 'creating…';
+  try {
+    const r = await fetch(`${DB_ROOT}/session_drafts/${encodeURIComponent(id)}.json`,
+      { method: 'PUT', body: JSON.stringify(body) });
+    if (!r.ok) throw new Error(String(r.status));
+    stat.textContent = 'created — it will fill in as the work happens';
+    document.getElementById('n-title').value = '';
+    document.getElementById('n-base').value = '';
+    document.getElementById('n-note').value = '';
+    const [sessions, drafts] = await Promise.all([load(), loadDrafts()]);
+    render(sessions, new Set());
+    renderDrafts(drafts, sessions);
+    keptSet(sessions).then(k => { render(sessions, k); renderDrafts(drafts, sessions); });
+  } catch (e) {
+    stat.textContent = 'could not save — the database rules may not be published yet';
+  }
+});
+
 (async () => {
   let sessions;
   try { sessions = await load(); }
@@ -154,7 +255,9 @@ function render(sessions, kept) {
     return;
   }
   render(sessions, new Set());                 // the counts that need no network, immediately
-  keptSet(sessions).then(kept => render(sessions, kept));
+  const drafts = await loadDrafts();
+  renderDrafts(drafts, sessions);
+  keptSet(sessions).then(kept => { render(sessions, kept); renderDrafts(drafts, sessions); });
 })();
 </script>
 </body>

@@ -22,6 +22,38 @@
       }
     },
 
+    // ---------- session notes ----------
+    // One note per song in a session log: what he liked or did not about that pair of takes.
+    // It is the steering for the next round, so it has to be readable by whoever builds it and
+    // writable from the session page, which has no sign-in — same shape and same exposure as
+    // "likes" above. Capped hard so a scribbler can waste a row and nothing more.
+    "session_notes": {
+      ".read": true,
+      "$id": {
+        ".write": true,
+        ".validate": "newData.isString() && newData.val().length <= 800 && $id.length <= 64"
+      }
+    },
+
+    // ---------- sessions started from the page ----------
+    // A sitting he opens before there is anything in it: a title, the date, and the Suno link
+    // that is its BASE. The page cannot reach suno.com to read that clip, and cannot write to
+    // the repo, so this records the intent and the log is filled in from it afterwards.
+    "session_drafts": {
+      ".read": true,
+      "$id": {
+        ".write": true,
+        ".validate": "newData.hasChildren(['title','created']) && $id.length <= 64",
+        "title":   { ".validate": "newData.isString() && newData.val().length <= 120" },
+        "note":    { ".validate": "newData.isString() && newData.val().length <= 800" },
+        "baseUrl": { ".validate": "newData.isString() && newData.val().length <= 200" },
+        "baseId":  { ".validate": "newData.isString() && newData.val().length <= 40" },
+        "date":    { ".validate": "newData.isString() && newData.val().length <= 10" },
+        "created": { ".validate": "newData.isNumber()" },
+        "$other":  { ".validate": false }
+      }
+    },
+
     // The vocal-gender overlay, set from the library's own editor. Unchanged.
     "song_gender": {
       ".read": true,

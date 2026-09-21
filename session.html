@@ -143,6 +143,11 @@
   .slots{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0 0}
   .slot{font-family:var(--mono);font-size:10.5px;color:var(--muted);background:var(--ink);
         border:1px solid var(--line);border-radius:5px;padding:3px 7px}
+  .note{width:100%;min-height:62px;resize:vertical;background:var(--ink);color:var(--text);
+        border:1px solid var(--line);border-radius:7px;padding:9px 11px;font:inherit;font-size:13px}
+  .note:focus{outline:none;border-color:var(--amber-dim)}
+  .song.noted{border-left:2px solid var(--teal)}
+  .nstat{font-family:var(--mono);font-size:10px;color:var(--dim);display:inline-block;margin-top:4px}
   .lyric{white-space:pre-wrap;font-family:var(--mono);font-size:12px;line-height:1.72;
          color:var(--text);background:var(--ink);border:1px solid var(--line);
          border-radius:7px;padding:11px 13px;margin:0;max-height:460px;overflow:auto}
@@ -246,6 +251,28 @@ document.addEventListener('visibilitychange', () => {
    take, and the page has no sign-in to hang a per-person flag on; the library's shared ♥ is a
    COUNT, which is the wrong shape for "did I like this one". If these ever need to follow him
    between machines, the move is a small owner-only node in the RTDB, not a count. */
+/* ---------- a note per song ----------
+   What he liked or did not about a pair of takes, in his words. This is the steering for the
+   next round — a heart says keep, a note says why — so it lives in the database where whoever
+   builds that round can read it, not in a browser. */
+const notes = {};
+
+async function loadNotes(ids) {
+  await Promise.all(ids.map(async id => {
+    try {
+      const r = await fetch(`${DB_ROOT}/session_notes/${encodeURIComponent(id)}.json`);
+      if (r.ok) { const v = await r.json(); if (v) notes[id] = v; }
+    } catch (e) {}
+  }));
+}
+
+async function saveNote(id, text) {
+  const r = await fetch(`${DB_ROOT}/session_notes/${encodeURIComponent(id)}.json`,
+    { method: 'PUT', body: JSON.stringify(text) });
+  if (!r.ok) throw new Error('refused');
+  if (text) notes[id] = text; else delete notes[id];
+}
+
 const HKEY = 'sl.session.hearts.v1';
 const hearts = (() => {
   try { return new Set(JSON.parse(localStorage.getItem(HKEY) || '[]')); }
@@ -428,7 +455,8 @@ let filter = null;                                  // null | 'heart' | 'suno' |
 function songEl(s, ord) {
   const wrap = el('div', 'song' + (opened.has(s.id) ? ' open' : '')
                        + (nowPlaying && nowPlaying.id === s.id ? ' playing' : '')
-                       + (takesOf(s).some(c => heard(s, c)) ? '' : ' unplayed'));
+                       + (takesOf(s).some(c => heard(s, c)) ? '' : ' unplayed')
+                       + (notes[s.id] ? ' noted' : ''));
   wrap.dataset.id = s.id;
   const row = el('div', 'row');
 
@@ -449,19 +477,25 @@ function songEl(s, ord) {
     ctl.append(q);
   }
 
-  const h = el('button', 'heart' + (hearts.has(s.id) ? ' on' : ''), hearts.has(s.id) ? '♥' : '♡');
-  h.title = 'Keep this take';
-  h.addEventListener('click', ev => {
-    ev.stopPropagation();
-    const on = !hearts.has(s.id);
-    if (on) hearts.add(s.id); else hearts.delete(s.id);
-    saveHearts();
-    pushHeart(s.id, on);
-    h.className = 'heart' + (hearts.has(s.id) ? ' on' : '');
-    h.textContent = hearts.has(s.id) ? '♥' : '♡';
-    if (filter) render();
+  /* One ♥ per take. A like was always a fact about a clip — Suno's is — and a single heart on
+     the row could not say which of the two earned it. This replaces needing Suno's likes at
+     all: set it here, it goes to the database, and it is readable by whoever builds the next
+     round without anyone sweeping anything. */
+  takesOf(s).forEach((cid, i) => {
+    const h = el('button', 'heart' + (hearts.has(cid) ? ' on' : ''), hearts.has(cid) ? '♥' : '♡');
+    h.title = (s.alt ? 'Keep take ' + (i + 1) : 'Keep this take');
+    h.addEventListener('click', ev => {
+      ev.stopPropagation();
+      const on = !hearts.has(cid);
+      if (on) hearts.add(cid); else hearts.delete(cid);
+      saveHearts();
+      pushHeart(cid, on);
+      h.className = 'heart' + (on ? ' on' : '');
+      h.textContent = on ? '♥' : '♡';
+      if (filter) render();
+    });
+    ctl.append(h);
   });
-  ctl.append(h);
 
   const liked = new Set(s.liked || []);
 
@@ -511,6 +545,26 @@ function songEl(s, ord) {
   if (slots.children.length) { det.append(el('h4', null, 'Slots')); det.append(slots); }
   if (s.style) { det.append(el('h4', null, 'Style')); det.append(el('p', 'prose', s.style)); }
   if (s.exclude) { det.append(el('h4', null, 'Excluded')); det.append(el('p', 'prose', s.exclude)); }
+  det.append(el('h4', null, 'What you made of it'));
+  const note = document.createElement('textarea');
+  note.className = 'note';
+  note.placeholder = 'What worked, what did not — this is what the next round is steered by.';
+  note.value = notes[s.id] || '';
+  note.addEventListener('click', ev => ev.stopPropagation());
+  const status = el('span', 'nstat', '');
+  let timer = null;
+  note.addEventListener('input', () => {
+    clearTimeout(timer);
+    status.textContent = '';
+    timer = setTimeout(async () => {
+      status.textContent = 'saving…';
+      try { await saveNote(s.id, note.value.trim()); status.textContent = 'saved'; }
+      catch (e) { status.textContent = 'could not save — database rules may not be published yet'; }
+      setTimeout(() => { if (status.textContent === 'saved') status.textContent = ''; }, 2000);
+    }, 900);
+  });
+  det.append(note, status);
+
   if (s.lyric) { det.append(el('h4', null, 'Lyric as submitted')); det.append(el('pre', 'lyric', s.lyric)); }
 
   row.addEventListener('click', () => {
@@ -604,7 +658,8 @@ document.getElementById('collapse').addEventListener('click', () => {
     return;
   }
   render();
-  Promise.all([loadQueueHearts(), syncHearts()]).then(render);
+  const songIds = SESSIONS.flatMap(x => x.runs.flatMap(r => r.songs.map(g => g.id)));
+  Promise.all([loadQueueHearts(), syncHearts(), loadNotes(songIds)]).then(render);
   startPolling();
 })();
 </script>
