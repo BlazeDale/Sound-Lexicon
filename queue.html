@@ -20,7 +20,7 @@
        neighbours, and these two chips sit on adjacent rows all the time in a mixed queue; the
        label disambiguates them but the colour should not need it to. The orange is kept deep
        and saturated for the same reason at the other end — a lighter one drifts towards
-       --amber, which on this page means attention: a warning, a liked heart.
+       --amber, which on this page means attention: a warning, the current track.
 
        Each has a resting tone near --dim in weight, so a column of these stays as quiet as
        the one grey chip it replaces; the full hue is for the pointer. */
@@ -305,7 +305,7 @@
      text was the only thing yielding. It is information, not a control, so it moved into
      the subtitle line where it costs nothing and reads with the rest of what a row says.
 
-     Everything that IS a control — heart, style, out-link, remove — now travels in one .ctl
+     Everything that IS a control — style, out-link, remove — now travels in one .ctl
      box pushed right. With the row wrapping, that box drops to a line of its own the moment
      the title would have to give way, instead of the title shrinking to an ellipsis. */
   .dur{color:var(--muted)}
@@ -328,9 +328,6 @@
   @media(prefers-reduced-motion:reduce){.out{transition:none}}
   .x{flex:none;border:0;background:none;color:var(--dim);font-size:16px;line-height:1;padding:4px 6px;cursor:pointer;border-radius:5px}
   .x:hover{color:var(--red);background:rgba(194,84,74,.1)}
-  .heart{flex:none;border:0;background:none;color:var(--dim);font-family:var(--mono);font-size:12px;line-height:1;
-         padding:4px 6px;cursor:pointer;border-radius:5px;white-space:nowrap}
-  .heart:hover,.heart.on{color:var(--amber)}
   .empty{color:var(--dim);font-size:13.5px;padding:22px 2px}
 
   /* ---------- the style behind a track ----------
@@ -1967,24 +1964,9 @@ function rowEl(r, i) {
     const ctl = document.createElement('div'); ctl.className = 'ctl';
     li.append(grip, art, meta, ctl);
 
-    /* The listeners' hearts. Shared queues only: a heart is somebody on the link saying they
-       liked this one, and on a private queue there is nobody else to say it to. One row per
-       listener per track, so the count is simply how many people are under it. It stays here
-       on the page - nothing reaches Suno or YouTube. */
-    if (shared()) {
-      const likes = (SQ.likes && SQ.likes[keyOf(r)]) || {};
-      const n = Object.keys(likes).length, liked = !!(SQ.uid && likes[SQ.uid]);
-      const h = document.createElement('button');
-      h.className = 'heart' + (liked ? ' on' : '');
-      h.textContent = (liked ? '♥' : '♡') + (n ? ' ' + n : '');
-      h.title = liked ? 'You liked this - click to take it back' : 'Like this track';
-      h.addEventListener('click', ev => {
-        ev.stopPropagation();                                   // not a request to play it
-        if (!SQ.ready || !window.__net) { toast('Liking needs a connection'); return; }
-        window.__net.setLike(keyOf(r), !liked);
-      });
-      ctl.append(h);
-    }
+    /* The per-track heart was removed on 2026-09-20. It recorded an opinion in a third place —
+       the session log's ★ is where a take is kept now, and the queue is for listening, not for
+       filing. Rows written before then are left in the database rather than deleted. */
 
     /* ---------- the style, in place ----------
        Suno rows only: the other two sources have nothing of the kind behind them. The button
@@ -3109,7 +3091,6 @@ window.__applyRemote = (tracks, meta) => {
   rebuildShuffle(); render();
 };
 window.__applyChat = msgs => { SQ.chat = msgs; renderChat(); };
-window.__applyLikes = v => { SQ.likes = v || {}; render(); };
 
 /* The shared position arriving. It can land before the queue's meta does, and who owns the
    queue decides how it is read, so until the owner is known it is only held on to -
@@ -3739,10 +3720,10 @@ try {
      clock is ever consulted and the two agree even when neither is right. */
   onValue(ref(db, '.info/serverTimeOffset'), s => { window.__skew = +s.val() || 0; });
 
-  let stopT = null, stopM = null, stopC = null, stopPl = null, stopLk = null, stopHd = null;
+  let stopT = null, stopM = null, stopC = null, stopPl = null, stopHd = null;
   function listen(qid) {
     SQ.qid = qid;
-    [stopT, stopM, stopC, stopPl, stopLk, stopHd].forEach(f => f && f());
+    [stopT, stopM, stopC, stopPl, stopHd].forEach(f => f && f());
     present(qid);
     let tracks = [], meta = {}, swept = false;
     stopM = onValue(ref(db, 'queues/' + qid + '/meta'), s => {
@@ -3780,7 +3761,6 @@ try {
       window.__applyChat(Object.values(v).sort((a, b) => (a.a || 0) - (b.a || 0)).slice(-200));   // rows pass through whole, `k` included
     });
     stopPl = onValue(ref(db, 'queues/' + qid + '/play'), s => window.__applyPlay(s.val()));
-    stopLk = onValue(ref(db, 'queues/' + qid + '/likes'), s => window.__applyLikes(s.val()));
     stopHd = onValue(ref(db, 'queues/' + qid + '/head'), s => window.__applyHead(s.val()));
     el('chat').hidden = false;
     el('board').classList.add('withchat');
@@ -3935,7 +3915,7 @@ try {
       /* Same parent-path problem as create, so the children go first and the node itself is
          only a tidy-up: once meta, tracks and chat are gone the queue is gone, whether or
          not the write at the node is permitted. */
-      for (const part of ['presence', 'play', 'head', 'likes', 'tracks', 'chat', 'meta']) {
+      for (const part of ['presence', 'play', 'head', 'tracks', 'chat', 'meta']) {
         await remove(ref(db, 'queues/' + qid + '/' + part)).catch(e => console.warn('[queue] could not remove ' + part, e));
       }
       await remove(ref(db, 'queues/' + qid)).catch(() => {});
@@ -3956,11 +3936,6 @@ try {
         .catch(e => console.warn('[queue] playhead refused (rules not published?)', e));
     },
     clearHead() { return remove(qref('head')).catch(() => {}); },
-    /* A like is a row under this listener's own uid, so nobody can like or unlike for anyone else. */
-    setLike(k, on) {
-      const r = qref('likes/' + k + '/' + me.uid);
-      return (on ? set(r, true) : remove(r)).catch(e => console.warn('[queue] like refused (rules not published?)', e));
-    },
     /* The track key is stamped HERE rather than read back later, because "what was playing"
        is a fact about the moment the message was sent and the owner's player will have moved
        on by the time anyone reads it. SP.now is the shared position for everyone — the owner

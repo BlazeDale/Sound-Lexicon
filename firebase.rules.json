@@ -240,14 +240,9 @@
         // The listeners' hearts: likes/<track key>/<uid> = true. Anyone signed in may add or
         // take back their own like, and only their own; the count is how many uids sit under
         // a track. Removing is a delete, which .validate never blocks.
-        "likes": {
-          "$track": {
-            "$uid": {
-              ".write": "auth != null && auth.uid === $uid",
-              ".validate": "newData.isBoolean() && newData.val() === true && $track.length <= 60"
-            }
-          }
-        },
+        // The per-track heart was removed from the queue on 2026-09-20 — an opinion belongs in
+        // one place, and that is the session log's star. Writes are refused from here on; rows
+        // written before then are still readable under queues/$qid/likes and are simply left.
 
         // Who has this queue open right now: one row per open tab, at presence/<uid>/<conn>,
         // holding the server time it arrived. A visitor may write only under their own uid,
