@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sessions · Sound Lexicon</title>
+<meta name="description" content="A log of working sittings — what was made, in the order it was made, and why each round differed from the one before it.">
+<style>
+  :root{
+    --ink:#111419; --panel:#181c24; --panel2:#1f2530; --line:#2a313d;
+    --text:#e9e6dd; --muted:#98a0ad; --dim:#6b7280;
+    --amber:#e0a63c; --amber-dim:#8a6a2a; --teal:#1a9e75; --rose:#d03b3b;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ink);color:var(--text);
+       font:15px/1.6 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+  .wrap{max-width:1000px;margin:0 auto;padding:26px 16px 80px}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--amber);margin:0 0 8px}
+  .eyebrow a{color:var(--amber);text-decoration:none;border-bottom:1px dotted var(--amber-dim)}
+  .eyebrow a:hover{border-bottom-style:solid}
+  h1{margin:0 0 6px;font-size:27px;letter-spacing:-.01em}
+  .sub{color:var(--muted);margin:0 0 20px;max-width:70ch}
+
+  .bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 20px}
+  .chip{font-family:var(--mono);font-size:11.5px;color:var(--dim);background:none;
+        border:1px solid var(--line);border-radius:999px;padding:5px 11px;cursor:pointer;
+        transition:color .12s,border-color .12s,background-color .12s}
+  .chip:hover{color:var(--text)}
+  .chip.on{color:var(--amber);border-color:var(--amber-dim);background:rgba(224,166,60,.08)}
+  .count{font-family:var(--mono);font-size:11.5px;color:var(--dim);margin-left:auto}
+
+  /* ---------- a session ---------- */
+  .session{border:1px solid var(--line);border-radius:11px;background:var(--panel);margin:0 0 18px;overflow:hidden}
+  .shead{display:flex;align-items:baseline;gap:11px;padding:14px 16px;cursor:pointer}
+  .shead:hover{background:var(--panel2)}
+  .caret{font-family:var(--mono);color:var(--dim);flex:none;transition:transform .14s}
+  .session.open .caret{transform:rotate(90deg)}
+  .sdate{font-family:var(--mono);font-size:11.5px;color:var(--amber);flex:none}
+  .stitle{font-weight:600}
+  .smeta{font-family:var(--mono);font-size:11px;color:var(--dim);margin-left:auto;flex:none}
+  .sbody{display:none;padding:0 16px 8px}
+  .session.open .sbody{display:block}
+  .snote{color:var(--muted);font-size:13.5px;margin:0 0 16px;max-width:78ch}
+
+  /* ---------- a run ---------- */
+  .run{margin:0 0 18px;border-left:2px solid var(--line);padding-left:14px}
+  .rlabel{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--teal);margin:0 0 4px}
+  .rnote{color:var(--muted);font-size:13px;margin:0 0 10px;max-width:78ch}
+
+  /* ---------- a song ---------- */
+  .song{border:1px solid var(--line);border-radius:9px;background:var(--panel2);margin:0 0 7px}
+  .row{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:9px 11px;cursor:pointer}
+  .row:hover{background:#242b37}
+  .ord{font-family:var(--mono);font-size:11px;color:var(--dim);flex:none;min-width:2.1em}
+  .tt{font-weight:600;font-size:14px;min-width:0;flex:1 1 180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .tag{font-family:var(--mono);font-size:10.5px;color:var(--dim);border:1px solid var(--line);
+       border-radius:5px;padding:2px 6px;white-space:nowrap;flex:none}
+  .tag.base{color:var(--amber);border-color:var(--amber-dim)}
+  .ctl{display:flex;align-items:center;gap:8px;flex:none;margin-left:auto}
+  .dur{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+  .heart{border:0;background:none;color:var(--dim);font-family:var(--mono);font-size:13px;
+         line-height:1;padding:4px 6px;border-radius:5px;cursor:pointer}
+  .heart:hover,.heart.on{color:var(--amber)}
+  .star{font-family:var(--mono);font-size:11px;color:var(--dim)}
+  .star.on{color:var(--teal)}
+  .out{font-family:var(--mono);font-size:10.5px;color:var(--dim);text-decoration:none;
+       border:1px solid var(--line);border-radius:6px;padding:3px 7px;white-space:nowrap}
+  .out:hover{color:var(--amber);border-color:var(--amber-dim)}
+
+  .det{display:none;padding:2px 13px 13px;border-top:1px solid var(--line)}
+  .song.open .det{display:block}
+  .det h4{margin:13px 0 5px;font-family:var(--mono);font-size:10px;font-weight:600;
+          letter-spacing:.09em;text-transform:uppercase;color:var(--teal)}
+  .det p{margin:0;font-size:13px;line-height:1.62;color:var(--text)}
+  .det .prose{color:var(--muted);font-size:12.5px;line-height:1.6}
+  .slots{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0 0}
+  .slot{font-family:var(--mono);font-size:10.5px;color:var(--muted);background:var(--ink);
+        border:1px solid var(--line);border-radius:5px;padding:3px 7px}
+  .lyric{white-space:pre-wrap;font-family:var(--mono);font-size:12px;line-height:1.72;
+         color:var(--text);background:var(--ink);border:1px solid var(--line);
+         border-radius:7px;padding:11px 13px;margin:0;max-height:460px;overflow:auto}
+  .empty{color:var(--dim);font-size:13.5px;padding:26px 2px}
+
+  @media(max-width:560px){
+    .smeta{display:none}
+    .ctl{margin-left:0;width:100%;justify-content:flex-end}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow"><a href="index.html">Sound Lexicon</a> / Sessions</p>
+  <h1>Sessions</h1>
+  <p class="sub">
+    Working sittings, newest first. Inside each one the rounds are in the order they were made,
+    and each round carries the correction that made it different from the one before — which is
+    usually the part worth re-reading. Open a song for the world it was built on, the slots, the
+    style it was fired with and the lyric exactly as submitted.
+  </p>
+
+  <div class="bar">
+    <button class="chip" id="f-heart">♥ hearted only</button>
+    <button class="chip" id="f-suno">★ liked on Suno</button>
+    <button class="chip" id="expand">Expand all songs</button>
+    <button class="chip" id="collapse">Collapse all</button>
+    <span class="count" id="count"></span>
+  </div>
+
+  <div id="list"></div>
+</div>
+
+<script src="sessions_data.js"></script>
+<script>
+/* ---------- hearts ----------
+   Kept in this browser, not in the database. A heart here is a private note to self about a
+   take, and the page has no sign-in to hang a per-person flag on; the library's shared ♥ is a
+   COUNT, which is the wrong shape for "did I like this one". If these ever need to follow him
+   between machines, the move is a small owner-only node in the RTDB, not a count. */
+const HKEY = 'sl.session.hearts.v1';
+const hearts = (() => {
+  try { return new Set(JSON.parse(localStorage.getItem(HKEY) || '[]')); }
+  catch (e) { return new Set(); }
+})();
+const saveHearts = () => {
+  try { localStorage.setItem(HKEY, JSON.stringify([...hearts])); } catch (e) {}
+};
+
+const OKEY = 'sl.session.open.v1';                 // which songs were left open
+const opened = (() => {
+  try { return new Set(JSON.parse(localStorage.getItem(OKEY) || '[]')); }
+  catch (e) { return new Set(); }
+})();
+const saveOpen = () => { try { localStorage.setItem(OKEY, JSON.stringify([...opened])); } catch (e) {} };
+
+const mmss = s => s == null ? '' : Math.floor(s / 60) + ':' + String(Math.round(s % 60)).padStart(2, '0');
+const el = (tag, cls, txt) => { const n = document.createElement(tag); if (cls) n.className = cls; if (txt != null) n.textContent = txt; return n; };
+
+let filter = null;                                  // null | 'heart' | 'suno'
+
+function songEl(s, ord) {
+  const wrap = el('div', 'song' + (opened.has(s.id) ? ' open' : ''));
+  const row = el('div', 'row');
+
+  row.append(el('span', 'ord', String(ord).padStart(2, '0')));
+  row.append(el('span', 'tt', s.title));
+  if (s.tag) row.append(el('span', 'tag' + (/BASE/.test(s.tag) ? ' base' : ''), s.tag));
+
+  const ctl = el('div', 'ctl');
+  ctl.append(el('span', 'dur', mmss(s.dur)));
+
+  const star = el('span', 'star' + (s.sunoLiked ? ' on' : ''), s.sunoLiked ? '★' : '');
+  if (s.sunoLiked) star.title = 'Liked on Suno';
+  ctl.append(star);
+
+  const h = el('button', 'heart' + (hearts.has(s.id) ? ' on' : ''), hearts.has(s.id) ? '♥' : '♡');
+  h.title = 'Keep this take';
+  h.addEventListener('click', ev => {
+    ev.stopPropagation();
+    if (hearts.has(s.id)) hearts.delete(s.id); else hearts.add(s.id);
+    saveHearts();
+    h.className = 'heart' + (hearts.has(s.id) ? ' on' : '');
+    h.textContent = hearts.has(s.id) ? '♥' : '♡';
+    if (filter) render();
+  });
+  ctl.append(h);
+
+  const out = el('a', 'out', 'Suno ↗');
+  out.href = 'https://suno.com/song/' + s.id;
+  out.target = '_blank'; out.rel = 'noopener';
+  out.title = 'Open this take on Suno';
+  out.addEventListener('click', ev => ev.stopPropagation());
+  ctl.append(out);
+
+  if (s.alt) {
+    const alt = el('a', 'out', 'take 2 ↗');
+    alt.href = 'https://suno.com/song/' + s.alt;
+    alt.target = '_blank'; alt.rel = 'noopener';
+    alt.title = 'The sibling take from the same generation';
+    alt.addEventListener('click', ev => ev.stopPropagation());
+    ctl.append(alt);
+  }
+  row.append(ctl);
+
+  /* ---------- the detail, built once and kept ---------- */
+  const det = el('div', 'det');
+  if (s.world) { det.append(el('h4', null, 'In a world where')); det.append(el('p', null, s.world)); }
+  const slots = el('div', 'slots');
+  if (s.meter) slots.append(el('span', 'slot', 'meter · ' + s.meter));
+  if (s.structure) slots.append(el('span', 'slot', 'structure · ' + s.structure));
+  if (slots.children.length) { det.append(el('h4', null, 'Slots')); det.append(slots); }
+  if (s.style) { det.append(el('h4', null, 'Style')); det.append(el('p', 'prose', s.style)); }
+  if (s.exclude) { det.append(el('h4', null, 'Excluded')); det.append(el('p', 'prose', s.exclude)); }
+  if (s.lyric) { det.append(el('h4', null, 'Lyric as submitted')); det.append(el('pre', 'lyric', s.lyric)); }
+
+  row.addEventListener('click', () => {
+    wrap.classList.toggle('open');
+    if (wrap.classList.contains('open')) opened.add(s.id); else opened.delete(s.id);
+    saveOpen();
+  });
+
+  wrap.append(row, det);
+  return wrap;
+}
+
+function render() {
+  const list = document.getElementById('list');
+  list.textContent = '';
+  let shown = 0, total = 0;
+
+  SESSIONS.forEach((ses, si) => {
+    const keep = r => r.songs.filter(s =>
+      filter === 'heart' ? hearts.has(s.id) :
+      filter === 'suno' ? s.sunoLiked : true);
+
+    const runs = ses.runs.map(r => ({ r, songs: keep(r) })).filter(x => x.songs.length);
+    ses.runs.forEach(r => { total += r.songs.length; });
+    runs.forEach(x => { shown += x.songs.length; });
+    if (!runs.length) return;
+
+    const sec = el('div', 'session' + (si === 0 || filter ? ' open' : ''));
+    const head = el('div', 'shead');
+    head.append(el('span', 'caret', '▸'));
+    head.append(el('span', 'sdate', ses.date));
+    head.append(el('span', 'stitle', ses.title));
+    const n = ses.runs.reduce((a, r) => a + r.songs.length, 0);
+    head.append(el('span', 'smeta', ses.runs.length + ' rounds · ' + n + ' songs'));
+    head.addEventListener('click', () => sec.classList.toggle('open'));
+    sec.append(head);
+
+    const body = el('div', 'sbody');
+    if (ses.note) body.append(el('p', 'snote', ses.note));
+
+    let ord = 0;
+    ses.runs.forEach(r => {
+      const hit = runs.find(x => x.r === r);
+      const songs = hit ? hit.songs : [];
+      r.songs.forEach(() => {});                       // ordinals count every song, filtered or not
+      const run = el('div', 'run');
+      run.append(el('p', 'rlabel', r.label));
+      if (r.note) run.append(el('p', 'rnote', r.note));
+      r.songs.forEach(s => {
+        ord++;
+        if (songs.includes(s)) run.append(songEl(s, ord));
+      });
+      if (songs.length) body.append(run);
+    });
+
+    sec.append(body);
+    list.append(sec);
+  });
+
+  document.getElementById('count').textContent =
+    filter ? shown + ' of ' + total + ' songs' : total + ' songs';
+  if (!shown) list.append(el('p', 'empty', filter === 'heart'
+    ? 'Nothing hearted yet — tap the ♡ on a take you want to come back to.'
+    : 'Nothing marked as liked on Suno yet.'));
+}
+
+function setFilter(next) {
+  filter = filter === next ? null : next;
+  document.getElementById('f-heart').className = 'chip' + (filter === 'heart' ? ' on' : '');
+  document.getElementById('f-suno').className = 'chip' + (filter === 'suno' ? ' on' : '');
+  render();
+}
+document.getElementById('f-heart').addEventListener('click', () => setFilter('heart'));
+document.getElementById('f-suno').addEventListener('click', () => setFilter('suno'));
+document.getElementById('expand').addEventListener('click', () => {
+  SESSIONS.forEach(s => s.runs.forEach(r => r.songs.forEach(x => opened.add(x.id))));
+  saveOpen(); render();
+});
+document.getElementById('collapse').addEventListener('click', () => {
+  opened.clear(); saveOpen(); render();
+});
+
+render();
+</script>
+</body>
+</html>
