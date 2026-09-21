@@ -324,6 +324,57 @@ const SESSIONS = [
       "sunoLiked": false
      }
     ]
+   },
+   {
+    "label": "Round 7 · off the hearted lineage, with play qualifiers",
+    "note": "Both hearts sat on the ambient-centre variation, so all three come off that style. New this round: a \"Played …\" clause drawn from six groups — motion, effort, repetition, density, time feel and ensemble behaviour — which describes how the parts treat each other, something nothing else in the prompt was saying. Fresh world each, per the rule.",
+    "songs": [
+     {
+      "v": "N",
+      "title": "What Year",
+      "id": "22f1b994-27a1-4975-9d95-250ad485caca",
+      "alt": "b0984bce-b2fd-4bb8-b4b9-4140d7a5e1c1",
+      "dur": 292,
+      "tag": "meandering · interlocking · rubato",
+      "world": "the tower's stairwell is the only part of the building still in the present, so people meet on the landings to agree what year it is",
+      "meter": "slow",
+      "structure": "a progressive structure with a long wordless middle, the opening lines returning changed, and a closing section capped by score markings - maestoso, tutti, allargando - where EVERY marking and every stage direction is written inside its own square brackets so none of it can be sung",
+      "style": "Extended Version. Atmospheric progressive melodic techno near 122 BPM, cinematic — a refracted arpeggio motif returning modulated rather than repeated, supersaw swells across minutes, deep sub, an FM voice whose modulation depth oscillates slowly over the whole timespan, the middle dissolving into several beatless minutes carried by a mid-range electric guitar riff resynthesised into the synth world, bending whole tones with portamento, then the groove reforming with the motif inverted. Drums borrowed from industrial metal and meticulously sampled, a real kit chopped and placed on the grid, gated snare and metallic accents. Every synth voice solid-cored with real fundamental weight. Played meandering, interlocking and rubato — parts that lock into each other's gaps while the whole thing wanders, nothing landing on the beat it was promised. One voice, delivery borrowed from K-pop: bright, forward, consonants clipped, pitch dead centre, close and dry. Mood: weightless, unresolved",
+      "exclude": "hollow whistling resonance, thin airy leads, festival drop, verse-chorus pop form, breathy tones, acoustic instrumentation, overcompression, flat tone, short radio edit, rigid metronomic feel, Harmonic stagnation, Dynamic flattening, Quantized sterility, Structural monotony, Predictability, Vocal identity drift, Vocalist substitution, Soundtubes",
+      "lyric": "On the landing, stone cold,\nwhat year? what year? what year?\nThe banister’s smooth as a river,\nbut the sky’s just a blur.\nWe counted the cracks in the banister,\neach step a promise we couldn’t keep,\nthe day the clocks stopped\n(we all knew it, but kept on the climb).\n\nWhat year? (a question that chills)\nWhat year? (a word that won’t fit)\nThe echo of \"2020\"\njust a ghost in the tile.\nWe met on the landing,\nfingers tracing the cold stone,\n“Is it still now?”\n“Was now even real?”\n\n[long breath]\n[hush]\n[stair tread]\n[tremble]\n\nOn the landing, stone cold,\nwhat year? what year?\nThe banister’s smooth as a river,\nbut the sky’s just a blur.\nWe counted the cracks in the banister,\neach step a promise we couldn’t keep,\nthe day the clocks stopped\n(we all knew it, but kept on the climb).\n\nWhat year? (a question that chills)\nWhat year? (a word that won’t fit)\nThe echo of \"2020\"\njust a ghost in the tile.\nWe met on the landing,\nfingers tracing the cold stone,\n“Is it still now?”\n“Was now even real?”\n\n[maestoso]\n[tutti]\n[allargando]\nwhat year?\n\nthe last word hanging like a stone in the throat,\nunspoken, unanswerable,\nunhinged.",
+      "sunoLiked": false
+     },
+     {
+      "v": "O",
+      "title": "The Clock in the Hall",
+      "id": "468175d3-f9d1-473a-80ef-36dba540b175",
+      "alt": "56f354fd-9a01-4f45-9b28-e9b35b63433d",
+      "dur": 282,
+      "tag": "processional · accreting · austere",
+      "world": "the colony's archive can only be read aloud, and every reading wears the record a little further away",
+      "meter": "slow",
+      "structure": "a progressive structure with a long wordless middle, the opening lines returning changed, and a closing section capped by score markings - maestoso, tutti, crescendo al fine - where the score markings and any stage directions sit inside square brackets, while every line that is actually SUNG is written plainly with no brackets at all",
+      "style": "Extended Version. Atmospheric progressive melodic techno near 122 BPM, cinematic — a refracted arpeggio motif returning modulated rather than repeated, deep sub, an FM voice whose modulation depth oscillates slowly over the whole timespan, the middle dissolving into several beatless minutes carried by a mid-range electric guitar riff resynthesised into the synth world, bending whole tones, then the groove reforming with the motif inverted. Drums borrowed from industrial metal and meticulously sampled, a real kit chopped and placed dead on the grid, gated snare and metallic accents. Every synth voice solid-cored with real fundamental weight. Played processional, accreting and austere — one element added each time round and never taken away, a single unhurried tread from first bar to last, nothing decorative anywhere. One voice, delivery borrowed from K-pop: bright, forward, consonants clipped, pitch dead centre, close and dry. Mood: grave, vast, patient",
+      "exclude": "hollow whistling resonance, thin airy leads, festival drop, verse-chorus pop form, breathy tones, acoustic instrumentation, ornamental fills, overcompression, flat tone, short radio edit, Harmonic stagnation, Dynamic flattening, Quantized sterility, Structural monotony, Predictability, Vocal identity drift, Vocalist substitution, Soundtubes",
+      "lyric": "The clock in the hall wears its face thin,\neach tick a sigh, each tock a tear shed,\nthe words we spoke grow thin and thin,\na whispered plea the air has fed.\n\nWe read the dawn before the dawn,\nthe light still cold on pavement grey,\none turn too fast, the metal torn,\nthe clock’s sharp chime went straight away.\n\nThe clock in the hall wears its face thin,\neach tick a sigh, each tock a tear shed,\nthe words we spoke grow thin and thin,\na whispered plea the air has fed.\n\n(No more the dented fender’s gleam,\nNo more the chair where you sat down,\nJust dawn light on the empty room,\nAnd nothing left but sound that’s gone.)\n\n[ . . . ]\n[ . . . ]\n[ . . . ]\nthe chair where you sat\nthe clock in the hall\nthe light that came\nthe air that held\n\nThe clock in the hall now runs without a hand,\neach tick a stone, each tock a sand,\nthe words we spoke are sanded plain,\na silent dawn on empty plain.\n\nThe clock in the hall now runs without a hand,\neach tick a stone, each tock a sand,\nthe words we spoke are sanded plain,\na silent dawn on empty plain.\n\n[maestoso]\n[tutti]\n[crescendo al fine]",
+      "sunoLiked": false
+     },
+     {
+      "v": "P",
+      "title": "Must Agree Before We Speak",
+      "id": "0ed29760-110c-4daf-bcf2-37df1ddcc6cc",
+      "alt": "62dbe23b-24c9-4a6d-b1fb-917a92d6c8fc",
+      "dur": 286,
+      "tag": "searching · competing · straining",
+      "world": "everyone is issued a second voice at sixteen, and the two have to agree before either is allowed to speak",
+      "meter": "slow",
+      "structure": "a progressive structure with a long wordless middle, the opening lines returning changed, and a closing section capped by score markings - maestoso, tutti, sforzando, allargando - where the score markings and any stage directions sit inside square brackets, while every line that is actually SUNG is written plainly with no brackets at all",
+      "style": "Extended Version. Atmospheric progressive melodic techno near 122 BPM, cinematic — a refracted arpeggio motif returning modulated rather than repeated, supersaw swells, deep sub, an FM voice whose modulation depth oscillates slowly over the whole timespan, the middle dissolving into beatless minutes carried by a mid-range electric guitar riff resynthesised into the synth world, bending whole tones, then the groove reforming with the motif inverted. Drums borrowed from industrial metal and meticulously sampled, a real kit chopped and placed dead on the grid, gated snare and metallic accents. Every synth voice solid-cored with real fundamental weight. Played searching, competing and straining — the riff and the arpeggio pulling at the same space and neither yielding, everything reaching a little past what it can comfortably hold. One voice, delivery borrowed from K-pop: bright, forward, consonants clipped, pitch dead centre, close and dry. Mood: urgent, bright, overextended",
+      "exclude": "hollow whistling resonance, thin airy leads, festival drop, verse-chorus pop form, breathy tones, acoustic instrumentation, overcompression, flat tone, polite restrained arrangement, short radio edit, Harmonic stagnation, Dynamic flattening, Quantized sterility, Structural monotony, Predictability, Vocal identity drift, Vocalist substitution, Soundtubes",
+      "lyric": "Sixteen, they gave us two voices\nmust agree before we speak\none hums low like a trapped bird\nthe other sings sharp as a sickle\nmust agree before we speak\n\nMy first voice tried to say I love you\nas the music swelled\nmy second voice said Don’t\nand the word don’t cut the air\nlike a knife in a darkened room\nmust agree before we speak\n\nThe concert hall was hushed, the lights were low\nmy heart a drum against my ribs\nmy first voice I love you in a breath too bright\nmy second voice Don’t—a stone in the throat\nDon’t—the only word that fit\nmust agree before we speak\n\n[adagio, fermata, 3 beats of silence]\n[silent]\n[silent]\n[silent]\n\nThe music swelled past the point of I love you\npast the point of wait\npast the point where the second voice could not be\nonly silence where my first voice died\nonly the hum of the hummed word\nonly the don’t carved in the dark\n\nSixteen, they gave us two voices\nmust agree to speak\nbut the hummed word is all that’s left\na ghost in the hollow where I love you should’ve been\nmust agree to speak\n\n[maestoso]\nThe second voice sings now\na single note\na long low don’t\n[tutti]\nThe hum of don’t swells\nthe hall holds its breath\n[sforzando]\nDon’t—a roar of don’t—\n[allargando]\nthe don’t widens\nfills the space where I love you should’ve been\nI said it\nI said it\nI said it\nI said it\nI said it\nI said it\nI said it\nI said it\nI said it\nI said it",
+      "sunoLiked": false
+     }
+    ]
    }
   ]
  }
