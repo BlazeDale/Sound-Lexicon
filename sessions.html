@@ -64,6 +64,7 @@
   .heart:hover,.heart.on{color:var(--amber)}
   .star{font-family:var(--mono);font-size:11px;color:var(--dim)}
   .star.on{color:var(--teal)}
+  .qheart{font-family:var(--mono);font-size:12.5px;color:var(--rose);line-height:1;padding:0 2px}
   .out{font-family:var(--mono);font-size:10.5px;color:var(--dim);text-decoration:none;
        border:1px solid var(--line);border-radius:6px;padding:3px 7px;white-space:nowrap}
   .out:hover{color:var(--amber);border-color:var(--amber-dim)}
@@ -100,7 +101,7 @@
   </p>
 
   <div class="bar">
-    <button class="chip" id="f-heart">♥ hearted only</button>
+    <button class="chip" id="f-heart">♥ hearted — here or in the queue</button>
     <button class="chip" id="f-suno">★ liked on Suno</button>
     <button class="chip" id="expand">Expand all songs</button>
     <button class="chip" id="collapse">Collapse all</button>
@@ -125,6 +126,32 @@ const hearts = (() => {
 const saveHearts = () => {
   try { localStorage.setItem(HKEY, JSON.stringify([...hearts])); } catch (e) {}
 };
+
+/* ---------- hearts set in a listening queue ----------
+   A take can be hearted in two places: here, and on the row in whichever shared queue it was
+   dropped into. The queue's are the ones set while actually listening, so they matter more —
+   and they live in the database rather than in this browser. Every queue node is world-readable
+   to anyone holding its id (queues/$qid has .read true), so this is a plain fetch with no auth
+   and no SDK. Keys there are prefixed by source: "suno:<uuid>".
+
+   They are shown, not merged: a queue heart is a fact about the database and cannot be undone
+   from this page, so it reads as its own mark and the local ♥ still toggles independently. */
+const DB = 'https://vocal-timbre-library-default-rtdb.firebaseio.com';
+const queueHearts = new Set();
+
+async function loadQueueHearts() {
+  const ids = [...new Set(SESSIONS.flatMap(s => s.queues || []))];
+  await Promise.all(ids.map(async qid => {
+    try {
+      const r = await fetch(`${DB}/queues/${encodeURIComponent(qid)}/likes.json`);
+      if (!r.ok) return;
+      const likes = await r.json();
+      Object.entries(likes || {}).forEach(([key, who]) => {
+        if (who && Object.keys(who).length) queueHearts.add(key.replace(/^suno:/, ''));
+      });
+    } catch (e) { /* offline, or the queue is gone — the page is still useful without them */ }
+  }));
+}
 
 const OKEY = 'sl.session.open.v1';                 // which songs were left open
 const opened = (() => {
@@ -152,6 +179,14 @@ function songEl(s, ord) {
   const star = el('span', 'star' + (s.sunoLiked ? ' on' : ''), s.sunoLiked ? '★' : '');
   if (s.sunoLiked) star.title = 'Liked on Suno';
   ctl.append(star);
+
+  if (queueHearts.has(s.id) || (s.alt && queueHearts.has(s.alt))) {
+    const q = el('span', 'qheart', '♥');
+    q.title = queueHearts.has(s.id)
+      ? 'Hearted in the listening queue'
+      : 'Hearted in the listening queue — the second take';
+    ctl.append(q);
+  }
 
   const h = el('button', 'heart' + (hearts.has(s.id) ? ' on' : ''), hearts.has(s.id) ? '♥' : '♡');
   h.title = 'Keep this take';
@@ -210,7 +245,7 @@ function render() {
 
   SESSIONS.forEach((ses, si) => {
     const keep = r => r.songs.filter(s =>
-      filter === 'heart' ? hearts.has(s.id) :
+      filter === 'heart' ? (hearts.has(s.id) || queueHearts.has(s.id) || (s.alt && queueHearts.has(s.alt))) :
       filter === 'suno' ? s.sunoLiked : true);
 
     const runs = ses.runs.map(r => ({ r, songs: keep(r) })).filter(x => x.songs.length);
@@ -253,7 +288,7 @@ function render() {
   document.getElementById('count').textContent =
     filter ? shown + ' of ' + total + ' songs' : total + ' songs';
   if (!shown) list.append(el('p', 'empty', filter === 'heart'
-    ? 'Nothing hearted yet — tap the ♡ on a take you want to come back to.'
+    ? 'Nothing hearted yet — tap the ♡ here, or heart a row in the listening queue.'
     : 'Nothing marked as liked on Suno yet.'));
 }
 
@@ -273,7 +308,10 @@ document.getElementById('collapse').addEventListener('click', () => {
   opened.clear(); saveOpen(); render();
 });
 
+/* The first paint does not wait on the network — the log is local and should be instant — and
+   the queue hearts fold in as soon as they arrive. */
 render();
+loadQueueHearts().then(render);
 </script>
 </body>
 </html>

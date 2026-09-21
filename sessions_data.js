@@ -14,6 +14,9 @@ const SESSIONS = [
   "id": "2026-09-20-prog-techno",
   "date": "2026-09-20",
   "title": "Progressive techno, from a remix prompt",
+  "queues": [
+   "hffw7j6b"
+  ],
   "note": "Fifteen songs across five rounds, each round a correction of the last. Lyrics written locally by qwen3:30b on the working lyric prompt; every generation got its own words. Vocal Gender set to Female throughout.",
   "runs": [
    {
