@@ -51,9 +51,15 @@
        background:var(--panel2);border:1px solid var(--line);color:var(--amber);
        font-size:10px;line-height:14px;text-align:center;text-decoration:none;z-index:3}
   .ext:hover{border-color:var(--amber);background:var(--panel)}
+  /* ---------- the star IS the keep ----------
+     One control with one meaning, on the thing it is about. Faint until it is set, so an
+     unkept take is quiet rather than cluttered, and solid teal once it is. */
   .lk{position:absolute;top:-5px;left:-5px;width:16px;height:16px;border-radius:50%;
-      background:var(--panel2);border:1px solid var(--teal);color:var(--teal);
-      font-size:9px;line-height:14px;text-align:center;z-index:3}
+      background:var(--panel2);border:1px solid var(--line);color:var(--dim);
+      font-size:9px;line-height:14px;text-align:center;z-index:3;cursor:pointer;padding:0;
+      transition:color .12s,border-color .12s}
+  .lk:hover{color:var(--teal);border-color:var(--teal)}
+  .lk.on{color:var(--teal);border-color:var(--teal)}
   .tile-btn{position:relative;width:38px;height:38px;border-radius:7px;overflow:hidden;
             border:1px solid var(--line);background:var(--panel);padding:0;cursor:pointer;flex:none}
   .tile-btn img{width:100%;height:100%;object-fit:cover;display:block}
@@ -70,10 +76,10 @@
      mark is a left edge rather than a badge, so a column of unheard takes is visible at a
      glance without adding another glyph to a row that already has several. */
   /* ---------- what the edge of a row says ----------
-     Violet: nothing here has been heard yet. Green: something here was kept — a heart, on
-     either take, or a like from Suno. Kept wins the edge where both are true, because "worth
-     coming back to" outranks "not yet heard"; the tile keeps its own violet mark regardless,
-     so a kept song with one unheard take still shows which take that is. */
+     Violet: nothing here has been heard yet. Green: a take in it was starred. Green wins the
+     edge where both are true, because "worth coming back to" outranks "not yet heard"; the
+     tile keeps its own violet mark regardless, so a kept song with one unheard take still
+     shows which take that is. */
   .song.unplayed{border-left:2px solid var(--violet)}
   .song.kept{border-left:2px solid var(--teal)}
   .tile-btn.unheard{border-color:var(--violet)}
@@ -130,12 +136,8 @@
   .tag.base{color:var(--amber);border-color:var(--amber-dim)}
   .ctl{display:flex;align-items:center;gap:8px;flex:none;margin-left:auto}
   .dur{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
-  .heart{border:0;background:none;color:var(--dim);font-family:var(--mono);font-size:13px;
-         line-height:1;padding:4px 6px;border-radius:5px;cursor:pointer}
-  .heart:hover,.heart.on{color:var(--amber)}
   .star{font-family:var(--mono);font-size:11px;color:var(--dim)}
   .star.on{color:var(--teal)}
-  .qheart{font-family:var(--mono);font-size:12.5px;color:var(--rose);line-height:1;padding:0 2px}
   .out{font-family:var(--mono);font-size:10.5px;color:var(--dim);text-decoration:none;
        border:1px solid var(--line);border-radius:6px;padding:3px 7px;white-space:nowrap}
   .out:hover{color:var(--amber);border-color:var(--amber-dim)}
@@ -172,7 +174,7 @@
   <p class="sub" id="sub">Loading…</p>
 
   <div class="bar">
-    <button class="chip" id="f-heart">♥ kept — hearted here or liked on Suno</button>
+    <button class="chip" id="f-heart">★ kept</button>
     <button class="chip" id="f-new">unplayed only</button>
     <button class="chip" id="expand">Expand all songs</button>
     <button class="chip" id="collapse">Collapse all</button>
@@ -431,10 +433,9 @@ function play(s, which) {
   document.getElementById('pmeta').textContent =
     [s.v, s.tag, mmss(s.dur)].filter(Boolean).join(' · ');
   const pc = sunoPlays(s)[id];
-  const likedHere = (s.liked || []).includes(id);
   document.getElementById('pmeta').textContent +=
     (s.alt ? ' · take ' + which : '') + (pc ? ' · ' + pc + ' play' + (pc === 1 ? '' : 's') : '')
-    + (likedHere ? ' · ★ liked' : '');
+    + (hearts.has(id) ? ' · ★ kept' : '');
   mountFrame(id);
   if (!played.has(id)) { played.add(id); savePlayed(); }
   const node = document.querySelector('.song[data-id="' + s.id + '"]');
@@ -455,8 +456,7 @@ function play(s, which) {
 
 
 const takesOf = s => [s.id, ...(s.alt ? [s.alt] : [])];
-const isKept = s => takesOf(s).some(c => hearts.has(c) || queueHearts.has(c))
-                    || (s.liked || []).length > 0;
+const isKept = s => takesOf(s).some(c => hearts.has(c));
 
 let filter = null;                                  // null | 'heart' | 'suno' | 'new'
 
@@ -478,36 +478,8 @@ function songEl(s, ord) {
   ctl.append(el('span', 'dur', mmss(s.dur)));
 
 
-  if (queueHearts.has(s.id) || (s.alt && queueHearts.has(s.alt))) {
-    const q = el('span', 'qheart', '♥');
-    q.title = queueHearts.has(s.id)
-      ? 'Hearted in the listening queue'
-      : 'Hearted in the listening queue — the second take';
-    ctl.append(q);
-  }
 
-  /* One ♥ per take. A like was always a fact about a clip — Suno's is — and a single heart on
-     the row could not say which of the two earned it. This replaces needing Suno's likes at
-     all: set it here, it goes to the database, and it is readable by whoever builds the next
-     round without anyone sweeping anything. */
-  takesOf(s).forEach((cid, i) => {
-    const h = el('button', 'heart' + (hearts.has(cid) ? ' on' : ''), hearts.has(cid) ? '♥' : '♡');
-    h.title = (s.alt ? 'Keep take ' + (i + 1) : 'Keep this take');
-    h.addEventListener('click', ev => {
-      ev.stopPropagation();
-      const on = !hearts.has(cid);
-      if (on) hearts.add(cid); else hearts.delete(cid);
-      saveHearts();
-      pushHeart(cid, on);
-      h.className = 'heart' + (on ? ' on' : '');
-      h.textContent = on ? '♥' : '♡';
-      wrap.classList.toggle('kept', isKept(s));
-      if (filter) render();
-    });
-    ctl.append(h);
-  });
 
-  const liked = new Set(s.liked || []);
 
   /* The tiles sit last in the cluster, so they are the closest thing on the row to the player
      they load — the shortest travel between choosing a take and watching it come up. */
@@ -536,11 +508,19 @@ function songEl(s, ord) {
     ext.addEventListener('click', ev => ev.stopPropagation());
     wrap.append(ext);
 
-    if (liked.has(cid)) {
-      const star = el('span', 'lk', '★');
-      star.title = 'Take ' + n + ' is liked on Suno';
-      wrap.append(star);
-    }
+    const star = el('button', 'lk' + (hearts.has(cid) ? ' on' : ''), '★');
+    star.title = (s.alt ? 'Keep take ' + n : 'Keep this take');
+    star.addEventListener('click', ev => {
+      ev.stopPropagation();
+      const on = !hearts.has(cid);
+      if (on) hearts.add(cid); else hearts.delete(cid);
+      saveHearts();
+      pushHeart(cid, on);
+      star.classList.toggle('on', on);
+      row.parentElement.classList.toggle('kept', isKept(s));
+      if (filter) render();
+    });
+    wrap.append(star);
     tiles.append(wrap);
   });
   ctl.append(tiles);
@@ -636,7 +616,7 @@ function render() {
     (filter ? shown + ' of ' + total + ' songs' : total + ' songs')
     + ' · ' + (unheard ? unheard + ' of ' + takes + ' takes unplayed' : 'all ' + takes + ' takes played');
   if (!shown) list.append(el('p', 'empty', filter === 'heart'
-    ? 'Nothing kept yet — tap the ♡ here, heart a row in the queue, or like a take on Suno.'
+    ? 'Nothing kept yet — tap the ★ on a take you want to come back to.'
     : 'Everything here has been played at least once.'));
 }
 

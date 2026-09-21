@@ -104,9 +104,8 @@ async function load() {
   return (new Function(await r.text() + '; return SESSIONS;'))();
 }
 
-/* Hearts set here or on a session page live in likes/<clipId>; hearts set while listening live
-   under the queue the session was dropped into; likes come from Suno. All three mean "keep
-   this", so the card gives one number rather than three for the reader to add up. */
+/* One place a keep lives: likes/<clipId>, set by the ★ on a take. Queue hearts and Suno likes
+   were folded into it, so there is nothing else to consult and nothing to add up. */
 async function keptSet(sessions) {
   const kept = new Set();
   const ids = [...new Set(sessions.flatMap(s => s.runs.flatMap(r => r.songs.flatMap(takesOf))))];
@@ -114,16 +113,6 @@ async function keptSet(sessions) {
     try {
       const r = await fetch(`${DB_ROOT}/likes/${encodeURIComponent(id)}.json`);
       if (r.ok && await r.json()) kept.add(id);
-    } catch (e) {}
-  }));
-  const qids = [...new Set(sessions.flatMap(s => s.queues || []))];
-  await Promise.all(qids.map(async qid => {
-    try {
-      const r = await fetch(`${DB_ROOT}/queues/${encodeURIComponent(qid)}/likes.json`);
-      if (!r.ok) return;
-      Object.entries(await r.json() || {}).forEach(([k, who]) => {
-        if (who && Object.keys(who).length) kept.add(k.replace(/^suno:/, ''));
-      });
     } catch (e) {}
   }));
   return kept;
@@ -142,8 +131,7 @@ function render(sessions, kept) {
   sessions.forEach(ses => {
     const songs = ses.runs.flatMap(r => r.songs);
     const takes = songs.flatMap(takesOf);
-    const keptCount = songs.filter(s =>
-      takesOf(s).some(t => kept.has(t)) || (s.liked || []).length).length;
+    const keptCount = songs.filter(s => takesOf(s).some(t => kept.has(t))).length;
     /* Unheard means neither Suno nor this browser has ever played it — Suno's own count is in
        the log, swept from the library. */
     const sunoPlayed = new Set();
@@ -169,7 +157,7 @@ function render(sessions, kept) {
     stats.append(stat('', ses.runs.length, ses.runs.length === 1 ? 'round' : 'rounds'));
     stats.append(stat('', songs.length, 'songs'));
     stats.append(stat('', takes.length, 'takes'));
-    stats.append(stat('kept', keptCount, 'kept ♥'));
+    stats.append(stat('kept', keptCount, 'kept ★'));
     if (unheard) stats.append(stat('unheard', unheard, 'unplayed'));
     stats.append(stat('', Math.round(secs / 60), 'min'));
     card.append(stats);
