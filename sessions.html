@@ -36,7 +36,17 @@
      ringed amber while it is the one loaded. Two of them on the row replace the take tabs that
      used to live under the player — the choice belongs next to the song, not next to the
      speaker, and the artwork makes the two takes tellable apart at a glance. */
-  .tiles{display:flex;gap:6px;flex:none;margin-left:4px}
+  .tiles{display:flex;gap:10px;flex:none;margin-left:6px}
+  .tile-wrap{position:relative;flex:none}
+  /* Same badge the library hangs off a demo tile: the out-link rides the artwork's corner
+     rather than sitting in the row as its own word. */
+  .ext{position:absolute;top:-5px;right:-5px;width:16px;height:16px;border-radius:50%;
+       background:var(--panel2);border:1px solid var(--line);color:var(--amber);
+       font-size:10px;line-height:14px;text-align:center;text-decoration:none;z-index:3}
+  .ext:hover{border-color:var(--amber);background:var(--panel)}
+  .lk{position:absolute;top:-5px;left:-5px;width:16px;height:16px;border-radius:50%;
+      background:var(--panel2);border:1px solid var(--teal);color:var(--teal);
+      font-size:9px;line-height:14px;text-align:center;z-index:3}
   .tile-btn{position:relative;width:38px;height:38px;border-radius:7px;overflow:hidden;
             border:1px solid var(--line);background:var(--panel);padding:0;cursor:pointer;flex:none}
   .tile-btn img{width:100%;height:100%;object-fit:cover;display:block}
@@ -55,8 +65,6 @@
   .song.unplayed{border-left:2px solid var(--violet)}
   .tile-btn.unheard{border-color:var(--violet)}
   .tile-btn.unheard .n{color:var(--violet)}
-  .take{display:inline-flex;align-items:center;gap:4px}
-  .take .lk{color:var(--teal);font-size:10px}
   .song.unplayed .tt::after{content:'new';font-family:var(--mono);font-size:9px;letter-spacing:.08em;
         text-transform:uppercase;color:var(--violet);margin-left:8px;vertical-align:1px}
   .fresh{font-family:var(--mono);font-size:10.5px;color:var(--violet);margin-left:8px}
@@ -381,20 +389,7 @@ function songEl(s, ord) {
   });
   ctl.append(h);
 
-  /* One link per take, and the ★ rides on the link for the take that is actually liked on
-     Suno — a like belongs to a clip, and hanging it on the row said nothing about which of
-     the two earned it. */
   const liked = new Set(s.liked || []);
-  takesOf(s).forEach((cid, i) => {
-    const a = el('a', 'out take');
-    a.href = 'https://suno.com/song/' + cid;
-    a.target = '_blank'; a.rel = 'noopener';
-    if (liked.has(cid)) a.append(el('span', 'lk', '★'));
-    a.append(document.createTextNode((i + 1) + ' ↗'));
-    a.title = (liked.has(cid) ? 'Liked on Suno · ' : '') + 'Open take ' + (i + 1) + ' on Suno';
-    a.addEventListener('click', ev => ev.stopPropagation());
-    ctl.append(a);
-  });
 
   /* The tiles sit last in the cluster, so they are the closest thing on the row to the player
      they load — the shortest travel between choosing a take and watching it come up. */
@@ -410,7 +405,23 @@ function songEl(s, ord) {
     img.onerror = () => { img.style.display = 'none'; };
     b.append(img, el('span', 'ov', '▶'), el('span', 'n', String(n)));
     b.addEventListener('click', ev => { ev.stopPropagation(); play(s, n); });
-    tiles.append(b);
+
+    const wrap = el('span', 'tile-wrap');
+    wrap.append(b);
+
+    const ext = el('a', 'ext', '↗');
+    ext.href = 'https://suno.com/song/' + cid;
+    ext.target = '_blank'; ext.rel = 'noopener';
+    ext.title = 'Open take ' + n + ' on Suno';
+    ext.addEventListener('click', ev => ev.stopPropagation());
+    wrap.append(ext);
+
+    if (liked.has(cid)) {
+      const star = el('span', 'lk', '★');
+      star.title = 'Take ' + n + ' is liked on Suno';
+      wrap.append(star);
+    }
+    tiles.append(wrap);
   });
   ctl.append(tiles);
   row.append(ctl);
