@@ -30,15 +30,23 @@
   .pmeta{font-family:var(--mono);font-size:10.5px;color:var(--dim);margin:0 0 9px;
          white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   #frame{width:100%;height:120px;border:0;border-radius:8px;background:var(--panel2);display:block}
-  .ptabs{display:flex;gap:6px;margin:9px 0 0}
-  .ptab{flex:1;font-family:var(--mono);font-size:10.5px;color:var(--dim);background:none;
-        border:1px solid var(--line);border-radius:6px;padding:5px 0;cursor:pointer}
-  .ptab.on{color:var(--amber);border-color:var(--amber-dim);background:rgba(224,166,60,.08)}
-  .ptab:hover{color:var(--text)}
   .phint{font-family:var(--mono);font-size:10px;color:var(--dim);margin:9px 0 0;line-height:1.5}
-  .play{border:0;background:none;color:var(--dim);font-size:12px;line-height:1;padding:4px 6px;
-        border-radius:5px;cursor:pointer;font-family:var(--mono)}
-  .play:hover{color:var(--amber)}
+  /* ---------- the play tiles ----------
+     The same control the library uses on a card: the take's own cover art with a ▶ over it,
+     ringed amber while it is the one loaded. Two of them on the row replace the take tabs that
+     used to live under the player — the choice belongs next to the song, not next to the
+     speaker, and the artwork makes the two takes tellable apart at a glance. */
+  .tiles{display:flex;gap:6px;flex:none}
+  .tile-btn{position:relative;width:38px;height:38px;border-radius:7px;overflow:hidden;
+            border:1px solid var(--line);background:var(--panel);padding:0;cursor:pointer;flex:none}
+  .tile-btn img{width:100%;height:100%;object-fit:cover;display:block}
+  .tile-btn .ov{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+                background:rgba(0,0,0,.34);color:#fff;font-size:12px;text-shadow:0 1px 3px rgba(0,0,0,.7)}
+  .tile-btn:hover{border-color:var(--amber)}
+  .tile-btn.playing{border-color:var(--amber);box-shadow:0 0 0 2px var(--amber),0 0 12px rgba(224,166,60,.35)}
+  .tile-btn .n{position:absolute;right:2px;bottom:1px;font-family:var(--mono);font-size:8.5px;
+               color:#fff;text-shadow:0 1px 2px #000}
+  .song.unplayed .tile-btn{border-color:var(--violet)}
   .song.playing{box-shadow:inset 0 0 0 1px var(--amber-dim)}
   /* ---------- unplayed ----------
      Suno keeps no play count on a private song — only a published one carries plays — so this
@@ -46,7 +54,6 @@
      mark is a left edge rather than a badge, so a column of unheard takes is visible at a
      glance without adding another glyph to a row that already has several. */
   .song.unplayed{border-left:2px solid var(--violet)}
-  .song.unplayed .play{color:var(--violet)}
   .song.unplayed .tt::after{content:'new';font-family:var(--mono);font-size:9px;letter-spacing:.08em;
         text-transform:uppercase;color:var(--violet);margin-left:8px;vertical-align:1px}
   .fresh{font-family:var(--mono);font-size:10.5px;color:var(--violet);margin-left:8px}
@@ -157,10 +164,6 @@
         <p class="pnow" id="pnow"></p>
         <p class="pmeta" id="pmeta"></p>
         <iframe id="frame" title="Suno player" allow="autoplay; encrypted-media"></iframe>
-        <div class="ptabs">
-          <button class="ptab on" id="t1">take 1</button>
-          <button class="ptab" id="t2">take 2</button>
-        </div>
         <p class="phint">The embed starts itself when it is ready. Nothing here can press its play.</p>
       </div>
     </aside>
@@ -286,6 +289,7 @@ const el = (tag, cls, txt) => { const n = document.createElement(tag); if (cls) 
    The attribute is set before src, like sandbox — it only applies to a navigation that has not
    started. See the same note in queue.html, where this was measured. */
 let nowPlaying = null;                              // the song object, not an index
+let playingClip = null;                             // the take actually loaded, so the right tile rings
 
 function mountFrame(id) {
   const old = document.getElementById('frame');
@@ -302,24 +306,26 @@ function mountFrame(id) {
 function play(s, which) {
   nowPlaying = s;
   const id = which === 2 && s.alt ? s.alt : s.id;
+  playingClip = id;
   document.getElementById('player').classList.add('on');
   document.getElementById('pnow').textContent = s.title;
   document.getElementById('pmeta').textContent =
     [s.v, s.tag, mmss(s.dur)].filter(Boolean).join(' · ');
-  document.getElementById('t1').className = 'ptab' + (which === 2 ? '' : ' on');
-  document.getElementById('t2').className = 'ptab' + (which === 2 ? ' on' : '');
-  document.getElementById('t2').style.display = s.alt ? '' : 'none';
+  document.getElementById('pmeta').textContent += s.alt ? ' · take ' + which : '';
   mountFrame(id);
   if (!played.has(s.id)) { played.add(s.id); savePlayed(); }
   const node = document.querySelector('.song[data-id="' + s.id + '"]');
   if (node) node.classList.remove('unplayed');
   document.querySelectorAll('.song.playing').forEach(n => n.classList.remove('playing'));
+  document.querySelectorAll('.tile-btn.playing').forEach(n => n.classList.remove('playing'));
   const row = document.querySelector('.song[data-id="' + s.id + '"]');
-  if (row) row.classList.add('playing');
+  if (row) {
+    row.classList.add('playing');
+    const tile = row.querySelectorAll('.tile-btn')[which === 2 && s.alt ? 1 : 0];
+    if (tile) tile.classList.add('playing');
+  }
 }
 
-document.getElementById('t1').addEventListener('click', () => nowPlaying && play(nowPlaying, 1));
-document.getElementById('t2').addEventListener('click', () => nowPlaying && play(nowPlaying, 2));
 
 let filter = null;                                  // null | 'heart' | 'suno'
 
@@ -330,10 +336,20 @@ function songEl(s, ord) {
   wrap.dataset.id = s.id;
   const row = el('div', 'row');
 
-  const pb = el('button', 'play', '▶');
-  pb.title = 'Play this take in the sidebar';
-  pb.addEventListener('click', ev => { ev.stopPropagation(); play(s, 1); });
-  row.append(pb);
+  const tiles = el('div', 'tiles');
+  const takes = [[s.id, 1], ...(s.alt ? [[s.alt, 2]] : [])];
+  takes.forEach(([cid, n]) => {
+    const b = el('button', 'tile-btn' + (playingClip === cid ? ' playing' : ''));
+    b.title = 'Take ' + n + ' — play in the sidebar';
+    const img = document.createElement('img');
+    img.src = 'https://cdn2.suno.ai/image_' + cid + '.jpeg';
+    img.alt = '';
+    img.onerror = () => { img.style.display = 'none'; };
+    b.append(img, el('span', 'ov', '▶'), el('span', 'n', String(n)));
+    b.addEventListener('click', ev => { ev.stopPropagation(); play(s, n); });
+    tiles.append(b);
+  });
+  row.append(tiles);
 
   row.append(el('span', 'ord', String(ord).padStart(2, '0')));
   row.append(el('span', 'tt', s.title));
