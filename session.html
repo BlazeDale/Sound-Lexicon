@@ -331,6 +331,17 @@ async function loadQueueHearts() {
    unheard one was take 1 or take 2. A row now reads unplayed only while BOTH are unheard, and
    each tile carries its own mark. Old entries keyed by song id still work: a song's id IS its
    first take's clip id, so they read as "take 1 heard" and nothing is lost. */
+/* Suno DOES carry a play count after all — it is on the row next to the like, and I said
+   otherwise earlier after looking in the wrong places. So a take counts as played if Suno has
+   ever played it OR if it was started here; `plays` in the log is that count, swept from the
+   library. Only a take neither of us has ever played reads as unheard. */
+const sunoPlays = s => {
+  const out = {};
+  takesOf(s).forEach((cid, i) => { out[cid] = (s.plays || [])[i] || 0; });
+  return out;
+};
+const heard = (s, cid) => played.has(cid) || sunoPlays(s)[cid] > 0;
+
 const PKEY = 'sl.session.played.v1';
 const played = (() => {
   try { return new Set(JSON.parse(localStorage.getItem(PKEY) || '[]')); }
@@ -386,9 +397,11 @@ function play(s, which) {
   pout.textContent = 'Open take ' + which + ' on Suno ↗';
   document.getElementById('pmeta').textContent =
     [s.v, s.tag, mmss(s.dur)].filter(Boolean).join(' · ');
+  const pc = sunoPlays(s)[id];
   const likedHere = (s.liked || []).includes(id);
   document.getElementById('pmeta').textContent +=
-    (s.alt ? ' · take ' + which : '') + (likedHere ? ' · ★ liked on Suno' : '');
+    (s.alt ? ' · take ' + which : '') + (pc ? ' · ' + pc + ' play' + (pc === 1 ? '' : 's') : '')
+    + (likedHere ? ' · ★ liked' : '');
   mountFrame(id);
   if (!played.has(id)) { played.add(id); savePlayed(); }
   const node = document.querySelector('.song[data-id="' + s.id + '"]');
@@ -415,7 +428,7 @@ let filter = null;                                  // null | 'heart' | 'suno' |
 function songEl(s, ord) {
   const wrap = el('div', 'song' + (opened.has(s.id) ? ' open' : '')
                        + (nowPlaying && nowPlaying.id === s.id ? ' playing' : '')
-                       + (takesOf(s).some(c => played.has(c)) ? '' : ' unplayed'));
+                       + (takesOf(s).some(c => heard(s, c)) ? '' : ' unplayed'));
   wrap.dataset.id = s.id;
   const row = el('div', 'row');
 
@@ -458,8 +471,10 @@ function songEl(s, ord) {
   takesOf(s).forEach((cid, i) => {
     const n = i + 1;
     const b = el('button', 'tile-btn' + (playingClip === cid ? ' playing' : '')
-                           + (played.has(cid) ? '' : ' unheard'));
-    b.title = 'Take ' + n + ' — play in the sidebar';
+                           + (heard(s, cid) ? '' : ' unheard'));
+    const pc = sunoPlays(s)[cid];
+    b.title = 'Take ' + n + ' — play in the sidebar'
+            + (pc ? ' · played ' + pc + (pc === 1 ? ' time' : ' times') + ' on Suno' : '');
     const img = document.createElement('img');
     img.src = 'https://cdn2.suno.ai/image_' + cid + '.jpeg';
     img.alt = '';
@@ -520,7 +535,7 @@ function render() {
          splitting them made you check twice to answer once. */
       filter === 'heart' ? (takesOf(s).some(c => hearts.has(c) || queueHearts.has(c))
                             || (s.liked || []).length) :
-      filter === 'new' ? !takesOf(s).some(c => played.has(c)) : true);
+      filter === 'new' ? !takesOf(s).some(c => heard(s, c)) : true);
 
     const runs = ses.runs.map(r => ({ r, songs: keep(r) })).filter(x => x.songs.length);
     ses.runs.forEach(r => { total += r.songs.length; });
@@ -553,7 +568,7 @@ function render() {
     a + ses.runs.reduce((b, r) => b + r.songs.reduce((c, x) => c + takesOf(x).length, 0), 0), 0);
   const unheard = SESSIONS.reduce((a, ses) =>
     a + ses.runs.reduce((b, r) => b + r.songs.reduce((c, x) =>
-      c + takesOf(x).filter(t => !played.has(t)).length, 0), 0), 0);
+      c + takesOf(x).filter(t => !heard(x, t)).length, 0), 0), 0);
   document.getElementById('count').textContent =
     (filter ? shown + ' of ' + total + ' songs' : total + ' songs')
     + ' · ' + (unheard ? unheard + ' of ' + takes + ' takes unplayed' : 'all ' + takes + ' takes played');

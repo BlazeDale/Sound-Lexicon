@@ -110,7 +110,11 @@ function render(sessions, kept) {
     const takes = songs.flatMap(takesOf);
     const keptCount = songs.filter(s =>
       takesOf(s).some(t => kept.has(t)) || (s.liked || []).length).length;
-    const unheard = takes.filter(t => !played.has(t)).length;
+    /* Unheard means neither Suno nor this browser has ever played it — Suno's own count is in
+       the log, swept from the library. */
+    const sunoPlayed = new Set();
+    songs.forEach(s => takesOf(s).forEach((cid, i) => { if ((s.plays || [])[i] > 0) sunoPlayed.add(cid); }));
+    const unheard = takes.filter(t => !played.has(t) && !sunoPlayed.has(t)).length;
     const secs = songs.reduce((a, s) => a + (s.dur || 0), 0);
 
     const card = el('a', 'card');
