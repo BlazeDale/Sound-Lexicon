@@ -69,7 +69,13 @@
      is OUR record: a take counts as played once it has been started in the sidebar here. The
      mark is a left edge rather than a badge, so a column of unheard takes is visible at a
      glance without adding another glyph to a row that already has several. */
+  /* ---------- what the edge of a row says ----------
+     Violet: nothing here has been heard yet. Green: something here was kept — a heart, on
+     either take, or a like from Suno. Kept wins the edge where both are true, because "worth
+     coming back to" outranks "not yet heard"; the tile keeps its own violet mark regardless,
+     so a kept song with one unheard take still shows which take that is. */
   .song.unplayed{border-left:2px solid var(--violet)}
+  .song.kept{border-left:2px solid var(--teal)}
   .tile-btn.unheard{border-color:var(--violet)}
   .tile-btn.unheard .n{color:var(--violet)}
   .song.unplayed .tt::after{content:'new';font-family:var(--mono);font-size:9px;letter-spacing:.08em;
@@ -146,7 +152,7 @@
   .note{width:100%;min-height:62px;resize:vertical;background:var(--ink);color:var(--text);
         border:1px solid var(--line);border-radius:7px;padding:9px 11px;font:inherit;font-size:13px}
   .note:focus{outline:none;border-color:var(--amber-dim)}
-  .song.noted{border-left:2px solid var(--teal)}
+  .song.noted .tt::before{content:'✎ ';color:var(--teal);font-size:11px}
   .nstat{font-family:var(--mono);font-size:10px;color:var(--dim);display:inline-block;margin-top:4px}
   .lyric{white-space:pre-wrap;font-family:var(--mono);font-size:12px;line-height:1.72;
          color:var(--text);background:var(--ink);border:1px solid var(--line);
@@ -449,6 +455,8 @@ function play(s, which) {
 
 
 const takesOf = s => [s.id, ...(s.alt ? [s.alt] : [])];
+const isKept = s => takesOf(s).some(c => hearts.has(c) || queueHearts.has(c))
+                    || (s.liked || []).length > 0;
 
 let filter = null;                                  // null | 'heart' | 'suno' | 'new'
 
@@ -456,6 +464,7 @@ function songEl(s, ord) {
   const wrap = el('div', 'song' + (opened.has(s.id) ? ' open' : '')
                        + (nowPlaying && nowPlaying.id === s.id ? ' playing' : '')
                        + (takesOf(s).some(c => heard(s, c)) ? '' : ' unplayed')
+                       + (isKept(s) ? ' kept' : '')
                        + (notes[s.id] ? ' noted' : ''));
   wrap.dataset.id = s.id;
   const row = el('div', 'row');
@@ -492,6 +501,7 @@ function songEl(s, ord) {
       pushHeart(cid, on);
       h.className = 'heart' + (on ? ' on' : '');
       h.textContent = on ? '♥' : '♡';
+      wrap.classList.toggle('kept', isKept(s));
       if (filter) render();
     });
     ctl.append(h);
@@ -587,8 +597,7 @@ function render() {
       /* One question, not two: is this one worth coming back to? A heart set here, a heart set
          on a queue row, and a like given on Suno are three ways of saying the same thing, and
          splitting them made you check twice to answer once. */
-      filter === 'heart' ? (takesOf(s).some(c => hearts.has(c) || queueHearts.has(c))
-                            || (s.liked || []).length) :
+      filter === 'heart' ? isKept(s) :
       filter === 'new' ? !takesOf(s).some(c => heard(s, c)) : true);
 
     const runs = ses.runs.map(r => ({ r, songs: keep(r) })).filter(x => x.songs.length);
