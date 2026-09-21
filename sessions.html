@@ -156,8 +156,21 @@
   </div>
 </div>
 
-<script src="sessions_data.js"></script>
 <script>
+/* ---------- the log, fetched rather than <script src>'d ----------
+   A plain script tag let the page and its data cache independently, and they did: the page
+   was new, the log was the copy from before the queue ids were added, and the hearts simply
+   did not appear. Nothing in the page could tell. Fetching it with cache:'reload' means the
+   log is always the deployed one, and the stamp under the title says which — a page that
+   cannot go quietly stale beats one that is fast and occasionally lying. */
+let SESSIONS = [];
+
+async function loadLog() {
+  const r = await fetch('sessions_data.js', { cache: 'reload' });
+  const text = await r.text();
+  SESSIONS = (new Function(text + '; return SESSIONS;'))();
+}
+
 /* ---------- hearts ----------
    Kept in this browser, not in the database. A heart here is a private note to self about a
    take, and the page has no sign-in to hang a per-person flag on; the library's shared ♥ is a
@@ -402,10 +415,19 @@ document.getElementById('collapse').addEventListener('click', () => {
   opened.clear(); saveOpen(); render();
 });
 
-/* The first paint does not wait on the network — the log is local and should be instant — and
-   the queue hearts fold in as soon as they arrive. */
-render();
-loadQueueHearts().then(render);
+/* The log has to be in hand before anything can be drawn, so that await is real; the queue
+   hearts fold in afterwards rather than holding up the first paint. */
+(async () => {
+  try {
+    await loadLog();
+  } catch (e) {
+    document.getElementById('list').append(
+      el('p', 'empty', 'Could not load the session log. Reload, or check sessions_data.js is deployed.'));
+    return;
+  }
+  render();
+  loadQueueHearts().then(render);
+})();
 </script>
 </body>
 </html>
