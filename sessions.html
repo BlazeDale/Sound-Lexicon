@@ -46,7 +46,6 @@
   .tile-btn.playing{border-color:var(--amber);box-shadow:0 0 0 2px var(--amber),0 0 12px rgba(224,166,60,.35)}
   .tile-btn .n{position:absolute;right:2px;bottom:1px;font-family:var(--mono);font-size:8.5px;
                color:#fff;text-shadow:0 1px 2px #000}
-  .song.unplayed .tile-btn{border-color:var(--violet)}
   .song.playing{box-shadow:inset 0 0 0 1px var(--amber-dim)}
   /* ---------- unplayed ----------
      Suno keeps no play count on a private song — only a published one carries plays — so this
@@ -54,6 +53,10 @@
      mark is a left edge rather than a badge, so a column of unheard takes is visible at a
      glance without adding another glyph to a row that already has several. */
   .song.unplayed{border-left:2px solid var(--violet)}
+  .tile-btn.unheard{border-color:var(--violet)}
+  .tile-btn.unheard .n{color:var(--violet)}
+  .take{display:inline-flex;align-items:center;gap:4px}
+  .take .lk{color:var(--teal);font-size:10px}
   .song.unplayed .tt::after{content:'new';font-family:var(--mono);font-size:9px;letter-spacing:.08em;
         text-transform:uppercase;color:var(--violet);margin-left:8px;vertical-align:1px}
   .fresh{font-family:var(--mono);font-size:10.5px;color:var(--violet);margin-left:8px}
@@ -260,8 +263,13 @@ async function loadQueueHearts() {
    Suno exposes no play count for a private clip — checked the song page, the library row and
    three API shapes; the counts on a published track exist only because it is published. So
    "played" here means started in this page's player, which is a thing the page actually knows
-   and can be honest about. Anything never started reads as unplayed, which is exactly the
-   state worth seeing when new takes land in a log you are working through. */
+   and can be honest about.
+
+   Keyed by CLIP, not by song: a generation makes two takes and hearing one says nothing about
+   the other, which is exactly the complaint — from the player there was no telling whether the
+   unheard one was take 1 or take 2. A row now reads unplayed only while BOTH are unheard, and
+   each tile carries its own mark. Old entries keyed by song id still work: a song's id IS its
+   first take's clip id, so they read as "take 1 heard" and nothing is lost. */
 const PKEY = 'sl.session.played.v1';
 const played = (() => {
   try { return new Set(JSON.parse(localStorage.getItem(PKEY) || '[]')); }
@@ -311,11 +319,17 @@ function play(s, which) {
   document.getElementById('pnow').textContent = s.title;
   document.getElementById('pmeta').textContent =
     [s.v, s.tag, mmss(s.dur)].filter(Boolean).join(' · ');
-  document.getElementById('pmeta').textContent += s.alt ? ' · take ' + which : '';
+  const likedHere = (s.liked || []).includes(id);
+  document.getElementById('pmeta').textContent +=
+    (s.alt ? ' · take ' + which : '') + (likedHere ? ' · ★ liked on Suno' : '');
   mountFrame(id);
-  if (!played.has(s.id)) { played.add(s.id); savePlayed(); }
+  if (!played.has(id)) { played.add(id); savePlayed(); }
   const node = document.querySelector('.song[data-id="' + s.id + '"]');
-  if (node) node.classList.remove('unplayed');
+  if (node) {
+    node.classList.remove('unplayed');
+    const t = node.querySelectorAll('.tile-btn')[which === 2 && s.alt ? 1 : 0];
+    if (t) t.classList.remove('unheard');
+  }
   document.querySelectorAll('.song.playing').forEach(n => n.classList.remove('playing'));
   document.querySelectorAll('.tile-btn.playing').forEach(n => n.classList.remove('playing'));
   const row = document.querySelector('.song[data-id="' + s.id + '"]');
@@ -327,19 +341,22 @@ function play(s, which) {
 }
 
 
-let filter = null;                                  // null | 'heart' | 'suno'
+const takesOf = s => [s.id, ...(s.alt ? [s.alt] : [])];
+
+let filter = null;                                  // null | 'heart' | 'suno' | 'new'
 
 function songEl(s, ord) {
   const wrap = el('div', 'song' + (opened.has(s.id) ? ' open' : '')
                        + (nowPlaying && nowPlaying.id === s.id ? ' playing' : '')
-                       + (played.has(s.id) ? '' : ' unplayed'));
+                       + (takesOf(s).some(c => played.has(c)) ? '' : ' unplayed'));
   wrap.dataset.id = s.id;
   const row = el('div', 'row');
 
   const tiles = el('div', 'tiles');
   const takes = [[s.id, 1], ...(s.alt ? [[s.alt, 2]] : [])];
   takes.forEach(([cid, n]) => {
-    const b = el('button', 'tile-btn' + (playingClip === cid ? ' playing' : ''));
+    const b = el('button', 'tile-btn' + (playingClip === cid ? ' playing' : '')
+                           + (played.has(cid) ? '' : ' unheard'));
     b.title = 'Take ' + n + ' — play in the sidebar';
     const img = document.createElement('img');
     img.src = 'https://cdn2.suno.ai/image_' + cid + '.jpeg';
@@ -358,9 +375,6 @@ function songEl(s, ord) {
   const ctl = el('div', 'ctl');
   ctl.append(el('span', 'dur', mmss(s.dur)));
 
-  const star = el('span', 'star' + (s.sunoLiked ? ' on' : ''), s.sunoLiked ? '★' : '');
-  if (s.sunoLiked) star.title = 'Liked on Suno';
-  ctl.append(star);
 
   if (queueHearts.has(s.id) || (s.alt && queueHearts.has(s.alt))) {
     const q = el('span', 'qheart', '♥');
@@ -382,21 +396,20 @@ function songEl(s, ord) {
   });
   ctl.append(h);
 
-  const out = el('a', 'out', 'Suno ↗');
-  out.href = 'https://suno.com/song/' + s.id;
-  out.target = '_blank'; out.rel = 'noopener';
-  out.title = 'Open this take on Suno';
-  out.addEventListener('click', ev => ev.stopPropagation());
-  ctl.append(out);
-
-  if (s.alt) {
-    const alt = el('a', 'out', 'take 2 ↗');
-    alt.href = 'https://suno.com/song/' + s.alt;
-    alt.target = '_blank'; alt.rel = 'noopener';
-    alt.title = 'The sibling take from the same generation';
-    alt.addEventListener('click', ev => ev.stopPropagation());
-    ctl.append(alt);
-  }
+  /* One link per take, and the ★ rides on the link for the take that is actually liked on
+     Suno — a like belongs to a clip, and hanging it on the row said nothing about which of
+     the two earned it. */
+  const liked = new Set(s.liked || []);
+  takesOf(s).forEach((cid, i) => {
+    const a = el('a', 'out take');
+    a.href = 'https://suno.com/song/' + cid;
+    a.target = '_blank'; a.rel = 'noopener';
+    if (liked.has(cid)) a.append(el('span', 'lk', '★'));
+    a.append(document.createTextNode((i + 1) + ' ↗'));
+    a.title = (liked.has(cid) ? 'Liked on Suno · ' : '') + 'Open take ' + (i + 1) + ' on Suno';
+    a.addEventListener('click', ev => ev.stopPropagation());
+    ctl.append(a);
+  });
   row.append(ctl);
 
   /* ---------- the detail, built once and kept ---------- */
@@ -428,8 +441,8 @@ function render() {
   SESSIONS.forEach((ses, si) => {
     const keep = r => r.songs.filter(s =>
       filter === 'heart' ? (hearts.has(s.id) || queueHearts.has(s.id) || (s.alt && queueHearts.has(s.alt))) :
-      filter === 'suno' ? s.sunoLiked :
-      filter === 'new' ? !played.has(s.id) : true);
+      filter === 'suno' ? (s.liked || []).length :
+      filter === 'new' ? !takesOf(s).some(c => played.has(c)) : true);
 
     const runs = ses.runs.map(r => ({ r, songs: keep(r) })).filter(x => x.songs.length);
     ses.runs.forEach(r => { total += r.songs.length; });
@@ -468,11 +481,14 @@ function render() {
     list.append(sec);
   });
 
+  const takes = SESSIONS.reduce((a, ses) =>
+    a + ses.runs.reduce((b, r) => b + r.songs.reduce((c, x) => c + takesOf(x).length, 0), 0), 0);
   const unheard = SESSIONS.reduce((a, ses) =>
-    a + ses.runs.reduce((b, r) => b + r.songs.filter(x => !played.has(x.id)).length, 0), 0);
+    a + ses.runs.reduce((b, r) => b + r.songs.reduce((c, x) =>
+      c + takesOf(x).filter(t => !played.has(t)).length, 0), 0), 0);
   document.getElementById('count').textContent =
     (filter ? shown + ' of ' + total + ' songs' : total + ' songs')
-    + (unheard ? ' · ' + unheard + ' unplayed' : '');
+    + ' · ' + (unheard ? unheard + ' of ' + takes + ' takes unplayed' : 'all ' + takes + ' takes played');
   if (!shown) list.append(el('p', 'empty', filter === 'heart'
     ? 'Nothing hearted yet — tap the ♡ here, or heart a row in the listening queue.'
     : filter === 'new' ? 'Everything here has been played at least once.'
