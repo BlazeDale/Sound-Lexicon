@@ -36,7 +36,7 @@
      ringed amber while it is the one loaded. Two of them on the row replace the take tabs that
      used to live under the player — the choice belongs next to the song, not next to the
      speaker, and the artwork makes the two takes tellable apart at a glance. */
-  .tiles{display:flex;gap:6px;flex:none}
+  .tiles{display:flex;gap:6px;flex:none;margin-left:4px}
   .tile-btn{position:relative;width:38px;height:38px;border-radius:7px;overflow:hidden;
             border:1px solid var(--line);background:var(--panel);padding:0;cursor:pointer;flex:none}
   .tile-btn img{width:100%;height:100%;object-fit:cover;display:block}
@@ -352,21 +352,6 @@ function songEl(s, ord) {
   wrap.dataset.id = s.id;
   const row = el('div', 'row');
 
-  const tiles = el('div', 'tiles');
-  const takes = [[s.id, 1], ...(s.alt ? [[s.alt, 2]] : [])];
-  takes.forEach(([cid, n]) => {
-    const b = el('button', 'tile-btn' + (playingClip === cid ? ' playing' : '')
-                           + (played.has(cid) ? '' : ' unheard'));
-    b.title = 'Take ' + n + ' — play in the sidebar';
-    const img = document.createElement('img');
-    img.src = 'https://cdn2.suno.ai/image_' + cid + '.jpeg';
-    img.alt = '';
-    img.onerror = () => { img.style.display = 'none'; };
-    b.append(img, el('span', 'ov', '▶'), el('span', 'n', String(n)));
-    b.addEventListener('click', ev => { ev.stopPropagation(); play(s, n); });
-    tiles.append(b);
-  });
-  row.append(tiles);
 
   row.append(el('span', 'ord', String(ord).padStart(2, '0')));
   row.append(el('span', 'tt', s.title));
@@ -410,6 +395,24 @@ function songEl(s, ord) {
     a.addEventListener('click', ev => ev.stopPropagation());
     ctl.append(a);
   });
+
+  /* The tiles sit last in the cluster, so they are the closest thing on the row to the player
+     they load — the shortest travel between choosing a take and watching it come up. */
+  const tiles = el('div', 'tiles');
+  takesOf(s).forEach((cid, i) => {
+    const n = i + 1;
+    const b = el('button', 'tile-btn' + (playingClip === cid ? ' playing' : '')
+                           + (played.has(cid) ? '' : ' unheard'));
+    b.title = 'Take ' + n + ' — play in the sidebar';
+    const img = document.createElement('img');
+    img.src = 'https://cdn2.suno.ai/image_' + cid + '.jpeg';
+    img.alt = '';
+    img.onerror = () => { img.style.display = 'none'; };
+    b.append(img, el('span', 'ov', '▶'), el('span', 'n', String(n)));
+    b.addEventListener('click', ev => { ev.stopPropagation(); play(s, n); });
+    tiles.append(b);
+  });
+  ctl.append(tiles);
   row.append(ctl);
 
   /* ---------- the detail, built once and kept ---------- */
