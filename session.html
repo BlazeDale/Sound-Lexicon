@@ -535,6 +535,10 @@ function songEl(s, ord) {
   if (slots.children.length) { det.append(el('h4', null, 'Slots')); det.append(slots); }
   if (s.style) { det.append(el('h4', null, 'Style')); det.append(el('p', 'prose', s.style)); }
   if (s.exclude) { det.append(el('h4', null, 'Excluded')); det.append(el('p', 'prose', s.exclude)); }
+  /* On the Simple route there is no style box: one description is the whole input, and Suno
+     writes the style AND the words from it. So the prompt is shown entire, and what sits under
+     it is Suno's lyric rather than ours. */
+  if (s.describe) { det.append(el('h4', null, 'Prompt — the whole Simple box')); det.append(el('p', 'prose', s.describe)); }
   det.append(el('h4', null, 'What you made of it'));
   const note = document.createElement('textarea');
   note.className = 'note';
@@ -555,7 +559,7 @@ function songEl(s, ord) {
   });
   det.append(note, status);
 
-  if (s.lyric) { det.append(el('h4', null, 'Lyric as submitted')); det.append(el('pre', 'lyric', s.lyric)); }
+  if (s.lyric) { det.append(el('h4', null, s.describe ? 'Lyric Suno wrote' : 'Lyric as submitted')); det.append(el('pre', 'lyric', s.lyric)); }
 
   row.addEventListener('click', () => {
     wrap.classList.toggle('open');
