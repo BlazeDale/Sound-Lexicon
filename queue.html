@@ -599,7 +599,7 @@
         <h2>Up next</h2>
         <span class="count" id="count"></span>
         <span class="spacer"></span>
-        <button id="turns" title="Reorder up next so each person gets a turn: one song each, round and round, starting with whoever's song is not playing now">Take turns</button>
+        <button id="turns" title="Nobody gets a second song before everyone waiting has had one. Otherwise the order stays as it is.">Take turns</button>
         <button id="shuffleall">Shuffle order</button>
         <button id="clear">Clear</button>
       </div>
@@ -834,7 +834,7 @@
    page -- covers read from data.js while the code that looks them up is old. Printed
    on load and shown in the footer, so 'which build am I on' is answerable in a glance
    instead of by deduction. */
-const QUEUE_BUILD = '2026-09-25-f';
+const QUEUE_BUILD = '2026-09-25-g';
 console.log('[queue] build ' + QUEUE_BUILD);
 
 const $ = s => document.querySelector(s);
@@ -2995,10 +2995,13 @@ $('#shuffleall').addEventListener('click', () => {
   toast('Queue shuffled');
 });
 /* ---------- taking turns ----------
-   One person can drop five songs in a row and make everyone else wait behind all five. This
-   deals up next out like cards instead: one song per person, round and round, each person's
-   own songs kept in the order they put them in. Whoever's song is playing now goes to the
-   back of the round, so the first song after this one is somebody else's.
+   One person can drop five songs in a row and make everyone else wait behind all five. The
+   rule is only this: nobody gets a second song before everyone waiting has had a first.
+   Nothing else moves. Each song is numbered by how many of its creator's songs come before
+   it -- their first is 0, their second 1 -- and up next is sorted by that number, STABLY, so
+   within a number the queue keeps the order it already had. People are not reshuffled; a
+   song only drops back when it would be somebody's second while someone else is on their
+   first. The song playing now counts as its creator's first, so their next one waits too.
 
    A person is the Suno creator, because the fairness is owed to whoever MADE the song: the
    owner pasting five songs by five people is five turns, not one. It used to be whoever added
@@ -3022,18 +3025,16 @@ $('#turns').addEventListener('click', () => {
   const up = upcomingIndices();
   if (up.length < 2) return;
   const playing = Q[cur], nowRow = Q[anchorIndex()];
-  const piles = new Map();
-  for (const i of up) {
-    const p = personOf(Q[i]);
-    if (!piles.has(p)) piles.set(p, []);
-    piles.get(p).push(Q[i]);
-  }
-  const order = [...piles.keys()];
-  const nowP = personOf(nowRow);
-  if (order.includes(nowP)) { order.splice(order.indexOf(nowP), 1); order.push(nowP); }
-  const dealt = [];
-  for (let round = 0; dealt.length < up.length; round++)
-    for (const p of order) { const r = piles.get(p)[round]; if (r) dealt.push(r); }
+  const seen = new Map();
+  if (nowRow) seen.set(personOf(nowRow), 1);
+  const turn = up.map((i, pos) => {
+    const p = personOf(Q[i]), n = seen.get(p) || 0;
+    seen.set(p, n + 1);
+    return { r: Q[i], n, pos };
+  });
+  const dealt = turn.slice().sort((a, b) => a.n - b.n || a.pos - b.pos).map(x => x.r);
+  const moved = dealt.filter((r, j) => r !== Q[up[j]]).length;
+  if (!moved) { toast('Already fair — nobody is ahead of anyone'); return; }
 
   const upSet = new Set(up.map(i => Q[i]));
   Q = Q.filter(r => !upSet.has(r)).concat(dealt);
@@ -3043,8 +3044,7 @@ $('#turns').addEventListener('click', () => {
   if (shuffling) { shuffling = false; $('#tshuf').classList.remove('on'); savePrefs(); }
   rebuildShuffle(); render();
   if (shared()) { if (isOwner()) window.__net.reorder(Q); } else save();
-  toast(piles.size < 2 ? 'Only one person in up next — nothing to alternate'
-                       : 'Taking turns: ' + piles.size + ' people, one song each');
+  toast('Taking turns: everyone waiting gets one before anyone gets two');
 });
 
 $('#addbtn').addEventListener('click', () => {
