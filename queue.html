@@ -840,7 +840,7 @@
    page -- covers read from data.js while the code that looks them up is old. Printed
    on load and shown in the footer, so 'which build am I on' is answerable in a glance
    instead of by deduction. */
-const QUEUE_BUILD = '2026-09-25-j';
+const QUEUE_BUILD = '2026-09-25-k';
 console.log('[queue] build ' + QUEUE_BUILD);
 
 const $ = s => document.querySelector(s);
@@ -3058,11 +3058,14 @@ $('#same').addEventListener('click', () => {
 
 /* ---------- a colour per person ----------
    Same colour, same person -- the same "person" Take turns uses, so joined accounts match.
-   Twelve hues far enough apart to tell on the dark panel. Each person is placed by a hash of
+   Twelve colours picked by eye rather than spaced evenly round the wheel: equal-lightness
+   hues thirty degrees apart put a magenta and a pink side by side that nobody could tell
+   apart, so these differ in lightness as well as hue. Each person is placed by a hash of
    their name, not by where their songs sit, so a colour holds still when the queue is
    reordered; a clash moves to the next free hue, settled in name order so it too is stable.
    A song nobody can name gets no colour: it is nobody's in particular. */
-const PERSON_HUES = [8, 38, 62, 95, 140, 172, 195, 218, 248, 278, 305, 332];
+const PERSON_COLORS = ['#ff6b6b', '#ffa94d', '#ffe066', '#a9e34b', '#40c057', '#63e6be',
+                       '#22b8cf', '#4dabf7', '#5c7cfa', '#be4bdb', '#f783ac', '#e9ecef'];
 let colorMemo = { sig: '', map: new Map() };
 function personColor(r) {
   const p = personOf(r);
@@ -3074,10 +3077,10 @@ function personColor(r) {
     for (const q of people) {
       let h = 0;
       for (const ch of q) h = (h * 31 + ch.codePointAt(0)) >>> 0;
-      let slot = h % PERSON_HUES.length;
-      for (let n = 0; n < PERSON_HUES.length && taken.has(slot); n++) slot = (slot + 1) % PERSON_HUES.length;
+      let slot = h % PERSON_COLORS.length;
+      for (let n = 0; n < PERSON_COLORS.length && taken.has(slot); n++) slot = (slot + 1) % PERSON_COLORS.length;
       taken.add(slot);          // past twelve people, hues repeat
-      map.set(q, 'hsl(' + PERSON_HUES[slot] + ' 70% 62%)');
+      map.set(q, PERSON_COLORS[slot]);
     }
     colorMemo = { sig, map };
   }
