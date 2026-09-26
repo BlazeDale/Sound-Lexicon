@@ -91,7 +91,10 @@ export default {
           title: String(j.title || '').slice(0, 140),
           dur,
           art: typeof j.image_url === 'string' && j.image_url.startsWith('https://') ? j.image_url : '',
-          tags: String((j.metadata && j.metadata.tags) || '').slice(0, 1200)
+          tags: String((j.metadata && j.metadata.tags) || '').slice(0, 1200),
+          /* Who made it, for the queue row's subtitle. The display name first, the handle
+             when there is no display name. */
+          who: String(j.display_name || j.handle || '').slice(0, 60)
         }), { headers: { ...cors, 'content-type': 'application/json',
                          'cache-control': dur ? 'public, max-age=86400' : 'no-store' } });
       } catch (e) {
