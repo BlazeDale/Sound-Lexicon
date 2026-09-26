@@ -600,6 +600,7 @@
         <span class="count" id="count"></span>
         <span class="spacer"></span>
         <button id="turns" title="Nobody gets a second song before everyone waiting has had one. Otherwise the order stays as it is.">Take turns</button>
+        <button id="same" title="Tell Take turns that two Suno accounts belong to one person, so they share a turn">Same person…</button>
         <button id="shuffleall">Shuffle order</button>
         <button id="clear">Clear</button>
       </div>
@@ -834,7 +835,7 @@
    page -- covers read from data.js while the code that looks them up is old. Printed
    on load and shown in the footer, so 'which build am I on' is answerable in a glance
    instead of by deduction. */
-const QUEUE_BUILD = '2026-09-25-h';
+const QUEUE_BUILD = '2026-09-25-i';
 console.log('[queue] build ' + QUEUE_BUILD);
 
 const $ = s => document.querySelector(s);
@@ -1908,6 +1909,7 @@ function render() {
   $('#clear').disabled = !Q.length;
   $('#shuffleall').disabled = Q.length < 2;
   $('#turns').disabled = Q.length < 2;
+
   list.innerHTML = ''; done.innerHTML = ''; nowl.innerHTML = '';
 
   /* The offers in chat describe the queue — which link is already in it — so they go stale
@@ -3009,13 +3011,48 @@ $('#shuffleall').addEventListener('click', () => {
    which let one creator play twice running. The adder is the fallback, for a YouTube or
    Spotify row or a creator not looked up yet; anything with neither shares one seat.
    Only up next moves. Heard rows and the current one keep their places. */
+/* ---------- one person, two accounts ----------
+   Suno cannot say that two accounts are the same human, and guessing from similar names
+   would join people who are not. So the owner says it, once, and this browser remembers:
+   every name in a group is read as the group's first name. Kept here rather than written
+   into the page, because creators' names do not go into the repo. */
+const LS_SAME = 'sl.queue.same.v1';
+let sameAs = {};
+try { sameAs = JSON.parse(localStorage.getItem(LS_SAME) || '{}') || {}; } catch (e) { sameAs = {}; }
+const samePerson = w => sameAs[w] || w;
+const sameGroups = () => {
+  const g = {};
+  for (const [w, to] of Object.entries(sameAs)) (g[to] = g[to] || [to]).push(w);
+  return Object.values(g).map(ns => [...new Set(ns)].join(', '));
+};
+$('#same').addEventListener('click', () => {
+  const now = sameGroups();
+  const v = prompt('Two or more Suno creator names that are one person, separated by commas, '
+    + 'exactly as the rows show them. Type "clear" to forget every pair.'
+    + (now.length ? '\n\nAlready joined:\n' + now.join('\n') : ''), '');
+  if (v == null || !v.trim()) return;
+  if (v.trim().toLowerCase() === 'clear') { sameAs = {}; toast('Every account is its own person again'); }
+  else {
+    const names = [...new Set(v.split(',').map(x => x.trim().toLowerCase()).filter(Boolean))];
+    if (names.length < 2) { toast('Needs at least two names, separated by a comma'); return; }
+    const to = samePerson(names[0]);
+    for (const w of names) {
+      /* A name that already heads a group brings its whole group along. */
+      for (const [k, t] of Object.entries(sameAs)) if (t === w) sameAs[k] = to;
+      if (w !== to) sameAs[w] = to;
+    }
+    toast('Take turns now treats ' + names.join(' and ') + ' as one person');
+  }
+  try { localStorage.setItem(LS_SAME, JSON.stringify(sameAs)); } catch (e) {}
+});
+
 function personOf(r) {
   if (!r) return '';
   /* The cache first; then the row's own "Suno · name", which is how a row added from a
      guest's browser arrives already labelled without this browser having looked it up. */
   const who = r.src === 'suno' && ((metaCache[r.id] && metaCache[r.id].who)
     || (!r.ent && /^Suno · /.test(r.sub || '') && r.sub.slice(7)));
-  if (who) return 'c:' + who.trim().toLowerCase();
+  if (who) return 'c:' + samePerson(who.trim().toLowerCase());
   if (r.src === 'suno' && r.ent) return 'c:library';
   const yt = r.src === 'yt' && /^YouTube · (.+)/.exec(r.sub || '');
   if (yt) return 'c:yt:' + yt[1].trim().toLowerCase();
@@ -3211,7 +3248,7 @@ window.__applyRemote = (tracks, meta) => {
       + (SQ.open ? '' : ' — no effect while open adding is off')
       + '. You can always add them yourself.';
   }
-  $('#clear').hidden = $('#shuffleall').hidden = $('#turns').hidden = !isOwner();
+  $('#clear').hidden = $('#shuffleall').hidden = $('#turns').hidden = $('#same').hidden = !isOwner();
   $('#chatnote').textContent = isOwner()
     ? 'you own this queue — links posted here get an add button'
     : (SQ.open
