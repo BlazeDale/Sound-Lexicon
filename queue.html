@@ -834,7 +834,7 @@
    page -- covers read from data.js while the code that looks them up is old. Printed
    on load and shown in the footer, so 'which build am I on' is answerable in a glance
    instead of by deduction. */
-const QUEUE_BUILD = '2026-09-25-d';
+const QUEUE_BUILD = '2026-09-25-e';
 console.log('[queue] build ' + QUEUE_BUILD);
 
 const $ = s => document.querySelector(s);
@@ -1243,8 +1243,14 @@ const creatorSub = who => who ? 'Suno · ' + who : '';
    are skipped: their subtitle is the entry. */
 const creatorAsked = new Set();
 const creatorOf = r => r.src === 'suno' && !r.ent && metaCache[r.id] ? creatorSub(metaCache[r.id].who) : '';
+/* Every row, not the first sixty: a party queue runs past a hundred, and the rows past the
+   cut were exactly the ones still to come. What is playing and up next go first, since those
+   are the rows anyone is looking at; each lookup waits its turn, so the length costs time,
+   not a burst of requests. */
 async function fillCreators() {
-  for (const r of Q.slice(0, 60)) {
+  const a = anchorIndex();
+  const first = [a, ...upcomingIndices()].filter(i => i >= 0).map(i => Q[i]);
+  for (const r of [...new Set(first.concat(Q))]) {
     if (r.src !== 'suno' || r.ent || r.sub || creatorAsked.has(r.id)) continue;
     const c = metaCache[r.id];
     if (c && typeof c.who === 'string') continue;
