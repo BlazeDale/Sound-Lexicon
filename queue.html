@@ -834,7 +834,7 @@
    page -- covers read from data.js while the code that looks them up is old. Printed
    on load and shown in the footer, so 'which build am I on' is answerable in a glance
    instead of by deduction. */
-const QUEUE_BUILD = '2026-09-25-e';
+const QUEUE_BUILD = '2026-09-25-f';
 console.log('[queue] build ' + QUEUE_BUILD);
 
 const $ = s => document.querySelector(s);
@@ -1251,10 +1251,27 @@ async function fillCreators() {
   const a = anchorIndex();
   const first = [a, ...upcomingIndices()].filter(i => i >= 0).map(i => Q[i]);
   for (const r of [...new Set(first.concat(Q))]) {
-    if (r.src !== 'suno' || r.ent || r.sub || creatorAsked.has(r.id)) continue;
+    if (r.src !== 'suno' || (r.sub && !r.ent) || creatorAsked.has(r.id)) continue;
     const c = metaCache[r.id];
     if (c && typeof c.who === 'string') continue;
     creatorAsked.add(r.id);
+    /* A library demo keeps its "#n" line, so resolve() never asks Suno about it. Taking turns
+       still needs to know it is the same person as that account's other songs, so the name
+       alone is asked for here and banked beside whatever the cache holds. */
+    if (r.ent) {
+      if (!SHARE_RESOLVER) continue;
+      const m = await queued(async () => {
+        try {
+          const x = await fetchT(SHARE_RESOLVER + '?clip=' + encodeURIComponent(r.id) + '&v=2', 9000);
+          if (x.ok) return await x.json();
+        } catch (e) {}
+        return null;
+      });
+      if (m && !m.error && typeof m.who === 'string') {
+        metaCache[r.id] = Object.assign({}, metaCache[r.id], { who: m.who }); saveMeta();
+      }
+      continue;
+    }
     let got = null;
     try { got = await resolve(r.id, 'suno'); } catch (e) {}
     if (got && got.sub) { if (!shared()) { r.sub = got.sub; save(); } render(); }
@@ -2983,16 +3000,21 @@ $('#shuffleall').addEventListener('click', () => {
    own songs kept in the order they put them in. Whoever's song is playing now goes to the
    back of the round, so the first song after this one is somebody else's.
 
-   A person is whoever added the row in a shared queue. A row with no adder -- a queue kept on
-   this machine, where everything was added by you -- falls back to the Suno creator, which is
-   the fairness this is really about; anything with neither shares one seat.
+   A person is the Suno creator, because the fairness is owed to whoever MADE the song: the
+   owner pasting five songs by five people is five turns, not one. It used to be whoever added
+   the row, and in a shared queue that is everyone's songs filed under whoever pasted them --
+   which let one creator play twice running. The adder is the fallback, for a YouTube or
+   Spotify row or a creator not looked up yet; anything with neither shares one seat.
    Only up next moves. Heard rows and the current one keep their places. */
 function personOf(r) {
   if (!r) return '';
-  if (r.by) return 'u:' + r.by;
-  const who = r.src === 'suno' && metaCache[r.id] && metaCache[r.id].who;
-  if (who) return 'c:' + who.toLowerCase();
+  /* The cache first; then the row's own "Suno · name", which is how a row added from a
+     guest's browser arrives already labelled without this browser having looked it up. */
+  const who = r.src === 'suno' && ((metaCache[r.id] && metaCache[r.id].who)
+    || (!r.ent && /^Suno · /.test(r.sub || '') && r.sub.slice(7)));
+  if (who) return 'c:' + who.trim().toLowerCase();
   if (r.src === 'suno' && r.ent) return 'c:library';
+  if (r.by) return 'u:' + r.by;
   return '?';
 }
 $('#turns').addEventListener('click', () => {
