@@ -834,7 +834,7 @@
    page -- covers read from data.js while the code that looks them up is old. Printed
    on load and shown in the footer, so 'which build am I on' is answerable in a glance
    instead of by deduction. */
-const QUEUE_BUILD = '2026-09-25-g';
+const QUEUE_BUILD = '2026-09-25-h';
 console.log('[queue] build ' + QUEUE_BUILD);
 
 const $ = s => document.querySelector(s);
@@ -3017,11 +3017,24 @@ function personOf(r) {
     || (!r.ent && /^Suno · /.test(r.sub || '') && r.sub.slice(7)));
   if (who) return 'c:' + who.trim().toLowerCase();
   if (r.src === 'suno' && r.ent) return 'c:library';
-  if (r.by) return 'u:' + r.by;
-  return '?';
+  const yt = r.src === 'yt' && /^YouTube · (.+)/.exec(r.sub || '');
+  if (yt) return 'c:yt:' + yt[1].trim().toLowerCase();
+  /* NOT the adder. The owner pastes most of a party queue, so "whoever added it" filed every
+     song whose creator was not known yet under one person -- the owner -- and taking turns
+     then alternated one real creator against that whole heap: a song every other. A song
+     nobody can name is its own seat instead; it is never held back and holds nobody back. */
+  return '?' + keyOf(r);
 }
-$('#turns').addEventListener('click', () => {
+$('#turns').addEventListener('click', async () => {
   if (guest()) return;
+  if (upcomingIndices().length < 2) return;
+  /* Name every waiting Suno song before sorting, so the order is decided on creators rather
+     than on whatever the background lookup happened to have finished. */
+  const unknown = upcomingIndices().map(i => Q[i]).filter(r => personOf(r).startsWith('?') && r.src === 'suno');
+  if (unknown.length) {
+    toast('Looking up ' + unknown.length + ' creator' + (unknown.length > 1 ? 's' : '') + '…');
+    for (const r of unknown) { try { await resolve(r.id, 'suno', true); } catch (e) {} }
+  }
   const up = upcomingIndices();
   if (up.length < 2) return;
   const playing = Q[cur], nowRow = Q[anchorIndex()];
