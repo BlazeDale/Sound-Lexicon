@@ -594,6 +594,7 @@
         <h2>Up next</h2>
         <span class="count" id="count"></span>
         <span class="spacer"></span>
+        <button id="turns" title="Reorder up next so each person gets a turn: one song each, round and round, starting with whoever's song is not playing now">Take turns</button>
         <button id="shuffleall">Shuffle order</button>
         <button id="clear">Clear</button>
       </div>
@@ -828,7 +829,7 @@
    page -- covers read from data.js while the code that looks them up is old. Printed
    on load and shown in the footer, so 'which build am I on' is answerable in a glance
    instead of by deduction. */
-const QUEUE_BUILD = '2026-09-25-a';
+const QUEUE_BUILD = '2026-09-25-b';
 console.log('[queue] build ' + QUEUE_BUILD);
 
 const $ = s => document.querySelector(s);
@@ -1876,6 +1877,7 @@ function render() {
   const list = $('#list'), done = $('#donelist'), nowl = $('#nowlist');
   $('#clear').disabled = !Q.length;
   $('#shuffleall').disabled = Q.length < 2;
+  $('#turns').disabled = Q.length < 2;
   list.innerHTML = ''; done.innerHTML = ''; nowl.innerHTML = '';
 
   /* The offers in chat describe the queue — which link is already in it — so they go stale
@@ -2962,6 +2964,54 @@ $('#shuffleall').addEventListener('click', () => {
   if (shared()) { if (isOwner()) window.__net.reorder(Q); } else save();
   toast('Queue shuffled');
 });
+/* ---------- taking turns ----------
+   One person can drop five songs in a row and make everyone else wait behind all five. This
+   deals up next out like cards instead: one song per person, round and round, each person's
+   own songs kept in the order they put them in. Whoever's song is playing now goes to the
+   back of the round, so the first song after this one is somebody else's.
+
+   A person is whoever added the row in a shared queue. A row with no adder -- a queue kept on
+   this machine, where everything was added by you -- falls back to the Suno creator, which is
+   the fairness this is really about; anything with neither shares one seat.
+   Only up next moves. Heard rows and the current one keep their places. */
+function personOf(r) {
+  if (!r) return '';
+  if (r.by) return 'u:' + r.by;
+  const who = r.src === 'suno' && metaCache[r.id] && metaCache[r.id].who;
+  if (who) return 'c:' + who.toLowerCase();
+  if (r.src === 'suno' && r.ent) return 'c:library';
+  return '?';
+}
+$('#turns').addEventListener('click', () => {
+  if (guest()) return;
+  const up = upcomingIndices();
+  if (up.length < 2) return;
+  const playing = Q[cur], nowRow = Q[anchorIndex()];
+  const piles = new Map();
+  for (const i of up) {
+    const p = personOf(Q[i]);
+    if (!piles.has(p)) piles.set(p, []);
+    piles.get(p).push(Q[i]);
+  }
+  const order = [...piles.keys()];
+  const nowP = personOf(nowRow);
+  if (order.includes(nowP)) { order.splice(order.indexOf(nowP), 1); order.push(nowP); }
+  const dealt = [];
+  for (let round = 0; dealt.length < up.length; round++)
+    for (const p of order) { const r = piles.get(p)[round]; if (r) dealt.push(r); }
+
+  const upSet = new Set(up.map(i => Q[i]));
+  Q = Q.filter(r => !upSet.has(r)).concat(dealt);
+  if (playing) cur = Q.indexOf(playing);
+  /* The shuffle toggle plays its own permutation over the list, which would undo this at
+     once, so taking turns turns it off. */
+  if (shuffling) { shuffling = false; $('#tshuf').classList.remove('on'); savePrefs(); }
+  rebuildShuffle(); render();
+  if (shared()) { if (isOwner()) window.__net.reorder(Q); } else save();
+  toast(piles.size < 2 ? 'Only one person in up next — nothing to alternate'
+                       : 'Taking turns: ' + piles.size + ' people, one song each');
+});
+
 $('#addbtn').addEventListener('click', () => {
   const v = $('#addin').value; $('#addin').value = ''; if (v.trim()) addMany(v);
 });
@@ -3113,7 +3163,7 @@ window.__applyRemote = (tracks, meta) => {
       + (SQ.open ? '' : ' — no effect while open adding is off')
       + '. You can always add them yourself.';
   }
-  $('#clear').hidden = $('#shuffleall').hidden = !isOwner();
+  $('#clear').hidden = $('#shuffleall').hidden = $('#turns').hidden = !isOwner();
   $('#chatnote').textContent = isOwner()
     ? 'you own this queue — links posted here get an add button'
     : (SQ.open
