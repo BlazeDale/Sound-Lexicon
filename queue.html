@@ -234,6 +234,11 @@
   /* The playing row, set apart from the ones waiting. */
   #nowlist .row{border-left-color:var(--amber);background:var(--panel2)}
   #donelist .row{opacity:.62}
+  /* One colour per person (see personColor): a stripe down the row's left edge, inside the
+     border so the playing row's amber edge still shows, and a dot before the subtitle. */
+  .row.who{box-shadow:inset 4px 0 0 var(--pc)}
+  .pdot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--pc);
+        margin-right:6px;vertical-align:0}
   #donelist .row:hover{opacity:1}
 
   .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--amber);margin:0 0 8px}
@@ -835,7 +840,7 @@
    page -- covers read from data.js while the code that looks them up is old. Printed
    on load and shown in the footer, so 'which build am I on' is answerable in a glance
    instead of by deduction. */
-const QUEUE_BUILD = '2026-09-25-i';
+const QUEUE_BUILD = '2026-09-25-j';
 console.log('[queue] build ' + QUEUE_BUILD);
 
 const $ = s => document.querySelector(s);
@@ -1976,6 +1981,11 @@ function rowEl(r, i) {
     const meta = document.createElement('div'); meta.className = 'meta';
     const t = document.createElement('div'); t.className = 't'; t.textContent = r.title || r.id.slice(0, 8);
     const sub = document.createElement('div'); sub.className = 'sub';
+    const pc = personColor(r);
+    if (pc) {
+      li.style.setProperty('--pc', pc); li.classList.add('who');
+      const dot = document.createElement('span'); dot.className = 'pdot'; sub.appendChild(dot);
+    }
     if (r.ent) { const e = document.createElement('span'); e.className = 'ent'; e.textContent = r.sub; sub.appendChild(e); }
     else sub.appendChild(document.createTextNode(
       r.sub || creatorOf(r) || (r.src === 'yt' ? 'YouTube' : isSP(r) ? 'Spotify' : r.id.slice(0, 8))));
@@ -3045,6 +3055,34 @@ $('#same').addEventListener('click', () => {
   }
   try { localStorage.setItem(LS_SAME, JSON.stringify(sameAs)); } catch (e) {}
 });
+
+/* ---------- a colour per person ----------
+   Same colour, same person -- the same "person" Take turns uses, so joined accounts match.
+   Twelve hues far enough apart to tell on the dark panel. Each person is placed by a hash of
+   their name, not by where their songs sit, so a colour holds still when the queue is
+   reordered; a clash moves to the next free hue, settled in name order so it too is stable.
+   A song nobody can name gets no colour: it is nobody's in particular. */
+const PERSON_HUES = [8, 38, 62, 95, 140, 172, 195, 218, 248, 278, 305, 332];
+let colorMemo = { sig: '', map: new Map() };
+function personColor(r) {
+  const p = personOf(r);
+  if (!p || p.startsWith('?')) return '';
+  const people = [...new Set(Q.map(personOf).filter(x => x && !x.startsWith('?')))].sort();
+  const sig = people.join('\u0001');
+  if (colorMemo.sig !== sig) {
+    const map = new Map(), taken = new Set();
+    for (const q of people) {
+      let h = 0;
+      for (const ch of q) h = (h * 31 + ch.codePointAt(0)) >>> 0;
+      let slot = h % PERSON_HUES.length;
+      for (let n = 0; n < PERSON_HUES.length && taken.has(slot); n++) slot = (slot + 1) % PERSON_HUES.length;
+      taken.add(slot);          // past twelve people, hues repeat
+      map.set(q, 'hsl(' + PERSON_HUES[slot] + ' 70% 62%)');
+    }
+    colorMemo = { sig, map };
+  }
+  return colorMemo.map.get(p) || '';
+}
 
 function personOf(r) {
   if (!r) return '';
