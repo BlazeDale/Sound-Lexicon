@@ -237,8 +237,20 @@
   /* One colour per person (see personColor): a stripe down the row's left edge, inside the
      border so the playing row's amber edge still shows, and a dot before the subtitle. */
   .row.who{box-shadow:inset 4px 0 0 var(--pc)}
-  .pdot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--pc);
-        margin-right:6px;vertical-align:0}
+  .pdot{display:inline-block;width:11px;height:11px;border-radius:50%;background:var(--pc);
+        margin-right:6px;vertical-align:-1px;cursor:grab;box-shadow:0 0 0 2px transparent;transition:box-shadow .12s}
+  .pdot:hover{box-shadow:0 0 0 2px var(--pc)}
+  /* Dragging a dot: every song it could join shows the drop, the one under it lights up. */
+  body.pdragging .row.who{outline:1px dashed var(--line)}
+  .row.plink{outline:2px solid var(--pc) !important;outline-offset:1px}
+  #ppick{position:absolute;z-index:60;display:grid;grid-template-columns:repeat(6,24px);gap:7px;
+         padding:11px;background:var(--panel2);border:1px solid var(--line);border-radius:10px;
+         box-shadow:0 8px 28px rgba(0,0,0,.45);width:max-content}
+  #ppick .sw{width:24px;height:24px;border-radius:50%;border:2px solid transparent;padding:0;cursor:pointer}
+  #ppick .sw.on{border-color:var(--text,#fff)}
+  #ppick .pnote{grid-column:1/-1;font-size:11px;color:var(--dim);max-width:210px;line-height:1.35;margin-top:2px}
+  #ppick .plain{grid-column:1/-1;background:none;border:0;color:var(--teal);font:inherit;font-size:11.5px;
+                text-align:left;padding:0;cursor:pointer}
   #donelist .row:hover{opacity:1}
 
   .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--amber);margin:0 0 8px}
@@ -605,7 +617,6 @@
         <span class="count" id="count"></span>
         <span class="spacer"></span>
         <button id="turns" title="Nobody gets a second song before everyone waiting has had one. Otherwise the order stays as it is.">Take turns</button>
-        <button id="same" title="Tell Take turns that two Suno accounts belong to one person, so they share a turn">Same person…</button>
         <button id="shuffleall">Shuffle order</button>
         <button id="clear">Clear</button>
       </div>
@@ -840,7 +851,7 @@
    page -- covers read from data.js while the code that looks them up is old. Printed
    on load and shown in the footer, so 'which build am I on' is answerable in a glance
    instead of by deduction. */
-const QUEUE_BUILD = '2026-09-25-k';
+const QUEUE_BUILD = '2026-09-25-l';
 console.log('[queue] build ' + QUEUE_BUILD);
 
 const $ = s => document.querySelector(s);
@@ -1985,7 +1996,9 @@ function rowEl(r, i) {
     if (pc) {
       li.style.setProperty('--pc', pc); li.classList.add('who');
       const dot = document.createElement('span'); dot.className = 'pdot'; sub.appendChild(dot);
+      wireDot(dot, li, r);
     }
+    wireRowTarget(li, r);
     if (r.ent) { const e = document.createElement('span'); e.className = 'ent'; e.textContent = r.sub; sub.appendChild(e); }
     else sub.appendChild(document.createTextNode(
       r.sub || creatorOf(r) || (r.src === 'yt' ? 'YouTube' : isSP(r) ? 'Spotify' : r.id.slice(0, 8))));
@@ -3018,82 +3031,34 @@ $('#shuffleall').addEventListener('click', () => {
    A person is the Suno creator, because the fairness is owed to whoever MADE the song: the
    owner pasting five songs by five people is five turns, not one. It used to be whoever added
    the row, and in a shared queue that is everyone's songs filed under whoever pasted them --
-   which let one creator play twice running. The adder is the fallback, for a YouTube or
-   Spotify row or a creator not looked up yet; anything with neither shares one seat.
-   Only up next moves. Heard rows and the current one keep their places. */
+   which let one creator play twice running. A YouTube row is its channel; a song nobody can
+   name is a seat of its own (see accountOf). Only up next moves. Heard rows and the current one keep their places. */
 /* ---------- one person, two accounts ----------
    Suno cannot say that two accounts are the same human, and guessing from similar names
-   would join people who are not. So the owner says it, once, and this browser remembers:
-   every name in a group is read as the group's first name. Kept here rather than written
-   into the page, because creators' names do not go into the repo. */
-const LS_SAME = 'sl.queue.same.v1';
-let sameAs = {};
+   would join people who are not. So whoever is looking says it, with their hands: drag one
+   song's colour dot onto another person's song and the two are one person from then on --
+   one colour, one turn. Clicking a dot picks that person's colour by hand, or splits an
+   account back off. Remembered in this browser, not written into the page, because
+   creators' names do not go into the repo.
+
+   sameAs maps a name to the name that heads its group; colorOf maps a group's head to a
+   colour chosen by hand. Names are the lower-cased creator names personOf reads. */
+const LS_SAME = 'sl.queue.same.v1', LS_PCOL = 'sl.queue.pcolor.v1';
+let sameAs = {}, colorOf = {};
 try { sameAs = JSON.parse(localStorage.getItem(LS_SAME) || '{}') || {}; } catch (e) { sameAs = {}; }
+try { colorOf = JSON.parse(localStorage.getItem(LS_PCOL) || '{}') || {}; } catch (e) { colorOf = {}; }
 const samePerson = w => sameAs[w] || w;
-const sameGroups = () => {
-  const g = {};
-  for (const [w, to] of Object.entries(sameAs)) (g[to] = g[to] || [to]).push(w);
-  return Object.values(g).map(ns => [...new Set(ns)].join(', '));
+const savePeople = () => {
+  try { localStorage.setItem(LS_SAME, JSON.stringify(sameAs)); localStorage.setItem(LS_PCOL, JSON.stringify(colorOf)); } catch (e) {}
 };
-$('#same').addEventListener('click', () => {
-  const now = sameGroups();
-  const v = prompt('Two or more Suno creator names that are one person, separated by commas, '
-    + 'exactly as the rows show them. Type "clear" to forget every pair.'
-    + (now.length ? '\n\nAlready joined:\n' + now.join('\n') : ''), '');
-  if (v == null || !v.trim()) return;
-  if (v.trim().toLowerCase() === 'clear') { sameAs = {}; toast('Every account is its own person again'); }
-  else {
-    const names = [...new Set(v.split(',').map(x => x.trim().toLowerCase()).filter(Boolean))];
-    if (names.length < 2) { toast('Needs at least two names, separated by a comma'); return; }
-    const to = samePerson(names[0]);
-    for (const w of names) {
-      /* A name that already heads a group brings its whole group along. */
-      for (const [k, t] of Object.entries(sameAs)) if (t === w) sameAs[k] = to;
-      if (w !== to) sameAs[w] = to;
-    }
-    toast('Take turns now treats ' + names.join(' and ') + ' as one person');
-  }
-  try { localStorage.setItem(LS_SAME, JSON.stringify(sameAs)); } catch (e) {}
-});
-
-/* ---------- a colour per person ----------
-   Same colour, same person -- the same "person" Take turns uses, so joined accounts match.
-   Twelve colours picked by eye rather than spaced evenly round the wheel: equal-lightness
-   hues thirty degrees apart put a magenta and a pink side by side that nobody could tell
-   apart, so these differ in lightness as well as hue. Each person is placed by a hash of
-   their name, not by where their songs sit, so a colour holds still when the queue is
-   reordered; a clash moves to the next free hue, settled in name order so it too is stable.
-   A song nobody can name gets no colour: it is nobody's in particular. */
-const PERSON_COLORS = ['#ff6b6b', '#ffa94d', '#ffe066', '#a9e34b', '#40c057', '#63e6be',
-                       '#22b8cf', '#4dabf7', '#5c7cfa', '#be4bdb', '#f783ac', '#e9ecef'];
-let colorMemo = { sig: '', map: new Map() };
-function personColor(r) {
-  const p = personOf(r);
-  if (!p || p.startsWith('?')) return '';
-  const people = [...new Set(Q.map(personOf).filter(x => x && !x.startsWith('?')))].sort();
-  const sig = people.join('\u0001');
-  if (colorMemo.sig !== sig) {
-    const map = new Map(), taken = new Set();
-    for (const q of people) {
-      let h = 0;
-      for (const ch of q) h = (h * 31 + ch.codePointAt(0)) >>> 0;
-      let slot = h % PERSON_COLORS.length;
-      for (let n = 0; n < PERSON_COLORS.length && taken.has(slot); n++) slot = (slot + 1) % PERSON_COLORS.length;
-      taken.add(slot);          // past twelve people, hues repeat
-      map.set(q, PERSON_COLORS[slot]);
-    }
-    colorMemo = { sig, map };
-  }
-  return colorMemo.map.get(p) || '';
-}
-
-function personOf(r) {
+/* The account itself, before any joining -- "c:<name>", or a "?" seat nobody can name. */
+function accountOf(r) {
   if (!r) return '';
   /* The cache first; then the row's own "Suno · name", which is how a row added from a
      guest's browser arrives already labelled without this browser having looked it up. */
   const who = r.src === 'suno' && ((metaCache[r.id] && metaCache[r.id].who)
     || (!r.ent && /^Suno · /.test(r.sub || '') && r.sub.slice(7)));
-  if (who) return 'c:' + samePerson(who.trim().toLowerCase());
+  if (who) return 'c:' + who.trim().toLowerCase();
   if (r.src === 'suno' && r.ent) return 'c:library';
   const yt = r.src === 'yt' && /^YouTube · (.+)/.exec(r.sub || '');
   if (yt) return 'c:yt:' + yt[1].trim().toLowerCase();
@@ -3103,6 +3068,159 @@ function personOf(r) {
      nobody can name is its own seat instead; it is never held back and holds nobody back. */
   return '?' + keyOf(r);
 }
+function personOf(r) {
+  const a = accountOf(r);
+  return a.startsWith('c:') ? 'c:' + samePerson(a.slice(2)) : a;
+}
+/* Join the dragged person onto the target: the target's colour wins, since that is the dot
+   it was dropped on. A name heading a group brings the whole group along. */
+function joinPeople(from, onto) {
+  const a = from.slice(2), b = samePerson(onto.slice(2));
+  if (!from.startsWith('c:') || !onto.startsWith('c:') || a === b) return;
+  for (const [k, t] of Object.entries(sameAs)) if (t === a) sameAs[k] = b;
+  if (a !== b) sameAs[a] = b;
+  delete colorOf[a];
+  savePeople(); colorMemo.sig = ''; render();
+  toast('Same person now — one colour, one turn');
+}
+/* Split one account back off its group. If it headed the group, the next name takes over. */
+function splitAccount(acct) {
+  const a = acct.slice(2);
+  if (sameAs[a]) delete sameAs[a];
+  else {
+    const rest = Object.keys(sameAs).filter(k => sameAs[k] === a);
+    if (rest.length) {
+      const head = rest[0];
+      delete sameAs[head];
+      for (const k of rest.slice(1)) sameAs[k] = head;
+      if (colorOf[a]) { colorOf[head] = colorOf[a]; delete colorOf[a]; }
+    }
+  }
+  savePeople(); colorMemo.sig = ''; render();
+  toast('Split off — its own person again');
+}
+const isJoined = acct => {
+  const a = acct.slice(2);
+  return !!sameAs[a] || Object.values(sameAs).includes(a);
+};
+
+/* ---------- a colour per person ----------
+   Same colour, same person -- the same "person" Take turns uses, so joined accounts match.
+   Twelve colours picked by eye rather than spaced evenly round the wheel: equal-lightness
+   hues thirty degrees apart put a magenta and a pink side by side that nobody could tell
+   apart, so these differ in lightness as well as hue. A colour picked by hand wins; everyone
+   else is placed by a hash of their name, not by where their songs sit, so a colour holds
+   still when the queue is reordered, and a clash moves to the next free colour, settled in
+   name order so it too is stable. A song nobody can name gets no colour. */
+const PERSON_COLORS = ['#ff6b6b', '#ffa94d', '#ffe066', '#a9e34b', '#40c057', '#63e6be',
+                       '#22b8cf', '#4dabf7', '#5c7cfa', '#be4bdb', '#f783ac', '#e9ecef'];
+let colorMemo = { sig: '', map: new Map() };
+function personColor(r) {
+  const p = personOf(r);
+  if (!p || p.startsWith('?')) return '';
+  const people = [...new Set(Q.map(personOf).filter(x => x && !x.startsWith('?')))].sort();
+  const sig = people.join('\u0001') + JSON.stringify(colorOf);
+  if (colorMemo.sig !== sig) {
+    const map = new Map(), taken = new Set();
+    for (const q of people) {
+      const pick = colorOf[q.slice(2)];
+      if (pick) { map.set(q, pick); const i = PERSON_COLORS.indexOf(pick); if (i >= 0) taken.add(i); }
+    }
+    for (const q of people) {
+      if (map.has(q)) continue;
+      let h = 0;
+      for (const ch of q) h = (h * 31 + ch.codePointAt(0)) >>> 0;
+      let slot = h % PERSON_COLORS.length;
+      for (let n = 0; n < PERSON_COLORS.length && taken.has(slot); n++) slot = (slot + 1) % PERSON_COLORS.length;
+      taken.add(slot);          // past twelve people, colours repeat
+      map.set(q, PERSON_COLORS[slot]);
+    }
+    colorMemo = { sig, map };
+  }
+  return colorMemo.map.get(p) || '';
+}
+
+/* ---------- the dot: drag to join, click to pick ----------
+   The dot starts its own drag, not the row's: stopPropagation keeps the column's reorder
+   handler from seeing it, and personDrag tells every other drop handler on the page -- the
+   row zones and the page-wide link drop -- to stand aside. */
+let personDrag = '';
+function wireDot(dot, li, r) {
+  dot.draggable = true;
+  dot.title = 'Drag onto another song to mark them as the same person · click to pick a colour';
+  dot.addEventListener('dragstart', e => {
+    e.stopPropagation();
+    personDrag = personOf(r);
+    e.dataTransfer.effectAllowed = 'link';
+    try { e.dataTransfer.setData('application/x-sl-person', personDrag); } catch (err) {}
+    document.body.classList.add('pdragging');
+  });
+  dot.addEventListener('dragend', () => {
+    personDrag = ''; document.body.classList.remove('pdragging');
+    document.querySelectorAll('.row.plink').forEach(x => x.classList.remove('plink'));
+  });
+  dot.addEventListener('click', e => { e.stopPropagation(); openPicker(dot, r); });
+  dot.addEventListener('mousedown', e => e.stopPropagation());
+}
+function wireRowTarget(li, r) {
+  const ok = () => {
+    const p = personOf(r);
+    return personDrag && p.startsWith('c:') && p !== personDrag;
+  };
+  li.addEventListener('dragover', e => {
+    if (!personDrag) return;
+    e.stopPropagation();
+    if (!ok()) return;
+    e.preventDefault(); e.dataTransfer.dropEffect = 'link';
+    li.classList.add('plink');
+  });
+  li.addEventListener('dragleave', e => { if (!li.contains(e.relatedTarget)) li.classList.remove('plink'); });
+  li.addEventListener('drop', e => {
+    if (!personDrag) return;
+    e.preventDefault(); e.stopPropagation();
+    const from = personDrag;
+    personDrag = ''; document.body.classList.remove('pdragging'); li.classList.remove('plink');
+    if (personOf(r) !== from) joinPeople(from, personOf(r));
+  });
+}
+
+/* The picker: the twelve colours, and a way back out of a join. */
+function closePicker() { const p = $('#ppick'); if (p) p.remove(); }
+function openPicker(dot, r) {
+  closePicker();
+  const person = personOf(r), acct = accountOf(r);
+  if (!person.startsWith('c:')) return;
+  const box = document.createElement('div'); box.id = 'ppick';
+  const cur = personColor(r);
+  for (const c of PERSON_COLORS) {
+    const b = document.createElement('button');
+    b.className = 'sw' + (c === cur ? ' on' : ''); b.style.background = c; b.title = 'Use this colour';
+    b.addEventListener('click', () => {
+      colorOf[person.slice(2)] = c; savePeople(); colorMemo.sig = ''; closePicker(); render();
+    });
+    box.appendChild(b);
+  }
+  const note = document.createElement('div'); note.className = 'pnote';
+  note.textContent = 'Drag this dot onto another song to join the two as one person.';
+  box.appendChild(note);
+  if (colorOf[person.slice(2)]) {
+    const auto = document.createElement('button'); auto.className = 'plain'; auto.textContent = 'automatic colour';
+    auto.addEventListener('click', () => { delete colorOf[person.slice(2)]; savePeople(); colorMemo.sig = ''; closePicker(); render(); });
+    box.appendChild(auto);
+  }
+  if (isJoined(acct)) {
+    const split = document.createElement('button'); split.className = 'plain'; split.textContent = 'split this account off';
+    split.addEventListener('click', () => { closePicker(); splitAccount(acct); });
+    box.appendChild(split);
+  }
+  document.body.appendChild(box);
+  const at = dot.getBoundingClientRect();
+  const w = box.offsetWidth, h = box.offsetHeight;
+  box.style.left = Math.max(8, Math.min(innerWidth - w - 8, at.left - 10)) + 'px';
+  box.style.top = (at.bottom + 8 + h > innerHeight ? at.top - h - 8 : at.bottom + 8) + scrollY + 'px';
+}
+document.addEventListener('click', e => { if (!e.target.closest('#ppick')) closePicker(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closePicker(); });
 $('#turns').addEventListener('click', async () => {
   if (guest()) return;
   if (upcomingIndices().length < 2) return;
@@ -3183,13 +3301,13 @@ $('#addin').addEventListener('keydown', e => { if (e.key === 'Enter') $('#addbtn
    part of dragging a link out of another window. */
 let hot = 0;
 document.addEventListener('dragenter', e => {
-  if (dragFrom >= 0) return;
+  if (dragFrom >= 0 || personDrag) return;
   e.preventDefault(); hot++; $('#drop').classList.add('hot');
 });
-document.addEventListener('dragover', e => { if (dragFrom < 0) { e.preventDefault(); e.dataTransfer.dropEffect = 'copy'; } });
+document.addEventListener('dragover', e => { if (dragFrom < 0 && !personDrag) { e.preventDefault(); e.dataTransfer.dropEffect = 'copy'; } });
 document.addEventListener('dragleave', () => { if (dragFrom < 0 && --hot <= 0) { hot = 0; $('#drop').classList.remove('hot'); } });
 document.addEventListener('drop', e => {
-  if (dragFrom >= 0) return;
+  if (dragFrom >= 0 || personDrag) return;
   e.preventDefault(); hot = 0; $('#drop').classList.remove('hot');
   const dt = e.dataTransfer;
   const text = (dt.getData('text/uri-list') || '') + '\n' + (dt.getData('text/plain') || '');
@@ -3289,7 +3407,7 @@ window.__applyRemote = (tracks, meta) => {
       + (SQ.open ? '' : ' — no effect while open adding is off')
       + '. You can always add them yourself.';
   }
-  $('#clear').hidden = $('#shuffleall').hidden = $('#turns').hidden = $('#same').hidden = !isOwner();
+  $('#clear').hidden = $('#shuffleall').hidden = $('#turns').hidden = !isOwner();
   $('#chatnote').textContent = isOwner()
     ? 'you own this queue — links posted here get an add button'
     : (SQ.open
