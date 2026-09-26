@@ -284,6 +284,11 @@
   .board.dragging .side{outline:1.5px dashed var(--line);outline-offset:9px;border-radius:12px}
   .board.dragging .side.over{outline-color:var(--amber-dim)}
   .board.dragging .row{cursor:grabbing}
+  /* While a drag is on, up next reaches down as far as the played column does. A long
+     history pushes the short up-next list off the top of the screen, and the empty space
+     under it belonged to nothing, so a drop there was lost. Stretched, that space is part
+     of up next, and a drop on it lands at the end (no row under the pointer = last). */
+  .board.dragging #zonenext{align-self:stretch}
   .grip{color:var(--dim);cursor:grab;font-size:15px;line-height:1;padding:0 2px;flex:none;user-select:none}
   .art{width:42px;height:42px;border-radius:6px;object-fit:cover;background:var(--panel2);flex:none}
   /* A basis rather than a bare flex:1. Above it the title takes whatever the row has left,
@@ -829,7 +834,7 @@
    page -- covers read from data.js while the code that looks them up is old. Printed
    on load and shown in the footer, so 'which build am I on' is answerable in a glance
    instead of by deduction. */
-const QUEUE_BUILD = '2026-09-25-c';
+const QUEUE_BUILD = '2026-09-25-d';
 console.log('[queue] build ' + QUEUE_BUILD);
 
 const $ = s => document.querySelector(s);
