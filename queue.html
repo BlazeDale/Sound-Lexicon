@@ -829,7 +829,7 @@
    page -- covers read from data.js while the code that looks them up is old. Printed
    on load and shown in the footer, so 'which build am I on' is answerable in a glance
    instead of by deduction. */
-const QUEUE_BUILD = '2026-09-25-b';
+const QUEUE_BUILD = '2026-09-25-c';
 console.log('[queue] build ' + QUEUE_BUILD);
 
 const $ = s => document.querySelector(s);
@@ -1284,8 +1284,10 @@ async function resolve(id, src, fresh) {
            it gives for a song still being generated, so every browser that asked once holds
            that zero for a day; no-store only governs the request this page makes, while a
            distinct URL is what steps around an entry already sitting in the cache. The
-           worker has been fixed too, but this keeps the poisoned caches working. */
-        const r = await fetchT(SHARE_RESOLVER + '?clip=' + encodeURIComponent(id)
+           worker has been fixed too, but this keeps the poisoned caches working.
+           `v=2` is the same move for the creator: answers cached before the worker sent
+           `who` would otherwise hide it for a day on every song already looked up. */
+        const r = await fetchT(SHARE_RESOLVER + '?clip=' + encodeURIComponent(id) + '&v=2'
           + (fresh ? '&_=' + Date.now() : ''), 9000, fresh);
         if (r.ok) {
           const m = await r.json();
