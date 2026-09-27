@@ -44,6 +44,15 @@ const SP_CREATES = [
   { n: 13, date: '2026-09-27', prompt: 'v3',
     inputs: { moment: 'the expedition leaves at dawn; the map ends here', setting: 'the open road past the last town', mood: 'adventurous', energy: 'busy', weather: 'cool clear morning', threat: 'none', loop: 'yes', len: '2:30' },
     clips: [] },
+  { n: 14, date: '2026-09-27', prompt: 'v4',
+    inputs: { moment: 'picking the first crops; proud, the work paid off', setting: 'the vegetable beds on harvest day', mood: 'hopeful', energy: 'busy', weather: 'sunny', threat: 'none', loop: 'yes', len: '2:30' },
+    clips: [] },
+  { n: 15, date: '2026-09-27', prompt: 'v4',
+    inputs: { moment: 'searching a dark ward by flashlight, slow and careful', setting: 'an abandoned hospital', mood: 'eerie', energy: 'low', weather: 'wind through broken windows', threat: 'near', loop: 'yes', len: '3:00' },
+    clips: [] },
+  { n: 16, date: '2026-09-27', prompt: 'v4',
+    inputs: { moment: 'the horde has passed and everyone sleeps; the music exhales', setting: 'the bunkhouse after a long night', mood: 'relieved', energy: 'low', weather: 'rain easing off', threat: 'distant', loop: 'yes', len: '3:00' },
+    clips: [] },
 ];
 // What each prompt version changed, and why.
 const SP_VERSIONS = [
