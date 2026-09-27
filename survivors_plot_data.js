@@ -3,7 +3,7 @@
 // Shared queue: queue.html?q=sjm9xyp5 ("Survivors' Plot · lo-fi").
 // verdict: '' (unheard) | 'keep' | 'maybe' | 'cut'  - filled in by ear, later.
 const SP_QUEUE = 'sjm9xyp5';
-const SP_PROMPT = 'v2';
+const SP_PROMPT = 'v3';
 const SP_CREATES = [
   { n: 1, date: '2026-09-27', prompt: 'v1',
     inputs: { mood: 'cozy', energy: 'low', setting: 'campfire inside the walls at dusk', weather: 'light rain', threat: 'none', loop: 'yes', len: '2:30' },
@@ -26,11 +26,21 @@ const SP_CREATES = [
   { n: 7, date: '2026-09-27', prompt: 'v1',
     inputs: { mood: 'uneasy', energy: 'low', setting: 'boarding up the windows before nightfall', weather: 'fog', threat: 'near', loop: 'yes', len: '2:30' },
     clips: [ { id: '2ca0802e-311b-45df-aad8-5b370913010d', title: 'Safe For Now' }, { id: '69195a01-41f3-4527-936c-f55c8b6f13ec', title: 'Safe For Now' } ] },
+  { n: 8, date: '2026-09-27', prompt: 'v2',
+    inputs: { moment: 'hauling salvage into piles; the music keeps a sorting rhythm, a little bittersweet', setting: 'sorting salvage from the old town', mood: 'wistful', energy: 'steady', weather: 'drizzle', threat: 'distant', loop: 'yes', len: '2:30' },
+    clips: [] },
+  { n: 9, date: '2026-09-27', prompt: 'v2',
+    inputs: { moment: 'cooking for everyone; says the camp is a family now', setting: 'the camp kitchen, stew on the stove', mood: 'cozy', energy: 'steady', weather: 'first snow', threat: 'none', loop: 'yes', len: '2:30' },
+    clips: [] },
+  { n: 10, date: '2026-09-27', prompt: 'v2',
+    inputs: { moment: 'alone at the radio, scanning; says someone might be out there', setting: 'radio tower at night', mood: 'lonely', energy: 'low', weather: 'clear night, stars', threat: 'distant', loop: 'yes', len: '3:00' },
+    clips: [] },
 ];
 // What each prompt version changed, and why.
 const SP_VERSIONS = [
   { v: 'v1', date: '2026-09-27', note: 'Classical modular brief rewritten as lo-fi beat tape: seven inputs, beat-tape section names, loop-safe ending.' },
   { v: 'v2', date: '2026-09-27', note: 'v1 made every scene one song: all 14 takes at 76-78 BPM on Rhodes + music box, the Setting only added quiet foley, and "okay, for now" in the brief titled 4 of 7 takes Safe For Now. v2 adds a Game moment input and a think-about-the-setting step that picks the lead instrument, ties BPM to Energy, caps length under 4:00, and bans safe/okay/survive in titles.' },
+  { v: 'v3', date: '2026-09-27', note: 'BlazeDale asked for eerie, mysterious and adventurous cues too. Mood rules gained eerie (detuned, whole-tone/diminished, reversed tape, long gaps), mysterious (dorian/phrygian, unresolved) and adventurous (lydian/mixolydian, forward pulse, climbing motif); eerie and mysterious stay lo-fi, never horror. Wording trimmed to keep room under the 3,000 cap.' },
 ];
 
 // Scene deck for the rolling queue: the next unused scene is fired, top down. Add freely.
@@ -39,11 +49,23 @@ const SP_SCENES = [
   { moment: 'hauling salvage into piles; the music keeps a sorting rhythm, a little bittersweet', setting: 'sorting salvage from the old town', mood: 'wistful', energy: 'steady', weather: 'drizzle', threat: 'distant', loop: 'yes', len: '2:30' },
   { moment: 'cooking for everyone; says the camp is a family now', setting: 'the camp kitchen, stew on the stove', mood: 'cozy', energy: 'steady', weather: 'first snow', threat: 'none', loop: 'yes', len: '2:30' },
   { moment: 'alone at the radio, scanning; says someone might be out there', setting: 'radio tower at night', mood: 'lonely', energy: 'low', weather: 'clear night, stars', threat: 'distant', loop: 'yes', len: '3:00' },
+  { moment: 'fog swallows the fence line at 3am; something is out there, stay calm', setting: 'the fence line in thick fog', mood: 'eerie', energy: 'low', weather: 'fog', threat: 'near', loop: 'yes', len: '2:30' },
+  { moment: 'a numbers station on the radio; who is broadcasting?', setting: 'the radio shack, a signal nobody sent', mood: 'mysterious', energy: 'low', weather: 'static-dry night', threat: 'distant', loop: 'yes', len: '2:30' },
   { moment: 'picking the first crops; proud, the work paid off', setting: 'the vegetable beds on harvest day', mood: 'hopeful', energy: 'busy', weather: 'sunny', threat: 'none', loop: 'yes', len: '2:30' },
+  { moment: 'the expedition leaves at dawn; the map ends here', setting: 'the open road past the last town', mood: 'adventurous', energy: 'busy', weather: 'cool clear morning', threat: 'none', loop: 'yes', len: '2:30' },
+  { moment: 'searching a dark ward by flashlight, slow and careful', setting: 'an abandoned hospital', mood: 'eerie', energy: 'low', weather: 'wind through broken windows', threat: 'near', loop: 'yes', len: '3:00' },
   { moment: 'the horde has passed and everyone sleeps; the music exhales', setting: 'the bunkhouse after a long night', mood: 'relieved', energy: 'low', weather: 'rain easing off', threat: 'distant', loop: 'yes', len: '3:00' },
+  { moment: 'a sealed bunker door with fresh footprints; what is inside?', setting: 'a bunker hidden in the forest', mood: 'mysterious', energy: 'steady', weather: 'damp pine air', threat: 'distant', loop: 'yes', len: '2:30' },
+  { moment: 'cycling the convoy through empty farmland; wind and open sky', setting: 'bicycle convoy through farm country', mood: 'adventurous', energy: 'busy', weather: 'sunny, breezy', threat: 'none', loop: 'yes', len: '2:30' },
   { moment: 'reading a found letter; a short sad memory, then it lets go', setting: 'an empty house in the old town', mood: 'wistful', energy: 'low', weather: 'overcast', threat: 'none', loop: 'no', len: '2:00' },
+  { moment: 'a music box plays by itself in an empty house', setting: 'a bedroom in a dead suburb', mood: 'eerie', energy: 'low', weather: 'dusk, still', threat: 'distant', loop: 'yes', len: '2:30' },
+  { moment: 'lights moving in the woods at night; curious, not afraid', setting: 'the treeline past the orchard', mood: 'mysterious', energy: 'low', weather: 'clear night, crickets', threat: 'distant', loop: 'yes', len: '3:00' },
   { moment: 'tinkering until it sputters to life; fiddly, patient, satisfying', setting: 'the generator shed, grease and a toolbox', mood: 'content', energy: 'steady', weather: 'humid summer', threat: 'none', loop: 'yes', len: '2:30' },
+  { moment: 'crossing the collapsed bridge one plank at a time', setting: 'a broken highway bridge over the river', mood: 'adventurous', energy: 'steady', weather: 'river wind', threat: 'distant', loop: 'yes', len: '2:30' },
+  { moment: 'wading the flooded subway; every drip echoes', setting: 'a flooded subway tunnel', mood: 'eerie', energy: 'low', weather: 'dripping, cold', threat: 'near', loop: 'yes', len: '2:30' },
   { moment: 'title screen; welcome home, press start', setting: 'main menu: the base at dawn', mood: 'hopeful', energy: 'low', weather: 'mist lifting', threat: 'none', loop: 'yes', len: '2:00' },
+  { moment: 'decoding a map found on a stranger', setting: 'the map table by candlelight', mood: 'mysterious', energy: 'steady', weather: 'rain on the roof', threat: 'none', loop: 'yes', len: '2:30' },
+  { moment: 'first sight of another settlement on the horizon', setting: 'a hilltop above an unknown town', mood: 'adventurous', energy: 'steady', weather: 'golden afternoon', threat: 'none', loop: 'yes', len: '2:30' },
   { moment: 'looting a pharmacy, ears open; focused, not scared', setting: 'scavenging run far from home', mood: 'uneasy', energy: 'steady', weather: 'gusting wind', threat: 'near', loop: 'yes', len: '2:30' },
   { moment: 'morning rounds with the animals; gentle routine', setting: 'the chicken coop and the camp dog', mood: 'cozy', energy: 'low', weather: 'crisp autumn morning', threat: 'none', loop: 'yes', len: '2:30' },
   { moment: 'raising a new wall section together; teamwork, hammers in time', setting: 'the east wall construction site', mood: 'content', energy: 'busy', weather: 'bright and breezy', threat: 'none', loop: 'yes', len: '2:30' },

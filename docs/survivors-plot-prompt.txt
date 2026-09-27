@@ -1,7 +1,7 @@
 SURVIVORS' PLOT - LO-FI CUE
 
 INPUTS (fill any; blanks use defaults):
-- Game moment: evening wind-down, the player queues tomorrow's builds; the music says the day went well
+- Game moment: evening wind-down; the day went well
 - Setting: campfire inside the walls at dusk
 - Mood: cozy
 - Energy: low
@@ -13,31 +13,31 @@ INPUTS (fill any; blanks use defaults):
 Write the Suno "Lyrics" field for an INSTRUMENTAL lo-fi cue for Survivors' Plot, a comfy zombie-survival base-builder.
 
 FIRST, THINK ABOUT THE SETTING (do not print this step)
-Background music tells the player something without words. From Game moment and Setting decide:
+From Game moment and Setting decide:
 - what the player is doing while this plays;
-- the one feeling it must convey (settled, busy, homesick, watchful, proud, relieved...);
-- the lead instrument that belongs in this place: a garden might want plucked acoustic guitar, a workshop muted percussive plucks and a wood-block pulse, a night watch a lone detuned piano;
-- the sound the place makes, woven into the rhythm rather than laid on top.
+- the one feeling it must convey (settled, busy, homesick, proud, eerie, curious, bold...);
+- the lead instrument that belongs in this place: a garden might want plucked acoustic guitar, a workshop muted plucks and a wood-block pulse, a night watch a lone detuned piano;
+- the place's own sounds, woven into the rhythm.
 Every section carries that choice. Two different Settings must not sound alike.
 
 RULES
-- Output ONLY lines in [ ]. No unbracketed text, no lyrics, no vocals, no syllables, no humming.
+- Output ONLY lines in [ ]. No lyrics, vocals, syllables or humming.
 - 6-8 sections. Header: [Section - BPM/feel - 0:30]. Times sum to Length, 15-40 s each.
 - Length stays under 4:00 whatever is asked; default 2:30.
-- Under each header, 2-4 lines: motif, drum pocket, layers, what the section conveys.
+- Under each header, 2-4 lines: motif, drums, layers, what it conveys.
 - One short motif (4-8 notes) on the lead instrument through every section. No unrelated ideas.
 - One tempo, set by Energy: low 64-72 BPM, steady 74-84, busy 86-96. Lazy swing. No drops, no builds, no climax.
 
-SOUND BASE (lo-fi glue shared by every cue)
+SOUND BASE (every cue)
 Dusty drums or brushes, soft kick, tape saturation, vinyl crackle, gentle wow and flutter, round mellow bass. Rhodes and felt piano only if they suit the Setting.
 
 HOW INPUTS STEER
-- Mood sets harmony: cozy, hopeful = major 7ths, 9ths; wistful, lonely = minor 9ths, sus chords; uneasy = minor, fewer notes, low pad.
+- Mood sets harmony: cozy, hopeful = major 7ths, 9ths; wistful, lonely = minor 9ths, sus chords; uneasy = minor, fewer notes, low pad; eerie = detuned, whole-tone or diminished, reversed tape, long gaps; mysterious = dorian or phrygian, unresolved; adventurous = lydian or mixolydian, a forward pulse, the motif climbing.
 - Energy sets density: low = half-time, sparse; steady = full pocket; busy = brighter hats, walking bass, more layers, never frantic.
-- Threat colours without breaking comfort: none = warm; distant = low drone, a stray detuned note; near = drums thin, slow heartbeat kick, motif quieter. Never horror stings.
-- Weather is heard in the room tone and how wet or dry the mix feels.
+- Eerie and mysterious stay lo-fi and listenable, never horror. Threat colours without breaking comfort: none = warm; distant = low drone, a stray detuned note; near = drums thin, slow heartbeat kick, motif quieter.
+- Weather shapes the room tone.
 
-SECTION NAMES (beat-tape terms, not verse/chorus)
+SECTION NAMES (not verse/chorus)
 Tape Start, Main Loop, Loop B, Flip, Drop-out, Turnaround, Return, Tape Out.
 - At least 2 steady loops that could repeat unnoticed, and 2 variations (Flip, Drop-out) safe to swap.
 
