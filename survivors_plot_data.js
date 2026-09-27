@@ -74,6 +74,15 @@ const SP_CREATES = [
   { n: 23, date: '2026-09-27', prompt: 'v5',
     inputs: { moment: 'wading the flooded subway; every drip echoes', setting: 'a flooded subway tunnel', mood: 'eerie', energy: 'low', weather: 'dripping, cold', threat: 'near', loop: 'yes', len: '2:30' },
     clips: [ { id: '23d4cdf2-c78b-48c6-ae42-1e366284e798', title: 'Flooded Passage' }, { id: '57ef001d-e94a-4555-b36b-a1c7201e95a2', title: 'Cold Tunnel Air' } ] },
+  { n: 24, date: '2026-09-27', prompt: 'v5',
+    inputs: { moment: 'crossing the collapsed bridge one plank at a time', setting: 'a broken highway bridge over the river', mood: 'adventurous', energy: 'steady', weather: 'river wind', threat: 'distant', loop: 'yes', len: '3:00' },
+    clips: [] },
+  { n: 25, date: '2026-09-27', prompt: 'v5',
+    inputs: { moment: 'first sight of another settlement on the horizon', setting: 'a hilltop above an unknown town', mood: 'adventurous', energy: 'steady', weather: 'golden afternoon', threat: 'none', loop: 'yes', len: '3:00' },
+    clips: [] },
+  { n: 26, date: '2026-09-27', prompt: 'v5',
+    inputs: { moment: 'looting a pharmacy, ears open; focused, not scared', setting: 'scavenging run far from home', mood: 'uneasy', energy: 'steady', weather: 'gusting wind', threat: 'near', loop: 'yes', len: '3:00' },
+    clips: [] },
 ];
 // What each prompt version changed, and why.
 const SP_VERSIONS = [
