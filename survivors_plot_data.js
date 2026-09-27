@@ -92,7 +92,7 @@ const SP_CREATES = [
     clips: [ { id: '3c010817-a7b0-4696-8f6e-e6d7567dd7bf', title: 'Barricade Stillness' }, { id: '95fd205c-9fec-45b8-82cc-6a74e349857a', title: 'Barricade Stillness' } ] },
   { n: 29, date: '2026-09-27', prompt: 'v7',
     inputs: { moment: "the gate won't latch; they're coming", setting: 'the jammed front gate at night', mood: 'ominous, vexing, dread', energy: 'steady', played: 'stubborn, downbeat-averse, competing: a figure that never resolves, accents that never land, parts at odds', weather: 'cold drizzle', threat: 'near', loop: 'yes', len: '3:00' },
-    clips: [] },
+    clips: [ { id: '05642dde-d834-4553-ac76-2674630423af', title: 'Uneasy Space' }, { id: 'd9226669-8462-496b-9719-c674713eaa88', title: "The Gate Won't Latch" } ] },
 ];
 // What each prompt version changed, and why.
 const SP_VERSIONS = [
