@@ -76,13 +76,13 @@ const SP_CREATES = [
     clips: [ { id: '23d4cdf2-c78b-48c6-ae42-1e366284e798', title: 'Flooded Passage' }, { id: '57ef001d-e94a-4555-b36b-a1c7201e95a2', title: 'Cold Tunnel Air' } ] },
   { n: 24, date: '2026-09-27', prompt: 'v5',
     inputs: { moment: 'crossing the collapsed bridge one plank at a time', setting: 'a broken highway bridge over the river', mood: 'adventurous', energy: 'steady', weather: 'river wind', threat: 'distant', loop: 'yes', len: '3:00' },
-    clips: [] },
+    clips: [ { id: 'ecc4c0fb-e870-4595-886c-8f81848a90e5', title: 'Rusting Spans at Dawn' }, { id: 'ffac5e4f-eb2e-4df6-beb5-1149016fe3a9', title: 'The Far Bank' } ] },
   { n: 25, date: '2026-09-27', prompt: 'v5',
     inputs: { moment: 'first sight of another settlement on the horizon', setting: 'a hilltop above an unknown town', mood: 'adventurous', energy: 'steady', weather: 'golden afternoon', threat: 'none', loop: 'yes', len: '3:00' },
-    clips: [] },
+    clips: [ { id: 'f3742227-8580-436a-9292-fb73835f3cd1', title: 'Golden Afternoon Hills' }, { id: 'a25d0a14-a984-4338-86f2-e6e1b951a8df', title: 'Hilltop Above an Unknown Town' } ] },
   { n: 26, date: '2026-09-27', prompt: 'v5',
     inputs: { moment: 'looting a pharmacy, ears open; focused, not scared', setting: 'scavenging run far from home', mood: 'uneasy', energy: 'steady', weather: 'gusting wind', threat: 'near', loop: 'yes', len: '3:00' },
-    clips: [] },
+    clips: [ { id: '46c4d43e-f847-4aeb-87af-cc2e1aefc0c5', title: 'Pharmacy Aisle' }, { id: '3387a4ba-7739-4d14-b294-f5b1188a7b78', title: 'Scavenging Run' } ] },
 ];
 // What each prompt version changed, and why.
 const SP_VERSIONS = [
