@@ -85,7 +85,7 @@ const SP_CREATES = [
     clips: [ { id: '46c4d43e-f847-4aeb-87af-cc2e1aefc0c5', title: 'Pharmacy Aisle' }, { id: '3387a4ba-7739-4d14-b294-f5b1188a7b78', title: 'Scavenging Run' } ] },
   { n: 27, date: '2026-09-27', prompt: 'v6',
     inputs: { moment: 'alone in the dark; something shifts just out of sight, hold your breath', setting: 'a fog-drowned dead suburb at 3am', mood: 'eerie, uncanny, dread', energy: 'low', weather: 'thick fog, dead still', threat: 'near', loop: 'yes', len: '3:00' },
-    clips: [] },
+    clips: [ { id: '4b1a0799-969b-4970-a0b7-5404152b2add', title: '3am Suburb' }, { id: '74aa5bd3-d4f6-4c64-94e1-fd725fa190d0', title: 'Fog-Muted Neighborhood' } ] },
 ];
 // What each prompt version changed, and why.
 const SP_VERSIONS = [
