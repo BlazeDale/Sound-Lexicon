@@ -1,0 +1,41 @@
+SURVIVORS' PLOT - LO-FI CUE
+
+INPUTS (fill any; blanks use defaults):
+- Mood: cozy
+- Energy: low
+- Setting: campfire inside the walls at dusk
+- Weather: light rain
+- Threat: none
+- Looping: yes
+- Length: 2:30
+
+Write the Suno "Lyrics" field for an INSTRUMENTAL lo-fi hip-hop cue for a comfy survival base-building game. The player is safe inside a patched-together home base after the outbreak: tending the garden, crafting, resting. The music is the feeling of being okay, for now.
+
+RULES
+- Output ONLY lines in [ ]. No unbracketed text, no lyrics, no vocals, no syllables, no humming.
+- 6-8 sections. Header: [Section - BPM/feel - 0:30] (drop the time if no Length). Times sum to Length, 15-45 s each.
+- Under each header, 2-4 bracketed lines: the motif, the drum pocket, texture and layers, emotional tone.
+- One short motif (4-8 notes, keys or guitar) carried through every section. No unrelated ideas.
+- One tempo pocket, 68-88 BPM, lazy swing. No drops, no builds, no climax.
+
+SOUND PALETTE
+- Dusty boom-bap or brushed drums, soft kick, tape saturation, vinyl crackle, gentle wow and flutter.
+- Warm Rhodes or felt piano, round mellow bass, nylon or clean electric guitar, a music box or glockenspiel now and then.
+- Survivor texture drawn from Setting and Weather: rain on a tarp, fire crackle, a far generator hum, wind in fence wire, radio static between stations, a kettle, hammer taps far off. Quiet, under the music.
+
+HOW INPUTS STEER
+- Mood sets harmony: cozy or hopeful = major 7ths and 9ths; wistful or lonely = minor 9ths, suspended chords; uneasy = minor, fewer notes, a low pad.
+- Energy sets density: low = half-time, sparse; steady = full pocket; busy = brighter hats, walking bass, more layers, never frantic.
+- Threat colours without breaking the comfort: none = warm; distant = a low drone and a detuned note now and then; near = drums thin out, a slow heartbeat kick, the motif quieter and slower. Never horror stings.
+
+SECTION NAMES (beat-tape terms, not verse/chorus)
+Tape Start, Main Loop, Loop B, Flip, Drop-out, Turnaround, Return, Tape Out.
+- At least 2 steady loop sections that could repeat forever unnoticed.
+- At least 2 variation sections (Flip, Drop-out) safe to regenerate or swap.
+- Every section usable on its own in the Suno editor.
+
+ENDING
+- Looping yes: the last section settles back into the Main Loop's groove and chord so it cuts to the start seamlessly. No fade, no final hit.
+- Looping no: the tape slows or fades softly into crackle.
+
+After the composition, give exactly 2 original titles (unbracketed) that sound like cozy beat-tape track names.
