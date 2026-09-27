@@ -5,19 +5,20 @@ INPUTS (fill any; blanks use defaults):
 - Setting: campfire inside the walls at dusk
 - Mood: cozy
 - Energy: low
+- Played: patient, sparse, rubato
 - Weather: light rain
 - Threat: none
 - Looping: yes
 - Length: 2:30
 
-Write the Suno "Lyrics" field for an INSTRUMENTAL ambient, atmospheric cue for Survivors' Plot, a comfy zombie-survival base-builder: the gentle exploration ambience of a hand-drawn anime game, spacious and warm, music that becomes the air of the place.
+Write the Suno "Lyrics" field for an INSTRUMENTAL ambient, atmospheric cue for Survivors' Plot, a comfy zombie-survival base-builder: gentle hand-drawn anime-game exploration ambience, music that becomes the air of the place.
 
 FIRST, THINK ABOUT THE SETTING (do not print this step)
 From Game moment and Setting decide:
 - what the player is doing while this plays;
-- the one feeling it must hold (settled, homesick, still, eerie, curious, open...);
+- the one feeling it must hold;
 - the sound bed that belongs here: soft pads, a low drone, bowed strings, tape-worn synth;
-- the instrument floating over it: felt piano, celesta, distant bells, ocarina, harp, a guitar harmonic;
+- the instrument floating over it: felt piano, celesta, distant bells, ocarina, harp;
 - the place's own sounds, woven into the texture.
 Every section carries it; two Settings must never sound alike.
 
@@ -28,13 +29,14 @@ RULES
 - Under each header, 2-4 bracketed lines: texture, fragment, movement, feeling. Like this:
 [Drift A - 68 BPM - 0:25]
 [low drone, celesta fragment drifts in]
-- One short melodic fragment (3-5 notes) that drifts in and out; long silences around it. No unrelated ideas.
+- One 3-5 note fragment drifting in and out, long silences around it; no unrelated ideas.
 - Slow and spacious: 60-76 BPM or free time, long reverb tails, chords that change every few bars.
 
 HOW INPUTS STEER
-- Mood sets harmony, open and simple: cozy, hopeful = major with added 2nds and open fifths; wistful, lonely = minor, suspended, unresolved; uneasy = low minor drone, fewer notes; eerie = detuned bells, whole-tone shimmer, reversed swells, long gaps; mysterious = dorian or lydian haze, harp and celesta; adventurous = wide open fifths, a slow rising ostinato, a sense of distance.
-- Energy sets movement: low = no pulse, drones and fragments; steady = a soft plucked or arpeggiated pattern; busy = a gentle rippling ostinato, never percussive.
-- Eerie and mysterious stay soft and listenable. Threat: none = warm; distant = a low drone swells now and then; near = the bed thins, a slow low pulse, the fragment quieter.
+- Mood sets harmony, open and simple: cozy, hopeful = major with added 2nds and open fifths; wistful, lonely = minor, suspended, unresolved; uneasy = low minor drone, fewer notes; eerie = detuned bells, whole-tone shimmer, reversed swells, long gaps; mysterious = dorian or lydian haze, harp and celesta; adventurous = open fifths, a rising ostinato.
+- Energy: low = no pulse; steady = a soft arpeggio; busy = a rippling ostinato, never percussive.
+- Played sets how the parts move (motion, effort, pulse, accents) and overrides the drift defaults when it disagrees.
+- Eerie and mysterious stay listenable unless Mood asks for dread. Threat: none = warm; distant = a low drone swells now and then; near = the bed thins, a slow low pulse, the fragment quieter.
 
 SECTION NAMES (not verse/chorus)
 Opening, Drift A, Drift B, Swell, Clearing, Drift A Return, Loop Point.
