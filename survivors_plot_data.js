@@ -86,6 +86,10 @@ const SP_CREATES = [
   { n: 27, date: '2026-09-27', prompt: 'v6',
     inputs: { moment: 'alone in the dark; something shifts just out of sight, hold your breath', setting: 'a fog-drowned dead suburb at 3am', mood: 'eerie, uncanny, dread', energy: 'low', weather: 'thick fog, dead still', threat: 'near', loop: 'yes', len: '3:00' },
     clips: [ { id: '4b1a0799-969b-4970-a0b7-5404152b2add', title: '3am Suburb' }, { id: '74aa5bd3-d4f6-4c64-94e1-fd725fa190d0', title: 'Fog-Muted Neighborhood' } ] },
+  { n: 28, date: '2026-09-27', prompt: 'v6-dread',
+    // one-off: v6 with "spacious and warm" -> "cold", "Eerie and mysterious stay soft and listenable." -> "Ominous means full dread: sub-bass drones, dissonant clusters, a slow funeral pulse closing in.", adventurous clause dropped for room
+    inputs: { moment: 'the horde found the base; death is coming', setting: 'the last barricade at midnight', mood: 'ominous, creepy, doom', energy: 'low', weather: 'blood moon, no wind', threat: 'near', loop: 'yes', len: '3:00' },
+    clips: [] },
 ];
 // What each prompt version changed, and why.
 const SP_VERSIONS = [
