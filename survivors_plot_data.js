@@ -3,7 +3,7 @@
 // Shared queue: queue.html?q=sjm9xyp5 ("Survivors' Plot · lo-fi").
 // verdict: '' (unheard) | 'keep' | 'maybe' | 'cut'  - filled in by ear, later.
 const SP_QUEUE = 'sjm9xyp5';
-const SP_PROMPT = 'v4';
+const SP_PROMPT = 'v5';
 const SP_CREATES = [
   { n: 1, date: '2026-09-27', prompt: 'v1',
     inputs: { mood: 'cozy', energy: 'low', setting: 'campfire inside the walls at dusk', weather: 'light rain', threat: 'none', loop: 'yes', len: '2:30' },
@@ -69,6 +69,7 @@ const SP_VERSIONS = [
   { v: 'v2', date: '2026-09-27', note: 'v1 made every scene one song: all 14 takes at 76-78 BPM on Rhodes + music box, the Setting only added quiet foley, and "okay, for now" in the brief titled 4 of 7 takes Safe For Now. v2 adds a Game moment input and a think-about-the-setting step that picks the lead instrument, ties BPM to Energy, caps length under 4:00, and bans safe/okay/survive in titles.' },
   { v: 'v3', date: '2026-09-27', note: 'BlazeDale asked for eerie, mysterious and adventurous cues too. Mood rules gained eerie (detuned, whole-tone/diminished, reversed tape, long gaps), mysterious (dorian/phrygian, unresolved) and adventurous (lydian/mixolydian, forward pulse, climbing motif); eerie and mysterious stay lo-fi, never horror. Wording trimmed to keep room under the 3,000 cap.' },
   { v: 'v4', date: '2026-09-27', note: 'BlazeDale: the tracks are good but too jazzy for the game; wants cozy anime-game. Genre changed from lo-fi hip-hop to a cozy anime-game soundtrack (hand-drawn slice-of-life village theme, hummable acoustic melody). Harmony now plain diatonic triads/add2/sus2 instead of 7ths and 9ths; straight eighths or 3/4 or 6/8 instead of lazy swing; acoustic base (piano, nylon guitar, light strings, glockenspiel, hand percussion); tempo bands raised; sections renamed Intro / Theme A / Theme B / Interlude / Theme A Return / Breakdown / Loop Point. Steered positively only: jazz markers are left unnamed rather than excluded.' },
+  { v: 'v5', date: '2026-09-27', note: 'BlazeDale: needs more ambient, atmospheric tunes. v4 anime-game kept its warmth but became exploration ambience: a pad/drone bed plus a floating voice (felt piano, celesta, bells, ocarina, harp), a 3-5 note fragment drifting in and out with long silences, 60-76 BPM or free time, long reverb, chords changing every few bars, no percussion (energy now sets pulse: none / soft arpeggio / rippling ostinato), place sounds woven into the texture. Sections: Opening / Drift A / Drift B / Swell / Clearing / Drift A Return / Loop Point.' },
 ];
 
 // Scene deck for the rolling queue: the next unused scene is fired, top down. Add freely.
