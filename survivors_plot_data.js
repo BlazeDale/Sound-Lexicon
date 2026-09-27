@@ -35,6 +35,15 @@ const SP_CREATES = [
   { n: 10, date: '2026-09-27', prompt: 'v2',
     inputs: { moment: 'alone at the radio, scanning; says someone might be out there', setting: 'radio tower at night', mood: 'lonely', energy: 'low', weather: 'clear night, stars', threat: 'distant', loop: 'yes', len: '3:00' },
     clips: [ { id: 'f092260e-5d70-46f6-9849-07423809c03f', title: 'Clear-Night Watch' }, { id: 'bd5143b5-9f7d-4019-86da-fe614d952faf', title: 'Tape Start' } ] },
+  { n: 11, date: '2026-09-27', prompt: 'v3',
+    inputs: { moment: 'fog swallows the fence line at 3am; something is out there, stay calm', setting: 'the fence line in thick fog', mood: 'eerie', energy: 'low', weather: 'fog', threat: 'near', loop: 'yes', len: '2:30' },
+    clips: [] },
+  { n: 12, date: '2026-09-27', prompt: 'v3',
+    inputs: { moment: 'a numbers station on the radio; who is broadcasting?', setting: 'the radio shack, a signal nobody sent', mood: 'mysterious', energy: 'low', weather: 'static-dry night', threat: 'distant', loop: 'yes', len: '2:30' },
+    clips: [] },
+  { n: 13, date: '2026-09-27', prompt: 'v3',
+    inputs: { moment: 'the expedition leaves at dawn; the map ends here', setting: 'the open road past the last town', mood: 'adventurous', energy: 'busy', weather: 'cool clear morning', threat: 'none', loop: 'yes', len: '2:30' },
+    clips: [] },
 ];
 // What each prompt version changed, and why.
 const SP_VERSIONS = [
