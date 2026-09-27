@@ -62,6 +62,18 @@ const SP_CREATES = [
   { n: 19, date: '2026-09-27', prompt: 'v4',
     inputs: { moment: 'reading a found letter; a short sad memory, then it lets go', setting: 'an empty house in the old town', mood: 'wistful', energy: 'low', weather: 'overcast', threat: 'none', loop: 'no', len: '2:00' },
     clips: [] },
+  { n: 20, date: '2026-09-27', prompt: 'v5',
+    inputs: { moment: 'lights moving in the woods at night; curious, not afraid', setting: 'the treeline past the orchard', mood: 'mysterious', energy: 'low', weather: 'clear night, crickets', threat: 'distant', loop: 'yes', len: '3:00' },
+    clips: [] },
+  { n: 21, date: '2026-09-27', prompt: 'v5',
+    inputs: { moment: 'watching the sun set over the dead city; beautiful and sad', setting: 'the rooftop lookout', mood: 'wistful', energy: 'low', weather: 'golden haze', threat: 'distant', loop: 'yes', len: '3:00' },
+    clips: [] },
+  { n: 22, date: '2026-09-27', prompt: 'v5',
+    inputs: { moment: 'fishing off the old pier; nothing to do, and that is the point', setting: 'the river pier past the fence', mood: 'content', energy: 'low', weather: 'still, cicadas', threat: 'distant', loop: 'yes', len: '3:00' },
+    clips: [] },
+  { n: 23, date: '2026-09-27', prompt: 'v5',
+    inputs: { moment: 'wading the flooded subway; every drip echoes', setting: 'a flooded subway tunnel', mood: 'eerie', energy: 'low', weather: 'dripping, cold', threat: 'near', loop: 'yes', len: '2:30' },
+    clips: [] },
 ];
 // What each prompt version changed, and why.
 const SP_VERSIONS = [
