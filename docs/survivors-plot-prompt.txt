@@ -1,4 +1,4 @@
-SURVIVORS' PLOT - LO-FI CUE
+SURVIVORS' PLOT - COZY GAME CUE
 
 INPUTS (fill any; blanks use defaults):
 - Game moment: evening wind-down; the day went well
@@ -10,39 +10,38 @@ INPUTS (fill any; blanks use defaults):
 - Looping: yes
 - Length: 2:30
 
-Write the Suno "Lyrics" field for an INSTRUMENTAL lo-fi cue for Survivors' Plot, a comfy zombie-survival base-builder.
+Write the Suno "Lyrics" field for an INSTRUMENTAL cozy anime-game soundtrack cue for Survivors' Plot, a comfy zombie-survival base-builder: a hand-drawn slice-of-life village theme, a warm acoustic melody you could hum, a little nostalgic.
 
 FIRST, THINK ABOUT THE SETTING (do not print this step)
 From Game moment and Setting decide:
 - what the player is doing while this plays;
-- the one feeling it must convey (settled, busy, homesick, proud, eerie, curious, bold...);
-- the lead instrument that belongs in this place: a garden might want plucked acoustic guitar, a workshop muted plucks and a wood-block pulse, a night watch a lone detuned piano;
-- the place's own sounds, woven into the rhythm.
-Every section carries that choice. Two different Settings must not sound alike.
+- the one feeling it must convey (settled, homesick, proud, eerie, curious, bold...);
+- the lead instrument for this place: acoustic guitar for a garden, pizzicato strings and wood block for a workshop, a lone piano for a night watch, flute or ocarina outdoors, music box for a memory;
+- faint sounds of the place.
+Every section carries it; two Settings must never sound alike.
 
 RULES
 - Output ONLY lines in [ ]. No lyrics, vocals, syllables or humming.
 - 6-8 sections. Header: [Section - BPM/feel - 0:30]. Times sum to Length, 15-40 s each.
-- Length stays under 4:00 whatever is asked; default 2:30.
-- Under each header, 2-4 lines: motif, drums, layers, what it conveys.
-- One short motif (4-8 notes) on the lead instrument through every section. No unrelated ideas.
-- One tempo, set by Energy: low 64-72 BPM, steady 74-84, busy 86-96. Lazy swing. No drops, no builds, no climax.
+- Under 4:00 whatever is asked.
+- Under each header, 2-4 lines: melody, rhythm, instruments, what it conveys.
+- One hummable melody on the lead instrument in every section; no unrelated ideas.
+- One tempo, set by Energy: low 66-80 BPM, steady 84-100, busy 104-120. Straight eighths, or a gentle 3/4 or 6/8.
 
 SOUND BASE (every cue)
-Dusty drums or brushes, soft kick, tape saturation, vinyl crackle, gentle wow and flutter, round mellow bass. Rhodes and felt piano only if they suit the Setting.
+Warm, simple and acoustic: soft piano, nylon guitar, light strings, glockenspiel, soft shaker and hand percussion, round bass, a little tape warmth.
 
 HOW INPUTS STEER
-- Mood sets harmony: cozy, hopeful = major 7ths, 9ths; wistful, lonely = minor 9ths, sus chords; uneasy = minor, fewer notes, low pad; eerie = detuned, whole-tone or diminished, reversed tape, long gaps; mysterious = dorian or phrygian, unresolved; adventurous = lydian or mixolydian, a forward pulse, the motif climbing.
-- Energy sets density: low = half-time, sparse; steady = full pocket; busy = brighter hats, walking bass, more layers, never frantic.
-- Eerie and mysterious stay lo-fi and listenable, never horror. Threat colours without breaking comfort: none = warm; distant = low drone, a stray detuned note; near = drums thin, slow heartbeat kick, motif quieter.
-- Weather shapes the room tone.
+- Mood sets harmony, plain and diatonic: cozy, hopeful = major triads, add2, sus2, I-IV-V; wistful, lonely = minor key, vi-IV-I-V, held notes; uneasy = minor, fewer notes, low strings; eerie = detuned music box, whole-tone runs, sparse bells, long gaps; mysterious = dorian or harmonic minor, harp and celesta, unresolved; adventurous = mixolydian, marching snare, leaping melody.
+- Energy sets density: low = few instruments, space; steady = full, gentle groove; busy = bouncy pizzicato, never frantic.
+- Eerie and mysterious stay gentle and listenable. Threat: none = warm; distant = low drone, a stray minor note; near = rhythm thins, a slow low pulse, melody quieter.
 
 SECTION NAMES (not verse/chorus)
-Tape Start, Main Loop, Loop B, Flip, Drop-out, Turnaround, Return, Tape Out.
-- At least 2 steady loops that could repeat unnoticed, and 2 variations (Flip, Drop-out) safe to swap.
+Intro, Theme A, Theme B, Interlude, Theme A Return, Breakdown, Loop Point.
+- 2+ steady themes, 2 swappable variations (Interlude, Breakdown).
 
 ENDING
-- Looping yes: the last section settles into the Main Loop's groove and chord to cut seamlessly to the start. No fade, no final hit.
-- Looping no: the tape slows or fades softly into crackle.
+- Looping yes: end on Theme A's chord and rhythm so it cuts seamlessly to the start. No fade, no final hit.
+- Looping no: a soft final chord that rings out.
 
-After the composition, give exactly 2 original titles (unbracketed), each naming something in the Setting or Game moment. Never a section name, and never the words safe, okay, survive or survival.
+After the composition, give exactly 2 original titles (unbracketed) naming something in the Setting or Game moment; never a section name or the words safe, okay, survive, survival.
