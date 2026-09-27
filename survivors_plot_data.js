@@ -53,6 +53,15 @@ const SP_CREATES = [
   { n: 16, date: '2026-09-27', prompt: 'v4',
     inputs: { moment: 'the horde has passed and everyone sleeps; the music exhales', setting: 'the bunkhouse after a long night', mood: 'relieved', energy: 'low', weather: 'rain easing off', threat: 'distant', loop: 'yes', len: '3:00' },
     clips: [ { id: 'e4c6f252-2ca1-4a44-ba6f-3578c2966ef5', title: 'Pastoral Wander' }, { id: 'd32bc366-3c16-4c10-8537-55f9f032e5af', title: 'Morning Can Wait' } ] },
+  { n: 17, date: '2026-09-27', prompt: 'v4',
+    inputs: { moment: 'a sealed bunker door with fresh footprints; what is inside?', setting: 'a bunker hidden in the forest', mood: 'mysterious', energy: 'steady', weather: 'damp pine air', threat: 'distant', loop: 'yes', len: '2:30' },
+    clips: [] },
+  { n: 18, date: '2026-09-27', prompt: 'v4',
+    inputs: { moment: 'cycling the convoy through empty farmland; wind and open sky', setting: 'bicycle convoy through farm country', mood: 'adventurous', energy: 'busy', weather: 'sunny, breezy', threat: 'none', loop: 'yes', len: '2:30' },
+    clips: [] },
+  { n: 19, date: '2026-09-27', prompt: 'v4',
+    inputs: { moment: 'reading a found letter; a short sad memory, then it lets go', setting: 'an empty house in the old town', mood: 'wistful', energy: 'low', weather: 'overcast', threat: 'none', loop: 'no', len: '2:00' },
+    clips: [] },
 ];
 // What each prompt version changed, and why.
 const SP_VERSIONS = [
