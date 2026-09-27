@@ -3,7 +3,7 @@
 // Shared queue: queue.html?q=sjm9xyp5 ("Survivors' Plot · lo-fi").
 // verdict: '' (unheard) | 'keep' | 'maybe' | 'cut'  - filled in by ear, later.
 const SP_QUEUE = 'sjm9xyp5';
-const SP_PROMPT = 'v1';
+const SP_PROMPT = 'v2';
 const SP_CREATES = [
   { n: 1, date: '2026-09-27', prompt: 'v1',
     inputs: { mood: 'cozy', energy: 'low', setting: 'campfire inside the walls at dusk', weather: 'light rain', threat: 'none', loop: 'yes', len: '2:30' },
@@ -17,4 +17,39 @@ const SP_CREATES = [
   { n: 4, date: '2026-09-27', prompt: 'v1',
     inputs: { mood: 'cozy', energy: 'busy', setting: 'workshop, sawdust and a radio', weather: 'overcast', threat: 'none', loop: 'yes', len: '2:30' },
     clips: [ { id: '731a6405-4424-4ba0-9d62-4a4be9dafe11', title: 'Safe for Now' }, { id: '6b4ff184-291c-4a9c-ab11-acd57174942f', title: 'Cozy Survival Workshop' } ] },
+  { n: 5, date: '2026-09-27', prompt: 'v1',
+    inputs: { mood: 'cozy', energy: 'low', setting: 'reading by lantern in the bunk room', weather: 'thunderstorm outside', threat: 'none', loop: 'yes', len: '3:00' },
+    clips: [ { id: 'f4ae51dd-6be3-4dd2-bb05-d6bfb3ed77c8', title: 'At Ease Inside the Bunk Room' }, { id: '26e1c910-8047-431e-bf85-448e86b61882', title: 'Safe For Now' } ] },
+  { n: 6, date: '2026-09-27', prompt: 'v1',
+    inputs: { mood: 'hopeful', energy: 'steady', setting: 'a trading caravan rolling up to the gate', weather: 'warm afternoon', threat: 'none', loop: 'yes', len: '2:30' },
+    clips: [ { id: '91c8680d-92a4-46c2-875e-0c5e2c9bfd8a', title: 'Afternoon Caravan' }, { id: '558d6bd2-212f-45a2-a26f-1592b7b590e4', title: 'Afternoon Caravan' } ] },
+  { n: 7, date: '2026-09-27', prompt: 'v1',
+    inputs: { mood: 'uneasy', energy: 'low', setting: 'boarding up the windows before nightfall', weather: 'fog', threat: 'near', loop: 'yes', len: '2:30' },
+    clips: [ { id: '2ca0802e-311b-45df-aad8-5b370913010d', title: 'Safe For Now' }, { id: '69195a01-41f3-4527-936c-f55c8b6f13ec', title: 'Safe For Now' } ] },
+];
+// What each prompt version changed, and why.
+const SP_VERSIONS = [
+  { v: 'v1', date: '2026-09-27', note: 'Classical modular brief rewritten as lo-fi beat tape: seven inputs, beat-tape section names, loop-safe ending.' },
+  { v: 'v2', date: '2026-09-27', note: 'v1 made every scene one song: all 14 takes at 76-78 BPM on Rhodes + music box, the Setting only added quiet foley, and "okay, for now" in the brief titled 4 of 7 takes Safe For Now. v2 adds a Game moment input and a think-about-the-setting step that picks the lead instrument, ties BPM to Energy, caps length under 4:00, and bans safe/okay/survive in titles.' },
+];
+
+// Scene deck for the rolling queue: the next unused scene is fired, top down. Add freely.
+// moment = what the player is doing and what the music must tell them. Keep it under ~100 chars (Simple box caps at 3,000).
+const SP_SCENES = [
+  { moment: 'hauling salvage into piles; the music keeps a sorting rhythm, a little bittersweet', setting: 'sorting salvage from the old town', mood: 'wistful', energy: 'steady', weather: 'drizzle', threat: 'distant', loop: 'yes', len: '2:30' },
+  { moment: 'cooking for everyone; says the camp is a family now', setting: 'the camp kitchen, stew on the stove', mood: 'cozy', energy: 'steady', weather: 'first snow', threat: 'none', loop: 'yes', len: '2:30' },
+  { moment: 'alone at the radio, scanning; says someone might be out there', setting: 'radio tower at night', mood: 'lonely', energy: 'low', weather: 'clear night, stars', threat: 'distant', loop: 'yes', len: '3:00' },
+  { moment: 'picking the first crops; proud, the work paid off', setting: 'the vegetable beds on harvest day', mood: 'hopeful', energy: 'busy', weather: 'sunny', threat: 'none', loop: 'yes', len: '2:30' },
+  { moment: 'the horde has passed and everyone sleeps; the music exhales', setting: 'the bunkhouse after a long night', mood: 'relieved', energy: 'low', weather: 'rain easing off', threat: 'distant', loop: 'yes', len: '3:00' },
+  { moment: 'reading a found letter; a short sad memory, then it lets go', setting: 'an empty house in the old town', mood: 'wistful', energy: 'low', weather: 'overcast', threat: 'none', loop: 'no', len: '2:00' },
+  { moment: 'tinkering until it sputters to life; fiddly, patient, satisfying', setting: 'the generator shed, grease and a toolbox', mood: 'content', energy: 'steady', weather: 'humid summer', threat: 'none', loop: 'yes', len: '2:30' },
+  { moment: 'title screen; welcome home, press start', setting: 'main menu: the base at dawn', mood: 'hopeful', energy: 'low', weather: 'mist lifting', threat: 'none', loop: 'yes', len: '2:00' },
+  { moment: 'looting a pharmacy, ears open; focused, not scared', setting: 'scavenging run far from home', mood: 'uneasy', energy: 'steady', weather: 'gusting wind', threat: 'near', loop: 'yes', len: '2:30' },
+  { moment: 'morning rounds with the animals; gentle routine', setting: 'the chicken coop and the camp dog', mood: 'cozy', energy: 'low', weather: 'crisp autumn morning', threat: 'none', loop: 'yes', len: '2:30' },
+  { moment: 'raising a new wall section together; teamwork, hammers in time', setting: 'the east wall construction site', mood: 'content', energy: 'busy', weather: 'bright and breezy', threat: 'none', loop: 'yes', len: '2:30' },
+  { moment: 'watching the sun set over the dead city; beautiful and sad', setting: 'the rooftop lookout', mood: 'wistful', energy: 'low', weather: 'golden haze', threat: 'distant', loop: 'yes', len: '3:00' },
+  { moment: 'mending clothes while the storm howls; snug and small', setting: 'by the wood stove', mood: 'cozy', energy: 'low', weather: 'blizzard', threat: 'none', loop: 'yes', len: '3:00' },
+  { moment: 'haggling at the gate; playful, a bit of swagger', setting: 'the trading post counter', mood: 'hopeful', energy: 'steady', weather: 'warm afternoon', threat: 'none', loop: 'yes', len: '2:30' },
+  { moment: 'fishing off the old pier; nothing to do, and that is the point', setting: 'the river pier past the fence', mood: 'content', energy: 'low', weather: 'still, cicadas', threat: 'distant', loop: 'yes', len: '3:00' },
+  { moment: 'teaching a newcomer to build; warm, a little funny', setting: 'the carpentry bench', mood: 'cozy', energy: 'steady', weather: 'overcast', threat: 'none', loop: 'yes', len: '2:30' },
 ];

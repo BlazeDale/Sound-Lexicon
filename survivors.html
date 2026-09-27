@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Survivors' Plot · Sound Lexicon</title>
+<meta name="description" content="Lo-fi cues for Survivors' Plot: every create, the in-game inputs it was fired with, and what came out well.">
+<style>
+  :root{
+    --ink:#111419; --panel:#181c24; --panel2:#1f2530; --line:#2a313d;
+    --text:#e9e6dd; --muted:#98a0ad; --dim:#6b7280;
+    --amber:#e0a63c; --amber-dim:#8a6a2a; --teal:#1a9e75; --rose:#d03b3b; --violet:#8a7fe0;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ink);color:var(--text);
+       font:15px/1.6 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+  a{color:var(--amber)}
+  .wrap{max-width:1180px;margin:0 auto;padding:26px 16px 80px}
+  .crumbs{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+  .crumbs a{color:var(--dim);text-decoration:none}
+  .crumbs b{color:var(--amber);font-weight:400}
+  h1{font-size:30px;margin:10px 0 4px}
+  .lede{color:var(--muted);max-width:760px;margin:0 0 18px}
+  .layout{display:flex;gap:20px;align-items:flex-start}
+  .main{flex:1 1 auto;min-width:0}
+  .side{position:sticky;top:18px;width:320px;flex:0 0 320px}
+  .box{border:1px solid var(--line);border-radius:11px;background:var(--panel);padding:12px;margin:0 0 14px}
+  .box h3{margin:0 0 8px;font-size:12px;font-family:var(--mono);color:var(--muted);font-weight:400;letter-spacing:.08em;text-transform:uppercase}
+  #frame{width:100%;height:120px;border:0;border-radius:8px;background:var(--panel2);display:block}
+  .pnow{font-weight:600;font-size:14px;margin:0 0 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .phint{font-family:var(--mono);font-size:10px;color:var(--dim);margin:8px 0 0}
+
+  .bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 14px}
+  .bar button,.btn{background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:7px;
+       padding:5px 11px;font:12px var(--mono);cursor:pointer;text-decoration:none}
+  .bar button.on{border-color:var(--amber);color:var(--amber)}
+  .count{font-family:var(--mono);font-size:11px;color:var(--dim);margin-left:auto}
+
+  details.prompt{margin:0 0 16px}
+  details.prompt summary{cursor:pointer;font-family:var(--mono);font-size:12px;color:var(--muted)}
+  details.prompt pre{white-space:pre-wrap;font:12px/1.55 var(--mono);color:var(--text);background:var(--panel2);
+       border:1px solid var(--line);border-radius:8px;padding:12px;max-height:420px;overflow:auto}
+
+  .create{border:1px solid var(--line);border-left:3px solid var(--violet);border-radius:11px;background:var(--panel);
+          padding:12px 14px;margin:0 0 12px}
+  .create.kept{border-left-color:var(--teal)}
+  .create.judged{border-left-color:var(--line)}
+  .chead{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+  .cn{font-family:var(--mono);font-size:11px;color:var(--dim)}
+  .setting{font-weight:600}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}
+  .chip{font:11px var(--mono);border:1px solid var(--line);border-radius:20px;padding:1px 9px;color:var(--muted);background:var(--panel2)}
+  .chip i{font-style:normal;color:var(--dim)}
+  .chip.threat-near{border-color:var(--rose);color:var(--rose)}
+  .chip.threat-distant{border-color:var(--amber-dim);color:var(--amber)}
+  .take{display:flex;gap:12px;align-items:flex-start;padding:8px 0;border-top:1px solid var(--line)}
+  .tile{position:relative;width:52px;height:52px;border-radius:8px;overflow:hidden;border:1px solid var(--line);
+        background:var(--panel2);padding:0;cursor:pointer;flex:none}
+  .tile img{width:100%;height:100%;object-fit:cover;display:block}
+  .tile span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.32);color:#fff;font-size:14px}
+  .tile.playing{border-color:var(--amber);box-shadow:0 0 0 2px var(--amber)}
+  .tbody{flex:1;min-width:0}
+  .ttitle{font-weight:600;font-size:14px}
+  .ttitle a{color:var(--dim);font-size:11px;text-decoration:none;margin-left:6px;font-family:var(--mono)}
+  .verd{display:flex;gap:6px;margin:5px 0}
+  .verd button{background:var(--panel2);border:1px solid var(--line);color:var(--muted);border-radius:6px;
+               padding:2px 10px;font:11px var(--mono);cursor:pointer}
+  .verd button.keep.on{border-color:var(--teal);color:var(--teal)}
+  .verd button.maybe.on{border-color:var(--amber);color:var(--amber)}
+  .verd button.cut.on{border-color:var(--rose);color:var(--rose)}
+  textarea{width:100%;background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:7px;
+           padding:6px 8px;font:12.5px/1.45 ui-sans-serif,system-ui,sans-serif;resize:vertical;min-height:34px}
+  .saved{font:10px var(--mono);color:var(--teal);margin-left:6px}
+
+  table{width:100%;border-collapse:collapse;font:11.5px var(--mono)}
+  td,th{padding:3px 4px;text-align:left;border-bottom:1px solid var(--line)}
+  th{color:var(--dim);font-weight:400}
+  td.k{color:var(--teal)} td.c{color:var(--rose)}
+  .rollgroup{color:var(--muted);padding-top:8px}
+
+  @media (max-width:900px){
+    .layout{flex-direction:column}
+    .side{position:static;width:100%;flex:none;order:-1}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="crumbs"><a href="index.html">Sound Lexicon</a> / <b>Survivors' Plot</b> · <a id="qlink" href="queue.html">the queue</a></div>
+  <h1>Survivors' Plot · lo-fi cues</h1>
+  <p class="lede">
+    Music for a comfy zombie-survival base-builder, made on Suno's Simple tab with one prompt and seven
+    in-game inputs. Each create below lists what it was fired with. Mark each take <b>keep</b>, <b>maybe</b>
+    or <b>cut</b>, and add a line on why. The next round is steered from those marks.
+  </p>
+
+  <details class="prompt">
+    <summary>The prompt (<span id="pver">v1</span>): paste into Simple, change the INPUTS block</summary>
+    <p><button class="btn" id="copyp">Copy prompt</button></p>
+    <pre id="ptext">Loading…</pre>
+  </details>
+
+  <div class="layout">
+    <div class="main">
+      <div class="bar" id="filters">
+        <button data-f="all" class="on">All</button>
+        <button data-f="unheard">Unjudged</button>
+        <button data-f="keep">Keep</button>
+        <button data-f="maybe">Maybe</button>
+        <button data-f="cut">Cut</button>
+        <span class="count" id="count"></span>
+      </div>
+      <div id="list"></div>
+    </div>
+    <div class="side">
+      <div class="box">
+        <h3>Player</h3>
+        <div class="pnow" id="pnow">Press a cover to play</div>
+        <iframe id="frame" title="Suno player"></iframe>
+        <p class="phint">Press play inside the player if it does not start itself.</p>
+      </div>
+      <div class="box">
+        <h3>What's working</h3>
+        <div id="roll"><p class="phint">Nothing judged yet.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const DB = 'https://vocal-timbre-library-default-rtdb.firebaseio.com';
+/* Verdicts live in session_notes, keyed sp-<clip id>, as a JSON string {v, note}. That node is
+   already world-writable and capped at 800 chars, so no rules change was needed, and whoever
+   builds the next round reads it the same way the session page's notes are read. */
+const V = {};
+const key = id => 'sp-' + id;
+const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let CREATES = [], FILTER = 'all', playing = null;
+
+async function loadData() {
+  // Fetched with a cache-buster rather than <script src>: the log changes every round and a
+  // stale copy looks exactly like a round that never happened.
+  const src = await (await fetch('survivors_plot_data.js?t=' + Date.now())).text();
+  const d = new Function(src + '; return {SP_QUEUE, SP_PROMPT, SP_CREATES};')();
+  CREATES = d.SP_CREATES;
+  document.getElementById('pver').textContent = d.SP_PROMPT;
+  document.getElementById('qlink').href = 'queue.html?q=' + d.SP_QUEUE;
+  fetch('docs/survivors-plot-prompt.txt?t=' + Date.now()).then(r => r.text())
+    .then(t => document.getElementById('ptext').textContent = t).catch(() => {});
+  const ids = CREATES.flatMap(c => c.clips.map(x => x.id));
+  const r = await fetch(DB + '/session_notes.json?orderBy="$key"&startAt="sp-"&endAt="sp-"').catch(() => null);
+  let all = null;
+  if (r && r.ok) all = await r.json();
+  if (all) for (const id of ids) { const raw = all[key(id)]; if (raw) try { V[id] = JSON.parse(raw); } catch (e) {} }
+  else await Promise.all(ids.map(async id => {
+    try { const x = await (await fetch(DB + '/session_notes/' + key(id) + '.json')).json(); if (x) V[id] = JSON.parse(x); } catch (e) {}
+  }));
+}
+
+async function save(id) {
+  const v = V[id] || {};
+  const body = v.v || v.note ? JSON.stringify({ v: v.v || '', note: (v.note || '').slice(0, 700) }) : null;
+  const r = await fetch(DB + '/session_notes/' + key(id) + '.json', { method: 'PUT', body: JSON.stringify(body) });
+  return r.ok;
+}
+
+function verdictOf(id) { return (V[id] && V[id].v) || ''; }
+
+function render() {
+  const list = document.getElementById('list');
+  const rows = [...CREATES].reverse();
+  let shown = 0, total = 0;
+  list.innerHTML = rows.map(c => {
+    const takes = c.clips.filter(x => { total++; const v = verdictOf(x.id);
+      return FILTER === 'all' || (FILTER === 'unheard' ? !v : v === FILTER); });
+    if (!takes.length) return '';
+    shown += takes.length;
+    const vs = c.clips.map(x => verdictOf(x.id));
+    const cls = vs.includes('keep') ? 'kept' : vs.every(Boolean) ? 'judged' : '';
+    const i = c.inputs;
+    return `<div class="create ${cls}">
+      <div class="chead"><span class="cn">#${c.n} · ${esc(c.date)} · prompt ${esc(c.prompt)}</span><span class="setting">${esc(i.setting)}</span></div>
+      <div class="chips">
+        <span class="chip"><i>mood</i> ${esc(i.mood)}</span><span class="chip"><i>energy</i> ${esc(i.energy)}</span>
+        <span class="chip"><i>weather</i> ${esc(i.weather)}</span>
+        <span class="chip threat-${esc(i.threat)}"><i>threat</i> ${esc(i.threat)}</span>
+        <span class="chip"><i>loop</i> ${esc(i.loop)}</span><span class="chip"><i>length</i> ${esc(i.len)}</span>
+      </div>
+      ${takes.map(x => { const v = V[x.id] || {}; return `<div class="take" data-id="${x.id}">
+        <button class="tile${playing === x.id ? ' playing' : ''}" data-play="${x.id}" title="Play">
+          <img loading="lazy" src="https://cdn2.suno.ai/image_${x.id}.jpeg" alt=""><span>▶</span></button>
+        <div class="tbody">
+          <div class="ttitle">${esc(x.title)}<a href="https://suno.com/song/${x.id}" target="_blank" rel="noopener">suno ↗</a></div>
+          <div class="verd">
+            ${['keep','maybe','cut'].map(k => `<button class="${k}${v.v === k ? ' on' : ''}" data-v="${k}">${k}</button>`).join('')}
+            <span class="saved" hidden>saved</span>
+          </div>
+          <textarea placeholder="What worked, what didn't…" data-note>${esc(v.note || '')}</textarea>
+        </div></div>`; }).join('')}
+    </div>`;
+  }).join('') || '<p class="phint">Nothing matches that filter.</p>';
+  document.getElementById('count').textContent = shown + ' of ' + total + ' takes';
+  renderRoll();
+}
+
+/* Keep rate per input value: which moods, energies, threats and lengths are landing. Only
+   judged takes count, so an unheard round does not drag a value down. */
+function renderRoll() {
+  const groups = ['mood', 'energy', 'threat', 'loop', 'len'];
+  const t = {};
+  for (const c of CREATES) for (const x of c.clips) {
+    const v = verdictOf(x.id); if (!v) continue;
+    for (const g of groups) {
+      const k = g + '\u0000' + c.inputs[g];
+      t[k] = t[k] || { keep: 0, maybe: 0, cut: 0 }; t[k][v]++;
+    }
+  }
+  const keys = Object.keys(t);
+  if (!keys.length) { document.getElementById('roll').innerHTML = '<p class="phint">Nothing judged yet.</p>'; return; }
+  let html = '<table><tr><th></th><th>keep</th><th>maybe</th><th>cut</th></tr>';
+  for (const g of groups) {
+    const ks = keys.filter(k => k.startsWith(g + '\u0000')).sort();
+    if (!ks.length) continue;
+    html += `<tr><td class="rollgroup" colspan="4">${g}</td></tr>`;
+    for (const k of ks) { const r = t[k]; html += `<tr><td>${esc(k.split('\u0000')[1])}</td><td class="k">${r.keep}</td><td>${r.maybe}</td><td class="c">${r.cut}</td></tr>`; }
+  }
+  document.getElementById('roll').innerHTML = html + '</table>';
+}
+
+function play(id) {
+  playing = id;
+  const old = document.getElementById('frame');
+  const f = document.createElement('iframe');
+  f.id = 'frame'; f.title = 'Suno player';
+  // credentialless: signed in to suno.com, a normal frame never loads (see queue.html).
+  f.credentialless = true; f.setAttribute('credentialless', '');
+  f.setAttribute('allow', "autoplay 'src'; encrypted-media 'src'");
+  f.src = 'https://suno.com/embed/' + id;
+  old.replaceWith(f);
+  const c = CREATES.find(c => c.clips.some(x => x.id === id));
+  const x = c && c.clips.find(x => x.id === id);
+  document.getElementById('pnow').textContent = x ? x.title + ' — ' + c.inputs.setting : id;
+  document.querySelectorAll('.tile').forEach(b => b.classList.toggle('playing', b.dataset.play === id));
+}
+
+function flash(take) { const s = take.querySelector('.saved'); s.hidden = false; setTimeout(() => s.hidden = true, 1200); }
+
+document.getElementById('list').addEventListener('click', async e => {
+  const p = e.target.closest('[data-play]'); if (p) { play(p.dataset.play); return; }
+  const b = e.target.closest('[data-v]'); if (!b) return;
+  const take = b.closest('.take'), id = take.dataset.id;
+  V[id] = V[id] || {};
+  V[id].v = V[id].v === b.dataset.v ? '' : b.dataset.v;
+  take.querySelectorAll('[data-v]').forEach(x => x.classList.toggle('on', x.dataset.v === V[id].v));
+  if (await save(id)) flash(take);
+  renderRoll();
+});
+document.getElementById('list').addEventListener('change', async e => {
+  if (!e.target.matches('[data-note]')) return;
+  const take = e.target.closest('.take'), id = take.dataset.id;
+  V[id] = V[id] || {}; V[id].note = e.target.value.trim();
+  if (await save(id)) flash(take);
+});
+document.getElementById('filters').addEventListener('click', e => {
+  const b = e.target.closest('[data-f]'); if (!b) return;
+  FILTER = b.dataset.f;
+  document.querySelectorAll('#filters [data-f]').forEach(x => x.classList.toggle('on', x === b));
+  render();
+});
+document.getElementById('copyp').addEventListener('click', () => {
+  navigator.clipboard.writeText(document.getElementById('ptext').textContent).then(() => {
+    document.getElementById('copyp').textContent = 'Copied';
+    setTimeout(() => document.getElementById('copyp').textContent = 'Copy prompt', 1200);
+  });
+});
+
+loadData().then(render).catch(e => { document.getElementById('list').innerHTML = '<p class="phint">Could not load the log: ' + esc(e.message) + '</p>'; });
+</script>
+</body>
+</html>
