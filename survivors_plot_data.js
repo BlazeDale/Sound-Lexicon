@@ -28,13 +28,13 @@ const SP_CREATES = [
     clips: [ { id: '2ca0802e-311b-45df-aad8-5b370913010d', title: 'Safe For Now' }, { id: '69195a01-41f3-4527-936c-f55c8b6f13ec', title: 'Safe For Now' } ] },
   { n: 8, date: '2026-09-27', prompt: 'v2',
     inputs: { moment: 'hauling salvage into piles; the music keeps a sorting rhythm, a little bittersweet', setting: 'sorting salvage from the old town', mood: 'wistful', energy: 'steady', weather: 'drizzle', threat: 'distant', loop: 'yes', len: '2:30' },
-    clips: [] },
+    clips: [ { id: '99a380c7-9da1-430b-a426-c3b40d4ab5f0', title: 'Salvage Sorting' }, { id: '5ac28c64-1c07-4525-975d-06e4930575f5', title: 'Salvage Sorting' } ] },
   { n: 9, date: '2026-09-27', prompt: 'v2',
     inputs: { moment: 'cooking for everyone; says the camp is a family now', setting: 'the camp kitchen, stew on the stove', mood: 'cozy', energy: 'steady', weather: 'first snow', threat: 'none', loop: 'yes', len: '2:30' },
-    clips: [] },
+    clips: [ { id: 'fe7d36e4-a86d-47ce-8643-d3192f273c8a', title: 'First Snowfall Stew' }, { id: '3ea5d46c-8e6e-45ef-a82f-248f1efd9be1', title: 'Stew and Snow' } ] },
   { n: 10, date: '2026-09-27', prompt: 'v2',
     inputs: { moment: 'alone at the radio, scanning; says someone might be out there', setting: 'radio tower at night', mood: 'lonely', energy: 'low', weather: 'clear night, stars', threat: 'distant', loop: 'yes', len: '3:00' },
-    clips: [] },
+    clips: [ { id: 'f092260e-5d70-46f6-9849-07423809c03f', title: 'Clear-Night Watch' }, { id: 'bd5143b5-9f7d-4019-86da-fe614d952faf', title: 'Tape Start' } ] },
 ];
 // What each prompt version changed, and why.
 const SP_VERSIONS = [
