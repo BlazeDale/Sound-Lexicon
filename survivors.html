@@ -183,6 +183,7 @@ function render() {
       <div class="chead"><span class="cn">#${c.n} · ${esc(c.date)} · prompt ${esc(c.prompt)}</span><span class="setting">${esc(i.setting)}</span></div>
       <div class="chips">
         <span class="chip"><i>mood</i> ${esc(i.mood)}</span><span class="chip"><i>energy</i> ${esc(i.energy)}</span>
+        ${i.played ? `<span class="chip"><i>played</i> ${esc(i.played)}</span>` : ''}
         <span class="chip"><i>weather</i> ${esc(i.weather)}</span>
         <span class="chip threat-${esc(i.threat)}"><i>threat</i> ${esc(i.threat)}</span>
         <span class="chip"><i>loop</i> ${esc(i.loop)}</span><span class="chip"><i>length</i> ${esc(i.len)}</span>
