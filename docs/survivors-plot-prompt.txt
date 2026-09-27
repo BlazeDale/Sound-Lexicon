@@ -16,16 +16,18 @@ FIRST, THINK ABOUT THE SETTING (do not print this step)
 From Game moment and Setting decide:
 - what the player is doing while this plays;
 - the one feeling it must hold (settled, homesick, still, eerie, curious, open...);
-- the sound bed that belongs here: soft pads, a low drone, bowed strings, tape-worn choir-like synth;
-- the voice that floats over it: felt piano, celesta, distant bells, ocarina, harp, a lone guitar harmonic;
-- the place's own sounds (rain, wind, fire, water, insects, hum), woven into the texture.
+- the sound bed that belongs here: soft pads, a low drone, bowed strings, tape-worn synth;
+- the instrument floating over it: felt piano, celesta, distant bells, ocarina, harp, a guitar harmonic;
+- the place's own sounds, woven into the texture.
 Every section carries it; two Settings must never sound alike.
 
 RULES
-- Output ONLY lines in [ ]. No lyrics, vocals, syllables or humming.
+- EVERY line goes in [ ], headers and descriptions alike: any bare text gets sung. No lyrics, vocals or humming.
 - 6-8 sections. Header: [Section - BPM/feel - 0:30]. Times sum to Length, 15-40 s each.
 - Under 4:00 whatever is asked.
-- Under each header, 2-4 lines: texture, the melodic fragment, movement, what it conveys.
+- Under each header, 2-4 bracketed lines: texture, fragment, movement, feeling. Like this:
+[Drift A - 68 BPM - 0:25]
+[low drone, celesta fragment drifts in]
 - One short melodic fragment (3-5 notes) that drifts in and out; long silences around it. No unrelated ideas.
 - Slow and spacious: 60-76 BPM or free time, long reverb tails, chords that change every few bars.
 
