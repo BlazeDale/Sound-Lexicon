@@ -89,7 +89,7 @@ const SP_CREATES = [
   { n: 28, date: '2026-09-27', prompt: 'v6-dread',
     // one-off: v6 with "spacious and warm" -> "cold", "Eerie and mysterious stay soft and listenable." -> "Ominous means full dread: sub-bass drones, dissonant clusters, a slow funeral pulse closing in.", adventurous clause dropped for room
     inputs: { moment: 'the horde found the base; death is coming', setting: 'the last barricade at midnight', mood: 'ominous, creepy, doom', energy: 'low', weather: 'blood moon, no wind', threat: 'near', loop: 'yes', len: '3:00' },
-    clips: [] },
+    clips: [ { id: '3c010817-a7b0-4696-8f6e-e6d7567dd7bf', title: 'Barricade Stillness' }, { id: '95fd205c-9fec-45b8-82cc-6a74e349857a', title: 'Barricade Stillness' } ] },
 ];
 // What each prompt version changed, and why.
 const SP_VERSIONS = [
