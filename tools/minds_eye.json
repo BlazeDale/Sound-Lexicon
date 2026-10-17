@@ -751,6 +751,45 @@
      }
     }
    ]
+  },
+  {
+   "reader": "v3",
+   "date": "2026-10-17",
+   "note": "s72/s73 yodel fusions: grounded as small-town call let loose on a city block, and a hilltop outdoor dance after a climb. Pre-reader swaps: 1048 window->tower, name of my creek->ever waded in my creek (copper pan kept: a simile for sunset light, not the household palette); 1045 still here->ringing clear",
+   "lyrics": [
+    {
+     "seed": "1048-rooftop-yodel",
+     "song": "Rooftop Yodel",
+     "P": 22,
+     "lines": 47,
+     "X": 0,
+     "pct": 47,
+     "one_word": {
+      "line": "Top of the world on a crosswalk light",
+      "from": "on",
+      "to": "at",
+      "why": "on sounds perched on the signal; at grounds it on the corner",
+      "consideration": "decline",
+      "reason": "perched on the signal IS the brag, a crosswalk light as summit; at turns swagger into waiting for the walk sign"
+     }
+    },
+    {
+     "seed": "1045-glacier-rave",
+     "song": "Glacier Rave",
+     "P": 16,
+     "lines": 43,
+     "X": 0,
+     "pct": 37,
+     "one_word": {
+      "line": "Oh, the dark is listening",
+      "from": "dark",
+      "to": "valley",
+      "why": "dark is reused in the chorus; valley is a place you can see",
+      "consideration": "decline",
+      "reason": "the reuse is the setup: the dark listens in the build so it can call back in the chorus; valley breaks the payoff"
+     }
+    }
+   ]
   }
  ],
  "findings": [
