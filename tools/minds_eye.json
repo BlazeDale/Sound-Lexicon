@@ -588,6 +588,29 @@
           }
         }
       ]
+    },
+    {
+      "reader": "v3",
+      "date": "2026-10-17",
+      "note": "s63: first French-language lyric; reader read it as a French listener, replied in English",
+      "lyrics": [
+        {
+          "seed": "1039-sunrise-filmed",
+          "song": "",
+          "P": 17,
+          "lines": 48,
+          "X": 0,
+          "pct": 35,
+          "one_word": {
+            "line": "Pas de zoom, pas de lendemain",
+            "from": "lendemain",
+            "to": "témoin",
+            "why": "'no tomorrow' clashes with the chorus's 'et demain il remet ça'",
+            "consideration": "decline",
+            "reason": "the clash is the point: the sun comes back tomorrow and the old man may not, which is the ache under the irony that the style asks for"
+          }
+        }
+      ]
     }
   ],
   "findings": [
