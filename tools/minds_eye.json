@@ -634,6 +634,29 @@
           }
         }
       ]
+    },
+    {
+      "reader": "v3",
+      "date": "2026-10-17",
+      "note": "s65: grounded brief (leaning into a hard wind on an open road) with idea slot 'fierce trust' instead of 'determination'; no poster language this time",
+      "lyrics": [
+        {
+          "seed": "1020-sandstorm-prayer",
+          "song": "",
+          "P": 15,
+          "lines": 36,
+          "X": 0,
+          "pct": 42,
+          "one_word": {
+            "line": "And the roar would not let go",
+            "from": "roar",
+            "to": "gale",
+            "why": "names the roar as wind so the chorus is a clear picture",
+            "consideration": "decline",
+            "reason": "an unnamed roar can be the sandstorm in the picture or whatever the listener is leaning into; naming it shrinks the song"
+          }
+        }
+      ]
     }
   ],
   "findings": [
