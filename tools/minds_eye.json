@@ -499,11 +499,60 @@
           }
         }
       ]
+    },
+    {
+      "reader": "v3",
+      "date": "2026-10-17",
+      "note": "s60/s61 gallery requests, checked before sending",
+      "lyrics": [
+        {
+          "seed": "957-voice-of-the-starlight-choir",
+          "song": "",
+          "P": 14,
+          "lines": 40,
+          "X": 2,
+          "pct": 35,
+          "one_word": {
+            "line": "Let the whole world know",
+            "from": "world",
+            "to": "room",
+            "consideration": "decline",
+            "reason": "the room-to-world jump at the final chorus is the transcendence; keeping it in the room is the tidying BlazeDale warned about"
+          }
+        },
+        {
+          "seed": "954-the-long-ascent",
+          "song": "",
+          "P": 13,
+          "lines": 36,
+          "X": 0,
+          "pct": 36,
+          "one_word": {
+            "line": "say the number, say it loud",
+            "from": "number",
+            "to": "floor",
+            "consideration": "decline",
+            "reason": "'number' leaves the count open to mean more than floors; 'floor' pins the hook down"
+          }
+        }
+      ]
     }
   ],
   "findings": [
     "Repeat suggestions: separate readers in separate runs proposed the IDENTICAL one-word change on 4 songs (963 burning->rowing, 988 hour->ocean, 1010 home->here, 1009 floor->ice). On 997 they agreed on the same target word (love) but not the replacement. A change two blind readers both ask for is the strongest signal this test makes.",
     "Choruses carry the feeling and verses carry the picture: in 1000, all 12 P lines sit in the verses and builds, and both choruses are pure F.",
-    "A reader always builds a picture. The signal is how much of that picture it had to invent (Static: everything; the gate song: almost nothing)."
+    "A reader always builds a picture. The signal is how much of that picture it had to invent (Static: everything; the gate song: almost nothing).",
+    "Taste check: the first hearted lyric scored 9% picture (Wish It Anyway). Don't gate on P%.",
+    "Brief lesson (954): an abstract heroic shape (a long stair to a light, a voice above) produced motivational-poster lyrics on two rolls ('hold on', 'only way out is through'). Re-grounding the SAME shape in ordinary life (a box up a stairwell on moving day, a friend counting floors down) gave the second voice a real job, and the reader recovered the scene exactly."
+  ],
+  "hearts": [
+    {
+      "date": "2026-10-17",
+      "seed": "966-starfall-valley",
+      "song": "Wish It Anyway",
+      "lyricist": "image-lab (pre-rule)",
+      "v3_pct": 9,
+      "note": "BlazeDale hearted it. It scored 9% on v3, among the lowest. First evidence that P% is not taste: a mostly-feeling lyric can land."
+    }
   ]
 }
