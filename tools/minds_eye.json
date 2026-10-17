@@ -728,6 +728,29 @@
      }
     }
    ]
+  },
+  {
+   "reader": "v3",
+   "date": "2026-10-17",
+   "note": "s71: picture held a coffee cup on a cafe table, so the brief moved the scene to a street market among people; pre-reader swap shoes->moves; window-shopping kept on purpose (an idiom carrying the joke, not the household palette)",
+   "lyrics": [
+    {
+     "seed": "1041-after-the-money",
+     "song": "After the Money",
+     "P": 10,
+     "lines": 27,
+     "X": 0,
+     "pct": 37,
+     "one_word": {
+      "line": "Empty pockets make for lighter moves,",
+      "from": "moves",
+      "to": "steps",
+      "why": "puts feet on the market ground in the only all-abstract section",
+      "consideration": "decline",
+      "reason": "moves was my own swap for shoes and the reader went straight for the seam, a fair hit; but steps loses the moves/lose rhyme the bridge sings on"
+     }
+    }
+   ]
   }
  ],
  "findings": [
