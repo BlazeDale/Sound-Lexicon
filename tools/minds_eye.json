@@ -536,6 +536,58 @@
           }
         }
       ]
+    },
+    {
+      "reader": "v3",
+      "date": "2026-10-17",
+      "note": "s62: three revisions of 969, written in the voice of the hearted parent lyric 'Won't Look Away'",
+      "lyrics": [
+        {
+          "seed": "1042-beneath-the-ice-moon-from-below",
+          "song": "",
+          "P": 35,
+          "lines": 57,
+          "X": 0,
+          "pct": 61,
+          "one_word": {
+            "line": "slow as a year",
+            "from": "year",
+            "to": "tide",
+            "consideration": "decline",
+            "reason": "measuring a creature's slowness in years is the striking image"
+          }
+        },
+        {
+          "seed": "1043-beneath-the-ice-moon-lamp-out",
+          "song": "",
+          "P": 22,
+          "lines": 40,
+          "X": 0,
+          "pct": 55,
+          "one_word": {
+            "line": "I feared this room",
+            "from": "room",
+            "to": "sea",
+            "consideration": "decline",
+            "reason": "calling the open sea a room with no floor, no wall is the strangest, best line"
+          }
+        },
+        {
+          "seed": "1044-beneath-the-ice-moon-in-the-glass",
+          "song": "",
+          "P": 22,
+          "lines": 38,
+          "X": 1,
+          "pct": 58,
+          "one_word": {
+            "line": "It hangs out in the trees.",
+            "from": "out",
+            "to": "low",
+            "consideration": "applied",
+            "reason": "a real error: casual slang broke the whispered dread right at the reveal (the reader marked it X)"
+          }
+        }
+      ]
     }
   ],
   "findings": [
