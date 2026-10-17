@@ -836,6 +836,29 @@
      }
     }
    ]
+  },
+  {
+   "reader": "v3",
+   "date": "2026-10-17",
+   "note": "s76 rewrite of the pilot (old shape: a slow climb, straight up and alone -> coffee cups, hallway, recovery song). Grounded as the first cable car before dawn among early workers. Roll 1 with idea hope + term Get brave: coffee, porch light, window AND recovery language (hang in there, the hurt, my old fight) -> idea changed to early-morning wonder, term Keep it wide-eyed; roll 2 needed window->glass, gold->letting go. New title Here Comes the Pale",
+   "lyrics": [
+    {
+     "seed": "1000-elevator-to-orbit",
+     "song": "Here Comes the Pale",
+     "P": 20,
+     "lines": 32,
+     "X": 0,
+     "pct": 62,
+     "one_word": {
+      "line": "Nobody speaks, and nobody needs",
+      "from": "needs",
+      "to": "stirs",
+      "why": "needs hangs open and runs on as nobody needs a worker's breath upon the glass",
+      "consideration": "accept, applied before sending",
+      "reason": "a real broken sentence: sung, the enjambment misparses and spoils the best image in the song; stirs closes the line"
+     }
+    }
+   ]
   }
  ],
  "findings": [
