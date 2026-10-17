@@ -611,6 +611,29 @@
           }
         }
       ]
+    },
+    {
+      "reader": "v3",
+      "date": "2026-10-17",
+      "note": "s64 (French)",
+      "lyrics": [
+        {
+          "seed": "1038-dancing-in-aisle-nine",
+          "song": "",
+          "P": 13,
+          "lines": 39,
+          "X": 0,
+          "pct": 33,
+          "one_word": {
+            "line": "Un pas. Puis un autre.",
+            "from": "pas",
+            "to": "tour",
+            "why": "'tour' (a spin) makes it unmistakably dancing",
+            "consideration": "decline",
+            "reason": "'pas' is both a walking step and a dance step; that understatement is the deadpan, and the picture shows a cool arm-raise, not a spin"
+          }
+        }
+      ]
     }
   ],
   "findings": [
