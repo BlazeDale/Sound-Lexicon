@@ -2,74 +2,508 @@
   "note": "Mind's-eye coherence test for lyrics. A blind reader (fresh Claude agent; it sees only the lyric, under a neutral filename) says what it pictures. The bar is BlazeDale's (2026-10-17): a listener should be able to piece together a picture that means something to them. It does not have to be the author's intent. one_word records the reader's single-word change suggestion plus Claude's consideration of it. Suggestions are tracked, not applied, unless BlazeDale says so.",
   "readers": {
     "v1": "PICTURE (2-4 sentences) / VERDICT: ADDS UP or FRAGMENTS / LOOSE LINES. Result: 14 of 14 ADDS UP. Five copies on one lyric (Static) gave near-identical pictures, all hedged with 'maybe a radio, maybe a dead line'. Too charitable to separate songs.",
-    "v2": "Commit to ONE concrete picture, no hedging / FROM THE LYRIC / INVENTED / MEANING / VERDICT: ADDS UP, THIN or FRAGMENTS / LOOSE LINES / ONE WORD. Result: 15 of 15 ADDS UP, no THIN. The verdict still doesn't separate songs, but INVENTED does: Static's whole visible scene was invented. ONE WORD produced specific, often good fixes."
+    "v2": "Commit to ONE concrete picture, no hedging / FROM THE LYRIC / INVENTED / MEANING / VERDICT: ADDS UP, THIN or FRAGMENTS / LOOSE LINES / ONE WORD. Result: 15 of 15 ADDS UP, no THIN. The verdict still doesn't separate songs, but INVENTED does: Static's whole visible scene was invented. ONE WORD produced specific, often good fixes.",
+    "v3": "Mark every sung line, repeats included: P (something to see), F (feeling only) or X (does not fit). Then PICTURE / INVENTED / ONE WORD. Result: the first reader that separates songs. Picture share runs from 0% (Static) to 67% (caravan). The image-lab songs written before the rule score lowest (0, 9, 23%); pilot songs score 24-67%. P% measures concreteness, not quality: check it against BlazeDale's hearts before treating it as a gate."
   },
   "runs": [
     {
       "reader": "v2",
       "date": "2026-10-17",
       "lyrics": [
-        {"seed": "961-lost-transmission", "song": "Static", "lyricist": "image-lab (pre-rule)", "verdict": "ADDS UP",
-         "invented": "radio set, cabin, night, dial glow, the other went out and was lost: the entire visible scene",
-         "one_word": {"line": "Just to know you still can", "from": "you", "to": "I", "why": "'you' could be heard as the absent person; 'I' makes it the speaker proving their own voice",
-                      "consideration": "decline", "reason": "the double reading is the ache of the song: it can mean you, or the person who can no longer hear"}},
-        {"seed": "963-laser-cathedral-of-the-orbital-rave", "lyricist": "claude-fresh-agent", "verdict": "ADDS UP",
-         "invented": "the boat's benches, the number of rowers, night, how the hand helps",
-         "one_word": {"line": "Still breathing, still burning", "from": "burning", "to": "rowing", "why": "every other image is water and oars; fire breaks the frame",
-                      "consideration": "accept", "reason": "keeps the chorus in the boat; two separate readers flagged 'burning'"}},
-        {"seed": "1003-the-ice-breaks-open", "lyricist": "claude-fresh-agent", "verdict": "ADDS UP",
-         "invented": "a river seen from midstream, alone, late-winter light",
-         "one_word": {"line": "every winter I was told to", "from": "told", "to": "taught", "why": "the line dangles; 'taught' lets it stand alone as years of learned silence",
-                      "consideration": "accept", "reason": "both v1 and v2 readers flagged this line as a broken sentence"}},
-        {"seed": "970-the-veil-tears-open", "lyricist": "claude-fresh-agent", "verdict": "ADDS UP",
-         "invented": "the whole song on one bathroom floor, lying down, late-afternoon sun",
-         "one_word": {"line": "every crack a hometown", "from": "hometown", "to": "landmark", "why": "'hometown' points out of the room; 'landmark' keeps the floor as a map",
-                      "consideration": "decline", "reason": "'hometown' is the stranger, stronger line: the floor became where they live"}},
-        {"seed": "1016-caravan-under-two-suns", "lyricist": "claude-fresh-agent", "verdict": "ADDS UP",
-         "invented": "a country road to a farmhouse, the walker ahead as a stranger",
-         "one_word": {"line": "somebody's footsteps fall with mine", "from": "somebody's", "to": "your", "why": "anchors the outro's 'you' to the companion",
-                      "consideration": "decline", "reason": "verse 2's 'you' is the lost person; 'your' here would merge the two"}},
-        {"seed": "965-heart-of-the-nebula", "lyricist": "claude-fresh-agent", "verdict": "ADDS UP",
-         "invented": "a bed, side by side, the tear catching light",
-         "one_word": {"line": "You held it like a bell", "from": "bell", "to": "pearl", "why": "a bell is the wrong shape for a tear; pearl matches 'salted moon'",
-                      "consideration": "decline", "reason": "breaks the fell/bell rhyme, which the reader admits; the image complaint is fair"}},
-        {"seed": "977-ten-thousand-lanterns", "lyricist": "claude-fresh-agent", "verdict": "ADDS UP",
-         "invented": "an open field, the note inside the lantern, flame",
-         "one_word": {"line": "the weight I've carried, link by link", "from": "link", "to": "line", "why": "a chain doesn't belong; 'line by line' ties the weight to the ink",
-                      "consideration": "decline", "reason": "breaks the ink/link rhyme; but two readers flagged the chain, so the complaint is real"}},
-        {"seed": "997-the-dunes-that-dream", "lyricist": "claude-fresh-agent", "verdict": "ADDS UP",
-         "invented": "a full moon, clear black water, insomnia",
-         "one_word": {"line": "maybe that's how love goes", "from": "love", "to": "faith", "why": "love is never set up; faith pays off 'I don't know why it holds'",
-                      "consideration": "accept", "reason": "the best suggestion of the run: it turns the late-arriving subject into the song's own question"}},
-        {"seed": "953-signal-beyond-the-veil", "lyricist": "claude-fresh-agent", "verdict": "ADDS UP",
-         "invented": "night on the singer's side, a parent as caller, a video call, a small rented room",
-         "one_word": {"line": "Every mile a quiet sound", "from": "quiet", "to": "static", "why": "ties the miles to the weak signal",
-                      "consideration": "decline", "reason": "'a static sound' sings awkwardly; the line is vague either way"}},
-        {"seed": "988-bridge-between-two-worlds", "lyricist": "claude-fresh-agent", "verdict": "ADDS UP",
-         "invented": "porch steps as the place of the call, moths, a window behind the partner",
-         "one_word": {"line": "Always an hour from your eyes", "from": "hour", "to": "ocean", "why": "one hour can't be sunrise against night across a sea",
-                      "consideration": "accept", "reason": "fixes a real contradiction that both v1 and v2 readers caught"}},
-        {"seed": "1009-forehead-to-forehead", "lyricist": "claude-fresh-agent", "verdict": "ADDS UP",
-         "invented": "a frozen lake, a tent, a headlamp, the breathing as ice",
-         "one_word": {"line": "If the floor should slip", "from": "floor", "to": "ice", "why": "'floor' sounds like a room",
-                      "consideration": "decline", "reason": "the song never names its setting; 'ice' would impose this reader's invented lake on everyone"}},
-        {"seed": "999-blossom-storm-on-the-red-planet", "lyricist": "claude-fresh-agent", "verdict": "ADDS UP",
-         "invented": "a single blossoming street tree, office workers, a partner",
-         "one_word": {"line": "Midday spills its paper light", "from": "Midday", "to": "Morning", "why": "the chorus says 'gone by noon', so starting at midday the blossoms are already gone",
-                      "consideration": "accept", "reason": "a real time contradiction"}},
-        {"seed": "958-twin-suns-afterglow", "lyricist": "claude-fresh-agent", "verdict": "ADDS UP",
-         "invented": "a farmhouse, an older singer, two neighbours, the breeze",
-         "one_word": {"line": "The swallows built up there instead", "from": "up", "to": "in", "why": "puts the nest in the broken gate itself",
-                      "consideration": "decline", "reason": "a minor gain; 'up there' sings more naturally"}},
-        {"seed": "1000-elevator-to-orbit", "lyricist": "claude-fresh-agent", "verdict": "ADDS UP",
-         "invented": "an apartment, a windowsill, a fire escape to the roof, before dawn",
-         "one_word": {"line": "I wore the hallway floor to dust", "from": "hallway", "to": "stairwell", "why": "plants the climb in verse 1",
-                      "consideration": "accept", "reason": "'hallway' was my own attractor fix; 'stairwell' does the job better"}},
-        {"seed": "1010-sleeping-under-the-aurora", "lyricist": "claude-fresh-agent", "verdict": "ADDS UP",
-         "invented": "two people, a pack, lying on their back, late afternoon, the country",
-         "one_word": {"line": "(you're home, you're home)", "from": "home", "to": "here", "why": "'home' was never set up; 'here' stays in the field",
-                      "consideration": "decline", "reason": "'home' is the emotional payoff: rest itself is home"}}
+        {
+          "seed": "961-lost-transmission",
+          "song": "Static",
+          "lyricist": "image-lab (pre-rule)",
+          "verdict": "ADDS UP",
+          "invented": "radio set, cabin, night, dial glow, the other went out and was lost: the entire visible scene",
+          "one_word": {
+            "line": "Just to know you still can",
+            "from": "you",
+            "to": "I",
+            "why": "'you' could be heard as the absent person; 'I' makes it the speaker proving their own voice",
+            "consideration": "decline",
+            "reason": "the double reading is the ache of the song: it can mean you, or the person who can no longer hear"
+          }
+        },
+        {
+          "seed": "963-laser-cathedral-of-the-orbital-rave",
+          "lyricist": "claude-fresh-agent",
+          "verdict": "ADDS UP",
+          "invented": "the boat's benches, the number of rowers, night, how the hand helps",
+          "one_word": {
+            "line": "Still breathing, still burning",
+            "from": "burning",
+            "to": "rowing",
+            "why": "every other image is water and oars; fire breaks the frame",
+            "consideration": "accept",
+            "reason": "keeps the chorus in the boat; two separate readers flagged 'burning'"
+          }
+        },
+        {
+          "seed": "1003-the-ice-breaks-open",
+          "lyricist": "claude-fresh-agent",
+          "verdict": "ADDS UP",
+          "invented": "a river seen from midstream, alone, late-winter light",
+          "one_word": {
+            "line": "every winter I was told to",
+            "from": "told",
+            "to": "taught",
+            "why": "the line dangles; 'taught' lets it stand alone as years of learned silence",
+            "consideration": "accept",
+            "reason": "both v1 and v2 readers flagged this line as a broken sentence"
+          }
+        },
+        {
+          "seed": "970-the-veil-tears-open",
+          "lyricist": "claude-fresh-agent",
+          "verdict": "ADDS UP",
+          "invented": "the whole song on one bathroom floor, lying down, late-afternoon sun",
+          "one_word": {
+            "line": "every crack a hometown",
+            "from": "hometown",
+            "to": "landmark",
+            "why": "'hometown' points out of the room; 'landmark' keeps the floor as a map",
+            "consideration": "decline",
+            "reason": "'hometown' is the stranger, stronger line: the floor became where they live"
+          }
+        },
+        {
+          "seed": "1016-caravan-under-two-suns",
+          "lyricist": "claude-fresh-agent",
+          "verdict": "ADDS UP",
+          "invented": "a country road to a farmhouse, the walker ahead as a stranger",
+          "one_word": {
+            "line": "somebody's footsteps fall with mine",
+            "from": "somebody's",
+            "to": "your",
+            "why": "anchors the outro's 'you' to the companion",
+            "consideration": "decline",
+            "reason": "verse 2's 'you' is the lost person; 'your' here would merge the two"
+          }
+        },
+        {
+          "seed": "965-heart-of-the-nebula",
+          "lyricist": "claude-fresh-agent",
+          "verdict": "ADDS UP",
+          "invented": "a bed, side by side, the tear catching light",
+          "one_word": {
+            "line": "You held it like a bell",
+            "from": "bell",
+            "to": "pearl",
+            "why": "a bell is the wrong shape for a tear; pearl matches 'salted moon'",
+            "consideration": "decline",
+            "reason": "breaks the fell/bell rhyme, which the reader admits; the image complaint is fair"
+          }
+        },
+        {
+          "seed": "977-ten-thousand-lanterns",
+          "lyricist": "claude-fresh-agent",
+          "verdict": "ADDS UP",
+          "invented": "an open field, the note inside the lantern, flame",
+          "one_word": {
+            "line": "the weight I've carried, link by link",
+            "from": "link",
+            "to": "line",
+            "why": "a chain doesn't belong; 'line by line' ties the weight to the ink",
+            "consideration": "decline",
+            "reason": "breaks the ink/link rhyme; but two readers flagged the chain, so the complaint is real"
+          }
+        },
+        {
+          "seed": "997-the-dunes-that-dream",
+          "lyricist": "claude-fresh-agent",
+          "verdict": "ADDS UP",
+          "invented": "a full moon, clear black water, insomnia",
+          "one_word": {
+            "line": "maybe that's how love goes",
+            "from": "love",
+            "to": "faith",
+            "why": "love is never set up; faith pays off 'I don't know why it holds'",
+            "consideration": "accept",
+            "reason": "the best suggestion of the run: it turns the late-arriving subject into the song's own question"
+          }
+        },
+        {
+          "seed": "953-signal-beyond-the-veil",
+          "lyricist": "claude-fresh-agent",
+          "verdict": "ADDS UP",
+          "invented": "night on the singer's side, a parent as caller, a video call, a small rented room",
+          "one_word": {
+            "line": "Every mile a quiet sound",
+            "from": "quiet",
+            "to": "static",
+            "why": "ties the miles to the weak signal",
+            "consideration": "decline",
+            "reason": "'a static sound' sings awkwardly; the line is vague either way"
+          }
+        },
+        {
+          "seed": "988-bridge-between-two-worlds",
+          "lyricist": "claude-fresh-agent",
+          "verdict": "ADDS UP",
+          "invented": "porch steps as the place of the call, moths, a window behind the partner",
+          "one_word": {
+            "line": "Always an hour from your eyes",
+            "from": "hour",
+            "to": "ocean",
+            "why": "one hour can't be sunrise against night across a sea",
+            "consideration": "accept",
+            "reason": "fixes a real contradiction that both v1 and v2 readers caught"
+          }
+        },
+        {
+          "seed": "1009-forehead-to-forehead",
+          "lyricist": "claude-fresh-agent",
+          "verdict": "ADDS UP",
+          "invented": "a frozen lake, a tent, a headlamp, the breathing as ice",
+          "one_word": {
+            "line": "If the floor should slip",
+            "from": "floor",
+            "to": "ice",
+            "why": "'floor' sounds like a room",
+            "consideration": "decline",
+            "reason": "the song never names its setting; 'ice' would impose this reader's invented lake on everyone"
+          }
+        },
+        {
+          "seed": "999-blossom-storm-on-the-red-planet",
+          "lyricist": "claude-fresh-agent",
+          "verdict": "ADDS UP",
+          "invented": "a single blossoming street tree, office workers, a partner",
+          "one_word": {
+            "line": "Midday spills its paper light",
+            "from": "Midday",
+            "to": "Morning",
+            "why": "the chorus says 'gone by noon', so starting at midday the blossoms are already gone",
+            "consideration": "accept",
+            "reason": "a real time contradiction"
+          }
+        },
+        {
+          "seed": "958-twin-suns-afterglow",
+          "lyricist": "claude-fresh-agent",
+          "verdict": "ADDS UP",
+          "invented": "a farmhouse, an older singer, two neighbours, the breeze",
+          "one_word": {
+            "line": "The swallows built up there instead",
+            "from": "up",
+            "to": "in",
+            "why": "puts the nest in the broken gate itself",
+            "consideration": "decline",
+            "reason": "a minor gain; 'up there' sings more naturally"
+          }
+        },
+        {
+          "seed": "1000-elevator-to-orbit",
+          "lyricist": "claude-fresh-agent",
+          "verdict": "ADDS UP",
+          "invented": "an apartment, a windowsill, a fire escape to the roof, before dawn",
+          "one_word": {
+            "line": "I wore the hallway floor to dust",
+            "from": "hallway",
+            "to": "stairwell",
+            "why": "plants the climb in verse 1",
+            "consideration": "accept",
+            "reason": "'hallway' was my own attractor fix; 'stairwell' does the job better"
+          }
+        },
+        {
+          "seed": "1010-sleeping-under-the-aurora",
+          "lyricist": "claude-fresh-agent",
+          "verdict": "ADDS UP",
+          "invented": "two people, a pack, lying on their back, late afternoon, the country",
+          "one_word": {
+            "line": "(you're home, you're home)",
+            "from": "home",
+            "to": "here",
+            "why": "'home' was never set up; 'here' stays in the field",
+            "consideration": "decline",
+            "reason": "'home' is the emotional payoff: rest itself is home"
+          }
+        }
+      ]
+    },
+    {
+      "reader": "v3",
+      "date": "2026-10-17",
+      "note": "P counts include repeated lines; 963 pilot count is approximate (117 lines).",
+      "lyrics": [
+        {
+          "seed": "961-lost-transmission",
+          "song": "Static",
+          "P": 0,
+          "lines": 17,
+          "X": 0,
+          "pct": 0,
+          "one_word": {
+            "line": "I counted all the days",
+            "from": "counted",
+            "to": "chalked",
+            "consideration": "accept",
+            "reason": "gives the first line a hand, a wall and tally marks: a room for the whole song"
+          }
+        },
+        {
+          "seed": "966-starfall-valley",
+          "song": "Wish It Anyway",
+          "P": 2,
+          "lines": 23,
+          "X": 0,
+          "pct": 9,
+          "one_word": {
+            "line": "Is already going",
+            "from": "going",
+            "to": "melting",
+            "consideration": "decline",
+            "reason": "melting assumes the reader's invented candles"
+          }
+        },
+        {
+          "seed": "971-journey-s-end-among-the-galaxies",
+          "song": "Where I Let You Go",
+          "P": 6,
+          "lines": 26,
+          "X": 0,
+          "pct": 23,
+          "one_word": {
+            "line": "The end would feel this wide",
+            "from": "end",
+            "to": "shore",
+            "consideration": "accept",
+            "reason": "one real place to stand in an otherwise abstract song"
+          }
+        },
+        {
+          "seed": "997-the-dunes-that-dream",
+          "song": "",
+          "P": 17,
+          "lines": 71,
+          "X": 1,
+          "pct": 24,
+          "one_word": {
+            "line": "maybe that's how love goes",
+            "from": "love",
+            "to": "ice",
+            "consideration": "accept (as faith, from v2)",
+            "reason": "second reader to flag 'love' as unearned"
+          }
+        },
+        {
+          "seed": "963-laser-cathedral-of-the-orbital-rave",
+          "song": "Arms Up (s59 rewrite)",
+          "P": 11,
+          "lines": 42,
+          "X": 0,
+          "pct": 26,
+          "one_word": {
+            "line": "We're in the same boat now",
+            "from": "boat",
+            "to": "field",
+            "consideration": "applied (as crowd)",
+            "reason": "the boat idiom brought the old water image back; sent to the lab as 'same crowd'"
+          }
+        },
+        {
+          "seed": "963-laser-cathedral-of-the-orbital-rave",
+          "song": "pilot (replaced by s59)",
+          "P": 38,
+          "lines": 117,
+          "X": 4,
+          "pct": 32,
+          "one_word": {
+            "line": "Still breathing, still burning",
+            "from": "burning",
+            "to": "rowing",
+            "consideration": "accept",
+            "reason": "identical to the v2 suggestion"
+          }
+        },
+        {
+          "seed": "1000-elevator-to-orbit",
+          "song": "",
+          "P": 12,
+          "lines": 38,
+          "X": 0,
+          "pct": 32,
+          "one_word": {
+            "line": "And held them to the light",
+            "from": "light",
+            "to": "window",
+            "consideration": "decline",
+            "reason": "cups held to the light is already clear"
+          }
+        },
+        {
+          "seed": "953-signal-beyond-the-veil",
+          "song": "",
+          "P": 12,
+          "lines": 37,
+          "X": 0,
+          "pct": 32,
+          "one_word": {
+            "line": "Every mile a quiet sound",
+            "from": "quiet",
+            "to": "hissing",
+            "consideration": "accept",
+            "reason": "second reader to flag this line; 'hissing' sings better than v2's 'static'"
+          }
+        },
+        {
+          "seed": "965-heart-of-the-nebula",
+          "song": "Heart of the Nebula",
+          "P": 7,
+          "lines": 20,
+          "X": 0,
+          "pct": 35,
+          "one_word": {
+            "line": "My heart was on my sleeve",
+            "from": "heart",
+            "to": "tear",
+            "consideration": "accept",
+            "reason": "three readers across v1-v3 snagged on this line; 'tear' makes 'let it dry' literal"
+          }
+        },
+        {
+          "seed": "1010-sleeping-under-the-aurora",
+          "song": "",
+          "P": 7,
+          "lines": 19,
+          "X": 1,
+          "pct": 37,
+          "one_word": {
+            "line": "(you're home, you're home)",
+            "from": "home",
+            "to": "here",
+            "consideration": "decline (reconsider)",
+            "reason": "identical to v2; two blind readers agree, but home-as-rest is the point. BlazeDale's call"
+          }
+        },
+        {
+          "seed": "988-bridge-between-two-worlds",
+          "song": "",
+          "P": 11,
+          "lines": 30,
+          "X": 1,
+          "pct": 37,
+          "one_word": {
+            "line": "Always an hour from your eyes",
+            "from": "hour",
+            "to": "ocean",
+            "consideration": "accept",
+            "reason": "identical to v2"
+          }
+        },
+        {
+          "seed": "999-blossom-storm-on-the-red-planet",
+          "song": "",
+          "P": 11,
+          "lines": 28,
+          "X": 0,
+          "pct": 39,
+          "one_word": {
+            "line": "Midday spills its paper light",
+            "from": "paper",
+            "to": "blossom",
+            "consideration": "decline",
+            "reason": "conflicts with v2's Midday->Morning, which is the stronger fix"
+          }
+        },
+        {
+          "seed": "958-twin-suns-afterglow",
+          "song": "",
+          "P": 12,
+          "lines": 30,
+          "X": 0,
+          "pct": 40,
+          "one_word": {
+            "line": "Till they're part of the view",
+            "from": "view",
+            "to": "yard",
+            "consideration": "decline",
+            "reason": "'part of the view' is the idiom that carries the meaning"
+          }
+        },
+        {
+          "seed": "977-ten-thousand-lanterns",
+          "song": "",
+          "P": 17,
+          "lines": 36,
+          "X": 0,
+          "pct": 47,
+          "one_word": {
+            "line": "the heavy learns to fly",
+            "from": "heavy",
+            "to": "paper",
+            "consideration": "accept",
+            "reason": "'the paper learns to fly' makes the chorus a thing you watch"
+          }
+        },
+        {
+          "seed": "1009-forehead-to-forehead",
+          "song": "",
+          "P": 11,
+          "lines": 20,
+          "X": 0,
+          "pct": 55,
+          "one_word": {
+            "line": "If the floor should slip",
+            "from": "floor",
+            "to": "ice",
+            "consideration": "decline (reconsider)",
+            "reason": "identical to v2; readers want the setting named, and the song deliberately withholds it"
+          }
+        },
+        {
+          "seed": "970-the-veil-tears-open",
+          "song": "",
+          "P": 20,
+          "lines": 36,
+          "X": 0,
+          "pct": 56,
+          "one_word": {
+            "line": "years coming out my mouth",
+            "from": "years",
+            "to": "sobs",
+            "consideration": "decline",
+            "reason": "the reader admits it loses the duration"
+          }
+        },
+        {
+          "seed": "1003-the-ice-breaks-open",
+          "song": "",
+          "P": 20,
+          "lines": 34,
+          "X": 0,
+          "pct": 59,
+          "one_word": {
+            "line": "the cold gives way beneath me",
+            "from": "cold",
+            "to": "ice",
+            "consideration": "accept",
+            "reason": "cold cannot be underfoot; it ties the chorus to the heel-on-the-hairline verse"
+          }
+        },
+        {
+          "seed": "1016-caravan-under-two-suns",
+          "song": "",
+          "P": 20,
+          "lines": 30,
+          "X": 0,
+          "pct": 67,
+          "one_word": {
+            "line": "hold the line, hold the line",
+            "from": "hold",
+            "to": "follow",
+            "consideration": "accept",
+            "reason": "second reader to flag hold-the-line against let-it-go"
+          }
+        }
       ]
     }
+  ],
+  "findings": [
+    "Repeat suggestions: separate readers in separate runs proposed the IDENTICAL one-word change on 4 songs (963 burning->rowing, 988 hour->ocean, 1010 home->here, 1009 floor->ice). On 997 they agreed on the same target word (love) but not the replacement. A change two blind readers both ask for is the strongest signal this test makes.",
+    "Choruses carry the feeling and verses carry the picture: in 1000, all 12 P lines sit in the verses and builds, and both choruses are pure F.",
+    "A reader always builds a picture. The signal is how much of that picture it had to invent (Static: everything; the gate song: almost nothing)."
   ]
 }
