@@ -859,6 +859,29 @@
      }
     }
    ]
+  },
+  {
+   "reader": "v3",
+   "date": "2026-10-17",
+   "note": "s77: BlazeDale found Here Comes the Pale too earthbound (\"Something more sci-fi\"): grounding can overshoot the picture's genre. Kept what worked (other people, wonder not recovery) and set it on a first ride off-planet to an orbital job. Swaps names->smiles, stone->lead. The reader said capsule, station and orbit without being told any of them. Title Nowhere to Fall",
+   "lyrics": [
+    {
+     "seed": "1000-elevator-to-orbit",
+     "song": "Nowhere to Fall",
+     "P": 13,
+     "lines": 34,
+     "X": 0,
+     "pct": 38,
+     "one_word": {
+      "line": "Walking on air with nowhere to fall",
+      "from": "Walking",
+      "to": "Floating",
+      "why": "nobody walks in orbit; floating ties to the drifting pencil",
+      "consideration": "decline",
+      "reason": "walking on air is the idiom, like over the moon in the line before; the hook is idioms that come literally true in space, and floating spells out the joke"
+     }
+    }
+   ]
   }
  ],
  "findings": [
