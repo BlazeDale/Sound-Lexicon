@@ -813,6 +813,29 @@
      }
     }
    ]
+  },
+  {
+   "reader": "v3",
+   "date": "2026-10-17",
+   "note": "s75 rewrite (English): lit-but-locked shape pulled to glass and doors on two rolls (shop: window in the hook, table, pane; club: door x2, doorway, coat, window, gold, neon). Third grounding moved it fully outdoors with no building to stand at (riverside where a night market used to run, a busker under a bridge) and came back with one hit (paper cup -> the band struck up). New title Why Does the Water Sing",
+   "lyrics": [
+    {
+     "seed": "1035-neon-over-a-closed-shop",
+     "song": "Why Does the Water Sing",
+     "P": 24,
+     "lines": 37,
+     "X": 0,
+     "pct": 65,
+     "one_word": {
+      "line": "A borrowed laugh, the band struck up",
+      "from": "borrowed",
+      "to": "your",
+      "why": "gives the summer a face and an addressee",
+      "consideration": "decline",
+      "reason": "the reader supplied a lost person unprompted, which is the point; your would add an addressee who appears nowhere else in the song"
+     }
+    }
+   ]
   }
  ],
  "findings": [
