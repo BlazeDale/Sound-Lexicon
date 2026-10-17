@@ -790,6 +790,29 @@
      }
     }
    ]
+  },
+  {
+   "reader": "v3",
+   "date": "2026-10-17",
+   "note": "s74: first grounding (neighbours rebuilding a washed-out road by hand) pulled stone x10, hold the line x2, still standing -> brief re-grounded as digging a road out after an avalanche; second roll needed door->jaw, stone->oak. The term line (Stamp it in) leaked into the lyric as a shovel chant; kept",
+   "lyrics": [
+    {
+     "seed": "1047-edelweiss-and-iron",
+     "song": "Edelweiss and Iron",
+     "P": 34,
+     "lines": 62,
+     "X": 0,
+     "pct": 55,
+     "one_word": {
+      "line": "So folk like us became the way",
+      "from": "way",
+      "to": "plough",
+      "why": "names the thing the villagers stand in for",
+      "consideration": "decline",
+      "reason": "the reader conceded it breaks the pray/day/way rhyme; and way already means both the method and the road itself"
+     }
+    }
+   ]
   }
  ],
  "findings": [
