@@ -1162,6 +1162,29 @@
      }
     }
    ]
+  },
+  {
+   "reader": "v3",
+   "date": "2026-10-18",
+   "note": "s87 rewrite of 917: style in German, lyrics in English. First brief under the stay-in-the-picture rule (the alley itself, a gang passing forbidden music). First roll; swaps got my name -> got me framed, iron bars -> prison bars. Hand to hand reappeared from the old hook although the brief said along the line. The reader read the unnamed it as a flare at a protest: the song never names the music, a withholding the style and picture resolve.",
+   "lyrics": [
+    {
+     "seed": "917-cassette-rebellion",
+     "song": "Never Cowed",
+     "P": 12,
+     "lines": 24,
+     "X": 0,
+     "pct": 50,
+     "one_word": {
+      "line": "Hold it high! (HOLD IT HIGH!)",
+      "from": "it",
+      "to": "flares",
+      "why": "the passed object is never named",
+      "consideration": "decline",
+      "reason": "the unnamed it is contraband that cannot be said aloud; naming it (wrongly, as flares) literalises the chant"
+     }
+    }
+   ]
   }
  ],
  "findings": [
