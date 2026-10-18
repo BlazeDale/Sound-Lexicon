@@ -1231,6 +1231,45 @@
      }
     }
    ]
+  },
+  {
+   "reader": "v3",
+   "date": "2026-10-18",
+   "note": "s91 lyric on 1067 (style kept) and s92 rewrite of 1026 (style in French, lyrics English). Both briefs kept inside the picture. s91 first roll; swaps salt -> snow, and the hook hold the line -> on the line (hold the line is a repeat tic: 953, 988, s74). Highest picture share yet on a heroic shape: grounding it as the physical work (axe, breaths, rope tugs) kept the motivational poster away. s92 first roll; swap tea went cold -> hours went cold; window kept in the hook because it is the picture (the one lit dormer).",
+   "lyrics": [
+    {
+     "seed": "1067-ridge-in-the-gale",
+     "song": "On the Line",
+     "P": 27,
+     "lines": 35,
+     "X": 0,
+     "pct": 77,
+     "one_word": {
+      "line": "Head down, grind it slow",
+      "from": "grind",
+      "to": "kick",
+      "why": "grind is gym slang; kick puts crampons in the ice",
+      "consideration": "decline",
+      "reason": "grind is the style's own word (grinding riff); kick is tidier and more literal"
+     }
+    },
+    {
+     "seed": "1026-old-city-rooftops-at-blue-hour",
+     "song": "One Small Light",
+     "P": 13,
+     "lines": 31,
+     "X": 0,
+     "pct": 42,
+     "one_word": {
+      "line": "a hundred nights of near and nearly",
+      "from": "near",
+      "to": "needle",
+      "why": "names the craft early",
+      "consideration": "decline",
+      "reason": "near and nearly is the line; the work is deliberately unnamed so any listener can put their own in it"
+     }
+    }
+   ]
   }
  ],
  "findings": [
