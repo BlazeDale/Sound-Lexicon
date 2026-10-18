@@ -1139,6 +1139,29 @@
      }
     }
    ]
+  },
+  {
+   "reader": "v3",
+   "date": "2026-10-18",
+   "note": "s86 rewrite of 915 (robot pop star). Roll 1 (Here Goes Nothing; brief: helper machine at a station, flickering screen face) was read as a HUMAN porter by two readers, 44%, even after whirring was swapped in; one reader argued whirring away. Re-rolled with heavy in-world tells (squeaky wheels, smile-only screen, voice built for announcing delays, battery low by evening). Roll 2 swaps: stone -> sign (read as a departures board, step contradiction) -> machine; hold the door -> hold the train. Final reader recovered a dying helper robot on a platform.",
+   "lyrics": [
+    {
+     "seed": "915-the-robot-who-wanted-to-be-a-pop-star",
+     "song": "The Words for Wait",
+     "P": 17,
+     "lines": 45,
+     "X": 0,
+     "pct": 38,
+     "one_word": {
+      "line": "I name the hours running late",
+      "from": "hours",
+      "to": "trains",
+      "why": "puts the listener on the platform from the first verse",
+      "consideration": "decline",
+      "reason": "hours running late is the robot turning its job into feeling; trains makes it a timetable"
+     }
+    }
+   ]
   }
  ],
  "findings": [
