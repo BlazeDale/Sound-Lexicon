@@ -1185,6 +1185,29 @@
      }
     }
    ]
+  },
+  {
+   "reader": "v3",
+   "date": "2026-10-18",
+   "note": "s88 rewrite of 916: two-voice duet (baritone + alto, no gender words), brief kept in the picture (sky drive-in, floating cars as in-world tell). First roll, swap window -> headlight. Reader recovered the drive-in and the first-kiss lean; the floating cars briefly read as a Ferris wheel.",
+   "lyrics": [
+    {
+     "seed": "916-hovercar-drive-in",
+     "song": "Edge of My Seat",
+     "P": 12,
+     "lines": 25,
+     "X": 0,
+     "pct": 48,
+     "one_word": {
+      "line": "Every car hangs in the air",
+      "from": "air",
+      "to": "dark",
+      "why": "floating cars first suggest a Ferris wheel",
+      "consideration": "decline",
+      "reason": "the floating cars are the picture's world; dark would erase the one sci-fi tell"
+     }
+    }
+   ]
   }
  ],
  "findings": [
