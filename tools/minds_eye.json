@@ -1293,6 +1293,61 @@
      }
     }
    ]
+  },
+  {
+   "reader": "v3",
+   "date": "2026-10-18",
+   "note": "s94-s96. s94 (1023 launderette): my call on language -> English lyrics + new English style (old line asked French); first roll, swaps coat -> load, door -> till, (half-spoken) moved from () into [ ] labels. s95 (1000 fireflies, style kept): two kids in the picture, kept as friends; first roll; reader flagged my dear as adult-voiced in a child song (real inconsistency) -> close enough to touch from here (rhyme kept). s96 (1000 dragon, K-pop woven into dark dubstep, multi-voice): roll 1 drifted into a family dinner in denial (Mama, Dad, table, rafters, hold the line) -> re-rolled with airship tells (props, searchlights, gondola rails, gas envelopes, one lookout); swap hold the line -> toe the line.",
+   "lyrics": [
+    {
+     "seed": "1023-laundromat-of-banknotes",
+     "song": "Comes Out in the Wash",
+     "P": 18,
+     "lines": 34,
+     "X": 0,
+     "pct": 53,
+     "one_word": {
+      "line": "Just the paper, round it goes",
+      "from": "paper",
+      "to": "notes",
+      "why": "paper can be heard as a newspaper",
+      "consideration": "decline",
+      "reason": "paper is slang for money already; the style and picture pin it"
+     }
+    },
+    {
+     "seed": "1000-fireflies-under-the-giant-moon",
+     "song": "Over the Moon",
+     "P": 17,
+     "lines": 28,
+     "X": 0,
+     "pct": 61,
+     "one_word": {
+      "line": "hold on",
+      "from": "on",
+      "to": "hands",
+      "why": "gives the drop something to see",
+      "consideration": "decline",
+      "reason": "the drop is meant to be breath, not picture; separate fix applied instead: my dear -> from here (the reader's flagged inconsistency)"
+     }
+    },
+    {
+     "seed": "1000-dragon-in-the-thunderhead",
+     "song": "Nothing to See Here",
+     "P": 32,
+     "lines": 48,
+     "X": 0,
+     "pct": 67,
+     "one_word": {
+      "line": "Engines humming lullabies to the hollow overhead",
+      "from": "hollow",
+      "to": "envelope",
+      "why": "pins it as an airship in verse 1",
+      "consideration": "decline",
+      "reason": "hollow is the dread; the reader recovered the airship anyway"
+     }
+    }
+   ]
   }
  ],
  "findings": [
