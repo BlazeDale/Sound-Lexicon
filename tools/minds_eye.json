@@ -1116,6 +1116,29 @@
      }
     }
    ]
+  },
+  {
+   "reader": "v3",
+   "date": "2026-10-18",
+   "note": "s85 rewrite of 1024: style in French, lyrics in English (same split as s84). Set on a dance floor where nobody dances with anybody, to keep it apart from Bone Dry. First roll, zero swaps; silver shoes left as a watch-tier passing use. The writer reached phones from heads bowed and somewhere else on its own.",
+   "lyrics": [
+    {
+     "seed": "1024-champagne-for-nobody",
+     "song": "Catch My Eye",
+     "P": 18,
+     "lines": 40,
+     "X": 0,
+     "pct": 45,
+     "one_word": {
+      "line": "Shining loud enough to land a plane",
+      "from": "loud",
+      "to": "bright",
+      "why": "the beacon image is about light; loud swaps in sound",
+      "consideration": "decline",
+      "reason": "shining loud is the point: someone who wants to be heard, not just seen; bright tidies the wit away"
+     }
+    }
+   ]
   }
  ],
  "findings": [
