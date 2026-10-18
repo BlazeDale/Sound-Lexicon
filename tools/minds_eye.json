@@ -937,6 +937,61 @@
      }
     }
    ]
+  },
+  {
+   "reader": "v3",
+   "date": "2026-10-17",
+   "note": "s78 sent (new subjects, same style as 1000). Briefs carried physical in-world tells after the airplane misreads; all three readers recovered the right world (launch tower and countdown; floating town rising through cloud; ship lifting a town off the sea). Pre-reader swaps: Gantry hold the line->count it down, gold->pink; Sky Garden table->surf; Ark roll 1 had kettle on the stove, window, names -> re-rolled; roll 2 needed 4 swaps (coats, named, windows, name) -- over the usual limit, each a single non-load-bearing word, logged as such. Both Ark rolls independently landed on same boat (literal here)",
+   "lyrics": [
+    {
+     "seed": "1050-elevator-to-orbit-from-the-capsule",
+     "song": "Right on Time",
+     "P": 15,
+     "lines": 36,
+     "X": 0,
+     "pct": 42,
+     "one_word": {
+      "line": "I was made for this mile",
+      "from": "mile",
+      "to": "hour",
+      "why": "nothing in the scene is distance; hour fits the clock",
+      "consideration": "decline",
+      "reason": "a mile straight up is the climb; the clock is already in down to the wire"
+     }
+    },
+    {
+     "seed": "1051-elevator-to-orbit-storm-launch",
+     "song": "The Whole Town Up",
+     "P": 26,
+     "lines": 34,
+     "X": 2,
+     "pct": 76,
+     "one_word": {
+      "line": "Nobody's letting go tonight",
+      "from": "tonight",
+      "to": "today",
+      "why": "the whole song is morning sun; tonight jumps the clock",
+      "consideration": "accept, applied before sending",
+      "reason": "a real contradiction, marked X both times it is sung"
+     }
+    },
+    {
+     "seed": "1052-elevator-to-orbit-sunrise-ascent",
+     "song": "All in the Same Boat",
+     "P": 25,
+     "lines": 36,
+     "X": 0,
+     "pct": 69,
+     "one_word": {
+      "line": "The whole town came down tonight",
+      "from": "down",
+      "to": "out",
+      "why": "the song only goes up; came down reads as the wrong direction",
+      "consideration": "decline",
+      "reason": "you come down to the harbour; the walk down before the lift is the shape of the night"
+     }
+    }
+   ]
   }
  ],
  "findings": [
