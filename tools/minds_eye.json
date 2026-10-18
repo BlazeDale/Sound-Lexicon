@@ -1208,6 +1208,29 @@
      }
     }
    ]
+  },
+  {
+   "reader": "v3",
+   "date": "2026-10-18",
+   "note": "s90 lyric on 1058 (s89 Storm & Shelter batch). Roll 1 aimed at the houses at the edge of town: porch x3 in the chorus, gold x2, rust, dust, door, glass -> re-rolled with the field only. Roll 2 still pulled gold, gate x2, porch light; three meaning-first swaps (wind turning cold; a mile left to fly; every grown-up voice / only race in town). The arrival pull again, as in s81.",
+   "lyrics": [
+    {
+     "seed": "1058-race-the-storm-home",
+     "song": "Outrun the Sky",
+     "P": 13,
+     "lines": 33,
+     "X": 0,
+     "pct": 39,
+     "one_word": {
+      "line": "with the sun underneath and the storm riding high",
+      "from": "underneath",
+      "to": "behind",
+      "why": "underneath is hard to place in space",
+      "consideration": "decline",
+      "reason": "the sun is literally underneath the storm front; behind loses the picture's whole light"
+     }
+    }
+   ]
   }
  ],
  "findings": [
