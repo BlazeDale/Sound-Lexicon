@@ -1015,6 +1015,29 @@
      }
     }
    ]
+  },
+  {
+   "reader": "v3",
+   "date": "2026-10-17",
+   "note": "s80 (English): conformity grounded as a packed morning commute; swaps coats/doors->sleeves/crush, doors shut doors open->stop start stop again",
+   "lyrics": [
+    {
+     "seed": "1031-the-gold-jacket-tram",
+     "song": "I Don't Blink First",
+     "P": 28,
+     "lines": 38,
+     "X": 0,
+     "pct": 74,
+     "one_word": {
+      "line": "Nobody asked me to be here",
+      "from": "asked",
+      "to": "pushed",
+      "why": "turns the one abstract line into a visible shove",
+      "consideration": "decline",
+      "reason": "nobody asked me is the shrug the whole song is made of; pushed turns cool into aggrieved"
+     }
+    }
+   ]
   }
  ],
  "findings": [
