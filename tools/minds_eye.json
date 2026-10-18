@@ -1093,6 +1093,29 @@
      }
     }
    ]
+  },
+  {
+   "reader": "v3",
+   "date": "2026-10-18",
+   "note": "s84 rewrite of 1030: BlazeDale asked for the style written in French and the lyrics in English (the reverse of the old song). Stillness/emptiness shape put outdoors among people per the rule (a posed poolside party where nobody swims); first roll, zero swaps, scan clean. Highest picture share so far.",
+   "lyrics": [
+    {
+     "seed": "1030-the-drained-pool",
+     "song": "Bone Dry",
+     "P": 28,
+     "lines": 34,
+     "X": 0,
+     "pct": 82,
+     "one_word": {
+      "line": "Nothing here leaves a mark",
+      "from": "mark",
+      "to": "ripple",
+      "why": "ties the verse to the still water in the chorus",
+      "consideration": "decline",
+      "reason": "mark is about consequence, the whole ache of the song; ripple makes it a pool line, more literal"
+     }
+    }
+   ]
   }
  ],
  "findings": [
