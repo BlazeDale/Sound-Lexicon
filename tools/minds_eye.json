@@ -882,6 +882,61 @@
      }
     }
    ]
+  },
+  {
+   "reader": "v3",
+   "date": "2026-10-17",
+   "note": "s78 first pass, NOT SENT: the lab misread same style new image as three new views of the elevator and called a hold; kept as reader data. Finding: with no picture nouns, two of three readers placed an orbital ride on an AIRPLANE (thumb on the window, takeoff in a storm). The one that read as space stacked physical tells: blue to grey to black, the floor falling away, tears floating, the ceiling gone. In-world sci-fi needs those tells in the brief, not just going up",
+   "lyrics": [
+    {
+     "seed": "1050-elevator-to-orbit-from-the-capsule",
+     "song": "(unsent) Rule of Thumb",
+     "P": 15,
+     "lines": 34,
+     "X": 0,
+     "pct": 44,
+     "one_word": {
+      "line": "Close enough to miss from here",
+      "from": "Close",
+      "to": "Far",
+      "why": "you miss what is far; far finishes the climb",
+      "consideration": "decline",
+      "reason": "close enough to miss is the paradox that carries the song"
+     }
+    },
+    {
+     "seed": "1051-elevator-to-orbit-storm-launch",
+     "song": "(unsent) Fear Was Only Weather",
+     "P": 12,
+     "lines": 32,
+     "X": 0,
+     "pct": 38,
+     "one_word": {
+      "line": "Glass is cold against my brow",
+      "from": "Glass",
+      "to": "Porthole",
+      "why": "the one noun that would fix the vehicle",
+      "consideration": "note",
+      "reason": "right diagnosis (it read as a plane), but the fix belongs in the brief, not as a picture noun in the lyric"
+     }
+    },
+    {
+     "seed": "1052-elevator-to-orbit-sunrise-ascent",
+     "song": "(unsent) Laughing All the Way Home",
+     "P": 22,
+     "lines": 36,
+     "X": 0,
+     "pct": 61,
+     "one_word": {
+      "line": "Elbows careful, nothing to do",
+      "from": "do",
+      "to": "hold",
+      "why": "do rhymes with itself from the line above",
+      "consideration": "would accept",
+      "reason": "a fair hit on my own swap (shoes->nothing to do) that made an identical rhyme"
+     }
+    }
+   ]
   }
  ],
  "findings": [
