@@ -1038,6 +1038,61 @@
      }
     }
    ]
+  },
+  {
+   "reader": "v3",
+   "date": "2026-10-18",
+   "note": "s81-s83 (new styles + lyrics). s81 roll 1 re-rolled (dust, boots, coat, door, hat, gate in the refrain hook): the arrival scene pulls to the doorstep, so the brief moved onto the march itself (a gap in the singing, something dark flying on ahead); roll 2 swap coat on the nail -> a place by the fire. s82 first roll, zero swaps. s83 first roll, swap names we never asked -> strangers an hour ago.",
+   "lyrics": [
+    {
+     "seed": "547-raven-messenger",
+     "song": "As the Crow Flies",
+     "P": 13,
+     "lines": 24,
+     "X": 0,
+     "pct": 54,
+     "one_word": {
+      "line": "the high and the hoarse, and the one that is not,",
+      "from": "not",
+      "to": "lost",
+      "why": "the line first parses as the one that is not hoarse, so the missing voice lands a beat late",
+      "consideration": "decline",
+      "reason": "the beat-late landing is the gap being noticed; lost explains it"
+     }
+    },
+    {
+     "seed": "533-aerobics-class",
+     "song": "Half a Beat Behind",
+     "P": 23,
+     "lines": 49,
+     "X": 0,
+     "pct": 47,
+     "one_word": {
+      "line": "I'm the happiest disaster in the whole red crowd!",
+      "from": "red",
+      "to": "gym",
+      "why": "red is ambiguous between faces, outfits and lighting",
+      "consideration": "decline",
+      "reason": "red echoes cheeks gone cherry; gym only makes it more literal"
+     }
+    },
+    {
+     "seed": "424-dj-at-sunrise-on-the-beach",
+     "song": "Free On Our Feet",
+     "P": 28,
+     "lines": 49,
+     "X": 0,
+     "pct": 57,
+     "one_word": {
+      "line": "heavy as a heartbeat,",
+      "from": "heartbeat",
+      "to": "bassline",
+      "why": "one sound word would put the music in the field",
+      "consideration": "decline",
+      "reason": "turns it into a song about music, the measured attractor; the reader recovered the party anyway"
+     }
+    }
+   ]
   }
  ],
  "findings": [
