@@ -1270,6 +1270,29 @@
      }
     }
    ]
+  },
+  {
+   "reader": "v3",
+   "date": "2026-10-18",
+   "note": "s93 lyric on 1062 (style kept). Empty picture: brief kept in the fairground and supplied one visitor (a dawn walk through a place summers were spent with friends). Rusted kept out of the brief; no rust came back. First roll, swap gate hung ajar -> ticket booth slept.",
+   "lyrics": [
+    {
+     "seed": "1062-the-fog-fair",
+     "song": "All the Fun of the Fair",
+     "P": 16,
+     "lines": 28,
+     "X": 0,
+     "pct": 57,
+     "one_word": {
+      "line": "and I'm saving you all a chair",
+      "from": "all",
+      "to": "still",
+      "why": "all turns the absent you into a crowd",
+      "consideration": "decline",
+      "reason": "the crowd is the point: a whole summer of friends, one seat kept for all of them"
+     }
+    }
+   ]
   }
  ],
  "findings": [
