@@ -992,6 +992,29 @@
      }
     }
    ]
+  },
+  {
+   "reader": "v3",
+   "date": "2026-10-17",
+   "note": "s79 (English): picture is lying awake in bed; brief moved it outdoors among people (last night bus, sums on fingers, driver glancing back). First roll, zero swaps, scan clean",
+   "lyrics": [
+    {
+     "seed": "1036-banknotes-over-the-bed",
+     "song": "Carry the One",
+     "P": 12,
+     "lines": 25,
+     "X": 0,
+     "pct": 48,
+     "one_word": {
+      "line": "I'm a finger short, I don't know why",
+      "from": "why",
+      "to": "where",
+      "why": "the speaker knows why; where echoes the chorus",
+      "consideration": "decline",
+      "reason": "I don't know why is the deadpan, a shrug at the obvious; the reader conceded it breaks the lullaby rhyme"
+     }
+    }
+   ]
   }
  ],
  "findings": [
