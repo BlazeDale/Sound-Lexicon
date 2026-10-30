@@ -1348,6 +1348,125 @@
      }
     }
    ]
+  },
+  {
+   "reader": "v3",
+   "date": "2026-10-30",
+   "note": "s103-s109, styles kept. First rolls except 1070 and 1025, re-rolled because my briefs leaked picture props (a pink electric hum -> the sign came back as the hook; a lawn, black clothes and a handkerchief -> a description of the picture). Swaps: 1095 shoes/door/name -> walked off/flaw/face; 1066 Opens an eye -> Opens nearby; 1092 clock/stone -> tick/brick; 1061 dust/window/camera/filming -> wheel/wind/hands/taping; 1017 ribs/hull/dust/stone -> her through/boards/hush/the wind s low moan; 1070 roll 2 sign hook -> the night says vacancy, name -> again; 1025 French fixes lèvre en fièvre -> se mord la lèvre, il crève, ne tiennent pas -> plus.",
+   "lyrics": [
+    {
+     "seed": "1095-monolith-at-low-tide",
+     "song": "Monolith at Low Tide",
+     "P": 17,
+     "lines": 34,
+     "X": 1,
+     "pct": 50,
+     "one_word": {
+      "line": "I never knew its own",
+      "from": "own",
+      "to": "name",
+      "why": "its own was a fragment",
+      "consideration": "fix differently",
+      "reason": "real fragment caused by my name swap; changed it knows me well -> it knows my face so its own refers"
+     }
+    },
+    {
+     "seed": "1092-the-unwinding-stair",
+     "song": "The Unwinding Stair",
+     "P": 14,
+     "lines": 40,
+     "X": 1,
+     "pct": 35,
+     "one_word": {
+      "line": "Who wound them all a little sick",
+      "from": "sick",
+      "to": "slow",
+      "why": "sick attaches to nothing",
+      "consideration": "decline",
+      "reason": "sick is the unease; slow tidies it"
+     }
+    },
+    {
+     "seed": "1066-the-eye-beneath",
+     "song": "The Eye Beneath",
+     "P": 27,
+     "lines": 58,
+     "X": 1,
+     "pct": 47,
+     "one_word": {
+      "line": "(and you look back)",
+      "from": "you",
+      "to": "I",
+      "why": "pronoun switch",
+      "consideration": "decline",
+      "reason": "the () is the second voice, the watcher answering"
+     }
+    },
+    {
+     "seed": "1061-chasing-the-twister",
+     "song": "Chasing the Twister",
+     "P": 29,
+     "lines": 56,
+     "X": 2,
+     "pct": 52,
+     "one_word": {
+      "line": "Catch us laughing at the wall",
+      "from": "wall",
+      "to": "squall",
+      "why": "wall fits nothing",
+      "consideration": "accept",
+      "reason": "real confusion; also fixed broken kiss it line -> and then dismiss it, and my rolling swap read as a crash -> taping"
+     }
+    },
+    {
+     "seed": "1070-vacancy",
+     "song": "Vacancy",
+     "P": 19,
+     "lines": 41,
+     "X": 0,
+     "pct": 46,
+     "one_word": {
+      "line": "But it s ringing in my head",
+      "from": "ringing",
+      "to": "buzzing",
+      "why": "ties the refrain to a neon sign",
+      "consideration": "decline",
+      "reason": "would put the sign back; reader recovered the motel unnamed"
+     }
+    },
+    {
+     "seed": "1017-ruins-of-the-desert-ark",
+     "song": "Ruins of the Desert Ark",
+     "P": 13,
+     "lines": 47,
+     "X": 0,
+     "pct": 28,
+     "one_word": {
+      "line": "I walk her through at the close of day",
+      "from": "through",
+      "to": "decks",
+      "why": "pins it as a ship",
+      "consideration": "decline",
+      "reason": "more literal; reader got the ship anyway"
+     }
+    },
+    {
+     "seed": "1025-piggy-bank-funeral",
+     "song": "Piggy Bank Funeral",
+     "P": 24,
+     "lines": 48,
+     "X": 0,
+     "pct": 50,
+     "one_word": {
+      "line": "Marc retient sa lèvre en fièvre",
+      "from": "en fièvre",
+      "to": "fébrile",
+      "why": "forced, unidiomatic French",
+      "consideration": "accept differently",
+      "reason": "se mord la lèvre, il crève (crever de rire), keeps the rhyme"
+     }
+    }
+   ]
   }
  ],
  "findings": [
