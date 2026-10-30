@@ -1467,6 +1467,93 @@
      }
     }
    ]
+  },
+  {
+   "reader": "v3",
+   "date": "2026-10-30",
+   "note": "s111-s115 on the s110 K-pop x industrial groove metal styles (written this session). 1098 re-rolled (roll 1: shoes, doorway, name, gold, fifty-fifty, hinge/latch, pane); roll 2 swaps gold->green, door->hug x2, name->me, dust->fuss. 1100 shoes->singing the blues. 1102 dust/shoes->sugar-powder, boots->heavy-footed. 1103 gold x2->won t let go / sleepy eyes. 1104 lantern became an ember the reader took for a cigarette; kept. Readers recovered club, moon landing, theremin and ghost train unnamed.",
+   "lyrics": [
+    {
+     "seed": "1098-go-go-cage",
+     "song": "Go-Go Cage",
+     "P": 27,
+     "lines": 61,
+     "X": 0,
+     "pct": 44,
+     "one_word": {
+      "line": "Everybody s looking and I don t know",
+      "from": "know",
+      "to": "slow",
+      "why": "vague shrug",
+      "consideration": "decline",
+      "reason": "the shrug is the abandon"
+     }
+    },
+    {
+     "seed": "1100-plywood-graveyard",
+     "song": "Plywood Graveyard",
+     "P": 31,
+     "lines": 71,
+     "X": 0,
+     "pct": 44,
+     "one_word": {
+      "line": "Green on my chin like I m leaking the news",
+      "from": "news",
+      "to": "glue",
+      "why": "news is abstract",
+      "consideration": "decline",
+      "reason": "pun kept; fixed my own broken rhyme instead (nibbling through -> singing the blues)"
+     }
+    },
+    {
+     "seed": "1102-saucer-girl",
+     "song": "Saucer Girl",
+     "P": 37,
+     "lines": 64,
+     "X": 0,
+     "pct": 58,
+     "one_word": {
+      "line": "Light as a lie and bright as a bell",
+      "from": "lie",
+      "to": "breath",
+      "why": "lie hints deceit",
+      "consideration": "decline",
+      "reason": "the contradiction is the craft"
+     }
+    },
+    {
+     "seed": "1103-psychedelic-theremin-hour",
+     "song": "Psychedelic Theremin Hour",
+     "P": 31,
+     "lines": 71,
+     "X": 0,
+     "pct": 44,
+     "one_word": {
+      "line": "And everything is knowing",
+      "from": "knowing",
+      "to": "glowing",
+      "why": "only abstract word in the verse",
+      "consideration": "decline",
+      "reason": "knowing is the uncanny; glowing prettifies"
+     }
+    },
+    {
+     "seed": "1104-funhouse-mouth",
+     "song": "Funhouse Mouth",
+     "P": 24,
+     "lines": 52,
+     "X": 0,
+     "pct": 46,
+     "one_word": {
+      "line": "Cold in the rain, warm in the damp",
+      "from": "damp",
+      "to": "dark",
+      "why": "rain and damp say the same thing",
+      "consideration": "accept",
+      "reason": "real redundancy; dark ties to let the dark come round"
+     }
+    }
+   ]
   }
  ],
  "findings": [
