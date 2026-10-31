@@ -1554,6 +1554,45 @@
      }
     }
    ]
+  },
+  {
+   "reader": "v3",
+   "date": "2026-10-30",
+   "note": "s117/s118 Halloween two-voice lyrics on the user-supplied cinematic art-pop base (lower voice in parens). 1114 roll 1 went domestic (kettle, porch light, name, windows, gate, door) from a sung-to-sleep shape; re-rolled outdoors (walking alone in a cold wood, a singer among the trees); swaps gate->way, boots/stone->feet/bone, window->fire, sway->stir. Reader recovered a clockwork singer in a frozen wood unnamed (it did see the filename). 1134 shape gave only the descent, no doors or eyes; swaps stone x3->wall/dark/walls, coat->throat, name->pace, dark has eyes->dark keeps watch (named the picture), stair->dark. Reader recovered a spiral stair in a tower or well.",
+   "lyrics": [
+    {
+     "seed": "1114-porcelain-in-the-birches",
+     "song": "Lo, Lo, Lully Low",
+     "P": 20,
+     "lines": 43,
+     "X": 0,
+     "pct": 47,
+     "one_word": {
+      "line": "a voice came sweet between the pines",
+      "from": "pines",
+      "to": "birches",
+      "why": "match frost, porcelain and the title",
+      "consideration": "decline",
+      "reason": "names the picture; reader took it from the filename"
+     }
+    },
+    {
+     "seed": "1134-every-door-ajar",
+     "song": "Round and Round",
+     "P": 14,
+     "lines": 48,
+     "X": 0,
+     "pct": 29,
+     "one_word": {
+      "line": "the walls have ears, the dark keeps watch",
+      "from": "dark",
+      "to": "steps",
+      "why": "put the setting into the most repeated block",
+      "consideration": "decline",
+      "reason": "makes the hook literal; the reader recovered the stair anyway"
+     }
+    }
+   ]
   }
  ],
  "findings": [
