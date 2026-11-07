@@ -48,7 +48,6 @@
  },
  "deck": {
   "remaining": [
-   3,
    7,
    9,
    5,
@@ -68,10 +67,10 @@
    "date": "2026-11-07",
    "lyricist": "claude-self",
    "filled_prompt": "prompt-trial variant 1; slots: adverb=quietly; idea=bigger than known; meter=slow; genre=mid-90s sample-based instrumental hip-hop; structure=verse, hook, verse, hook, a spoken bridge, hook; compelling term=still. Stance: 'I stayed small on purpose. Small is safe.'",
-   "lyrics": "[Verse 1]\nI learned to sit the way you sit\nwhen someone might be sleeping\nI said \"it's fine\" so many times\nit got into my breathing\nThe lake out here won't say a word\nwon't flatter me or lie\nI lean to see my tired face\nand it hands me back the sky\n\n[Hook]\nEvery star I hid\nis shining up at me\nall the way down\nfurther than I let them see\n\n[Verse 2]\nI made myself an easy guest\nI made myself a quiet room\nI trimmed my wanting to the size\nthat no one would refuse\nBut out here no one's keeping score\nthe water doesn't care\nand the deeper that I look in it\nthe more of me is there\n\n[Hook]\nEvery star I hid\nis shining up at me\nall the way down\nfurther than I let them see\n\n[Spoken Bridge]\nI stayed small on purpose.\nSmall is safe. Nobody asks a small thing to burn.\nAnd I knew. The whole time, I knew how far down it went.\n\n[Final Hook]\nEvery star I hid\nI'm letting them be seen\nall the way down\nand every mile of it is me",
+   "lyrics": "[Verse 1]\nI learned to sit the way you sit\nwhen someone might be sleeping\nI said \"it's fine\" so many times\nit got into my breathing\nTonight there's no one left to please\nthere's nothing to defend\nI let one breath out all the way\nand I can't find the end\n\n[Hook]\nEvery room I closed\nis opening in me\nevery floor of it\nmore than I let them see\n\n[Verse 2]\nI made myself an easy guest\nI made myself a single room\nI trimmed my wanting to the size\nthat no one would refuse\nBut no one's here to keep the score\nand no one here to scare\nand the further in I let me go\nthe more of me is there\n\n[Hook]\nEvery room I closed\nis opening in me\nevery floor of it\nmore than I let them see\n\n[Spoken Bridge]\nI stayed small on purpose.\nSmall is safe. Nobody asks a small thing to burn.\nAnd I knew. The whole time, I knew how far down it went.\n\n[Final Hook]\nEvery room I closed\nI'm throwing open, see\nevery floor of it\nand every one of them is me",
    "suno": null,
    "verdict": null,
-   "note": "lab s180-s182, delivered 2026-11-07; style s179 per-picture (mid-90s sample-based instrumental hip-hop)"
+   "note": "lab s180-s182, 2026-11-07; REWRITE: first draft named the picture (lab no-naming rule), this is the delivered version; style s179 per-picture"
   },
   {
    "song": "1528-the-sleeping-mountains",
@@ -82,10 +81,10 @@
    "date": "2026-11-07",
    "lyricist": "claude-self",
    "filled_prompt": "prompt-trial variant 4; slots: adverb=slowly; idea=allowed to rest; meter=slow; genre=mid-90s sample-based instrumental hip-hop; structure=verse, hook, verse, hook, bridge, hook; compelling term=unhurried. Reference event (unnamed): the first morning after a lifetime of work. Picture images used as metaphor only: mist, waterfall, cliff pine, receding ridges.",
-   "lyrics": "[Verse 1]\nI wore my hurry like a second skin\nI wore it thin\nevery morning was a ridge to climb\nand I climbed it out of breath each time\nNow the mist comes down on my shoulders\nsoft as an old friend's hand\nand it says the thing the hills say:\nnothing's late here. Stand.\n\n[Hook]\nSleep, old ridge, sleep\nI'll keep the quiet with you\na thousand years is one long breath\nand I am learning to breathe too\n\n[Verse 2]\nAll my worry fell like water\nloud and white and never done\nbut a falling that goes on for ages\nwears a cradle in the stone\nI was a pine on the cliff edge\nholding on with crooked hands\nnow I'm only rooted, only rooted\nand it's more than I had planned\n\n[Hook]\nSleep, old ridge, sleep\nI'll keep the quiet with you\na thousand years is one long breath\nand I am learning to breathe too\n\n[Bridge]\nLayer after layer, blue into grey\nevery distance older than the last\nI don't need to reach the far one\nI can let the far one pass\n\n[Final Hook]\nSleep, old ridge, sleep\nI'll keep the quiet with you\na thousand years is one long breath\nand I am breathing, too",
+   "lyrics": "[Verse 1]\nI wore my hurry like a second skin\nI wore it thin\nevery morning was a race to run\nand I ran it till the day was done\nNow the sun comes down on my shoulders\nheavy as an old friend's hand\nand it says the thing the old things say:\nnothing's late here. Stand.\n\n[Hook]\nSleep, old one, sleep\nI'll keep the quiet with you\na thousand years is one long breath\nand I am learning to breathe too\n\n[Verse 2]\nAll my worry ran like engines\nloud and hot and never done\nbut the tortoise by the garden wall\nhas been dozing since I was young\nI was a fist around the railing\nholding on with both my hands\nnow I'm only sitting, only sitting\nand it's more than I had planned\n\n[Hook]\nSleep, old one, sleep\nI'll keep the quiet with you\na thousand years is one long breath\nand I am learning to breathe too\n\n[Bridge]\nDown the road the traffic's hurrying\nevery light is changing fast\nI don't need to catch the far one\nI can let the far one pass\n\n[Final Hook]\nSleep, old one, sleep\nI'll keep the quiet with you\na thousand years is one long breath\nand I am breathing, too",
    "suno": null,
    "verdict": null,
-   "note": "lab s180-s182, delivered 2026-11-07; style s179 per-picture (mid-90s sample-based instrumental hip-hop)"
+   "note": "lab s180-s182, 2026-11-07; REWRITE: first draft named the picture (lab no-naming rule), this is the delivered version; style s179 per-picture"
   },
   {
    "song": "1527-the-oculus",
@@ -96,10 +95,24 @@
    "date": "2026-11-07",
    "lyricist": "claude-self",
    "filled_prompt": "prompt-trial variant 6; slots: adverb=plainly; idea=emptied out; meter=slow; genre=mid-90s sample-based instrumental hip-hop; structure=verse, hook, verse, hook, bridge, hook; compelling term=hollow. Reference event (unnamed): a city square keeping a minute's silence. Variant 6 put the stillness among a crowd doing it together; the picture's light on still water became the fountain.",
-   "lyrics": "[Verse 1]\nShoulder to shoulder in the square\ncoffee in a hundred hands\nsomebody's laughing, someone's late\na bus is grumbling where it stands\nThen a hush goes through us like a ripple\nand a thousand people stand\nand the noise I've carried all my life\njust slips out of my hand\n\n[Hook]\nStill water, still\nlight comes through the roof of the day\nnobody moving, nobody talking\nand everything I was is washed away\n\n[Verse 2]\nThe man beside me shuts his eyes\na kid stops tugging at a sleeve\nthe pigeons settle on the stones\nand even they don't seem to breathe\nI can hear the sun land on the water\nin the fountain at our feet\nwe are hollow like a bell is hollow\nand the hollow rings so sweet\n\n[Hook]\nStill water, still\nlight comes through the roof of the day\nnobody moving, nobody talking\nand everything I was is washed away\n\n[Bridge]\nThen someone coughs and someone laughs\nand the buses start again\nbut I'm carrying an empty room\nwith the light still coming in\n\n[Final Hook]\nStill water, still\nlight comes through the roof of the day\neverybody moving, everybody talking\nand the light in me won't go away",
+   "lyrics": "[Verse 1]\nShoulder to shoulder in the square\ncoffee in a hundred hands\nsomebody's laughing, someone's late\na bus is grumbling where it stands\nThen a hush goes through us like a ripple\nand a thousand people stand\nand the noise I've carried all my life\njust slips out of my hand\n\n[Hook]\nHush, all of us\nholding one breath in the square\nnobody moving, nobody talking\nand all I was just isn't there\n\n[Verse 2]\nThe man beside me shuts his eyes\na kid stops tugging at a sleeve\nthe pigeons settle on the stones\nand even they don't seem to breathe\nI can hear a flag rope tapping on its pole\ntwo streets over, someone's heels\nwe are hollow like a bell is hollow\nand I never knew how good it feels\n\n[Hook]\nHush, all of us\nholding one breath in the square\nnobody moving, nobody talking\nand all I was just isn't there\n\n[Bridge]\nThen someone coughs and someone laughs\nand the buses start again\nbut I'm carrying the quiet home\nlike a room with nothing in\n\n[Final Hook]\nHush, all of us\nletting out one breath in the square\neverybody moving, everybody talking\nand I carry the hush from there",
    "suno": null,
    "verdict": null,
-   "note": "lab s180-s182, delivered 2026-11-07; style s179 per-picture (mid-90s sample-based instrumental hip-hop)"
+   "note": "lab s180-s182, 2026-11-07; REWRITE: first draft named the picture (lab no-naming rule), this is the delivered version; style s179 per-picture"
+  },
+  {
+   "song": "1530-into-the-lit-fog",
+   "title": "Into the Lit Fog",
+   "variant": 3,
+   "key": "blind-draw",
+   "cycle": 1,
+   "date": "2026-11-07",
+   "lyricist": "claude-self",
+   "filled_prompt": "prompt-trial variant 3 (blind-draw); drawn: 1920s | the Mekong delta | a market fruit seller (unnamed in the lyric). Delta rowers stand facing forward, which carries 'not looking back'. slots: adverb=brightly; idea=the day ahead; meter=mid-paced; genre=mid-90s sample-based instrumental hip-hop; structure=verse, chorus, verse, chorus, bridge, chorus; compelling term=open-hearted. No-naming rule applied from the first draft.",
+   "lyrics": "[Verse 1]\nMangoes stacked up to my shoulder\nlimes as green as they can be\nI push off before the roosters\nand the river carries me\nEvery stroke I lean into it\nstanding, facing where I'm bound\nwhat I left tied at the landing\nI don't need to turn around\n\n[Chorus]\nRipe and ready, on my way\ncalling out across the water\nsweet fruit, sweet day\neverything I carry, I'll give away\n\n[Verse 2]\nLast year's flood took half the orchard\nlast year's debt took half the rest\nbut the trees I tied back standing\ngave me this, their very best\nBoats come sliding out beside me\nevery voice a different tune\nsomeone tosses me a pomelo\nsomeone swears it's rain by noon\n\n[Chorus]\nRipe and ready, on my way\ncalling out across the water\nsweet fruit, sweet day\neverything I carry, I'll give away\n\n[Bridge]\nDon't look back, the river's moving\ndon't look back, the market's near\neverything I lost is behind me\neverything I've got is here\n\n[Final Chorus]\nRipe and ready, on my way\n(on my way)\ncalling out across the water\nsweet fruit, sweet day\n(sweet day)\neverything I carry, I'll give away",
+   "suno": null,
+   "verdict": null,
+   "note": "lab s183, 2026-11-07"
   }
  ]
 }
