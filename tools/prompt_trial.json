@@ -48,9 +48,13 @@
  },
  "deck": {
   "remaining": [
-   10
+   3,
+   6,
+   8,
+   7,
+   1
   ],
-  "cycle": 1
+  "cycle": 2
  },
  "assignments": [
   {
@@ -178,6 +182,90 @@
    "suno": null,
    "verdict": null,
    "note": "lab s188, 2026-11-07; style updated with a sung lead"
+  },
+  {
+   "song": "1558-ink-becoming-someone",
+   "title": "Ink Becoming Someone",
+   "variant": 10,
+   "key": "draft-and-cut",
+   "cycle": 1,
+   "date": "2026-11-07",
+   "lyricist": "claude-self",
+   "filled_prompt": "prompt-trial variant 10 (draft-and-cut); drafted, then revised once: an opener that catches (the barber), easy details traded for singer-only ones (signing a lease in a new name, laughing at a lower pitch), strongest line held for last. slots: adverb=curiously; idea=becoming someone; meter=mid-paced; genre=mid-90s sample-based instrumental hip-hop; structure=verse, hook, verse, hook, bridge, hook; compelling term=mysterious. Reference event (unnamed): the first months after changing your name and your life. No-naming rule applied from the first draft.",
+   "lyrics": "[Verse 1]\nThe barber asked me how I wanted it\nI said surprise me, and he did\nI signed a lease in a name I'm still\ngetting used to, like a kid\nlearning cursive, letter by letter\ngoing slow so it comes out right\nI don't know who I'm turning into\nbut they're coming into sight\n\n[Hook]\nComing up like a photograph\ngrey, then shapes, then me\nshake it, wait for it, half of it showing\nand the rest I've yet to see\n\n[Verse 2]\nOld friends say I sound different\nand they say it like a loss\nI've been laughing at a lower pitch\nI've been learning what things cost\nI can't tell who's coming through yet\nonly that they're kind\nand they've got my hands, and they've got my walk\nand a little of my mind\n\n[Hook]\nComing up like a photograph\ngrey, then shapes, then me\nshake it, wait for it, half of it showing\nand the rest I've yet to see\n\n[Bridge]\nDon't hurry me, don't finish me\ndon't tell me who I am\nthere's somebody coming up from nothing\nand I'll meet them when I can\n\n[Final Hook]\nComing up like a photograph\ngrey, then shapes, then me\nshake it, wait for it, half of it showing\nsomebody's coming up from nothing\nand it looks a lot like me",
+   "suno": null,
+   "verdict": null,
+   "note": "lab s189, 2026-11-07; style written new with the lyric"
+  },
+  {
+   "song": "1557-the-glacier-and-the-lights",
+   "title": "The Glacier and the Lights",
+   "variant": 10,
+   "key": "draft-and-cut",
+   "cycle": 2,
+   "date": "2026-11-07",
+   "lyricist": "claude-self",
+   "filled_prompt": "prompt-trial variant 10 (draft-and-cut); drafted, then revised once: an opener that catches (halfway home with the shopping), easy details traded for singer-only ones (the phone left in the pocket so the moment wouldn't shrink, letting the bus go), strongest line held for last. slots: adverb=wonderingly; idea=small and part of it; meter=slow; genre=mid-90s sample-based instrumental hip-hop; structure=verse, hook, verse, hook, bridge, hook; compelling term=humbling. Reference event (unnamed): a starling murmuration over a town on a weekday evening. No-naming rule applied from the first draft.",
+   "lyrics": "[Verse 1]\nI was halfway home with the shopping\nwhen the evening started to move\nten thousand starlings turning\nlike one thought trying to get through\nI set the bags down on the pavement\nand the stranger next to me did too\nwe didn't say a word to each other\nwe just stood there while it flew\n\n[Hook]\nTurn, turn\nover my head\nsomething alive and enormous\ngoing where it's led\n\n[Verse 2]\nMy phone stayed in my pocket\nI didn't want it smaller than it was\nthe bus came by, I let it go\nand I let the whole day wait in line\nI'm one dot in a million\nand the million doesn't mind\nit bends, and I bend with it\nit breathes, and so do I\n\n[Hook]\nTurn, turn\nover my head\nsomething alive and enormous\ngoing where it's led\n\n[Bridge]\nI have spent my whole life\ntrying to matter, trying to be seen\nand the best I've ever felt\nis being nothing, in between\n\n[Final Hook]\nTurn, turn\nover my head\nsomething alive and enormous\nand I'm part of it instead",
+   "suno": null,
+   "verdict": null,
+   "note": "lab s190, 2026-11-07; style written new; variant 10 dealt twice in a row across the cycle boundary (random, not re-dealt)"
+  },
+  {
+   "song": "1564-she-is-the-forest",
+   "title": "She Is the Forest",
+   "variant": 9,
+   "key": "delivery-diction",
+   "cycle": 2,
+   "date": "2026-11-07",
+   "lyricist": "claude-self",
+   "filled_prompt": "prompt-trial variant 9 (delivery-diction); delivery=softly and plainly, the way someone talks about home; diction=the everyday speech of a small windy ferry town ('you're grand' meaning 'come in', 'not from round here'). slots: adverb=warmly; idea=carrying a place; meter=mid-paced; genre=mid-90s sample-based instrumental hip-hop; structure=verse, hook, verse, hook, bridge, hook; compelling term=rooted. Reference event (unnamed): leaving a small coastal town at nineteen for the city. No-naming rule applied from the first draft.",
+   "lyrics": "[Verse 1]\nI moved away at nineteen\nwith a bag and a borrowed phone\nlearned to walk fast, learned to talk fast\nlearned to never sound like home\nBut it comes back when I'm quiet\nthe ferry horn, the hill, the wind\nand the way we all said \"you're grand\"\nwhen we meant \"come in\"\n\n[Hook]\nI carry it, I carry it\nI don't have to go back\nit's in the way I hold a cup\nit's in the way I laugh\nI carry it, I carry it\nall of it, all of that\n\n[Verse 2]\nSomebody on the train said\n\"you're not from round here, are you\"\nand I smiled because they're right\nand because it isn't true\nWhen the city gets too loud\nI slow my talking down\nand I'm back where nobody hurried\nin a windy little town\n\n[Hook]\nI carry it, I carry it\nI don't have to go back\nit's in the way I hold a cup\nit's in the way I laugh\nI carry it, I carry it\nall of it, all of that\n\n[Bridge]\nYou can take me out of there\nyou can't take the there from me\nI was built from one small, windy place\nand it's all I need to be\n\n[Final Hook]\nI carry it, I carry it\nI don't have to go back\nit's in the way I hold a cup\nit's in the way I laugh\nI carry it, I carry it\nall of it, all of that",
+   "suno": null,
+   "verdict": null,
+   "note": "lab s191, 2026-11-07; style written new"
+  },
+  {
+   "song": "1566-the-unravelling-figure",
+   "title": "The Unravelling Figure",
+   "variant": 2,
+   "key": "vowels-inside-words",
+   "cycle": 2,
+   "date": "2026-11-07",
+   "lyricist": "claude-self",
+   "filled_prompt": "prompt-trial variant 2 (vowels-inside-words); open vowels held inside real words on the hook (away, be, less, west) and bridge (light, right). slots: adverb=calmly; idea=coming apart gently; meter=slow; genre=mid-90s sample-based instrumental hip-hop, heavier and uneasy; structure=verse, hook, verse, hook, bridge, hook; compelling term=unflinching. Reference event (unnamed): early memory loss told from the inside, set against a coastline eroding. No-naming rule applied from the first draft.",
+   "lyrics": "[Verse 1]\nFirst it was the names of streets\nthen the words to that old song\nthen a word right in the middle\nof something I'd known all along\nI can feel the edges going\nlike a coastline in the rain\nevery night the sea takes something\nand it doesn't give it back again\n\n[Hook]\nWear away, wear away\nevery day a little less\nall the shore I used to be\ngoing quiet, going west\n\n[Verse 2]\nI used to fight it, writing notes\nstuck on everything I own\nnow I let the notes fall off\nand I sit here on my own\nIt is frightening, I'll tell you\nand then, some days, it's not\nit's like setting down a heavy bag\nof everything I've got\n\n[Hook]\nWear away, wear away\nevery day a little less\nall the shore I used to be\ngoing quiet, going west\n\n[Bridge]\nSomewhere there's a version of me\nwhole and standing in the light\nI wave to them from very far\nand I'm all right, I'm all right\n\n[Final Hook]\nWear away, wear away\nevery day a little less\nall the shore I used to be\ngoing quiet\ngoing west",
+   "suno": null,
+   "verdict": null,
+   "note": "lab s192, 2026-11-07; style written new, darker/heavier per the lab"
+  },
+  {
+   "song": "1572-glitch-portrait",
+   "title": "Glitch Portrait",
+   "variant": 5,
+   "key": "untangled",
+   "cycle": 2,
+   "date": "2026-11-07",
+   "lyricist": "claude-self",
+   "filled_prompt": "prompt-trial variant 5 (untangled); the one carrying metaphor: a sugar cube in coffee, keeping its corners while the middle goes, sweet and calm all the way down. slots: adverb=calmly; idea=coming apart smiling; meter=mid-paced; genre=mid-90s sample-based instrumental hip-hop; structure=verse, hook, verse, hook, bridge, hook; compelling term=unbothered. Reference event (unnamed): holding it together at a work lunch while falling apart inside. No-naming rule applied from the first draft.",
+   "lyrics": "[Verse 1]\nI'm a sugar cube in your coffee\nI keep my corners for a while\nyou could stir me, you could watch me\nI'll go under with a smile\nEverybody at the table\nsays I'm looking well today\nand I'm holding all my edges\nwhile the middle melts away\n\n[Hook]\nCalm, I'm calm\nsweet all the way down\nI'm going soft at the corners\nand I won't make a sound\n\n[Verse 2]\nAsk me how the week was, fine\nask me how I've slept, like stone\nthere is nothing left to hold me\nbut the shape of what I've known\nI don't need you to rescue me\nI don't need you to stir\nI'll be gone into the warmth of it\nlike I never were\n\n[Hook]\nCalm, I'm calm\nsweet all the way down\nI'm going soft at the corners\nand I won't make a sound\n\n[Bridge]\nWatch me now, I'm almost nothing\nwatch me now, I'm almost there\nI'm not anywhere you'd look for me\nI'm a little bit everywhere\n\n[Final Hook]\nCalm, I'm calm\nsweet all the way down\nI'm going soft at the corners\nand I won't make a sound\nyou won't find me, but I'm all around",
+   "suno": null,
+   "verdict": null,
+   "note": "lab s193, 2026-11-07; style written new"
+  },
+  {
+   "song": "1573-the-match-and-the-galaxy",
+   "title": "The Match and the Galaxy",
+   "variant": 4,
+   "key": "charged-images",
+   "cycle": 2,
+   "date": "2026-11-07",
+   "lyricist": "claude-self",
+   "filled_prompt": "prompt-trial variant 4 (charged-images); every object carries the feeling (cold rings, warm palm, the seatbelt chime as a little bell of fear); the reference event lends the images as metaphor, the picture's own things never named. slots: adverb=tenderly; idea=small warm vastness; meter=slow; genre=mid-90s sample-based instrumental hip-hop; structure=verse, hook, verse, hook, bridge, hook; compelling term=fragile. Reference event (unnamed): a stranger's hand held through a minute of turbulence on a night flight over the ocean. No-naming rule applied from the first draft.",
+   "lyrics": "[Verse 1]\nThe cabin dropped and the cups jumped\nand the window filled with night\nthe stranger in the middle seat\nheld her hand out, and I held on tight\nWe'd been strangers for three hours\nand we'd be strangers when we land\nbut for a minute over the ocean\nthe whole world was in one hand\n\n[Hook]\nHold on, hold on\nit's only for a minute\nit's so small, it's so small\nand the whole of it is in it\n\n[Verse 2]\nHer rings were cold, her palm was warm\nshe was humming under her breath\nthe seatbelt sign kept chiming\nlike a little bell of fear\nand she squeezed on every chime\nlike she was saying \"I'm right here\"\nthen the wings came level and she let go\nand laughed, and said \"sorry, friend\"\n\n[Hook]\nHold on, hold on\nit's only for a minute\nit's so small, it's so small\nand the whole of it is in it\n\n[Bridge]\nWe never said another word\nall the way down to the ground\nbut I've kept that minute in my chest\nlike a coin I'll never spend\n\n[Final Hook]\nHold on, hold on\nit was only for a minute\nit was small, it was small\nand the whole of it was in it",
+   "suno": null,
+   "verdict": null,
+   "note": "lab s194, 2026-11-07; style written new"
   }
  ]
 }
