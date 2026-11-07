@@ -48,11 +48,6 @@
  },
  "deck": {
   "remaining": [
-   7,
-   9,
-   5,
-   8,
-   2,
    10
   ],
   "cycle": 1
@@ -113,6 +108,76 @@
    "suno": null,
    "verdict": null,
    "note": "lab s183, 2026-11-07"
+  },
+  {
+   "song": "1546-rain-that-falls-upward",
+   "title": "Rain That Falls Upward",
+   "variant": 7,
+   "key": "spare",
+   "cycle": 1,
+   "date": "2026-11-07",
+   "lyricist": "claude-self",
+   "filled_prompt": "prompt-trial variant 7 (spare); slots: adverb=quietly; idea=running backwards; meter=slow; genre=mid-90s sample-based instrumental hip-hop; structure=two short verses, a hook that returns past comfort, a bridge with the tannoy in (), long final hook; compelling term=uncanny. Reference event (unnamed): the night the clocks go back. No-naming rule applied from the first draft.",
+   "lyrics": "[Verse 1]\nEverybody's gone home\nshutters down, signs off\nI stay to watch the things\nnobody's watching\n\n[Hook]\nRunning it back\nrunning it back\nwhen nobody's looking\nthe world runs back\n\n[Verse 2]\nThe clocks go back tonight\nI get the hour twice\nI spend it the way\nI should have spent it\n\n[Hook]\nRunning it back\nrunning it back\nwhen nobody's looking\nthe world runs back\n\n[Bridge]\n(closing now, closing now)\nEvery word I said\nunsays itself\n(closing now)\neveryone who left\nwalks in backwards\n\n[Final Hook]\nRunning it back\nrunning it back\nwhen nobody's looking\nthe world runs back\nRunning it back\nrunning it back\nI won't look\njust bring you back",
+   "suno": null,
+   "verdict": null,
+   "note": "lab s184, 2026-11-07; style updated with a sung lead"
+  },
+  {
+   "song": "1551-everyone-asleep-at-once",
+   "title": "Everyone Asleep at Once",
+   "variant": 9,
+   "key": "delivery-diction",
+   "cycle": 1,
+   "date": "2026-11-07",
+   "lyricist": "claude-self",
+   "filled_prompt": "prompt-trial variant 9 (delivery-diction); delivery=softly, as a lullaby, the hook layered by many voices; diction=plain bedside speech of ordinary working people. slots: adverb=gently; idea=everyone at once; meter=slow; genre=mid-90s sample-based instrumental hip-hop; structure=verse, hook, verse, hook, bridge, hook; compelling term=tender. Reference event (unnamed): the hours when a whole working town is asleep together. No-naming rule applied from the first draft.",
+   "lyrics": "[Verse 1]\nHush now, the baker's sleeping\nand the bread goes on without her\nhush now, the driver's sleeping\nand the road lies quiet about her\nSomebody's left a radio\ntalking softly to the chair\nand the dog asleep beside it\nchases rabbits through the air\n\n[Hook]\nAll of us at once\nall of us at once\nstrangers in a row\nbreathing slow\nall of us at once\n\n[Verse 2]\nHush now, the nurse is sleeping\nsomeone else is on the ward\nhush now, the kid who lost the match\ndreams the winning goal is scored\nAnd the ones who never speak\nand the ones who never stop\nhave all put the day down\nlike a coin they meant to drop\n\n[Hook]\nAll of us at once\nall of us at once\nstrangers in a row\nbreathing slow\nall of us at once\n\n[Bridge]\nI will never meet you\nyou will never meet me\nbut we're breathing in together\nin one long melody\n\n[Final Hook]\nAll of us at once\n(all of us)\nall of us at once\n(all of us)\nstrangers in a row\nbreathing slow\nall of us at once",
+   "suno": null,
+   "verdict": null,
+   "note": "lab s185, 2026-11-07; style updated with a sung lead"
+  },
+  {
+   "song": "1518-door-at-the-bottom-of-the-colour",
+   "title": "Door at the Bottom of the Colour",
+   "variant": 5,
+   "key": "untangled",
+   "cycle": 1,
+   "date": "2026-11-07",
+   "lyricist": "claude-self",
+   "filled_prompt": "prompt-trial variant 5 (untangled); the one carrying metaphor: a pilot light, warmth kept small and far away on purpose. slots: adverb=tenderly; idea=warmth far away; meter=slow; genre=mid-90s sample-based instrumental hip-hop; structure=verse, hook, verse, hook, bridge, hook; compelling term=aching. Reference event (unnamed): keeping the heating on its lowest setting through a long winter alone. No-naming rule applied from the first draft.",
+   "lyrics": "[Verse 1]\nYou're the pilot light\nin a house gone cold\nI can't feel you from the hallway\nbut I know that you still hold\nEverything's too big tonight\ntoo heavy and too dark\nand you're down there, small and steady\njust a little bit of spark\n\n[Hook]\nStay lit, stay lit\nI don't need you close\njust be burning somewhere\nI can't reach, but know\n\n[Verse 2]\nI could turn the whole thing up\nand burn it all for heat\nbut I'd rather have you tiny\nthan have nothing left to keep\nSo I sit up in the big cold room\nwith my hands around the thought\nof the little blue you're keeping\nof the one flame that I've got\n\n[Hook]\nStay lit, stay lit\nI don't need you close\njust be burning somewhere\nI can't reach, but know\n\n[Bridge]\nAnd if you ever go out\nI will feel it in my bones\nthe house will just be rooms\nand the rooms will just be stone\n\n[Final Hook]\nStay lit, stay lit\nI don't need you close\njust be burning somewhere\nwhere only I would know",
+   "suno": null,
+   "verdict": null,
+   "note": "lab s186, 2026-11-07; style updated with a sung lead"
+  },
+  {
+   "song": "1540-the-ladder-to-the-moon-s-underside",
+   "title": "The Ladder to the Moon's Underside",
+   "variant": 8,
+   "key": "one-picture",
+   "cycle": 1,
+   "date": "2026-11-07",
+   "lyricist": "claude-self",
+   "filled_prompt": "prompt-trial variant 8 (one-picture); the single picture: a long-distance swimmer still going after the others turned back to the boat, the far island never reached. slots: adverb=stubbornly; idea=almost there; meter=mid-paced; genre=mid-90s sample-based instrumental hip-hop; structure=verse, hook, verse, hook, bridge, hook ending unresolved; compelling term=yearning. Reference event (unnamed): an open-water channel attempt abandoned by the rest of the group. No-naming rule applied from the first draft.",
+   "lyrics": "[Verse 1]\nThey turned back at the second buoy\none by one into the boat\nwrapped in towels, passing round a flask\nof something hot to warm the throat\nNow it's only me and the long grey swell\nand an island I can't see\nbut I know it's there, I know it's huge\nand I know it's waiting for me\n\n[Hook]\nStroke, and breathe, and stroke\nfurther than I've been\nI can almost touch it\nalmost\n\n[Verse 2]\nMy arms are lead, my lips gone blue\nevery swell a hill to clear\nthe boat's a speck behind my heels\nand the shore's no nearer here\nBut I'd rather go down reaching\nthan be warm and dry and sure\nthey'll tell it as a sad thing\nbut I'll know what I was for\n\n[Hook]\nStroke, and breathe, and stroke\nfurther than I've been\nI can almost touch it\nalmost\n\n[Bridge]\nSomewhere behind me they're rowing home\nand I don't blame them, no\nI just can't stop wanting\nthe thing I'll never hold\n\n[Final Hook]\nStroke, and breathe, and stroke\nfurther than I've been\nI can almost touch it\nalmost\nalmost",
+   "suno": null,
+   "verdict": null,
+   "note": "lab s187, 2026-11-07; style updated with a sung lead"
+  },
+  {
+   "song": "1555-breathing-out-the-forest",
+   "title": "Breathing Out the Forest",
+   "variant": 2,
+   "key": "vowels-inside-words",
+   "cycle": 1,
+   "date": "2026-11-07",
+   "lyricist": "claude-self",
+   "filled_prompt": "prompt-trial variant 2 (vowels-inside-words); hook built on long open o-vowels inside real words (slow, grow, sow, below). slots: adverb=gently; idea=rest becoming growth; meter=slow; genre=mid-90s sample-based instrumental hip-hop; structure=verse, hook, verse, hook, bridge, hook; compelling term=renewing. Reference event (unnamed): a year off after burning out. No-naming rule applied from the first draft.",
+   "lyrics": "[Verse 1]\nI put the whole year down\nlike a bag I'd carried far too long\ntold them all I'm going away\nand I went nowhere, and I was gone\nLay around the afternoons\nlet the hours come and go\nand the one I'd been too tired to be\nstarted, slow\n\n[Hook]\nSlow, slow\nlet it grow\nall the good I didn't sow\ncoming up from down below\nslow, slow\n\n[Verse 2]\nSomething in my chest unknotted\nsomething in my hands came home\nI woke up humming, I don't know why\nI said yes to someone on the phone\nAll that time I called it wasted\nlying fallow, lying low\nit was busy under the surface\nmaking room for me to grow\n\n[Hook]\nSlow, slow\nlet it grow\nall the good I didn't sow\ncoming up from down below\nslow, slow\n\n[Bridge]\nNobody saw it happen\nnobody heard a sound\njust a quiet coming over\nand a coming round\n\n[Final Hook]\nSlow, slow\n(slow)\nlet it grow\nall the good I didn't sow\ncoming up from down below\nslow, slow",
+   "suno": null,
+   "verdict": null,
+   "note": "lab s188, 2026-11-07; style updated with a sung lead"
   }
  ]
 }
