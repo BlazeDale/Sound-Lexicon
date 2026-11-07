@@ -47,8 +47,59 @@
   }
  },
  "deck": {
-  "remaining": [],
-  "cycle": 0
+  "remaining": [
+   3,
+   7,
+   9,
+   5,
+   8,
+   2,
+   10
+  ],
+  "cycle": 1
  },
- "assignments": []
+ "assignments": [
+  {
+   "song": "1517-her-reflection-is-night",
+   "title": "Her Reflection Is Night",
+   "variant": 1,
+   "key": "stance",
+   "cycle": 1,
+   "date": "2026-11-07",
+   "lyricist": "claude-self",
+   "filled_prompt": "prompt-trial variant 1; slots: adverb=quietly; idea=bigger than known; meter=slow; genre=mid-90s sample-based instrumental hip-hop; structure=verse, hook, verse, hook, a spoken bridge, hook; compelling term=still. Stance: 'I stayed small on purpose. Small is safe.'",
+   "lyrics": "[Verse 1]\nI learned to sit the way you sit\nwhen someone might be sleeping\nI said \"it's fine\" so many times\nit got into my breathing\nThe lake out here won't say a word\nwon't flatter me or lie\nI lean to see my tired face\nand it hands me back the sky\n\n[Hook]\nEvery star I hid\nis shining up at me\nall the way down\nfurther than I let them see\n\n[Verse 2]\nI made myself an easy guest\nI made myself a quiet room\nI trimmed my wanting to the size\nthat no one would refuse\nBut out here no one's keeping score\nthe water doesn't care\nand the deeper that I look in it\nthe more of me is there\n\n[Hook]\nEvery star I hid\nis shining up at me\nall the way down\nfurther than I let them see\n\n[Spoken Bridge]\nI stayed small on purpose.\nSmall is safe. Nobody asks a small thing to burn.\nAnd I knew. The whole time, I knew how far down it went.\n\n[Final Hook]\nEvery star I hid\nI'm letting them be seen\nall the way down\nand every mile of it is me",
+   "suno": null,
+   "verdict": null,
+   "note": "lab s180-s182, delivered 2026-11-07; style s179 per-picture (mid-90s sample-based instrumental hip-hop)"
+  },
+  {
+   "song": "1528-the-sleeping-mountains",
+   "title": "The Sleeping Mountains",
+   "variant": 4,
+   "key": "charged-images",
+   "cycle": 1,
+   "date": "2026-11-07",
+   "lyricist": "claude-self",
+   "filled_prompt": "prompt-trial variant 4; slots: adverb=slowly; idea=allowed to rest; meter=slow; genre=mid-90s sample-based instrumental hip-hop; structure=verse, hook, verse, hook, bridge, hook; compelling term=unhurried. Reference event (unnamed): the first morning after a lifetime of work. Picture images used as metaphor only: mist, waterfall, cliff pine, receding ridges.",
+   "lyrics": "[Verse 1]\nI wore my hurry like a second skin\nI wore it thin\nevery morning was a ridge to climb\nand I climbed it out of breath each time\nNow the mist comes down on my shoulders\nsoft as an old friend's hand\nand it says the thing the hills say:\nnothing's late here. Stand.\n\n[Hook]\nSleep, old ridge, sleep\nI'll keep the quiet with you\na thousand years is one long breath\nand I am learning to breathe too\n\n[Verse 2]\nAll my worry fell like water\nloud and white and never done\nbut a falling that goes on for ages\nwears a cradle in the stone\nI was a pine on the cliff edge\nholding on with crooked hands\nnow I'm only rooted, only rooted\nand it's more than I had planned\n\n[Hook]\nSleep, old ridge, sleep\nI'll keep the quiet with you\na thousand years is one long breath\nand I am learning to breathe too\n\n[Bridge]\nLayer after layer, blue into grey\nevery distance older than the last\nI don't need to reach the far one\nI can let the far one pass\n\n[Final Hook]\nSleep, old ridge, sleep\nI'll keep the quiet with you\na thousand years is one long breath\nand I am breathing, too",
+   "suno": null,
+   "verdict": null,
+   "note": "lab s180-s182, delivered 2026-11-07; style s179 per-picture (mid-90s sample-based instrumental hip-hop)"
+  },
+  {
+   "song": "1527-the-oculus",
+   "title": "The Oculus",
+   "variant": 6,
+   "key": "in-the-thick-of-it",
+   "cycle": 1,
+   "date": "2026-11-07",
+   "lyricist": "claude-self",
+   "filled_prompt": "prompt-trial variant 6; slots: adverb=plainly; idea=emptied out; meter=slow; genre=mid-90s sample-based instrumental hip-hop; structure=verse, hook, verse, hook, bridge, hook; compelling term=hollow. Reference event (unnamed): a city square keeping a minute's silence. Variant 6 put the stillness among a crowd doing it together; the picture's light on still water became the fountain.",
+   "lyrics": "[Verse 1]\nShoulder to shoulder in the square\ncoffee in a hundred hands\nsomebody's laughing, someone's late\na bus is grumbling where it stands\nThen a hush goes through us like a ripple\nand a thousand people stand\nand the noise I've carried all my life\njust slips out of my hand\n\n[Hook]\nStill water, still\nlight comes through the roof of the day\nnobody moving, nobody talking\nand everything I was is washed away\n\n[Verse 2]\nThe man beside me shuts his eyes\na kid stops tugging at a sleeve\nthe pigeons settle on the stones\nand even they don't seem to breathe\nI can hear the sun land on the water\nin the fountain at our feet\nwe are hollow like a bell is hollow\nand the hollow rings so sweet\n\n[Hook]\nStill water, still\nlight comes through the roof of the day\nnobody moving, nobody talking\nand everything I was is washed away\n\n[Bridge]\nThen someone coughs and someone laughs\nand the buses start again\nbut I'm carrying an empty room\nwith the light still coming in\n\n[Final Hook]\nStill water, still\nlight comes through the roof of the day\neverybody moving, everybody talking\nand the light in me won't go away",
+   "suno": null,
+   "verdict": null,
+   "note": "lab s180-s182, delivered 2026-11-07; style s179 per-picture (mid-90s sample-based instrumental hip-hop)"
+  }
+ ]
 }
