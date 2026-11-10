@@ -344,7 +344,7 @@
    "date": "2026-11-10",
    "lyricist": "claude-self",
    "filled_prompt": "prompt-trial variant 4 (charged-images); reference event: a festival stage when a storm kills the power, one drummer keeps time until the system roars back. slots: adverb=defiantly; idea=staying put; meter=stomping; genre=melodic riddim; structure=verse, build, drop, verse, build, bridge, drop; term=unshakeable. Picture-noun ban list applied.",
-   "lyrics": "[Verse 1]\nThe stacks went quiet in the middle of the song\nthe rain came sideways and the crowd was gone\nthe bass player running with a jacket overhead\nI stayed on the stool with my sticks instead\n\n[Build]\nFour on the snare to an empty field\nmy wrists going numb and I will not yield\nsomebody back there, flip it, flip it on\nI'm still counting, I'm not gone\n\n[Drop]\nI didn't run\nI didn't run\nlet the whole thing roar\nI didn't run\n\n[Verse 2]\nPuddles on the riser jumping with the kick\na stagehand in the tent going lunatic\nevery speaker dead, every cable cold\nI kept the tempo like a secret I'd been told\n\n[Build]\nFour on the snare to an empty field\nmy wrists going numb and I will not yield\nsomebody back there, flip it, flip it on\nI'm still counting, I'm not gone\n\n[Bridge]\nThen a hum, way down, under my feet\nlike a giant clearing its throat in the heat\none red dot, then a hundred more\nand the dark field shaking like it's never shook before\n\n[Final Drop]\nI didn't run\nI didn't run\nlet the whole thing roar\nthey're running back\nI didn't run",
+   "lyrics": "[Verse 1]\nThe stacks went quiet in the middle of the song\nthe rain came sideways and the crowd was gone\nthe bass player running with a jacket overhead\nI stayed in my seat with my sticks instead\n\n[Build]\nFour on the snare to an empty field\nmy wrists going numb and I will not yield\nsomebody back there, flip it, flip it on\nI'm still counting, I'm not gone\n\n[Drop]\nI didn't run\nI didn't run\nlet the whole thing roar\nI didn't run\n\n[Verse 2]\nPuddles on the riser jumping with the kick\na stagehand in the tent going lunatic\nevery speaker dead, every cable cold\nI kept the tempo like a secret I'd been told\n\n[Build]\nFour on the snare to an empty field\nmy wrists going numb and I will not yield\nsomebody back there, flip it, flip it on\nI'm still counting, I'm not gone\n\n[Bridge]\nThen a hum, way down, under my feet\nlike a giant clearing its throat in the heat\none red dot, then a hundred more\nand the dark field shaking like it's never shook before\n\n[Final Drop]\nI didn't run\nI didn't run\nlet the whole thing roar\nthey're running back\nI didn't run",
    "suno": null,
    "verdict": null,
    "note": "lab s201, 2026-11-09; style written new (s196)"
@@ -372,7 +372,7 @@
    "date": "2026-11-10",
    "lyricist": "claude-self",
    "filled_prompt": "prompt-trial variant 2 (vowels-inside-words); reference event: a night market packing up at closing, the place beside the singer still warm. slots: adverb=softly; idea=warmth left behind; meter=slow lilting; genre=chillstep; structure=verse, pre, chorus, verse, pre, chorus, bridge, chorus; term=tender. Picture-noun ban list applied.",
-   "lyrics": "[Verse 1]\nStrings of bulbs go dark along the market row\nthe noodle stall is stacking up its stools\neverybody laughing as they pack it all away\nand the space beside me keeps the shape of you\n\n[Pre-Chorus]\nYou said \"back in a minute\"\nand the minute grew\n\n[Chorus]\nStill warm, still warm\nthe place you left behind\nI'll stay, I'll stay\na little longer, I don't mind\n\n[Verse 2]\nThe last of the crowd go drifting up the road\nsomebody's radio is playing something slow\nI keep my palm against the empty stool\nas if a little heat could last the night\n\n[Pre-Chorus]\nYou said \"back in a minute\"\nand the minute grew\n\n[Chorus]\nStill warm, still warm\nthe place you left behind\nI'll stay, I'll stay\na little longer, I don't mind\n\n[Bridge]\nNobody's coming, I know, I know\nbut I was here, and so were you\n\n[Final Chorus]\nStill warm, still warm\na little, then it's gone\nI'll stay, I'll stay\nand carry it along",
+   "lyrics": "[Verse 1]\nStrings of bulbs go dark along the market row\nthe noodle stall is stacking up its chairs\neverybody laughing as they pack it all away\nand the space beside me keeps the shape of you\n\n[Pre-Chorus]\nYou said \"back in a minute\"\nand the minute grew\n\n[Chorus]\nStill warm, still warm\nthe place you left behind\nI'll stay, I'll stay\na little longer, I don't mind\n\n[Verse 2]\nThe last of the crowd go drifting up the road\nsomebody's radio is playing something slow\nI keep my palm against the empty chair\nas if a little heat could last the night\n\n[Pre-Chorus]\nYou said \"back in a minute\"\nand the minute grew\n\n[Chorus]\nStill warm, still warm\nthe place you left behind\nI'll stay, I'll stay\na little longer, I don't mind\n\n[Bridge]\nNobody's coming, I know, I know\nbut I was here, and so were you\n\n[Final Chorus]\nStill warm, still warm\na little, then it's gone\nI'll stay, I'll stay\nand carry it along",
    "suno": null,
    "verdict": null,
    "note": "lab s203, 2026-11-09; style written new (chillstep)"
@@ -468,12 +468,12 @@
    "key": "one-picture",
    "cycle": 3,
    "date": "2026-11-10",
-   "lyricist": null,
-   "filled_prompt": null,
-   "lyrics": null,
+   "lyricist": "claude-self",
+   "filled_prompt": "prompt-trial variant 8 (one-picture); reference event: the anchor leg of a relay final, the runner coming apart into the race. slots: adverb=breathlessly; idea=scattering into speed; meter=rapid flowing; genre=melodic drum and bass; structure=verse, chorus, verse, chorus, bridge, chorus; term=weightless. Picture-noun ban list applied.",
+   "lyrics": "[Verse 1]\nBaton in my fist and the starter's gone\nsomebody in the stands is screaming out my number\nthe first bend leans me over like a sail\nI'm not running anymore, I'm being run\n\n[Chorus]\nFaster than me\nsomething is faster than me\ncoming loose at the seams\nevery part of me flying off in pieces\nand I don't want them back\n\n[Verse 2]\nMy legs went on ahead a while ago\nmy breath is somewhere back beside the hundred mark\nthe crowd comes through me like a gust through a fence\nI'm a sound now, I'm a blur, I'm the race itself\n\n[Chorus]\nFaster than me\nsomething is faster than me\ncoming loose at the seams\nevery part of me flying off in pieces\nand I don't want them back\n\n[Bridge]\nHand it on, hand it on\nI gave it everything\nnow I'm everywhere\n\n[Final Chorus]\nFaster than me\nsomething is faster than me\ncoming loose at the seams\nevery part of me flying off in pieces\nand I'll never need them back",
    "suno": null,
    "verdict": null,
-   "note": null
+   "note": "lab s210, 2026-11-09; style written new (melodic dnb, batch 3)"
   },
   {
    "song": "1646-sunrise-behind-her-face",
@@ -498,10 +498,10 @@
    "date": "2026-11-10",
    "lyricist": "claude-self",
    "filled_prompt": "prompt-trial variant 10 (draft-and-cut); reference event: a supermarket breaking into a dance when the speakers play an old banger. slots: adverb=giddily; idea=everyone cracking at once; meter=bouncing breakbeat; genre=breakbeat; structure=verse, chorus, verse, chorus, bridge, chorus; term=ridiculous. Picture-noun ban list applied.",
-   "lyrics": "[Verse 1]\nQuarter past three in the big shop, aisle nine, by the frozen peas\nthe speakers cough up a song from nineteen ninety-three\nthe security guard starts nodding, then checkout four spins round\nand a trolley full of nappies does a wheelie through the crowd\n\n[Chorus]\nDrop it, drop it, everybody drop it\nthe whole shop cracked at once\nnobody's stopping, the manager's bopping\non a pallet of discount buns\n\n[Verse 2]\nA pensioner's doing the worm by the bakery shelves\na toddler leads a conga past the pet food, all by themselves\nthe tills are beeping in time and the freezers hum along\nand I only came in for milk and I know every word of this song\n\n[Chorus]\nDrop it, drop it, everybody drop it\nthe whole shop cracked at once\nnobody's stopping, the manager's bopping\non a pallet of discount buns\n\n[Bridge]\n[Announcement voice]\n(Clean-up on aisle nine)\n(clean-up on aisle nine)\nnobody's cleaning, everybody's screaming\nthe floor is a disco and the milk can wait\n\n[Final Chorus]\nDrop it, drop it, everybody drop it\nthe whole shop cracked at once\nnobody's stopping, the manager's bopping\nI came in for milk, I'm leaving with forty friends",
+   "lyrics": "[Verse 1]\nQuarter past three in the big shop, aisle nine, by the frozen peas\nthe speakers cough up a song I loved at seventeen\nthe security guard starts nodding, then checkout four spins round\nand a trolley full of nappies does a wheelie through the crowd\n\n[Chorus]\nDrop it, drop it, everybody drop it\nthe whole shop cracked at once\nnobody's stopping, the manager's bopping\non a pallet of discount buns\n\n[Verse 2]\nA pensioner's doing the worm by the bakery shelves\na toddler leads a conga past the pet food, all by themselves\nthe tills are beeping in time and the freezers hum along\nand I only came in for milk and I know every word of this song\n\n[Chorus]\nDrop it, drop it, everybody drop it\nthe whole shop cracked at once\nnobody's stopping, the manager's bopping\non a pallet of discount buns\n\n[Bridge]\n[Announcement voice]\n(Clean-up on aisle nine)\n(clean-up on aisle nine)\nnobody's cleaning, everybody's screaming\nthe floor is a disco and the milk can wait\n\n[Final Chorus]\nDrop it, drop it, everybody drop it\nthe whole shop cracked at once\nnobody's stopping, the manager's bopping\nI came in for milk, I'm leaving with forty friends",
    "suno": null,
    "verdict": null,
-   "note": "lab s214, 2026-11-09; style written new (flip batch, breakbeat)"
+   "note": "lab s214, 2026-11-09; style written new (breakbeat). Patched: 'nineteen ninety-three' tripped Suno's producer-tag filter, now 'a song I loved at seventeen'"
   },
   {
    "song": "1689-every-dog-in-the-park-at-once",
@@ -552,12 +552,12 @@
    "key": "untangled",
    "cycle": 4,
    "date": "2026-11-10",
-   "lyricist": null,
-   "filled_prompt": null,
-   "lyrics": null,
+   "lyricist": "claude-self",
+   "filled_prompt": "prompt-trial variant 5 (untangled); idiom 'right on time'; reference event: an airport arrivals hall at six a.m., a long-awaited arrival. slots: adverb=eagerly; idea=finally arriving; meter=bright bouncing; genre=bright melodic techno; structure=verse, refrain, verse, refrain, bridge, refrain; term=giddy. Picture-noun ban list applied.",
+   "lyrics": "[Verse 1]\nArrivals hall at six with a sign I made in marker\na hundred people leaning on the barrier like me\nthe board goes flicking, flicking down the list\nand next to yours it says it, right there, on time\n\n[Refrain]\nRight on time, right on time\nfor once in my life something's right on time\nI can wait, I can wait\nanother minute, I've been waiting all this time\n\n[Verse 2]\nStrangers running into strangers' arms beside me\na toddler holding balloons up at the ceiling\nI practise what I'll say and then I lose it\nand the crowd breathes in as the first faces come through\n\n[Refrain]\nRight on time, right on time\nfor once in my life something's right on time\nI can wait, I can wait\nanother minute, I've been waiting all this time\n\n[Bridge]\nEvery year I said someday\nsomeday's walking up the ramp\nwith a bag on one shoulder\nwaving like a fool\n\n[Final Refrain]\nRight on time, right on time\nfor once in my life something's right on time\nI don't wait, I don't wait\nI'm running, and here you are, right on time",
    "suno": null,
    "verdict": null,
-   "note": null
+   "note": "lab s219, 2026-11-09; lyrics only on the batch-4 imported style"
   },
   {
    "song": "1670-light-at-the-end-of-the-dig",
@@ -566,12 +566,12 @@
    "key": "blind-draw",
    "cycle": 4,
    "date": "2026-11-10",
-   "lyricist": null,
-   "filled_prompt": null,
-   "lyrics": null,
+   "lyricist": "claude-self",
+   "filled_prompt": "prompt-trial variant 3 (blind-draw); drawn: 1970s | the narrow sea between two coasts | a long-distance swimmer at hour fourteen. slots: adverb=doggedly; idea=grinding through; meter=slow heavy; genre=industrial melodic techno; structure=verse, chorus, verse, chorus, bridge, chorus; term=relentless. Picture-noun ban list applied.",
+   "lyrics": "[Verse 1]\nHour fourteen and the grease is gone\nsalt in the cuts at the back of my neck\nthe boat beside me with its engine low\nthey write it on a board, two miles to go\n\n[Chorus]\nArm over arm\narm over arm\nI stopped wanting it hours ago\nnow I just do it\narm over arm\n\n[Verse 2]\nThere's a smudge up ahead that I won't call land\nI won't say it out loud in case it goes\nthey hold out a drink on a long pole\nI take it, I swallow, I don't look up\n\n[Chorus]\nArm over arm\narm over arm\nI stopped wanting it hours ago\nnow I just do it\narm over arm\n\n[Bridge]\nThen gravel finds my fingers\nI stand up like an old machine\nnobody's cheering, it's four in the morning\nand I walk up out of the sea\n\n[Final Chorus]\nArm over arm\narm over arm\nI stopped wanting it hours ago\nand now I can stop",
    "suno": null,
    "verdict": null,
-   "note": null
+   "note": "lab s220, 2026-11-09; lyrics only on the batch-4 imported style"
   }
  ]
 }
