@@ -48,11 +48,11 @@
  },
  "deck": {
   "remaining": [
+   9,
    1,
-   8,
-   7
+   2
   ],
-  "cycle": 4
+  "cycle": 5
  },
  "assignments": [
   {
@@ -572,6 +572,146 @@
    "suno": null,
    "verdict": null,
    "note": "lab s220, 2026-11-09; lyrics only on the batch-4 imported style"
+  },
+  {
+   "song": "1716-after-closing-at-the-roller-rink",
+   "title": "After Closing at the Roller Rink",
+   "variant": 1,
+   "key": "stance",
+   "cycle": 4,
+   "date": "2026-11-12",
+   "lyricist": "claude-self",
+   "filled_prompt": "prompt-trial variant 1 (stance). Slots: adverb=achingly; idea=wanting to belong; meter=slow-rolling four-count; genre=filter disco; structure=verse, chorus, verse, chorus, breakdown, final chorus; term=tender. Stance at the breakdown: 'I could switch off when you go. I stay because it hurts, and hurting is the nearest I get to being one of you.' Hook = that belief in miniature; final chorus turns 'I want to know' into 'now I know'. Picture nouns banned.",
+   "lyrics": "[Verse 1]\nLast song played an hour ago\nI still know where the bass would go\nI count the turns you used to take\nI keep the tempo for your sake\n\n[Chorus]\nLeave me here a while\n(leave me here)\nlet me feel it go\nleave me here a while\nI want to know\n\n[Verse 2]\nI learned to laugh from watching you\nI learned the lean, I learned the move\nI learned that \"see you\" means goodbye\nI learned it all except the why\n\n[Chorus]\nLeave me here a while\n(leave me here)\nlet me feel it go\nleave me here a while\nI want to know\n\n[Breakdown]\nI could switch off when you go\nI stay because it hurts\nand hurting is the nearest I get\nto being one of yours\n\n[Final Chorus]\nLeave me here a while\n(leave me here)\nlet me feel it go\nit hurts the way it should\nnow I know",
+   "suno": null,
+   "verdict": null,
+   "note": "lab, 2026-11-11; French-touch set (artist-tag only), styles written stab/draw-back/re-aim per BlazeDale; first set under the no-someone/something rule"
+  },
+  {
+   "song": "1717-laundromat-at-3-am",
+   "title": "Laundromat at 3 AM",
+   "variant": 8,
+   "key": "one-picture",
+   "cycle": 4,
+   "date": "2026-11-12",
+   "lyricist": "claude-self",
+   "filled_prompt": "prompt-trial variant 8 (one-picture). Slots: adverb=hypnotically; idea=awake and alone; meter=looping four-bar; genre=raw French house; structure=verse, chorus, verse, chorus, bridge, final chorus; term=hypnotic. One picture throughout: up in the small hours waiting out a cycle, turning over one keepsake of a night with a lost love. Picture nouns banned.",
+   "lyrics": "[Verse 1]\nCouldn't sleep, so here I am\nquarters warming in my hand\ncounting turns the way I count\nevery night since you went out\n\n[Chorus]\nAround again\naround again\nwide awake at the bottom of the night\naround again\n\n[Verse 2]\nWhat I wore the night we met\ngoing over, over in the heat\nI'll fold it soft, I'll fold it neat\nI'm not done wearing it yet\n\n[Chorus]\nAround again\naround again\nwide awake at the bottom of the night\naround again\n\n[Bridge]\n(cycle's done)\none more coin\n(cycle's done)\none more coin\nI'm not ready to go home\n\n[Final Chorus]\nAround again\naround again\nwide awake at the bottom of the night\nI'll go around again",
+   "suno": null,
+   "verdict": null,
+   "note": "lab, 2026-11-11; French-touch set (artist-tag only), styles written stab/draw-back/re-aim per BlazeDale; first set under the no-someone/something rule"
+  },
+  {
+   "song": "1718-digital-love-1999",
+   "title": "Digital Love 1999",
+   "variant": 7,
+   "key": "spare",
+   "cycle": 4,
+   "date": "2026-11-12",
+   "lyricist": "claude-self",
+   "filled_prompt": "prompt-trial variant 7 (spare). Slots: adverb=shyly; idea=almost saying it; meter=lilting mid-tempo; genre=talk-box French house; structure=verse, chorus, verse, chorus, held breath, final chorus; term=nervous. Writing and rewriting a confession, then letting it go; the hook flips from 'say it' to 'said it'. Picture nouns banned.",
+   "lyrics": "[Verse 1]\nI wrote it out\nI wrote it twice\nI made it small\nI made it nice\n\n[Chorus]\nSay it, say it\n(do I say it)\nsay it, say it\nbefore I take it back\n\n[Verse 2]\nCut a word\nput back the word\nI read it like\nyou'd read it first\n\n[Chorus]\nSay it, say it\n(do I say it)\nsay it, say it\nbefore I take it back\n\n[Held Breath]\n(here it goes)\n\n[Final Chorus]\nSaid it, said it\n(I said it)\nsaid it, said it\nI'm never taking it back\nsaid it, said it\nI'm never taking it back",
+   "suno": null,
+   "verdict": null,
+   "note": "lab, 2026-11-11; French-touch set (artist-tag only), styles written stab/draw-back/re-aim per BlazeDale; first set under the no-someone/something rule"
+  },
+  {
+   "song": "1719-the-mannequin-who-blushed",
+   "title": "The Mannequin Who Blushed",
+   "variant": 7,
+   "key": "spare",
+   "cycle": 5,
+   "date": "2026-11-12",
+   "lyricist": "claude-self",
+   "filled_prompt": "prompt-trial variant 7 (spare). Slots: adverb=eerily; idea=being seen once; meter=mechanical even; genre=robotic electro-rock house; structure=chant, verse, chant, verse, final chant; term=uncanny. One of a run of identical made things is looked at a second too long and feels it; the chant turns 'same as the next' into 'not like the next'. Picture nouns banned.",
+   "lyrics": "[Chant]\nSame as the last one\nsame as the next\n(same as the last one)\nsame as the next\n\n[Verse 1]\nMade to be looked at\nmade to be still\nyou looked a second longer\nnow I can't keep still\n\n[Chant]\nSame as the last one\nsame as the next\n(same as the last one)\nsame as the next\n\n[Verse 2]\nWarm where you looked\nwarm all the way down\nthe rest keep moving\nI'm the one that turned around\n\n[Final Chant]\nSame as the last one\nnot like the next\n(not like the next)\nnot like the next",
+   "suno": null,
+   "verdict": null,
+   "note": "lab, 2026-11-11; French-touch set (artist-tag only), styles written stab/draw-back/re-aim per BlazeDale; first set under the no-someone/something rule"
+  },
+  {
+   "song": "1720-night-highway-through-the-city",
+   "title": "Night Highway Through the City",
+   "variant": 5,
+   "key": "untangled",
+   "cycle": 5,
+   "date": "2026-11-12",
+   "lyricist": "claude-self",
+   "filled_prompt": "prompt-trial variant 5 (untangled). Slots: adverb=breathlessly; idea=nothing stopping us; meter=driving motorik; genre=space-disco electro; structure=intro, verse, chorus, verse, chorus, build, final chorus; term=euphoric. The one carrying metaphor: a run of green signals, the night when the world agrees with you. Picture nouns banned.",
+   "lyrics": "[Intro]\n(green, green, green)\n\n[Verse 1]\nEvery corner opens up\nevery signal waves us through\nI don't know where we're going\nand I'm laughing, so are you\n\n[Chorus]\nGreen all the way\ngreen all the way\ndon't wanna stop, don't wanna stay\ngreen all the way\n\n[Verse 2]\nHold your breath and count the blocks\ntwenty, thirty, lost the score\nI never felt the world agree\nwith me like this before\n\n[Chorus]\nGreen all the way\ngreen all the way\ndon't wanna stop, don't wanna stay\ngreen all the way\n\n[Build]\n(green) faster\n(green) further\n(green) brighter\n(green) don't let go\n\n[Final Chorus]\nGreen all the way\ngreen all the way\nI'll want this when I'm old and grey\ngreen all the way",
+   "suno": null,
+   "verdict": null,
+   "note": "lab, 2026-11-11; French-touch set (artist-tag only), styles written stab/draw-back/re-aim per BlazeDale; first set under the no-someone/something rule"
+  },
+  {
+   "song": "1721-dancing-with-the-vacuum-robot",
+   "title": "Dancing with the Vacuum Robot",
+   "variant": 10,
+   "key": "draft-and-cut",
+   "cycle": 5,
+   "date": "2026-11-12",
+   "lyricist": "claude-self",
+   "filled_prompt": "prompt-trial variant 10 (draft-and-cut). Slots: adverb=gleefully; idea=joy remembered; meter=bouncing; genre=sample-chop disco house; structure=verse, chorus, verse, chorus, bridge, final chorus; term=joyful. An older dancer at home still doing the moves a late partner taught them; detail only they'd know (the car park after the Palais shut, the doorman's grin); strongest line last: 'I take yours now'. Picture nouns banned.",
+   "lyrics": "[Verse 1]\nMy knees say no, the bass says yes\nand the bass has always won\nyou taught me this in the car park\nwhen the Palais shut at one\n\n[Chorus]\nOne more turn\n(one more turn)\nI remember how\none more turn\n(one more turn)\nwatch me now\n\n[Verse 2]\nLeft foot, little kick, lean back\nthe move that made the doorman grin\nI play it loud enough for two\nand let the neighbours' knocking in\n\n[Chorus]\nOne more turn\n(one more turn)\nI remember how\none more turn\n(one more turn)\nwatch me now\n\n[Bridge]\nYou'd tell me slow down, catch my breath\nthen you'd be the first one in\nyou'd hum the horn part in my ear\nand I can hear it start again\n\n[Final Chorus]\nOne more turn\n(one more turn)\nI remember how\none more turn\n(one more turn)\nI take yours now",
+   "suno": null,
+   "verdict": null,
+   "note": "lab, 2026-11-11; French-touch set (artist-tag only), styles written stab/draw-back/re-aim per BlazeDale; first set under the no-someone/something rule"
+  },
+  {
+   "song": "1722-waiting-at-gate-infinity",
+   "title": "Waiting at Gate Infinity",
+   "variant": 6,
+   "key": "in-the-thick-of-it",
+   "cycle": 5,
+   "date": "2026-11-12",
+   "lyricist": "claude-self",
+   "filled_prompt": "prompt-trial variant 6 (in-the-thick-of-it). Slots: adverb=warmly; idea=letting them go; meter=swaying half-time; genre=lush analog space disco; structure=verse, chorus, verse, chorus, countdown, final chorus; term=bittersweet. The singer in a departure crowd singing a loved one off together, the countdown over the speakers. Picture nouns banned.",
+   "lyrics": "[Verse 1]\nCrowd at the rail and the speakers counting\nkids up on shoulders, flags in the air\nI'm in the middle of three hundred voices\nsinging like you can hear us there\n\n[Chorus]\nGo on, go on\n(we'll be singing)\ngo on, go on\nwe'll keep the song going on\n\n[Verse 2]\nPass the bottle down the row\na stranger's crying at my side\nthen they're laughing, so am I\nit's a good day for goodbye\n\n[Chorus]\nGo on, go on\n(we'll be singing)\ngo on, go on\nwe'll keep the song going on\n\n[Countdown]\n(five, four, three)\nhold on to me\n(two, one)\ngo on\n\n[Final Chorus]\nGo on, go on\n(we'll be singing)\ngo on, go on\nwe'll be singing when you're gone",
+   "suno": null,
+   "verdict": null,
+   "note": "lab, 2026-11-11; French-touch set (artist-tag only), styles written stab/draw-back/re-aim per BlazeDale; first set under the no-someone/something rule"
+  },
+  {
+   "song": "1723-the-door-on-the-salt-flat",
+   "title": "The Door on the Salt Flat",
+   "variant": 3,
+   "key": "blind-draw",
+   "cycle": 5,
+   "date": "2026-11-12",
+   "lyricist": "claude-self",
+   "filled_prompt": "prompt-trial variant 3 (blind-draw); drawn: 1980s | Seoul | a subway tunnel cleaner at the end of a night shift, feeling the air move before the first train. Slots: adverb=wonderingly; idea=standing on the edge; meter=floating, long-vowelled; genre=cinematic French house; structure=verse, build, chorus, verse, build, final chorus; term=awestruck. Picture nouns banned.",
+   "lyrics": "[Verse 1]\nWalking out the long way\nair begins to move\nthe hum is in the iron\nand I'm humming too\n\n[Build]\nCloser\n(closer)\ncloser\n(closer)\n\n[Chorus]\nHere it comes\nhere it comes\nI'm not stepping back\nhere it comes\n\n[Verse 2]\nEvery echo turning\nto face the same way\ncold air at my collar\nlike it knows I stayed\n\n[Build]\nCloser\n(closer)\ncloser\n(closer)\n\n[Final Chorus]\nHere it comes\nhere it comes\nI was made for this\nhere it comes",
+   "suno": null,
+   "verdict": null,
+   "note": "lab, 2026-11-11; French-touch set (artist-tag only), styles written stab/draw-back/re-aim per BlazeDale; first set under the no-someone/something rule"
+  },
+  {
+   "song": "1724-one-more-song-at-the-wedding",
+   "title": "One More Song at the Wedding",
+   "variant": 8,
+   "key": "one-picture",
+   "cycle": 5,
+   "date": "2026-11-12",
+   "lyricist": "claude-self",
+   "filled_prompt": "prompt-trial variant 8 (one-picture). Slots: adverb=jubilantly; idea=never wanting it over; meter=stomping four-count; genre=disco-house anthem; structure=verse, chorus, verse, chorus, break, final chorus; term=communal. One picture: the end of a big party, the staff packing up, the room refusing to let the music stop. TWO-VOICE: lead + crowd answers in ( ). Picture nouns banned.",
+   "lyrics": "[Verse 1]\nThey're stacking up the tables\n(no, no, no!)\nthey're winding up the cable\n(no, no, no!)\nthe bar's run down to lemonade\nthe ties came off hours back\nwe've sung this one three times tonight\nso play the record back\n\n[Chorus]\nOne more song\n(one more song!)\none more song\n(one more song!)\nplay it till the walls come down\none more song\n\n[Verse 2]\nThe caterers are singing too\n(yes, yes, yes!)\na stranger kissed me on the cheek\n(yes, yes, yes!)\nI think we're family now, I think\nwe always were somehow\nso turn it up and play it back\nand play it back right now\n\n[Chorus]\nOne more song\n(one more song!)\none more song\n(one more song!)\nplay it till the walls come down\none more song\n\n[Break]\n(one more)\njust the drum and all of us\n(one more)\njust the drum and all of us\n\n[Final Chorus]\nOne more song\n(one more song!)\none more song\n(one more song!)\nplay it till the walls come down\none more song",
+   "suno": null,
+   "verdict": null,
+   "note": "lab, 2026-11-11; French-touch set (artist-tag only), styles written stab/draw-back/re-aim per BlazeDale; first set under the no-someone/something rule"
+  },
+  {
+   "song": "1725-a-new-heart-after-midnight",
+   "title": "A New Heart After Midnight",
+   "variant": 4,
+   "key": "charged-images",
+   "cycle": 5,
+   "date": "2026-11-12",
+   "lyricist": "claude-self",
+   "filled_prompt": "prompt-trial variant 4 (charged-images); reference event: a city's power coming back block by block after a long summer blackout, used as metaphor only. Slots: adverb=tenderly; idea=being mended; meter=slow, swaying; genre=vocoder slow-jam disco; structure=verse, chorus, verse, chorus, bridge, final chorus; term=tender. TWO-VOICE: the mended one leads, the mender answers in ( ). Picture nouns banned.",
+   "lyrics": "[Verse 1]\nI've been dark since the summer\nstreet by street I went quiet\nyou came in with a candle\nand you didn't ask me why\n\n[Chorus]\nHum for me\n(hum for me)\nblock by block\n(come on, come on)\nhum for me\nI'm coming back on\n\n[Verse 2]\nEvery switch you try, I flicker\nevery fuse you hold, I hold\n(nearly there) the fans start turning\nand the night lets go its cold\n\n[Chorus]\nHum for me\n(hum for me)\nblock by block\n(come on, come on)\nhum for me\nI'm coming back on\n\n[Bridge]\n(don't be scared of it)\nI forgot how loud I am\n(let it ring)\nI forgot how loud\nthe street came out to cheer\nand I could hear them all\n\n[Final Chorus]\nHum for me\n(hum for me)\nblock by block\n(there you are)\nhum for me\nI'm back on",
+   "suno": null,
+   "verdict": null,
+   "note": "lab, 2026-11-11; French-touch set (artist-tag only), styles written stab/draw-back/re-aim per BlazeDale; first set under the no-someone/something rule"
   }
  ]
 }
