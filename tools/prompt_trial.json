@@ -48,7 +48,6 @@
  },
  "deck": {
   "remaining": [
-   7,
    5
   ],
   "cycle": 7
@@ -1005,6 +1004,20 @@
    "suno": null,
    "verdict": null,
    "note": "lab, 2026-11-14; single seed, no artist target; first neg built with tools/neg_fence.mjs"
+  },
+  {
+   "song": "1714-the-upside-down-balloon-s222",
+   "title": "The Upside-Down Balloon",
+   "variant": 7,
+   "key": "spare",
+   "cycle": 7,
+   "date": "2026-11-14",
+   "lyricist": "claude-self",
+   "filled_prompt": "prompt-trial variant 7 (spare); reference event: a kid hanging by the knees from the monkey bars as the recess bell rings. Slots: adverb=giddily; idea=falling up gladly; meter=fast, light; genre=melodic trance; structure=intro, verse, build, drop, breakdown, final drop; term=giddy. Lyrics only, existing style kept. Picture nouns banned.",
+   "lyrics": "[Intro · light, close]\nHang by your knees\nlet the day swing\n\n[Verse]\nCoins rolling out of my pockets\nmy hair sweeping the ground\nthe recess bell is ringing\nand I'm not coming down\n\n[Build]\nUp is down\n(up is down)\ndown is up\n(down is up)\nmy feet where the sun should be\n\n[Drop · spare, the hook riding the flipped lead]\nUpside down and grinning\nI'm falling up, I'm falling up\nupside down and grinning\n(falling up)\nI'm falling up\n\n[Breakdown · floating, plucked strings]\nThe teacher shading her eyes\nsays come on down now\nI say in a minute\nI say in a minute\n\n[Final Drop]\nUpside down and grinning\nI'm falling up, I'm falling up\nupside down and grinning\n(in a minute)\nI'm falling up",
+   "suno": null,
+   "verdict": null,
+   "note": "lab s222, 2026-11-14; lyrics only on 1714 (style kept)"
   }
  ]
 }
