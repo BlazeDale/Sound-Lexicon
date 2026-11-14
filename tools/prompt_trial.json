@@ -48,7 +48,6 @@
  },
  "deck": {
   "remaining": [
-   4,
    7,
    5
   ],
@@ -992,6 +991,20 @@
    "suno": null,
    "verdict": null,
    "note": "lab s221, 2026-11-14; melodic-bass set with a named harmonic device per style (\"beatoisms\"), stab/draw-back/re-aim styles; 4 parallel claude-self writers"
+  },
+  {
+   "song": "1746-running-the-crystal-city",
+   "title": "Running the Crystal City",
+   "variant": 4,
+   "key": "charged-images",
+   "cycle": 7,
+   "date": "2026-11-14",
+   "lyricist": "claude-self",
+   "filled_prompt": "prompt-trial variant 4 (charged-images); reference event: walking out of a job mid-shift with a bus pass and a last paycheck, lending images as metaphor only. Slots: adverb=recklessly; idea=the leap first; meter=fast; genre=big-beat brass punk; structure=verse, pre-chorus, chorus, verse, pre-chorus, chorus, one-bar breakdown, final chorus; term=reckless. Single voice; ( ) is a quick answering echo. Picture nouns banned.",
+   "lyrics": "[Verse 1 · quick, half-shouted]\nUntie the apron, leave it on the hook\nTip jar rattling, I don't even look\nManager calling with a sandwich in his hand\nI'm already gone like a rubber band\n\n[Pre-Chorus]\nNine years of yes, sir\nNine years of fine\n(go on, go on)\nI'm over the line\n\n[Chorus · wide open]\nDon't ask me where I land\nI'll tell you when I'm there\nKick off with both feet running\nunder me just open air\nDon't ask me where I land\nI never had a plan\nHalfway is the best part\n(halfway, halfway)\nI could live up here\n\n[Verse 2 · quick, half-shouted]\nBus pass and a paycheck folded twice\nTwelve dollars and the worst advice\nThe driver hits the brakes, I hit the street\nI can hear my heartbeat in my feet\n\n[Pre-Chorus]\nNine years of maybe\nNine years of wait\n(go on, go on)\nIt's already late\n\n[Chorus · wide open]\nDon't ask me where I land\nI'll tell you when I'm there\nKick off with both feet running\nunder me just open air\nDon't ask me where I land\nI never had a plan\nHalfway is the best part\n(halfway, halfway)\nI could live up here\n\n[Breakdown · one bar of open air, then the band lands]\nFeet left the floor\nand the floor let go\n(don't look down)\nI don't know, I don't know\nand I've never been so sure\n\n[Final Chorus · wide open]\nDon't ask me where I land\nI'll tell you when I'm there\nKick off with both feet running\nunder me just open air\nDon't ask me where I land\nI never had a plan\nHalfway is the best part\n(halfway, halfway)\nI'm never coming down",
+   "suno": null,
+   "verdict": null,
+   "note": "lab, 2026-11-14; single seed, no artist target; first neg built with tools/neg_fence.mjs"
   }
  ]
 }

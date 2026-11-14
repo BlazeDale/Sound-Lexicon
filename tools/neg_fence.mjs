@@ -79,9 +79,17 @@ export function fence(style) {
      voice (and a duet partner's register is often a sentence away from the lead's). Grit and
      delivery words are checked against the voice sentences only: "growls" in the bass
      sentence is a synth, and must not stop the fence naming a growled vocal. */
-  const voiceText = style.split(/(?<=[.;])s+/)
-    .filter(x => /(vocalw*|voices?|singw*|sung|duet|partner|answerw*|harmonw*|choir|ad-?libs?|lead is|delivery)/i.test(x)).join(' ') || clause;
-  const asks = t => (REG_TAGS.includes(t) ? style : voiceText).match(t.re);
+  const voiceText = style.split(/(?<=[.;])\s+/)
+    .filter(x => /\b(vocal\w*|voices?|sing\w*|sung|duet|partner|answer\w*|harmon\w*|choir|ad-?libs?|lead is|delivery)\b/i.test(x)).join(' ') || clause;
+  /* "never polished" is not asking for polish, it is the fence's best term — so a match
+     preceded by a negation doesn't count as the style asking for it. */
+  const NEGATED = /\b(no|not|never|without|free of|nothing)\s+(?:\w+[\s,]+){0,2}$/i;
+  const asks = t => {
+    const text = REG_TAGS.includes(t) ? style : voiceText;
+    const re = new RegExp(t.re.source, 'gi');
+    for (const m of text.matchAll(re)) if (!NEGATED.test(text.slice(Math.max(0, m.index - 24), m.index))) return true;
+    return false;
+  };
   const out = { r: d.r, g: d.g, rk: d.rk, gk: d.gk, clause, reg: [], grit: [], delivery: [], skipped: [] };
   if (!d.rk && !d.gk) return out;
 
