@@ -174,3 +174,26 @@ historical hand-scored record, and are no longer used to draw anything).
 
 An entry whose prompt names neither axis resolves to neutral (5/5) and is drawn hollow —
 visible as "the prompt didn't say" rather than as a claim the prompt never made.
+
+## neg_fence.mjs — open a negative with the voice's near misses
+
+```
+node tools/neg_fence.mjs "<style line>"       # suggest a fence for one style
+node tools/neg_fence.mjs --entry 4            # for a library entry, beside its current neg
+node tools/neg_fence.mjs --json <file.json>   # a {seed:{style,neg}} file or one {style,neg}
+```
+
+Reads the lead's register and grit with `timbre.mjs`, then proposes the timbres a step or
+two away on the map: up to two rougher and one cleaner grit word, one voice CLASS up and
+one down (an alto gets tenor and bass vocal, not mezzo or contralto, which would fence
+the lead itself), and the delivery habits of that corner (belting, melisma runs and
+vibrato for clean voices, pop sheen for rough ones, chipmunk pitch-shift for high ones).
+Nothing the style asks for is proposed: register words are checked against the whole
+style (a duet partner's register is often a sentence away), and grit and delivery words
+against the voice sentences only, so a synth "growl" doesn't stop a growled vocal being
+fenced.
+
+It is a suggestion, not a negative. The writer keeps what fits the song and adds that
+style's own drift targets after the fence. A style that names no register or grit word
+gets told so instead of a guessed fence. Grit takes the MAX word in the clause (as on the
+map), so "clean … a slight rasp" fences from rasp upward — check those by ear.
