@@ -116,8 +116,13 @@
      past 2:3 is what object-fit:cover is for. */
   #vcov .vbox{flex:1 1 auto;min-height:0;aspect-ratio:592/896;position:relative;line-height:0;
               cursor:zoom-in}
-  #vcov video{width:100%;height:100%;object-fit:cover;display:block;
+  #vcov video,#vcov img{width:100%;height:100%;object-fit:cover;display:block;
               border-radius:8px;background:#000}
+  #vcov video[hidden],#vcov img[hidden]{display:none}
+  /* A still cover is square where a moving one is 2:3, so it keeps its own shape instead of
+     growing with the stretch — a square cropped into a portrait box loses half of itself.
+     It sits at the bottom of the panel, against its caption. */
+  #vcov.still .vbox{flex:none;aspect-ratio:1/1;margin-top:auto}
   /* Under the picture rather than over it: the label names what is above it, the way a
      caption does, and the panel's top edge is then the picture's own — which is the edge
      being lined up with the player's. */
@@ -151,7 +156,9 @@
             justify-content:center}
   #vcov.max .slab{display:none}
   #vcov.max .vbox{width:100%;height:100%;aspect-ratio:auto;cursor:zoom-out}
-  #vcov.max video{width:100%;height:100%;aspect-ratio:auto;object-fit:contain;border-radius:0}
+  #vcov.max video,#vcov.max img{width:100%;height:100%;aspect-ratio:auto;object-fit:contain;
+                                border-radius:0;background:var(--ink)}
+  #vcov.max.still .vbox{margin-top:0}
   /* Lit, and no longer dimmed: in full window this button is the way back, and the one thing
      on screen that should not have to be hunted for. */
   #vcov.max #vcovfs{opacity:1}
@@ -570,6 +577,7 @@
     <div class="vbox">
       <video id="vcovv" muted loop playsinline preload="auto" disablepictureinpicture
              tabindex="-1" aria-hidden="true"></video>
+      <img id="vcovi" alt="" aria-hidden="true" hidden>
       <button id="vcovfs" title="Full window — the cover covers the page (f)">&#9974;</button>
     </div>
     <span class="slab">COVER</span>
@@ -654,7 +662,7 @@
   <footer>
     <span style="float:right;font-family:var(--mono);font-size:10.5px;color:var(--line)" id="buildstamp"></span>
     <b>Keys:</b> <kbd>shift</kbd>+<kbd>←</kbd> <kbd>→</kbd> previous / next track · <kbd>t</kbd> player size —
-    theatre or full window · <kbd>f</kbd> a moving cover full window, when there is one ·
+    theatre or full window · <kbd>f</kbd> a Suno track's cover (still or moving) full window ·
     <kbd>esc</kbd> out of either.<br><br>
     <b>Which sources guests may use.</b> An owner can switch <b>Suno</b>, <b>YouTube</b> or
     <b>Spotify</b> off for everyone else, from the three buttons beside <b>Open adding</b>. It
@@ -740,9 +748,9 @@
     video, and a snapshot of its first frame, which is the still you see on the row and
     everywhere else on this page. When one of those plays, the clip appears in its own panel
     between the stream and the player, silent and on a loop, and the player shifts right to
-    make room. Eleven of the library's demos have one; everything else leaves the panel off
-    and the player back in the middle, so there is nothing to switch on and nothing to turn
-    off. Press <b>&#9974;</b> on the picture — or the picture itself, or <b>f</b> — and the
+    make room. Eleven of the library's demos have one. Every other Suno track shows its still
+    cover in the same panel, square, so any song's artwork can take the window too; YouTube
+    and Spotify tracks leave the panel off, since their picture is already in the player. Press <b>&#9974;</b> on the picture — or the picture itself, or <b>f</b> — and the
     cover takes the window, the same way <b>t</b> does it for the player: the browser window
     and not the screen, so this is still a page and escape is still the page's own way out.
     The song carries on, because the sound was never in this panel, and the keys carry on with
@@ -851,7 +859,7 @@
    page -- covers read from data.js while the code that looks them up is old. Printed
    on load and shown in the footer, so 'which build am I on' is answerable in a glance
    instead of by deduction. */
-const QUEUE_BUILD = '2026-09-25-l';
+const QUEUE_BUILD = '2026-11-14-a';
 console.log('[queue] build ' + QUEUE_BUILD);
 
 const $ = s => document.querySelector(s);
@@ -2687,11 +2695,46 @@ function hideVideoCover() {
      the browser then dutifully fetches and fails on, for nothing. */
   vcovv.removeAttribute('src');
   vcovv.load();
+  vcovi.hidden = true;
+  vcovi.removeAttribute('src');
+  vcovi.dataset.want = '';
 }
+/* Every other track gets its still artwork in the same panel, so it can take the window the
+   same way. Suno only: YouTube's picture IS the player, and Spotify draws its own card. A
+   derived Suno address is the 300px thumbnail; the large one is asked for first and the
+   thumbnail is the fallback, because a thumbnail stretched over a window is mush. */
+const vcovi = $('#vcovi');
+function stillCover(r, art) {
+  vcov.classList.add('still');
+  try { vcovv.pause(); } catch (e) {}
+  vcovv.removeAttribute('src');
+  vcovv.removeAttribute('poster');
+  vcovv.load();
+  vcovv.hidden = true;
+  const small = 'https://cdn2.suno.ai/image_' + r.id + '.jpeg';
+  const want = art === small ? 'https://cdn2.suno.ai/image_large_' + r.id + '.jpeg' : art;
+  if (vcovi.dataset.want !== want) {
+    vcovi.dataset.want = want;
+    vcovi.dataset.fallback = want !== art ? art : '';
+    vcovi.src = want;
+  }
+  vcovi.hidden = false;
+  vcov.hidden = false;
+}
+vcovi.addEventListener('error', () => {
+  const fb = vcovi.dataset.fallback;
+  if (fb) { vcovi.dataset.fallback = ''; vcovi.src = fb; }
+  else hideVideoCover();
+});
 function showVideoCover(r) {
   const art = r && r.src === 'suno' ? sunoArt(r.id, r.art) : '';
   const url = art ? videoCover(r.id, art) : '';
-  if (!url) return hideVideoCover();
+  if (!url) return art ? stillCover(r, art) : hideVideoCover();
+  vcov.classList.remove('still');
+  vcovi.hidden = true;
+  vcovi.removeAttribute('src');
+  vcovi.dataset.want = '';
+  vcovv.hidden = false;
   if (vcovv.getAttribute('src') !== url) {
     /* The poster is frame zero of this very clip — that is what the still IS — so nothing
        flashes while the mp4 arrives and nothing jumps when it starts. */
